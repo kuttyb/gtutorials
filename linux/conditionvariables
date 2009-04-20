@@ -1,0 +1,60 @@
+POSIX condition variables are not the same as Win32 Event objects ( or dispatcher objects ) they are not even close:-)
+
+BTW reason condition variables are better than just plain semaphores being that semaphores can just count up to a max and not
+have an arbitrarily complex condition that it checks. If we just used mutex or locks then we would have to keep polling for the
+value and compare it ourselves atomically.
+
+Heres how condition variables work:
+
+sleeper() {
+
+  lock(m_lock)
+
+	if (some_condition and this can be as complex as you want) {
+	   wait(m_cond, m_lock); // Point A
+	}
+
+	// Point B
+
+	do whatever to the condition you want
+
+  unlock(m_lock)
+}
+
+
+
+waker() {
+	lock(m_lock)
+
+	if (some_condition_that_is_good_to_wakeup_sleeperthread_is_true) {
+	   signal(m_cond); // Point C
+	}
+
+	// Point D
+
+	unlock(m_lock) 
+}
+
+
+Point A: 
+Yes you might be surprised by the fact that we are sleeping inside a lock but thats alrite. that wait does 
+trap into the kernel acquire the dispatcher lock move the current thread away from the ready queue and into the blocked 
+queue and in addition add it to a list of threads blocked on the condition variable m_cond. Its usually a 
+HashMap<ConditionVar, List<Threads>>. Next it will release the lock m_lock internally place an acquire m_lock statement
+in the instruction queue for this thread and move on to releasing the dispatcher lock. ( thats the Solaris 10 implementation )
+
+Point B:
+Fact that we re here implies that the condition has occurred and this thread has been woken up and its acquired m_lock again.
+At this point this thread is free to modify the condition state if it so feels like. I think this gives it an excellent chance
+to look at the state right after it was reached and before any other thread gets to modify it again.
+
+Point C:
+The signal will cause a dispatcher lock acquire and remove *some* or all threads ( based on if its signal or signal_broadcast )
+that are sleeping on m_cond. 
+
+
+Point D:
+In the POSIX implementation, this is a noop though according to Hoare at this point this thread should block probably by acquiring
+the lock again ( assuming its a fair lock ) and the thread woken up gets to execute. Hansen modified this to suggest that
+the signal should be the last thing the waker does therefore this logic doesnt have to be built into the condition variable 
+implementation.

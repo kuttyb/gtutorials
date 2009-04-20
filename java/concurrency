@@ -1,0 +1,69 @@
+========================================================================================
+Introduction:
+========================================================================================
+Concurrent programs can go wrongs at 3 layers
+
+<a> Atomicity: This is making sure that the sequence is protected from interference from other threads. This is the part most folks
+worry about ( dont I sound like Jermey Manson now :) ) Locks and locks alone protect one from this.
+
+<b> Visibility: Its making sure the effects (load/stores) in one thread are visible to other threads. This is where volatile/final/
+synchronized come into play. 
+
+<c> Ordering: Making sure there is a ordering between threads. This is again accomplished using final/volatile/synchronized.
+
+
+========================================================================================
+Basics:
+========================================================================================
+Problems with <b> and <c> arise because of:
+<i>   Compiler level instruction reordering
+<ii>  Processor level instruction reordering
+<iii> Caching
+
+bottomline, the sequence you write in your program is not how it appears on the wire. Though
+the understanding is that from a single thread's perspective the ordering is done so as to make
+it look-like-serial-execution ( aka keeping causality relationships in mind )
+
+
+========================================================================================
+Gory Details:
+========================================================================================
+
+The synchronization primitives are:
+
+<Source A> Monitor Enter, volatile load, final load (within a constructor)
+
+<Source B> Monitor Exit, volatile store, final store (within a constructor)
+
+
+----> Reordering and synchronization primitives:
+Normal load stores can be pushed ahead of <Source A> but never before. Keep lock coarsening in mind
+and you ll remember. Again Source A and B cannot be interswapped.
+
+
+----> Barriers and synchronization primitives:
+Before and at Source A no barriers are involved but the first load/store ( whether volatile/normal/final ) after
+Source A causes a load barrier ( aka make sure all prior loads have completed before issuing whatever the next
+request is )
+
+
+Before Store completes, the last load / store will be barriered meaning if its a load then a loadstore barrier
+is used if its a store then a storestore barrier is used. The idea is to make sure prior transactions have 
+completed.
+
+Note: Before monitor enter ( not for volatile loads since they are usually kept in uncached memory ) the local
+cachelines are invalidated as well.
+
+========================================================================================
+What other triggers these synchronization primiteves:
+========================================================================================
+
+<Source A> is trigerred by Thread.Run whereas Thread.Start invokes <Source B>
+
+========================================================================================
+Anything else one should be aware of:
+========================================================================================
+
+Yes final loads are treated as <Source A> and final stores are treated as <Source B>
+when invoked in the constructor as you ve seen before. Please keep in mind non final fields
+written during constructor are *NOT* treated as <Source A>!!

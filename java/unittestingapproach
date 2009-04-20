@@ -1,0 +1,16 @@
+write the test as soon as you write the method
+
+for each new chunk of code :
+<a> identify distinct branches
+
+    <for_each branch>
+    {
+	all the data/variables used by this branch are they valid. follow upto source.
+	
+	what is the data range that this branch operates upon. Do these data ranges
+	cause bifurcation ( aka subbranching )
+
+	each data range is a test case use that to verify logic of the branch
+	<< note the branch should be verifiable in isolation >>
+    }
+

@@ -1,0 +1,3 @@
+after the command you can use 'glob:*.java' to do regex at the same directory level.
+
+To nest inside directories recursively use 'glob:**.java' or 'glob:**osgi/*.java'

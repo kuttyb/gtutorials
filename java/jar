@@ -1,0 +1,7 @@
+jar  the f stands for the jar file name they go hand in hand.
+
+jar uf existing.jar this.jar will add this.jar to existing.jar at the root
+
+jar uf existing.jar ./../lib/this.jar will add this.jar at the path mentioned so be careful.
+
+jar xf existing.jar MANIFEST/MANIFEST.MF will extract just the manifest file from the jar

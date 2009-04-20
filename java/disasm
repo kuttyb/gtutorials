@@ -1,0 +1,5 @@
+use javap ClassName to see source disassembled
+
+use javap -c ClassName to see just bytecode
+
+use javap -verbose ClassName to see the entire class file format

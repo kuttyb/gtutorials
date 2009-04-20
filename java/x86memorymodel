@@ -1,0 +1,32 @@
+Check out the google video by Rick Hudson ( its a very good explanation of TLO-CC )
+
+The summary of it being there are 8 rules to keep in mind:
+
+T0                     T1                      Reodered?
+
+Load		       Store		       NO
+
+Load		       Load		       NO
+
+Store		       Store		       NO
+
+Store		       Load		       YES (store buffering unless they re to the same address AKA Causal Consistency)
+
+Lock		       Load		       NO
+
+Lock		       Store		       NO
+
+
+Keep in mind a lot of legacy systems implement LockRelease using simple store instructions. Having an early Load or Store
+swap places with a later Store allows Loads/Stores to slip outside critical sections, not an option.
+
+So the real reordering that a processor could pull below your feet would be letting reads bypass writes when writes are 
+added to write buffers.
+
+Total Ordering ( meaning all processors see the same order ):
+
+<a> All lock instructions ( even if they dont use the same memory )
+
+<b> Stores to the same memory location 
+
+Hence the name, TLO-CC (Total Lock Order - Causal Consistency)

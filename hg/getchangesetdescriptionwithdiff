@@ -1,0 +1,1 @@
+hg log -p -r N // doesnt work for mq changesets not committed 

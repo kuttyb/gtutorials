@@ -1,0 +1,6 @@
+hg revert -r 2 first.txt 
+will update that file to revision 2
+
+hg revert -r tip first.xt
+will bring it back to tip
+
