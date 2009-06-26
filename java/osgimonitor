@@ -1,0 +1,2 @@
+Each bundle is loaded in its own classloader. This is the class that does the loading 
+     org.eclipse.osgi.internal.baseadaptor.DefaultClassLoader

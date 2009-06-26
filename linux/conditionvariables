@@ -58,3 +58,23 @@ In the POSIX implementation, this is a noop though according to Hoare at this po
 the lock again ( assuming its a fair lock ) and the thread woken up gets to execute. Hansen modified this to suggest that
 the signal should be the last thing the waker does therefore this logic doesnt have to be built into the condition variable 
 implementation.
+
+
+Questions:
+Q: Why cant we do lock(mutex) if (cond == true) do what you have to do ; unlock(mutex)
+A: That works when cond == true but when cond == false what do you do? Do you keep polling? It makes no sense
+   since the other threads cannot change cond therefore nobody can make it true.
+
+Q: But what about event variables? Can't I do what makes cond == true then setEvent. Whoever is waiting for the event
+   to be true will sleep on the event?
+A: Yes this works but only if the thread waking up on cond == true doesnt modify the cond itself? If it does then it has
+   to acquire the lock which will increase lock contesting. Condvariables take care of that for you.
+
+Q: Not quite, the thread waking up doesnt have to recheck the condition since the event has happened. Therefore there is
+   no question of acquiring any lock. Sleep when woken up assume the condition is true and proceed.
+A: Oh no, events have "happened_alteast_once" semantics. There is no guarantee that the condition is still true. If what you are
+   looking for is an English "event" aka something thats happened in the past and thats sufficient for you then yes use an event
+   variable which is easy to implement using condition variables.
+
+   But if what you are looking for is a condition variable, meaning the condition is true when you are woken up then events
+   wont do atleast not unless they are accompanied with locks.

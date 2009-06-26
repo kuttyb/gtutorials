@@ -1,0 +1,25 @@
+Lets define a few terms:
+
+<> publicSet(X) for package X is a set comprising of all classes/interfaces that use the public modifier.
+
+<> publicIndirectSet(X) for package X is a set comprising of all classes/interfaces used by public fields/methods in classes of
+   publicSet(X).
+
+
+<> When making a change use the following algorithm to figure out if the major version# of the different packages in your bundle
+   need to change. A change can be any direct change to a class/interface within a bundle or an indirect change. An indirect
+   change includes class/interfaces that are not backwards compatible in packages that have been upgraded to. Let all such changed
+   classes be part of the set CHANGEDCLASSES.
+
+   foreach public package (y) in Bundle (B) {
+	foreach class (t) in CHANGEDCLASSES {
+		if ((t is_a_member_of publicSet(y)) || (t is_a_member_of publicIndirectSet(y))) {
+		   bump major version# of package y
+		   break
+		}
+       	}
+   }
+
+
+<> Note attempts to cast / assign /substitute two classes with the same type but different revisions inside the same
+   JVM will result in the IncompatibleClassChangeError being thrown.

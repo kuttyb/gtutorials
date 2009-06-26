@@ -1,0 +1,38 @@
+<> EXPORT/IMPORT
+if its random changesets between different repositories that are not connected to each other use hg export/import
+
+hg export changeset > changeset.patch
+hg export changeset + 1 > changeset+1.patch
+
+keep in midn that the changesets shoudl each be in separate files. You can number them so at the receiving end they can be 
+applied in the right order.
+
+hg import changeset
+hg import changeset+1
+
+
+<> BUNDLE/UNBUNDLE for inter branch integrations
+You can do a hg outgoing http://someotherrepo.com find out what changes are heading out.
+
+Take the highest changelist thats your topChange
+
+hg bundle -r topChange bundle.name http://someotherrepo.com
+
+thats it pass bundle.name to the owner of this repo in whatever way you deem necessary. 
+they can just hg unbundle bundle.name
+
+
+<> BUNDLE/UNBUNDLE for cherry picking changes
+You can do the following if you want to just create a bundle of changes from your repo
+
+hg bundle -r highestChange --base lowestChangeYouWantIncludedMinusOne bundle.name
+
+Thats it this new bundle can be transported around. 
+
+AFAIK you cannot cherry pick changes using bundle/unbundle they need to be consecutive.
+
+<> TRANSPLANT
+
+hg transplant -s ./../mainrepo 10:16 
+
+keep in mind theres a bug in transplant where it doesnt work if there are merge conflicts

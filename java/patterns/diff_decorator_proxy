@@ -1,0 +1,19 @@
+both implement and composite the interface.
+
+In proxy the client is unaware that the real subject is hidden from him. the proxy object looks like the real object.
+
+
+In classic decorator the client *is* aware of the composition.
+
+
+My take on this is:
+<a> proxy is used to hide real subject from the client
+
+<b> decorator is used to hide real subject from the server ( client can *add* functionality w/o
+    the server knowing or caring ).
+
+
+My thoughts reach out a bit and I would think the Chain of command is very similar to the decorator too
+since its a sequence of decorators around the real object.
+
+[Note: give credit to this guy "http://powerdream5.wordpress.com/2007/11/17/the-differences-between-decorator-pattern-and-proxy-pattern/" ]

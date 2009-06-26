@@ -1,0 +1,19 @@
+your logging.properties file is fine if you you are using statically assigned logging levels that dont change during your application's 
+runtime.
+
+However if you wish to turn on/off logging at runtime use jvisualvm (this tool is really kickass) goto MBeans->java.util.logging->
+->Click on Operations
+
+getLoggerLevel type in the full class name w/o any quotation marks around it and hit enter 
+
+likewise for the getParentLoggerName
+
+to change the logger level use setLoggerLevel ( fullClassName, Level in string )
+
+for example
+setLoggerLevel org.kbanerjee.local.sortedsetallocators.SortedSetAllocator  INFO ( or OFF ) will do the trick.
+
+when the methods are invoked successfully it will prompt you with a dialog box saying method invocation was successful.
+
+NOTE:
+You might want to keep this MBeans concept in mind so you could write your own component MBeans to control at runtime.

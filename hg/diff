@@ -1,3 +1,3 @@
-hg diff -r a:b
+hg diff -r a:b // where a is the lower changeset
 
 thats how the syntax works
