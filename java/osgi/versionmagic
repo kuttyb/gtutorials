@@ -1,25 +1,36 @@
-Lets define a few terms:
+keep the following rules in mind and we should be safe:
 
-<> publicSet(X) for package X is a set comprising of all classes/interfaces that use the public modifier.
+<> When changing the public api no worries eclipse will warn you accordingly so dont forget to bump the version#s in the bundle ( please
+stop using import-packages immediately theres really no benefit its all marketing fud behind SOA )
 
-<> publicIndirectSet(X) for package X is a set comprising of all classes/interfaces used by public fields/methods in classes of
-   publicSet(X).
+<> The real worry is when upgrading one of the bundles that you depend upon. One of the two things can go bad:
+   -> the dependent bundle in question has a public api that is also part of the public api of our bundle ( part of method params/
+      return types and so forth ).  This means your own bundle version#s need to be bumped up
 
-
-<> When making a change use the following algorithm to figure out if the major version# of the different packages in your bundle
-   need to change. A change can be any direct change to a class/interface within a bundle or an indirect change. An indirect
-   change includes class/interfaces that are not backwards compatible in packages that have been upgraded to. Let all such changed
-   classes be part of the set CHANGEDCLASSES.
-
-   foreach public package (y) in Bundle (B) {
-	foreach class (t) in CHANGEDCLASSES {
-		if ((t is_a_member_of publicSet(y)) || (t is_a_member_of publicIndirectSet(y))) {
-		   bump major version# of package y
-		   break
-		}
-       	}
-   }
+   -> the new upgraded bundle exposes a type in its public api that mismatches in version with the same type thats used as part
+      of the public api in another dependent bundle.
 
 
-<> Note attempts to cast / assign /substitute two classes with the same type but different revisions inside the same
-   JVM will result in the IncompatibleClassChangeError being thrown.
+   The first one is easy to catch, whenever you upgrade, just comment out that required-bundle statement and see if the build
+   breaks in any of your public packages with errors in their public fields. if yes just cascade the version change upto your
+   own bundle.
+
+   The latter has no real solution we are simply counting on luck and manual inspection. These idiots at PDE dont even understand
+   the magnitude of this problem.
+
+<> Another thing, dont buy into all the marketing fud about SOA and services and dynamics, its really not that easy to do with
+   Java, heck even Ruby cant get it right so stay away from it unless some new employer pays you for it.
+
+<> AND most importantly, since we are using required-bundle and not import-package ( because bundles and bundles alone not
+   packages truly represent a component, one could have a component with multiple packages ), if you wanted to have
+   multiple vendors implement the same component keep the following rules in mind and it is still possible:
+
+   -> The component interface declaration should only be part of one bundle. For example the IComponent and public interfaces
+      should be in a single component ( Java doesnt make it possible to extend a package from a different JAR )
+
+   -> The config packages can be in separate bundles. The new vendor needs to require-bundle the main one and implement its
+      own config classes. It could extend the main vendor's config classes if it chose to.
+
+   -> VERY VERY IMPORTANT!! Always keep the version#s of the different vendors in sync. So if you make a change in your main
+      interface and bump the version to 9.0.0 then when the new vendor uses thsi change make sure its at 9.0.0 too. This will
+      make a lot of detections/mistakes easy to catch with visual inspections.
