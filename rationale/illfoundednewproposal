@@ -1,0 +1,24 @@
+Heres a pattern, we have this new technology X that is really cool. Its new therefore untested/unverified but we tell you its
+the Golden Boy for XYZ problem. The old MNO solution is hard / not easy to maintain and blablabla.
+
+The pattern is that of vilifying an existing solution, creating FUD about it and proposing a highly complicated solution that proposes
+to fix the old problem.
+
+Ideally you would like the logic to be:
+<a> We are in the business of solving problem XYZ
+
+<b> Solution ABC in use tries to solve the same problem.
+
+    -> Now either it doesnt solve it satisfactorily... provide proof 
+       -> Proof that the unsatisfactoriness is contingent upon the solution ABC not one of its implementations
+     OR
+    -> It solves the problem (its hard to prove otherwise but thers some amt of generally accepted uneasiness) and
+       above all it brings way tooooo much complexity.
+
+<c> Our spanking new solution 123 solves the same problem.
+    -> Prove it solves *NO LESS* 
+     AND
+    -> Prove it fixes the remnant complexities of the previous solution
+
+Heres Brian Cantrill going on about STM banging against shared memoryh locking and I think to a large extent he has a point:
+"Again, no data, no qualifiers, no study, no rationale, no evidence of experience trying to develop such systems -- just a naked assertion used as a prop for a complicated and dubious solution"
