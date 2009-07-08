@@ -12,3 +12,7 @@ in which findClass is invoked for parent/child classloaders.
 The traditional Java classloader model is that of parent delegation meaning given a requitest to findClass you punt to your 
 parents all the way upto the bootclass loader and if not found then instantiate on your own. Of course if the class is already
 instantiated none of this need be done and it can be returned immediately.
+
+ClassLoader#loadClass
+	ClassLoader#findClass ( take in string return Class<T> )
+		ClassLoader#defineClass ( take in string return byte[] )
