@@ -1,0 +1,13 @@
+cd /usr/lib/modules/
+
+heres where you will find all your kernel modules ( aka .ko files )
+
+kernel headers and interface is under /usr/src/linux-headers-version
+
+
+lsmod to get a list of the driver names
+
+modinfo driver_name provides location and quite a bit of info about the driver
+
+to get to know what driver uses what hw do lspci -vv will list out physical devices as well as the driver
+handling it.
