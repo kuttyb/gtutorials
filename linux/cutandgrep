@@ -1,0 +1,5 @@
+heres how you do it
+
+ modinfo nvidia | grep -i "filename" | cut -d: -f 2 | xargs ls -ali
+
+this function cut is useful, use -d and delimitter and -f to indicate the field we are interested in
