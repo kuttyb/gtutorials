@@ -1,5 +1,6 @@
 heres how you do it
 
  modinfo nvidia | grep -i "filename" | cut -d: -f 2 | xargs ls -ali
+ hg fstatus | grep -i "concepts" | grep -i "M" | cut -d' ' -f 2
 
 this function cut is useful, use -d and delimitter and -f to indicate the field we are interested in
