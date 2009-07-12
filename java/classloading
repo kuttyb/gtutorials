@@ -6,6 +6,8 @@ A class object gets instantiated given the following actions:
 
 <c> subclass of that class suffers <a> / <b> 
 
+<d> ClassLoader.loadClass is explicitly called
+
 Typically classloader class has findClass that converts .class file to Class object and loadClass that controls the order
 in which findClass is invoked for parent/child classloaders.
 
@@ -16,3 +18,13 @@ instantiated none of this need be done and it can be returned immediately.
 ClassLoader#loadClass
 	ClassLoader#findClass ( take in string return Class<T> )
 		ClassLoader#defineClass ( take in string return byte[] )
+
+
+===========================
+The bytecode instructions that will explicitly instantiate a class are:
+[http://java.sun.com/docs/books/jvms/second_edition/html/ConstantPool.doc.html#77976]
+-> new
+-> getstatic / putstatic
+-> invokestatic
+
+
