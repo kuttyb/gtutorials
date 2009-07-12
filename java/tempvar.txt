@@ -1,0 +1,23 @@
+public void testMethodInvocationOfFields();
+  Code:
+   Stack=2, Locals=2, Args_size=1
+   0:	aload_0
+   1:	getfield	#3; //Field secondInstance:LSecond;
+   4:	bipush	23
+   6:	invokevirtual	#7; //Method Second.methodName:(I)V
+   9:	new	#8; //class Second
+   12:	dup
+   13:	invokespecial	#9; //Method Second."<init>":()V
+   16:	astore_1
+   17:	aload_1
+   18:	sipush	1102
+   21:	invokevirtual	#7; //Method Second.methodName:(I)V
+   24:	return
+
+    public void testMethodInvocationOfFields(){
+	secondInstance.methodName(23);
+
+	//	new Second().methodName(501);
+	Second localInstance = new Second();
+	localInstance.methodName(1102);
+    }
