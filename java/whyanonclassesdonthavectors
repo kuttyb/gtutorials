@@ -1,0 +1,12 @@
+well you can do your initialization in code blocks 
+new Foo(){
+    private final int var = 23;
+
+    void method(int input){
+     	  blablabal
+    }
+}
+
+That leaves us w/o the ability to have ctor's with parameters passed in. You might know that everything in the local context
+that is final is available as is everything in the surrounding class/instance scope. That mitigates the need for parameters
+in ctors though its questionable given that a local variable needs to be final before being passed in.
