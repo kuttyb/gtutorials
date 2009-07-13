@@ -1,0 +1,40 @@
+		<<IFile>>
+                   |
+	           |
+                   |
+ NFS		   DFS		XFS		JFS
+
+
+-> Consider the interface and its implementors as System (S). 
+
+-> Methods(S)      = Set<Methods> in IFile
+
+-> Implementors(S) = Set<Classes> implementing IFile in the System (S)
+			
+
+If the Method(S) set is continuously growing but Implementors(S) is more or less steady ( you dont add
+a new filesystem once every 2 weeks ), then visitor pattern makes sense.
+
+If the Implementors(S) is growing but Method(S) stays more or less steady (consider IWidgetStyle) then
+use bridge or strategy dont touch Visitor by a long stick.
+
+
+-> Essentially your method can be thought of as a functor object ( aka IVisitor ) that has a method
+   for each subtype of IFile.
+
+       	       <<IFileVisitor>>
+		    |
+		    |
+		    |
+ Read		    Write	Map		Unmap	    Flush
+
+interface IFileVisitor {
+ visit(NFS)
+ visit(DFS)
+ visit(JFS)
+ visit(XFS)
+}
+
+When you add Read add an implementation for each of the filesystems or make them noop if you will.
+Now you can get IFileVisitor lambdas from across the network and extend your filesystem w/o changing 
+a line of static code. Interesting aint it!!
