@@ -1,0 +1,9 @@
+per process look at /proc/$1/status VMRss is the actual size in the RAM VMSize is the total size will include pages not committed to 
+the RAM.
+
+For detailed memory map look at smaps (RSS/swap and so forth)
+
+To get an idea of what process is using up RAM do top and look at VMRss or use memmon /usr/bin/memmonitory.py requires root 
+priv though.
+
+to get a more detailed system level overview stare at /proc/meminfo
