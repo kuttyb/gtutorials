@@ -1,0 +1,7 @@
+to add somebody to the sudoers list
+
+sudo visudo
+
+goto the bottom of the file
+
+username ALL= ALL
