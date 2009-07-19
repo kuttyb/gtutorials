@@ -40,3 +40,8 @@ NOTE: the policy to wake up is mostly simple. if the turnstile queue
 length is small then wake up all if its large then avoid thundering
 herd by waking up one using fairness + priority policy.
 
+NOTE: If it wasnt' clear in the worst case for acquiring a lock one
+has to acquire 2 other spinlocks the turnstile queue lock and the
+runqueue lock also known as the dispatcher lock.
+
+NOTE: Use this where the critical section is not very large
