@@ -1,0 +1,42 @@
+Adaptive locks start up as spin locks then move on to queued sleep
+locks if the contention fails.
+
+They have a fast path which is the uncontended case by merely
+spinning.
+
+A typical implementation looks like this:
+enter_adaptive_lock(lock):
+/// FAST PATH
+-> if lock->owner == self return
+-> if cur_level >= dpc max_spin_limit == total_timeout_limit
+-> while ((lock_not_granted && (spin_limit++ < max_spin_limit)){
+       spinlock(lock)
+   }
+/// SLOW PATH
+-> check if current lock owner is running or blocked ( can have
+different policy here )
+-> if running then continue spinning
+-> else get ready to block
+-> acquire lock on run queue
+-> remove yourself from run queue
+-> release lock on run queue
+-> acquire lock on lock.getTurnstile()
+-> make sure turnstile not empty (zero waiters will deadlock)
+-> check lock again
+-> add yourself to turnstile queue
+-> release turnstile lock
+
+
+exit_adaptive_lock(lock):
+-> acquire turnstile lock
+-> policy to wake up one or all (DONT HANDOVER it will race with fast
+path of acquire) this will involve taking run queue lock and adding
+woken up threads to those runqueues with a release runqueue lock
+-> mark yourself as not the owner of the lock
+-> actually do the release_lock(lock)
+-> release turnstile lock
+
+NOTE: the policy to wake up is mostly simple. if the turnstile queue
+length is small then wake up all if its large then avoid thundering
+herd by waking up one using fairness + priority policy.
+
