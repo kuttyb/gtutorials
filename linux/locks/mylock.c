@@ -12,6 +12,16 @@ typedef struct _Lock {
   THREAD_STATUS *pLockOwner;
 } LOCK;
 
+//
+// BTW we need a background thread in the kernel to sweep TURNSTILES and if the TURNSTILE length
+// exceeds a certain value or the maxAge of the TURNSTILE (age of the oldest highest priority queue
+// element) exceeds a certain limit we can decrease or bring down to zero, the values of constants
+// MAX_FAST_PATH_RETRIES / MAX_WAIT_FOR_RUNNING_THREAD_TO_RELINQUISH.
+//
+// Why? Because having a fast path is like saying heres your ticket to reach the front of the queue
+// automatically. This is unfair to threads that have already been locked in the turnstile and can
+// lead to starvation.
+// 
 
 // Adaptive Locking
 BOOLEAN acquireLock(LOCK lock) {
