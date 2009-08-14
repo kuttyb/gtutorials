@@ -1,0 +1,8 @@
+simple get the /boot/vmlinuz /boot/initrd files add them to /boot/grub/menu.lst 
+
+the uuid comes from blkid essentially its the partition that contains /boot
+
+you might have noticed grub talks in hd0 language whereas /etc/fstab talks in the /dev/sda1 
+language. how does one map the two?
+
+Simple look at /boot/grub/device.map

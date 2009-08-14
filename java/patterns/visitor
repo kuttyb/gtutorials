@@ -29,12 +29,45 @@ use bridge or strategy dont touch Visitor by a long stick.
  Read		    Write	Map		Unmap	    Flush
 
 interface IFileVisitor {
- visit(NFS)
- visit(DFS)
- visit(JFS)
- visit(XFS)
+ visitNFS(NFS)
+ visitDFS(DFS)
+ visitJFS(JFS)
+ visitXFS(XFS)
 }
 
 When you add Read add an implementation for each of the filesystems or make them noop if you will.
 Now you can get IFileVisitor lambdas from across the network and extend your filesystem w/o changing 
 a line of static code. Interesting aint it!!
+
+Heres how the IFile and its implementors work:
+interface IFile {
+  void accept(IFileVisitor visitor);
+}
+
+class NFS implements IFile {
+  void accept(IFileVisitor visitor) {
+       visitor.visitNFS(this);
+  }
+}
+
+class DFS implements IFile {
+  void accept(IFileVisitor visitor) {
+       visitor.visitDFS(this);
+  }
+}
+
+... you get the idea!!
+
+The client would look like this:
+
+IFile file = networkFactory.getFile(); // who knows what IFile this will return
+
+for(IFileVisitor temp : networkFactory.getNextOperation()) {
+  file.accept(temp);
+}
+
+There you go client code doesnt know what operation or what implementation its dispatching on just has
+the template.
+
+Double Dispatch: This is also called "Double Dispatch" because first we dispatch on the type (aka IFile)
+then we dispatch on the operation aka visitNFS or visitDFS.
