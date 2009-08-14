@@ -71,3 +71,5 @@ the template.
 
 Double Dispatch: This is also called "Double Dispatch" because first we dispatch on the type (aka IFile)
 then we dispatch on the operation aka visitNFS or visitDFS.
+
+NOTE:: Btw the generic interface names are IVisitable and IVisitor
