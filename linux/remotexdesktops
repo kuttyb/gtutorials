@@ -1,0 +1,6 @@
+using ssh port forwarding
+
+
+ssh -C -X kbanerjee@machineipaddress command
+
+thats it this should work
