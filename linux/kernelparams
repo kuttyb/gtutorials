@@ -1,0 +1,3 @@
+/proc/sys/kernel is for params that can be tweaked at runtime whereas /sys/kernel is information only.
+
+again this is Linux rules count for shit people put stuff wherever they like :-)
