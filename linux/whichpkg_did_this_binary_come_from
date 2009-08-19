@@ -1,0 +1,7 @@
+dpkg -S /usr/bin/find
+
+findutils: /usr/bin/find
+
+there you go findutils is the package it came from.
+
+apt-get source findutils will give you its source code

@@ -1,0 +1,5 @@
+understand the difference between importance and urgency.
+
+In scheduling a higher priority thread is exactly that one with higher priority, for a small fraction window of time 
+another set of threads can have urgency meaning "have the gravest requirement for resource"
+
