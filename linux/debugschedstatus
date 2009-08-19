@@ -1,0 +1,6 @@
+sysctl -a | grep -i "sched" will show parameters that are modifiable at runtime under /proc/sys
+
+cat /proc/sched_stat will show some useless information see show_schedstat for formatting.
+
+cat /proc/sched_debug will list out useful information including whats on the runqueue ( or the tree that they use ). 
+This is useful.
