@@ -1,0 +1,54 @@
+Both pretty much borrow from WQF(weighted fair queue) algorithms from
+packet switching networks.
+
+The classical UNIX model for FSS is to have a multilevel feedback
+queue where your static priority decides what level you start with and
+then as you execute you are pushed down or pulled up (using quantum is
+punished blocking frequently is rewarded). Typically variations of
+this include Linux 2.6 early O(1) algorithms that compensate for lower
+levels not getting a chance. Solaris uses decay timers that run every
+1/2/3 seconds and such to come and scan for hoggers and
+rewards/punishes folks.
+
+-> This works nothing wrong but its hard to capture deterministically and
+almost impossible to predict behaviour under different load
+conditions. 
+
+-> Another thing, this does not guarantee that a task sitting in a low
+   priority queue will eventually move up. Why because the algorithm
+   moves top to down not bottom up. Which means hi pri tasks are run
+   then either punished or rewarded and its expected that in this
+   process chances will be handed out to lower priority tasks.  Thats
+   not necessarily true.
+
+
+-> Oh yes, priority inheritance is not clean either since if User A 's
+   Process B's Task 1 is blocked on User B's Process X's Task 19 then
+   how much do I loan him during priority inheritance. This problem is
+   very well solved by tickets (Stride Scheduling) that creates a
+   hierarchical resource management using market economy principles of
+   currency where you can inflate/deflat currency.
+
+
+But the real meat lies in CFS/SS(Stride Scheduling) where bottom up
+movement is made possible.
+
+How? Bottomline tasks are serialized and sorted (whether literally in
+a linear data structure or placed in a sorted struct like btree/red
+black tree/skip list is a different question).
+
+CFS sorts the list on the basis of longest wait time whereas SS sorts
+it on the least runsofar time. CFS picks the task thats waited the
+most and schedules it. Everytime theres a tick it adds the time
+executed * inverse of ticket strenth and compares with the sorted list
+to see if another task has a higher need to run? If yes it switches
+the current task out. No consideration for caches are given AFAIK.
+
+SS does the opposite. It picks the least_run_task and after a task is
+run for a quantum, it adds run * inverse_ticket_strength to its
+tally. If this causes another task to be the least run task it does
+the switch.
+
+I *believe* the latter is easier to implement since the former *might*
+involve updating a lot of elements in the tree.
+
