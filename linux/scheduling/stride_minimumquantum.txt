@@ -1,0 +1,33 @@
+using stride or CFS the granularity really is the scheduler's clock
+tick. At every tick if the dynamics of the priority queue changes you
+will get kicked out.
+
+
+Now while its possible to tailor the clock tick to account for context
+switch time for the target resource this overlooks the fact that some
+tasks may have their own load time. The basic stride scheduling
+mechanism works fine if all tasks have the same conceptual load time.
+
+
+Problem Statement:
+I am a task with a certain priority(read #tickets). I m making a
+concious decision that whenever I get a slice I want `n' Q slices
+together (where Q = 1 quantum or 1 slice). If by doing so the
+frequency of scheduling decreases for me then so be it.
+
+
+Solution:
+This is easy to accomplish using stride (and CFS). Just give him what
+he wants viz., when he gets scheduled stop the timer and dont
+reschedule until `n' timeslices. After which he ll get punished
+naturally with n * #tickets getting subtracted from his score so he ll
+fall back and others will get a chance. Whats more if you want to
+discourage this practise then you can add a penalty `m' Q get
+subtracted out of his score everytime he runs.
+ where:
+ n  m and #tasks need to have a correlation(havent thought about it
+ yet)
+
+Dont worry neither of the above two will cause starvation since the
+task will move towards the front of the queue after the punishment at
+a rate proportional to the #tickets he holds.
