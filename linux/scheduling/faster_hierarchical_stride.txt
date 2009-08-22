@@ -1,0 +1,16 @@
+you can have it layered where the first layer is a sorted index that
+points to different layers.
+
+each layer represents a singular priority. whcih means they all get
+added/subtracted by the same amount.
+
+
+so instead of doing add/deletes at ln(n) where n is the total #tasks
+you now have to do ln(m) on the first queue when the current tasks'
+weight is higher than the front of the queue. Since its an index queue
+this value should be much lower than n.
+
+for the inner queues with lower #tasks adding/deleting to the queue is
+faster and in no way representative of `n'. 
+
+Inner queues need to be frequency distributed on priority. 
