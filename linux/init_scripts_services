@@ -1,0 +1,12 @@
+/etc/init.d will contain the scripts these scripts can be both sourced / executed.
+
+at the end of each runlevel scripts in /etc/rcn.d will be run. (where n is the run level being entered). Runlevel
+S corresponds to bootlevel.
+
+typically you can control the symbolic links between /etc/rcn.d to /etc/init.d using update-rc.d.
+
+for example
+
+update-rc.d -f vmware remove 
+
+this will remove the vmware symbolic links in the different rc.d directories

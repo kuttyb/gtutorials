@@ -1,0 +1,13 @@
+on ubuntu
+
+## default turn off starting X
+update-rc.d -f gdm remove
+
+## no splash screen so avoid the first modeset
+remove splash from /boot/grub/menu.lst
+
+## add this to /etc/rc.local to turn off pc beeps
+for i in 1 2 3 4 5 6
+do
+        setterm -blength 0 > /dev/tty$i
+done
