@@ -10,3 +10,20 @@ for example
 update-rc.d -f vmware remove 
 
 this will remove the vmware symbolic links in the different rc.d directories
+
+====================================================================================
+RUN LEVELS
+====================================================================================
+Its a bit different based on distributions but on Debian systems  runlevel 0 is for 
+shutdown 1 is single user 2 (default) is multi user/withX 3~5 are the same and 6 is 
+for restart (not shutdown)
+
+type runlevel to get current level
+
+telinit `n' will do a change to runlevel `n'
+
+the concept is that of entering a run level. /etc/rc2.d contains [S|K][nn]name scripts where
+each of these scripts are symbolic links to /etc/init.d.
+
+S means script will be invoked with start whereas K means it will be invoked with stop. The 
+number controls ordering where lower number scripts are invoked before higher numbered ones.
