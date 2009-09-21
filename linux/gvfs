@@ -1,0 +1,5 @@
+gvfs-mount smb://kbanerjee-dt/kshare
+
+this will prompt you for user name / workgroup name / password in 3 separate iterations.
+
+it will create the mount under ~/.gvfs
