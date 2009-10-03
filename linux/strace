@@ -1,0 +1,8 @@
+>> to trace a running process
+strace -p pid -o filename   
+
+>> to filter out other system calls
+strace -e trace=process,file -p pid -o filename
+
+>> to get time in microseconds
+strace -p 20281 -o emacs.logg -tt -e trace=file 

@@ -1,0 +1,1 @@
+sudo mount -t nfs 172.16.212.43:/vol/tools1/hardware3 /nvidia/tools
