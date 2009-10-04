@@ -92,3 +92,9 @@ and changed the condition ) To insulate yourself from this the sleeper normally 
  if (cond != true) {
     	    sleep()
  }
+
+Q: HUH? Why is this not livelock prone?
+A: That is correct while (cond != true) { sleep()} is indeed livelock prone. I m working on sleep locks that do active
+   handover. My fair spin locks already do. If you used those then theres an active handover so there should be no 
+   livelock (or so I believe)
+
