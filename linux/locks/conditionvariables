@@ -78,3 +78,17 @@ A: Oh no, events have "happened_alteast_once" semantics. There is no guarantee t
 
    But if what you are looking for is a condition variable, meaning the condition is true when you are woken up then events
    wont do atleast not unless they are accompanied with locks.
+
+Note:
+Because not all implementations of conditions variables (especially the Java ones) dont guarantee notify(or signal) will
+relinquish its lock internally and handover lock ownership to the thread being woken up its possible that when you wake
+up the condition is not necessarily true (since between signal and wakeup other threads could have obtained the lock
+and changed the condition ) To insulate yourself from this the sleeper normally does 
+ while (cond != true) {
+ 	    sleep()
+ }
+  
+  instead of
+ if (cond != true) {
+    	    sleep()
+ }
