@@ -1,3 +1,9 @@
+===============================================================================================================
+Late update:
+If there are multiple threads that can change the state of a condition, then dont use condition variables
+where a waiter does while(cond != true){ wait();} You may never come out of the while loop.
+===============================================================================================================
+
 POSIX condition variables are not the same as Win32 Event objects ( or dispatcher objects ) they are not even close:-)
 
 BTW reason condition variables are better than just plain semaphores being that semaphores can just count up to a max and not
@@ -98,3 +104,11 @@ A: That is correct while (cond != true) { sleep()} is indeed livelock prone. I m
    handover. My fair spin locks already do. If you used those then theres an active handover so there should be no 
    livelock (or so I believe)
 
+Q: Ok so I think *my conclusion here* that condition variables lie about their intentions unless signal releases the lock
+   silently and the underlyign scheduler guarantees that all threads receiving the notify get to acquire the lock
+   before any other thread trying to acquire the lock.
+Q: huh? that makes no sense.
+A: Ok if there are multiple threads that can modify the state of the condition (as against threads that only check 
+   the state of the condition) then after a signal and before the waiter wakes up and sees the signal the condition
+   could have been changed. So the waker will see the signal no doubt but the condition will not be true. in the worst
+   case the condition may never be true since this is arbitrary thread scheduling.
