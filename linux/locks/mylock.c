@@ -79,6 +79,13 @@ BOOLEAN slowKernelAcquire(Lock lock) {
 }
 
 
+//
+// UPDATE: THIS IS WRONG YOU ARE acquiring the turnstile lock
+// *AFTER* releasing the lock. A fast path spinner could acquire the
+// lock which could make your acquire lock in the slow path race dont
+// know yet what the race condition is but need to think some more, this
+// doesnt feel right.
+// 
 void release(Lock lock) {
   lock.threadID = INVALID_THREAD;
   
@@ -87,6 +94,7 @@ void release(Lock lock) {
 
   slowReleasePath();
 }
+
 
 void slowReleasePath(Lock lock) {
   acquireTurnstile();
