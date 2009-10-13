@@ -1,1 +1,5 @@
-jmap -dump:live,file=heap.hprof 5172
+// thats how you dump
+jmap -dump:live,file=heap2.hprof 5172
+
+// thats how you open it directly
+jvisualvm --openfile heap2.hprof 
