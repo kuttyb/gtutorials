@@ -1,0 +1,30 @@
+http://c-faq.com/decl/spiral.anderson.html
+
+keep the "Clockwise Spiral" rule in mind when parsing C declarations.
+
+For example 
+
+<1>
+int a[3] = { 2, 3, 4 }
+
+"a" is an array (size_3)  of integer
+
+<2>
+int *a[3]
+
+"a" is an array (size_3) of pointers to integers.
+<cool so its an array of pointers>
+
+<3>
+int (*a)[3]
+
+"a" is a pointer to an array (size_3) of integers.
+<cool so its a pointer to an integer array of size 3)
+
+
+
+Now lets work it backwards:
+We want an "a" such that:
+"a" is a pointer to an array of pointers to array (size_3) of integers"
+
+  int (*(*a)[])[3]
