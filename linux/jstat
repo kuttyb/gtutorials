@@ -1,0 +1,5 @@
+jstat -gcutil 6769 3s 5
+
+jstat -printcompilation 6769 3s 5
+
+thats how you use it  jpsID  sampleInterval  #prints
