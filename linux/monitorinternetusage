@@ -1,0 +1,5 @@
+lsof -i
+
+btw lsof -U provides information about all opened sockets
+
+lsof filename provides name of processes that have opened that file
