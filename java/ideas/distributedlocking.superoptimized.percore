@@ -1,0 +1,33 @@
+The DistributedLocking idea involving stealing locks from other machines can be applied to single machines with multiple cores.
+
+In this case the localLock.lock/unlock will be noops (wow saves us CAS + fences + possible spin/sleep time right?). Yes because
+a cpu core can claim a lock if another core contends for it then it will queue a per core RPC that will change per core ownership
+of this thread. When a lock ownership changes we can add a full memory barrier.
+
+NOTE: This wont be easy, we will have to add per cpu RCP feature in the kernel. Something like:
+      perCoreRPC( coreID, functionPtr )
+
+
+Q: What happens if a thread runs on core 0 acquires lock midway through its critical section switches out.
+   Next time it gets loaded its on a different core. 
+
+A: Well technically it will behave as if it has the lock and I suppose your question is what happens while its running
+   if another thread now runs on core 0, it will proceed and both threads will be in at the same time right?
+
+
+Q: YEP!
+
+A: We could solve that with a per cpu isLockHeld variable, its not volatile and not atomic. So other threads should not 
+   enter core 0.
+
+
+Q: What happens when this bastard thread completes?
+
+A: We will have to ask it to write isLockHeld = false and accompany that with a storestore barrier.
+
+
+Q: Hmm this is getting complicated, are we sure context switches come with the right kind of barriers 
+   on all CPUs?
+
+A: No, I m not sure so yes point taken, this theory is contingent upon the right barriers taking place when context
+   switch takes place.
