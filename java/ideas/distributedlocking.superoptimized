@@ -1,0 +1,65 @@
+The current implementation can be found under org.kbanerjee.concurrent.DistributedLock. Its fairly simple and for the case where several
+local locks try to acquire it will save you the network overhead while maintaining fairness locally and somewhat arguably even remotely.
+
+Its drawback are as follows:
+<A> NO LOCK PARKING
+    Consider the only acquires come from one machine but they are sparse such that the sequence is lock-unlock lock-unlock,
+    this would be the worst case where each lock/unlock call will talk to the network server
+
+<B> ARBITRARY QUANTUM
+    The larger problem is that the check if global lock is contended is a source of network overhead especially if there is no
+    contention. There really is no clean solution under the current model, you could increase the quantum value but then it can
+    negatively impact network fairness. 
+
+
+But really <A> is the larger problem. You could solve it with another timer based quantum but that assumes back to back lock
+calls come within a window. The counter argument being if they dont come wihtin a window making the extra network call should be
+fine, its really that you dont want to jam the network not avoid it at all costs.
+
+==============================================================================
+ ALTERNATE SOLUTION
+==============================================================================
+<> The above solution works on the "ask_server_if_it_needs_back_the_lock" principle. 
+   In the case of unlock we conservatively give the lock back with the assumption
+   that the Server (read other peers) *MAY* need the lock.
+
+
+<> If we reversed the princple where you acquire the lock and keep it with yourself.
+   If another peer wants it let him get my address from the server, and queue a RPC
+   in my local queue. When the RPC executes it reverts my lock ownership and returns
+   whereafter the remote machine is the current lock owner.
+
+
+<> This should remove <A> and <B> entirely while we implement a separate lock.revoke() function that will be invoked
+   by remote clients using RPC (or RMI or SOAP or place your favorite middleware OO technology here)
+
+
+<> Q: So what does globalLock.lock() do then?
+   A: It atomically replaces the current owner with the requesting owner. outside this atomicity it thereafter 
+      queues a RPC on the last owner's machine and waits for it to complete.
+
+
+<> Q: Hmm so it changes ownership before the new node actually gets lock ownership? Weird so what happens if before the RPC
+      completes another node requests for the globalLock?
+   A: It will find the new node as the lock owner and queue a RPC to succeed on this new node. Effectively the queue has been
+      moved from a single queue of contending machines on the server to distributed queues on a peer to peer basis.
+
+
+<> Q: But there is one drawback yet. Global lock acquisitions in the contended case will involve two network hops as against
+      one.
+   A: Yes that is correct. But read below for an optimization.
+
+
+<> If a node is requesting a global lock for the first time and the global lock is held by some other machine nothing can 
+   prevent two network hops.
+
+   But if its requesting for the lock because its lock was stolen by another machine then that can be solved by the stealing
+   RPC detecting multilpe local contenders and taking a localLock and queueing the unlock as a RPC call in its own queue.
+   So to the local machine it looks like a local lock that takes way toooo long to complete.
+
+
+<> Q: Isnt there a global fairness problem? Consider what you said before, once you claim ownership even before you get it
+      another node could request ownership by queueing on your machine. But you are placing the stolen_from_machine in your
+      own queue so ...?
+   A: Nopes the additions to the local queue are serialized and in FIFO order so if we are waiting for long before being able
+      to successfully steal the lock, the additions will respect temporal order.
