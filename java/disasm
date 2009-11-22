@@ -3,3 +3,6 @@ use javap ClassName to see source disassembled
 use javap -c ClassName to see just bytecode
 
 use javap -verbose ClassName to see the entire class file format
+
+to view inner classes or anonymous inner classes only use
+javap -verbose 'AClass$1' // dont forget the single quotes
