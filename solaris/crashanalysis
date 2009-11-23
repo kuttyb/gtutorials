@@ -1,3 +1,6 @@
+======================================================================
+   KERNEL DUMP ANALYSIS
+======================================================================
 dumpadm -y ( to enable dumps ) // checkout its other options
 
 
@@ -15,3 +18,8 @@ thats it thereafter to do
 ::panicinfo
 ::cpuinfo -v
 ::ps -z // see all live running processes at the time
+
+======================================================================
+   USER DUMP ANALYSIS
+======================================================================
+coreadm 
