@@ -2,3 +2,16 @@ dumpadm -y ( to enable dumps ) // checkout its other options
 
 
 savecore -L will force a live dump whereas reboot -d will force a dump too but will also reboot the system (what did you think)
+
+http://www.cuddletech.com/blog/pivot/entry.php?id=965
+
+bottomline the way you open a crash file is as follows:
+mdb -k unix.n vmcore.n
+
+thats it thereafter to do
+::status
+::stack
+::msgbuf
+::panicinfo
+::cpuinfo -v
+::ps -z // see all live running processes at the time
