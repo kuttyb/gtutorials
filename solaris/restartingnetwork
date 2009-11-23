@@ -1,0 +1,5 @@
+pfexec svcadm disable svc:/network/physical:default
+pfexec svcadm disable svc:/network/physical:nwam
+
+pfexec svcadm enable svc:/network/physical:default
+pfexec svcadm enable svc:/network/physical:nwam
