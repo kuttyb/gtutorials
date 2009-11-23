@@ -1,0 +1,3 @@
+svcs -x | head
+
+to see verbose setting also hit e in grub and remove splash screen entries and add -v verbose and remove the last word that says graphics.
