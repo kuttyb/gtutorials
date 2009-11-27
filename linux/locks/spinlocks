@@ -64,3 +64,8 @@ are welcome to go for the main lock causing a lot of chatter whereas you know on
 them spin on their local memory a lock release is not seen by everybody hence this does not cause the same problem.
 
 ==========================================================================================================================
+
+
+<< UPDATE >>
+Ok try this, change our Turnstile class to use FairSpinLock instead of the UnfairSpinLockWithProgressiveSleep and see
+how the AdaptiveLockTest behaves (the one that creates 1280 threads and haves them attack the lock at the same time)
