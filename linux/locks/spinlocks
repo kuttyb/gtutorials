@@ -29,7 +29,7 @@ aka guaranteed no starvation though in this case we also need explicit prioritie
 priority because being able to release the sleepLock helps the system make better progress and you want this to happen
 instantaneously not ordered behind 20 other locks in fifo order.
 
-FAIR SPINLOCKS:
+FAIR SPINLOCKS: (moral of the story FAIR SPINLOCKS that can be scheduler preempted is a risky proposition)
 Not as rosey as it may sound. If you spin without backoff (where backoff means selective sleep could be sleep with 
 increasing quantum bounded at the top) then the  threads could get scheduled in the order that does not agree with the
 lock's fifo order. THIS IS THE PATHOLOGICAL CASE FOR FIFO ORDERED SPINLOCKS, fair sleeplocks dont face this problem since
@@ -46,4 +46,21 @@ have backoff. Backoff can be of two types:
 -> Hey I just spun `n' times and didnt get the lock sleep then come back and spin `n' more times
 -> Hey the #lockcontenders in the fifo lock is 200 theres no point in spinning  just backoff and come back later
    < Btw this can also be used by unfair locsk >
+==========================================================================================================================
+
+
+==========================================================================================================================
+<d> What about cache coherence and thundering herd of memory bus lines?
+
+Well none of the solutions above are cache coherent. For that spinlocks should either be spinning on per cpu variables
+(trouble is what happens if they migrate) or each thread should bring its own lock memory and spin on it. Essentially queue
+it and let locks do active handover. Aka the lock my ConfigAdaptiveSpinLock.getLock() class returns.
+
+The uncontended case is still fast because you only check if the queue is empty if not add yourself to it (sure its not
+as fast as the above locks but hey you cant have the best of everything)
+
+Let me explain what the thundering herd problem here is. Essentially each time you release the lock all cores spinning
+are welcome to go for the main lock causing a lot of chatter whereas you know only one of them can succeed. When each of 
+them spin on their local memory a lock release is not seen by everybody hence this does not cause the same problem.
+
 ==========================================================================================================================
