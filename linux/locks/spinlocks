@@ -1,0 +1,49 @@
+A few thoughts about spinlocks that I found out based on live first hand performance problems:
+
+==========================================================================================================================
+<a> The myth of using a spin  lock around a very small critical section (perhaps two dword writes + 1 dword read?)
+
+Because the total time spent in the critical section involves lock commit times which can increase with #cores/#processors,
+also dont forget the CAS times, these are bracket costs you pay.
+
+Next, dont forget you could get preempted anytime before you release the lock no matter how small your CS.
+
+Consider the delay above to be `x' cycles, during which more contenders could start coming up. In the hot lock case this
+can get worse on extremely multi core systems. 
+
+Ok now you have say 30 contenders on the spinlock, the spin time for the 30th thread is nearly 30x. 
+
+This excessive spinning means these threads are using up their entire timeslices on tbeir respective cores so its quite possible
+they are starving the lock holder from releasing the lock though thats unlikely in high #core systems.
+==========================================================================================================================
+
+==========================================================================================================================
+<b> Should I use fair spinlocks or unfair ones?
+
+UNFAIR SPINLOCKS:
+Ok this means when the #contenders keeps on increasing its quite possible some lock is starved entirely. Now the problem
+I faced was that I was implementing sleep locks using spinlocks around the turnstile queue, while sleepLock and sleepUnlock
+this turnstile spin lock is contended.  What I noticed was that the sleepUnlock thread was being starved because more and
+more threads kept on hogging the turnstile spinlock. This is definitely a place where fifo spinlocks woudl have helped
+aka guaranteed no starvation though in this case we also need explicit priorities in the spinlock perhaps a two level 
+priority because being able to release the sleepLock helps the system make better progress and you want this to happen
+instantaneously not ordered behind 20 other locks in fifo order.
+
+FAIR SPINLOCKS:
+Not as rosey as it may sound. If you spin without backoff (where backoff means selective sleep could be sleep with 
+increasing quantum bounded at the top) then the  threads could get scheduled in the order that does not agree with the
+lock's fifo order. THIS IS THE PATHOLOGICAL CASE FOR FIFO ORDERED SPINLOCKS, fair sleeplocks dont face this problem since
+they are not contending in the scheduler's runqueue.
+==========================================================================================================================
+
+
+==========================================================================================================================
+<c> To backoff or not?
+
+My conclusion based on practical runs being all spinlocks (unless you are in the kernel and at an exalted ISR level) should
+have backoff. Backoff can be of two types:
+
+-> Hey I just spun `n' times and didnt get the lock sleep then come back and spin `n' more times
+-> Hey the #lockcontenders in the fifo lock is 200 theres no point in spinning  just backoff and come back later
+   < Btw this can also be used by unfair locsk >
+==========================================================================================================================
