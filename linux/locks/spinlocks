@@ -69,3 +69,9 @@ them spin on their local memory a lock release is not seen by everybody hence th
 << UPDATE >>
 Ok try this, change our Turnstile class to use FairSpinLock instead of the UnfairSpinLockWithProgressiveSleep and see
 how the AdaptiveLockTest behaves (the one that creates 1280 threads and haves them attack the lock at the same time)
+
+VERY IMPORTANT::
+I have come to the conclusion that a spin lock that doesnt get the lock during its timeslice is a lost cause after being
+context switched out it should really act like a FIFO sleep lock. Now unfortunately from Java theres no clean way of 
+implementing this so we try to fake it with #blindSpins before sleep trick, if we had this option it should be used
+hands down.
