@@ -1,0 +1,15 @@
+bucket resources into projects and place max/min restrictions on them. later assign users to this project.
+
+had to use this to leash the Java threads during development stage that were taking up 100% of cpu.
+
+commands are projadd / projmod or better yet use capctl after projadd to add and control. 
+
+to use the cpu-shares option you ll have to change dispadmin -d FSS since shares only make sense in FSS scheduling
+but you can always use cpu-cap. 50% means 50% of one cpu whereas 150% means 100% of one cpu and 50% of the other cpu.
+
+check out /etc/project
+projects -l
+prctl
+projadd
+projmod
+capctl (perl script)
