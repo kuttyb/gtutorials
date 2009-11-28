@@ -1,0 +1,87 @@
+These are common phenomena arising out of spinlocks (by spinlock I mean a pure and dirty unfair CAS loop)
+
+Q: Why would I have such a lock around my code?
+A: Read "spinlocks" for details but the short answer is because it is very tempting.
+
+Q: Huh?
+A: Consider I have a readFloat / multiplyBy 4.344123f / writeFloat. Is this small enough to be surrounded by a
+   spinlock? (I m hoping nobody is dumb enough to surround calls that can visibly block with spinlocsk btw)
+
+Q: Yea sure.
+A: Trouble is as explained in the chapter "spinlocks" critical sections cascade so the effective critical section
+   is 30x for a highly contended spinlock.
+
+
+With the above background in mind there are two problems that a simple dumb unfair spinlock can cause no matter
+how small the critical section is. 
+
+The first one has to do with REDUCTION OF BANDWIDTH (aka `n' threads take way toooo long to complete)
+
+The second one has to do with THREAD STARVATION.
+
+===========================================================================================================================
+<A> THE UNDERGROUND EXPLOSION PROBLEM: (somewhat related to the THUNDERING HERD PROBLEM)
+
+1250 threads suddenly go for your lock almost at the same time (gets worse with multicores). Its a jungle out there now,
+especially if the thread that is in the critical section gets preempted. 
+
+Now there are 1249 idiots asking for the lock and only 1 thread that can do something about it.
+
+But since these are not ordered the worst case could be where the smart thread gets
+scheduled behind 1249 threads each taking a full quantum asking the same stupid question over and over again viz.,
+"Can I have the lock please?". 
+"Heck NO you cant have the lock because I havent released it yet and that has to do with the fact that you re taking
+ my seat on the core"
+
+Ok so this thread releases the lock but everytime a thread holding its lock gets preempted (or
+faults or whatever ...) you could theoretically argue it could get scheduled again behind the remaining spinning threads. 
+Alrite your shot at timeslice gets better as you add more cores but you get the idea.
+
+
+<B> THE AVALANCHE PROBLEM:
+
+Remember that day when you woke up from the wrong side of the bed, used the wrong shaving cream and drove to work using a
+detour and bad things happened? Yes thats the day we re talking of here. 
+
+It all starts slowly 3 threads trying to grab the lock
+one wins, completes, other one gets it too but suddently 2 more threads come along. Mr.3 (lets call him that henceforth) never
+really makes it all the way. Why? Because this is an open system (meaning the #contenders never becomes zero but its not an 
+explosion like <A>) either.
+
+So the net effect is that after 30 mins Mr.3 is still waiting to do a multiple of float by 3 err..sorry by 4.344123f!! Ok
+is it really so bad wait another 30mins and he ll get his chance.
+
+Perhaps but thats not the point, Mr.3 as it turns out is a really important thread the result of his multiplication is holding
+up 200 other threads which are now cascading and grinding certain subsystems to a halt.
+
+Heres a live example, my fair sleep lock internally used to use a simple CAS instruction for the turnstile. So it means
+sleepLock and sleepUnlock both use the same CAS to add and remove a thread from the fifo queue. There was also a getNumContenders
+that used the same lock but thats easy to fix with volatile you say, fair enough.
+
+Now as it turns out the sleepUnlock was losing it out to the slow but steady incoming threads trying to sleepLock. As a result
+the sleep lock was stuck the queue was building up. Now this is a matter of chance right?
+===========================================================================================================================
+
+
+===========================================================================================================================
+CONCLUSION:
+The moral of the story is:
+<a> unfair spinlock around a baby piece of code is a myth, critical sections can never be small enough as it turns out.
+
+<b> The smallest granularity of locking you use in your concurrent library cannot be an unfair spinlock, any fair lock(s)
+    you build out of it will face the above two problems.
+
+<c> My solution to the above problem is to use spin + expanding_backoff where you spin a lil sleep a lil next time spin 
+    again but sleep a lil more (bounded at the top). You could make this conditional based on the #contenders for the lock
+    so the simple case doesnt suffer.
+
+<d> This solves <A> you say not <B>. Correct you also need priority levels where each time a lock spins trying to get the
+    lock it checks if its gotten too old to be spinning with the crowd. If yes it raises the locks priority level and 
+    next time somebody unlocks he doesnt unlock he unlocks the next level so all old folks can go and get the lock.
+
+<e> A really cool solution would be to instrument the kernel to let a thread tell the OS I m spinning on this resource.
+    If you were to ever preempt me or switch me out for whatever reasons, add me to xyz waitqueue before you schedule me again.
+    There you go, you have order so no starvation and you ve used your timeslice well but no more. Though even if 1249 threads
+    took one quantum and no more it could still give that 1 lock holding thread a tough time but its a one time thing so
+    big deal!
+===========================================================================================================================
