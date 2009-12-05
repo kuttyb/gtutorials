@@ -1,1 +1,4 @@
-pmap -x will show total RSS anon (which you can read as private)
+Use pmap -sx
+
+ Shared pages are pages with s in the rwxs format all others are owned only by that process. stack-tid=2 means exactly
+that, stack for threadID 2.
