@@ -1,4 +1,27 @@
+====== PER PROCESS ===========================================================
 Use pmap -sx
 
- Shared pages are pages with s in the rwxs format all others are owned only by that process. stack-tid=2 means exactly
+Shared pages are pages with s in the rwxs format all others are owned only by that process. stack-tid=2 means exactly
 that, stack for threadID 2.
+==============================================================================
+
+====== SYSTEMWIDE  ===========================================================
+root@ht:~/workspace# echo ::memstat | mdb -k
+Page Summary                Pages                MB  %Tot
+------------     ----------------  ----------------  ----
+Kernel                     209881               819    7%
+ZFS File Data              130168               508    4%
+Anon                       131467               513    4%
+Exec and libs                4063                15    0%
+Page cache                  27297               106    1%
+Free (cachelist)            22530                88    1%
+Free (freelist)           2615999             10218   83%
+
+Total                     3141405             12271
+==============================================================================
+
+
+====== SWAP  ===========================================================
+swap -l
+swap -s
+==============================================================================
