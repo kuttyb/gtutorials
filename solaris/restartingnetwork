@@ -1,3 +1,5 @@
+#! /bin/sh
+
 pfexec svcadm disable svc:/network/physical:default
 pfexec svcadm disable svc:/network/physical:nwam
 
