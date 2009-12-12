@@ -1,0 +1,29 @@
+in order to build a fair lock your basic hw primitive has to be fair. At this point I ll turn heel and redefine fairness as a guarantee
+that the lock will be acquired in a bounded #steps. I *believe* this is the community definition for wait-free algorithms but not sure.
+But since the term is so cool lets henceforth use the term "wait-free" to denote guaranteed eventual completion.
+
+Now my FifoSleepQueue and GroupFairSpinLock are both fair spin locks. The latter is clever in the sense it uses bounded fairness
+while the former is more aggressive in the sense that it allows locks to be only acquired in strict FIFO order.
+
+
+WORRY:
+The basic building block for both these algorithms is a Java AtomicInteger.getAndIncrement() Lets assume the Java implementation 
+does not use synchronized and instead uses hw lock:addAndIncrement your fairness is based on the argument that lock:addAndIncrement
+instruction in hw is wait-free.
+
+I am convinced that on SPARC (and possibly other RISCs like POWER) this *CANNOT* be wait-free because its implemented in microcode
+using CAS / try and increment.
+
+Is it wait-free on x86? Don't know.
+
+
+SOLUTION:
+Depending upon AtomicInteger.getAndIncrement() is turning out to be a worry for two reasons:
+-> you are depending upon the processor to implement a highly scalable ADD_AND_INCREMENT implementation. This will be the hotlock
+in the processor so consider a true 16 way system where this instruction is contended often I wonder how efficient this implementation
+will be using Intels MESI protocol.
+
+-> The second worry being the worse of the two. What if lock:addAndIncrement is *NOT* wait-free?
+
+I think we can solve this by using either some form of a clock time value (since it progressively increments) or some sort of a 
+cycle count feature like rdtsc. So take the value mod and bound it and use the GroupFairSpinLock principle.
