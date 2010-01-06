@@ -25,3 +25,6 @@ Total                     3141405             12271
 swap -l
 swap -s
 ==============================================================================
+
+>> === UPDATE === <<
+kstat unix::vminfo this should provide free memory info
