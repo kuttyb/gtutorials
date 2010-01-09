@@ -1,0 +1,13 @@
+Theres 3 package formats you should watch out for :
+
+<A> IPS the default packaging format for OpenSolaris
+    packagemanager
+    pkg install -i SUNWname
+
+<b> Blastwave
+    This probably has the most packages out there
+    Use pfexec perl /opt/csw/bin/pkgutil -i[r] name
+
+<c> Sunfreeware
+    pkg-get should work or you can download from their site and do pkg-add -d filename
+
