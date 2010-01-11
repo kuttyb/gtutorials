@@ -22,8 +22,15 @@ Total                     3141405             12271
 
 
 ====== SWAP  ===========================================================
-swap -l
-swap -s
+~/daji/tutorials/solaris $ swap -sh
+total: 644M allocated + 298M reserved = 944M used, 5.5G available
+
+There you go this means you have 5.5G available out of 6G
+
+vmstat column::memory::swap should provide the same data
+where vmstat::column::memory::free should provide RAM free data
+you can cross check that with ::memstat. There will be marginal differences 
+though.
 ==============================================================================
 
 >> === UPDATE === <<
