@@ -1,0 +1,11 @@
+cputrack -efc pic0=cpu_clk_unhalted.thread_p,pic1=inst_retired.any_p,pic2=longest_lat_cache.reference,pic6=cpu_clk_unhalted.ref  ls
+   time    pid lwp      event      pic0      pic1      pic2      pic6 
+  0.004   1032   1       exit    785288    468578      6503    748020 
+
+
+Essentially there are `n' PICs or read points on the cpu where you can load an event to monitor and monitors its results. Its 
+not like ours where you can load lots of signals and get them dumped from memory.
+
+So in this case we loaded 4 signals on 4 separate PICs to monitor.
+
+Oh and btw before you load an event on PIC make sure via cputrack -h that event is actually supported on the PIC.
