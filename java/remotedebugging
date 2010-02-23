@@ -1,0 +1,8 @@
+Start the server thus:
+-agentlib:jdwp=transport=dt_socket,server=y,address=port,suspend=n (or y if you want to start and suspend)
+
+remember to use address=port and *NOT* address=localhost:port
+
+Start the client thus:
+jdb -connect com.sun.jdi.SocketAttach:hostname=serverIP,port=serverPort
+
