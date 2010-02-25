@@ -1,0 +1,16 @@
+mdb -kw
+
+0x100::dump  -uq   >> this will dump VA
+
+0x100::dump -puq   >> this will dump PA
+
+> 0x100,0x80::dump -puq -w 2
+       0 1 2 3  4 5 6 7  8 9 a b  c d e f  0 1 2 3  4 5 6 7  8 9 a b  c d e f
+100:  59ec00f0 904e01e0 65f000f0 30d000c0 f3ee00f0 f3ee00f0 a04e01e0 f3ee00f0
+120:  f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0
+140:  f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0
+160:  f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0 f3ee00f0
+
+-w 2 makes sure you have 2 x 4 dwords in one single line its output formatter
+0x80 is obviously the number of dwords you want to print out.
+
