@@ -1,1 +1,4 @@
 moddebug/W 0x80000000 >> this will turn on module load/unload debug spews from the kernel
+
+0xabcd1000::dis >> thats how you disassemble instructions at an address
+
