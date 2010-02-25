@@ -1,0 +1,43 @@
+<a> vatopfn: Given VA you can get its PA using
+
+Remember the output "maps pfn 0x3346ac" is 4k aligned so the real PA is 0x3346ac_000
+
+
+<b> pte: You can monitor the ptes using the pte command
+
+<c> report_maps: Given PA you can get all the VAs
+
+
+================
+Sample Usage:
+================
+
+ffffff00176e2c60::vatopfn
+ffffff00176e2c60::vatopfn
+        level=0 htable=ffffff03d9f876a0 pte=3346ac163
+        level=1 htable=ffffff03d9f87cd0 pte=3822027
+        level=2 htable=ffffff03d9f87c88 pte=2e79fe027
+        level=3 htable=ffffff03d9f88db0 pte=2e79ff027
+Virtual address 0xffffff00176e2c60 maps pfn 0x3346ac
+
+
+
+3346ac163::pte
+pte=3346ac163: pfn=0x3346ac global write 
+
+
+
+3346ac::report_maps
+hat=ffffff03d9cdbe78 maps addr=ffffff00176e2000
+
+
+
+ffffff00176e2000::dump 
+                   \/ 1 2 3  4 5 6 7  8 9 a b  c d e f  v123456789abcdef
+ffffff00176e2000:  000490fe 00000000 00000000 00000000  ................
+
+
+
+3346ac000::dump -p
+            \/ 1 2 3  4 5 6 7  8 9 a b  c d e f  v123456789abcdef
+3346ac000:  000490fe 00000000 00000000 00000000  ................
