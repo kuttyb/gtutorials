@@ -1,0 +1,40 @@
+============================================================================================================
+Random Thoughts:
+============================================================================================================
+Service boundaries need to respect the following criteria:
+
+-> handle transport layer failures
+
+-> be request/response in nature to facilitate and encourage asynchronous communication
+
+-> provide domain specific aggregation (caching / batching)
+   --> aka dont hit the transport very often
+   --> and if you do try to ship bulk data
+   
+   Transport layers are typically high latency high bandwidth ones. The best usage model is to
+   aggregate data and send in bulk.
+============================================================================================================
+Services are different from components. Components are typically library aggregations and local by nature.
+For example while building your local cache component if you need an allocator library dont make the allocator
+a service. its cheap to link it as a local component. 
+
+For local components we use OSGI's modularity layer continue to use that and stick with it. Don't use anything else
+in OSGI.
+
+
+Service Boundaries need to respect the conditions we described above so not every component boundary can be a 
+service boundary.
+
+N services can start off by being local on the same machine. For better load balancing you ll eventually need
+to offload them to a separate machine to free up the pressure on your local CPU/MEMORY/IO subsystems.
+
+When doing this offloading, think of the different services as a connected graph where the weight of the edges represent
+the communication overhead between the services. You want to keep services that talk to each other either
+    --> very frequently
+    --> transfer lot of data 
+
+ on the same machine. 
+============================================================================================================
+this concept can be extended to take a hierarchical form. The hierarchy being formed by the latency and distance between
+two services closest being on the same machine. 
+============================================================================================================
