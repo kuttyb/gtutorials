@@ -1,0 +1,21 @@
+Dtrace script has the following parts:
+
+<a> PROBE:
+    Probes are addressed using the P:M:F:N (Provider Module Function Name) format. Skipping any 
+    of the fields of the tuple act as the "*" wildcard.  A probe can also have arguments that are referenced
+    using arg0....arg9 or arg[n].
+
+<b> PREDICATE:
+    Once the probe is hit the predicate is tested to check if the clause should be executed. Think of it as 
+    the condition in a conditional breakpoint.
+
+<c> CLAUSE:
+    The main program body that gets executed when the probe/predicate allow it to do so.
+
+
+Variables:
+	-> Global scope (by default and declared anywhere)
+	-> Thread scope (self->varname)
+	-> Clause scope (this->varname)
+
+
