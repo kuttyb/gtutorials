@@ -1,0 +1,5 @@
+netstat -nr 
+
+this will dump interface vs ipaddress ranges it looks at
+< aka dump the local routing table >
+
