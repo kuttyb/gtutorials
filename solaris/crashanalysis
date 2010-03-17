@@ -23,3 +23,15 @@ thats it thereafter to do
    USER DUMP ANALYSIS
 ======================================================================
 coreadm 
+
+======================================================================
+   KERNEL DUMP ANALYSIS
+======================================================================
+Something new I ve picked up use /opt/SUNWscat/bin/scat to do crash
+dump triages.
+
+For example scat vmcore.0 
+
+The commands to do analysis are a bit friendlier than those you d have
+to naturally use inside mdb get used to both.
+
