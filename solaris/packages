@@ -11,3 +11,6 @@ Theres 3 package formats you should watch out for :
 <c> Sunfreeware
     pkg-get should work or you can download from their site and do pkg-add -d filename
 
+
+-------------
+SRv4 package format being pkgadd/ pkginfo/ pkgrm. Use this on Solaris 10
