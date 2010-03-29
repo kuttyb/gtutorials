@@ -1,0 +1,25 @@
+Some interesting trends:
+
+<a> Single JVM instance Big Iron Machine
+http://www.spec.org/cgi-bin/osgresults?conf=jbb2005&op=fetch&proj-COMPANY=256&proj-SYSTEM=256&proj-PEAK=256&critop-PEAK=1&crit-PEAK=1000000&proj-BOPSJVM=0&proj-JVM=256&proj-JVMINST=256&critop-JVMINST=0&crit-JVMINST=1&proj-CORES=256&proj-CHIPS=0&proj-CORESCHP=256&proj-CPU=256&proj-CPUMHZ=256&proj-CACHE1=0&proj-CACHE2=256&proj-CACHE3=256&proj-MEMORY=0&proj-MEMORYDESC=0&proj-DISK=0&proj-OS=256&proj-HWAVAIL=0&crit2-HWAVAIL=Jan&proj-OSAVAIL=0&crit2-OSAVAIL=Jan&proj-SWAVAIL=0&crit2-SWAVAIL=Jan&proj-LICENSE=0&proj-TESTER=0&proj-TESTDAT=0&crit2-TESTDAT=Jan&proj-PUBLISH=256&crit2-PUBLISH=Jan&proj-UPDATE=0&crit2-UPDATE=Jan&proj-FDRURL=0&dups=0&duplist=COMPANY&duplist=SYSTEM&duplist=JVMINST&duplist=CORES&duplist=CHIPS&duplist=CORESCHP&duplist=CPU&duplist=CPUMHZ&duplist=CACHE1&duplist=CACHE2&duplist=CACHE3&dupkey=PUBLISH&latest=Dec-9999&sort1=PEAK&sdir1=-1&sort2=CORES&sdir2=-1&sort3=CORESCHP&sdir3=-1&format=tab
+
+Looks like only M9000/Azul/Itanium have the metal for that!! The values are not very high though ust about 1.7M BOPS
+
+
+
+<b> Multiple JVMs non cluster
+http://www.spec.org/cgi-bin/osgresults?conf=jbb2005&op=fetch&proj-COMPANY=256&proj-SYSTEM=256&proj-PEAK=256&critop-PEAK=1&crit-PEAK=1000000&proj-BOPSJVM=0&proj-JVM=256&proj-JVMINST=256&proj-CORES=256&proj-CHIPS=0&proj-CORESCHP=256&proj-CPU=256&proj-CPUMHZ=256&proj-CACHE1=0&proj-CACHE2=256&proj-CACHE3=256&proj-MEMORY=0&proj-MEMORYDESC=0&proj-DISK=0&proj-OS=256&proj-HWAVAIL=0&crit2-HWAVAIL=Jan&proj-OSAVAIL=0&crit2-OSAVAIL=Jan&proj-SWAVAIL=0&crit2-SWAVAIL=Jan&proj-LICENSE=0&proj-TESTER=0&proj-TESTDAT=0&crit2-TESTDAT=Jan&proj-PUBLISH=256&crit2-PUBLISH=Jan&proj-UPDATE=0&crit2-UPDATE=Jan&proj-FDRURL=0&dups=0&duplist=COMPANY&duplist=SYSTEM&duplist=JVMINST&duplist=CORES&duplist=CHIPS&duplist=CORESCHP&duplist=CPU&duplist=CPUMHZ&duplist=CACHE1&duplist=CACHE2&duplist=CACHE3&dupkey=PUBLISH&latest=Dec-9999&sort1=PEAK&sdir1=-1&sort2=CORES&sdir2=-1&sort3=CORESCHP&sdir3=-1&format=tab
+
+SGI Altix all the way but thats a blade configuration not SMP. 3Leaf has a crazy SMP configuration that will blow your pants
+off though. IIRC they take blades and merge them using special ASIC into a DSMP system. 
+
+==> BTW no kidding IBM Power5 has a lot of strength P595 32 cores 5.0GHz takes 3.4MBOPS which is very impressive so clock
+    speed does matter eh!
+
+
+<c> Single Socket System
+
+http://www.spec.org/cgi-bin/osgresults?conf=jbb2005&op=fetch&proj-COMPANY=0&proj-SYSTEM=256&proj-PEAK=256&proj-BOPSJVM=0&proj-JVM=256&proj-JVMINST=256&proj-CORES=256&proj-CHIPS=256&critop-CHIPS=0&crit-CHIPS=1&proj-CORESCHP=0&proj-CPU=0&proj-CPUMHZ=0&proj-CACHE1=0&proj-CACHE2=0&proj-CACHE3=0&proj-MEMORY=0&proj-MEMORYDESC=0&proj-DISK=0&proj-OS=0&proj-HWAVAIL=0&crit2-HWAVAIL=Jan&proj-OSAVAIL=0&crit2-OSAVAIL=Jan&proj-SWAVAIL=0&crit2-SWAVAIL=Jan&proj-LICENSE=0&proj-TESTER=0&proj-TESTDAT=0&crit2-TESTDAT=Jan&proj-PUBLISH=256&critop-PUBLISH=1&crit2-PUBLISH=Jan&crit-PUBLISH=2007&proj-UPDATE=0&crit2-UPDATE=Jan&proj-FDRURL=0&dups=0&duplist=COMPANY&duplist=SYSTEM&duplist=JVMINST&duplist=CORES&duplist=CHIPS&duplist=CORESCHP&duplist=CPU&duplist=CPUMHZ&duplist=CACHE1&duplist=CACHE2&duplist=CACHE3&dupkey=PUBLISH&latest=Dec-9999&sort1=PEAK&sdir1=-1&sort2=CORES&sdir2=-1&sort3=CORESCHP&sdir3=-1&format=tab
+
+Interesting thing here being Xeon X3470 (4cores/8threads 2.93GHz) does better than T5220 now you and me both know the difference
+in prices between the two. 
