@@ -1,0 +1,10 @@
+These are some of the issues faced on Solaris for lack of I/O scheduler:
+
+[the only one with a conclusion]
+http://opensolaris.org/jive/thread.jspa?threadID=123211&tstart=0
+
+[total bs here]
+http://opensolaris.org/jive/thread.jspa?threadID=121374
+http://opensolaris.org/jive/thread.jspa?threadID=121479&tstart=0
+
+
