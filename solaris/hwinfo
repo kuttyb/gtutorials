@@ -1,0 +1,7 @@
+scanpci (sort of the lspci equivalent)
+
+prtconf / prtdiag
+
+/usr/ddu/bin/i386/all_devices (ddu for Device Driver Utility)
+
+smbios
