@@ -1,0 +1,3 @@
+this is gnome specific
+
+goto /usr/share/applications and look at the .desktop extension files. You ll know the rest ....
