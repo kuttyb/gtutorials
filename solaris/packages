@@ -1,16 +1,7 @@
-Theres 3 package formats you should watch out for :
+Theres really 3 package formats you need to know about:
 
-<A> IPS the default packaging format for OpenSolaris
-    packagemanager
-    pkg install -i SUNWname
+<a> IPS (pkg install/uninstall/search) 
 
-<b> Blastwave
-    This probably has the most packages out there
-    Use pfexec perl /opt/csw/bin/pkgutil -i[r] name
+<b> Base SRV4 pkginfo/pkgadd/pkgrm/
 
-<c> Sunfreeware
-    pkg-get should work or you can download from their site and do pkg-add -d filename
-
-
--------------
-SRv4 package format being pkgadd/ pkginfo/ pkgrm. Use this on Solaris 10
+<c> Blastwave uses its own wrapper /opt/csw/bin/pkgutil -i[r]
