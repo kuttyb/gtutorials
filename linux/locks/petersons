@@ -1,0 +1,49 @@
+Mutual exclusion w/o hw CAS support.
+
+===========
+Background:
+===========
+Consider the typical example of cpu and pmu. Both can access each others memory but not do atomic RMW.
+
+So a single lock variable will not work because you cannot atomically (test if hes using - if not - let me set it)
+
+
+===========
+Petersons:
+===========
+The solution is simple. Instead of one lock have two INTENTION_LOCK variables one in each entities' memory space. In addition also have
+a TURN variable.
+
+
+LOCK:
+	Self->INTENTION_LOCK = true;
+	TURN = Other;
+
+	while (Other->INTENTION_LOCK && (TURN == Other)) {}
+
+
+UNLOCK:
+	Self->INTENTION_LOCK = false;
+
+
+	
+===========
+Analysis:
+===========
+As you will notice in addition to mutual exclusion w/o any hw support it also has the advantage of being wait-free. Why?
+Because the  max hop for a thread when it decides it needs the lock to the time it gets the lock is 1 lost LOCK attempt.
+
+In other words one thread cannot acquire the same lock back to back *AFTER* the other thread has done INTENTION_LOCK == true
+(check for yourself)
+
+
+===========
+Bottomline:
+===========
+Format of the algorithm is :
+
+=> DECLARE INTENTION TO LOCK
+
+=> GIVE THE OTHER THREAD THE TURN
+
+=> WAIT WHILE THE OTHER THREAD'S INTENTION *AND* TURN HOLD TRUE
