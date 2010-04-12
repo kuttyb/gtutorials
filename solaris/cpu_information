@@ -1,3 +1,6 @@
+=============================================
+psrinfo
+=============================================
 ~/daji/tutorials/solaris $ psrinfo -pv
 
 The physical processor has 4 cores and 8 virtual processors (0-7)
@@ -8,3 +11,10 @@ The physical processor has 4 cores and 8 virtual processors (0-7)
     x86 (GenuineIntel 106A5 family 6 model 26 step 5 clock 2667 MHz)
       Intel(r) Core(tm) i7 CPU         920  @ 2.67GHz
 
+
+=============================================
+psrset
+=============================================
+explore. It appears with psrset -f you can 
+disable interrupts on certain cores. Interesting because I was thinking what changes do I have to make to the kernel
+to pin my processes to a set of processors and rid those processors of any unwanted interrupts.
