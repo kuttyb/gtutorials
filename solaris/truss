@@ -1,0 +1,15 @@
+~/daji/tutorials/solaris $ truss -flt fstat,lstat,open ls
+2592/1:		open("/var/ld/ld.config", O_RDONLY)		Err#2 ENOENT
+2592/1:		open("/lib/libc.so.1", O_RDONLY)		= 3
+2592/1:		open("/usr/lib/locale/en_US.UTF-8/en_US.UTF-8.so.3", O_RDONLY) = 3
+2592/1:		open("/usr/lib/locale/en_US.UTF-8/methods_unicode.so.3", O_RDONLY) = 3
+2592/1:		lstat64(".", 0x080466B0)			= 0
+2592/1:		fstat64(3, 0x08047680)				= 0
+2592/1:		fstat64(1, 0x08045760)				
+
+
+
+-f to follow child processes
+-l to print lwpid
+
+-t is how you filter
