@@ -1,0 +1,10 @@
+~/daji/tutorials/solaris $ psrinfo -pv
+
+The physical processor has 4 cores and 8 virtual processors (0-7)
+  The core has 2 virtual processors (0 4)
+  The core has 2 virtual processors (1 5)
+  The core has 2 virtual processors (2 6)
+  The core has 2 virtual processors (3 7)
+    x86 (GenuineIntel 106A5 family 6 model 26 step 5 clock 2667 MHz)
+      Intel(r) Core(tm) i7 CPU         920  @ 2.67GHz
+
