@@ -17,7 +17,7 @@ a TURN variable.
 
 LOCK:
 	Self->INTENTION_LOCK = true;
-	TURN = Other;
+	TURN = Other;  // (A)
 
 	while (Other->INTENTION_LOCK && (TURN == Other)) {}
 
@@ -26,6 +26,7 @@ UNLOCK:
 	Self->INTENTION_LOCK = false;
 
 
+So (A) is special because whichever thread reaches (A) first gets the lock first. This lock is FIFO remember?
 	
 ===========
 Analysis:
