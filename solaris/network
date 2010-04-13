@@ -3,3 +3,12 @@ netstat -nr
 this will dump interface vs ipaddress ranges it looks at
 < aka dump the local routing table >
 
+
+
+>> time nslookup www.google.com
+thats for dns lookup
+
+>> time getent hosts www.google.com
+this will use the local machine name cache
+
+
