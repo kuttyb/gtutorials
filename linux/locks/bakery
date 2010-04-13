@@ -1,0 +1,42 @@
+=======================================
+Lamports Bakery Algorithm:
+=======================================
+// where `n' is the max number of threads
+
+choosing[n] = {0};
+number[n]   = {0};
+
+lock():
+	choosing[self] = true;
+	number[self]   = 1 +  max(number[0 .. n]);
+
+	for (int counter = 0; counter < n; counter++) {
+	    // Make sure thread is not in the doorway
+	    while(choosing[counter]) {}
+
+	    while(number[counter] && cmp(counter, self)) {}
+	}
+
+
+unlock():
+	number[self] = 0;
+
+
+cmp(counter, self):
+       if (number[counter] == number[self]) {
+       	  if (decide(counter, self) < 0) {
+	     return true;
+	  }
+       }
+
+       if (number[counter] < number[self]) {
+       	  return true;
+       }
+
+       return false;
+
+=======================================
+ANALYSIS
+=======================================
+Frankly havent gone through the proof myself to know why it works but I do know the algorithm structure by heart :-(
+
