@@ -1,0 +1,39 @@
+<< IRC log with a guy that walked me through fixing the problem the problem >>
+
+
+* Now talking on ##gnome
+* Topic for ##gnome is: GNOME 2.30 Released! | http://www.gnome.org/start/stable | SOC in #soc @ irc.gnome.org | Welcome to ##gnome | Channel FAQ: http://gnomefaq.miskellaneous.com | Large pastes: http://pastebin.com/ | More GNOME support: http://www.gnome.org/support/
+* Topic for ##gnome set by borschty!~sebastian@wh178.stw.stud.uni-saarland.de at Wed Mar 31 16:56:07 2010
+<CodeWar> running 2.24.2 on opensolaris 2009.06. for one particular user cant seem to be able to load wallpapers it defaults to just solid colors. works fine for other users
+<CodeWar> any clue where to start looking or logging that can be enabled to catch the error?
+<borschty> gconftool-2 --get /desktop/gnome/background/pictue_opacity
+<borschty> (as that user)
+<CodeWar> borschty, No value set for `/desktop/gnome/background/pictue_opacity'
+* bullgard4 (~chatzilla@dslb-088-075-144-042.pools.arcor-ip.net) has joined ##gnome
+* kyxzme has quit (Remote host closed the connection)
+<CodeWar> ~pastebin
+<CodeWar> http://pastebin.com/k5LL3tMZ
+<CodeWar> thats the error message I see in ~/.xsession-errors
+* kyxzme (~kyxzme@93-42-97-74.ip86.fastwebnet.it) has joined ##gnome
+<borschty> oh, the user seems to use a weird theme that tries to set a background-image
+<borschty> i didn't even know that was possible
+<borschty> could you paste that theme?
+<CodeWar> borschty, how do I paste the theme
+<CodeWar> ok got it hang on 
+<CodeWar> http://pastebin.com/UV1TdDr2
+<CodeWar> but the same problem happens even if i change the theme
+<borschty> i meant the gtkrc file of that theme
+<CodeWar> where would I find that
+* W0rmDr1nk has quit (Ping timeout: 245 seconds)
+<CodeWar> ~/.themes/ThemeBName/gtk-2.0/gtkrc  l0oks like for this theme there is no such file .. is that wrong?
+<borschty> /export/home/daji/.themes/BlueSpace/gtk-2.0/gtkrc
+* W0rmDr1nk (~WormDrink@196-210-40-13.dynamic.isadsl.co.za) has joined ##gnome
+<CodeWar> ok http://pastebin.com/zc7P9fps
+<borschty> ah, that's some pixmap-engine option
+<borschty> gconftool-2 --get /desktop/gnome/background/draw_background
+<CodeWar> false
+<borschty> gconftool-2 --type bool --set /desktop/gnome/background/draw_background true
+<CodeWar> it works!!!
+<CodeWar> you rock!!
+<CodeWar> so whats the deal how did I shoot myself in the foot 
+
