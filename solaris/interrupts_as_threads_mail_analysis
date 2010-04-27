@@ -1,5 +1,5 @@
 ==========================================================================================
-Essentially I m arguing two things:
+Essentially I m arguing three things:
 
 <A> Its a bad idea to share critical section and sleep lock with code that can fault. You can use priority inheritance to 
     get the thread holding the lock to get scheduled immediately but you cannot make it complete its critical section any 
@@ -11,13 +11,14 @@ Essentially I m arguing two things:
 <B> It encourages you to write fat ISRs (as against making you split it into hard/soft parts)
 
 <C> Having a monolithic single ISR as against two halves makes sure that the IRQL remains at this level thereby starving
-    even lower IRQL detection until the entire IRQ is completed (add to it the worst case lock acquisition time)
+    even lower IRQL detection until the *ENTIRE* ISR is completed (add to it the worst case lock acquisition time and you 
+    get the picture)
 
 ==============================
 What is a good solution then?
 ==============================
 
-<a> Have two half ISRs (hard/soft) parts
+<a> Have two half ISRs (hard/soft) parts like Linux/Windows.
 
 <b> Hard part is not a thread interrupts below that level are disabled until this is handled. In fact interrupts as such 
     can be disabled until this is handled if need be. In this part you do the minimal lil and queue work.
@@ -38,4 +39,19 @@ Oh and yes you could do coalescing of tasks for example .. IRQL 7 queues a task 
 IRQL much like our non stall interrupt tree) But before its queued task can be executed that core receives interrupts from IRQL
 9. This happens thrice such that there are 3 queued tasks from IRQL 7. "Task coalescing" will allow you to run the task just once.
 Of course the coalescing needs to be device aware (so devices sharing the same IRQL shouldnt coalesce :-) that would be fun aint it)
+
+
+================================
+ PREEMPTIBLE ISR
+================================
+
+At the start of hard ISR disable your own device interrupt source and reenable it at the end of 
+your soft ISR execution. This is what we do today (except for tree 1 ) and is essentially non preemptible.
+I think this makes sense for level based interrupts (condition not event)
+
+For edge triggered interrupts (event not condition) it makes sense to be able to queue the separate events.
+(really ...? think some more what kind of an ISR would want to queue the same soft ISR again and again and 
+possibly take advantage of the OS coalescing them?)
+
+
 
