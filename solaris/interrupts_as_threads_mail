@@ -1,0 +1,35 @@
+From: Kutty Banerjee
+Sent: Monday, April 26, 2010 7:32 PM
+To: Milan Bag
+Subject: interrupts as threads
+ 
+ 
+Interesting concept now that you mention it.  Checked on the fineprint in solaris internals.  You know I m starting to think this could be worse than what windows / linux does but perhaps I didn’t follow the details well enough.
+ 
+CONTESTED ADAPTIVE LOCK CASE:
+Core #0:
+
+    * Level 8 gets an interrupt
+    * Does blab bla but blocks on a lock ….. (Point (A))
+    * … (Point (B))  finally gets the lock
+    * Returns control
+
+ 
+Say the thread that owns the lock is affined to Core#7 on a remote socket and is not currently running. I m guessing by priority inheritance it will be boosted and get a chance to run. 
+
+    * Does it get pulled to Core 0 or run where the scheduler decides its best suited to run.  
+    * If no.. is the IRQL raised on this other core to avoid it getting preempted by say level 5 interrupt on this core?
+    * Between points (A) and (B) on core 0 is the IRQL maintained at Level 8 or lowered. I m guessing its maintained at Level 8.
+
+ 
+I guess I m arguing that priority inheritance will help the lock holder get the cpu faster but not complete its critical section faster. It could fault have remote cache misses all in its critical section and while that happens core 0 will be stuck  at Level 8 wrongly denying Level 7 interrupts from even getting noticed.
+ 
+My conclusion so far seems to be :
+
+    * This seems to encourage writing fat ISR routines (instead of splitting top/low parts)
+    * In the contested case by virtue of blocking, deny lower ISRs to even get  detected and it seems the window of blockage can be pretty high
+
+ 
+Are there other design considerations?
+ 
+kutty

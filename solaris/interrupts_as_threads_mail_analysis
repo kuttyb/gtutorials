@@ -1,0 +1,41 @@
+==========================================================================================
+Essentially I m arguing two things:
+
+<A> Its a bad idea to share critical section and sleep lock with code that can fault. You can use priority inheritance to 
+    get the thread holding the lock to get scheduled immediately but you cannot make it complete its critical section any 
+    faster.
+
+    Bottomline if you re idea is to share adaptive lock with code that can fault and such is the motivation behind "interrupts
+    as threads" stop right there the goal is bad!! :-)
+
+<B> It encourages you to write fat ISRs (as against making you split it into hard/soft parts)
+
+<C> Having a monolithic single ISR as against two halves makes sure that the IRQL remains at this level thereby starving
+    even lower IRQL detection until the entire IRQ is completed (add to it the worst case lock acquisition time)
+
+==============================
+What is a good solution then?
+==============================
+
+<a> Have two half ISRs (hard/soft) parts
+
+<b> Hard part is not a thread interrupts below that level are disabled until this is handled. In fact interrupts as such 
+    can be disabled until this is handled if need be. In this part you do the minimal lil and queue work.
+
+<c> The queued work part needs to be fair amongst each other (so work queued by IRQL 7 can be surpassed by work queued by
+    IRQL 5 based on starvation and interrupt storm)
+
+    Furthermore this queued task can even be supplanted by regular threads based on starvation or moved to some other core
+    based on rules of scheduling.
+
+    Furthermore this queued task should be able to block and make most kernel calls (oh yes this should be below the 
+    schedulers IRQL level)
+
+I think this solves the "ease of writing ISR" problem (use regular locks) / doesnt hamper lower IRQLs waiting for scheduling
+delays (hard ISR is still super fast and not allowed to block) and above all has good concepts of fairness.
+
+Oh and yes you could do coalescing of tasks for example .. IRQL 7 queues a task but doesnt disable its interrupt source (preemptible
+IRQL much like our non stall interrupt tree) But before its queued task can be executed that core receives interrupts from IRQL
+9. This happens thrice such that there are 3 queued tasks from IRQL 7. "Task coalescing" will allow you to run the task just once.
+Of course the coalescing needs to be device aware (so devices sharing the same IRQL shouldnt coalesce :-) that would be fun aint it)
+
