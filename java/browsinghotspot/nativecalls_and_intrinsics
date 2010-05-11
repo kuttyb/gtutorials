@@ -1,0 +1,37 @@
+native calls can be found implemented under hotspot/src/share/vm/prims/jvm.cpp
+
+for e.g., 
+    public static native long currentTimeMillis();
+can be found under
+JVM_LEAF(jlong, JVM_CurrentTimeMillis(JNIEnv *env, jclass ignored))
+  JVMWrapper("JVM_CurrentTimeMillis");
+  return os::javaTimeMillis();
+JVM_END
+
+
+you can look up the implementation using the os or other internal hotspot classes.
+The OS implementations can be found under hotspot/src/os/[linux/vm/os_linux.cpp]
+
+==============================================================
+
+this is different from intrinsics. Intrinsics are JDK class methods that are directly
+converted to machine code instructions by C1 (as compared to native calls that are replaced
+with native OS calls)
+
+These are however not official Java bytecode instructions.
+
+for e.g.,
+sun.misc.Unsafe.java => public final native boolean compareAndSwapObject
+
+is implemented as an intrinsic. The list of all intrinsics can be found under
+hotspot/src/share/vm/classfile/vmSymbols.hpp
+  do_intrinsic(_compareAndSwapObject,     sun_misc_Unsafe,        compareAndSwapObject_name, compareAndSwapObject_signature, F_RN) \
+   do_name(     compareAndSwapObject_name,                       "compareAndSwapObject")                                \
+
+
+The actual asm code used to replace it can be found under the C1 architecture dependent part:
+hotspot/src/cpu/x86/vm/c1_L1Rgenerator_x86.cpp
+hotspot/src/cpu/sparc/vm/c1_L1RGenerator_sparc.cpp
+void LIRGenerator::do_CompareAndSwap(Intrinsic* x, ValueType* type) {
+
+==============================================================

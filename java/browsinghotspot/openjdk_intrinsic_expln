@@ -1,0 +1,25 @@
+<CodeWar> quick question: native java.lang.System.currentTimeMillis  seems to be implemented in hotspot/src/share/vm/prims/jvm.cpp(JVM_LEAF(jlong, JVM_CurrentTimeMillis(JNIEnv *env, jclass ignored)))
+<CodeWar> however unsafe.java native compareAndSwapInt doesnt have a similar implementation under jvm.cpp
+<CodeWar> I do see a similar implementation under hotspot/src/cpu/x86/vm/c1_L1Rgenerator_x86.cpp.   larger question being why the difference both are native calls one has a direct translation other doesnt
+<rkennke> CodeWar: CAS sounds like an intrinsic
+<CodeWar> rkennke, sorry I m not very familiar with these terms should I read something up to avoid asking naive questions?
+* [rkennke] (~rkennke@pD9E3ADE6.dip.t-dialin.net): Roman Kennke
+* [rkennke] #openjdk
+* [rkennke] weber.oftc.net :Newark, NJ, USA
+* [rkennke] 217.227.173.230 :actually using host
+* [rkennke] End of WHOIS list.
+<rkennke> CodeWar: the JIT translates calls to this method into machine code
+<rkennke> CodeWar: compareAndSwap is one opcode in machine code
+<rkennke> (more or less)
+<rkennke> CodeWar: does that make sense?
+<CodeWar> rkennke, i think it does I notice void LIRGenerator::do_CompareAndSwap(Intrinsic* x, ValueType* type)  has a ValueType argument which upon further grepping seems to have ..
+<CodeWar> predefined types for int/object/long which does match the different operations under unsafe.java --> public final native boolean compareAndSwapObject /Long
+<CodeWar> however based on JLS CAS doesnt appear to be a valid bytecode operand so I m guessing intrinsics are somewhere between actual bytecodes and native calls .. interesting
+<rkennke> CodeWar: there's no Java bytecode for this. When the JIT hits a call to Unsafe.compareAndSwap() it directly inserts the corresponding machine code into the generated machine code
+<rkennke> i.e. it is treated differently from other methods
+<CodeWar> rkennke, thanks .. is there a central list of all such special methods for e.g., it appears all native calls are listed under jvm.cpp
+<CodeWar> another thing ... any idea why AtomicInteger.getAndIncrement is looping over a CAS instead of using the above unsafe.xxx method to invoke lock:fetchandadd on x86?
+<rkennke> CodeWar: src/share/vm/classfile/vmSymbols.hpp
+<rkennke> CodeWar: search for do_intrinsics
+<rkennke> do_intrinsic actually
+<CodeWar> rkennke, awesome .. .thanks a lot much appreciated

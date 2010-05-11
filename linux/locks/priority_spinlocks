@@ -1,0 +1,1 @@
+the case I ve thought of is simple, there can be two priority levels. All threads spin on the lower priority level
