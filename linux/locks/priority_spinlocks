@@ -1,1 +1,31 @@
 the case I ve thought of is simple, there can be two priority levels. All threads spin on the lower priority level
+there can be only *ONE* thread that is allowed to take the express lane. More than one thread doing this will need some more
+thinking.
+
+also keep in mind there is nothing in here that prevents starvation.
+
+
+the basic idea is simple:
+in acquire let the thread get the lock address or (get address in case of ticket locking ) using a direct reference to the 
+memory.
+
+in the release code make it get this address using another layer of reference so 
+AtomicReference<AtomicInteger> putAddr.
+
+
+When you wish to get high priority for your spin lock simply CAS the above reference with another existing address that you 
+should mark out before you do the CAS (so mark it with 1 for non ticket locks).
+
+
+Heres what will happen whoever owns the current lock will load atomicreference .. get address then make release store to this
+address. if your CAS happens before his first load you will get the lock immediately or else worst case you ll have to wait
+for one more thread to release the lock.
+
+
+
+Corner Case:
+Q: What happens if the load atomicreference happens before the CAS and the current thread is only contender for this lock meaning
+   once it makes the release there are no other normal priority threads trying to grab the lock.
+
+   Wont we deadlock?
+
