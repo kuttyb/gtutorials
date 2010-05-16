@@ -20,11 +20,6 @@ thats it thereafter to do
 ::ps -z // see all live running processes at the time
 
 ======================================================================
-   USER DUMP ANALYSIS
-======================================================================
-coreadm 
-
-======================================================================
    KERNEL DUMP ANALYSIS
 ======================================================================
 Something new I ve picked up use /opt/SUNWscat/bin/scat to do crash
@@ -35,3 +30,21 @@ For example scat vmcore.0
 The commands to do analysis are a bit friendlier than those you d have
 to naturally use inside mdb get used to both.
 
+======================================================================
+   USER DUMP ANALYSIS
+======================================================================
+You can setup a global dump location for per process unique memory dumps.
+
+coreadm -g /var/cores/%f.%n.%p.core -e global -e process -e global-setid -e proc-setid -e log 
+
+this should set up the pattern heres a confirmation
+........
+~/daji/tutorials/solaris $ coreadm
+     global core file pattern: /var/cores/%f.%n.%p.core
+........
+
+
+Thats it now you can do gcore -g pid to produce the dump in /var/cores or just
+gcore pid to get the dump in the current directory. 
+
+Once you have the dump you can open the dump using dbxtool
