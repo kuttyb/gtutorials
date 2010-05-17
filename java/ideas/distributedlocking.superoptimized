@@ -63,3 +63,20 @@ fine, its really that you dont want to jam the network not avoid it at all costs
       own queue so ...?
    A: Nopes the additions to the local queue are serialized and in FIFO order so if we are waiting for long before being able
       to successfully steal the lock, the additions will respect temporal order.
+
+==============================================================================
+ New updates
+==============================================================================
+The above solution is already implemented in our LockStealingDistributedLock
+in our concurrent library.
+
+The next improvement I can think of is to have priority for lock contenders in the turnstile.
+
+For example when I try to steal the lock I will creep into his turnstile using a RPCish thread.
+Good this thread needs to be given lower priority such that if there were two more local threads
+behind me they should go ahead before I take the lock away. Of course come up with heuristics/magic
+for the number 2 but you get my point.
+
+As you can imagine moving a lock is the easy / cheap part but locks protect shared data moving that data
+takes time. So if you can delay it a bit and get more throughput by all means.
+
