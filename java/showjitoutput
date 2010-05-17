@@ -1,1 +1,4 @@
 -XX:+PrintOptoAssembly
+
+oh and this only works on debug builds :-)
+
