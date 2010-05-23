@@ -1,0 +1,167 @@
+Interesting discussion mostly ego driven and low on contents but two things stand out:
+
+<a> IPI (inter processor interrupt) is / can be pretty expensive
+
+<b> when you unmap ptes you may have to do the IPI. I m off the opinion you can defer it dont care if Linux does it or not
+    but fact is if you defer it make sure you dont reallocate that range until all cores have claimed to have tlb invalidated
+    that range.
+
+    thats easy to do queue the invalidate range for every core that process is allowed to be scheduled on. Each time a thread
+    from this process loads on a core it should check for pending invalidate commands on that core and issue all of them pending
+    or some of them pending.
+
+    if all pending invalidates for a VA range have been issued you can recycle the VA range back into the free list.
+
+    if under pressure and you need the VA bad do the IPI there and then and take the perf penalty.
+
+=====================================================================================================
+
+
+
+<riel> CodeWar: SW TLB lookup made some sense in the early 1990's, when memory was fast compared to the CPU core and silicon in the CPU core was at a premium
+<riel> CodeWar: nowadays the CPU cores tend to be so fast memory has a hard time keeping up - so you cannot afford to load TLB miss code from memory
+<CodeWar> riel, I think theres no denying that the miss case is horribly bad for sw tlb lookup because of the trap service + load trap code as you point out . it appears the counterside to that being ..
+<CodeWar> you add more slightly slower TLB cache and let sw speculatively load that and hope to avoid misses as far as possible and reap the benefits of a more efficient data struct
+<riel> great idea, as long as you don't have too many context switches or userspace programs that do garbage collection :)
+<CodeWar> riel, GC is anyways a cache disaster if nothing atleast the copy operation they do but let me analyze the ctxsw argument 
+<CodeWar> is the assumption taht on every ctxsw the whole tlb/second layer needs to be flushed?
+<riel> the alternative is syncing mprotect/mmap/munmap operations in other threads with the current CPU
+<riel> even for tasks that aren't running
+<CodeWar> the alternative to avoiding flushign the entire tlb on ctxsw you mean?
+<riel> yeah
+<riel> for single threaded programs it's not an issue
+<CodeWar> for x86 thats probably true I think the whole sw tlb lookup needs some basic cooperation from hw the least of which being allowing separate ctxids per TTE
+<riel> but for multi threaded programs, you need to keep the TLBs in sync between CPUs
+<CodeWar> and providing group TLB invalidate per address space natively in hw 
+<riel> that means either you start fresh after a context switch, or you need to sync the TLB even with CPUs that are not running the program right now
+<CodeWar> oh yes on unmap you need to attack every CPU that has that TLB stored .. true good point
+<CodeWar> ok wait one step at a time :-) lets take the on unmap you need to sync tlbs on every cpu one 
+<CodeWar> yes its true on unmap you ll need to probably use callouts or some other mechanism to flush tlbs ... point taken 
+<riel> not just on unmap - also on copy-on-write (remap) and on mprotect (permission change)
+<CodeWar> COW for itlb?
+<riel> dtlb
+<CodeWar> but lets assume dtlb 
+<riel> lets assume the CPU uses the same architecture for both
+<CodeWar> yes you ll need to flush on all cpus ... but can I argue these are not the perf points of your program?
+<riel> copy on write is VERY common after fork
+<riel> both in the parent and the child
+<CodeWar> meaning a new process
+<riel> mprotect is used a lot by garbage collectors
+<riel> they intercept segfault to know when memory is accessed again
+<CodeWar> oucchh no ways .. which GC does this .. is this some read barrier sw only implementation?
+<riel> some JVM does this - or probably several :)
+<CodeWar> I know IBM used to do this but read barriers in SW are really bad to begin with mprotect being called itself is a trap to kernel .. optimisitc loops yield better perf 
+<CodeWar> but until I can prove hotstpot doesnt do this let me keep this point open 
+<CodeWar> i thnk the other point was about having to flush TLBs or start afresh on every context load.. I ll dispute that
+<riel> I'm sure there are ways around it
+<riel> for example, you could keep count in each process of whether a pte changed
+<riel> if no ptes changed since the last time it was scheduled, you can reuse the same context in the tlb
+<CodeWar> why not flush tlbs and flush the writes when you do change the pte
+<CodeWar> why defer it 
+<riel> because IPIs are extremely expensive
+<CodeWar> sorry I m not very rolling with x86 terminologies ... IPI is what exactly :-)
+* [riel] (~riel@74-92-59-68-NewEngland.hfc.comcastbusiness.net): Rik van Riel
+* [riel] #virt #mm #linuxfs
+* [riel] xenon.oftc.net :Waltham, MA, USA
+* [riel] 74.92.59.68 :actually using host
+* [riel] End of WHOIS list.
+<CodeWar> you ll need first class hw support for range based itlb invalidations and address space based invalidations of course
+<riel> inter processor interrupt
+<riel> you need to tell the other CPU a TLB entry needs to be invalidated
+<CodeWar> yes expensive but you ll need to do it anyways and perhaps at an inopportune moment otherwise
+<riel> and you need to ensure that the invalidation has happened, before you continue
+<riel> no, you don't :)
+<CodeWar> or is the idea to coalesce them and do them together
+<riel> if you do not reuse the TLB entries after a context switch, you do not need to run the invalidation on CPUs where the process is not currently running
+<riel> only on the CPUs where it is - not on the others
+<CodeWar> good point
+<CodeWar> though that probably works equally well for sw and hw tlb invalidation approaches
+<riel> a few things:
+<riel> 1) a HW TLB invalidate IPI means no software needs to run when the IPI is received - much lower latency
+<CodeWar> but you ll need to initiate the hw tlb on ctx load if the pte was changed rite?
+<CodeWar> *the hw tlb invalidation
+<riel> no, you just start with a fresh tlb context
+<riel> have it load in whatever it needs from the page tables
+<CodeWar> but that will penalize all memory not jsut the pte for that context that changed
+<riel> TLB loads are pretty cheap
+<CodeWar> but they cause pipeline flush 
+<CodeWar> bubble i meant
+<riel> those are relatively cheap, too
+<riel> the real cost is loading stuff from RAM - if it's not in the cache, you're looking at >200 cycles
+<CodeWar> that I will contest as well especially for x86 where theres deep pipelines and OOO
+<CodeWar> hmm ok sure
+<riel> pipeline bubbles are an order of magnitude less than that
+<CodeWar> but how does that copmare to IPI .. 
+<CodeWar> yes they are
+<CodeWar> the comparison is this:
+<riel> IPI probably more expensive than going to RAM
+<CodeWar> ohh really .. I dont have data on that .. but that soudns surprising why is that so and is it accidental on some x86 implementations or the nature of the problem
+<riel> the "issue" is that CPU cores are really small
+<riel> and everything else is really far away
+<CodeWar> we re talking massively socketed system here or one die several cores
+<riel> think about how far a light beam can travel in .5 of a nanosecond (2 GHz CPU)
+<CodeWar> hmm its the interconnect latency that matters for IPI latency no?
+<CodeWar> let me look up on how IPI is implemente di m firing blanks here sorry :-(
+<riel> physical distance causes the latency
+<CodeWar> yes but the IPI is a posted operation 
+<CodeWar> you dont have to wait for it 
+<riel> you cannot risk having another thread of the program continue to use an old TLB entry
+<CodeWar> actually hold on .. you dont need IPI at all heres why 
+<CodeWar> when you modify the PTE set a flag in the threads (not the process)
+<CodeWar> now each time a thread with uncleared bit loads context it invalidates its own cpu 
+<CodeWar> otehr cpus/threads will do their own you dont need IPI at all
+<riel> what if the thread is already running?
+<riel> how do you prevent it from using stale data for the rest of its timeslice?
+<CodeWar> how is it done today?
+<CodeWar> i have two solutions preempt threads on that process or do the invalidat there and then
+<riel> the IPI
+<CodeWar> preemption seems better no? local cost vs global cost
+<riel> TLB invalidation is local
+<CodeWar> never mind ignore that
+<CodeWar> so we are paying the IPI cost today .. what are we saving with going sw tlb in this *context* then?
+<riel> nothing
+<riel> in fact, you'd probably just be adding to the cost
+<CodeWar> no I meant sw tlb is not makign this particular case any worse rite?
+<riel> except for the HW IPI handling now becoming a software issue
+<riel> which will probably add a few hundred cycles to the IPI latency
+<CodeWar> not following why it should add few hundred cycles when all its doing is launch and wait .. until it completes all cores are out of business anyways 
+<CodeWar> yes the launch is done by sw in this case not hw 
+<CodeWar> btw the solution today has to be immediate IPI not deferred else you ll have the same problem of another thread on another core using stale TLB
+<riel> the launch isn't the problem - it's the answering of the IPI on the remote CPUs
+<CodeWar> hang on .. I just thought the steps through ... heres my summary whether sw done or hw done in either case hwen you unmap the pte you have to initiate IPI and *wait for it to complete*  only then unmap the pte
+<CodeWar> I dont see any getting around this waht am I missing
+<riel> you need to unmap the pte first
+<riel> otherwise the other CPU could reload the TLB entry
+<riel> (1) unmap pte (2) invalidate TLB (3) free page
+<CodeWar> either case you have a race condition .. if you are unmappping memory that some thread is actively using either ways you are dead
+<CodeWar> soudns like a SW api error no?
+<riel> it's a bug in the userspace program, yes
+<CodeWar> in which case we neednt think about getting it right at all .... your first approach of deferred per process flag should work just fine in both approaches
+<riel> well, no
+<riel> you cannot have one CPU continue to access the memory long after it's been reallocated to another process :)
+<riel> because at that point it'd be a security bug
+<CodeWar> you dont reallocate the range until all threads in that process have marked it as being cleared .. in extreme case take the IPI and clear it 
+<CodeWar> to elaborate when you unmap the pte just do it and set a have_I_seen per thread flag in all threadas in that process
+<CodeWar> when threads load they invalidate tlb and clear it .. until all threads clear it dont reallocate taht range 
+<CodeWar> if memory is low and you must then take the IPI perf has tanked at this point anyways
+<riel> that requires keeping track of the to-be-freed pages somewhere
+<CodeWar> ready list / free list / zombie list 
+<CodeWar> one more list ptr per process
+<riel> but, to elaborate on your point, Linux already does a batched TLB flush and free on munmap
+<riel> I believe it does something like 512 pages at a time
+<CodeWar> interesting .. how does it avoid the security issue you jsut mentioned.. it must hkeep track before reallocating I guess
+<riel> no, it keeps track before freeing
+<CodeWar> didnt follow mumap invoked what now .. tlb invalidate with IPI or defer it .. if defered then do you queue the munmap call some place or let it go through just not put the VA back into the free list
+<riel> there is no free list for VAs
+<riel> only for physical pages
+<CodeWar> how do you recycle freed ranges then
+<riel> look at the mmap code
+<riel> specifically get_unmapped_area
+<CodeWar> let me get the source hang on 
+<CodeWar> 2.6.32.8 should be fine?
+<riel> yes
+<CodeWar> ok looking at that code
+<CodeWar> arch_rebalance_pgtables .. is taht defined some place else?
+<CodeWar> but you do have a VA rb tree right?
+<CodeWar> find_vma_prepare
+<CodeWar> i m *guessing* thats the free VA list
