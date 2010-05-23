@@ -74,3 +74,25 @@ but it appears that on every context switch x86s are required to flush down all 
 <walken> http://wiicode.com/wp-content/uploads/2010/01/252046.pdf   (old copy, can't find it on intel's site anymore)
 <walken> err, that's not it.
 <walken> http://ludloff-linux/manuals/intel/ia-32/317080.pdf there it is
+
+
+----------------------------------------------------------------
+<< more updates after digging up on SPARC and Solaris HAT >>
+
+ENDSTORY: VA->PA representation using hierarchical page stables is terribly wasteful of memory. instead 
+Solaris uses efficient hash tables spaces a heck lot of space especially for large VA address ranges (64bit)
+
+Q: but fact still remains that a TLB miss is very expensive right since it involves a trap handler.
+A: Correct but the extra TSB allows you a larger cushion to avoid that and now SW can populate it speculatively
+   based on working set.
+
+Q: What stops x86 from adding a second layer slightly slower TLB cache like TSB? They could do that and still come out 
+   fast. Its the TSB miss case that is terrible on SPARC right?
+A: Hmm yes that is true but its not all about speed its also about saving memory. We know from personal experience how 
+   wasteful hier page tables can be of memory even for 40 bit address spaces.
+
+Q: So its try and avoid the perf hit using decision X by using more sw initiated speculation and slower TSB but
+   really gun for space savings?
+   If space savings is the end goal then why not use inverted TLBs like IBM?
+A: good point .. need to look that up and compare and contrast.
+
