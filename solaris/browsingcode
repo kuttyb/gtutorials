@@ -1,0 +1,12 @@
+its mostly a chaotic legacy code base :-)
+
+sorry j/k:
+
+syscalls are listed under /etc/name_to_sysnum
+and in the code base they are at /onnv-gate/usr/src/uts/common/os/sysent.c
+
+thats about it:
+most syscalls can be found here /onnv-gate/usr/src/uts/common/syscall but thats not a generic rule for example
+mmap is under /onnv-gate/usr/src/uts/common/os/grow.c and gettimeofday is some place else too (yea its pretty
+haywire)
+
