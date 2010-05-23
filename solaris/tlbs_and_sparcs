@@ -9,3 +9,68 @@ x86 does the same too.
 but it appears that on every context switch x86s are required to flush down all tlb entries. Weird I d say :-)
 
 < definitely need to do more research in this area >
+
+
+...... some x86 tlb lookup details from a google linux kernel engineer #mm (irc.oftc.net)
+
+* Topic for #mm is: Linux Memory Management -- http://linux-mm.org/
+* Topic for #mm set by ssb!~ssb@213.167.39.150 at Sat Dec 19 00:49:20 2009
+<walken> codewar, x86 does tlb lookup in hw; IIRC it was done in sw on alpha; ibm's power architecture also has a funny way where they use hash tables instead of page tables.
+<CodeWar> walken, I m finding it hard to see justifications for sw tlb lookup as is done on SPARCs especially when several strands share a core. the hw lookup part is self justifying
+<walken> my opinion is that doing it in hardware is a win and that hash tables sound good first but then they tend not to behave as nice with the cache so x86-like page tables are very good overall.
+<CodeWar> darn.. tooo bad you n me are thinking alike so I ll never know the other side of the story :-)
+<walken> :)
+<walken> well, some would say that what you really care about at the OS level is VMAs... and that if you have to take page faults to populate your page tables from information in the VMAs, you might as well use a software tlb fill to do the same.
+<walken> except two things: 1- if you create, say, anon pages, you still have to keep track of them somewhere
+<walken> 2- if you context switch back and forth, you lose tlb contents, but if the hw can reload it from page tables the software tlb thing won't have to be invoked anymore
+<walken> so I dont know. this may be a case of pushing RISC too far :)
+<CodeWar> so (2) is an existing argument I ve seen *against* hw lookup frankly I didnt follow let me try ..
+<CodeWar> it appears on existing x86s theres no clean way to invalidate tlbs per context?
+<CodeWar> hence on ctxsw the whole thing must go?
+<walken> yes, more or less
+<CodeWar> well as long as the whole tlb invalidate is pipelined with the rest of ctxsw it shouldnt  matter I guess
+<walken> at some point AMD was doing something nice, their L1 TLB had to go on context switch but their L2 knew how to snoop so it'd know when it's stale
+<walken> tlb invalidate was a few thousand cycles on p4... it wasn't cheap
+<walken> ~3000 IIRC
+<CodeWar> dang
+<walken> but then, that was p4 :)
+<CodeWar> so this would be required only across ctxsws involving separate address spaces  I guess 
+<walken> (never understood why there can't be a hardware way to invalidate it all at once)
+<walken> yes.
+<CodeWar> wonder how HT or whatever intel calls their SMT would behave then
+<walken> oh, both threads could use different parts of the tlb... that wasn't a problem.
+<CodeWar> in any event this doesnt make a case for sw managing and looking up and populating tlbs on miss its just missing hw knobs for per ctx invalidates
+<walken> I figure if you had to do software loaded tlb, you'd build some kind of cache to make it fast(er than vma lookups). in which case, you could put more smarts into that cache than there are into your hardware tlb.
+<walken> still, I dont see how that's a win either.
+<walken> I dont know. never really dealt with software loaded tlbs :)
+<CodeWar> yes on SPARC (UltraSPARC T2) theres TLB then theres TSB (the cahce you re referring to its a hash table populated by sw hw reads from here on miss traps back to OS)
+<CodeWar> though on some more thinking is it possibel to make a case that the TSB can be pre populated along working set lines?
+<walken> oh, that sounds somewhat similar to ibm power IIRC
+<CodeWar> sounds like TLB -> sw managed TSB (hashed cache) -> on miss hw initiated PDE /PTE lookup -> on miss trap back to OS would make a decent compromise
+<CodeWar> the cache would allow the OS to use heuristical guesses something doing directly in the small TLB set wont be possible 
+<walken> PDE + PTE lookup ends up being fast though.
+<walken> PDEs are cached, too, and you don't get misses there too often
+<walken> so often it's just PTE.
+<CodeWar> makes sense
+<walken> I would like it if x86 had a way to specify page sizes between 4k and 2M
+<walken> i.e. it the PTE, there could be a way to specify it's part of, say a 64K region (64 aligned too) that is contiguously mapped.
+<walken> just to reduce TLB pressure if you have contiguous mappings.
+<CodeWar> are tlbs prefetched on miss on x86?
+<walken> I couldn't tell you exactly what is done...
+<walken> all I can tell you is that x86 TLBs are VERY smart
+<CodeWar> so you missed entry 14 but 15 16 17 came for free .. that would serve your 64K page size problem but it would reduce number of available tlb entries
+<walken> lots of black magic and heuristics
+<walken> essentially, the CPU can decide to prefetch any address at any time and load it into its TLB.
+<CodeWar> actually black magic from RTL/ASIC guys scares the heck out of me ... but perhaps Intel folks are smart enough 
+<walken> I'm not entirely sure what drives that. It tends to change fast between CPU models (and even between desktop and server versions of the same core)
+<walken> there is a very nice document about x86 TLB behavior specifying what the magic can do and what it can't....
+<CodeWar> so from your observation these per architecture changes yield positive results on day to day apps? (lesser tlb misses?)
+<walken> yes.
+<CodeWar> good 
+<walken> Intel® 64 and IA-32 Architectures Application Note
+<walken> TLBs, Paging-Structure Caches, and Their InvalidationTLBs, Paging-Structure Caches, and Their Invalidation
+<walken> is what I was referring to... apparently it's been merged into intel architecture manual volume 3 now.
+<CodeWar>  let me read that up .. thanks again
+<walken> http://wiicode.com/wp-content/uploads/2010/01/252046.pdf   (old copy, can't find it on intel's site anymore)
+<walken> err, that's not it.
+<walken> http://ludloff-linux/manuals/intel/ia-32/317080.pdf there it is
