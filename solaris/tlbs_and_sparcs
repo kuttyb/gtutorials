@@ -1,0 +1,11 @@
+just found out that on SPARCs (and it appears MIPS processors) TLBs are sw managed. Meaning SW populates a TSB (translation storage
+buffer) with entries. on a TLB miss its pulled from here and if it misses it traps to the OS.
+
+
+compare that to our hw where on a miss we go and do the entire lookup starting with pdebase and ptes directly in hw. It appears
+x86 does the same too.
+
+<mostly hearsay>
+but it appears that on every context switch x86s are required to flush down all tlb entries. Weird I d say :-)
+
+< definitely need to do more research in this area >
