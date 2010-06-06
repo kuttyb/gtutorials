@@ -1,0 +1,37 @@
+Quick catchup on membarriers (these are ordering barriers not synchronization barriers):
+membar #loadload
+       #loadstore
+       #storestore
+       #storeload    << the most popular barrier >>
+
+
+
+JMM has really 3 sets of rules to control reordering:
+<a> monitor enter/ volatile loads use acquire semantics
+
+<b> monitor exit/volatile stores use release semantics
+
+<c> dont reorder loads around causal stores (aka use common sense)
+
+
+<a> and <b> are easy to explain look at the following picture, the intention is to make sure
+memops dont escape the box from inside.
+
+
+ _______________________________________    ----------> Acquire Semantics  (Load)
+|					|
+|					|   Instr X
+|					|
+|_______________________________________|
+                                            ----------> Release Semantics  (Store)
+
+So X shouldnt be able to escape up so use Load[X] barrier and X shouldnt be able to escape down so 
+use [X]Store barrier (replace X with Load or Store based on what memop it is)
+
+----- Thats it !!  Meaning feel free to reorder loads / stores as much as you like ------------------------
+
+
+Q: What about Total Lock order?
+
+Q: What about Total Volatile store order?
+
