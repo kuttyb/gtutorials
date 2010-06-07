@@ -1,3 +1,6 @@
+<< 4 reorders + 2 stores + 2 locked >>
+
+
 -> apparently the coherence protocol here is MESI not MOESI so read probe on modified state leads to writeback and downshift
 to shared (and not owned)
 
