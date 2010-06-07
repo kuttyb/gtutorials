@@ -1,32 +1,53 @@
-Check out the google video by Rick Hudson ( its a very good explanation of TLO-CC )
-
-The summary of it being there are 8 rules to keep in mind:
-
-T0                     T1                      Reodered?
-
-Load		       Store		       NO
-
-Load		       Load		       NO
-
-Store		       Store		       NO
-
-Store		       Load		       YES (store buffering unless they re to the same address AKA Causal Consistency)
-
-Lock		       Load		       NO
-
-Lock		       Store		       NO
+-> apparently the coherence protocol here is MESI not MOESI so read probe on modified state leads to writeback and downshift
+to shared (and not owned)
 
 
-Keep in mind a lot of legacy systems implement LockRelease using simple store instructions. Having an early Load or Store
-swap places with a later Store allows Loads/Stores to slip outside critical sections, not an option.
+-> Membars available
+sfence : membar #storestore
+lfence : membar #loadload
+       .. both noops for WB.. make sense for WC
+mfence : membar #storeload < which btw is the only reordering allowed in the processor >
 
-So the real reordering that a processor could pull below your feet would be letting reads bypass writes when writes are 
-added to write buffers.
+--------------------------------
+Memory Model Rules (8):
+--------------------------------
+<1> 4 Rules about what reordering is allowed
 
-Total Ordering ( meaning all processors see the same order ):
+<2> 2 Rules about stores across strands.
+    -> if one proc sees a store all procs should see it too
+    -> multiple stores to the same address are seen in the same order by all processors
 
-<a> All lock instructions ( even if they dont use the same memory )
+<2> 2 Rules about Locks
+    -> Total Lock order (irrespective of lock address)
+    -> Locked instructions have store semantics. So question being  Lock Load reordering allowed?
+       Answer no!! Meaning Locked instructions come with an implicit post membar #StoreLoad barrier
+       <Hint: Volatile stores can be implemented using a locked write>
 
-<b> Stores to the same memory location 
 
-Hence the name, TLO-CC (Total Lock Order - Causal Consistency)
+------------------- DETAILS ------------------------------------------------
+TLO - CC (Total Lock Order - Causal Consistency)
+1. Reads are not reordered with other reads (on one processor).
+
+2. Writes are not reordered with other writes (on one processor).
+
+3. Writes are not reordered with older reads (on one processor).
+
+4. Reads may be reordered with older writes to different locations but
+not with older writes to the same locations (on one processor later
+reads can move upwards).
+
+5. In a multiprocessor system, memory ordering obeys causality (mem-
+ory ordering respects transitive visibility; P1: W(x,1), P2: R(x),
+W(y,1), P3: R(y), R(x)).
+[Kutty] That is if one processor sees your write rest assured all other processors have seen it too.
+
+
+6. In a multiprocessor system, writes to the same location have a total
+order (e.g., P3 and P4 both read x twice, if P3 sees 1, 2 P4 can not
+see 2, 1).
+[Kutty] All processors agree on sequence of writes to the same location
+
+7. In a multiprocessor system, locked instructions have a total order.
+
+8. Reads and writes are not reordered with locked instructions (e.g., func-
+tion as barrier).
