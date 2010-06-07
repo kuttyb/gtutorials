@@ -49,3 +49,17 @@ Barriers are required to be placed after N and X. When placing these barriers ke
 and you ll do fine.
 
 L  L  S  N  N  then between N and N place the LoadLoad barrier.
+
+============================================================================================
+  PERSPECTIVE 3 --- Simple Rules 
+============================================================================================
+
+<1> Dont escape the Box
+    <a> and <b> explained above
+
+<2> Total Lock / Total Volatile Store order
+    <d> and <e> meaning if you see MeX followed by MeN use membar #StoreLoad
+
+<3> Thread start has MeN and Thread join has MeX semantics
+
+<4> Final stores not reordered by object reference/use stores
