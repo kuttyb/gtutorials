@@ -1,0 +1,7 @@
+the real problem is that the constructed object can be setup before the ctor for the object gets to run. Why? because thats
+perfectly legal doing so .. remember only final fields are not allowed to be reordered with ref stores.
+
+so the real complaint is that another thread reading will see non null helper but the object will be *half constructed*
+
+if you mark the helper field as volatile it should work.
+
