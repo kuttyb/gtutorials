@@ -59,3 +59,6 @@ L  L  S  N  N  then between N and N place the LoadLoad barrier.
     -> If ctor inlined stores on object reference not reordered with final field stores
 
     [Keep in mind non final fields are not guaranteed to be *not* reordered]
+    [Also another reason why this should not escape until ctor completes else escaped
+     ref may not see all final writes]
+
