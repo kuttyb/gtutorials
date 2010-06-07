@@ -6,7 +6,7 @@ membar #loadload
 
 
 
-JMM has really 3 sets of rules to control reordering:
+JMM has really 5 sets of rules to control reordering:
 <a> monitor enter/ volatile loads use acquire semantics
 
 <b> monitor exit/volatile stores use release semantics
@@ -33,3 +33,19 @@ use [X]Store barrier (replace X with Load or Store based on what memop it is)
 
 ----- Thats it !!  Meaning feel free to reorder loads / stores as much as you like ------------------------
 
+============================================================================================
+  Where do I place the membars? (Perspective 2)
+============================================================================================
+This is another perspective for understanding the JMM viz., to understand where the barriers
+need to be placed.
+
+There are really 4 entities:
+-> Loads  (L)
+-> Stores (S)
+-> Monitor Enter / Volatile Loads  (N)
+-> Monitor Exit  / Volatile Stores (X)
+
+Barriers are required to be placed after N and X. When placing these barriers keep the following rule in mind
+and you ll do fine.
+
+L  L  S  N  N  then between N and N place the LoadLoad barrier.
