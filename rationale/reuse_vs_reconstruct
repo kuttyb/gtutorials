@@ -1,0 +1,17 @@
+you have XYZ that provides a part of what you want. You are debating
+     whether to beat this into giving you the test
+
+     	     VS
+     reconstructing everything from scratch (which means ignoring the part of XYZ that already serves your need)
+
+
+My opinion:
+
+ Its not a str8 win for reuse sometimes beating an existing product can be more difficult than reconstructing the 
+ part it provides and adding the things you need in the way you want.
+
+ Example sm2 and maven. Beating maven to do what we need is more difficult than constructing it from scratch in Java
+ and adding the part that we really do need from Maven viz., parsing a file and doing nested includes/excludes
+
+Keep this in mind, weight the cost of rewriting common part vs adding new functionality into an existing product.
+
