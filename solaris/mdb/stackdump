@@ -1,0 +1,11 @@
+you can get a list of threads using 
+
+::thread
+
+choose the threadp of interest and do
+
+threadp::thread  (try ::help thread for options)
+
+
+threadp::findstack will dump out the stack btw and with address you can do addr::dis to get a disassembly
+
