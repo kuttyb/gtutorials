@@ -3,3 +3,11 @@ svcs -x | head
 to see verbose setting also hit e in grub and remove splash screen entries and add -v verbose and remove the last word that says graphics.
 
 if you want to disable a bad module add this -Bdisable-<module>
+
+--------------------------------------
+goto grub hit e on the BE you re going to boot. Goto the end remove the console=graphics entry and add -kvd there. Also delete
+the splash image entries by hitting D 
+
+the -kvd will start it with the kernel debugger kmdb / cause verbose output / and set an initial breakpoint and break into 
+kmdb before loading the kernel allowing you to modify moddebug state to see the right kind of print outputs
+
