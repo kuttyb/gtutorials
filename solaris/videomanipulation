@@ -1,0 +1,21 @@
+==============================
+	Video Splitting
+==============================
+mencoder -ss 00:14:40 -endpos 00:24:20 -oac copy -ovc copy 7514_TheBigBust.mp4 -o a.mp4
+
+
+==============================
+	Video Merging
+==============================
+mencoder -ovc copy -oac copy input_one.avi input_two.avi  -o output.avi
+
+
+==============================
+	Video Conversion
+==============================
+ffmpeg -i input.avi -sameq  output.mpg
+
+
+
+
+
