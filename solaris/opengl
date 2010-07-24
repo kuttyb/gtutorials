@@ -1,3 +1,4 @@
+========================================================================================================
 what I did was soft linked /usr/X11/lib/mesa to /usr/X11/lib/NVIDIA and copied libGLU from mesa to the nvidia folder.
 
 thats the one file that we dont provide. Now I dont have to worry about somebody accidentally picking up sw rendering
@@ -5,3 +6,38 @@ by screwing their lib paths.
 
 oh and for glut you can use the CSWfreeglut package  from blastwave
 
+
+========================================================================================================
+this is how you compile it btw
+
+cc -lGL -lGLU -lglut -lm checker.c 
+
+ldd a.out 
+	libGL.so.1 =>	 /usr/lib/libGL.so.1
+	libGLU.so.1 =>	 /usr/lib/libGLU.so.1
+	libglut.so.3 =>	 /usr/lib/libglut.so.3
+	libm.so.2 =>	 /lib/libm.so.2
+	libc.so.1 =>	 /lib/libc.so.1
+	libGLcore.so.1 =>	 /usr/lib/libGLcore.so.1
+	libnvidia-tls.so.1 =>	 /usr/lib/libnvidia-tls.so.1
+	libXext.so.0 =>	 /usr/lib/libXext.so.0
+	libX11.so.4 =>	 /usr/lib/libX11.so.4
+	librt.so.1 =>	 /lib/librt.so.1
+	libCrun.so.1 =>	 /usr/lib/libCrun.so.1
+	libm.so.1 =>	 /lib/libm.so.1
+	libGL.so =>	 /opt/csw/lib/libGL.so
+	libGLU.so =>	 /opt/csw/lib/libGLU.so
+	libXau.so.6 =>	 /usr/X11/lib/libXau.so.6
+	libnsl.so.1 =>	 /lib/libnsl.so.1
+	libsocket.so.1 =>	 /lib/libsocket.so.1
+	libpthread.so.1 =>	 /lib/libpthread.so.1
+	libsunmath.so.1 =>	 /opt/csw/lib/libsunmath.so.1
+	libmp.so.2 =>	 /lib/libmp.so.2
+	libmd.so.1 =>	 /lib/libmd.so.1
+	libscf.so.1 =>	 /lib/libscf.so.1
+	libdl.so.1 =>	 /lib/libdl.so.1
+	libuutil.so.1 =>	 /lib/libuutil.so.1
+	libgen.so.1 =>	 /lib/libgen.so.1
+	libXevie.so.1 =>	 /usr/X11/lib/libXevie.so.1
+	libXss.so.1 =>	 /usr/X11/lib/libXss.so.1
+========================================================================================================
