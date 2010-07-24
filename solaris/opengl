@@ -1,0 +1,7 @@
+what I did was soft linked /usr/X11/lib/mesa to /usr/X11/lib/NVIDIA and copied libGLU from mesa to the nvidia folder.
+
+thats the one file that we dont provide. Now I dont have to worry about somebody accidentally picking up sw rendering
+by screwing their lib paths.
+
+oh and for glut you can use the CSWfreeglut package  from blastwave
+
