@@ -6,3 +6,4 @@
 <2> mpstat (works a bit differently from Solaris)
     mpstat -P ALL  (displays loadstat per cpu)
 
+<3> THREADS (status/control monitor use schedtool (from the package by that name))
