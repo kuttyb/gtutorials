@@ -11,6 +11,10 @@ aware of.
 
    Based on this bug report http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4813310 and this entry "Updated: January 30, 2007"...
       ... it appears that setpriority does do a renice of the kernel thread which IMO is really fine for SCHED_OTHER
+<update   looking at os_linux.cpp set_native_priority they are invoking setpriority from resource.h which is a POSIX
+          call to change a process' nice value... perfect this is exactly what we want
+/update>
+
 
 -> Solaris  Lots of scheduling classes but IA/TS are the ones exposed by hotspot. So the priority values you enter here do indeed get mapped to 
    the underlying thread priorities with some scaling of course. I believe jdk7 turns this off to avoid some starvation bug in Solaris where a 
