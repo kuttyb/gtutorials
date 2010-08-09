@@ -7,3 +7,7 @@
     mpstat -P ALL  (displays loadstat per cpu)
 
 <3> THREADS (status/control monitor use schedtool (from the package by that name))
+
+<d> list all scheduling policies supported by the current kernel
+    grep -i "SCHED_" /usr/include/linux/sched.h 
+

@@ -47,3 +47,15 @@ happens to this class based on the penalty (apparently tasks in this class get p
 wakeup)
 ===========================================================================================================================
 
+
+CONTROL:  
+To control processor affinity / nice values / static priority / scheduling class for a process use schedtool.
+Individually you can also use nice/renice/taskset but its overkill.
+
+STATUS:
+/proc/sched_debug 
+/proc/schedstat 
+
+EXPERIMENTS:
+<todo...>
+find out what capabilities exist for setting up trace experiments using debugfs
