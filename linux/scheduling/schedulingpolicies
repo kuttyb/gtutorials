@@ -22,3 +22,28 @@ thats a good discussion detailing differences between sched_batch / sched_idle a
 man sched_setscheduler 
 This is the official documentation around the scheduling classes and their behaviour
 ===========================================================================================================================
+
+
+
+===========================================================================================================================
+Quick summary of the Scheduling Classes
+
+------------------------------------------------------------------------
+SCHED_RR / SCHED_FIFO:  realtimeish meaning if any task in this class has work it will preempt everybody else. The 
+difference being SCHED_RR has a max timeslice concept whereas SCHED_FIFO will run until a higher priority takes its place
+
+each of these tasks can have a static priority between 0 ~ 99 ( pretty cool eh ) btw higher the better 
+
+<Q: not sure what happens to dynamic priority for SCHED_RR .. does it get modified by nice/usage pattern ?>
+
+------------------------------------------------------------------------
+SCHED_NORMAL (or SCHED_OTHER) if you will is your regular round robin scheduling class.. it starts up with a static
+priority of 0 (yep thats all that is allowed) and based on the nice value given and usage pattern its dynamic priority
+changes. Initially there used to be the crazy multi level feedback loop concept like other OSes now its been changed
+to include CFS (yes that is indeed very cool )
+
+SCHED_BATCH not much clear but it appears that it behaves just like SCHED_NORMAL except when it wakes up something different
+happens to this class based on the penalty (apparently tasks in this class get penalized higher than in SCHED_OTHER on 
+wakeup)
+===========================================================================================================================
+
