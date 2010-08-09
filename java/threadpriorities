@@ -1,0 +1,23 @@
+Java provides Thread.setPriority(int) to set a thread's priority. We will discuss here how this maps to Linux/Solaris/Windows and several blindcorners one needs to be 
+aware of.
+
+
+-> Linux  SCHED_OTHER is the class used by normal users. The priority is always zero and the kernel changes it at runtime based on your behaviour and nice params.
+   So really the user can only provide nice values (using renice or schedtool) to say thread X or mine is way lower in priority than thread  Y. 
+   In case you re wondering, threads are really processes in Linux so nice (which is a process param) applies well here.
+
+   There are other classes too SCHED_BATCH/SCHED_IDLE refer my linux documentation on the same topic for details.
+   SCHED_RR/SCHED_FIFO only root can assign these.
+
+   Based on this bug report http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4813310 and this entry "Updated: January 30, 2007"...
+      ... it appears that setpriority does do a renice of the kernel thread which IMO is really fine for SCHED_OTHER
+
+-> Solaris  Lots of scheduling classes but IA/TS are the ones exposed by hotspot. So the priority values you enter here do indeed get mapped to 
+   the underlying thread priorities with some scaling of course. I believe jdk7 turns this off to avoid some starvation bug in Solaris where a 
+   lower priority thread doesnt get enough boost to catch up with higher priority threads ping ponging between each other.
+   http://blogs.sun.com/dave/entry/java_thread_priority_revisted_in
+
+   -XX:+UseThreadPriorities to force enable
+
+-> Windows .. frankly I really dont know need to find out 
+
