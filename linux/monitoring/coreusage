@@ -1,0 +1,8 @@
+<1> bind process to a cpu/core
+
+    taskset 0x0001 -p pid
+    taskset -c 2,4 -p pid
+
+<2> mpstat (works a bit differently from Solaris)
+    mpstat -P ALL  (displays loadstat per cpu)
+
