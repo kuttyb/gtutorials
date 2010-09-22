@@ -28,3 +28,12 @@ The bytecode instructions that will explicitly instantiate a class are:
 -> invokestatic
 
 
+-----------------------------------------------------------
+	CLASS UNLOADING 
+-----------------------------------------------------------
+http://java.sun.com/docs/books/jls/third_edition/html/execution.html#12.7
+
+Not intuitive at first but the class doesnt get unloaded until its class loader
+is GC'able. Why because transparently reloading a class is not desirable? Why
+because static init code might have side effects!! Nice .. didnt think about that
+before :-)
