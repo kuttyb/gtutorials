@@ -1,0 +1,10 @@
+when you install Solaris10 fresh it will just have pkgadd ..  (you want to use opencsw and blastwave packages)
+
+do this 
+pkgadd -d http://mirror.opencsw.org/opencsw/pkgutil-`uname -p`.pkg
+
+this will install pkgutil under /opt/csw/bin
+
+thats it pkgutil -i package_name (from opencsw.org) to do the rest
+
+I m told this is also compatible with blastwave never tested it though
