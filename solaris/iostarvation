@@ -1,0 +1,8 @@
+The generic problem here is the same ... Solaris does not have an  I/O scheduler. When your reads fall behind a large set of writes
+the reads will starve. The simplest solution is to limit the size of your write queue and thats what all these posts lead to.
+
+
+http://www.mail-archive.com/perf-discuss@opensolaris.org/msg02507.html
+
+http://www.mail-archive.com/zfs-discuss@opensolaris.org/msg33091.html
+
