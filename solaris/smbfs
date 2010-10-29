@@ -1,0 +1,6 @@
+mount -F smbfs "//nvidia.com;kbanerjee@netapp31/scratch.kbanerjee_fermi"
+/export/home/kutty/nvmount/fermi
+
+notice how the //workgroup;username@sambaserver/smbshare is aligned
+this gave me quite a headache~!!
+
