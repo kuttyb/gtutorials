@@ -1,0 +1,5 @@
+perf stat -e dTLB-store-misses ./huge /mnt/hugetlb/newer 10485760
+
+
+thats how you count it and perf list to get a list of all these events
+
