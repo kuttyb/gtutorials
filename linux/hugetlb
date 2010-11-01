@@ -1,0 +1,16 @@
+very sexy .... essentially the elder bro of ramfs just that you have max size checking and that the underlying memory is using large pages so you ll 
+likely have lesser dTLB misses. Believe me dTLB misses matter .. :-) For e.g., on your i7 x10 dTLB store misses reduction shaved off about a second from my write 
+intensive app
+
+Anyways to set it up heres how you do it:
+
+<a> sysctl -w vm.nr_hugepages = num_pages
+   after this you should read this value to know how many pages have been actually allocated
+
+<b> mount -t hugetlbfs -o uid=1001 somename /mnt/hugetlbfs
+  < note dont provide a size here let that be controlled by nr_hugepages and not the mount let him take as much as the kernel can give >
+
+<c> thats it now open a file under /mnt/hugetlbfs using O_CREAT | O_APPEND and mmap and thats it boom boom ..
+    Btw please remember in your mmap use mapping size larger than page size else it will fail
+
+Tested on 2.6.32-25-generic and used the "perf" app to measure reduction in dTLB accesses
