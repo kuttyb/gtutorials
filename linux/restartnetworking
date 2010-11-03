@@ -1,0 +1,5 @@
+restart network-manager
+
+status network-manager to query status 
+
+(using ubuntu's upstart)
