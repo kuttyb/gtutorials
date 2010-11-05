@@ -1,0 +1,8 @@
+theres no /boot/grub/menu.lst anymore
+
+/etc/default/grub has timeouts and default OS the first entry being the default entry
+
+after editting this file sudo update-grub and reboot without the update-grub it wont take effect.
+
+fwiw the resultant regenerated file is /boot/grub/grub.cfg but its readonly and editted by scripts not meant for manual
+changes
