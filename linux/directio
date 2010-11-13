@@ -1,0 +1,50 @@
+while implementing a distributed cache I wanted to make sure we could pin a sufficiently large memory chunk in RAM at all times and manage swap in / swap outs from it.
+<aka get the OS out of the picture for when/what>
+
+This involves 3 aspects:
+<a> Getting an in memory partition lets call this (A) 
+    DESIRED ATTRIBUTES:
+    <i>  preferrably contiguous memory
+    <ii> using large pages to minimize dTLB misses
+
+<b> Getting a IL partition to persistent storage. Bottomline it will do write appends not write in place.
+    DESIRED ATTRIBUTES:
+    <i>  writes should be non blocking as much as possible. Only fsync should block
+    <ii> but <i> should not come at the expense of swapping out anon pages. Else we could knock out 
+         code/heap/stack pages using (A) defeating its entire purpose.
+
+
+<c> getting efficient swapins from persistent storage to (A)
+    DESIRED ATTRIBUTES:
+    <i>  Reads should be as fast as possible meaning should use whatever buffering + readaheads required to keep the underlying
+         device busy at line rate.
+   <ii>  It should not knock out anon pages
+   <iii> But this should be able to use as much free memory as is available. Since these are non dirty pages when required they can be
+         trashed quickly.
+
+    Reason I m rejecting DIRECT I/O being precisely reasons <i> and <iii>. I want readaheads and I want to use buffering to keep the underlying
+    device busy. I m more than happy to do the extra mem2mem I believe thats not the bottleneck for large I/O copies from persistent storage
+    (in our case from a NAS)
+
+==============
+On Linux:
+==============
+
+<a> is easily served using hugetlb pages (refer hugetlb under tutorials/linux)
+    We could have used ramfs but hugetlb offers you better tlb hit rates (refer hugetlb to see how much dTLB hits matter)
+
+<b> <i>  is made possibly by default .. writes hit out of the page cache (we re not using fadvise or DIRECT I/O)
+
+    <ii> yes this is a problem as noticed without effective user level write throttling cpus ability to dirty the pages for large
+    	 copies will almost always beat writeback rate. 
+	 	 vm.dirty_ratio  = 2
+         This makes sure that the amount of outstanding dirty pages at a given time is not more than 2% of total RAM. Of course you 
+	 can play around with this number but this ensures pages are not dirtied beyond 2% and if they are writes start become blocking
+	 and the thread invoking write starts helping with writeback (exactly what we want use free buffer as much as possible but
+	 not at the expense of anon pages)
+	     	  vm.swappiness  = 0
+	 This was done as a precaution. My *understanding* is that with this set anon pages dont get kicked out unless memory has run out
+
+<c>  This comes out of the box. Reads never evict anon pages (atleast on 2.6.32-25-generic) and when theres free memory it uses it all up.
+     I m told internally they do a good job with readaheads for read patterns that are sequential in nature (as is ours)
+
