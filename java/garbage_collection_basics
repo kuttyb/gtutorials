@@ -18,3 +18,11 @@ Generally compaction is what is done via stop-the-world locks. In generational G
 
 More details to come involving read barriers ...
 
+------------------
+
+Only compacting heaps can do bump pointer style allocations. ( in most cases it turns out to be the generational ones that use compaction 
+or rather copying)
+
+Non generational non compacting ones still have to do free list walks
+
+
