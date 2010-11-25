@@ -1,0 +1,20 @@
+Marking -> finding and marking live objects (start from roots viz., thread stacks, classloaders, static classes) 
+
+Sweep -> Going over objects in your heap and adding unmarked objects to a free list (yes your free list *will* contain discontiguous objects)
+
+Compaction ->  Moving all live objects to a contiguous range either via copying or via in place moves
+
+
+------------------
+
+Concurrent GCs do their thing (all or some of the above) while the mutator is working (mutator is what changes the heap by assigning object
+references)
+
+Parallel GCs do their thing using multiple threads
+
+------------------
+
+Generally compaction is what is done via stop-the-world locks. In generational GCs the copy operation is also stop the world.
+
+More details to come involving read barriers ...
+
