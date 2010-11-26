@@ -25,4 +25,10 @@ or rather copying)
 
 Non generational non compacting ones still have to do free list walks
 
+------------------
+
+the mark process for young generations apparently doesnt scan the entire heap but avoids objects that are in older generations.
+There are some tricks apparently to avoid skipping old->young references. 
+
+<Note: Really at a very beginners level here ... >
 
