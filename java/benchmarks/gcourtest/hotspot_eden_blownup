@@ -1,0 +1,67 @@
+------------------------------------------------------------------------------------------------------
+bottomline as you can imagine with our test if we increase edenspace the pause times come down dramatically.  Though it defeats the purpose of the test viz.,
+stress oldgen to its worst case (where eden cant keep up with incoming requests and survivor spaces dont gain much)
+
+This doesnt push oldgen much but fwiw the concurrent one does a slightly better job than the parallel one.
+------------------------------------------------------------------------------------------------------
+
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ java -Xmx4G -XX:+UseConcMarkSweepGC -XX:NewRatio=1 -cp . local.perftests.testgc.GCTest
+starting freeMemory thread
+=========================
+ Samples:
+=========================
+ min value 6
+ max value 6661
+ avg value 655
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency(%)       Value Range>   
+  10.906862           [4096  ~   8191]
+
+  0.073529415         [2048  ~   4095]
+
+  0.098039225         [256   ~    511]
+
+  0.9068628           [128   ~    255]
+
+  1.3235295           [64    ~    127]
+
+  12.965687           [32    ~     63]
+
+  36.29902            [16    ~     31]
+
+  37.034313           [8     ~     15]
+
+  0.3921569           [4     ~      7]
+
+
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ java -Xmx4G -XX:+UseParallelGC -XX:NewRatio=1 -cp . local.perftests.testgc.GCTest
+starting freeMemory thread
+=========================
+ Samples:
+=========================
+ min value 6
+ max value 6073
+ avg value 646
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency(%)       Value Range>   
+  8.137255            [4096  ~   8191]
+
+  5.4411764           [2048  ~   4095]
+
+  2.5735295           [1024  ~   2047]
+
+  1.495098            [512   ~   1023]
+
+  11.274509           [256   ~    511]
+
+  7.2058825           [32    ~     63]
+
+  45.539215           [16    ~     31]
+
+  18.088236           [8     ~     15]
+
+  0.24509805          [4     ~      7]
