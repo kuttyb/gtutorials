@@ -1,0 +1,137 @@
+/usr/share/jdk/jmrc20/bin/java -Xmx8G -Xverbose:gcreport  -Xgcprio:pausetime  -cp . local.perftests.testgc.GCTest
+=========================
+ Samples:
+=========================
+ min value 6
+ max value 142910
+ avg value 565
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency          Power of 2 Value Range>
+  1605                [128   ~    255]
+
+  1258                [64    ~    127]
+
+  799                 [256   ~    511]
+
+  164                 [512   ~   1023]
+
+  116                 [2048  ~   4095]
+
+  62                  [1024  ~   2047]
+
+  44                  [8     ~     15]
+
+  16                  [4     ~      7]
+
+  7                   [131072~ 262143]
+
+  6                   [4096  ~   8191]
+
+  3                   [32    ~     63]
+
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Memory usage report:
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Young Collections:
+[INFO ][gcrepor]     number of collections = 973.
+[INFO ][gcrepor]     total promoted =        2865652745 (size 59880350240).
+[INFO ][gcrepor]     max promoted =          3513035 (size 73387216).
+[INFO ][gcrepor]     total YC time =         109.331 s (total paused 108.806 s).
+[INFO ][gcrepor]     mean YC time =          112.365 ms (mean total paused 111.825 ms).
+[INFO ][gcrepor]     maximum YC Pauses =     2882.025 , 3154.308, 3264.543 ms.
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Old Collections:
+[INFO ][gcrepor]     number of collections = 27.
+[INFO ][gcrepor]     total promoted =        41375356 (size 864250944).
+[INFO ][gcrepor]     max promoted =          3929880 (size 81974672).
+[INFO ][gcrepor]     total OC time =         268.992 s (total paused 107.518 s).
+[INFO ][gcrepor]     mean OC time =          9962.677 ms (mean total paused 3982.142 ms).
+[INFO ][gcrepor]     maximum OC Pauses =     4868.532 , 5038.815, 91288.545 ms.
+[INFO ][gcrepor] 
+[INFO ][gcrepor]     number of emergency parallel sweeps  = 13.
+[INFO ][gcrepor] 
+[INFO ][gcrepor]     number of internal compactions = 10.
+[INFO ][gcrepor]       5 of these were aborted because they timed out.
+[INFO ][gcrepor]     number of external compactions = 17.
+[INFO ][gcrepor]       6 of these were aborted because they timed out.
+[INFO ][gcrepor] 
+
+
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ /usr/share/jdk/jmrc20/bin/java -Xmx8G -Xverbose:gcreport  -Xgcprio:throughput  -cp . local.perftests.testgc.GCTest
+starting freeMemory thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+starting thread
+waiting for freeMemory thread join
+=========================
+ Samples:
+=========================
+ min value 6
+ max value 27503
+ avg value 507
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency          Power of 2 Value Range>
+  2845                [8     ~     15]
+
+  598                 [16    ~     31]
+
+  135                 [4096  ~   8191]
+
+  134                 [1024  ~   2047]
+
+  115                 [4     ~      7]
+
+  72                  [2048  ~   4095]
+
+  56                  [8192  ~  16383]
+
+  45                  [256   ~    511]
+
+  41                  [512   ~   1023]
+
+  23                  [128   ~    255]
+
+  11                  [32    ~     63]
+
+  5                   [16384 ~  32767]
+
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Memory usage report:
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Young Collections:
+[INFO ][gcrepor]     number of collections = 102.
+[INFO ][gcrepor]     total promoted =        1937520479 (size 40409827248).
+[INFO ][gcrepor]     max promoted =          125477481 (size 2617235120).
+[INFO ][gcrepor]     total YC time =         177.197 s (total paused 177.145 s).
+[INFO ][gcrepor]     mean YC time =          1737.223 ms (mean total paused 1736.719 ms).
+[INFO ][gcrepor]     maximum YC Pauses =     7482.377 , 13285.089, 14476.045 ms.
+[INFO ][gcrepor] 
+[INFO ][gcrepor] Old Collections:
+[INFO ][gcrepor]     number of collections = 23.
+[INFO ][gcrepor]     total promoted =        0 (size 0).
+[INFO ][gcrepor]     max promoted =          0 (size 0).
+[INFO ][gcrepor]     total OC time =         77.679 s (total paused 77.365 s).
+[INFO ][gcrepor]     mean OC time =          3377.364 ms (mean total paused 3363.697 ms).
+[INFO ][gcrepor]     maximum OC Pauses =     8428.933 , 8736.018, 13045.453 ms.
+[INFO ][gcrepor] 
+[INFO ][gcrepor] 
+[INFO ][gcrepor]     number of internal compactions = 10.
+[INFO ][gcrepor]     number of external compactions = 13.
+[INFO ][gcrepor] 
