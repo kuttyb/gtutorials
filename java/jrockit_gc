@@ -1,4 +1,4 @@
--Xgcprio:pausetime  
+-Xgcprio:pausetime  (and of course -Xverbose:gcreport to get a final report at the end)
 
 this is a life saver if you want to minimize pauses when the old space gets compacted / used often.  This brought down max pause to around 4s and to
 be fair only 3 loops ran that required more than 4s. The best case got a bit worse though :-)
