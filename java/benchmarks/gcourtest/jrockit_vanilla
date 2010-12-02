@@ -1,0 +1,33 @@
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ /usr/share/jdk/jmrc20/bin/java -Xmx4G -cp . local.perftests.testgc.GCTest
+=========================
+ Samples:
+=========================
+ min value 6
+ max value 13284
+ avg value 497
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency(%)       Value Range>   
+  0.6862745           [8192  ~  16383]
+
+  2.1813726           [4096  ~   8191]
+
+  6.495098            [2048  ~   4095]
+
+  5.6372547           [1024  ~   2047]
+
+  1.5441177           [512   ~   1023]
+
+  0.12254903          [256   ~    511]
+
+  1.0784314           [128   ~    255]
+
+  0.24509805          [32    ~     63]
+
+  13.210784           [16    ~     31]
+
+  65.56373            [8     ~     15]
+
+  3.2352943           [4     ~      7]
+

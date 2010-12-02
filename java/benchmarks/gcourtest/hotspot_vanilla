@@ -1,0 +1,29 @@
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ java -Xmx4G -cp . local.perftests.testgc.GCTest
+waiting for freeMemory thread join
+=========================
+ Samples:
+=========================
+ min value 7
+ max value 5413
+ avg value 764
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency(%)       Value Range>   
+  12.156863           [4096  ~   8191]
+
+  2.4019608           [2048  ~   4095]
+
+  12.647059           [512   ~   1023]
+
+  10.245098           [256   ~    511]
+
+  2.009804            [128   ~    255]
+
+  4.4117646           [32    ~     63]
+
+  40.90686            [16    ~     31]
+
+  15.09804            [8     ~     15]
+
+  0.12254903          [4     ~      7]

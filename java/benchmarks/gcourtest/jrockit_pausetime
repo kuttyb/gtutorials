@@ -1,0 +1,26 @@
+~/workspace/sm2dir/rnd/messaging/project/build/classes $ /usr/share/jdk/jmrc20/bin/java -Xmx4G -Xgcprio:pausetime -cp . local.perftests.testgc.GCTest
+=========================
+ Samples:
+=========================
+ min value 7
+ max value 3375
+ avg value 353
+=========================
+ Frequency Distribution:
+=========================
+  <Frequency(%)       Value Range>   
+  3.77451             [2048  ~   4095]
+
+  2.0588236           [1024  ~   2047]
+
+  4.142157            [512   ~   1023]
+
+  21.813725           [256   ~    511]
+
+  39.117645           [128   ~    255]
+
+  28.014704           [64    ~    127]
+
+  0.7352941           [8     ~     15]
+
+  0.34313726          [4     ~      7]
