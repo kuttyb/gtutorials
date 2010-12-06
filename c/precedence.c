@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+/**
+    Remember it this way there are 4 groups in decreasing order of priority:
+    ------------------------------------------------------------------------------------------------------------
+    Group A: <Rockstars>   BAM Post
+      Bracket 
+      Array
+      Member selection  (.  ->)
+      Postfix
+
+    ------------------------------------------------------------------------------------------------------------
+    Group B: <Smarties>  PUC DAS
+      Prefix
+      Unary
+      Cast
+      Dereference
+      Address
+      Sizeof
+      
+      Only group that resolves ties using right to left ordering
+
+    ------------------------------------------------------------------------------------------------------------
+    Group C: <common man> Math operations
+      Mult div modulus
+      + -
+      <<   >>
+      Bitwise 
+      Logical
+
+    ------------------------------------------------------------------------------------------------------------
+    Group D: Ternary Operator
+    ------------------------------------------------------------------------------------------------------------
+    
+    Note: Groups (B) and (D) resolve ties using right to left ordering all others use left to right ordering
+ */
+int main(void) {
+
+  return 0;
+}
