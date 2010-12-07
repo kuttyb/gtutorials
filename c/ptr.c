@@ -35,6 +35,8 @@ int main(void) {
 	 (a+2)[0]+2);
 
   print(*b[2]);
+
+  int (*ant)[3];
   
   return 1;
 }
