@@ -15,3 +15,10 @@ Now your next instinct will be to do this
   http://msdn.microsoft.com/en-us/library/bkbs2cds.aspx (apparently MS has an extension that allows this but ANSI C doesnt)
 
 so cant place that expression on the L side ... :) and   Exp++ assumes Exp is an l-value
+
+
+===== MORAL ===========
+   postfix / unary operators operate only on modifiable lvalues.   output of a cast is not a modifiable lvalue therefore
+   cannot be used with these operators OR used on the l side of an assignment operation.
+
+http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/lvalue.htm
