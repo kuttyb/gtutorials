@@ -1,0 +1,17 @@
+void *a = calloc(1, 0x1000);
+
+int *b = a;
+
+printf("%x\n",*b++)
+	is fine postfix is higher priority than * so it will do the right thing
+
+but
+ (int*)a++  is not. Well it will increment postfix but by 1 not sizeof(int) because of the same priority reason
+
+
+Now your next instinct will be to do this
+ ((int*)a)++  
+  heck braces beat all right? sure but output of a Cast is *NOT* a l-value 
+  http://msdn.microsoft.com/en-us/library/bkbs2cds.aspx (apparently MS has an extension that allows this but ANSI C doesnt)
+
+so cant place that expression on the L side ... :) and   Exp++ assumes Exp is an l-value
