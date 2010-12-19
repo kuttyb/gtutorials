@@ -1,0 +1,3 @@
+for loops work like this 
+
+for i in {find -name Root} {cp -f ~/src/emacs/CVS/Root $i}
