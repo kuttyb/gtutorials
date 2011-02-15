@@ -1,13 +1,13 @@
 while implementing a distributed cache I wanted to make sure we could pin a sufficiently large memory chunk in RAM at all times and manage swap in / swap outs from it.
-<aka get the OS out of the picture for when/what>
+<aka get the OS out of the picture for when/what to swap>
 
-This involves 3 aspects:
+Before studying what OSes do lets setup our expectations then we can compare different OSes for a better match:
 <a> Getting an in memory partition lets call this (A) 
     DESIRED ATTRIBUTES:
     <i>  preferrably contiguous memory
     <ii> using large pages to minimize dTLB misses
 
-<b> Getting a IL partition to persistent storage. Bottomline it will do write appends not write in place.
+<b> Getting a Intention Log partition to persistent storage. Bottomline it will do write appends not write in place.
     DESIRED ATTRIBUTES:
     <i>  writes should be non blocking as much as possible. Only fsync should block
     <ii> but <i> should not come at the expense of swapping out anon pages. Else we could knock out 
@@ -17,7 +17,8 @@ This involves 3 aspects:
 <c> getting efficient swapins from persistent storage to (A)
     DESIRED ATTRIBUTES:
     <i>  Reads should be as fast as possible meaning should use whatever buffering + readaheads required to keep the underlying
-         device busy at line rate.
+         device busy at line rate. Dont ask me to provide alignment I dont know and dont want to know let driver + I/O device
+	 do that.
    <ii>  It should not knock out anon pages
    <iii> But this should be able to use as much free memory as is available. Since these are non dirty pages when required they can be
          trashed quickly.
