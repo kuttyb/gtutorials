@@ -1,0 +1,14 @@
+non temporal stores ...
+
+my current understanding is that they are very useful for avoiding cache pollution and
+the read_to_own on the cacheline
+
+
+normal stores on writeback memory would take E on the cacheline and then make the writes.
+non temporal stores do a write invalidate on the cacheline and the write does not allocate
+a cacheline instead goes directly (I hope to llc or dram)
+
+
+important thing being they are cache coherent by virtue of making sure that cacheline is 
+invalidated all across
+
