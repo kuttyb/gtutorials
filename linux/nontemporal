@@ -12,3 +12,12 @@ a cacheline instead goes directly (I hope to llc or dram)
 important thing being they are cache coherent by virtue of making sure that cacheline is 
 invalidated all across
 
+============================
+
+they can use the write combine buffers and at the end of non temporal stores you need
+a sfence to guarantee store level coherence.
+
+============================
+
+there are non temporal loads as well starting SSE4.1 apparently these read into a local
+fifo instead of allocating the set associative cacheline
