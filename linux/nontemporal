@@ -25,8 +25,8 @@ fifo instead of allocating the set associative cacheline
 
 =========================
 GCC 
-<emmintrin.h> for stores
-<smmintrin.h> for loads
+<emmintrin.h> for stores (requires -msse2)
+<smmintrin.h> for loads  (requires -msse4.1)
 
 __m128i  (pointers of this should be 16byte aligned)
 _mm_set_epi128(r3, r2, r1, r0)
