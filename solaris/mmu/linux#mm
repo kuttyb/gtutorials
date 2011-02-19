@@ -14,6 +14,11 @@ Interesting discussion mostly ego driven and low on contents but two things stan
 
     if under pressure and you need the VA bad do the IPI there and then and take the perf penalty.
 
+[Late thoughts] you can definitely do this for munmap but not for mprotect. for that case
+I ve been thinking about a per cpu bitmask in task_struct. instead of sending an IPI to a 
+processor check if this bit is set if not queue the tlb invalidate command. this would
+mean a lock on the per cpu variable .. food for thought I guess.
+
 =====================================================================================================
 
 
