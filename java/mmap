@@ -1,6 +1,9 @@
-read up on MappedByteBuffer long story short you can feel free to mmap 10G file using Java dont worry he wont double buffer it 
+-> read up on MappedByteBuffer long story short you can feel free to mmap 10G file using Java dont worry he wont double buffer it 
 with an internal malloc atleast not on Linux_x86_64 and your total RAM consumption will be 10G not 20G or something like that
 
+-> only trouble is a single MappedByteBuffer can only deal with Integer.MAX_VALUE of mapping. Even though map takes in long size
+   some crazy call downstream clips it to an integer but I think thats ok you ll need an array of MappedByteBuffer which shouldnt
+   be a problem. 100G would take only about 25 objects :-)
 
 ======================== JAVA CODE ===========================================
 public class MemoryMap {
