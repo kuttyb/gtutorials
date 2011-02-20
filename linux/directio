@@ -12,6 +12,12 @@ This involves 3 aspects:
     <i>  writes should be non blocking as much as possible. Only fsync should block
     <ii> but <i> should not come at the expense of swapping out anon pages. Else we could knock out 
          code/heap/stack pages using (A) defeating its entire purpose.
+    <iii> Kevin Closson's blog pointed out something more interesting. For IL and bulk writeback write order is not important
+          and to get the most concurrency you want to ensure minimal locking in the OS FS path. Not sure who does what here
+	  but take away DIRECT I/O is about two things:
+	    -> unbuffered I/O
+	    -> concurrent I/O
+	    -> unordered  I/O
 
 
 <c> getting efficient swapins from persistent storage to (A)

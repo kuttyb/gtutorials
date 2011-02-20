@@ -3,3 +3,9 @@ If its something really unique and special use a separate annotation class like 
 But if we are annotating constants or runtime parameters around injected constructor fields use @Named("Classname.fieldname") and 
 at the point of bind use 
    bind(SomeInterfaceClass.class).annotatedWith(Names.named("Classname.fieldname")).to(SomeImplementationClass.name)
+
+data
+
+and more det...
+
+...ils
