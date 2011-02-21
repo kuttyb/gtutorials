@@ -25,13 +25,11 @@ DELETION has 3 cases:
 -> 1 child    : swap child with deleted node
 -> 2 children : find smallest larger child on the right side and swap 
 
-VERIFY its a BST:
-do in-order because thats where your stack goes from high to low.
 
-in your iterative method for the main stack use a self verifying stack which throws unless you add
-monotonously non increasing numbers from the base element
 
-instead of stack push you could also do it in the visit(n) method
+VERIFY ITS A BIST
+Use in-order traversal and in the visit method check for monotonous non decreasing
+value
 
 
 
