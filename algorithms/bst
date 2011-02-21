@@ -26,8 +26,12 @@ DELETION has 3 cases:
 -> 2 children : find smallest larger child on the right side and swap 
 
 VERIFY its a BST:
-simple again in your iterative method for the main stack use a self verifying stack which throws unless you add
+do in-order because thats where your stack goes from high to low.
+
+in your iterative method for the main stack use a self verifying stack which throws unless you add
 monotonously non increasing numbers from the base element
+
+instead of stack push you could also do it in the visit(n) method
 
 
 
