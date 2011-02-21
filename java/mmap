@@ -1,0 +1,61 @@
+====================
+BACKGROUND
+====================
+
+The high level summary being internally it uses a direct buffer so buf.put touches the real mmaped page not an intermediate which is good
+
+Also it does mmap(null,....fd) not mmap(malloced_memory,....fd) which on Linux atleast would have created 2x pages
+
+At a high level there are a few drawbacks:
+-> cant unmap though for my cache purposes I dont care :-)
+   http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=4724038
+
+-> can only map 2G at a time 
+   http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6347833
+
+
+======================== JAVA CODE ===========================================
+public class MemoryMap {
+    public static void main(String[] args) throws Exception {
+        long FILESIZE = 1024 * 1024 * 1024;
+        System.out.println("size is " + FILESIZE);
+        System.out.println("about to map file");
+        Thread.sleep(5000);
+        MappedByteBuffer buf = new RandomAccessFile("/tmp/data.dat", "rw").getChannel().map(MapMode.READ_WRITE, 0,
+                                   FILESIZE);
+        long counter = 0;
+
+        for (counter = 0; counter < FILESIZE; counter++) {
+            buf.put((byte) 2);
+        }
+        System.out.println("counter value is " + counter);
+        buf.force();
+        System.out.println("done with flush");
+        Thread.sleep(8000);
+
+    }
+}
+
+======================== Strace analysis  ===========================================
+{{CodeWar}} << last brk status large mallocs typically suck from here
+[pid 16271] brk(0x41371000)             = 0x41371000  
+ 
+[pid 16271] open("/tmp/data.dat", O_RDWR|O_CREAT, 0666) = 6
+[pid 16271] brk(0x41394000)             = 0x41394000    {{CodeWar}} << suspicious but only about 140K
+.....
+{{CodeWar}} This is our guy ... hes mmap'ing the file and _NOT_ passing a fixed address as first argument
+[pid 16271] mmap(NULL, 1073741824, PROT_READ|PROT_WRITE, MAP_SHARED, 6, 0) = 0x7f4420000000
+......
+{{CodeWar}}  ok some more brks here but sum to about 856K not interesting we are watching out for brk 1G or mmap(anon) 1G
+{{CodeWar}}  that is the typical anti pattern when doing mmap files
+ 
+[pid 16285] brk(0x413bc000)             = 0x413bc000
+[pid 16284] brk(0x413dd000)             = 0x413dd000
+[pid 16285] brk(0x41401000)             = 0x41401000
+[pid 16285] brk(0x41423000)             = 0x41423000
+[pid 16285] brk(0x4144a000)             = 0x4144a000
+[pid 16285] brk(0x41471000)             = 0x41471000
+[pid 16285] brk(0x41492000)             = 0x41492000
+ 
+counter value is 1073741824
+done with flush

@@ -21,3 +21,15 @@ a sfence to guarantee store level coherence.
 
 there are non temporal loads as well starting SSE4.1 apparently these read into a local
 fifo instead of allocating the set associative cacheline
+
+
+=========================
+GCC 
+<emmintrin.h> for stores (requires -msse2)
+<smmintrin.h> for loads  (requires -msse4.1)
+
+__m128i  (pointers of this should be 16byte aligned)
+_mm_set_epi128(r3, r2, r1, r0)
+_mm_stream_si128(dst, src_m128i_var)
+
+__m128i _mm_stream_load_si128(dst)
