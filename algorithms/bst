@@ -29,5 +29,9 @@ VERIFY its a BST:
 simple again in your iterative method for the main stack use a self verifying stack which throws unless you add
 monotonously non increasing numbers from the base element
 
+COMPLEXITY:
+best/average are all at O(lg n) but worst case for all ops is O(n). Why? because the height of the tree can be 
+n-1 worst case.
+
 
 
