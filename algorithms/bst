@@ -53,3 +53,10 @@ path .. what I m saying is that the traversal path is obtained from the stack no
 the pointers are only useful when you are discovering the path.
 
 
+CONVERT SINGLE OR DOUBLE LINKED LIST TO BST in place:
+I ll try to write this code down but the general idea is:
+<a> use length of list to find desired height of new BST
+<b> until we reach height 'h' add successive elements from list to tree as if we were doing inorder traversal
+
+    once height is reached instead of going up make all additions to the right. Get the idea?
+
