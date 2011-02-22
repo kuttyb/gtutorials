@@ -54,9 +54,14 @@ the pointers are only useful when you are discovering the path.
 
 
 CONVERT SINGLE OR DOUBLE LINKED LIST TO BST in place:
-I ll try to write this code down but the general idea is:
-<a> use length of list to find desired height of new BST
-<b> until we reach height 'h' add successive elements from list to tree as if we were doing inorder traversal
+Using the reverse of inorder traversal operate in sets of 3 nodes from the linked list.
+...
+the idea is to take sets of 3 nodes and form left-parent-right combinations. after you do the right node
+you have two options:
+-> add next node as parent to center OR
+-> as right node to the current right node
 
-    once height is reached instead of going up make all additions to the right. Get the idea?
+Hint: use current height to decide this. For example if current height is 4 add next 3 elements to the right most 
+node before adding a parent to the current center.
+
 
