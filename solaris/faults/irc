@@ -1,0 +1,21 @@
+<CodeWar> follow the fault handling code: as_fault -> segvn_faultpage -> anon_zero: anon_zero seems to actually allocate a zeroed out page 
+<CodeWar> does that match everybodys expectation .. I d imagine the first anon read fault would point to a common zeroed out page and wait till the first write to allocate zero page?
+* Triskelios has quit (Ping timeout: 240 seconds)
+* Triskelios (~trisk@gw.deadgerbil.com) has joined #opensolaris
+<richlowe`> Pretty sure we don't, no
+* richlowe` is now known as richlowe
+<richlowe> CodeWar: there was a bug somewhere complaining our /dev/zero was slow for reasons that sound a lot like those.
+<CodeWar> richlowe,  old fortran programs and some hpc customers are the biggest customer of the /dev/zero until write feature 
+<richlowe> trying to find the bug I'm thinking of
+<CodeWar> they create large arrays and do scans but write in small windows..
+<CodeWar> a publicly visible bug?
+<richlowe> Who bloody knows, at this point
+<richlowe> it used to be
+<richlowe> Bug: 4769498 - Solaris mmap & read of /dev/zero & ANON is slow compared to Linux
+<richlowe> CodeWar: _precisely_ what you complained about :)
+* timsf has quit (Quit: Leaving.)
+<CodeWar> richlowe, good I can read the summary of that bug not sure what its status is 
+<CodeWar> anyways I agree with what you have in Solaris ... it comes out looking bad in microbenchmarks but other than crazy hpc nobody really gains from this 
+<CodeWar> I think Triskelios  and myself discussed it the other day but Linux has had a hard time maintaining this feature .. it causes massive /dev/zero common page refcnt cache thrashing 
+<Triskelios> right... our design would make async page-zeroing pretty easy to add, I think
+<CodeWar> I thought about that some more :) the laziness has two wins: <a> you actually get to save the page until someone writes to it <b> take pressure of zeroed page list
