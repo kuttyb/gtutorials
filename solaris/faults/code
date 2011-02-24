@@ -1,0 +1,16 @@
+segops or segment drivers map parts of address space using a segmap object which handles
+map/create/fault operations and the hal fault handler just locates the segment given va
+and punts to it
+
+
+this is the path for anonymous fault handling
+/usr/src/uts/i86pc/vm:
+--> vm_machdep.c: 
+pagefault => as_fault => segvn_faultpage
+
+--> x86pte_update: 
+thats what you update ptes 
+
+--> hat_i86.c hat_tlb_inval 
+internally does the right thing for tlb shootdowns
+
