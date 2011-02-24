@@ -1,0 +1,8 @@
+http://lkml.org/lkml/2009/7/16/449
+
+what you are calling as ZFOD essentially an arch has to provide
+pte_special
+pte_mkspecial macros know. look under do_anonymous_page (fault handler when seg_ops is
+not present aka fault handler for anonymous pages) when its a fault caused on private
+absent pte .. zero page is used
+
