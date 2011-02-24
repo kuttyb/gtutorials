@@ -1,0 +1,12 @@
+concerned because of concurrency of page fault handling:
+
+http://oss.sgi.com/projects/page_fault_performance/
+
+bottomline the fault handling path takes a read semaphore on mmap_sem which means
+multiple fault handlers will be in that code simulataneously.
+
+problem comes from the fact that the finest lock they have is per page table. 
+thats usually not good enough beyond 4 cpus (heck look whos talking :-))
+
+Solaris avoids this problem entirely by having CAS operations around pte updates
+(look at x86pte_update)
