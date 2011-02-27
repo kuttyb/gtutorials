@@ -1,0 +1,32 @@
+we need to deliver gpu fault to cpu with microsecond latency:
+
+<a> have kernel bring in pages for a non current user process. 
+    not sure how to handle the case where pages will be brought in 
+    asynchronously
+
+    more thoughts... i think the larger problem is whether to allow
+    the current thread to sleep for the async page in case. 
+    One option might be to let current thread sleep unless its 
+    in interrupt context.
+
+    that leaves two issues:
+    -> next time we go back to normal thread context (user or kernel)
+       do the handle_mm_fault part
+
+    -> we re assuming we can write ptes when not in that users context space
+       <find out what it takes>
+
+    TODO how does handle_mm_fault exactly handle the async case... does it 
+    pause the current process? if not does all of this even matter?
+    meaning if pages are not available will it synchronously bring them in?
+    if yes we re good to go
+
+<b> deliver the signal to cuda client faster (make it sched_fifo)
+    deliver async signal have it do the force_fault and thats it.
+
+    This is the easier part lets investigate this part first.
+
+    TODO: find out if kernel can run a small segment of code within 
+    a threads context. something like kernel apc
+
+

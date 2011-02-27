@@ -1,0 +1,18 @@
+http://lxr.linux.no/linux+v2.6.37/mm/rmap.c#L707
+
+page_mkclean_one
+ pte = page_check_address(page, mm, address, &ptl, 1);
+ 698        if (!pte)
+ 699                goto out;
+ 700
+ 701        if (pte_dirty(*pte) || pte_write(*pte)) {
+ 702                pte_t entry;
+ 703
+ 704                flush_cache_page(vma, address, pte_pfn(*pte));
+ 705                entry = ptep_clear_flush_notify(vma, address, pte);
+ 706                entry = pte_wrprotect(entry);
+ 707                entry = pte_mkclean(entry);
+ 708                set_pte_at(mm, address, pte, entry);
+ 709                ret = 1;
+ 710        }
+ 711

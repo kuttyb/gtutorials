@@ -1,0 +1,26 @@
+
+the issue is that OS has to atomically decide if the page is dirty and then if dirty
+queue for writeback.
+
+trouble is after it checks for writeback more writes could come on the page and 
+if you read it as readonly you would miss writing these back.
+
+if you read back as dirty you could still lose data because while you are writing back
+more data could be written to the page.
+
+
+
+to prevent this pte_wrprotect is invoked to make sure page is write protected. this is 
+not invoked directly rather its invoked via reverse mapping object service 
+page_mkclean which does an atomic wrprotect and return previous state.
+
+thats it!!
+
+-----
+summary look at 
+
+clear_page_dirty_for_io (page-writeback.c)	
+           if (page_mkclean(page))
+                        set_page_dirty(page);
+
+that in turn boils down to per pte_wrprotect using reverse mapping

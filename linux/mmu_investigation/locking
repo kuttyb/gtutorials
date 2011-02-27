@@ -1,0 +1,15 @@
+for most operations you need to down_read(mm_sem) ie., a read lock
+
+for pte updates you need PTE lock. There are two types depending upon a build configuration:
+<a> single global lock per address space called page_table_lock
+
+<b> last level page tables's per page lock  
+http://lxr.linux.no/linux+v2.6.37/include/linux/mm.h#L1100
+<refer #if USE_SPLIT_PTLOCKS>
+
+so if your last level page table spans across 4 struct pages then there will be 4 separate
+locks.
+
+
+<The ideal dream case being CAS on the PTE>
+

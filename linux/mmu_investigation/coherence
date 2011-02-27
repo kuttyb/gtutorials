@@ -1,0 +1,84 @@
+Background:
+The idea is simple .. provide Orion specific extensions in the ARM64 arch layer to do 
+read and write pte operations to maintain page table coherence.
+
+We ve already covered the write part in previous meetings (set_pte_at) this one talks about
+the read part viz., pte_offset_map(pmd_t*, vaddr) Theres a pte_offset_map_lock that 
+also takes the lock.
+
+The above takes a last level page pointer, breaks up address to get pte_offset and indexes
+into the above page table (std va => page lookup tricks)
+
+Shadow Page Table now refers to a hash table that is keyed by cpu pte PA and valued 
+with shadow gpu pte PA
+
+Drawbacks:
+-> we will have to #ifdef ORION  pgtable.h which is arch specific. It appears that might
+   have to happen anyways so probably not a big deal
+
+-> hash table has a space price. On the brighter side we only store shadowed cpu ptes
+   not all cpu ptes
+
+
+
+
+
+Details:
+arch/arm/include/asm/pgtable.h
+static inline pte_t* pte_offset_map(pmd_t* ptable, vaddr) {
+       pte_pa = use std arm64 implementation to go from page table base to pte offset
+       pte_t *ptep = kmap_atomic(pte_pa); // this is how ARM32 works
+
+// ++++ new code 
+#ifdef ORION
+       if (pte_p has shadow bit set) {
+	  gpu_pte* gp_pte = hash_get(shadow_pagetable, pte_pa);
+	  update cpu ptes with gpu pte ACCESS/DIRTY/OTHER status
+       }
+#else
+	return pte_p;
+}
+
+
+RACE Conditions and window of disagreement:
+long story short when OS asks for a pte pointer we sync gpu/cpu LRU status
+    while that decreases the window it doesnt make it zero even when OS takes
+    the PTE lock.
+
+    typical OS usage:
+    pte_t* ptep = pte_offset_map(ppgtable, vaddr);
+    
+    pte_t localpte = *ptep;
+    if (PTE_DIRTY(localpte) { do something }
+
+between offset_map and pointer dereference GPU can write to the page and dirty it.
+
+But hold on the same can happen for the CPU PTE. Nothing stops another core from writing
+to that page. 
+
+To do this safely at times where it makes a functional difference OS has to write protect
+the page. This is discussed in details in a memory corruption bug Linus and gang were 
+chasing down .. 
+http://kerneltrap.org/node/7517
+<follow the conversation between Linus and David Miller>
+
+Heres the code that does so and it does use write protect on page:
+clear_page_dirty_for_io (page-writeback.c)	
+           if (page_mkclean(page)) // write protects first then checks
+                        set_page_dirty(page);
+
+
+
+
+---------------------------------------------
+
+from irc
+codewar: mm/rmap.c::try_to_unmap()
+<hnaz_> codewar: check the lengthy comment in clear_page_dirty_for_io(), the most interesting user for page_mkclean()
+* Chaser (~kiran@204.118.31.7) has joined #mm
+<CodeWar> thanks hnaz_  let me read that
+* benh has quit (Quit: Leaving)
+* kosaki has quit (Quit: Leaving...)
+<CodeWar> hnaz_, that was very helpful so pte_clear_flush_notify appears to do the clear and return current value which is checked for dirty nice
+
+try_to_unmap_anon does a pte_clear_flush which clears the pte and returns old value

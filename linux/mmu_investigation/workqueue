@@ -1,0 +1,34 @@
+Either one of:
+
+<a> PMU and CPU (bypass RM completely for GPL reasons)
+    Have PMU route gpu fault to cpu using PIC. in top level irq.c 
+    do the workqueue operation. 
+
+    work queues run in process context and can issue the force fault and 
+    therefore sleep. You ll have 4 of these (one per core)
+
+    LATENCY:
+    right by default these threads use sched_normal. in the above approach
+    our code would entirely be GPL and therefore we can invoke
+    sched_setscheduler GPL call to mark these threads sched_rr.
+
+    with sched_rr we expect the work to be processed right after we go down
+    from hardirq/softirq context.
+    
+
+===============
+Both of the above assume that we can bring in pages for another mm_struct as long
+as the process is willing to block and is not in interrupt context.
+
+we can do a POC on x86 .. add code in do_page_fault to switch mm_struct to somebody 
+else and invoke this from a process.
+
+---------------------------------------------------------------------------------------
+LATE DISCOVERIES:  mm/mmu_context.c has use_mm / unuse_mm meant exactly for this purpose.
+AIO and vboxnet drivers use it. The idea is to let _only_ a kernel thread switch to a 
+users mm do some ops and return back. The examples that use it do so from work queues
+threads which is precisely where we will be doing it too.
+
+http://lkml.org/lkml/2009/8/13/325  <got exported as a reusable function in mm>
+http://lkml.org/lkml/2009/4/2/304   <might be interesting reading too>
+---------------------------------------------------------------------------------------
