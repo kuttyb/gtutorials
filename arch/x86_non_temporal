@@ -1,23 +1,18 @@
-sse non temporal writes:
+how the hell do these writes work:
 
--> what happens if the address is present in local core cache..
-   are the writes bypassing the cacheline?
+<a> will they allocate cache lines just not do the read cacheline part 
 
--> what happens if the cacheline is held by some other socket..
-   in essence does it bypass cache coherence?
-   OR
-   just avoid an expensive cache line read but keep ownership data
-   intact
+<b> bypass cache hit write combine buffer and then flush to main memory
 
-[Late discoveries]
-my understanding is that non temporal stores are cache coherent. However they do so
-via write invalidation. Because there is an explicit invalidation command sent out 
-both local and remote owners of that cache line are invalidated. 
+<c> pass through LLC dont allocate cache line but do write invalidate 
 
-Q: you said write invalidate not write-invalidate-writeback. Did you mean the latter?
-A: not really. non temporal stores dont have an intention to read they are explicit writes
-   so non written back data in cachelines is of no consequence to anybody
+I suspect its <c>. That way they re 
+-> coherent with writeback stores
+-> use WC so are not completely limitted by memory bandwidth
+-> most importantly avoid cache line pollution
 
-NOTE:
-btw keep in mind non temporal stores dont suffer teh full brunt of writing directly to 
-main memory because they go through the write combine buffer. 
+
+I __suspect__ the primary goal is to avoid cacheline pollution / be coherent and get
+as much write speed up using WC as possible.
+
+If write speed was all that mattered they could have used the LLC as a Write combined buffer.
