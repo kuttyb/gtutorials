@@ -1,0 +1,23 @@
+sse non temporal writes:
+
+-> what happens if the address is present in local core cache..
+   are the writes bypassing the cacheline?
+
+-> what happens if the cacheline is held by some other socket..
+   in essence does it bypass cache coherence?
+   OR
+   just avoid an expensive cache line read but keep ownership data
+   intact
+
+[Late discoveries]
+my understanding is that non temporal stores are cache coherent. However they do so
+via write invalidation. Because there is an explicit invalidation command sent out 
+both local and remote owners of that cache line are invalidated. 
+
+Q: you said write invalidate not write-invalidate-writeback. Did you mean the latter?
+A: not really. non temporal stores dont have an intention to read they are explicit writes
+   so non written back data in cachelines is of no consequence to anybody
+
+NOTE:
+btw keep in mind non temporal stores dont suffer teh full brunt of writing directly to 
+main memory because they go through the write combine buffer. 
