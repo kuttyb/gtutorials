@@ -1,0 +1,7 @@
+/usr/src/uts/common/vm/hat.h
+
+thats the basic HAT interface
+
+to load ptes refer hat_memload[_array]
+for x86 it boils down to the x86pte_update function that does the final CAS
+on the PTE
