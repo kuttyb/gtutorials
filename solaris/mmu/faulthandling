@@ -1,0 +1,18 @@
+segops -> as_fault  invoked via AS_FAULT(as, addr)
+
+==============================================
+1st layer fault handler (machine specific)
+==============================================
+SPARC /usr/src/uts/sun4/vm/vm_dep.    c  (pagefault)
+
+x86   /usr/src/uts/i86pc/vm/vm_machdep.c (pagefault)
+
+
+==============================================
+2nd layer fault handler
+==============================================
+usr/src/uts/common/vm/seg_vn.c 
+  segvn_fault --> 
+  	      segvn_faultpage 
+	      		      --> anon_zero (first fault doesnt distinguish b/w read/write fault)
+			      --> anon_get_page (private anon)
