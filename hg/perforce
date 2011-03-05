@@ -1,0 +1,15 @@
+[ui]
+username = Kutty Banerjee <kutty.banerjee@gmail.com>
+
+[extensions]
+graphlog=
+purge=
+mq=
+perfarce=/home/kutty/bin/perfarce.py
+
+[perfarce]
+keep = True
+submit = False
+tags = True
+lowercasepaths = False
+clientuser = search_regex replacement_string

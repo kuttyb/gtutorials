@@ -1,0 +1,18 @@
+how the hell do these writes work:
+
+<a> will they allocate cache lines just not do the read cacheline part 
+
+<b> bypass cache hit write combine buffer and then flush to main memory
+
+<c> pass through LLC dont allocate cache line but do write invalidate 
+
+I suspect its <c>. That way they re 
+-> coherent with writeback stores
+-> use WC so are not completely limitted by memory bandwidth
+-> most importantly avoid cache line pollution
+
+
+I __suspect__ the primary goal is to avoid cacheline pollution / be coherent and get
+as much write speed up using WC as possible.
+
+If write speed was all that mattered they could have used the LLC as a Write combined buffer.

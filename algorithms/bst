@@ -1,0 +1,67 @@
+BINARY SEARCH TREE:
+each node can have upto two children left nodes are lesser than equal to parent. right nodes are greater than parent
+
+TRAVERSAL:
+look at Corment Pg 255 I ve written down the iterative version the recursive version is damn simple. 
+The version you have will work for both inorder and post order by just reordering push instructions 
+in the addBack method of class Traversal.
+
+preorder is very simple do this:
+	 push(root)
+	 while(!empty()) {
+	     n = pop()
+	     visit(n)
+	     push(r)
+	     push(l)
+	 }
+
+
+SEARCH should be easy use pre-order iterative from above replace visit with search and conditional return
+
+INSERTION is easy too .. insert if theres a hole or at the bottom as a leaf node (just follow your intuition)
+
+DELETION has 3 cases:
+-> leaf node  : easy just delete it hehehe
+-> 1 child    : swap child with deleted node
+-> 2 children : find smallest larger child on the right side and swap 
+
+
+
+VERIFY ITS A BIST
+Use in-order traversal and in the visit method check for monotonous non decreasing
+value
+
+COMPLEXITY:
+best/average are all at O(lg n) but worst case for all ops is O(n). Why? because the height of the tree can be 
+n-1 worst case.
+
+
+FLATTEN and store to file:
+use pre-order serialize in the visitor method and if you see a null record it dont discard it :-)
+
+CONVERT TO DOUBLE LINKED LIST:
+last = dummy;
+visit(Node n) {
+  last.fwd = n;
+  n.back   = last;
+  last     = n;
+}
+I think this should work havent tested it thoroughly. The obvious reason why it might not have
+worked being you are modifying pointers on the fly during traversal. Could it impact your traversal?
+The answer I believe is no because you modify on the visit path which is really the journey up the stack
+path .. what I m saying is that the traversal path is obtained from the stack not by looking at the pointers.
+the pointers are only useful when you are discovering the path.
+
+
+CONVERT SINGLE OR DOUBLE LINKED LIST TO BST in place:
+Using the reverse of inorder traversal operate in sets of 3 nodes from the linked list.
+...
+the idea is to take sets of 3 nodes and form left-parent-right combinations. after you do the right node
+you have two options:
+-> add next node as parent to center OR
+-> as right node to the current right node
+
+Hint: use current height to decide this. For example if current height is 4 add next 3 elements to the right most 
+node before adding a parent to the current center.
+
+

@@ -1,0 +1,35 @@
+non temporal stores ...
+
+my current understanding is that they are very useful for avoiding cache pollution and
+the read_to_own on the cacheline
+
+
+normal stores on writeback memory would take E on the cacheline and then make the writes.
+non temporal stores do a write invalidate on the cacheline and the write does not allocate
+a cacheline instead goes directly (I hope to llc or dram)
+
+
+important thing being they are cache coherent by virtue of making sure that cacheline is 
+invalidated all across
+
+============================
+
+they can use the write combine buffers and at the end of non temporal stores you need
+a sfence to guarantee store level coherence.
+
+============================
+
+there are non temporal loads as well starting SSE4.1 apparently these read into a local
+fifo instead of allocating the set associative cacheline
+
+
+=========================
+GCC 
+<emmintrin.h> for stores (requires -msse2)
+<smmintrin.h> for loads  (requires -msse4.1)
+
+__m128i  (pointers of this should be 16byte aligned)
+_mm_set_epi128(r3, r2, r1, r0)
+_mm_stream_si128(dst, src_m128i_var)
+
+__m128i _mm_stream_load_si128(dst)

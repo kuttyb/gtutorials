@@ -1,0 +1,13 @@
+theres two ways to allocate data memory:
+<a> brk 
+<b> mmap(anon | private)
+calloc is said to resort to mmap for larger chunks and brk to maintain small/medium sized 
+chunks. both follow COW/ZFOD
+
+
+mmap file:
+you can malloc memory and pass it in as the first param in which case you have a double
+copy or you could keep it null and let the OS provide you with teh page cache.
+
+you re providing memory is not going to stop OS from allocating page cache entries.
+
