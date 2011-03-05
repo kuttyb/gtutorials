@@ -15,4 +15,5 @@ usr/src/uts/common/vm/seg_vn.c
   segvn_fault --> 
   	      segvn_faultpage 
 	      		      --> anon_zero (first fault doesnt distinguish b/w read/write fault)
+			      	            (bottomline they dont have a zero page)
 			      --> anon_get_page (private anon)
