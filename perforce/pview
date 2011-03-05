@@ -1,0 +1,6 @@
+#! /bin/sh
+
+unzip $1 -d /tmp/p4review
+kdiff3 /tmp/p4review/new /tmp/p4review/old
+rm -rf /tmp/p4review
+

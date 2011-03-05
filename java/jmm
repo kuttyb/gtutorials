@@ -62,3 +62,12 @@ L  L  S  N  N  then between N and N place the LoadLoad barrier.
     [Also another reason why this should not escape until ctor completes else escaped
      ref may not see all final writes]
 
+===============================================================================================
+<What is a race condition ?>
+Simple definition .. accesses to the same memory location from different threads where atleast one of the accesses
+is a store.
+
+Ahaa correction .. it should be one of them is a non volatile store as this thread points out.
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/2483.html
+
+why? because volatile stores already are linearizable.

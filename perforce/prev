@@ -1,0 +1,4 @@
+#! /bin/sh
+
+p4review.pl -s $1 
+mv cl-$1.p4r $2
