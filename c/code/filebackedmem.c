@@ -13,7 +13,7 @@
 
 void* allocmem(int *fd, long size) {
   int lfd   = open("storage.dat", O_RDWR, 0700);
-  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
+  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
   *fd       = lfd;
   madvise(ptr, size, MADV_SEQUENTIAL);
   return ptr;
