@@ -26,7 +26,7 @@ void freemem(int fd, void *ptr, long size) {
 
 void flushinvalidate(void *ptr, long size) {
   __builtin_ia32_sfence();
-  msync(ptr, size, MS_SYNC | MS_INVALIDATE);
+  msync(ptr, size, MS_SYNC);
   madvise(ptr, size, MADV_DONTNEED);
 }
 
