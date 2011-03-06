@@ -3,7 +3,7 @@
 #include <sys/mman.h>
 #include <string.h>
 
-#define FLAGS  (MAP_ANONYMOUS | MAP_SHARED)
+#define FLAGS  (MAP_ANONYMOUS | MAP_PRIVATE)
 #define PROT   (PROT_WRITE    | PROT_READ)
 #define SIZE   (1024 * 1024 * 500 * 1)
 #define SLEEPTIME  (8)
@@ -14,6 +14,7 @@
 
 int main(void) {
   int *ptr = mmap(NULL, SIZE * sizeof(int), PROT, FLAGS, -1, 0);
+  madvise(ptr, SIZE * sizeof(int), MADV_SEQUENTIAL);
   if (!ptr) return -2;
   
   printf("sleeping right after allocation\n");
