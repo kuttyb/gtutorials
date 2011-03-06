@@ -3,9 +3,9 @@
 #include <sys/mman.h>
 #include <string.h>
 
-#define FLAGS  (MAP_ANONYMOUS | MAP_PRIVATE)
+#define FLAGS  (MAP_ANONYMOUS | MAP_SHARED)
 #define PROT   (PROT_WRITE    | PROT_READ)
-#define SIZE   (1024 * 1024 * 100 * 1)
+#define SIZE   (1024 * 1024 * 500 * 1)
 #define SLEEPTIME  (8)
 /** TILING */
 #define  NUMTILES  (4)
@@ -26,7 +26,7 @@ int main(void) {
     memset(&ptr[offset], 0x20, TILESIZE * sizeof(int));
     // free behind
     msync(&ptr[offset], TILESIZE * sizeof(int), MS_SYNC | MS_INVALIDATE);
-    //    madvise(&ptr[offset], TILESIZE * sizeof(int), MADV_DONTNEED);
+    madvise(&ptr[offset], TILESIZE * sizeof(int), MADV_DONTNEED);
   }
 
   // verify writes
