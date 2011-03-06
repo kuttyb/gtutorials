@@ -1,24 +1,24 @@
 CFLAGS = -std=gnu99 -O3 -Wall -msse -msse2 -mtune=native
 OUTDIR = bin
 
-all : mem filebackedmem brk event nontemp filemem
+all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem
 
-mem : mem.c
+${OUTDIR}/mem : mem.c
 	gcc ${CFLAGS} mem.c -o ${OUTDIR}/mem
 
-filebackedmem : filebackedmem.c
+${OUTDIR}/filebackedmem : filebackedmem.c
 	gcc ${CFLAGS} filebackedmem.c -o ${OUTDIR}/filebackedmem
 
-brk : brk.c
+${OUTDIR}/brk : brk.c
 	gcc ${CFLAGS} brk.c -o ${OUTDIR}/brk
 
-event : event.c
+${OUTDIR}/event : event.c
 	gcc ${CFLAGS} event.c -o ${OUTDIR}/event
 
-nontemp : nontemp.c
+${OUTDIR}/nontemp : nontemp.c
 	gcc ${CFLAGS} nontemp.c -o ${OUTDIR}/nontemp
 
-filemem : filemem.c
+${OUTDIR}/filemem : filemem.c
 	gcc ${CFLAGS} filemem.c -o ${OUTDIR}/filemem
 
 clean :
