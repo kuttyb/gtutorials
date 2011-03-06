@@ -1,21 +1,41 @@
 #include <unistd.h>
-#include <stdio.h>
 #include <sys/mman.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <string.h>
+#include <stdio.h>
 
-#define FLAGS  (MAP_ANONYMOUS | MAP_PRIVATE)
-#define PROT   (PROT_WRITE    | PROT_READ)
 #define SIZE   (1024 * 1024 * 500 * 1)
 #define SLEEPTIME  (8)
 /** TILING */
 #define  NUMTILES  (4)
 #define  TILESIZE  (SIZE / NUMTILES)
 
+void* allocmem(int *fd, long size) {
+  int lfd   = open("/dev/zero", O_RDWR);
+  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
+  *fd       = lfd;
+  madvise(ptr, size, MADV_SEQUENTIAL);
+  return ptr;
+}
+
+void freemem(int fd, void *ptr, long size) {
+  munmap(ptr, size);
+  close(fd);
+}
+
+void flushinvalidate(void *ptr, long size) {
+  __builtin_ia32_sfence();
+  msync(ptr, size, MS_SYNC | MS_INVALIDATE);
+  madvise(ptr, size, MADV_DONTNEED);
+}
+
 
 int main(void) {
-  int *ptr = mmap(NULL, SIZE * sizeof(int), PROT, FLAGS, -1, 0);
-  madvise(ptr, SIZE * sizeof(int), MADV_SEQUENTIAL);
+  int fd;
+  int *ptr = allocmem(&fd, SIZE * sizeof(int));
   if (!ptr) return -2;
+
   
   printf("sleeping right after allocation\n");
   sleep(SLEEPTIME);
@@ -25,9 +45,7 @@ int main(void) {
   long       offset   = 0; 
   for (int index = 0; index < NUMTILES; index++, offset+=TILESIZE) {
     memset(&ptr[offset], 0x20, TILESIZE * sizeof(int));
-    // free behind
-    msync(&ptr[offset], TILESIZE * sizeof(int), MS_SYNC | MS_INVALIDATE);
-    madvise(&ptr[offset], TILESIZE * sizeof(int), MADV_DONTNEED);
+    flushinvalidate(&ptr[offset], TILESIZE * sizeof(int)); // free behind
   }
 
   // verify writes
@@ -43,6 +61,6 @@ int main(void) {
   printf("done reading pages\n");
 
   printf("waking up dong munmap next\n");
-  munmap(ptr, SIZE * sizeof(int));
+  freemem(fd, ptr, SIZE * sizeof(int));
   return 1;
 }
