@@ -10,11 +10,15 @@
 /** TILING */
 #define  NUMTILES  (4)
 #define  TILESIZE  (SIZE / NUMTILES)
+/** CONFIG */
+#define  READ      (1)
+#define  KONSTANT  (0xa)
+#define  WRITE     (1)
+#define  FILENAME  ("/dev/zero")
 
 void* allocmem(int *fd, long size) {
-  int lfd   = -1;
-  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, 
-		   MAP_PRIVATE | MAP_ANONYMOUS, lfd, 0);
+  int lfd   = open(FILENAME, O_RDWR, 0700);
+  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
   *fd       = lfd;
   madvise(ptr, size, MADV_SEQUENTIAL);
   return ptr;
@@ -33,35 +37,41 @@ void flushinvalidate(void *ptr, long size) {
 
 
 int main(void) {
-  int fd;
-  int *ptr = allocmem(&fd, SIZE * sizeof(int));
+  long  offset;
+  int   fd;
+  char *ptr = allocmem(&fd, SIZE * sizeof(char));
   if (!ptr) return -2;
 
-  
-  printf("sleeping right after allocation\n");
-  sleep(SLEEPTIME);
-
-
-  printf("editting pages from %p\n", ptr);
-  long       offset   = 0; 
-  for (int index = 0; index < NUMTILES; index++, offset+=TILESIZE) {
-    memset(&ptr[offset], 0x20, TILESIZE * sizeof(int));
-    flushinvalidate(&ptr[offset], TILESIZE * sizeof(int)); // free behind
-  }
-
-  // verify writes
-  offset = 0;
-  for (int index = 0; index < SIZE; index++, offset++) {
-    if (ptr[offset] != 0x20202020) {
-      printf("value read back incorrect 0x%x\n", ptr[offset]);
-      break;
+  if (WRITE) {
+    printf("writing to pages from %p\n", ptr);
+    offset   = 0; 
+    for (int index = 0; index < NUMTILES; index++, offset+=TILESIZE) {
+      memset(&ptr[offset], KONSTANT, TILESIZE * sizeof(char));
+      flushinvalidate(&ptr[offset], TILESIZE * sizeof(char)); // free behind
     }
   }
 
-  sleep(SLEEPTIME);
-  printf("done reading pages\n");
+  // verify writes
+  if (READ) {
+    printf("reading pages\n");
+    offset = 0;
+    char match = 1;
+    for (int index = 0; index < SIZE; index++, offset++) {
+      if (ptr[offset] != KONSTANT) {
+	printf("value read back incorrect 0x%x\n", ptr[offset]);
+	match = 0;
+	break;
+      }
+    }
+    if (match) {
+      printf("reads match writes\n");
+    }
+  }
 
-  printf("waking up dong munmap next\n");
-  freemem(fd, ptr, SIZE * sizeof(int));
+  if (READ || WRITE) {
+    printf("freeing memory \n");
+    freemem(fd, ptr, SIZE * sizeof(char));
+  }
+
   return 1;
 }
