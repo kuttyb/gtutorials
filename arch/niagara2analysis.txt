@@ -1,0 +1,137 @@
+Key notion when loads miss the cache and need to be refilled such loads are stored
+separtely in miss buffers and future loads are compared against it to avoid pressuring
+the downstream cache layer. 
+typically the missbuffer will store details about which 
+thread is waiting on it. 
+yes it can als have a tag bit to declare if the line is cacheable or just fwd directly 
+to the thread bypassing the cache.
+
+
+
+================
+ULTRASPARC T2:
+================
+
+8 stage pipeline:
+-------------------------------------------
+Fetch
+Cache
+
+     --- End of Instruction Pipeline ---
+-------------------------------------------
+ IB0     IB1  ..... IBn  ;; end of instruction fetch theres 4 entry deep IB buffers per thread
+-------------------------------------------
+Pick
+-----
+Decode
+Execute
+Memory
+Bypass
+Write
+     --- End of Data Pipeline ---
+-------------------------------------------
+
+Instruction pipeline and data pipelines can be simulataneosly working on separate threads.
+
+-------------------------------------------
+
+
+L1D ->  write through .. write misses and hits goto L2 write misses dont populate L1 only
+load misses do theres a separate load miss buffer to store load l1d misses.
+
+L1 is kept in sync with L2 so it will contain a subset of the L2
+bottomlilne that means all L1s on the chip are coherent. L2 invalidatess will also
+flow through to the L1.
+
+
+interesting thought.... icache and dcache are not allowed to share lines. so load/store
+of a line will invalidate it from the icache if present  and ifetch will invalidate
+its contents in the dcache if any.
+icache will invalidate the dcache if required and writse to the dcache will invalidate
+the icache.
+Q: Can you think why this would be important?
+A: JITters and self modifying code would require this. so consider the examplel riel
+   provided on #opensolaris... when he updates the code segment on a SIGILL to replace
+   SSE2 instructions with sw emulated ones this is exactly what he is counting on.
+
+
+
+
+==== FETCH UNIT ====
+Important concept... the FU issues fetch upto 4 instructions together but if it misses 
+the icache the loads are recorded into the miss buffer and the thread is flushed out.
+when teh data returns its can populate the instruction buffer directly.
+
+
+QUESTIONS:
+-> I know loads can by pass stores that dont have RAW hazard and stores cannot by pass stores 
+   since thats what TSO stands for. How about Loads bypassing loads and stores bypassing loads.
+   Meaning you have a load that misses dcache can the next load be issued if it hits in the 
+   dcache? I suppose so only for speculative mods. For the stores bypassing loads the same 
+   analogy can apply... load misses dcache should the store behind go ahead?
+
+A: look at 5.3.3 it says clearly "LMQ contain one entry for each thread" so effectively there
+   can be one missing load per thread. I think that concludes that loads cannot bypass loads.
+
+   good what about stores bypassing loads? Does the thread get kicked out on a load miss or what?
+A: Some late discoveries involving WAIT post synchronizations or (postsync). The idea is simple
+   certain instructions cause the current thread to get into a WAIT state. These involve:
+   --> Load dcache miss
+   --> flush / trap / membar / CAS / prefetch
+   --> Store buffer full
+   --> Speculation (branch prediction)
+
+   Side effect: Typically its a message sent from some low end data pipeline to the P stage
+   saying knock this thread out. So in the case of a CAS or a load dcache miss the B stage 
+   discovers the same and conveys the same to the P stage. In between P and B stage there could
+   be one more instruction half executed... this is simply trashed. When the condition is fulfilled
+   the thread gets back to the READY state again and the trashed instruction is refetched and reexecuted
+   as you had imagined.
+
+   So?
+   Bottomline you cant have a store or load bypass a load miss because the thread would be in the WAIT
+   state and the previous instruction would have been trashed.
+
+
+-> what happens in the data pipeline on a thread timeslice event and/or dcache/dtlb miss?
+   In particular if the thread is switched out I understand stb/lmqs are per thread so need
+   no saving but what about instructions in the D-E stages of the pipeline? are they flushed
+   or temporary state saved some place? It would depend upon the save/restore time vs redo 
+   work time I suppose? much like our latency buffer vs cache1
+A: look at the explanation above between D and B there can be one more instruction that instuction
+   is trashed. The term used by SPARC is thread flush though I find it confusing since to me flush 
+   has a connotation of wait till completed.
+
+
+
+==== CASA/CASXA =====
+-> CAS assumes dcache miss
+
+-> Q: Why doesnt CACHE ever hit out of the dcache?
+
+-> MEMBAR
+   They act as trap syncs. Meaning they will inform the p stage to stop taking any more instructions
+   until the condition is satisfied. The condition is satisfied when it receives a trap from the W stage
+   saying the last store has completed.
+
+   This *does not* WAIT the thread
+   This *does not* flush the current thread
+
+   Btw using traps triggered by precise instructions are called Precise Traps. They guarantee all 
+   previous instructions have completed and no subsequent ones start.
+
+   It is still not clear to me if the trapsync reorders the IB because it causes FETCH to proceed to the 
+   next instruction which would have been in IB. I suppose not and that the trap sync only results in P
+   saying henceforth instructions can flow into the pipe. Much like our host front end releases.
+
+
+-> PREFETCH instructions dont populate dcache and in the event of tlb misses/faults is just
+   dropped. essentially its meant to prefetch data into the L2 not L1
+
+==== More IFU =====
+-> Threads can move from ready to wait in the event of WAIT instructions. These instructions are
+   called post sync (post synchronized) instructions meaning they go back to ready state when
+   certain conditions are fulfilled. They include call/jmp/prefetch/atomics. Until these post sync
+   conditions are complete the thread can be switched out and replaced with another in the instruction
+   pipeline.
+
