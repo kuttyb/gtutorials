@@ -32,8 +32,8 @@ void freemem(int fd, void *ptr, long size) {
 
 void flushinvalidate(void *ptr, long size) {
   barrier_compiler();
-  barrier_storestore();
-  barrier_loadstore();
+  barrier_read();
+  barrier_write();
   msync(ptr, size, MS_SYNC | MS_INVALIDATE);
   //  madvise(ptr, size, MADV_DONTNEED);
 }

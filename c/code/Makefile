@@ -1,4 +1,4 @@
-CFLAGS = -std=gnu99 -O3 -Wall -msse -msse2 -mtune=native
+CFLAGS = -std=gnu99 -O3 -Wall -msse -msse2 -mtune=native 
 OUTDIR = bin
 
 all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem
