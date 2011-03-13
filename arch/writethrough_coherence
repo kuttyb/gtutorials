@@ -1,0 +1,32 @@
+assuming you re trying to implement a write through cache say dcache the popular way out
+is to use a write buffer.
+
+
+writes from LSU go and check if dcache has the cacheline. if yes update in place and thats it
+
+if dcache doesnt have it queue it in the write buffer and thats it
+
+------------------------------------
+writebuffer is flushed asynchronously first updates L2 (thereby respecting coherence) 
+and then dcache.  Of course you could choose to not update dcache and let it fill up
+on a read miss. (inclusive cache vs exclusive cache)
+
+
+------------------------------------
+what happens while wbuf has entries if a read operation comes along.
+
+nothing do the same thing. check if the entry is in dcache. if it is its not in wbuf. return
+this and you ll be safe.
+
+if its not in dcache wait for wbuf flush and then read out of l2. at the same time allocate
+a line in l1 that is filled with data once l2 returns. a few of these operations can be
+interleaved but you ll still have coherence across different processors.
+
+
+--------------------------
+<side thoughts>
+-> can I cheat on the above wait for wbuf to complete and instead add this penalty to the
+fence instructions. like mfence say? no idea but worth thinking about.
+
+-> also is total store order really a requirement?
+
