@@ -1,3 +1,6 @@
+==========================
+  Intel 
+==========================
 Reads are not reordered with other reads.
 • Writes are not reordered with older reads.
 • Writes to memory are not reordered with other writes, with the following 
@@ -15,4 +18,28 @@ serializing instructions.
 • LFENCE instructions cannot pass earlier reads.
 • SFENCE instructions cannot pass earlier writes.
 • MFENCE instructions cannot pass earlier reads or writes.
+
+===============================
+[kutty] INTERPRETATION
+===============================
+TERMS: inside means earlier and outside means later. so load X is outside load Y means 
+load Y was issued then load X was issued. 
+
+Jump out means reorder with a latter instruction jump inside means reorder with an earlier 
+instruction.
+
+Good now lets see:
+
+-> loads can jump below stores (respecting RAW)
+
+-> no other memops are allowed to jump past each other for writeback mem
+
+-> lfence allows stores to jump outside and none else
+
+-> sfence allows loads to jump in and out
+
+-> mfence allows no jumping past each other :-)
+
+-> locked instructions dont allow any jumping past each other either
+   <hence the adage of using lock:add [esp], 0 for lock acquires>
 
