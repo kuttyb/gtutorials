@@ -1,0 +1,11 @@
+Considering 3 barriers (full/read/write) where the latter two result in partial ordering 
+http://lxr.linux.no/linux+v2.6.37.3/arch/sparc/include/asm/system_64.h
+
+
+fullmb -> membar #StoreLoad
+read/write are noops essentially just prevent compiler reordering. Why? because TSO doesnt allow loadload storestore reordering
+to begin with. Very similar to x86 and only allows loads bypassing earlier stores which the above membar prevents.
+
+So yes thats what you need for both acquire/release semantics. for release you ll probably require a synchronizing membar 
+since I doubt store buffers on SPARC are coherent. So you ll need to flush store buffer contents to main memory
+
