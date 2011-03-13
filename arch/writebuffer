@@ -1,0 +1,40 @@
+atleast amd has a write buffer on the data path between load store unit and 
+dcache.
+
+writebuffer contents can be fwded to write combine buffer or dcache -> L2 -> LLC 
+depending up on the cache attributes.
+
+---------------
+heres the deal though, I suspect write buffer is coherent meaning before enqueuing
+the full cost of coherence is paid.
+
+why is it useful then, as explained in amd manuals it serves two purposes:
+
+<a> reads have higher priority than writes so its possible a write enqueue might 
+not complete because of arbitration on the dcache.  placing it in the write buffer
+allows load store unit to not block.
+
+<b> dcache line allocation can take time if eviction is involved. again you want to 
+avoid backpressuring lsu
+
+----------------
+more thoughts (I think procsesor can create the illusion of coherence without
+actually keeping wbuf coherent heres a few ways how)
+
+-> does wbuf really have to be coherent. what happens if its not. you can still respect
+RAW by blocking on reads until wbuf is flushed.
+
+-> as long as wbuf is flushed in order of enqueue stores not bypassing stores is not violated
+
+-> what about interrupts and serialization instructions? simple just flush wbuf and wait
+
+-> fences? assuming wbuf is flushed in order sfence is meaningless 
+
+-----
+[later thoughts]
+if wbuf is not kept coherent then read from core 2 will not return write from core 0 sitting
+in core 0. 
+
+is that a problem? I think it is... dont they have total store order? if this happens then 
+it probably violates that (think more)
+
