@@ -1,21 +1,8 @@
-atleast amd has a write buffer on the data path between load store unit and 
-dcache.
+Sits between load store unit and dcache. I suspect write buffer is coherent meaning before enqueuing the full cost of coherence is paid.
 
-writebuffer contents can be fwded to write combine buffer or dcache -> L2 -> LLC 
-depending up on the cache attributes.
-
----------------
-heres the deal though, I suspect write buffer is coherent meaning before enqueuing
-the full cost of coherence is paid.
-
-why is it useful then, as explained in amd manuals it serves two purposes:
-
-<a> reads have higher priority than writes so its possible a write enqueue might 
-not complete because of arbitration on the dcache.  placing it in the write buffer
-allows load store unit to not block.
-
-<b> dcache line allocation can take time if eviction is involved. again you want to 
-avoid backpressuring lsu
+Its still useful because it can free LSU when 
+<a> writes suffer in priority against reads
+<b> theres cache eviction
 
 ----------------
 more thoughts (I think procsesor can create the illusion of coherence without
@@ -29,6 +16,8 @@ RAW by blocking on reads until wbuf is flushed.
 -> what about interrupts and serialization instructions? simple just flush wbuf and wait
 
 -> fences? assuming wbuf is flushed in order sfence is meaningless 
+
+-> flushed on interrupts we already know that
 
 -----
 [later thoughts]
