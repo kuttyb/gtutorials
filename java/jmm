@@ -1,58 +1,32 @@
-JMM has really 5 sets of rules to control reordering:
-<a> monitor enter/ volatile loads use acquire semantics
+============================================================================================
+  JMM in 5 Rules (B T T P P)  
+  { Box / Total / Thread / Publication / Program Order }
+============================================================================================
 
-<b> monitor exit/volatile stores use release semantics
-
-<c> dont reorder loads around causal stores (aka use common sense)
-
-<d> There is a Total Lock Order
-
-<e> There is a Total Volatile Store Order
-
-<a> and <b> are easy to explain look at the following picture, the intention is to make sure
-memops dont escape the box from inside.
-
-
- _______________________________________    ----------> Acquire Semantics  (Load)
+ _______________________________________    ----------> Acquire Semantics (Monitor Enter)
 |					|
 |					|   Instr X
 |					|
 |_______________________________________|
-                                            ----------> Release Semantics  (Store)
+                                            ----------> Release Semantics (Monitor Exit)
 
-So X shouldnt be able to escape up so use Load[X] barrier and X shouldnt be able to escape down so 
-use [X]Store barrier (replace X with Load or Store based on what memop it is)
 
------ Thats it !!  Meaning feel free to reorder loads / stores as much as you like ------------------------
+<1> Box: 
+    -> Check in but cant check out
+    -> Acquire / Volatile load represent top of  box 
+    -> Release / Volatile store represent bottom of box
+    -> For arch with weak or non coherent caches
+       ----> MeN requires acquire barrier (aka dont return following reads w/o checking with
+             main memory)
+       ----> MeX requires flushing local store buffers and pushing writes to point of coherence
 
-============================================================================================
-  Where do I place the membars? (Perspective 2)
-============================================================================================
-This is another perspective for understanding the JMM viz., to understand where the barriers
-need to be placed.
-
-There are really 4 entities:
--> Loads  (L)
--> Stores (S)
--> Monitor Enter / Volatile Loads  (N)
--> Monitor Exit  / Volatile Stores (X)
-
-Barriers are required to be placed after N and X. When placing these barriers keep the following rule in mind
-and you ll do fine.
-
-L  L  S  N  N  then between N and N place the LoadLoad barrier.
-
-============================================================================================
-  PERSPECTIVE 3 --- Simple Rules  { Box / Total / Publication / Thread }
-============================================================================================
-
-<1> Dont escape the Box
-    <a> and <b> explained above
 
 <2> Total Lock / Total Volatile Store order
-    <d> and <e> meaning if you see MeX followed by MeN use membar #StoreLoad
+    Cant reoder these
+
 
 <3> Thread start has MeN and Thread join has MeX semantics
+
 
 <4> Publication Safety:
     -> final stores not reordered with stores outside ctor function
@@ -62,12 +36,35 @@ L  L  S  N  N  then between N and N place the LoadLoad barrier.
     [Also another reason why this should not escape until ctor completes else escaped
      ref may not see all final writes]
 
-===============================================================================================
-<What is a race condition ?>
-Simple definition .. accesses to the same memory location from different threads where atleast one of the accesses
-is a store.
 
-Ahaa correction .. it should be one of them is a non volatile store as this thread points out.
+<5> Reads maintain program order for local stores
+
+
+===============================================================================================
+ FAQ:
+===============================================================================================
+Q: What is a race condition?
+A: Correction .. it should be one of them is a non volatile store as this thread points out.
 http://www.cs.umd.edu/~pugh/java/memoryModel/archive/2483.html
 
-why? because volatile stores already are linearizable.
+Q: Why? 
+A: because volatile stores already are linearizable.
+
+Q: In order to maintain MeN / Mex what barriers does it need? 
+A: Use common sense to see what fences are available on the processor and use it.
+   Ideally you want the barrier that prevents just the one direction movement. Believe
+   me neither SPARC nor x86 have anything like that Itanium has one but I m not sure they
+   can be used in isolation.
+
+   So you ll land up using a stronger fence in most cases.
+
+Q: Ok what do the x86 fences look like?
+A: MeX -> mfence (or per DaveD lock add [rsp], 0)
+   MeN -> mfence I _think_ (?? check)
+       
+Q: SPARC TSO?
+A: MeX -> membar #StoreLoad <because thats the only reodering possible>
+   MeN -> membar #StoreLoad too I d assume (?? check)
+
+Q: Alpha?
+A: Frankly alpha is out of my league yet ... (?? check)
