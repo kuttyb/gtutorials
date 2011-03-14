@@ -11,5 +11,9 @@ so if your last level page table spans across 4 struct pages then there will be 
 locks.
 
 
-<The ideal dream case being CAS on the PTE>
+<The ideal dream case being CAS on the PTE ...>
+The dream could be realized on architectures where the PTE spans CAS size. Trouble is unlike Solaris
+HAT where locking is maintained completely within the HAT layer (and therefore by individual cpu code)
+Linux does the locking in VM and then invokes the write pte routines (pte_offset_map_lock)
+
 
