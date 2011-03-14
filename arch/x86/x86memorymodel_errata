@@ -1,5 +1,8 @@
 ==========================
-  Intel 
+  Intel (Vol 3A -8.2.2)
+  AMD   (Vol 1  -3.9.2)
+  <see these files in the
+   attached directory>
 ==========================
 Reads are not reordered with other reads.
 • Writes are not reordered with older reads.
@@ -41,3 +44,13 @@ Good now lets see:
 -> locked instructions dont allow any jumping past each other either
    <hence the adage of using lock:add [esp], 0 for lock acquires>
    <per DaveD on AMD mfence has terribly pipeline latency compared to locked xadd tos,0> 
+
+========================================================
+FAQ:
+========================================================
+Q: Can Java volatile stores use lfence on Intel instead of lock:xadd tos,0 or mfence?
+A: You re asking because reads cannot jump above an earlier lfence statement right?
+   I think not because it is silent about lfence jumping above an earlier store.
+
+   FWIW AMD makes it clear lfence is #loadload and nothing else
+
