@@ -31,9 +31,17 @@ void freemem(int fd, void *ptr, long size) {
 }
 
 void flushinvalidate(void *ptr, long size) {
+  // test volatile integers
   _volatile var;
   volatile_store(var, 20);
-  printf("barrier value %d\n", volatile_load(var));
+  printf("volatile integer value %d\n", volatile_load(var));
+
+  // test volatile pointers
+  int rr = 21;
+  _volatileptr regptr;
+  volatileptr_store(regptr, &rr);
+  printf("volatile pointer chasing %d\n", *((int*)volatileptr_load(regptr)));
+
   msync(ptr, size, MS_SYNC | MS_INVALIDATE);
   //  madvise(ptr, size, MADV_DONTNEED);
 }
