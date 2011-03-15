@@ -10,14 +10,14 @@ int main(void) {
   uint64_t data = 0;
   uint64_t payload = 25;
 
-  printf("0x%lx\n", fd);
+  printf("0x%Lx\n", fd);
 
-  printf("write value 0x%lx\n", write(fd, &payload, 8));
-  printf("write value 0x%lx\n", write(fd, &payload, 8));
+  printf("write value %zi\n", write(fd, &payload, 8));
+  printf("write value %zi\n", write(fd, &payload, 8));
   fsync(fd);
 
   if (read(fd, &data, 8)) {
-    printf("data read %ld\n", data);
+    printf("data read 0x%Lx\n", data);
   }
 
   close(fd);
