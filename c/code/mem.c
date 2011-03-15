@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
-#include "barrier.h"
+#include "types.h"
 
 #define SIZE   (1024 * 1024 * 100 * 1)
 #define SLEEPTIME  (0)
@@ -31,9 +31,9 @@ void freemem(int fd, void *ptr, long size) {
 }
 
 void flushinvalidate(void *ptr, long size) {
-  barrier_compiler();
-  barrier_read();
-  barrier_write();
+  _volatile var;
+  volatile_store(var, 20);
+  printf("barrier value %d\n", volatile_load(var));
   msync(ptr, size, MS_SYNC | MS_INVALIDATE);
   //  madvise(ptr, size, MADV_DONTNEED);
 }
