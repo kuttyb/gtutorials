@@ -1,7 +1,8 @@
 CFLAGS = -std=gnu99 -O3 -Wall -msse -msse2 -mtune=native 
 OUTDIR = bin
 
-all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem
+all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem \
+	${OUTDIR}/barrierperf
 
 ${OUTDIR}/mem : mem.c
 	gcc ${CFLAGS} mem.c -o ${OUTDIR}/mem
@@ -21,5 +22,10 @@ ${OUTDIR}/nontemp : nontemp.c
 ${OUTDIR}/filemem : filemem.c
 	gcc ${CFLAGS} filemem.c -o ${OUTDIR}/filemem
 
+${OUTDIR}/barrierperf : barrierperf.c
+	gcc ${CFLAGS} barrierperf.c -o ${OUTDIR}/barrierperf
+
 clean :
-	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem
+	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
+	${OUTDIR}/barrierperf
+
