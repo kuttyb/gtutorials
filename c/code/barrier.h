@@ -6,7 +6,6 @@
 #define   barrier_write()      asm volatile ("sfence" : : : "memory")
 #define   barrier_read()       asm volatile ("lfence" : : : "memory")
 #define   barrier_full()       asm volatile ("lock;addl $0,(%%rsp)" : : : "memory")
-// This is indeed slower on both Opteron and i7 (first noted by DaveD Oracle)
 //#define   barrier_full()       asm volatile ("mfence" : : : "memory")
 #define   barrier_acquire()    barrier_compiler()
 #define   barrier_release()    barrier_full()
