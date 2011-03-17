@@ -12,7 +12,6 @@ int main(void) {
   uint64_t payload = 25;
 
   printf("%" PRId64 "\n", fd);
-
   printf("write value %zi\n", write(fd, &payload, 8));
   printf("write value %zi\n", write(fd, &payload, 8));
   fsync(fd);
