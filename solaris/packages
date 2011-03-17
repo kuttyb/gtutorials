@@ -5,3 +5,7 @@ Theres really 3 package formats you need to know about:
 <b> Base SRV4 pkginfo/pkgadd/pkgrm/
 
 <c> Blastwave uses its own wrapper /opt/csw/bin/pkgutil -i[r]
+
+
+I __think__ .pkg files can be installed thus:
+pkgadd -d /path/file.pkg
