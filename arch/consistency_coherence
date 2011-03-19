@@ -1,0 +1,10 @@
+two different things something both DaveDice and Chris Lamb tried to explain to me...
+... amazing err embarassing how far I d gotten w/o knowing the difference between them :-)
+
+Anyways barriers/fences are about consistency (order in which memops are issued or 
+perceived) 
+
+Coherence is about ... hmmm wish I knew I have an idea but lets find out more. 
+Chris' e.g., is simple have separate variables sit on a cacheline. stores to these
+variables by separate threads should not cause corruption.
+
