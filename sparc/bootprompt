@@ -1,0 +1,10 @@
+most SPARC boxes when shipped will by default boot straight to the OS and not go from
+     ALOM -> PROM (ok prompt) -> OS
+
+to get it to the PROM prompt after booting to the OS do this:
+eeprom "auto-boot?"=false
+
+
+next time around you ll get into the OK prompt from where boot or boot -v will do the 
+boot work for you
+
