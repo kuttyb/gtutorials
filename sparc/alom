@@ -1,11 +1,23 @@
-setsc var value 
-< e.g., setsc netsc_dhcp true >
-
-showsc netsc_dhcp
-
+-> Start/ Stop
 poweron -c 
-
 poweroff / powercycle / reset
 
-console  <to view OS console hit #. to return back>
 
+-> Control variables
+setsc var value 
+< e.g., setsc netsc_dhcp true >
+showsc netsc_dhcp
+
+
+-> View OS terminal
+console     // to view OS console hit #. to return back>
+console -f  // to take force write control (useful when there are multiple sessions)
+
+
+-> Debugging and Breaking in:
+break (to enter OK or OS kdb prompt if booted with kdb)
+
+
+-> Password
+by default dhcp is on and passwd is on the back of the chassis (use last 8 digits
+from serial#>
