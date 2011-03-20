@@ -1,0 +1,11 @@
+setsc var value 
+< e.g., setsc netsc_dhcp true >
+
+showsc netsc_dhcp
+
+poweron -c 
+
+poweroff / powercycle / reset
+
+console  <to view OS console hit #. to return back>
+
