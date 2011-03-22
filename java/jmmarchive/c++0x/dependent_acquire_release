@@ -1,0 +1,15 @@
+regular acquire barriers disallow any instruction from escaping the load following the barrier.
+
+likewise release barriers disallow any stores/loads from escaping below the barrier
+
+check out these depenent variants ... very interesting.
+http://wiki.dinkumware.com/twiki/pub/Wg21oxford/EvolutionWorkingGroup/ParallelCExperience.2007.04.17b.pdf
+
+=========
+load dependent acquire: essentially only prevent those instructions from reordering that have a data 
+dependency on the load following the barrier.
+
+
+store dependent release:
+likewise disallow any dependent load/stores from escaping below the barrier but unrelated ones can escape
+
