@@ -6,7 +6,7 @@
 
  _______________________________________    ----------> Acquire Semantics (Monitor Enter)
 |					|
-|					|   Instr X
+|					|   Instr X (viz., load and store)
 |					|
 |_______________________________________|
                                             ----------> Release Semantics (Monitor Exit)
