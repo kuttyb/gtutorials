@@ -1,0 +1,41 @@
+We ll talk about plain load barriers aka LoadLoad. There are specialized data dependent LoadLoad and control 
+dependent LoadLoad that we will club under LoadLoad.
+
+Expectations are simple:
+<a> prevent load reodering (stay silent about stores)
+
+<b> after barrier reads should be coherent with last write 
+    (so if underlying hw is not coherent go make sure your cached copies are valid for
+     subsequent loads or validate your speculations or flush inval_request queues)
+
+------ With me so far? -----------------
+Refer to e.g, from SanjayG (JMM) http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0163.html
+
+Thread 1: 
+        a: t = new T; 
+        b: start t.<init>(...) 
+        c: t.f = 1; 
+        d: finish t.<init>(...) 
+           wmb	 // Prevent re-ordering of "c" and "e" 
+        e: Foo.x = t; 
+Thread 2: 
+        f: t = Foo.x; 
+        g: if (t != null) { 
+               mb	 // Prevent re-ordering of "f" and "h" 
+        h: w = t.f; 
+        i: } 
+
+I m going to call mb() as LoadLoad and wmb as StoreStore.
+
+--------------------------------
+Q: Absent Load barrier what can go wrong?
+A: Well the loads could execute in the wrong order but mainly because of 3 reasons:
+   --> Processor can do load speculation as Sarita pointed out
+       http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0053.html
+
+   --> Processor can maintain cache coherence but process invalidate requests from
+       remote writes behind cache read requsts as Dan Scales pointed out.
+       http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0055.html
+
+   --> Of course if the processors dont have coherent caches then this is definitely possible.
+       <where you can have multiple cache line owners in X state>
