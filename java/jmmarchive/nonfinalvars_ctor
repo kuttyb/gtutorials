@@ -1,0 +1,13 @@
+billion $ question ... what happens to non final variable field initialized in the constructor and published.
+
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0710.html
+
+<apparently there are no guarantees>
+
+================================
+Personal thoughts:
+
+That said normal code should not face this problem. Why because you have to publish your object right?
+To do that _safely_ you ll have to assign to a volatile pointer. Volatile stores will prevent reordering
+past it and make sure anybody that sees the reference will also see contents.
+
