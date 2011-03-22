@@ -69,3 +69,16 @@ A: MeX -> membar #StoreLoad <because thats the only reodering possible>
 
 Q: Alpha?
 A: Frankly alpha is out of my league yet ... (?? check)
+
+Q: What is this whole "publication safety" hoopla and in particular Point <4> from above?
+A: It has to do with final fields in an object. They are initialized and read subsequently 
+   without holding locks. So how does one make sure they are done correctly.
+   Refer tutorials/arch/whyloadbarriers for more details of what can go wrong absent
+   LoadBarriers.
+
+Q: In simple words what must the compiler do?
+A: On the producer side viz., constructor if even a single final field store took place
+   emit #StoreStore at the end of constructor.
+
+   On the receiver side .. well thats something you should refer to the above document for ..
+   beyond scope of this document.
