@@ -83,6 +83,13 @@ A: On the producer side viz., constructor if even a single final field store too
    On the receiver side .. well thats something you should refer to the above document for ..
    beyond scope of this document.
 
-   For x86 and SPARC TSO nothing needs to be done for the processor reordering part (atleast
-   I think so .. lets see what Dave says)
+   For x86 and SPARC TSO nothing needs to be done for the processor reordering part (DaveD has
+   confirmed the same too)
 
+   PowerPC and ARM have weak memory models too but none dare reorder dependent loads like Alpha
+   so reader side is safe. Producer side meaning end of constructor yes you ll have to add
+   a #StoreStore
+
+   For Alpha DEC yes do as Sanjay says either place a loadload barrier before every final field
+   load or do something clever like global memory barrier and batch it with your GC... 
+   (<beautiful imaginations> .... </beautiful imaginations>

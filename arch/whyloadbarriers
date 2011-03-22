@@ -28,7 +28,7 @@ Thread 2:
 I m going to call mb() as LoadLoad and wmb as StoreStore.
 
 --------------------------------
-Q: Absent Load barrier what can go wrong?
+Q: Absent Load barrier what can go wrong on a processor that reoderes loads?
 A: Well the loads could execute in the wrong order but mainly because of 3 reasons:
    --> Processor can do load speculation as Sarita pointed out
        http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0053.html
