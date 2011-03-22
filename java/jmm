@@ -82,3 +82,7 @@ A: On the producer side viz., constructor if even a single final field store too
 
    On the receiver side .. well thats something you should refer to the above document for ..
    beyond scope of this document.
+
+   For x86 and SPARC TSO nothing needs to be done for the processor reordering part (atleast
+   I think so .. lets see what Dave says)
+
