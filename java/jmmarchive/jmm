@@ -26,7 +26,8 @@
     Cant reoder these
 
 
-<3> Thread start has MeN and Thread join has MeX semantics
+<3> Thread start has MeX and Thread join has MeN semantics 
+    (reverse remember start is lock release and join is like lock acquire)
 
 
 <4> Publication Safety:
