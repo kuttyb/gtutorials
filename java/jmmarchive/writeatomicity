@@ -1,2 +1,26 @@
+WRITE ATOMICITY:
 http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0816.html
+my writes visible first to 
+   -> me 
+   -> some
+   -> all
+
+
+WRITE SERIALIZABILITY:
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0823.html
+writes to same cacheline seen by all processors in same order
+
+
+write termination
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0823.html
+Writes from me seen by
+   -> me
+   -> any
+
+
+===========
+Notes:
+===========
+SPARC TSO/RMO provide last two for atomicity its (me). Providing some can break causality (publication safety)
+
 
