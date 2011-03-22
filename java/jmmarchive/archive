@@ -1,0 +1,4 @@
+
+< Intel relaxes TSO to Causally ordered as you know ... here they are poking to see if it breaks anybody>
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0590.html
+
