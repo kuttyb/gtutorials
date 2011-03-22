@@ -1,0 +1,4 @@
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0985.html
+
+
+not processed yet .... can we do synchronized(not_this_but_something_else) { ...} from within the constructor?
