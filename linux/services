@@ -1,0 +1,4 @@
+I take it you re only interested in ubuntu/debian? very well then 
+/sbin/initctl is your man give it start/stop/list/status to probe
+
+we ve written a sample start up script for hudson .. update this when you reach office
