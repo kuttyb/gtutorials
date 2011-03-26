@@ -22,12 +22,12 @@
 /** sparc */
 #elif   defined(__sparc)
 #include <mbarrier.h> /** SUN Studio header */
-#define   barrier_compiler()   __compiler_barrier
-#define   barrier_full()       __machine_rw_barrier
-#define   barrier_acquire()    __machine_acq_barrier
-#define   barrier_release()    __machine_rel_barrier
-#define   barrier_read()       __machine_r_barrier    
-#define   barrier_write()      __machine_w_barrier
+#define   barrier_compiler()   __compiler_barrier()
+#define   barrier_full()       __machine_rw_barrier()
+#define   barrier_acquire()    __machine_acq_barrier()
+#define   barrier_release()    __machine_rel_barrier()
+#define   barrier_read()       __machine_r_barrier()    
+#define   barrier_write()      __machine_w_barrier()
 
 /** undefined */
 #else
