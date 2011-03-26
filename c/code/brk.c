@@ -4,8 +4,6 @@
 
 int main(void) {
   int *a = calloc(10, sizeof(int));
-  
-  sleep(5);
 
   printf("about to sbrk\n");
   void *c = sbrk(1024*1024*200);
