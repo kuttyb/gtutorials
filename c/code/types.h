@@ -8,15 +8,13 @@ typedef struct {
 } _volatile;
 
 #define volatile_store(var, value)  {var.data = value; barrier_release();}
-// DONT do this its GCC only !
-// #define volatile_load(var) ({barrier_acquire(); var.data;})
-static inline int volatile_load(_volatile var) { barrier_acquire(); return var.data;}
+#define volatile_load(var) ({barrier_acquire(); var.data;})
 
 typedef struct {
   void *ptr;
 } _volatileptr;
 
 #define volatileptr_store(var, value) {var.ptr = value; barrier_release();}
-static inline void* volatileptr_load(_volatileptr var) { barrier_acquire(); return var.ptr;}
+#define volatileptr_load(var) ({barrier_acquire(); var.ptr;})
 
 #endif

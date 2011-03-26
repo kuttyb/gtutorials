@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
+#include "barrier.h"
 
 #define SIZE   (1024 * 1024 * 500 * 1)
 #define SLEEPTIME  (0)
@@ -25,7 +26,7 @@ void freemem(int fd, void *ptr, long size) {
 }
 
 void flushinvalidate(void *ptr, long size) {
-  __builtin_ia32_sfence();
+  barrier_full();
   msync(ptr, size, MS_SYNC);
   madvise(ptr, size, MADV_DONTNEED);
 }
