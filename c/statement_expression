@@ -1,0 +1,11 @@
+http://developers.sun.com/solaris/articles/c_type.htm
+http://gcc.gnu.org/onlinedocs/gcc-3.3.6/gcc/Statement-Exprs.html
+
+yes both gcc and sun studio support it.
+
+#define a(var)  ({ acquire(); var.ptr;})
+
+bottomline you can do compound statements and the last statement acts as the return value
+much like in lisp lambdas and defuns.
+
+
