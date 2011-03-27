@@ -1,6 +1,7 @@
 CC     = suncc
 CFLAGS = -xc99=all -errwarn=%all -xO5 \
 	 -xipo=2 -xipo_archive=writeback \
+	 -xalias_level=strong \
          -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 
 OUTDIR = bin
 
