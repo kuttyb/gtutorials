@@ -1,0 +1,19 @@
+http://sparcv9.blogspot.com/2010/11/quick-solaris-11-express-walkthrough.html
+
+This is for Solaris 11 Express. Use his steps for static IP viz., 
+
+ipadm create-addr -T static -a local=10.0.10.242/24 bge0/v4
+# ipadm show-addr
+ADDROBJ TYPE STATE ADDR
+lo0/v4 static ok 127.0.0.1/8
+bge0/v4 static ok 10.0.10.242/24
+lo0/v6 static ok ::1/128
+
+# route -p add default 10.0.10.1
+add net default: gateway 10.0.10.1
+add persistent net default: gateway 10.0.10.1
+
+_Tenchi_ from #opensolaris (freenode) pointed out that ipadm can only work when nwam is off and default is on
+/network/physical:default
+/network/physical:nwam
+
