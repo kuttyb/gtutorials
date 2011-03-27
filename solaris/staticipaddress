@@ -16,4 +16,6 @@ add persistent net default: gateway 10.0.10.1
 _Tenchi_ from #opensolaris (freenode) pointed out that ipadm can only work when nwam is off and default is on
 /network/physical:default
 /network/physical:nwam
+======================
+This works on the real box but cant access sites using DNS yet... need to check up more
 
