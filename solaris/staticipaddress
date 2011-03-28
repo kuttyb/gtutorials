@@ -29,3 +29,9 @@ add persistent net default: gateway 10.0.10.1
 Step 5:
 cp /etc/nsswitch.dns /etc/nsswitch.conf
 svcadm restart dns/client
+
+
+Step 6:
+/etc/netmasks 
+Make sure you have
+192.168.1.0   255.255.255.0   < essentially your first router address ~ 255.255.255.0 >
