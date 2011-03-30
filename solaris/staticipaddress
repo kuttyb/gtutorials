@@ -36,6 +36,9 @@ Step 6:
 Make sure you have
 192.168.1.0   255.255.255.0   < essentially your first router address ~ 255.255.255.0 >
 
+Step 7:
+Make sure /etc/resolv.conf has 
+nameserver $gateway
 
 --------------------
 From the client do 
