@@ -19,15 +19,14 @@
 #define   barrier_read()       asm volatile ("lfence" : : : "memory") 
 #define   barrier_write()      asm volatile ("sfence" : : : "memory") 
 
-/** sparc */
+/** SPARC (we will assume TSO ... nooped membars are not free) */
 #elif   defined(__sparc)
-#include <mbarrier.h> /** SUN Studio header */
-#define   barrier_compiler()   __compiler_barrier()
-#define   barrier_full()       __machine_rw_barrier()
-#define   barrier_acquire()    __machine_acq_barrier()
-#define   barrier_release()    __machine_rel_barrier()
-#define   barrier_read()       __machine_r_barrier()    
-#define   barrier_write()      __machine_w_barrier()
+#define   barrier_compiler()   asm volatile("":::"memory")
+#define   barrier_full()       asm volatile("membar #StoreLoad" ::: "memory")
+#define   barrier_acquire()    barrier_compiler()
+#define   barrier_release()    barrier_full()
+#define   barrier_read()       barrier_compiler()
+#define   barrier_write()      barrier_compiler()
 
 /** undefined */
 #else
