@@ -3,6 +3,7 @@
 ======================================================================
 dumpadm -y ( to enable dumps ) // checkout its other options
 
+mkdir /var/crash/ht
 
 savecore -L will force a live dump whereas reboot -d will force a dump too but will also reboot the system (what did you think)
 
