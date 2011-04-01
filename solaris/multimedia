@@ -1,2 +1,5 @@
 this is the repository
 http://ips.homeunix.com:10906/
+
+For Solaris 11 Express make sure you to do pkg install SUNWmlib else mplayer wont work
+
