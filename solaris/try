@@ -1,0 +1,6 @@
+ dhtadm -P will print the options, check if that .254 is mentioned there
+
+<seanmcg> and pntadm -P 192.168.1.0
+
+ you can also monitor with 'snoop -v udp port bootps or udp port bootpc'
+
