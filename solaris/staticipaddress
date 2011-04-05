@@ -48,3 +48,8 @@ ok setenv network-boot-arguments host-ip=192.168.1.6,router-ip=192.168.1.1,subne
 ok boot net - install
 
 <yep we re not using dhcp here.. but this doesnt work yet so dont get all excited!>
+
+.......
+still not working 
+seanmcg advises svcadm clear  net-assembly and doing svcs -x to see what services are failing
+
