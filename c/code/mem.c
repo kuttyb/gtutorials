@@ -17,7 +17,7 @@
 #define  WRITE     (1)
 #define  FILENAME  ("/dev/zero")
 
-void* allocmem(int *fd, long size) {
+void* allocmem(int *fd, size_t size) {
   int lfd   = open(FILENAME, O_RDWR, 0700);
   void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
   *fd       = lfd;
@@ -25,12 +25,12 @@ void* allocmem(int *fd, long size) {
   return ptr;
 }
 
-void freemem(int fd, void *ptr, long size) {
+void freemem(int fd, void *ptr, size_t size) {
   munmap(ptr, size);
   close(fd);
 }
 
-void flushinvalidate(void *ptr, long size) {
+void flushinvalidate(void *ptr, size_t size) {
   // test volatile integers
   _volatile var;
   volatile_store(var, 20);
@@ -53,7 +53,7 @@ int main(void) {
   char *ptr = allocmem(&fd, SIZE * sizeof(char));
   if (!ptr) return -2;
 
-  if (WRITE) {
+  if (WRITE > 0) {
     printf("writing to pages from %p\n", ptr);
     offset   = 0; 
     for (int index = 0; index < NUMTILES; index++, offset+=TILESIZE) {
@@ -63,7 +63,7 @@ int main(void) {
   }
 
   // verify writes
-  if (READ) {
+  if (READ > 0) {
     printf("reading pages\n");
     offset = 0;
     char match = 1;

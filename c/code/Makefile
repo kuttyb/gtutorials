@@ -1,3 +1,4 @@
+# compiler
 CC     = suncc
 CFLAGS = -xc99=all -errwarn=%all -xO5 \
 	 -xipo=2 -xipo_archive=writeback \
@@ -5,7 +6,12 @@ CFLAGS = -xc99=all -errwarn=%all -xO5 \
 	 -xvector=simd \
          -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 \
          -xarch=sse2
-LINTFLAGS = -m64
+# lint
+LINT = lint
+LINTFLAGS = -Xc99=all -xO5 -Xalias_level=strong -a \
+	    -errchk=structarg,longptr64,sizematch,parentheses,signext,locfmtchk \
+	    -errsecurity 
+# defines
 OUTDIR = bin
 
 all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem \

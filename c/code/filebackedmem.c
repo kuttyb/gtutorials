@@ -12,7 +12,7 @@
 #define  NUMTILES  (4)
 #define  TILESIZE  (SIZE / NUMTILES)
 
-void* allocmem(int *fd, long size) {
+static void* allocmem(int *fd, long size) {
   int lfd   = open("storage.dat", O_RDWR, 0700);
   void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
   *fd       = lfd;
@@ -20,12 +20,12 @@ void* allocmem(int *fd, long size) {
   return ptr;
 }
 
-void freemem(int fd, void *ptr, long size) {
+static void freemem(int fd, void *ptr, long size) {
   munmap(ptr, size);
   close(fd);
 }
 
-void flushinvalidate(void *ptr, long size) {
+static void flushinvalidate(void *ptr, long size) {
   barrier_full();
   msync(ptr, size, MS_SYNC);
   madvise(ptr, size, MADV_DONTNEED);
