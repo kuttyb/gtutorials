@@ -12,5 +12,8 @@ copy or you could keep it null and let the OS provide you with teh page cache.
 you re providing memory is not going to stop OS from allocating page cache entries.
 
 ==========
-mmap private and later msync. msync is a noop. if the page needs to be evicted and has
-writes to it .... my guess being its moved to swap
+mmap private and later msync. msync is a noop. 
+
+well for linux thats not really true. mmap private lands up using swap and those pages are
+marked anon!!
+
