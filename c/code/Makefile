@@ -3,6 +3,7 @@ CC     = suncc
 CFLAGS = -xc99=all -errwarn=%all -xO5 \
 	 -xipo=2 -xipo_archive=writeback \
 	 -xalias_level=strong \
+	 -m64 \
 	 -xvector=simd \
          -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 \
          -xarch=sse2
@@ -14,7 +15,7 @@ LINTFLAGS = -Xc99=all -xO5 -Xalias_level=strong -a \
 # defines
 OUTDIR = bin
 
-all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem \
+all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem \
 	${OUTDIR}/barrierperf ${OUTDIR}/loop
 
 ${OUTDIR}/mem : mem.c
@@ -27,10 +28,6 @@ ${OUTDIR}/filebackedmem : filebackedmem.c
 
 ${OUTDIR}/brk : brk.c
 	${CC} ${CFLAGS} brk.c -o ${OUTDIR}/brk
-	${LINT} ${LINTFLAGS} $<
-
-${OUTDIR}/event : event.c
-	${CC} ${CFLAGS} event.c -o ${OUTDIR}/event
 	${LINT} ${LINTFLAGS} $<
 
 ${OUTDIR}/nontemp : nontemp.c
@@ -49,6 +46,6 @@ ${OUTDIR}/loop : loop.c
 	${CC} ${CFLAGS} loop.c -o ${OUTDIR}/loop
 
 clean :
-	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/event ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
+	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
 	${OUTDIR}/barrierperf ${OUTDIR}/loop
 
