@@ -6,7 +6,7 @@
 
 # Macros
 TOP=`pwd`
-CND_PLATFORM=OracleSolarisStudio_12.2-Solaris-Sparc
+CND_PLATFORM=OracleSolarisStudio_12.2-Linux-x86
 CND_CONF=Debug
 CND_DISTDIR=dist
 NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging

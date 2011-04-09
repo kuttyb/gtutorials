@@ -12,8 +12,10 @@
             <make-dep-projects/>
             <sourceRootList/>
             <confList>
-                <confElem>Debug</confElem>
                 <confElem>Release</confElem>
+                <confElem>Release32</confElem>
+                <confElem>Debug32</confElem>
+                <confElem>Debug</confElem>
             </confList>
         </data>
     </configuration>

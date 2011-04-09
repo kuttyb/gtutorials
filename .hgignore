@@ -5,4 +5,5 @@ bin/**
 build/**
 dist/**
 .make.state.Debug
+.make.state.Release
 

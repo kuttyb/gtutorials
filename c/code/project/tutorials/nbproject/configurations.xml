@@ -31,20 +31,11 @@
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="Debug" type="1">
-      <toolsSet>
-        <developmentServer>localhost</developmentServer>
-        <compilerSet>OracleSolarisStudio_12.2|OracleSolarisStudio_12.2</compilerSet>
-        <platform>0</platform>
-      </toolsSet>
-      <compileType>
-      </compileType>
-    </conf>
     <conf name="Release" type="1">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <compilerSet>OracleSolarisStudio_12.2|OracleSolarisStudio_12.2</compilerSet>
-        <platform>0</platform>
+        <platform>2</platform>
       </toolsSet>
       <compileType>
         <cTool>
@@ -52,6 +43,76 @@
           <commandlineTool>suncc</commandlineTool>
           <languageExtension>2</languageExtension>
           <commandLine>-xc99=all -errwarn=%all -xO5 -xipo=2 -xipo_archive=writeback -xalias_level=strong -m64 -xvector=simd -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 -xarch=sse2</commandLine>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
+    <conf name="Release32" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>OracleSolarisStudio_12.2|OracleSolarisStudio_12.2</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <commandlineTool>suncc</commandlineTool>
+          <languageExtension>2</languageExtension>
+          <commandLine>-xc99=all -errwarn=%all -xO5 -xipo=2 -xipo_archive=writeback -xalias_level=strong -m32 -xvector=simd -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 -xarch=sse2 -xchip=generic</commandLine>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
+    <conf name="Debug32" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>OracleSolarisStudio_12.2|OracleSolarisStudio_12.2</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <commandlineTool>suncc</commandlineTool>
+          <languageExtension>2</languageExtension>
+          <commandLine>-xc99=all -errwarn=%all -g -xalias_level=strong -m32 -xvector=simd -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 -xarch=sse2 -xchip=generic</commandLine>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+    </conf>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>OracleSolarisStudio_12.2|OracleSolarisStudio_12.2</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <commandlineTool>suncc</commandlineTool>
+          <languageExtension>2</languageExtension>
+          <commandLine>-xc99=all -errwarn=%all -g -xalias_level=strong -m32 -xvector=simd -xprefetch=auto -xprefetch_auto_type=indirect_array_access -xprefetch_level=3 -xarch=sse2</commandLine>
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>

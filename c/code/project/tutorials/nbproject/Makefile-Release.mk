@@ -21,7 +21,7 @@ FC=f95
 AS=as
 
 # Macros
-CND_PLATFORM=OracleSolarisStudio_12.2-Solaris-Sparc
+CND_PLATFORM=OracleSolarisStudio_12.2-Linux-x86
 CND_CONF=Release
 CND_DISTDIR=dist
 
@@ -37,8 +37,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/43898991/brk.o \
 	${OBJECTDIR}/_ext/43898991/barrierperf.o \
 	${OBJECTDIR}/_ext/43898991/nontemp.o \
-	${OBJECTDIR}/_ext/43898991/filebackedmem.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/_ext/43898991/filebackedmem.o
 
 
 # C Compiler Flags
@@ -59,10 +59,10 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/OracleSolarisStudio_12.2-Solaris-Sparc/tutorials
+	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/OracleSolarisStudio_12.2-Linux-x86/tutorials
 
-dist/Release/OracleSolarisStudio_12.2-Solaris-Sparc/tutorials: ${OBJECTFILES}
-	${MKDIR} -p dist/Release/OracleSolarisStudio_12.2-Solaris-Sparc
+dist/Release/OracleSolarisStudio_12.2-Linux-x86/tutorials: ${OBJECTFILES}
+	${MKDIR} -p dist/Release/OracleSolarisStudio_12.2-Linux-x86
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tutorials ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/_ext/43898991/mem.o: ../../mem.c 
@@ -81,13 +81,13 @@ ${OBJECTDIR}/_ext/43898991/nontemp.o: ../../nontemp.c
 	${MKDIR} -p ${OBJECTDIR}/_ext/43898991
 	$(COMPILE.c) -fast -g -o ${OBJECTDIR}/_ext/43898991/nontemp.o ../../nontemp.c
 
-${OBJECTDIR}/_ext/43898991/filebackedmem.o: ../../filebackedmem.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/43898991
-	$(COMPILE.c) -fast -g -o ${OBJECTDIR}/_ext/43898991/filebackedmem.o ../../filebackedmem.c
-
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	$(COMPILE.c) -fast -g -o ${OBJECTDIR}/main.o main.c
+
+${OBJECTDIR}/_ext/43898991/filebackedmem.o: ../../filebackedmem.c 
+	${MKDIR} -p ${OBJECTDIR}/_ext/43898991
+	$(COMPILE.c) -fast -g -o ${OBJECTDIR}/_ext/43898991/filebackedmem.o ../../filebackedmem.c
 
 # Subprojects
 .build-subprojects:
@@ -95,7 +95,7 @@ ${OBJECTDIR}/main.o: main.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Release
-	${RM} dist/Release/OracleSolarisStudio_12.2-Solaris-Sparc/tutorials
+	${RM} dist/Release/OracleSolarisStudio_12.2-Linux-x86/tutorials
 
 # Subprojects
 .clean-subprojects:
