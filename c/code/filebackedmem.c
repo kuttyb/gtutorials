@@ -7,13 +7,15 @@
 #include "barrier.h"
 
 #define SIZE   (1024 * 1024 * 50 * 1)
-#define SLEEPTIME  (10)
+#define SLEEPTIME  (0)
 /** TILING */
 #define  NUMTILES  (4)
 #define  TILESIZE  (SIZE / NUMTILES)
 
 static void* allocmem(int *fd, long size) {
-  int lfd   = open("storage.dat", O_RDWR, 0700);
+  int lfd   = open("storage.dat", O_RDWR | O_CREAT | O_APPEND, 0700);
+  printf("open returned handle %d\n", lfd);
+  printf("posix_fallocate returned %d\n", posix_fallocate(lfd, 1, 20));
   void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
   *fd       = lfd;
   madvise(ptr, size, MADV_SEQUENTIAL);
