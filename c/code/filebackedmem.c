@@ -6,20 +6,26 @@
 #include <stdio.h>
 #include "barrier.h"
 
-#define SIZE   (1024 * 1024 * 50 * 1)
-#define SLEEPTIME  (0)
+#define SIZE   (1024 * 1024 * 100)
+#define SLEEPTIME  (10)
 /** TILING */
 #define  NUMTILES  (4)
 #define  TILESIZE  (SIZE / NUMTILES)
 
 static void* allocmem(int *fd, long size) {
-  int lfd   = open("storage.dat", O_RDWR | O_CREAT | O_APPEND, 0700);
-  printf("open returned handle %d\n", lfd);
-  printf("posix_fallocate returned %d\n", posix_fallocate(lfd, 1, 20));
-  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE, lfd, 0);
-  *fd       = lfd;
-  madvise(ptr, size, MADV_SEQUENTIAL);
-  return ptr;
+  int lfd   = open("storage.dat", O_RDWR | O_CREAT, 0700);
+  if (posix_fallocate(lfd, 1, SIZE * sizeof(int))) return NULL;
+  if (0){
+    sleep(SLEEPTIME);
+    return NULL;
+  }
+  else {
+    void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
+    if (!ptr) return NULL;
+    *fd       = lfd;
+    madvise(ptr, size, MADV_SEQUENTIAL);
+    return ptr;
+  }
 }
 
 static void freemem(int fd, void *ptr, long size) {
@@ -37,10 +43,23 @@ static void flushinvalidate(void *ptr, long size) {
 int main(void) {
   int fd;
   int *ptr = allocmem(&fd, SIZE * sizeof(int));
-  if (!ptr) return -2;
+  if (!ptr) {
+    printf("allocmem failed\n");
+    return -2;
+  }
+
+  long       offset   = 0; 
+  // do a scan and check for zero
+  printf("scanning file\n");
+  for (int index = 0; index < SIZE; index++, offset++) {
+    if (ptr[offset] != 0) {
+      printf("file not initialized correctly\n");
+      break;
+    }
+  }
 
   printf("editting pages from %p\n", ptr);
-  long       offset   = 0; 
+  offset = 0;
   for (int index = 0; index < NUMTILES; index++, offset+=TILESIZE) {
     memset(&ptr[offset], 0x20, TILESIZE * sizeof(int));
     flushinvalidate(&ptr[offset], TILESIZE * sizeof(int)); // free behind
