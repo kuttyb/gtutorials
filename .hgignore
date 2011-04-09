@@ -4,3 +4,4 @@ bin/**
 **private/**
 build/**
 dist/**
+**.make.state.Debug**
