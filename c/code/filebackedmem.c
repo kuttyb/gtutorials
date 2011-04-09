@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include "barrier.h"
 
-#define SIZE   (1024 * 1024 * 100)
+#define SIZE   (1024 * 1024 * 50)
 #define SLEEPTIME  (10)
 /** TILING */
 #define  NUMTILES  (4)
@@ -15,17 +15,13 @@
 static void* allocmem(int *fd, long size) {
   int lfd   = open("storage.dat", O_RDWR | O_CREAT, 0700);
   if (posix_fallocate(lfd, 1, SIZE * sizeof(int))) return NULL;
-  if (0){
-    sleep(SLEEPTIME);
-    return NULL;
-  }
-  else {
-    void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
-    if (!ptr) return NULL;
-    *fd       = lfd;
-    madvise(ptr, size, MADV_SEQUENTIAL);
-    return ptr;
-  }
+
+  void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
+  if (!ptr) return NULL;
+  *fd       = lfd;
+
+  madvise(ptr, size, MADV_SEQUENTIAL);
+  return ptr;
 }
 
 static void freemem(int fd, void *ptr, long size) {
@@ -57,6 +53,8 @@ int main(void) {
       break;
     }
   }
+  printf("done scanning sleeping ...\n");
+  sleep(5);
 
   printf("editting pages from %p\n", ptr);
   offset = 0;
