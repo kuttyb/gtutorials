@@ -6,9 +6,9 @@ int main(int argc, char** argv) {
 
     //    testbrk();
     //  testbarrierperf();
-    //    testfilebackedmem();
+    testfilebackedmem();
     //  testmem();
-    testnontemp();
+    //    testnontemp();
 
     return (EXIT_SUCCESS);
 }
