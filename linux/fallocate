@@ -1,0 +1,16 @@
+essentially if you would like to implement a RAM like our fmodel / asim RAMs ...
+
+--> you could either create a file and mmap share it between processes (different simulators)
+
+--> or have a common file path in mind but fallocate upfront and then mmap and use
+
+With the former you pay for memory only when you actually read/write but on the first
+read you access disk because it doesnt know that your file contents are zero.
+
+also you ll have to create the file upfront
+
+
+With the latter you dont have to create the file. you can fallocate. after which 
+first reads dont touch disk the kernel takes care of that. Thanks to Peter Zilkstra
+for pointing that out.
+
