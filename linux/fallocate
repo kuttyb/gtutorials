@@ -14,3 +14,5 @@ With the latter you dont have to create the file. you can fallocate. after which
 first reads dont touch disk the kernel takes care of that. Thanks to Peter Zilkstra
 for pointing that out.
 
+-----------------------
+on Solaris they use fcntl(F_ALLOCSP) though it literally seems to do the writeout.
