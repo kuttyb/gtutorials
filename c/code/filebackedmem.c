@@ -14,7 +14,7 @@
 
 static void* allocmem(int *fd, long size) {
   int lfd   = open("storage.dat", O_RDWR | O_CREAT, 0700);
-  if (posix_fallocate(lfd, 1, SIZE * sizeof(int))) return NULL;
+  if (posix_fallocate(lfd, 0, SIZE * sizeof(int))) return NULL;
 
   void* ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, lfd, 0);
   if (!ptr) return NULL;
