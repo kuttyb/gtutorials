@@ -1,4 +1,4 @@
-void *a = calloc(1, 0x1000);
+char *a = calloc(1, 0x1000);
 
 int *b = a;
 
