@@ -1,0 +1,24 @@
+worked this out on my own ..
+
+let SIZE be the array size.
+
+RightRotate(1,Array) {
+    Rotate(Array, 0, Array.length);
+    Rotate(Array, 1, Array.length);
+}
+
+void Rotate(Array, startOffset, length) {
+  int size = length - startOffset;
+
+  for (int counter = 0; counter < size / 2; counter++) {
+      swap( Array[start + counter], Array[length - counter]);
+  }
+}
+
+
+..... Pretty cool eh ... check it out for yourself essentially take an array do the swaps across the middle element
+once done repeat after ignoring the zeroeth element. Result is a right rotate by 1. An operation like this will be cpu
+bound and have good dcache footprint... exactly where we want it.
+
+
+
