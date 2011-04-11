@@ -1,6 +1,7 @@
 #ifndef   __barrier_h__
 #define   __barrier_h__
 
+/** should work for SunStudio and GCC */
 /** x86-64 */
 #if     defined(__x86_64)
 #define   barrier_compiler()   asm volatile ("" : : : "memory") 

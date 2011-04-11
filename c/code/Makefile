@@ -5,7 +5,7 @@ CFLAGS = -O3 -Wall -msse2 -march=native -std=gnu99 -flto
 OUTDIR = bin
 
 all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem \
-	${OUTDIR}/barrierperf 
+	${OUTDIR}/barrierperf ${OUTDIR}/alignment
 
 ${OUTDIR}/mem : mem.c
 	${CC} ${CFLAGS} mem.c -o ${OUTDIR}/mem
@@ -25,7 +25,10 @@ ${OUTDIR}/filemem : filemem.c
 ${OUTDIR}/barrierperf : barrierperf.c
 	${CC} ${CFLAGS} barrierperf.c -o ${OUTDIR}/barrierperf
 
+${OUTDIR}/alignment : alignment.c
+	${CC} ${CFLAGS} alignment.c -o ${OUTDIR}/alignment
+
 clean :
 	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
-	${OUTDIR}/barrierperf
+	${OUTDIR}/barrierperf ${OUTDIR}/alignment
 
