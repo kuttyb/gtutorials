@@ -25,3 +25,19 @@ void Rotate(Array, startOffset, endOffset) {
 ..... Pretty cool eh ... check it out for yourself essentially take an array do the swaps across the middle element
 once done repeat after ignoring the zeroeth element. Result is a right rotate by 1. An operation like this will be cpu
 bound and have good dcache footprint... exactly where we want it.
+
+Q: How does one scale out?
+A: Simple split your array into chunks do the rotations internally then in the next stage pick the boundary [1]
+   elements of each chunk and do the rotations about them.
+
+[1] A  B  C     D  E  F
+ to do a right rotate do it individually
+    
+    C  A  B     F  D  E
+now pick the left boundary of each chunk and do a right rotate
+    F  A  B     C  D  E
+ 
+for left rotate pick the right boundary. Kapeesh? :-)
+
+
+    
