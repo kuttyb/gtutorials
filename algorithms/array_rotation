@@ -13,10 +13,11 @@ LeftRotate(1, Array) {
 }
 
 void Rotate(Array, startOffset, endOffset) {
-  int size = length - startOffset;
+  int size = endOffset - startOffset + 1;
 
-  for (int counter = 0; counter < size / 2; counter++) {
-      swap( Array[start + counter], Array[length - counter]);
+  /** theres no data dependency in this loop */
+  parallel_for (int counter = 0; counter < size / 2; counter++) {
+      swap( Array[startOffset + counter], Array[endOffset - counter]);
   }
 }
 
