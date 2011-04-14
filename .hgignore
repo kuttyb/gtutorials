@@ -1,9 +1,3 @@
 syntax:glob
 
 bin/**
-**private/**
-build/**
-dist/**
-.make.state.Debug
-.make.state.Release
-

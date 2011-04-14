@@ -15,19 +15,17 @@
 #define  GET(var)         volatile_load(var)
 #endif 
 
-int testbarrierperf(void) {
-    TYPE a;
-    SET(a, 0);
+int main(void) {
+  TYPE a;
+  SET(a, 0);
 
-    for (long counter = 0; counter < MAX; counter++) {
-        if (GET(a) == 4096634) {
-            continue;
-        }
-        SET(a, random());
-    }
+  for(long counter = 0; counter < MAX; counter++) {
+    if (GET(a) == 4096634) { continue;}
+    SET(a, random());
+  }
 
-    printf("last value is %d\n", GET(a));
+  printf("last value is %d\n", GET(a));
 
-    return 1;
+  return 1;
 }
 
