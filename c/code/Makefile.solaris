@@ -5,7 +5,7 @@ CFLAGS = -xO5 -xipo=2 -xipo_archive=writeback -xprefetch_level=3 -xarch=sse2 -m6
 OUTDIR = bin
 
 all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem \
-	${OUTDIR}/barrierperf ${OUTDIR}/alignment.c
+	${OUTDIR}/barrierperf ${OUTDIR}/alignment
 
 ${OUTDIR}/mem : mem.c
 	${CC} ${CFLAGS} mem.c -o ${OUTDIR}/mem
