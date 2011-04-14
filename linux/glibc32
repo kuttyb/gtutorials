@@ -1,0 +1,3 @@
+libc6-dev-i386
+
+thats what you need on a 64bit box to use -m32. The gcc compiler should also have 32bit support
