@@ -33,8 +33,8 @@ int main(void) {
   variable.b = '3';
   variable.c = 30.213f;
 
-  printf("sizeof float  %d\n", sizeof(float));
-  printf("sizeof struct %d\n", sizeof(variable));
+  printf("sizeof float  %zu\n", sizeof(float));
+  printf("sizeof struct %zu\n", sizeof(variable));
   barrier_full();
   int value = func(sizeof(variable));
   barrier_full();
