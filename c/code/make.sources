@@ -1,1 +1,13 @@
-SOURCES = $(notdir $(sort $(shell ls ${SRC}/*.c)))
+SOURCES       +=      \
+alignment.c           \
+barrierperf.c         \
+brk.c                 \
+filebackedmem.c       \
+filemem.c             \
+mem.c                 \
+nontemp.c
+
+ifdef LINUX
+SOURCES += event.c
+endif
+
