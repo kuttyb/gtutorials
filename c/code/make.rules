@@ -1,0 +1,10 @@
+all : $(patsubst %.c,${BIN}/%, ${SOURCES})
+
+${BIN}/% :: ${SRC}/%.c
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
+clean :
+	${Q} echo "cleaning..." 
+	$(shell rm ${BIN}/*)
+

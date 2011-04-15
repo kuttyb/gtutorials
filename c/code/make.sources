@@ -1,0 +1,1 @@
+SOURCES = $(notdir $(sort $(shell ls ${SRC}/*.c)))

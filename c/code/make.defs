@@ -4,15 +4,4 @@ WORDSIZE = -m64
 # defines
 BIN = bin
 SRC = src
-SOURCES = $(notdir $(sort $(shell ls ${SRC}/*.c)))
-
-all : $(patsubst %.c,${BIN}/%, ${SOURCES})
-
-${BIN}/% :: ${SRC}/%.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-clean :
-	${Q} echo "cleaning..." 
-	$(shell rm ${BIN}/*)
 
