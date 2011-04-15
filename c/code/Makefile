@@ -9,42 +9,20 @@ OUTDIR = bin
 all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem \
 	${OUTDIR}/barrierperf ${OUTDIR}/alignment
 
-${OUTDIR}/mem : mem.c
+${OUTDIR}/% :: %.c
 	@echo $<
 	${Q} ${CC} ${CFLAGS} $< -o $@
 
-
+${OUTDIR}/mem           : mem.c
 ${OUTDIR}/filebackedmem : filebackedmem.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-
-${OUTDIR}/brk : brk.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-
-${OUTDIR}/nontemp : nontemp.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-
-${OUTDIR}/filemem : filemem.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-
-${OUTDIR}/barrierperf : barrierperf.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
-
-
-${OUTDIR}/alignment : alignment.c
-	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
+${OUTDIR}/brk           : brk.c
+${OUTDIR}/nontemp       : nontemp.c
+${OUTDIR}/filemem       : filemem.c
+${OUTDIR}/barrierperf   : barrierperf.c
+${OUTDIR}/alignment     : alignment.c
 
 
 clean :
-	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
-	${OUTDIR}/barrierperf ${OUTDIR}/alignment
+	${Q} echo "cleaning..." 
+	$(shell rm ${OUTDIR}/*)
 
