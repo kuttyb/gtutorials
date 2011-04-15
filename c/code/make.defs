@@ -4,8 +4,9 @@ WORDSIZE = -m64
 # defines
 BIN = bin
 SRC = src
+SOURCES = $(notdir $(sort $(shell ls ${SRC}/*.c)))
 
-all : $(patsubst %.c,${BIN}/%, $(notdir $(sort $(shell ls ${SRC}/*.c))))
+all : $(patsubst %.c,${BIN}/%, ${SOURCES})
 
 ${BIN}/% :: ${SRC}/%.c
 	@echo $<
