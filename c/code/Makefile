@@ -1,6 +1,7 @@
 # compiler
-CC     = gcc
-CFLAGS = -O3 -Wall -msse2 -march=native -std=gnu99 -flto
+WORDSIZE = -m64
+CC       = gcc
+CFLAGS   = -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE}
 # defines
 OUTDIR = bin
 
