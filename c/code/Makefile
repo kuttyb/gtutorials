@@ -1,7 +1,8 @@
 # compiler
+Q        = @
 WORDSIZE = -m64
 CC       = gcc
-CFLAGS   = -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE}
+CFLAGS   = -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE} 
 # defines
 OUTDIR = bin
 
@@ -9,25 +10,39 @@ all : ${OUTDIR}/mem ${OUTDIR}/filebackedmem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OU
 	${OUTDIR}/barrierperf ${OUTDIR}/alignment
 
 ${OUTDIR}/mem : mem.c
-	${CC} ${CFLAGS} mem.c -o ${OUTDIR}/mem
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/filebackedmem : filebackedmem.c
-	${CC} ${CFLAGS} filebackedmem.c -o ${OUTDIR}/filebackedmem
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/brk : brk.c
-	${CC} ${CFLAGS} brk.c -o ${OUTDIR}/brk
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/nontemp : nontemp.c
-	${CC} ${CFLAGS} nontemp.c -o ${OUTDIR}/nontemp
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/filemem : filemem.c
-	${CC} ${CFLAGS} filemem.c -o ${OUTDIR}/filemem
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/barrierperf : barrierperf.c
-	${CC} ${CFLAGS} barrierperf.c -o ${OUTDIR}/barrierperf
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 ${OUTDIR}/alignment : alignment.c
-	${CC} ${CFLAGS} alignment.c -o ${OUTDIR}/alignment
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
 
 clean :
 	@rm ${OUTDIR}/mem ${OUTDIR}/brk ${OUTDIR}/nontemp ${OUTDIR}/filemem ${OUTDIR}/filebackedmem \
