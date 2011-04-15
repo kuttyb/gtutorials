@@ -2,15 +2,16 @@
 Q        = @
 WORDSIZE = -m64
 # defines
-OUTDIR = bin
+BIN = bin
+SRC = src
 
-all : $(patsubst %.c,${OUTDIR}/%, $(sort $(shell ls *.c)))
+all : $(patsubst %.c,${BIN}/%, $(notdir $(sort $(shell ls ${SRC}/*.c))))
 
-${OUTDIR}/% :: %.c
+${BIN}/% :: ${SRC}/%.c
 	@echo $<
 	${Q} ${CC} ${CFLAGS} $< -o $@
 
 clean :
 	${Q} echo "cleaning..." 
-	$(shell rm ${OUTDIR}/*)
+	$(shell rm ${BIN}/*)
 
