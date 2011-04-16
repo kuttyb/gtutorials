@@ -3,5 +3,7 @@ PROJECT = libfirst
 
 SOURCES          +=   \
 ptr.c                 \
-aptr.c
+aptr.c                \
+temp.c
+
 

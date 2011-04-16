@@ -21,14 +21,14 @@ ${BIN}/% :: ${SRC}/%.c
 	@echo $<
 	${Q} ${CC} ${CFLAGS} $< -o $@
 
+${BIN}/%.o :: ${SRC}/%.c
+	@echo $<
+	${Q} ${CC} ${DLLCFLAGS} $< -o $@
+
 # Rule for building a single dynamic library
 ${LIB}/%.so :: ${BIN}/%.o
 	@echo "linking $@ ..."
 	${Q} ${CC} ${DLLLINKFLAGS} -o ${LIB}/${PROJECT}.so $<
-
-${BIN}/%.o :: ${SRC}/%.c
-	@echo $<
-	${Q} ${CC} ${DLLCFLAGS} $< -o $@
 
 clean :
 	${Q} echo "cleaning..." 
