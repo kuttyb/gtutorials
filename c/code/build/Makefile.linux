@@ -4,5 +4,5 @@ CC       = gcc
 CFLAGS   = -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE} 
 LINUX    = true
 
-include ./../make.sources
+include ./../sources
 include make.rules
