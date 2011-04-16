@@ -1,12 +1,4 @@
-<<<<<<< local
-# compiler
-CC     = suncc
-CFLAGS = -xO5 -xipo=2 -xprefetch_level=3 -xarch=sse2 -m64
-# defines
-OUTDIR = bin
-=======
 include make.defs
->>>>>>> other
 
 CC       = suncc
 CFLAGS   = -xO5 -xipo=2 -xipo_archive=writeback -xprefetch_level=3 -xarch=sse2 ${WORDSIZE}
