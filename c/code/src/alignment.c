@@ -28,10 +28,7 @@ int func(int data) {
 }
 
 int main(void) {
-  struct _ABC variable;
-  variable.a = 2;
-  variable.b = '3';
-  variable.c = 30.213f;
+  struct _ABC variable = { .a =3, .b = 0, .c = 32.12f };
 
   printf("sizeof float  %zu\n", sizeof(float));
   printf("sizeof struct %zu\n", sizeof(variable));
