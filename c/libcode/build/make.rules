@@ -30,6 +30,7 @@ ${LIB}/%.so :: ${BIN}/%.o
 	@echo "linking $@ ..."
 	${Q} ${CC} ${DLLLINKFLAGS} -o ${LIB}/${PROJECT}.so $<
 
+
 clean :
 	${Q} echo "cleaning..." 
 	$(shell rm -rf ${BIN}/*)
