@@ -1,4 +1,6 @@
-BINSOURCES       +=   \
+BINARY = true
+
+SOURCES          +=   \
 alignment.c           \
 barrierperf.c         \
 brk.c                 \
@@ -9,6 +11,6 @@ nontemp.c             \
 ptr.c
 
 ifdef LINUX
-BINSOURCES += event.c
+SOURCES += event.c
 endif
 
