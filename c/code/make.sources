@@ -5,7 +5,8 @@ brk.c                 \
 filebackedmem.c       \
 filemem.c             \
 mem.c                 \
-nontemp.c
+nontemp.c             \
+ptr.c
 
 ifdef LINUX
 SOURCES += event.c
