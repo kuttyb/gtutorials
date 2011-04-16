@@ -1,0 +1,7 @@
+# compiler
+Q        = @
+WORDSIZE = -m64
+# defines
+BIN = bin
+SRC = src
+SOURCES  = 
