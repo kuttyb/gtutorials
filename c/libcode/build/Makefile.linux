@@ -1,0 +1,10 @@
+include make.defs
+
+CC             = gcc
+CFLAGS         = -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE} 
+DLLCFLAGS      = ${CFLAGS} -c -fPIC
+DLLLINKFLAGS   = -shared -Wl,-soname,soname.so
+LINUX          = true
+
+include ./../sources
+include make.rules

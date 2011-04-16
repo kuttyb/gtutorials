@@ -1,0 +1,8 @@
+Q        = @
+WORDSIZE = -m64
+BIN = ./../bin
+SRC = ./../src
+LIB = ./../lib
+BINSOURCES  = 
+LIBSOURCES  =
+PROJECT     =

@@ -1,0 +1,7 @@
+LIBRARY = true
+PROJECT = libfirst
+
+SOURCES          +=   \
+ptr.c                 \
+aptr.c
+

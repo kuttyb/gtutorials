@@ -1,0 +1,36 @@
+TARGETS =
+
+ifdef BINARY
+TARGETS += $(patsubst %.c,${BIN}/%, ${SOURCES})
+endif
+
+ifdef LIBRARY
+TARGETS += ${LIB}/${PROJECT}.so
+${LIB}/${PROJECT}.so                   : $(patsubst %.c,${BIN}/%.o, ${SOURCES})
+$(patsubst %.c,${BIN}/%.o, ${SOURCES}) : $(patsubst %.c,${SRC}/%.c, ${SOURCES})
+endif
+
+all : ${TARGETS}
+
+
+# ====================================================-
+#    GENERIC RULES 
+# ====================================================-
+# Rule for building binary from each source file
+${BIN}/% :: ${SRC}/%.c
+	@echo $<
+	${Q} ${CC} ${CFLAGS} $< -o $@
+
+# Rule for building a single dynamic library
+${LIB}/%.so :: ${BIN}/%.o
+	@echo "linking $@ ..."
+	${Q} ${CC} ${DLLLINKFLAGS} -o ${LIB}/${PROJECT}.so $<
+
+${BIN}/%.o :: ${SRC}/%.c
+	@echo $<
+	${Q} ${CC} ${DLLCFLAGS} $< -o $@
+
+clean :
+	${Q} echo "cleaning..." 
+	$(shell rm -rf ${BIN}/*)
+	$(shell rm -rf ${LIB}/*)
