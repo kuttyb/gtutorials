@@ -1,4 +1,4 @@
-all : $(patsubst %.c,${BIN}/%, ${SOURCES})
+all : $(patsubst %.c,${BIN}/%, ${BINSOURCES})
 
 ${BIN}/% :: ${SRC}/%.c
 	@echo $<
