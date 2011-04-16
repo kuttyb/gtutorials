@@ -1,0 +1,19 @@
+With LP64 pointer size is the point of contention. if you dont need 4GB + for either
+memusage or massive file mmaps :
+
+=================
+Disadvantages:
+=================
+-> you are paying for larger structs (that contain pointers)
+
+-> and I m trying to understand if it negatively impacts VIPT caches.
+
+=================
+Advantages:
+=================
+-> Kind of orthogonal more accidental  though there are more registers and call params
+   go over registers.
+
+-> Register width being larger can make 64bit ops run faster
+
+

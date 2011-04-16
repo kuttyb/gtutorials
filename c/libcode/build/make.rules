@@ -26,7 +26,7 @@ ${BIN}/%.o :: ${SRC}/%.c
 	${Q} ${CC} ${DLLCFLAGS} $< -o $@
 
 # Rule for building a single dynamic library
-${LIB}/%.so :: ${BIN}/%.o
+${LIB}/%.so : ${BIN}/%.o
 	@echo "linking $@ ..."
 	${Q} ${CC} ${DLLLINKFLAGS} -o ${LIB}/${PROJECT}.so $<
 
