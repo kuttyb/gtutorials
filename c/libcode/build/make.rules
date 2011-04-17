@@ -13,7 +13,7 @@ ${BINNAME} : $(patsubst %.c, ${BIN}/%.o, ${BINSOURCES})
 # Dynamic Library
 ${LIBNAME} : $(patsubst %.c, ${BIN}/%.o, ${SOURCES})
 	@echo "linking dynamic library $@ ..."
-	${Q} ${CC} ${DYNFLAGS} -o ${LIBNAME} $(patsubst %.c,${BIN}/%.o,${SOURCES})
+	${Q} ${LD} ${DYNFLAGS} -o ${LIBNAME} $(patsubst %.c,${BIN}/%.o,${SOURCES})
 
 clean :
 	@echo "cleaning ..."
