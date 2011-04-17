@@ -1,7 +1,7 @@
 CC         = suncc
 LD         = sunCC
 CFLAGS     = -xO5 -xipo=2 -xipo_archive=writeback -xprefetch_level=3 -xarch=sse2 ${WORDSIZE} -c
-DYNFLAGS   = -G 
+DYNFLAGS   = ${WORDSIZE} -G 
 DYNFLAGS2  = -Kpic 
 BINFLAGS   =
 
