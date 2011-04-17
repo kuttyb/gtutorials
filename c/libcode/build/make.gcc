@@ -2,6 +2,7 @@ CC         = gcc
 LD         = gcc
 CFLAGS    += -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE} -c 
 DYNFLAGS   = -flto -shared -Wl,-soname,${LIBNAME}
+DYNFLAGS2  =
 BINFLAGS   = -flto
 
 ifdef TARGET_LIBRARY
