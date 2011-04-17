@@ -1,9 +1,25 @@
+ #   Copyright 2011 Kutty Banerjee <kutty.banerjee@gmail.com> 
+ #
+ #   This program is free software: you can redistribute it and/or modify
+ #   it under the terms of the GNU General Public License as published by
+ #   the Free Software Foundation, either version 3 of the License, or
+ #   (at your option) any later version.
+ #
+ #   This program is distributed in the hope that it will be useful,
+ #   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ #   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ #   GNU General Public License for more details.
+ #
+ #   You should have received a copy of the GNU General Public License
+ #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ #
 CC         = suncc
 LD         = sunCC
-CFLAGS     = -xO5 -xipo=2 -xipo_archive=writeback -xprefetch_level=3 -xarch=sse2 ${WORDSIZE} -c
-DYNFLAGS   = ${WORDSIZE} -G 
+OPTIMIZE   = -xO5 -xipo=2 -xipo_archive=writeback
+CFLAGS     = ${OPTIMIZE} -xprefetch_level=3 -xarch=sse2 ${WORDSIZE} -c -I${INC}
+DYNFLAGS   = ${OPTIMIZE} ${WORDSIZE} -G
 DYNFLAGS2  = -Kpic 
-BINFLAGS   =
+BINFLAGS   = ${OPTIMIZE} ${WORDSIZE}
 
 ifdef TARGET_LIBRARY
 CFLAGS    += -Kpic
