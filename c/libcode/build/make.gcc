@@ -1,0 +1,4 @@
+CC         = gcc
+CFLAGS    += -O3 -Wall -msse2 -march=native -std=gnu99 -flto ${WORDSIZE} -fPIC -c 
+DYNFLAGS   = -flto -shared -Wl,-soname,${LIBNAME}
+BINFLAGS   = -flto

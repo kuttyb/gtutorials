@@ -1,9 +1,4 @@
-LIBRARY = true
-PROJECT = libfirst
-
-SOURCES          +=   \
-ptr.c                 \
-aptr.c                \
-temp.c
-
+TARGET_LIBRARY    = 1
+PROJECT           = code
+SOURCES          += aptr.c ptr.c temp.c
 

@@ -1,0 +1,9 @@
+## sample file
+
+TARGET_LIBRARY    = 1
+TARGET_BINARY     = 1
+PROJECT           = variable
+SOURCES          += a.c b.c c.c
+MAIN              = main.c
+
+

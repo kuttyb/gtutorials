@@ -1,8 +1,9 @@
-Q        = @
-WORDSIZE = -m64
-BIN = ./../bin
-SRC = ./../src
-LIB = ./../lib
-BINSOURCES  = 
-LIBSOURCES  =
-PROJECT     =
+# std directories
+SRC          = ./../src
+LIB          = ./../lib
+BIN          = ./../bin
+
+# compiler defines
+Q            = @
+LIBNAME      = ${LIB}/lib${PROJECT}.so
+BINNAME      = ${BIN}/${PROJECT}
