@@ -31,7 +31,7 @@ int main(void) {
 
   /** cause the fault */
   int *ptr = memptr;
-  for (int counter = 0; counter < SIZE; counter++) {
+  for (int counter = 2; counter < SIZE; counter++) {
     if (ptr[counter] ==  0x10) {
       printf("ooops\n");
     }
