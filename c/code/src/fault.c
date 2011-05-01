@@ -1,16 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
+#include <unistd.h>
 #include <signal.h>
 #include <sys/mman.h>
-#include <assert.h>
+
 
 #define SIZE  (4096)
 
 void *memptr;
 
 void handler(int signum) {
-  printf("handler invoked with 0x%x\n",
-	 signum);
+  printf("received protection fault\n");
   mprotect(memptr, SIZE * sizeof(int), PROT_READ | PROT_WRITE);
   printf("fixed memory restarting \n");
 }
@@ -24,7 +25,7 @@ int main(void) {
   assert(!sigaction(SIGSEGV, &action, NULL));
   
   /** allocate aligned memory */
-  assert(!posix_memalign(&memptr, 4096, SIZE * sizeof(int)));
+  assert(!posix_memalign(&memptr, getpagesize(), SIZE * sizeof(int)));
   assert(!mprotect(memptr, SIZE * sizeof(int), PROT_READ));
 
   /** cause the fault */
