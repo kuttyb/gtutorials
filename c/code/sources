@@ -6,6 +6,7 @@ barrierperf.c         \
 brk.c                 \
 filebackedmem.c       \
 filemem.c             \
+fault.c               \
 mem.c                 \
 nontemp.c             \
 ptr.c
