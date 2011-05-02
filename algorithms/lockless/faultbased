@@ -1,0 +1,39 @@
+atomic() {  
+  do {
+      addr = getaddr()
+      tail = addr + fixed_offset
+      oldnode = load(tail)
+      localnode = prepare local_node
+      CAS(tail, oldnode, localnode)
+  } while(addr != getaddr())
+}
+
+
+/** preempted CAS attempter */
+fault_handler(faulting_addr) {
+  condvar = hash.get(faulting_addr)	
+  lock(condvar.lock);
+	wait(condvar.var);
+  unlock(condvar.lock);
+}
+
+
+/** on starvation */
+onstarve(cas_addr, localnode) {
+  condvar = hash.get(cas_addr);
+  /** let the starved thread do a direct store to a new page */
+  lock(condvar.wplock);
+        writeprotect(page(cas_addr));
+	newpage = nextpage()
+	copyfrom(addr, newpage);
+	newtail = newpage + fixed_offset
+	store(newtail, localnode)
+	addr = newpage
+  unlock(condvar.wplock);
+
+  /** wake up any threads that faulted and slept on condvar */
+  lock(condvar.lock)
+	notifyall(condvar.var)
+  unlock(condvar.lock)
+}
+
