@@ -4,8 +4,8 @@ atomic() {
       tail = addr + fixed_offset
       oldnode = load(tail)
       localnode = prepare local_node
-      CAS(tail, oldnode, localnode)
-  } while(addr != getaddr())
+      bResult = CAS(tail, oldnode, localnode)
+  } while(!bResult || addr != getaddr())
 }
 
 
