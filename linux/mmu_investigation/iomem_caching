@@ -1,0 +1,6 @@
+$ARCH/include/asm/io.h
+ look for the ioremap_xxx functions. On architectures that have WC you ll find it there
+ along with other cache attributes.
+
+
+
