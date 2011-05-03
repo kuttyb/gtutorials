@@ -10,4 +10,15 @@ ISB : flushes instruction cache such that following instructions wont hit out of
 for all purposes consider normal and it uses weak consistency. adding a DMB
 provides sequential consistency.
 
-[read up on weak consistency again ... remind me does it require a read barrier?]
+Questions:
+-> Do we require an explicit read barrier?
+
+-> how can immutables be implemented?
+
+[For the above two read up on weak consistency]
+
+-> what exactly does shareable/nonshareable help with. Are they saving on cache coherence
+costs when its non shareable? Meaning assuming that cacheline is not present elsewhere?
+What about false sharing?
+
+
