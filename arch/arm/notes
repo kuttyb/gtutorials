@@ -1,0 +1,13 @@
+DMB : bidirectional full async barrier
+
+DSB : all of DMB + stops instruction pipeline until memory effects have completed
+
+ISB : send a bubble down the instruction pipeline
+
+
+3 types of memory normal/device/strongly ordered (really confusing) 
+
+for all purposes consider normal and it uses weak consistency. adding a DMB
+provides sequential consistency.
+
+[read up on weak consistency again ... remind me does it require a read barrier?]
