@@ -1,0 +1,25 @@
+2010 September ~ Present :  System Software Architect
+Lead cross functional efforts involving memory management/coherence/consistency models/scheduling between CUDA Graphics  Resource Manager and hardware teams for next generation GPUs and home grown CPUs. Implement Linux kernel VM changes for uniform address space changes.
+
+T40 Tegra Memory Consistency Models:
+Investigating changes required in the SW stack to implement Weak consistency model between Cortex A15 ARM CPU and Kepler generation GPU that share DRAM and memory controller but L2 caches are not coherent. Efforts involve changing fences/flushes/invalidates in gpu page table setup code / graphics context setup code / compute surface accesses. Also profiling hotspots in hw implementations of L2 flush/invalidate and volatile memory implementation.
+
+
+
+CUDA Page Based Memory Coherence (Upcoming Maxwell Architecture)
+The goal is to allow CUDA programs to pass pointers between CPU and GPU SM memories in a cache coherent way without asking programmers to do explicit memory copies. 
+
+This uses faults to do page copies implicitly. My role is to scope out changes in the Linux kernel VM and future hw to allow faster GPU fault handling and work closely with CUDA / Resource Manager and hw teams to implement proof of concept. Currently working on implementing MOESI in software to keep track of page ownership between CPU/GPU and do asynchronous page migrations using GPU's dma engines. False sharing is currently the largest problem investigating weaker consistency models which will allow GPU/CPU to modify the same page concurrently without causing page corruptions. 
+
+
+
+Unified CPU/GPU Address Space using Shadow Page Tables ( Project Orion: Denver ARM64 CPU / Kepler GPU)
+This is a home grown CPU with ARM ISA targetted for HPC markets and provides CPU/GPU hw cache coherence. Unfortunately there are two separate MMUs with separate page tables hence theres a bulk of work required in the kernel VM. The current implementation shadows CPU PTEs that have faulted on the GPU using separate shadow GPU Page tables. 
+
+My role is to scope out / drive Linux VM changes / hw changes required for unified address space implementation. In addition I am implementing asynchronous fault support for faults originating from GPU. This uses kernel worker threads that use the use_mm interface to switch in required user address space in kernel context and make the GPU fault look like a cpu fault. Other highlights include modifying PTE_DIRTY macros to lookup GPU PTEs in addition to CPU PTEs for LRU page eviction. This is to make sure pages accessed by GPU dont always get evicted by OS. set_pte_at and tlb_flush routines for ARM are also modified to do remote tlb shootdowns on the gpu. Working closely with hw to improve GPU TLB invalidate performance. To avoid routing every CPU TLB inval request to GPU borrowed an extra bit in ARM PTE to record if the PTE is being shadowed on the GPU. Profiling impact of CPU initiated GPU TLB invalidate on GPU threads and working with hw to decrease victim latency.
+
+
+Win7 Asynchronous Page Swapping Support:
+Worked closely with DX and kernel software teams to design a highly concurrent efficient software pipeline that swaps out pages for contexts that have just completed and swaps in pages that are about to be used without letting graphics contexts wait or add bubbles in the execution pipeline. 
+
+---------------------------------------
