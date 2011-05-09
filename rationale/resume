@@ -39,8 +39,28 @@ Our current verif infrastructure uses a test layer to introduce events that will
 While useful this only helps cause the events not control the order in which our ISR code sees various events. Introduced a new probe based approach where probes are inserted into production driver ISR code. In the diag environment selected probes can be reprogrammed on the fly with code that waits for events. This helps us test various event ordering combinations in ISR code.
 Deployed this widely and used it to flesh out bugs in the Scheduling code and Power Management code.
 
-2008 Dec ~  2010 July
-Fermi Architecture Chip Lead
-Lead the overall technical efforts for Fermi Generation GPUs for the Resource Manager Team from fmodel simulation through emulation/FPGA and Silicon Bringup.
-My role was to drive all technical issues pertaining to this architecture and the Resource Manager Team, interact with HW/Compute/OpenGL/
-DirectX teams and delegate work to team members.
+2008 Dec ~  2010 July [elaborate ...]
+Fermi Architecture Chip Lead 
+Lead the overall technical efforts for Fermi Generation GPUs for the Resource Manager Team from fmodel simulation through RTL/emulation/FPGA and Silicon Bringup.
+My role was to drive all technical issues pertaining to this architecture for the Resource Manager Team, interact with HW/Compute/OpenGL/
+DirectX teams and delegate work to team members. Familiar with most parts of the Fermi GPU including scheduler/mmu/caches/context switch/display/compute/clocks. Do first level triage of incoming issues and saw myself become an ace debugger for GPU issues. Helped new members of the team write better diagnostic tools.
+
+
+
+Concurrent Utilities (Java/C):
+Fair spin lock: Ticket locks on x86 implemented using locked add limit throughput by disallowing threads from gaining lock until they hold the ticket. Modified this to do range based ticket locking in which all ticket owners within a certain range can claim lock.
+
+Greedy Cache Efficient Spinlock (distributed spinlock) Implemented a spinlock where groups of threads spin on node locks and global queue does arbitration between separate node locks. When local node lock has no further contenders instead of releasing lock back to global queue this implementation keeps it there and lets other nodes steal it lazily using proxy threads. Reduces cacheline traffic substantially.
+
+Concurrent Radix Tree: Implemented a lockless radix tree with a modulo based Bloom Filter to avoid lengthy lookups for common cases. Updates are done using optimistic loops.
+
+Starvation Free Optimistic Loops: <work in progress> The goal is to allow threads that starve upon unsuccessfully trying to do their commits to write protect the page containing the CAS pointers. Faulting threads in their fault handlers queue in a wait queue. Havent completed this yet ...
+
+
+Fermi NonStall Interrupts and Lockless ISR
+Worked closely with hw to route critical interrupts that impact graphics throughput to become non stalling. Rewrote the ISR for this separate interrupt tree from scratch to have a very minimal data dependency with the main ISR tree or other parts of the driver. This path also uses extremely fine grained spin locks and/or lockless data structures.
+
+
+------------------------------
+
+2005 June  ~ 
