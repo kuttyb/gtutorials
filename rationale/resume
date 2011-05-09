@@ -2,7 +2,7 @@
 Lead cross functional efforts involving memory management/coherence/consistency models/thread scheduling between CUDA/Graphics/Os  and hardware teams for next generation GPUs and home grown CPUs. 
 
 
-Page Table Coherence between CPU/GPU
+Page Table Coherence between CPU/GPU (Denver CPU)
 This is a home grown ARM64 CPU tightly coupled with GPU for HPC and provides CPU/GPU hw cache coherence but two separate MMUs. The goal of this project is to provide uniform address space between CPU/GPU.
 
 My role is to scope out / drive Linux VM subsystem changes / hw changes required for unified address space implementation. In addition I am implementing asynchronous fault support for faults originating from GPU. This uses kernel worker threads that use the use_mm interface to switch in required user address space in kernel context and make the GPU fault look like a cpu fault. Other highlights include modifying PTE_DIRTY macros to lookup GPU PTEs in addition to CPU PTEs for LRU page eviction. This is to make sure pages accessed by GPU dont always get evicted by OS. set_pte_at and tlb_flush routines for ARM are also modified to do remote tlb shootdowns on the gpu. Working closely with hw to improve GPU TLB invalidate performance. To avoid routing every CPU TLB inval request to GPU borrowed an extra bit in ARM PTE to record if the PTE is being shadowed on the GPU. Profiling impact of CPU initiated GPU TLB invalidate on GPU threads and working with hw to decrease victim latency.
@@ -40,8 +40,9 @@ While useful this only helps cause the events not control the order in which our
 Deployed this widely and used it to flesh out bugs in the Scheduling code and Power Management code.
 
 2008 Dec ~  2010 July [elaborate ...]
-Fermi Architecture Chip Lead 
-Lead the overall technical efforts for Fermi Generation GPUs for the Resource Manager Team from fmodel simulation through RTL/emulation/FPGA and Silicon Bringup.
+Senior Software Engineer (RM Chip Lead Fermi Architecture)
+
+Lead the overall technical efforts for Fermi Generation GPUs for the Resource Manager(RM) Team from fmodel simulation through RTL/emulation/FPGA and Silicon Bringup.
 My role was to drive all technical issues pertaining to this architecture for the Resource Manager Team, interact with HW/Compute/OpenGL/
 DirectX teams and delegate work to team members. Familiar with most parts of the Fermi GPU including scheduler/mmu/caches/context switch/display/compute/clocks. Do first level triage of incoming issues and saw myself become an ace debugger for GPU issues. Helped new members of the team write better diagnostic tools.
 
@@ -58,11 +59,33 @@ Starvation Free Optimistic Loops: <work in progress> The goal is to allow thread
 
 
 Fermi NonStall Interrupts and Lockless ISR
-Worked closely with hw to design a new interrupt tree for handling critical non stall interrupts. Rewrote the ISR for this separate interrupt tree from scratch to have a very minimal data dependency with the main ISR tree or other parts of the driver. This path also uses extremely fine grained spin locks and/or lockless data structures.
+Worked closely with hw to design a new interrupt tree for handling critical non stall interrupts. Rewrote the ISR for this separate interrupt tree from scratch to have very minimal data dependency with the main ISR tree or other parts of the driver. This path also uses extremely fine grained spin locks and/or lockless data structures.
 
 
 ------------------------------
-2006 Sep ~ 2008 Dec (Fermi Thread Scheduling: SW Lead)
+2006 Sep ~ 2008 Dec (Fermi Thread Scheduling: Software Component Lead)
+Lead the thread scheduling unit (Host) changes in Fermi from Software. Work involved closely interacting with OpenGL/CUDA/DirectX teams to identify hotspots, pitfalls in previous generations and drive changes with hw and implement required changes in Resource Manager.
+
+Multiple PBDMA: In previous architectures there was a single unit (PBDMA) that would fetch instructions decode and feed to downstream engines. Based on perf experiments this was causing pipeline bubbles in the engine and not able to saturate PCIe bandwidth properly. My role here was to identify the perf problems and implement SW changes in Resource Manager to split/schedule instruction streams between multiple PBDMAs. Involved tweaking context switch timeslices based on workload characteristics.
+
+Vista WDDM Scheduling Support in HW:  Vista OS scheduler queues work in a pipeline based on dependencies between user mode apps. In previous architectures we tried to mimic strict ordering of work on a time sliced scheduler by patching instruction stream with aquire/releases to force ordering. This caused severe bubbles and power wastage. 
+Drove efforts to move this entirely in hw by maintaining separate work queues (runlists) fed directly by the OS. This is called Buffered Mode Scheduling. Implemented SW changes required to adapt to this new scheduling mode.
+
+Perf Problems with Buffered Mode Scheduling: Even though work from different contexts was serialized in a queue, it wasnt taking advantage of prefetching or pipelining hence context load operations were becoming stalling. Drove efforts to fix this in hw by allowing hw to start work on context loading n-1 context while context n was being saved back. This allowed TLBs/caches/MMU directories to get properly warmed up before work start flowing through for the new context.
+
+Per Engine Runlists: Runlists are SW queues containing schedulable contexts read directly by hw. Previous architectures used a single runlist, split this into separate nodes to avoid graphics and compute work tasks from accidentally serializing behind each other.
+
+Redesigned runlist data structures to minimize locking with hw by using double buffering. Also moved to an indexed bitmap implementation to get better CPU caching and make searches faster.
+
+Software methods(traps) allow for pipeline execution of CPU code with GPU code. Redesigned software method handling to be able to execute multiple methods from a single interrupt to avoid interrupt latencies. Also supports out of order execution of SW methods when they are interleaved with hw methods.
+
+Self Modifying Code: To avoid PCIe latency work is regenerated from within the GPU or fetched and expanded by the GPU. This reqiures instruction pipeline patching on a live system. Worked closely with hw to provide SW support to do this with minimal noops and acquire release instructions. Helped interns write better debugger extensions to monitor instruction pipeline states.
+
+Power Aware Scheduling (ELPG): When there is no incoming work for a certain engine a timer kicks in and we disable that engine and block scheduling any further work on it. Next time OS sends more work we take a trap revive the engine and let work flow through. My role here was to design safely stopping work scheduling and reviving scheduling taking into account multiple race conditions and without dropping instructions. The actual implementation was done by other members of my team.
+
+Fault Recovery: Worked closely with hw team to design SW for recovery from page faults, engine hangs and other error conditions. Actual implementation was done by other members of my team.
+
+Verification: I was responsible for driving SW verification of the Instruction Pipeline and Thread Scheduling units in hw. Designed wrote and drove several test suites including unit randoms for hw test bench, fullchip tests and large system stress tests.
 
 2006 Jan ~
 Fermi GPU Architecture: Was one of the first sw engineers to start work on the new architecture. Worked with hw to improve problems from previous architectures and wrote the initial code for MMU/CtxSw/Cache until these areas were better staffed. Then went on to take ownership of Thread Scheduling Component
