@@ -58,9 +58,30 @@ Starvation Free Optimistic Loops: <work in progress> The goal is to allow thread
 
 
 Fermi NonStall Interrupts and Lockless ISR
-Worked closely with hw to route critical interrupts that impact graphics throughput to become non stalling. Rewrote the ISR for this separate interrupt tree from scratch to have a very minimal data dependency with the main ISR tree or other parts of the driver. This path also uses extremely fine grained spin locks and/or lockless data structures.
+Worked closely with hw to design a new interrupt tree for handling critical non stall interrupts. Rewrote the ISR for this separate interrupt tree from scratch to have a very minimal data dependency with the main ISR tree or other parts of the driver. This path also uses extremely fine grained spin locks and/or lockless data structures.
 
 
 ------------------------------
+2006 Sep ~ 2008 Dec (Fermi Thread Scheduling: SW Lead)
+
+2006 Jan ~
+Fermi GPU Architecture: Was one of the first sw engineers to start work on the new architecture. Worked with hw to improve problems from previous architectures and wrote the initial code for MMU/CtxSw/Cache until these areas were better staffed. Then went on to take ownership of Thread Scheduling Component
+
+Fermi MMU: Fermi dropped support for segmentation and moved to a 40bit flat address space with paging.
+  NOMMU Support: Fixed the page table/heap management code to support fixed address translation such that address before and after mmu translation match. Very useful for bringing up new MMU HW to find bugs.
+
+  Page Table Support: Wired up initial code Fermi dual page tables. Fermi supports dual page table format such that a single PDE can point to two page tables in parallel. Very useful for moving pages between sysmem and vidmem for asynchronous swapping. Wired up code to support this in the MMU layer.
+  
+  Added code to support TLB invalidates. Optimized allocators to make sure adjacent virtual addresses can get better TLB coverage since GPU TLBs can be prefetched and coalesced into a single entry for adjacent addresses.
+  Added code to minimize TLB invalidates and aggregate them to better exploit lazy range based invalidates. Fermi invalidates are fairly expensive on Graphics clients.
+  Added a no TLB invalidate option to speed up RTL simulation runs. This allows surfaces to be aligned such that they dont require invalidates during small test runs. This helped bring test time down by 10%
+
+  Graphics Context Switch: Work closely with HW team to move context switching from RTL implementation to microcode. Helped run perf experiments to identify areas where back to back contexts can save and load in parallel using better pipelining. Wrote initial version of SW code to support ctxsw. This component was latter staffed by a fulltime lead.
 
 2005 June  ~ 
+Curie GPU Architecture: Debug, fix bugs, find performance hotspots and do bringup.
+  Zero FB Turbo Cache: A lowend GPU with no video memory. Helped the memory component lead make changes in the heap code to route surfaces to cpu memory without breaking APIs with clients. 
+
+  Debug and fix bugs Thread Scheduling / Virtual Memory / Context switch and Power Management code. Help with performance analysis
+  of thread scheduling and identify weak areas in hw.
+
