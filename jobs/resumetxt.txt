@@ -12,7 +12,7 @@ Also involves hands on coding in individual projects.
 Page Table Coherence (Project Orion) 
 -> Goal is to provide uniform address space between Denver(NVIDIA owned) CPU and GPU
 -> My role is to scope out hw changes and drive Linux kernel VM  changes.
--> Implementing asynchronous fault handling in the Linux kernel for faults originating from GPU. Uses worker threads and use_mm interface to switch in appropriate context for fault handling.
+-> Implementing asynchronous fault handilng in the Linux kernel for faults originating from GPU. Uses worker threads and use_mm interface to switch in appropriate context for fault handling.
 -> Also includes modifying PTE_DIRTY macros to look up GPU PTEs during page eviction. set_pte_at/tlb_flush routines modified to do remote GPU TLB shootdowns.
 -> Driving GPU TLB hw changes required to improve invalidation latencies.
 
