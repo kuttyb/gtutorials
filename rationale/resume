@@ -24,20 +24,9 @@ False sharing is a huge problem with this approach. Another team is investigatin
 
 
 ---------------------------------------
-2010 Aug ~ Sep 2010
-Win7 Asynchronous Page Swapping Support for Graphics Working Set:
-Helped in a supporting role, DirectX and OS software teams design implement and debug a software pipeline that steals pages/resources from graphics processes that are idle and places acquires in their instruction pipeline to reclaim pages before next execution. My contribution was to inject stalling instructions in the instruction stream to do the stealing/reclamation part.
-
-Windows 8 Mid Buffer Preemption to improve Graphics/Compute Interactivity:
-The goal is to allow the OS to queue a long list of work buffers upfront to increase pipelining and prefetching gains yet let OS insert new work or change already inserted work on the fly with minimal overhead. My role was to design/implement and debug the instruction stream modification software with the necessary invalidates/flushes.  This project was eventually discarded because preemption latencies were unacceptable on current GPU hw. 
-Working with closely with hw to improve graphics preemption latency for the Maxwell generation of GPUs.
+---------------------------------------
 
 
-2010 June ~ Aug 2010
-Deterministic Verification of Asynchronous Events:
-Our current verif infrastructure uses a test layer to introduce events that will cause interrupts to test the ISR code in driver. 
-While useful this only helps cause the events not control the order in which our ISR code sees various events. Introduced a new probe based approach where probes are inserted into production driver ISR code. In the diag environment selected probes can be reprogrammed on the fly with code that waits for events. This helps us test various event ordering combinations in ISR code.
-Deployed this widely and used it to flesh out bugs in the Scheduling code and Power Management code.
 
 2008 Dec ~  2010 July [elaborate ...]
 Senior Software Engineer (RM Chip Lead Fermi Architecture)
@@ -45,6 +34,11 @@ Senior Software Engineer (RM Chip Lead Fermi Architecture)
 Lead the overall technical efforts for Fermi Generation GPUs for the Resource Manager(RM) Team from fmodel simulation through RTL/emulation/FPGA and Silicon Bringup.
 My role was to drive all technical issues pertaining to this architecture for the Resource Manager Team, interact with HW/Compute/OpenGL/
 DirectX teams and delegate work to team members. Familiar with most parts of the Fermi GPU including scheduler/mmu/caches/context switch/display/compute/clocks. Do first level triage of incoming issues and saw myself become an ace debugger for GPU issues. Helped new members of the team write better diagnostic tools.
+
+Deterministic Verification of Asynchronous Events:
+Our current verif infrastructure uses a test layer to introduce events that will cause interrupts to test the ISR code in driver. 
+While useful this only helps cause the events not control the order in which our ISR code sees various events. Introduced a new probe based approach where probes are inserted into production driver ISR code. In the diag environment selected probes can be reprogrammed on the fly with code that waits for events. This helps us test various event ordering combinations in ISR code.
+Deployed this widely and used it to flesh out bugs in the Scheduling code and Power Management code.
 
 
 
@@ -86,6 +80,27 @@ Power Aware Scheduling (ELPG): When there is no incoming work for a certain engi
 Fault Recovery: Worked closely with hw team to design SW for recovery from page faults, engine hangs and other error conditions. Actual implementation was done by other members of my team.
 
 Verification: I was responsible for driving SW verification of the Instruction Pipeline and Thread Scheduling units in hw. Designed wrote and drove several test suites including unit randoms for hw test bench, fullchip tests and large system stress tests.
+
+2010 Aug ~ Sep 2010
+Win7 Asynchronous Page Swapping Support for Graphics Working Set:
+Helped in a supporting role, DirectX and OS software teams design implement and debug a software pipeline that steals pages/resources from graphics processes that are idle and places acquires in their instruction pipeline to reclaim pages before next execution. My contribution was to inject stalling instructions in the instruction stream to do the stealing/reclamation part.
+
+Windows 8 Mid Buffer Preemption to improve Graphics/Compute Interactivity:
+The goal is to allow the OS to queue a long list of work buffers upfront to increase pipelining and prefetching gains yet let OS insert new work or change already inserted work on the fly with minimal overhead. My role was to design/implement and debug the instruction stream modification software with the necessary invalidates/flushes.  This project was eventually discarded because preemption latencies were unacceptable on current GPU hw. 
+Working with closely with hw to improve graphics preemption latency for the Maxwell generation of GPUs.
+
+   <... put this under host along with virtual context and virtual channels>
+
+
+
+
+
+
+
+
+
+
+
 
 2006 Jan ~
 Fermi GPU Architecture: Was one of the first sw engineers to start work on the new architecture. Worked with hw to improve problems from previous architectures and wrote the initial code for MMU/CtxSw/Cache until these areas were better staffed. Then went on to take ownership of Thread Scheduling Component
