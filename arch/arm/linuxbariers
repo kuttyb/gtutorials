@@ -1,0 +1,13 @@
+looks like a mess for userland 
+
+http://lists.casi.polymtl.ca/pipermail/ltt-dev/2010-June/002739.html
+
+http://gcc.gnu.org/ml/gcc-patches/2008-07/msg00025.html
+
+GCC __sync_synchronize() uses a kernel function at a fixed location. essentially a bastardized vdso like gettimeofday
+except its not data but code :-)
+
+-----------------------------------
+should probably try inline assembly directly
+
+
