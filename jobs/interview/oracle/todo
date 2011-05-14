@@ -1,0 +1,18 @@
+<a> aio (linux/solaris)
+
+<b> multiplexed I/O (epoll / /dev/poll)
+
+<c> NUMA
+
+-------------
+<d> sorting 
+
+<e> revisit trees (your listed data structures) 
+    <especially b-trees radix trees>
+-------------
+
+<f> revisit your own locks
+
+<g> replication / fault recovery (tanenbaum)
+
+
