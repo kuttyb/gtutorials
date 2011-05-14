@@ -22,6 +22,13 @@ fault_handler(faulting_addr) {
 onstarve(cas_addr, localnode) {
   condvar = hash.get(cas_addr);
   /** let the starved thread do a direct store to a new page */
+  /** this is a sleep lock and if you sleep here it is because some other thread starved and 
+      was doing this read copy update to new page with write protect on old page.
+      TODO: explore if we can queue this thread in a separate queue and flush all contestants 
+            of that queue before releasing write protection.
+	    As you can imagine it has the happy side effect of making this a sleep lock under
+	    massive contention which is what we want!!
+  */
   lock(condvar.wplock);
         writeprotect(page(cas_addr));
 	newpage = nextpage()
