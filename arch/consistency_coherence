@@ -8,3 +8,10 @@ Coherence is about ... hmmm wish I knew I have an idea but lets find out more.
 Chris' e.g., is simple have separate variables sit on a cacheline. stores to these
 variables by separate threads should not cause corruption.
 
+Ian Bucks explanation ...
+Consistency
+is about how different processors perceive writes to different locations
+
+Coherence
+is about how different processors perceive writes to the same location
+
