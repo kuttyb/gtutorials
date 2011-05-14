@@ -13,3 +13,22 @@ by 64MB
 
 --------------------
 btw you ll also need to setup counters else you ll never be able to reset a bit
+
+
+UPDATE:
+so if you are storing 4 bit numbers then a bitmask data structure to store all possible numbers would take 16bits. 
+In this case the bitmask is your filter.
+
+
+Consider if the number was 32bit unsigned instead. The bit mask will require 2^32 bits thats 512MB... not good.
+
+So you cheat... by giving it lesser than 2^32 bits say 64bits. When you do that you ll have associativity problems. Fair enough 
+that explains the false positives. But you wont have false negatives so the "not present" search is fast.
+
+so inputnumber % 64 = modulo  check if this bit is present in the modulo mask if yes go do the search if not bail.
+
+to increase your chances of getting not present indications from the mask do 
+( inputnumber % 64 ) % 64 and set/test bits in this new mask. Why? because modulo and division provide different bit coverage ..
+kind of spreads out your coverage.
+
+--- Cameron pointed out this is called Bloom filters
