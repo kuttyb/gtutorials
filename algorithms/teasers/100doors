@@ -1,0 +1,12 @@
+http://www.techinterview.org/post/526370758/100-doors-in-a-row
+
+bottomline every door will be visited based number of divisors it has. 1 and self are divisors question is how many other 
+divisors does it have.
+
+for 24 -> {1, 2, 3, 4, 24} thats 5 divisors or odd therefore door will be open
+
+for perfect squares you ll have only 3 divisors so they ll be open. though the conclusion on the above page that _only_
+perfect squares will be open is not correct.
+
+
+<Revise LCM/GCD>

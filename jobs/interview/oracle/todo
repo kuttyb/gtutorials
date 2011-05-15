@@ -5,7 +5,7 @@
 
 <c> NUMA
 
-<d> RCU and reader writer locks
+++ <d> RCU and reader writer locks
 
 
 ------- Data Structures -------
