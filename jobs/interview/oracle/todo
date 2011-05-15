@@ -1,18 +1,23 @@
+------- OS -------
 <a> aio (linux/solaris)
 
 <b> multiplexed I/O (epoll / /dev/poll)
 
 <c> NUMA
 
--------------
-<d> sorting 
+++ <d> RCU and reader writer locks
 
-<e> revisit trees (your listed data structures) 
+
+------- Data Structures -------
+<a> sorting 
+
+<b> revisit trees (your listed data structures) 
     <especially b-trees radix trees>
--------------
 
-<f> revisit your own locks
 
-<g> replication / fault recovery (tanenbaum)
+------- Distributed Systems -------
+<a> revisit your own locks
+
+<b> replication / fault recovery (tanenbaum)
 
 
