@@ -1,0 +1,9 @@
+The scheduling problem is "the how, the whom, the where" problem
+
+--> the how is the how long and how often problem 
+    given a thread how long and how often do I schedule it
+
+--> the whom problem is to pick between the most urgent and the most important
+
+--> the where problem is whether to migrate or to wait
+
