@@ -1,0 +1,12 @@
+Whether to use large pages or small pages is an area of tension between two opposing camps:
+
+<a> TLB Coverage:
+    % of the total VA covered by your TLBs. This demands that you have large pages
+
+<b> Paging I/O && Internal Fragmentation
+    These demand that the page size be small. Why? Because you writeback more data with large pages that have had small changes
+    and the latter is obvious.
+
+
+Contig bits in the TLB and TLB coalescing allows us to solve both. Which is what the GPUs do.
+
