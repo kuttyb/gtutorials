@@ -1,4 +1,4 @@
-The scheduling problem is "the how, the whom, the where" problem
+The scheduling problem is "the whom, the how, the where" problem
 
 --> the how is the how long and how often problem 
     given a thread how long and how often do I schedule it
@@ -6,4 +6,11 @@ The scheduling problem is "the how, the whom, the where" problem
 --> the whom problem is to pick between the most urgent and the most important
 
 --> the where problem is whether to migrate or to wait
+
+....
+In addition there are other problems like affinity, coscheduling, optimize
+for latency or throughput or a bit of both and of course preemption. 
+
+PREEMPTION: Having made the above decisions if I decided to change my mind can I stop
+someone scheduled and schedule somebody else or do I have to wait for completion
 
