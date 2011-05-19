@@ -1,0 +1,16 @@
+http://www.youtube.com/watch?v=JRsN4Oz36QU&feature=related
+<lecture 14 and 15>
+
+root is black
+
+all external nodes[1] have the same black depth
+
+red node cant have red children (red red violation)
+
+.....
+bottomline its a bst which attempts to be very balanced (viz., stay at height lg n) by following these
+funky rules
+
+
+
+[1] nodes that dont have children have external nodes added to them

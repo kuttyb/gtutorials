@@ -4,6 +4,8 @@ http://oss.sgi.com/projects/page_fault_performance/
 
 bottomline the fault handling path takes a read semaphore on mmap_sem which means
 multiple fault handlers will be in that code simulataneously.
+<UPDATE: the read semaphore uses a refcnt to increment reader count. thats no good its no better than a CAS as far
+as cacheline ping pong is concerned>
 
 problem comes from the fact that the finest lock they have is per page table. 
 thats usually not good enough beyond 4 cpus (heck look whos talking :-))
