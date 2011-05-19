@@ -17,3 +17,21 @@ HAT where locking is maintained completely within the HAT layer (and therefore b
 Linux does the locking in VM and then invokes the write pte routines (pte_offset_map_lock)
 
 
+----------------
+typical access pattern being 
+pte_t* va = pte_offset_map_lock(mm, pmd, ....)
+   read write modify ptes within bracket
+pte_unmap_unlock(va)
+
+The bracket above will take care of mapping/ reusing existing maps and locking and that is arch specific:
+
+<a> x86_32 they map/unmap into kernel space each time
+http://lxr.linux.no/linux+v2.6.39/arch/x86/include/asm/pgtable_32.h#L52
+
+<b> for x86_64
+all page tables are always mapped in the kernel 
+Difference with seg_kpm being:
+-> with the latter the entire memory is always mapped
+-> I see no evidence the Linux version uses large pages so you could waste a lot of memory doing this for just holding
+   your kernel page tables
+http://lxr.linux.no/linux+v2.6.39/arch/x86/include/asm/pgtable_64.h#L142

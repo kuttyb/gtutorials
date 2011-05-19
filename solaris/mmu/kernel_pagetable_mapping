@@ -7,6 +7,7 @@ Essentially to modify PTEs for an arbitrary context the kernel has to get a VA. 
 <a> map page tables in user address space and write protect from user
     OR
 <b> maintain a peephole in kernel a cache of page table mappings (essentially how we use BAR2)
+    <only difference being they maintain per cpu peepholes to avoid contention>
 
 with the former on x86 some processors inval entire TLB on CR3 modification. I m told modern AMD ones are more clever and dont trash
 TLBs i.e., internally they understand ASIDs but havent changed the external API yet.
