@@ -1,7 +1,9 @@
 http://www.mjmwired.net/kernel/Documentation/preempt-locking.txt
 
-dont need it if you are using an explicit spinlock or are disabling interrupts. Typically used around per cpu variables where
+-> dont need it if you are using an explicit spinlock or are disabling interrupts. Typically used around per cpu variables where
 all you want to watch out for is to make sure the current thread doesnt migrate away.
+
+-> btw DISABLE PREEMPTION != IRQ DISABLE
 
 < Been thinking of a weaker model of that where instead of disabling preemption you just mark your current thread unmoveable >
 
