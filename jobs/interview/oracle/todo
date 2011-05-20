@@ -5,19 +5,13 @@
 
 <c> NUMA
 
-++ <d> RCU and reader writer locks
-
-
 ------- Data Structures -------
 <a> sorting 
 
-<b> revisit trees (your listed data structures) 
-    <especially b-trees radix trees>
+<b> revisit trees (rb/avl/btrees)
+    go through exercises you ve written down
 
+------- C -------
+<a> bit twiddling
 
-------- Distributed Systems -------
-<a> revisit your own locks
-
-<b> replication / fault recovery (tanenbaum)
-
-
+<b> strings

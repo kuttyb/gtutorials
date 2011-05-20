@@ -37,18 +37,16 @@ How? Bottomline tasks are serialized and sorted (whether literally in
 a linear data structure or placed in a sorted struct like btree/red
 black tree/skip list is a different question).
 
-CFS sorts the list on the basis of longest wait time whereas SS sorts
-it on the least runsofar time. CFS picks the task thats waited the
-most and schedules it. Everytime theres a tick it adds the time
-executed * inverse of ticket strenth and compares with the sorted list
-to see if another task has a higher need to run? If yes it switches
-the current task out. No consideration for caches are given AFAIK.
+CFS and SS both maintain a sorted weighted list of runnables.
+The weight is the amount of time spent on the CPU and the pick
+algorithm is to pick the task that has run the least.
 
-SS does the opposite. It picks the least_run_task and after a task is
-run for a quantum, it adds run * inverse_ticket_strength to its
-tally. If this causes another task to be the least run task it does
-the switch.
+You pick it and launch it for time == diff with second most starved
+thread. So yes if you wanted to go tickless there you have it.
 
-I *believe* the latter is easier to implement since the former *might*
-involve updating a lot of elements in the tree.
+When you re done running before readding you add runtime to this
+thread and insert it somewhere else in the list. In the original
+Stride Scheduling model you multiply it with inverse of ticket
+strength. So if you re a powerful process you will be effected less.
+
 
