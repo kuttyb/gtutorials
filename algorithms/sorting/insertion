@@ -1,0 +1,22 @@
+in-place: left part is always sorted right part is not. go from left to right picking elements and "inserting" them 
+into their correct place on the left side.
+
+Runtime is O(n^2) because each insertion requires searching left completely worst case and there is a right shift.
+
+
+CODE: (my own and not from Cormen .. :-))
+
+for (i = 1; i < a->length; i++) {
+    const int value = a[i];
+    int counter     = 0;
+
+    while(counter < i && a[counter] < value) { 
+        counter++;
+    }
+
+    if (counter != i) {
+       rightRotate(a, ctr, a->length - 1);   // rightRotate(array, start, end)
+       swap(a, ctr, i++)'
+    }
+}
+
