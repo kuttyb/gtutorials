@@ -12,8 +12,10 @@ void mergesort(A, low, high) {
      if (low >= high) return;
 
      mid = (low + high) / 2;
-     mergesort(A, low, mid);
-     mergesort(A, mid + 1, high);
+     async {
+          mergesort(A, low, mid);
+	  mergesort(A, mid + 1, high);
+     }
      merge(A, low, mid, high);
 }
 
