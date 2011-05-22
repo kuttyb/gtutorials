@@ -1,0 +1,14 @@
+well ... for completeness lets write this one down too :-) would be embarassing in an interview
+if of all the sorts guy didnt know this one!!
+
+
+swapped = true;
+while(swapped) {
+    swapped = false;	      
+    for(i = 1; i < n; i++) {
+        if A[i-1] > A[i] {
+	   swap(A[i-1], A[i]);
+        }
+    }
+}
+
