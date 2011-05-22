@@ -1,0 +1,36 @@
+The idea is to split array into smaller components, sort them then merge them.
+Worst case time is O(n Lg(n)). Lg n is the split part n being the merge part.
+
+The operative idea being:
+-> sorting smaller arrays are faster
+-> merging sorted arrays is O(n) not O(n^2) (like it is with insertion sort)
+
+=================================================
+	RECURSIVE
+=================================================
+void mergesort(A, low, high) {
+     if (low >= high) return;
+
+     mid = (low + high) / 2;
+     mergesort(A, low, mid);
+     mergesort(A, mid + 1, high);
+     merge(A, low, mid, high);
+}
+
+void merge(A, low, mid, high) {
+     left  = low;
+     right = mid + 1;
+     size  = high - low + 1;
+
+     for (i = 0; i < size; i++) {
+     	 if (A[left] < A[right]) {
+	    new[i] = A[left++];
+	 } else if (A[left] > A[right]) {
+	    new[i] = A[right++];
+	 } else {
+	    new[i] = A[left++];
+	    right;
+	 }
+     }     
+}
+
