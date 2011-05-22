@@ -1,4 +1,24 @@
-
+< watch these two lectures very very well explained >
 Lecture 20
 Lecture 21
 http://www.youtube.com/watch?v=HjPmZuOXkHQ&feature=related
+
+nlg(n) 
+
+HEAP SORT:
+   create heap in place from input array [1] // this  is O(n)
+   for (i = 0; i < n; i++) {                 // this  is lg(n)
+       swap(i, n - i);    // this is called min-delete
+       heapify(i);        // since root is always the min node in a min-heap
+   }
+
+
+[1] for (i = floor(n/2); i > 0; i++) {
+    	heapify(i);
+    }
+
+    heapify(A, i) {
+        check if a[i] is not smaller than children
+	if not swap with smallest child
+	heapify(new smallest child)    	       
+    }
