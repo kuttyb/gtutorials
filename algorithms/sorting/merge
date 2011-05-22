@@ -34,3 +34,28 @@ void merge(A, low, mid, high) {
      }     
 }
 
+
+=================================================
+	Iterative
+=================================================
+The idea is to form a sorting network. We need to work more to extend our
+existing Messaging Libraries ParallelMessage to better support Parallel
+Networks but for now this should do. This has the drawback that it 
+lock steps over each row of the network whereas in reality thats not 
+strictly true.
+
+void mergesort(A, low, high) {
+     totalelements = high - low + 1;
+     totalrows = logBase2(RoundUpPowerOf2(totalelements));
+
+     for (rownum = 0; rownum < totalrows; rownum++) {
+     	 stride = 1 << (rownum + 1);
+
+	 parallel_for(colnum = 0; < totalelements / stride; colnum++) {
+	 	start = colnum * stride;
+		merge(A, start, (start + stride) / 2, start + stride - 1);
+	 }
+
+     }
+}
+
