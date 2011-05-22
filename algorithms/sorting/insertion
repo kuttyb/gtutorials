@@ -8,12 +8,12 @@ CODE: (my own and not from Cormen .. :-))
 
 for (i = 1; i < a->length; i++) {
     const int value = a[i];
-    int counter     = 0;
 
-    while(counter < i && a[counter] < value) { 
-        counter++;
-    }
+    // find the correct spot on the left
+    for (counter = 0; counter < i && a[counter] < value; counter++) {}
 
+    // having found the right spot insert it
+    // involves rightRotate and swap
     if (counter != i) {
        rightRotate(a, ctr, a->length - 1);   // rightRotate(array, start, end)
        if (i != a->length -1) {
