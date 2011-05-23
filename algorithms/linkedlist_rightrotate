@@ -1,0 +1,9 @@
+
+list->head->next = list->tail
+
+t = list->tail->next
+
+list->tail->next = NULL
+
+list->tail = t
+
