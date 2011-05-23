@@ -1,0 +1,12 @@
+
+while (lo <= hi) {
+
+ mid = lo + (hi -lo)/2;
+ if (a[mid] == key) return true;
+
+ if (key > a[mid]) lo = mid + 1;
+ else hi = mid - 1;
+}
+
+return false;
+

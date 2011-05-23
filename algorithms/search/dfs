@@ -1,0 +1,23 @@
+
+push(root)
+parallel_while( (node = stack.get()) != null) {
+    if (node.value() == key) {
+       terminate_signal_broadcast(stack);
+       return true;
+    }
+
+    for_each((tempnode = node.children()) != null) {
+        stack.push(tempnode);
+    }
+}
+
+NOTE:
+<a> replace stack with fifoqueue and you have bfs. notice that parent gets processed before its immediate children so its still inorder
+but because the while loop is parallel left right ordering cannot be guaranteed
+
+<b> Stack is not really a single stack but implement a special striped stack such that pushes are striped across several. Ideally 
+we want dedicated threads sleeping on individual stacks and the goal is to minimize lock contention.
+
+
+
+
