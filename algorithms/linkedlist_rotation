@@ -1,0 +1,19 @@
+1 = null
+2 = null
+
+for (node = tail; node;  node = 1) {
+    1 = node->next;
+    node->next = 2;
+    2 = node;
+}
+swap(head, tail)
+
+
+-----------------------------------
+swap(x,y) {
+ z = y
+ y = x
+ x = y
+}
+
+-----------------

@@ -1,0 +1,30 @@
+essentially you split the work into two phases to get some pipelining benefits...
+<a> discover (where you parse linked list and add nodes to stack)
+
+<b> reverse  (where you walk stack and reverse pointers)
+
+<a> and <b> have some concurrency that can be enjoyed
+
+--------------------------
+Node *temptail = list->tail
+
+while (*tempTail != *list->head) {
+
+  // discover phase
+  for (node = temptail; node; node = node->next) {
+     while(!stack.full()) {
+         stack.push(node);
+     }
+  }
+
+  node = stack.pop();
+  temptail = node;
+
+  // reverse phase
+  while(!stack.empty()) {
+     temp = stack.pop();
+     node->next = temp;
+     node = temp;
+  }
+}
+swap(list->head, list->tail)
