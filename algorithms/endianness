@@ -1,0 +1,19 @@
+unsigned int a = 0xaabbccdd;
+
+Little Endian (LSB stored at lower address)
+
+Addr[3]  aa
+Addr[2]  bb 
+Addr[1]  cc
+Addr[0]  dd
+
+
+Big Endian (LSB stored at upper address)
+
+Addr[3]  dd
+Addr[2]  cc 
+Addr[1]  bb
+Addr[0]  aa
+
+
+to convert cast to unsigned char * and do swaps 
