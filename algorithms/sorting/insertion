@@ -17,7 +17,7 @@ for (i = 1; i < a->length; i++) {
     if (counter != i) {
        rightRotate(a, ctr, a->length - 1);   // rightRotate(array, start, end)
        if (i != a->length -1) {
-              swap(a, ctr, i++); // yep for the last element right rotate does the 
+              swap(a, ctr, i + 1); // yep for the last element right rotate does the 
 	      	      	         // correct thing no need for the extra swap
        }
     }
