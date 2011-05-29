@@ -1,0 +1,16 @@
+-> for any collection .. align pointer and stick a modulo bloom filter in the n bits
+
+   Dont worry when you fix the pointer compare and if they match with original its an empty
+   collection so that saves the dependent load. In addition you could save something off
+   the filter itself.
+
+
+-> Inside the data structure place a real bloom filter use sufficient bits typically 
+   128 bits is ok but use more if necessary. 
+
+----> whether to use div based bloom or mod based depends upon the collection. If its an 
+      array then you probably want to avoid initializing it all so you want to find out
+      uninitialized blocks using div based filters (mod ones wont give contiguity)
+
+----> if its not an array based then use mod based
+
