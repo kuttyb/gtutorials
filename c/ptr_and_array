@@ -26,7 +26,7 @@ int main(int argc, char** argv) {
     return (EXIT_SUCCESS);
 }
 
-
+-----> REAL IMPORTANT : Arrays used in an expression really become a pointer
 
 /**
    Just so you re not confused .... arrays are really nothing but pointers they are not a type of their own
