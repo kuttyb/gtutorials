@@ -1,0 +1,21 @@
+As you are aware Vega Azul and IBM Power both allow some form of dcache zeroing. I forget
+what their differences are.
+
+I disagree with both approaches because they waste dcache lines for data that has constant value.
+
+Instead I propose 
+-> putting a bit in the page table that says the underlying page is zero no need
+to fwd read request to dcache or L2 or main memory instead just return zero.
+
+-> btw such reads should not allocate out of dcache 
+
+-> on first write when you set the DIRTY bit also clear this bit
+
+This should work on VIPT / VIVT dcaches essentially on a dcache miss you wait to hear back from
+the TLB and based on the above response avoid allocating out of dcache.
+
+==> Btw please note this is not about delayed zeroing of page rather saving dcache space. Of
+course this uses page granularity instead of cache line granularity.
+
+==> To avoid zero writes you could use zero pages and take an extra first write fault
+
