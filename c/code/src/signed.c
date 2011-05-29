@@ -10,5 +10,10 @@ int main(void) {
 
   printf("%d %d\n", x, y);
 
+  int t[] = { 3, 5, 10, 12 };
+  int *v = &t[2];
+  
+  printf("%d %d\n", v[0], v[-1]);
+
   return 1;
 }

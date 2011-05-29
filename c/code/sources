@@ -8,6 +8,7 @@ filebackedmem.c       \
 filemem.c             \
 fault.c               \
 filters.c             \
+scratch.c             \
 signed.c              \
 mem.c                 \
 nontemp.c             \
