@@ -1,14 +1,16 @@
 In addition to what we do for bloomfilters or lazy array initialization it would be criminal 
 to not capture empty collection directly in the collection address by making them 2byte aligned.
 
-void *ptr = posix_memaligned(size, 2);
+void *ptr = posix_memaligned(size, n);
 
 boolean search(void *ptr, data) {
-  long lptr = (long) ptr;
+  void* realptr = ((long)ptr >> n) << n;
 
-  if ((lptr >> 1) == lptr) {
-     return false;
-  }
+  if (realptr == ptr) return false; // empty collection
+
+  // mod based bloom filter see if you can avoid a dependent
+  // load up early
+  if ((get32((long)ptr, 0, n-1) && (data % n)) != data) return false;
 
   do_real_search(...);
 }
