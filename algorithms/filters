@@ -1,21 +1,3 @@
-important when you re doing Set<Integers> or address ranges and you want a quick test to see if a number is present or not.
-its ok for the test to give a false positive but not a false negative.
-
-generally the idea is before adding a number to divide and modulo it with a KONSTANT and set the bitpos in the DIV and MODULO 
-mask variables.
-
-when asked to test AND with both the masks above if you get the same number back its possibly present else its surely not
-present. 
-
-For 32bit numbers use two 64 bit dwords (SSE ANDPS will operate on 128bits at a time so we re good here). Divide and modulo
-by 64MB
-
-
---------------------
-btw you ll also need to setup counters else you ll never be able to reset a bit
-
-
-UPDATE:
 so if you are storing 4 bit numbers then a bitmask data structure to store all possible numbers would take 16bits. 
 In this case the bitmask is your filter.
 
@@ -28,7 +10,7 @@ that explains the false positives. But you wont have false negatives so the "not
 so inputnumber % 64 = modulo  check if this bit is present in the modulo mask if yes go do the search if not bail.
 
 to increase your chances of getting not present indications from the mask do 
-( inputnumber % 64 ) % 64 and set/test bits in this new mask. Why? because modulo and division provide different bit coverage ..
+( inputnumber / 64 ) % 64 and set/test bits in this new mask. Why? because modulo and division provide different bit coverage ..
 kind of spreads out your coverage.
 
 --- Cameron pointed out this is called Bloom filters

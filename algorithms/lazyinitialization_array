@@ -1,0 +1,34 @@
+This is different from bloom filters and is targetted towards arrays (or files) where 
+you dont want to initialize the entire array upfront but do it lazily. 
+
+But if you did that you ll have to intercepts get/set operations to avoid reading junk.
+
+-> My solution is to take a large bitmask that fits into your dcache say 128bits (16bytes)
+
+
+mask = 0 // uninitialized array
+div  = max_array_size / 16
+
+int get(index) {
+    pos = index / div;
+    if (!checkbit(mask, pos)) 
+       return 0; // not initialized yet therefore zero
+
+    return array[index];
+}
+
+
+int set(index, value) {
+    pos = index / div;
+    if (!checkbit(mask, pos)) {
+       setbit(mask, pos);
+       localpos = pos * div;
+       for (i = 0; i < div; i++) {
+       	   array[i + localpos] = 0;
+       }
+    }
+    array[index] = value;
+}
+
+
+
