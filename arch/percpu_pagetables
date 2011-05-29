@@ -1,0 +1,84 @@
+
+
+<CodeWar> per cpu page tables ... wondering if folks on any architecture have tried it before 
+<riel> seems like a bad idea
+<CodeWar> riel very interested in past perspectives failed attempts on this .. 
+<riel> how are you going to synchronize the page tables to be consistent?
+<CodeWar> there is global synchronization using locks .. just dont want to pay the IPI and tlb shootdown cost too
+<CodeWar> hope is to have read only ptes globally .. at times enable write on a core and disable it quickly wo shooting down tlbs 
+<CodeWar> havent thought it through though 
+<riel> indeed you haven't :)
+<CodeWar> yes
+<riel> the shootdown costs should get a lot WORSE when you have software invalidation, in addition to the hardware TLB shootdown
+<riel> you can't just throw data integrity out the window, so you need some kind of synchronization
+<CodeWar> there is global synchronization but its infrequent and shouldnt involve shootdowns let me explain ... or share whats in my head which as you pointed out is incoherent 
+<CodeWar> <a> you have a page whcih starts up read onkly on all cores... 
+<CodeWar> <b> on write access you falut and in the fault handler pay for global synchronizatino (CAS) to acquire ownership of lock then fix your own cores ptes to give you write ownership
+<CodeWar> <c> no need for tlb shootdowns just fix your own pte and move on 
+<CodeWar> if this lock is never contested you dont pay for fence/flush or CAS latencies so all is good
+<CodeWar> if it gets contested other entity faults and tries to steal lock and there are two tlb invalidates here 
+<CodeWar> so essentially instead of lock -> write - unlock  it is write .. on fault ask for forgiveness and lock acquire
+<CodeWar> next question that comes up is one writer multiple readers how do readers get last copy and does it require read barriers and if yes does that defeat the above purpose
+<riel> so on a write access, you invalidate the PTEs elsewhere?
+<riel> wouldn't that totally ruin performance if multiple threads wrote to the same memory area?
+<riel> say, because it's a shared memory area?
+<CodeWar> if you own the pte then no if you dont you do so for total of two places
+<CodeWar> meaning if this ping pongs between cores you re off to 10x the CAS perfpormance?
+<CodeWar> that is correct
+<CodeWar> except you can throttle the transfer .. at which point the other threads become sleep locks
+<riel> oh no, think 1000x less performance than simply sharing the page tables
+<riel> because when the threads all share the same page tables, each MMU can just keep caching them
+<riel> when multiple threads write to the same memory
+<CodeWar> typically this is good for "read often" data structures ... the 100x or 1000x I dont know yet but I can imagine ping pong being way worse
+<riel> "read often" already performs good
+<riel> what is the performance bottleneck you are trying to solve?
+<CodeWar> make local ownership case fast ... not make writes do fence or CAS
+<CodeWar> and not make the read often case any worse than it is 
+<riel> the local ownership case is fast already
+<CodeWar> on x86 from the perf signals it appears CAS doesnt hit out of dcache even for back to back CASes 
+<CodeWar> does that match your expectation too? 
+<riel> that's CPU model specific
+<CodeWar> i7 / xeon 56xx 
+<CodeWar> opterons + mfence seem **way** off into woods 
+<riel> but I imagine CAS is fast on all the modern chips, if the cache line is exclusively owned
+<riel> the trick is making sure the cache line is exclusively owned
+<CodeWar> yes back to back CAS w/o contest from other cores .. the CAS should be a dcache hit right? 
+<CodeWar> but its not ... 
+<riel> you can achieve that by not having other CPUs write to it simultaneously :)
+<riel> by laying out your data structure in a smart way
+<riel> why are other CPUs trying to write to the same cache line simultaneously?
+<CodeWar> believe me I m dumb but not that dumb ... :-) the current experiment has only one thread ever writing to it
+<CodeWar> so L2/L3 doesnt miss but CAS never seems to hit out of L1D ..
+<riel> it's quite possible CAS is implemented as LL/SC :)
+<riel> the instruction decoder can look ahead and implement things that way
+<CodeWar> nope ... even LL/SC should hit out of dcache ... 
+<CodeWar> its possible to implement write through L1 and ignore the CAS case ... I take it thats what is happening 
+<CodeWar> saves space by not storing coherence information in dcache ... justified for write through read allocate but terrible for CAS
+<CodeWar> writes dont suffer being in store buffer but CAS is that guy in between .. 
+<riel> the dcache already has coherence information - it tracks whether the cache line is modified, exclusive, shared or invalid :)
+<riel> for CAS, the instruction decoder could make sure that the cache line is held exclusive until after the instruction is retired (dunno if it does that, but it could)
+<CodeWar> if you re sure about this for modern xeons then my perf signals are wrong .. let me double check 
+<riel> if it doesn't, then how would it take care of memory coherency?
+<CodeWar> I m pretty sure they had only S I for dcache
+<CodeWar> by doing read allocate and storign this information in L2... so when L2 changes hands it invalidates L1 
+<CodeWar> not unusual for write through caches ... 
+<riel> L2 cache is really really slow, though (a few dozen cycles)
+<CodeWar> correct so the reads hit out of dcache and youre happy.... writes are anyways sitting in store buffer
+<CodeWar> so L2 latency is hidden ... saves money and space .. but you re right not something a full blown Xeon would do
+<riel> good point, the cpu can accumulate writes in the store buffer
+<riel> in that case, CAS can fail if the corresponding cache line is gone from the dcache
+<riel> if it's still there in S state, the CAS can succeed
+<riel> if it disappeared, the CAS can fail
+<CodeWar> or every CAS or blocking store instruction is a L1 miss .. which seems to be happening anyways
+<CodeWar> your regular writes dont suffer since they are posted anyways
+<riel> ok, that makes sense
+<CodeWar> while we re on this topic wanted to share.... on all but very old x86s (amd + intel) if you want a mfence really just use lock:xadd rsp,0 
+<CodeWar> the java guys are not kididng .. the former when done in bathc is realy really slow .. something like 30x 
+<riel> interesting, but why are fences done in a batch?
+<CodeWar> volatile stores in Java come with sequential consistency guarantee 
+<riel> ahhh, ok
+<CodeWar> on x86 mfence or lock xadd is the only thing that provides SC ... otherwise stores are casually consnistent
+<riel> I believe we don't really have volatile any more in C, so ... :)
+<CodeWar> true :-)
+<riel> besides, on x86 writes always happen in sequence (or simultaneously in a batch), because instructions are retired in sequence
+<riel> it's reads that can be reordered
