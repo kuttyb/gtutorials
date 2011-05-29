@@ -1,0 +1,24 @@
+In addition to what we do for bloomfilters or lazy array initialization it would be criminal 
+to not capture empty collection directly in the collection address by making them 2byte aligned.
+
+void *ptr = posix_memaligned(size, 2);
+
+boolean search(void *ptr, data) {
+  long lptr = (long) ptr;
+
+  if ((lptr >> 1) == lptr) {
+     return false;
+  }
+
+  do_real_search(...);
+}
+
+boolean add(void **ptr, data) {
+  long lptr = (long) *ptr;
+  
+  if ((lptr >> 1) == lptr) {
+     CAS(*ptr, lptr, lptr | 1);
+  }
+}
+
+
