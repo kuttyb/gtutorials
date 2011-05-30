@@ -1,0 +1,14 @@
+why would I want this?
+
+Because CAS doesnt have to be used only in locks .... think perf counters. There you want the atomicity but dont need Acquire
+or Release semantics.
+
+Huh? You mean you re ok with reordering perf counter increment with the actual event? Hmmm well yes actually perf counters dont have
+to be dead accurate.
+
+No I dont like this .. but I do buy the larger concern that it is possible to invent another situation where you would want just
+the atomic increment and not have it tied to a clean happens before with earlier load/stores so yes the idea is good :-)
+
+<Click Click / Doug Lea go on about this issue.. I dont agree perf counters is a good example for fenceless CAS but I can see why
+ they would be useful >
+
