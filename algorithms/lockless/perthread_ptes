@@ -1,0 +1,69 @@
+========= Per Thread Page Tables (ARM) ===================
+The goal is to convert critical sections from 
+  lock(var) 
+      critical_section
+  unlock(var)
+
+to 
+   store(var)             // No CAS no fence just a plain store
+      critical_section
+   store(var)             // no #storeload / mfence or dmb style fence
+                          // just a plain store
+
+
+Why? 
+Some CPUs on ARM with write-through/read allocate dcaches do very poorly on back to back atomics and cause pipeline latencies. This is 
+true even when that line is held by that core in E state. And depending on memory model some of them require additional line invalidates/
+fences in lock(var). 
+
+============
+Goal
+============
+-> improve uncontested lock performance 
+   <avoid CAS/fence/stalls for back to back locks by the same thread>
+-> make __no worse__  the "Read Often" case 
+   <aka cases where data is read all the time but written to rarely>
+
+========================
+Implementation:
+========================
+On Linux task_struct -> mm_struct -> pgd_t* points to first level page directory. We want to maintain several pgd_ts
+all of which are mirrors of each other except they differ in a single last level page table or a few ptes.
+
+<a> Initially the page starts up read only.  
+
+<b> On first write access thread faults in fault handler tries to
+acquire the real lock that is hashed on faulting page address. If
+successful, it modifies a copy of the page table and gives itself
+write permission for that page and henceforth uses this pgd.  
+
+<c> It is possible it cannot immediately acquire the lock and in that case it can sleep
+or spin on the real lock. Once acquired subsequent lock acquires are free on that same thread.
+
+<d> any other thread entering its critical section will fault and try
+to acquire the real lock. 
+
+=================
+TLB Invalidates
+=================
+As you can imagine there is an explicit lock handover taking place here so only 1 IPI to a single core is required in addition to 
+invalidating local TLB. Avoids global invalidate broadcasts. During handover we might also need to stick a #storeload or DMB style
+fence on the old cpu.
+
+=================
+Thread Migration
+=================
+A thread that holds this lock is biased to that core. While migrating CPU scheduler needs to be modified to use this as a deterrent.
+If it does migrate that thread then pre migration we ll need a local TLB invalidate and post migration another invalidate will be required
+but in both cases they would be on local cores so hopefully it is cheap.
+
+=================
+Memory wastage
+=================
+This is true! We re asking for a page per lock variable. Need to see if we can improve this by pushing similar locks to a page.
+
+====================================================================
+How does it compare to the classic Hotspot Biased Locking?
+====================================================================
+Dont know yet ...
+
