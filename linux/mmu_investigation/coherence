@@ -34,7 +34,7 @@ static inline pte_t* pte_offset_map(pmd_t* ptable, vaddr) {
        if (pte_p has shadow bit set) {
 	  gpu_pte* gp_pte = hash_get(shadow_pagetable, pte_pa);
 	  update cpu ptes with gpu pte ACCESS/DIRTY/OTHER status
-       }
+         }
 #else
 	return pte_p;
 }
