@@ -6,11 +6,18 @@ int func(int a, int b) {
 }
 
 typedef int (*ABC)(int, int);
+typedef int AX;
+typedef enum { false, true } Boolean;
 
 int main(void) {
   int a   = 20;
   int b[4] = {2, 3, 5, 6};
   int c   = 3;
+  AX xx = 3;
+  Boolean yy = false;
+
+  if (xx < 2) return 0;
+  if (yy != false) return 0;
 
   int *x  = &a;
   int (*y)[4] = &b;
