@@ -1,0 +1,74 @@
+<readup perthread_ptes for the general idea>
+
+typedef struct {
+	int*  lockvar;   // page aligned.. this is the variable that is mapped differently per core
+	Queue queue;     // wait queue
+	int   ownerCPU;
+} CrazyLock;
+
+// Need a hash of <lockvar*, CrazyLock *> lets call it Hash
+
+Lock(CrazyLock *lock) {
+  store (lock->lockvar, 1);
+}
+
+unlock(CrazyLock *lock) {
+  store (lock->lockvar, 0);
+}
+
+
+onFault(Addr, writedata) {
+  CrazyLock *lock = hash.get(addr);
+  if (writedata == 1) { // fault on lock acquire
+     queue_and_sendipi(lock);
+  } else {              // fault on lock release
+     handover(lock);
+  }
+}
+
+
+onIPI(CrazyLock *lock) {
+  if (lock->lockvar[0] == 1) {      // current cpu is within critical section
+     locally_writeprotect(lock->lockvar);
+     invalidate_local_tlb_only();   // this will cause local thread to fault on release
+     				    // and do lock handover
+  } else {                          // current cpu is not within critical section
+    handover(lock);
+  }
+}
+
+queue_and_sendipi(CrazyLock *lock) {
+  lock(lock->queue->spinlock);
+	add(currentthread);
+	if (lock->queue->size == 1) { // first waiter inform current inform you want his lock
+	   sendIPI(lock->ownerCPU);
+	}
+  unlock(lock->queue->spinlock);
+}
+
+
+handover(CrazyLock *lock) {
+  localflush_fence() ; // #StoreLoad #StoreStore or its equivalent on your CPU
+  
+  // wake up next in queue
+  lock(lock->queue->spinlock);
+	wakeup_next_thread(lock->queue);  // --------------- Y ------------------
+  unlock(lock->queue->spinlock);
+
+  // now that next thread is busy doing its thing ...
+  locally_writeprotect(lock->lockvar);
+  invalidate_local_tlb_only();
+}
+
+
+onWakeup(CrazyLock *lock) {
+  locally_writealloc(lock->lockvar);
+  lock->ownerCPU = localcpuid;    //   ------------ X --------------------
+}
+
+
+----------- Issues ---------------
+Theres a race condition between X and Y where Y is done but X has not happened yet. Another thread faults and tries to send
+IPI being first in queue and all but doesnt know what CPU to send the IPI to. Think about the best way to fix this without 
+holding more kernel locks.
+
