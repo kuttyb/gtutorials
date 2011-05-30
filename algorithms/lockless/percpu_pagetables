@@ -1,4 +1,19 @@
+This really the proposal.. the proposal is mine but the idea was mooted by GilT (AzulSystems)
+and I havent checked with him yet what his complete proposal is.
 
+==========================================================================
+<a> you have a page whcih starts up read onkly on all cores... 
+
+<b> on write access you falut and in the fault handler pay for global synchronizatino (CAS) to acquire ownership of lock then fix your own cores ptes to give you write ownership
+
+<c> no need for tlb shootdowns just fix your own pte and move on 
+if this lock is never contested you dont pay for fence/flush or CAS latencies so all is good
+if it gets contested other entity faults and tries to steal lock and there are two tlb invalidates here 
+
+Bottomline instead of lock -> write - unlock  it is write .. on fault ask for forgiveness and lock acquire
+next question that comes up is one writer multiple readers how do readers get last copy and does it require read barriers and if yes does that defeat the above purpose
+
+==========================================================================
 
 <CodeWar> per cpu page tables ... wondering if folks on any architecture have tried it before 
 <riel> seems like a bad idea
@@ -11,6 +26,9 @@
 <CodeWar> yes
 <riel> the shootdown costs should get a lot WORSE when you have software invalidation, in addition to the hardware TLB shootdown
 <riel> you can't just throw data integrity out the window, so you need some kind of synchronization
+
+
+
 <CodeWar> there is global synchronization but its infrequent and shouldnt involve shootdowns let me explain ... or share whats in my head which as you pointed out is incoherent 
 <CodeWar> <a> you have a page whcih starts up read onkly on all cores... 
 <CodeWar> <b> on write access you falut and in the fault handler pay for global synchronizatino (CAS) to acquire ownership of lock then fix your own cores ptes to give you write ownership
