@@ -1,0 +1,19 @@
+#define COPYLOWTOHIGH(src, dst, size) {\
+	for (int i=0; (i < size) && (*dst++ = *src++); i++) {} }
+
+#define COPYHIGHTOLOW(src, dst, size) {\
+	for (int i=0, src+=size - 1, dst+=size - 1; \
+	     (i < size) && (*dst-- = *src--); i++) {} 
+
+/** 
+    The trick is to find out which of the coordinates of the destination
+    is outside the src range. If dst is beyond src's end point then 
+    copy high to low else copy low to high
+*/
+void memcopy(const void *src, void *dst, int bytes) {
+     if ((dst + bytes - 1) > (src + bytes - 1)) {
+     	COPYHIGHTOLOW((long*)src, (long*)dst, size / sizeof(long));
+     } else {
+        COPYLOWTOHIGH((long*)src, (long*)dst, size / sizeof(long));
+     }
+}
