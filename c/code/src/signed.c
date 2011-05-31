@@ -1,8 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static inline int countbits(int val) {
+  int count = 0;
+  for (count = 0; val; count++){
+    val &= val - 1;
+  }
+  return count;
+}
+
 int main(void) {
   printf("testing signed numbers\n");
+
+  printf("bitcount %d\n", countbits(3));
 
   signed int    a = -8;
   signed int    x = a>>1;

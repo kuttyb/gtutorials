@@ -1,0 +1,25 @@
+These are the different types I have listed so far:
+
+-> Write Never   (read only)
+
+-> Write Once    (publication safety)
+
+-> Write Rarely  (mostly readonly but can be written)
+
+-> Write Heavy   (lots of writes)
+---> Good Thread Locality (locks are rarely contested but get used by same threads)
+
+---> Bad  Thread Locality (locks ping pong a lot between different threads)
+
+------> Loosely Contested (even though they ping pong between threads at a time 
+			   there are not a lot of contenders)
+
+------> Hotly   Contested (the worst of the lot)
+
+--------------------------------------------------------------
+All except Write Heavy - BTL -> Hot can be optimized for.
+
+Loosely Contested I m thinking of using optimistic concurrency (my fault based one)
+
+Good Thread locality can use your store based per cpu page table locks.
+
