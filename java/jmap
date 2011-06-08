@@ -1,0 +1,3 @@
+jmap -dump:file=abc.hprof 23091
+
+jstack 23091
