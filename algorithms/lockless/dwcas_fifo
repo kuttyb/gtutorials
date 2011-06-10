@@ -24,6 +24,16 @@ TODO: the unguarded spinloops need to use hw cacheline waits .. mwait is it on x
  could induce a full condition so you try to CAS an increment of PUT. 
 
  Consumer follows similar logic with the GET pointer.
+
+ UPDATE: 
+ This still suffers from the ABA problem. 
+ localPut = PUT(fifo);
+ ... between this and the CAS the put pointer could do a full 
+     circle and come back to the same PUT value.
+
+ I would argue it is still not a problem. There is no value associated
+ with the PUT value so its functionally still correct since no other 
+ producer thread claims ownership to this value of PUT.
 --------------------------------------------------------------------
 
 ================================
