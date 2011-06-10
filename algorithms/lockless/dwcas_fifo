@@ -1,0 +1,74 @@
+General idea is to use a classic get/put based circular fifo with one empty slot.
+
+But since this supports multiple producers/consumers, instead of adding data in place
+then incrementing put pointer (and consuming in place of get and incrementing after
+consumption) we ll pull some tricks using dwCAS.
+
+dwCAS __IS NOT__ DCAS!!
+
+On x86_64 its the lock:cmpxchg16B instruction that takes a 16B aligned pointer and CASes
+two adjacent 8B dwords. The real DCAS expects to be able to do this on non contiguous 
+memory.
+
+
+TODO: the unguarded spinloops need to use hw cacheline waits .. mwait is it on x86?
+
+================================
+typedef struct {
+    unsigned long *getput; // remember to posix_memalign(16B) for this
+    void          *data[]; // remember to initialize to some constant non null value
+    unsigned long  size;
+} FIFO;
+
+#define GET(fifo) fifo->getput[0]
+
+#define PUT(fifo) fifo->getput[1]
+
+#define ISEMPTY(fifo) ({ boolean a = false;\
+	if (GET(fifo) == PUT(fifo)) a = true;
+	a;})
+
+#define ISFULL(fifo) ({ boolean a = false;\
+	if (GET(fifo) == ((PUT(fifo) + 1) % fifo->totalsize)) a = true;
+	a;})
+
+#define INCREMENT(fifo, var) (var + 1) % fifo->totalsize;
+
+void produce(FIFO *fifo, void *data) {
+     boolean value = false;
+     
+     do {
+     	if (!FULL(fifo)) {
+	   localput = PUT(fifo);
+	
+	   value = dwCAS(fifo->getput, GET(fifo), localput, GET(fifo), INCR(fifo, localput));
+	}
+     } while(value == false);	
+     
+     /** at this point this thread owns localput index feel free to update array */
+     while (fifo->data[localput] == NULL) {}
+
+     /** Deal here being we need to make sure previous consumer successfully
+     	 consumed then NULL marked this index */
+     fifo->data[localput] = data;
+}
+
+
+void * get(FIFO *fifo) {
+     boolean value = false;
+     
+     do {
+     	localget = GET(fifo);
+	
+	value = dwCAS(fifo->getput, localget, PUT(fifo),
+	      	      INCR(localget), PUT(fifo));
+     } while(value == false);
+
+     /** at this point this thread owns localget and can safely consume it */
+     while ((fifo->data[localget] == INIT) || (fifo->data[localget] == NULL)) {}
+
+     void *data = fifo->data[localget];
+
+     return data;     
+}
+
