@@ -1,0 +1,13 @@
+Horners Rule 
+
+frankly I dont understand the polynomial details yet but the Java version does this
+
+
+for (i = 0; i < len; i++) {
+    hash = hash * 31 + s[i];
+}
+
+
+wondering if there should be a compression map on this value. Perhaps not they just want a signed 32 bit number.
+
+
