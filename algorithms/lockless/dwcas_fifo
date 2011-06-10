@@ -13,25 +13,40 @@ memory.
 
 TODO: the unguarded spinloops need to use hw cacheline waits .. mwait is it on x86?
 
+--------------------------------------------------------------------
+ IMPORTANT PLEASE READ:
+ Modified algorithm no longer requires
+ dwCAS. CAS on put / get individually is sufficient. 
+
+ For the producer you can read get and put once and run full condition
+ check on cached values. Nothing consumer does can induce a full condition
+ so cached value of GET is good enough. However other concurrent producers
+ could induce a full condition so you try to CAS an increment of PUT. 
+
+ Consumer follows similar logic with the GET pointer.
+--------------------------------------------------------------------
+
 ================================
 typedef struct {
-    unsigned long *getput; // remember to posix_memalign(16B) for this
+    unsigned long *get;    // align get/put on separate cache lines
+    unsigned long *put;
+
     void          *data[]; // initialized to value INIT
     unsigned long  size;
 } FIFO;
 
 #define INIT 0xffffffffffffUL
 
-#define GET(fifo) fifo->getput[0]
+#define GET(fifo) *fifo->get
 
-#define PUT(fifo) fifo->getput[1]
+#define PUT(fifo) *fifo->put
 
-#define ISEMPTY(fifo) ({ boolean a = false;\
-	if (GET(fifo) == PUT(fifo)) a = true;
+#define ISEMPTY(get, put, size) ({ boolean a = false;\
+	if (get == put) a = true;
 	a;})
 
-#define ISFULL(fifo) ({ boolean a = false;\
-	if (GET(fifo) == ((PUT(fifo) + 1) % fifo->totalsize)) a = true;
+#define ISFULL(get, put, size) ({ boolean a = false;\
+	if (get == ((put + 1) % size)) a = true;
 	a;})
 
 #define INCREMENT(fifo, var) (var + 1) % fifo->totalsize;
@@ -40,10 +55,10 @@ void produce(FIFO *fifo, void *data) {
      boolean value = false;
      
      do {
-     	if (!FULL(fifo)) {
-	   localput = PUT(fifo);
-	
-	   value = dwCAS(fifo->getput, GET(fifo), localput, GET(fifo), INCR(fifo, localput));
+        localput = PUT(fifo);
+     	if (!FULL(GET(fifo), localput, fifo->size) {
+
+	   value = CAS(fifo->put, localput, INCREMENT(fifo, localput));
 	}
      } while(value == false);	
      
@@ -61,9 +76,10 @@ void * get(FIFO *fifo) {
      
      do {
      	localget = GET(fifo);
+	if (!EMPTY(localget, PUT(fifo), fifo->size)) {
 	
-	value = dwCAS(fifo->getput, localget, PUT(fifo),
-	      	      INCR(localget), PUT(fifo));
+	    value = CAS(fifo->get, localget, INCREMENT(fifo, localget));
+        }
      } while(value == false);
 
      /** at this point this thread owns localget and can safely consume it */
