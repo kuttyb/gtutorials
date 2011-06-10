@@ -16,9 +16,11 @@ TODO: the unguarded spinloops need to use hw cacheline waits .. mwait is it on x
 ================================
 typedef struct {
     unsigned long *getput; // remember to posix_memalign(16B) for this
-    void          *data[]; // remember to initialize to some constant non null value
+    void          *data[]; // initialized to value INIT
     unsigned long  size;
 } FIFO;
+
+#define INIT 0xffffffffffffUL
 
 #define GET(fifo) fifo->getput[0]
 
