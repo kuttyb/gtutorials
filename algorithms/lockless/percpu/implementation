@@ -40,8 +40,9 @@ onIPI(CrazyLock *lock) {
 queue_and_sendipi(CrazyLock *lock) {
   lock(lock->queue->spinlock);
 	add(currentthread);
-	if (lock->queue->size == 1) { // first waiter inform current inform you want his lock
-	   sendIPI(lock->ownerCPU);
+	if (lock->queue->size == 1) { // first in queue request lock from current owner
+	   sendIPI(lock->ownerCPU);   // if you re not first in queue dont worry just queue silently :-)
+	   			      // we dont want a storm of IPIs
 	}
   unlock(lock->queue->spinlock);
 }
