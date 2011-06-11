@@ -1,0 +1,15 @@
+The function used to convert I to an array index is called the compression map. 
+<for background Hash Code Map converts key to I>
+
+-> Modulo
+   K Mod M   keep M a non power of 2 since these  have only 1 set bit and doesnt
+     	     consider all bits of the number.
+
+-> Multiplication   KAM where  0 < A < 1
+
+-> Multiply Add Divide     (aK + B) Mod M   <make sure a is not a multiple of M
+
+-> Universal Hash Function
+   Take a set of hash functions and at runtime decide which key(s) map to which functions.
+
+
