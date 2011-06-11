@@ -67,17 +67,12 @@ How does it compare to the classic Hotspot Biased Locking?
 Dont know yet ...Well chatting with DaveD now lets see what he
 says :-) His opinion means a lot to me oh yes!!
 
-=======================================
+==============================================================================
 UPDATES:
-When you fault and discover somebody
-else owns the lock you have the option
-of waiting in queue and requesting
-lock from owner 
-     OR
-migrating to the cpu that owns the lock.
-You would be well within your rights to
-do so since data that chit chats with
-each other is better off staying close
-to each other!!
-=======================================
+On Linux/Solaris we could implement a filesystem driver that comes with its
+own fault handler (segvn->fault and vmops->fault).
+
+On a fault we could either try to migrate the lock or migrate the thread
+based on heuristics.
+==============================================================================
 
