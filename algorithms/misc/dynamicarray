@@ -1,0 +1,29 @@
+I have two solutions:
+
+<a> Perfectly O(1)
+
+<b> Some logarithmic function of n
+
+----------------------------------------------------
+<a> Perfectly O(1)
+
+Each time you realloc grow by an exponential size capped by a max. If the initial array and growth is below 4k 
+dont waste my time just do a flat copy end of discussion. Of course this assumes you can CAS the pointer to the 
+new location so add should take in **array not *array. search/remove can continue to use *array.
+
+If its larger than 4k then remap old page(s) to new virtual memory location where you find the new spot and allocate
+fresh zero pages for those beyond. Simple and end of story .. no copy required.
+
+What happens if you cant find contiguous vmem location? Well then OOME what else :-)
+
+This is where Java comes in handy with its copy collection and full GC memory compaction!! 
+
+----------------------------------------------------
+<b> Some logarithmic function of n
+
+Same trick as above use **Array for add and *Array for search/remove. Embed size in either log base or multiples of some 
+constant as part of the pointer.  Add a next pointer to end of this block. Thats it!!
+
+When you are asked for an index that is not in your chunk follow next pointer `n' times. Really a glorified Linked List!!
+
+
