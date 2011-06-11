@@ -1,0 +1,6 @@
+Makes sense for Chained hashes when the load factor increases beyond a certain number.
+
+Instead of doing a full copy with a global lock ... an idea mentioned in wikipedia is to do incremental copying wherein
+all new insertions are done in the new table. Deletions happen on old/new depending on where its found. Searches that
+hit old but not new also do the copy. Eventually the old table can be recycled.
+
