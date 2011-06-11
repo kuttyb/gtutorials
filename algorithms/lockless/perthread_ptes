@@ -10,7 +10,6 @@ to
    store(var)             // no #storeload / mfence or dmb style fence
                           // just a plain store
 
-
 Why? 
 Some CPUs on ARM with write-through/read allocate dcaches do very poorly on back to back atomics and cause pipeline latencies. This is 
 true even when that line is held by that core in E state. And depending on memory model some of them require additional line invalidates/
@@ -65,5 +64,20 @@ This is true! We re asking for a page per lock variable. Need to see if we can i
 ====================================================================
 How does it compare to the classic Hotspot Biased Locking?
 ====================================================================
-Dont know yet ...
+Dont know yet ...Well chatting with DaveD now lets see what he
+says :-) His opinion means a lot to me oh yes!!
+
+=======================================
+UPDATES:
+When you fault and discover somebody
+else owns the lock you have the option
+of waiting in queue and requesting
+lock from owner 
+     OR
+migrating to the cpu that owns the lock.
+You would be well within your rights to
+do so since data that chit chats with
+each other is better off staying close
+to each other!!
+=======================================
 
