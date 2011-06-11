@@ -1,5 +1,3 @@
-<readup perthread_ptes for the general idea>
-
 typedef struct {
 	int*  lockvar;   // page aligned.. this is the variable that is mapped differently per core
 	Queue queue;     // wait queue
