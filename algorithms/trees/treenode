@@ -1,0 +1,18 @@
+// should apply to all multiway search trees (A-B)
+
+typedef struct _TreeNode {
+    void*               keys[B-1];
+    struct _TreeNode*   links[B];
+    int                 numlinks;
+} TreeNode;
+
+
+// in a single node this is how you search
+int i = 0;
+for (; i < B && node->keys[i] < key; i++) {}
+if (A[i] == key) { 
+   return woohoo;
+} else {
+  follow(node->links[i]);
+}
+
