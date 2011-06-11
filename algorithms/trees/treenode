@@ -9,7 +9,7 @@ typedef struct _TreeNode {
 
 // in a single node this is how you search
 int i = 0;
-for (; i < B && node->keys[i] < key; i++) {}
+for (; i < B && node->keys[i] < node->numlinks; i++) {}
 if (A[i] == key) { 
    return woohoo;
 } else {
