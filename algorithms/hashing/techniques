@@ -1,0 +1,28 @@
+This talks about how hash tables are formed. Roughly there are two ways viz.,
+-> Chaining
+-> Open Addressing
+
+NOTE:
+-> "key" here refers to the key obtained after compression map
+-> load factor is #elements / #slots ... lesser the better!!
+
+<a> Chaining
+Key gives us the index. At the index there is a pointer to another data structure where data is stored. Handles
+collisions well. Now you could have a linkedlist or a AVL tree (like Solaris HAT) its upto you. 
+
+Essentially data is stored outside the hash table.
+
+
+<b> Open Addressing
+Use key to search index if not present search other locations in the hash table.
+
+--> Linear Probing: Continue searching subsequent locations until match found or empty or wrapped around.
+
+--> Double Hashing: Use two hash functions first one for index second one for offsets by which to increment
+    to do the linear search. This prevents long searches and if the second key is different for different elements
+    allows uniform distribution.
+
+    Caveat: Trick mentioned by Naveen Garg, use a prime number between 0 ~ m-1 for the second key. Why? because after
+    wrapping it will allow you to search elements that were not initially searched. So in the worst case for associativity
+    it acts like a fully set associative map.
+
