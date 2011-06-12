@@ -1,0 +1,31 @@
+//
+// General idea is the same as your previous solution that used a separate stack.
+// But that required a special stack and searching it!!
+// 
+// Why did we use the second stack? To differentiate between travelling up vs travelling
+// down? 
+//
+// We capture the same information in the pointer that we push onto the stack. Pointers are
+// atleast dword aligned (32bit or 64bit) so there is always 1 bit we can steal for this.
+// Besides storing this in the pointer would not waste any space or cause another load
+// aka dereference of the pointer,.... pretty cool eh:-))
+//
+
+traverse(root, visitor) {
+    push(root);
+    while(!empty()){
+	node = pop();
+
+	if (ISPUSHED(node)) {
+	   visitor(node);
+	} else {
+	  push(node->right);
+	  push(PUSHED(node));
+	  push(node->left);
+	}
+    }
+}
+
+#define PUSHED(addr)     (addr | 1 ) // set the 0th bit in the pointer
+
+#define ISPUSHED(addr)   (((addr >> 1) << 1) != addr)
