@@ -9,6 +9,7 @@ DELETION has 3 cases:
 -> 1 child    : swap child with deleted node
 -> 2 children : find smallest larger child on the right side and swap 
 
+refer delete_bst for details
 ====================================================
 
 VERIFY ITS A BIST
