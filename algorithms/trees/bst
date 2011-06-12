@@ -22,7 +22,10 @@ n-1 worst case.
 
 
 FLATTEN and store to file:
-use pre-order serialize in the visitor method and if you see a null record it dont discard it :-)
+a simple DFS up and down should do the trick but the trick is to store NULL children too to
+respect tree structure.
+<refer flatten_bst>
+
 
 CONVERT TO DOUBLE LINKED LIST:
 last = dummy;
