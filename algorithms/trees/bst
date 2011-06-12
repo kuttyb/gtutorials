@@ -1,37 +1,15 @@
 BINARY SEARCH TREE:
 each node can have upto two children left nodes are lesser than equal to parent. right nodes are greater than parent
 
-TRAVERSAL:
-[[UPDATE]]
-Alrite I have a really cool way for doing the iterative inorder BST traversal. This will
-not require an extra stack, searching it or adding extra fields in the Node. Read inorder_bst
-for details.
-
-
-look at Corment Pg 255 I ve written down the iterative version the recursive version is damn simple. 
-The version you have will work for both inorder and post order by just reordering push instructions 
-in the addBack method of class Traversal.
-
-preorder is very simple do this:
-	 push(root)
-	 while(!empty()) {
-	     n = pop()
-	     visit(n)
-	     push(r)
-	     push(l)
-	 }
-
 
 SEARCH should be easy use pre-order iterative from above replace visit with search and conditional return
-
-INSERTION is easy too .. insert if theres a hole or at the bottom as a leaf node (just follow your intuition)
 
 DELETION has 3 cases:
 -> leaf node  : easy just delete it hehehe
 -> 1 child    : swap child with deleted node
 -> 2 children : find smallest larger child on the right side and swap 
 
-
+====================================================
 
 VERIFY ITS A BIST
 Use in-order traversal and in the visit method check for monotonous non decreasing
