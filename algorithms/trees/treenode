@@ -16,3 +16,9 @@ if (A[i] == key) {
   follow(node->links[i]);
 }
 
+
+
+Btw B-Tree is a special A-B tree where B=2A 
+
+RedBlack tree can be converted to a 2-4 tree by having each black node and its red children form a 2-4 tree node
+
