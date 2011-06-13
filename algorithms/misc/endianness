@@ -1,6 +1,6 @@
 unsigned int a = 0xaabbccdd;
 
-Little Endian (LSB stored at lower address)
+Little Endian (little guy (LSB) stored at little address)
 
 Addr[3]  aa
 Addr[2]  bb 
@@ -8,7 +8,7 @@ Addr[1]  cc
 Addr[0]  dd
 
 
-Big Endian (LSB stored at upper address)
+Big Endian (big guy (MSB) stored at little address)
 
 Addr[3]  dd
 Addr[2]  cc 
