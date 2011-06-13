@@ -1,10 +1,10 @@
-1 = null
-2 = null
+next = null
+prev = null
 
-for (node = tail; node;  node = 1) {
-    1 = node->next;
-    node->next = 2;
-    2 = node;
+for (node = tail; node;  node = next) {
+    next = node->next;
+    node->next = prev;
+    prev = node;
 }
 swap(head, tail)
 
