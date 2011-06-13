@@ -1,0 +1,24 @@
+// you cant really use the tree traversal tricks here so dont be so 
+// condescending!!
+
+void insert(root, key) {
+    x = root;
+    
+    // drill down
+    while(x) {
+      y = x;
+      if (x.key == key) return;
+      if (key > x.key) {
+      	 x = x->left;
+      } else {
+      	x = left->right;
+      }
+    }
+
+    // has to be added to y 
+    if (key > y.key) {
+       y.right = new node(k);
+    } else {
+       y.left  = new node(k);
+    }
+}

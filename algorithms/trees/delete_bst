@@ -1,0 +1,33 @@
+// Do a post order traversal since in this traversal parent is never more than
+// 2 nodes away on the stack
+
+
+delete(root, key) {
+  push(root);
+
+  while(!empty()) {
+    n = pop();
+    if (ISPUSHED(n)) {
+       // visit this node
+       if (n->key == key) {
+       	  delete(n, GETPARENT(stack));
+       }
+    } else {
+      push(PUSHED(n));
+      push(n->right);
+      push(n->left);
+    }
+  }
+}
+
+
+Node* GETPARENT(stack) {
+   for(i = 0; i < stack.size(); i++) {
+     n = stack.peek(i); // peek (tos - i)
+     if (ISPUSHED(n)) { // if its a parent its your parent
+     	return n;
+     }
+   }
+}
+
+.... implement delete when you get the time

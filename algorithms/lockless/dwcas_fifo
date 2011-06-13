@@ -1,3 +1,5 @@
+<<< dont produce until its null or init and dont get if its null or init >>
+
 General idea is to use a classic get/put based circular fifo with one empty slot.
 
 But since this supports multiple producers/consumers, instead of adding data in place
@@ -10,6 +12,17 @@ On x86_64 its the lock:cmpxchg16B instruction that takes a 16B aligned pointer a
 two adjacent 8B dwords. The real DCAS expects to be able to do this on non contiguous 
 memory.
 
+=========================================================
+SUMMARY:
+Theres 3 problems with the below solution:
+<a> starvation of LD-CAS
+
+<b> ABA problem
+
+<c> spinning 
+All problems have been explained below with justifications
+on why they are not problems or how they can be fixed!!
+=========================================================
 
 TODO: the unguarded spinloops need to use hw cacheline waits .. mwait is it on x86?
 
@@ -73,7 +86,8 @@ void produce(FIFO *fifo, void *data) {
      } while(value == false);	
      
      /** at this point this thread owns localput index feel free to update array */
-     while (fifo->data[localput] == NULL) {}
+     while ((fifo->data[localput] != NULL) || 
+     	   (fifo->data[localput] != INIT)) {}
 
      /** Deal here being we need to make sure previous consumer successfully
      	 consumed then NULL marked this index */

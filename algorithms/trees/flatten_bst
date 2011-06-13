@@ -1,0 +1,45 @@
+serialize and deserialize a BST using DFS (thats really preorder traversal right?)
+
+====================
+SERIALIZE
+====================
+serialize(root, file) {
+  push(root);
+  
+  while(!empty()){
+    n = pop();
+    WRITE(file, n); // Its ok if n is NULL store a standard NULL object in file
+
+    if (n != NULL) {
+        push(n->right);
+	push(n->left);
+    }    
+  }
+}
+
+
+
+====================
+DESERIALIZE
+====================
+root deserialize(file) {
+    root = READ();
+    
+    push(root);
+    
+    while(!fileempty && !stackempty) {
+        n = pop();
+	n->left   =  READ();
+	n->right  =  READ();
+
+	if (n->right != NULL) {
+	   push(n->right);
+	}
+
+	if (n->left != NULL) {
+	   push(n->left);
+	}
+    }
+    
+    return root;
+}

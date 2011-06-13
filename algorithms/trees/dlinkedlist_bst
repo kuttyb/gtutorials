@@ -1,0 +1,32 @@
+< out of place solutions are easy ... just pass in a new linked list in the visitor method >
+
+Q: Convert BST to a sorted dlinklist in place
+A: 
+
+dlinkify(root) {
+  last = NULL;
+  push(root);
+
+  while(!empty()) {
+    n = pop();
+
+    if (ISPUSHED(n)) {
+       if (last) {
+       	  last->fwd = n;
+       }
+       n->back = last;
+       last = n;
+    } else {
+      push(n->right);
+      push(PUSHED(n));
+      push(n->left);
+    }
+  }
+}
+
+
+Q: Convert dlinklist to BST using inorder traversal
+A: look at the bst page dont have the time to implement it yet ... laterz
+
+
+

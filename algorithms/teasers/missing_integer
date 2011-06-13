@@ -1,0 +1,8 @@
+Q:Given an array of n elements containing numbers between 1 ~ n and no repetitions.
+Find the missing number in O(n) ?
+
+A: n*(n + 1) / 2 will provide the sum of natural integers. Sum the array and from that
+   subtract this ... thats the missing number!!
+
+
+

@@ -1,0 +1,12 @@
+//
+// Consider insertion point INS and last point with valid data LAST and really the 
+// last possible index MAX
+//
+// First off for this to work array should have space for 1 more element beyond
+// LAST else relocate (realloc / mremap)
+//
+
+Array.Rotate(INS, LAST + 1);
+Array[INS] = new_data
+
+
