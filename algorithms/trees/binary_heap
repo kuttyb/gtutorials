@@ -1,0 +1,13 @@
+Binary tree where 
+
+-> all levels are full except last level. Last level is left filled
+
+-> children have priority greater than that of the parent
+
+Note: min-heap is where root is the smallest max-heap is reversed with the property all nodes are smaller than their parent.
+
+------------------------------------------
+Binary heaps can be stored in an array. Given a node at index i its parent is at floor(i/2). 
+
+Given a node at i its left child is at 2i and its right child is at (2i + 1)
+
