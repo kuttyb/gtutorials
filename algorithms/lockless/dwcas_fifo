@@ -1,4 +1,4 @@
-<<< producer waits for data to be null consumer waits for it to be not (null || init) >>
+<<< dont produce until its null or init and dont get if its null or init >>
 
 General idea is to use a classic get/put based circular fifo with one empty slot.
 
@@ -86,7 +86,8 @@ void produce(FIFO *fifo, void *data) {
      } while(value == false);	
      
      /** at this point this thread owns localput index feel free to update array */
-     while (fifo->data[localput] == NULL) {}
+     while ((fifo->data[localput] != NULL) || 
+     	   (fifo->data[localput] != INIT)) {}
 
      /** Deal here being we need to make sure previous consumer successfully
      	 consumed then NULL marked this index */
