@@ -7,7 +7,16 @@ Binary tree where
 Note: min-heap is where root is the smallest max-heap is reversed with the property all nodes are smaller than their parent.
 
 ------------------------------------------
-Binary heaps can be stored in an array. Given a node at index i its parent is at floor(i/2). 
+< NOTE: This is different from NaveenGarg's explanation he uses 1 indexed arrays >
+Binary heaps can be stored in an array. 
 
-Given a node at i its left child is at 2i and its right child is at (2i + 1)
+Given node at index (i) its parent is at:
+if (i % 2) {
+   p = i / 2; // aka floor
+} else {
+   p = ( i / 2 ) - 1;
+}
 
+Given parent at index (i) 
+Left Child  :  2i + 1
+Right Child :  2i + 2
