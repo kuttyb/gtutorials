@@ -30,6 +30,12 @@ int main(void) {
  
   free(dst);
 
+  // keep this rule in mind btw .. you get type but not * in 
+  // single line multi variables
+  const char *a = NULL, *b = NULL;
+
+  if (!(a && b)) return 0;
+
   return 1;
 }
 
