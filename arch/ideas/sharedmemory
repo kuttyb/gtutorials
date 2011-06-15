@@ -6,6 +6,11 @@ These are the different types I have listed so far:
 
 -> Write Rarely  (mostly readonly but can be written)
 
+-> Concurrent Writers  (different threads/cpus write to different copies of 
+   	      	        the same memory and eventually these different copies
+			are MERGED!! Merge algorithm can be provided by programmer
+			or use std built ins like addition (for perf counters))
+
 -> Write Heavy   (lots of writes)
 ---> Good Thread Locality (locks are rarely contested but get used by same threads)
 
