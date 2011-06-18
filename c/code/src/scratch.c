@@ -30,6 +30,12 @@ int main(void) {
  
   free(dst);
 
+  char t[] = {'a', 'b', 'c', 'd'};
+  char *p = t;
+  printf(".... %d\n", (int)*p++);
+  p  = t;
+  printf(".... %d\n", *(int*)p++);
+
   // keep this rule in mind btw .. you get type but not * in 
   // single line multi variables
   const char *a = NULL, *b = NULL;
