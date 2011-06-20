@@ -1,3 +1,10 @@
+===================================================================================
+UPDATE:
+On further thinking we cant/shouldnt use IPI to run code that hands over/steals
+lock. Instead use a task queue with SCHED_RR worker threads. It will be percpu
+fairly fast and yet allow you to use regular memory in the function (not being
+interrupt code ... so you could for example fault)
+===================================================================================
 typedef struct {
 	int*  lockvar;   // page aligned.. this is the variable that is mapped differently per core
 	Queue queue;     // wait queue
