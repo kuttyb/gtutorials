@@ -18,9 +18,12 @@ These are the different types I have listed so far:
 
 ------> Loosely Contested (even though they ping pong between threads at a time 
 			   there are not a lot of contenders)
-
+			   < good candidates for lockless algorithms since
+			     rollback will be rare >
 ------> Hotly   Contested (the worst of the lot)
-
+			   < cant help you .. fix the code. otherwise use 
+			     adaptive lock with good throttling and NUMA  
+			     characteristics >
 --------------------------------------------------------------
 All except Write Heavy - BTL -> Hot can be optimized for.
 
