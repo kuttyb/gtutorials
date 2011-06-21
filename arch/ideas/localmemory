@@ -1,0 +1,37 @@
+Shared memory types and local implementations/optimizations:
+
+<a> write never / read only
+
+Easy bring it off readonly pages(s)
+
+
+<b> write once 
+
+initialize to zero page with prot_none. Writer does this
+
+Type* writer = PUBLISH_START(dataptr);
+
+// modify writer
+
+PUBLISH_END(writer);
+
+Behind the scenes this takes dataptr looks up real page it should point to 
+map it to a temp page return pointer viz., writer and have it be initialized.
+Once done it changes real mapping of initial address to the initialized page
+and allows full access (takes off prot_none)
+
+<c> Write Concurrently 
+Simple do what you did with your Java implementation. 
+
+Type* local = GETWRITER(original);
+
+// modify local as often as you want **DO NOT PASS AROUND**
+
+FLUSHWRITER(local); // This will take the real lock and merge local writer contents
+		    // with main writer contents
+
+<d> Per Thread Lock
+    Same as your Distributed Lock in Java except here lock stealing is done by 
+    sending the owning thread a signal. 
+
+<e> Write Less (Reader Writer with Strong Reader Bias)
