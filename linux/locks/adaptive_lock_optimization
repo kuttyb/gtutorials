@@ -1,0 +1,57 @@
+As you have found out there are two problems with the adaptive / spinning part:
+
+<a> If the lock owner gets kicked out then all/any spinning operation is a waste of time.
+
+    Furthermore threads spinning for their entire timeslice could possibly be blocking thread
+    owner from getting onto the CPU to do its lock release. Effects system fwd progress
+
+<b> The idea behind spinning/adaptive being fast lock handover such that extra context switches
+    can be avoided. DaveD summarizes that very well below 
+    	http://blogs.oracle.com/dave/entry/inverted_schedctl_usage_in_the
+
+    If you do get switched out while spinning next time around you do not want to spin again but
+    rather park/block.
+
+
+-------------------------------------------------------
+SOLUTIONS:
+-------------------------------------------------------
+
+<a> DaveD mentioned schedctl on Solaris lets you find out if a thread is currently blocked. So
+    from lock find owner and see if its not running then dont spin just park!!
+
+    Not sure if it uses a system call for this and/or how fast it is. My idea was to have 
+    user mode register a piece of code with kernel at the start and optionally with a flag
+    ask OS to invoke it out its switch_out. The OS can ignore it if it chooses btw.
+
+    When we acquire a lock we set a bit that says run X on switch out. On lock release reset
+    this bit. 
+
+    The code X essentially sets a flag in the lock struct saying lock owner is not currently
+    running do not spin. 
+
+    If we added switch_in hook then when lock owner gets sliced in it could set the flag to false 
+    again.
+
+
+<b> My idea to prevent spinning beyond one timeslice is as follows:
+
+    --> Pure SW solution:
+    	Use the on_switch_out to park if spinning doesnt succeed.
+
+
+    --> Pure HW solution:
+    	wait  addr
+	if (true) {
+	   // check if variable matches expectation
+	} else {
+	  // getting booted out run your park code
+	}
+
+
+    --> I think DaveD's solution involves periodically checking if running thread
+        got switched out. Depending on how effecient schedctl on Solaris it does 
+	have the same effect.
+
+
+
