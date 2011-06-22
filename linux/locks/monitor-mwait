@@ -1,0 +1,20 @@
+On x86 you can monitor writes to cachelines. Its really used by the idle thread on OS.
+
+=========================
+OS Usage:
+=========================
+Prior to Prescott they used to use the halt instruction but halt sleepers can only be
+woken up using IPI from another core which is a waste. mwait users can be woken up
+using memory writes and interrupts happening on that core.
+
+Heres the Solaris/Linux justification for the same
+http://blogs.oracle.com/bholler/entry/the_most_executed_code_in
+http://lwn.net/Articles/39282/
+
+=========================
+Thread Synchronization:
+=========================
+http://semipublic.comp-arch.net/wiki/Monitor-Mwait
+http://software.intel.com/en-us/articles/how-to-use-the-monitor-and-mwait-streaming-simd-extensions-3-instructions/
+
+The above two have a decent explanation.
