@@ -1,3 +1,12 @@
+Read this if you read nothing else:
+---> Its a bad idea to spin beyond your timeslice.
+     <You want to park if you switch out spinning>
+
+---> Its a bad idea to spin when lock owner is not running.
+     <You want to cheaply find this out and abort spinning>
+
+The rest discusses how to accomplish the above two
+----------------------------------------------
 As you have found out there are two problems with the adaptive / spinning part:
 
 <a> If the lock owner gets kicked out then all/any spinning operation is a waste of time.
