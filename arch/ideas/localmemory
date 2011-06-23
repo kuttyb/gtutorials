@@ -20,6 +20,24 @@ map it to a temp page return pointer viz., writer and have it be initialized.
 Once done it changes real mapping of initial address to the initialized page
 and allows full access (takes off prot_none)
 
+Q: What about cpus that are either not cache coherent or are weak coherent 
+   meaning they require explicit read barriers to eliminate prefetched
+   caches or stale cachelines of that address?
+A: That shouldnt be a worry. Remember we are doing a mprotect that should
+   cause TLB invalidates. On CPUs that are VIPT or PIPT the dcaches should
+   repull data because of TLB change.
+
+   Now for the VIVT dcaches like ARM v4/v5 remember linux kernel on a TLB
+   invalidate does the dcache flush for you so we re safe here!!
+
+Q: Err.. what does safe mean again?
+A: Means doing the writer side write + fence + mprotect should guarantee
+   no stale cachelines exist on any other core such that not having an
+   explicit read barrier will cause problems!! WOOHOOO
+
+   http://www.mjmwired.net/kernel/Documentation/cachetlb.txt
+   explains it in details (look for Virtually indexed dcaches)
+
 <c> Write Concurrently 
 Simple do what you did with your Java implementation. 
 
