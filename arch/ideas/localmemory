@@ -50,7 +50,21 @@ A: Means doing the writer side write + fence + mprotect should guarantee
    http://www.mjmwired.net/kernel/Documentation/cachetlb.txt
    explains it in details (look for Virtually indexed dcaches)
 
+Q: I am still not convinced. You are using mprotect downgrade to ensure non staleness
+   in dcache and LLC? Thats a huge assumption!
+A: Well yes... Let me counter argue that point .. if stale lines do exist then can I say
+   mprotect downgrade is broken on that CPU? Why? Because reads are hitting stale lines
+   and not checking with page protection?
 
+Q: The argument is valid but if I was a CPU designer heres how I would beat that...
+A: Let stale lines come out of the local line but before returning loads check for
+   **protection** from TLB or main page table.
+
+   Meaning ... FRESH PAGE PROTECTION DOES NOT GUARANTEE FRESH DATA!!
+
+Q: I am sort of convinced... why go nuts.. use the IPI to do the cache line shootdowns
+   as well. You re changing the kernel anyways right?
+A: Yes .. and no... <details later>
 
 <c> Write Concurrently 
 Simple do what you did with your Java implementation. 
