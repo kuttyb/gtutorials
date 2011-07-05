@@ -11,7 +11,7 @@ typedef struct {
 void* func(void* arg) {
   PerThread *pThread = arg;
   printf("starting thread %ld\n", pThread->id);
-  sleep(20);
+  sleep(2);
   return NULL;
 }
 
