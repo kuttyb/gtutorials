@@ -19,7 +19,7 @@ all : ${TARGETS}
 # Rule for building binary from each source file
 ${BIN}/% :: ${SRC}/%.c
 	@echo $<
-	${Q} ${CC} ${CFLAGS} $< -o $@
+	${Q} ${CC} ${CFLAGS} $< -lpthread -lpthread -o $@
 
 # Rule for building a single dynamic library
 ${LIB}/%.so :: ${BIN}/%.o
