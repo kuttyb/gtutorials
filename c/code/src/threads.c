@@ -22,7 +22,7 @@ int main(void) {
 
   for (int counter = 0; counter < 10; counter++) {
     perThread[counter].id = counter;
-    pthread_create(&threads[counter], NULL, func, &perThread[counter]); 
+    assert(!pthread_create(&threads[counter], NULL, func, &perThread[counter]));
   }
 
   for (int counter = 0; counter < 10; counter++) {
