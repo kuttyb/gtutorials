@@ -5,6 +5,7 @@ alignment.c           \
 barrierperf.c         \
 brk.c                 \
 filebackedmem.c       \
+threads.c             \
 filemem.c             \
 fault.c               \
 filters.c             \
