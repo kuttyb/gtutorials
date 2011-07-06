@@ -96,7 +96,6 @@ void* get(Queue* queue) {
     while (TESTNOTINITIALIZED(pvtdata->fifodata[localget]) || TESTCONSUMED(pvtdata->fifodata[localget])) {
     }
 
-    barrier_read();
     void *data = pvtdata->fifodata[localget];
     pvtdata->fifodata[localget] = SETCONSUMED(pvtdata->fifodata[localget]);
     barrier_write();
