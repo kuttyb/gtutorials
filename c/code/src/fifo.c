@@ -7,10 +7,10 @@
 #include "barrier.h"
 
 #define  REALPTR(ptr)        ((ptr >> 1) << 1)
-#define  ISPRODUCED(ptr)     (ptr != NULL)
-#define  PRODUCTED(ptr)      (NULL)
-#define  ISCONSUMED(ptr)     (REALPTR(ptr) != ptr)
-#define  CONSUMED(ptr)       (ptr | 1)
+#define  TESTPRODUCED(ptr)   (ptr != NULL)
+#define  TESTCONSUMED(ptr)   (REALPTR(ptr) != ptr)
+#define  SETPRODUCTED(ptr)   (NULL)
+#define  SETCONSUMED(ptr)    (ptr | 1)
 
 typedef struct {
     int *get;
