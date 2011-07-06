@@ -13,58 +13,57 @@
 #define  CONSUMED(ptr)       (ptr | 1)
 
 typedef struct {
-  int    *get;
-  int    *put;
-  void  **fifodata;
-  int    bytes;
+    int *get;
+    int *put;
+    void **fifodata;
+    int bytes;
 } Pvt;
 
 /**
-void   put(Queue*,void*);
 void*  get(Queue*);
-*/
+ */
 
 Queue* create(int size) {
-  Pvt* pvt = calloc(1, sizeof(Pvt));
-  assert(pvt);
+    Pvt* pvt = calloc(1, sizeof (Pvt));
+    assert(pvt);
 
-  /** find out a good way to get dcache size */
-  assert(!posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int)));
-  assert(!posix_memalign((void**)&pvt->put, getpagesize() * 16, sizeof(int)));
-  assert(!posix_memalign((void**)&pvt->fifodata, getpagesize(), pvt->bytes));
-  pvt->bytes = 0;
+    /** find out a good way to get dcache size */
+    assert(!posix_memalign((void**) &pvt->get, getpagesize() * 16, sizeof (int)));
+    assert(!posix_memalign((void**) &pvt->put, getpagesize() * 16, sizeof (int)));
+    assert(!posix_memalign((void**) &pvt->fifodata, getpagesize(), pvt->bytes));
+    pvt->bytes = 0;
 
-  Queue* retvalue = calloc(1, sizeof(Queue*));
-  retvalue->data = pvt;
+    Queue* retvalue = calloc(1, sizeof (Queue*));
+    retvalue->data = pvt;
 
-  return retvalue;
+    return retvalue;
 }
 
 void destroy(Queue* queue) {
-  assert(queue && queue->data);
+    assert(queue && queue->data);
 
-  Pvt* pvtdata = (Pvt*) queue->data;
-  free(pvtdata->get);
-  free(pvtdata->put);
-  free(pvtdata);
-  free(queue);
+    Pvt* pvtdata = (Pvt*) queue->data;
+    free(pvtdata->get);
+    free(pvtdata->put);
+    free(pvtdata);
+    free(queue);
 }
 
 void put(Queue* queue, void* input) {
-  assert(queue && input);
+    assert(queue && input);
 
-  Pvt* pvtdata = (Pvt*) queue->data;
-  assert(pvtdata);
+    Pvt* pvtdata = (Pvt*) queue->data;
+    assert(pvtdata);
 
-  
+
 }
 
 int main(void) {
 
-  Queue* queue = create(200);
-  assert(queue);
+    Queue* queue = create(200);
+    assert(queue);
 
-  destroy(queue);
+    destroy(queue);
 
-  return 1;
+    return 1;
 }
