@@ -5,7 +5,9 @@
 #include <assert.h>
 
 #define MAXTHREADS  (3)
-#define SLEEPTIME   (2)
+#define SLEEPTIME   (6)
+// Use Real Time Signals ... they can be queue, the regular ones cannot
+#define SIGNUM      (SIGRTMIN + 1)
 
 typedef struct {
   long id;
@@ -14,7 +16,8 @@ typedef struct {
 
 void* threadfunction(void* arg) {
   PerThread *pThread = arg;
-  printf("starting thread %ld\n", pThread->id);
+  printf("starting thread %ld and pid %d\n", 
+	 pThread->id, getpid());
   
   while(1) {};
 
@@ -36,17 +39,8 @@ int main(void) {
     action.sa_sigaction  = realhandler;
     sigemptyset(&action.sa_mask);
     action.sa_flags      = SA_SIGINFO;
-    assert(!sigaction(SIGUSR1, &action, NULL));
+    assert(!sigaction(SIGNUM, &action, NULL));
   }
-
-  {
-    struct sigaction action;
-    action.sa_sigaction  = realhandler;
-    sigemptyset(&action.sa_mask);
-    action.sa_flags      = SA_SIGINFO;
-    assert(!sigaction(SIGUSR2, &action, NULL));
-  }
-
 
   /** launch threads */
   pthread_t threads[MAXTHREADS];
@@ -59,8 +53,8 @@ int main(void) {
 
 
   /** send them a few signals */
-  printf("sending signal retvalue %d\n", pthread_kill(threads[0], SIGUSR1));
-  printf("sending signal retvalue %d\n", pthread_kill(threads[0], SIGUSR1));
+  printf("sending signal retvalue %d\n", pthread_kill(threads[0], SIGNUM));
+  printf("sending signal retvalue %d\n", pthread_kill(threads[0], SIGNUM));
 
   /** party's over */
   for (int counter = 0; counter < MAXTHREADS; counter++) {
