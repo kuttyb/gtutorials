@@ -1,70 +1,130 @@
 /** Lockless fifo */
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 #include <unistd.h>
 #include "fifo.h"
 #include "barrier.h"
+#include "types.h"
 
-#define  REALPTR(ptr)        ((ptr >> 1) << 1)
-#define  NOTPRODUCED(ptr)    (ptr == NULL)
-#define  NOTCONSUMED(ptr)    (REALPTR(ptr) == ptr)
-#define  PRODUCE(ptr)        (NULL)
-#define  CONSUME(ptr)        (ptr | 1)
+/** Pointer Manipulation */
+#define  SETCONSUMED(ptr)            ((void*)((unsigned long)ptr | 1))
+#define  REALPTR(ptr)                ((void*)(((unsigned long)ptr >> 1) << 1))
+#define  TESTINITIALIZED(ptr)        (ptr != NULL)
+#define  TESTNOTINITIALIZED(ptr)     (ptr == NULL)
+#define  TESTCONSUMED(ptr)           (REALPTR(ptr) != ptr)
+#define  TESTNOTCONSUMED(ptr)        (REALPTR(ptr) == ptr)
+
+/** FIFO Invariants */
+#define ISEMPTY(get, put, size) ({boolean a = false; if (get == put) a = true; a;})
+#define ISFULL(get, put, size)  ({boolean a = false; if (get == ((put + 1) % size)) a = true; a;})
+#define INCREMENT(var, maxelements) ((var + 1) % maxelements)
 
 typedef struct {
-  int    *get;
-  int    *put;
-  void  **fifodata;
-  int    bytes;
+    int *get;
+    int *put;
+    void **fifodata;
+    int maxelements;
 } Pvt;
+#define GETPVT(queue) ((Pvt*)queue->data)
 
-/**
-void   put(Queue*,void*);
-void*  get(Queue*);
-*/
+Queue* create(int maxelements) {
+    Pvt* pvt = calloc(1, sizeof (Pvt));
+    assert(pvt);
 
-Queue* create(int size) {
-  Pvt* pvt = calloc(1, sizeof(Pvt));
-  assert(pvt);
+    /** find out a good way to get dcache size */
+    assert(!posix_memalign((void**) &pvt->get, getpagesize() * 16, sizeof (int)));
+    assert(!posix_memalign((void**) &pvt->put, getpagesize() * 16, sizeof (int)));
+    assert(!posix_memalign((void**) &pvt->fifodata, getpagesize(), maxelements * sizeof (void*)));
+    memset(pvt->fifodata, 0, maxelements * sizeof (void*));
+    pvt->maxelements = maxelements;
 
-  /** find out a good way to get dcache size */
-  posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int));
-  posix_memalign((void**)&pvt->put, getpagesize() * 16, sizeof(int));
-  posix_memalign((void**)&pvt->fifodata, getpagesize(), pvt->bytes);
-  pvt->bytes = 0;
+    Queue* retvalue = calloc(1, sizeof (Queue*));
+    retvalue->data = pvt;
 
-  Queue* retvalue = calloc(1, sizeof(Queue*));
-  retvalue->data = pvt;
-
-  return retvalue;
+    return retvalue;
 }
 
 void destroy(Queue* queue) {
-  assert(queue && queue->data);
+    assert(queue && queue->data);
 
-  Pvt* pvtdata = (Pvt*) queue->data;
-  free(pvtdata->get);
-  free(pvtdata->put);
-  free(pvtdata);
-  free(queue);
+    Pvt* pvtdata = GETPVT(queue);
+    free(pvtdata->get);
+    free(pvtdata->put);
+    free(pvtdata);
+    free(queue);
 }
 
 void put(Queue* queue, void* input) {
-  assert(queue && input);
+    assert(queue && queue->data && input);
+    Pvt* pvtdata = GETPVT(queue);
 
-  Pvt* pvtdata = (Pvt*) queue->data;
-  assert(pvtdata);
+    /** contend with consumer and other producers to get your own unique put location */
+    boolean value = false;
+    int localput;
+    do {
+        localput = *pvtdata->put;
+        if (ISFULL(*pvtdata->get, localput, pvtdata->maxelements)) continue;
+        value = CAS(pvtdata->put, localput, INCREMENT(localput, pvtdata->maxelements));
+    } while (value == false);
 
-  
+    value = false;
+
+    /** There can be multiple producers/consumers at this location trying to pull/push at this location (put/get wrap) */
+    barrier_acquire();
+    do {
+
+        void *ptr = pvtdata->fifodata[localput];
+        if (TESTINITIALIZED(ptr) && TESTNOTCONSUMED(ptr)) continue;
+
+        /** ptr looks good CAS your value in */
+        value = CAS(&pvtdata->fifodata[localput], ptr, input);
+    } while (value == false);
+    barrier_release();
+}
+
+void* get(Queue* queue) {
+    assert(queue && queue->data);
+    Pvt* pvtdata = GETPVT(queue);
+
+    int localget;
+    boolean value = false;
+    do {
+        localget = *pvtdata->get;
+        if (ISEMPTY(localget, *pvtdata->put, pvtdata->maxelements)) continue;
+        value = CAS(pvtdata->get, localget, INCREMENT(localget, pvtdata->maxelements));
+    } while (value == false);
+
+    /** There can be multiple producers/consumers at this location trying to pull/push at this location (put/get wrap) */
+    value = false;
+    void *data;
+    do {
+        data = pvtdata->fifodata[localget];
+        if (TESTNOTINITIALIZED(data) || TESTCONSUMED(data)) continue;
+
+        value = CAS(&pvtdata->fifodata[localget], data, SETCONSUMED(data));
+    } while (value == false);
+    barrier_write();
+
+    return data;
 }
 
 int main(void) {
 
-  Queue* queue = create(200);
-  assert(queue);
+    Queue* queue = create(200);
+    assert(queue);
 
-  destroy(queue);
+    int a[] = {2, 3, 4};
 
-  return 1;
+    put(queue, &a[0]);
+    put(queue, &a[1]);
+
+    int *one = (int*) get(queue);
+    assert(*one == 2);
+    one = (int*) get(queue);
+    assert(*one == 3);
+
+    destroy(queue);
+    return 1;
 }

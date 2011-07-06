@@ -10,7 +10,7 @@ const char *strchr(const char *string, int c) {
     return string;
 }
 
-char *strncpy(const char *src, char *dst, int len) {
+char *__strncpy(const char *src, char *dst, int len) {
   char *s = dst;
   for (; (len-- > 0) && (*s++ = *src++) != '\0';) {}
 
@@ -26,7 +26,7 @@ int main(void) {
   char *src = "first input buffer";
   char *dst = calloc(200, sizeof(char));
 
-  printf("copying ==> %s\n", strncpy(src, dst, 4));
+  printf("copying ==> %s\n", __strncpy(src, dst, 4));
  
   free(dst);
 
