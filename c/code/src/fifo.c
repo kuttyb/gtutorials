@@ -29,9 +29,9 @@ Queue* create(int size) {
   assert(pvt);
 
   /** find out a good way to get dcache size */
-  posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int));
-  posix_memalign((void**)&pvt->put, getpagesize() * 16, sizeof(int));
-  posix_memalign((void**)&pvt->fifodata, getpagesize(), pvt->bytes);
+  assert(!posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int)));
+  assert(!posix_memalign((void**)&pvt->put, getpagesize() * 16, sizeof(int)));
+  assert(!posix_memalign((void**)&pvt->fifodata, getpagesize(), pvt->bytes));
   pvt->bytes = 0;
 
   Queue* retvalue = calloc(1, sizeof(Queue*));

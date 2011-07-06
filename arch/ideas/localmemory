@@ -66,6 +66,9 @@ Q: I am sort of convinced... why go nuts.. use the IPI to do the cache line shoo
    as well. You re changing the kernel anyways right?
 A: Yes .. and no... <details later>
 
+NOTE: Btw you can use schedule_work_on(cpuid, work) to launch async code on a particular CPU.
+      Now whether this runs in interrupt context or process context I dont know.
+
 <c> Write Concurrently 
 Simple do what you did with your Java implementation. 
 
