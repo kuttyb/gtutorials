@@ -70,9 +70,8 @@ void put(Queue* queue, void* input) {
     } while (value == false);
 
     value = false;
-    /** There could be multiple producer threads with the same value of PUT. Why?
-     *  Because PUT wraps around...
-     */
+
+    /** There can be multiple producers/consumers at this location trying to pull/push at this location (put/get wrap) */
     barrier_acquire();
     do {
 
@@ -97,12 +96,15 @@ void* get(Queue* queue) {
         value = CAS(pvtdata->get, localget, INCREMENT(localget, pvtdata->maxelements));
     } while (value == false);
 
-    /** at this point consumer owns this slot */
-    while (TESTNOTINITIALIZED(pvtdata->fifodata[localget]) || TESTCONSUMED(pvtdata->fifodata[localget])) {
-    }
+    /** There can be multiple producers/consumers at this location trying to pull/push at this location (put/get wrap) */
+    value = false;
+    void *data;
+    do {
+        data = pvtdata->fifodata[localget];
+        if (TESTNOTINITIALIZED(data) || TESTCONSUMED(data)) continue;
 
-    void *data = pvtdata->fifodata[localget];
-    pvtdata->fifodata[localget] = SETCONSUMED(pvtdata->fifodata[localget]);
+        value = CAS(&pvtdata->fifodata[localget], data, SETCONSUMED(data));
+    } while (value == false);
     barrier_write();
 
     return data;
