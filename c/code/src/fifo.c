@@ -12,9 +12,10 @@
 #define  CONSUMED(ptr)       (ptr | 1)
 
 typedef struct {
-  int  *get;
-  int  *put;
-  int   capacity;
+  int    *get;
+  int    *put;
+  void  **fifodata;
+  int    bytes;
 } Pvt;
 
 /**
@@ -29,7 +30,8 @@ Queue* create(int size) {
   /** find out a good way to get dcache size */
   posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int));
   posix_memalign((void**)&pvt->put, getpagesize() * 16, sizeof(int));
-  pvt->capacity = 0;
+  posix_memalign((void**)&pvt->fifodata, getpagesize(), pvt->bytes);
+  pvt->bytes = 0;
 
   Queue* retvalue = calloc(1, sizeof(Queue*));
   retvalue->data = pvt;
