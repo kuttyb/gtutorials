@@ -2,6 +2,8 @@
 #define   __barrier_h__
 
 /** should work for SunStudio and GCC */
+#define   CAS(ptr, oldval, newval) __sync_bool_compare_and_swap(ptr, oldval, newval)
+
 /** x86-64 */
 #if     defined(__x86_64)
 #define   barrier_compiler()   asm volatile ("" : : : "memory") 

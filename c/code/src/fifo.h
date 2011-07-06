@@ -5,10 +5,9 @@ typedef struct {
   void *data;
 } Queue;
 
+Queue* create(int size);
+void   destroy(Queue*);
 void   put(Queue*,void*);
-
 void*  get(Queue*);
-
-int    size(Queue*);
 
 #endif //__fifo_h__
