@@ -1,3 +1,4 @@
+/** Lockless fifo */
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
@@ -25,7 +26,7 @@ void*  get(Queue*);
 
 Queue* create(int size) {
   Pvt* pvt = calloc(1, sizeof(Pvt));
-  if (!pvt) return NULL;
+  assert(pvt);
 
   /** find out a good way to get dcache size */
   posix_memalign((void**)&pvt->get, getpagesize() * 16, sizeof(int));
@@ -40,7 +41,7 @@ Queue* create(int size) {
 }
 
 void destroy(Queue* queue) {
-  if (!(queue && queue->data)) return;
+  assert(queue && queue->data);
 
   Pvt* pvtdata = (Pvt*) queue->data;
   free(pvtdata->get);
@@ -49,8 +50,21 @@ void destroy(Queue* queue) {
   free(queue);
 }
 
+void put(Queue* queue, void* input) {
+  assert(queue && input);
+
+  Pvt* pvtdata = (Pvt*) queue->data;
+  assert(pvtdata);
+
+  
+}
 
 int main(void) {
+
+  Queue* queue = create(200);
+  assert(queue);
+
+  destroy(queue);
 
   return 1;
 }
