@@ -109,7 +109,16 @@ int main(void) {
     Queue* queue = create(200);
     assert(queue);
 
-    destroy(queue);
+    int a[] = {2, 3, 4};
 
+    put(queue, &a[0]);
+    put(queue, &a[1]);
+
+    int *one = (int*) get(queue);
+    assert(*one == 2);
+    one = (int*) get(queue);
+    assert(*one == 3);
+
+    destroy(queue);
     return 1;
 }
