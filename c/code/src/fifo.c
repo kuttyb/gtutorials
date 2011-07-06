@@ -5,33 +5,42 @@
 #include <unistd.h>
 #include "fifo.h"
 #include "barrier.h"
+#include "types.h"
 
-#define  REALPTR(ptr)        ((ptr >> 1) << 1)
-#define  TESTPRODUCED(ptr)   (ptr != NULL)
-#define  TESTCONSUMED(ptr)   (REALPTR(ptr) != ptr)
-#define  SETPRODUCTED(ptr)   (NULL)
-#define  SETCONSUMED(ptr)    (ptr | 1)
+/** Pointer Manipulation */
+#define  SETCONSUMED(ptr)            ((void*)((unsigned long)ptr | 1))
+#define  REALPTR(ptr)                ((void*)(((unsigned long)ptr >> 1) << 1))
+#define  TESTINITIALIZED(ptr)        (ptr != NULL)
+#define  TESTNOTINITIALIEZD(ptr)     (ptr == NULL)
+#define  TESTCONSUMED(ptr)           (REALPTR(ptr) != ptr)
+#define  TESTNOTCONSUMED(ptr)        (REALPTR(ptr) == ptr)
+
+/** FIFO Invariants */
+#define ISEMPTY(get, put, size) ({boolean a = false; if (get == put) a = true; a;})
+#define ISFULL(get, put, size)  ({boolean a = false; if (get == ((put + 1) % size)) a = true; a;})
+#define INCREMENT(var, maxelements) ((var + 1) % maxelements)
 
 typedef struct {
     int *get;
     int *put;
     void **fifodata;
-    int bytes;
+    int maxelements;
 } Pvt;
+#define GETPVT(queue) ((Pvt*)queue->data)
 
 /**
 void*  get(Queue*);
  */
 
-Queue* create(int size) {
+Queue* create(int maxelements) {
     Pvt* pvt = calloc(1, sizeof (Pvt));
     assert(pvt);
 
     /** find out a good way to get dcache size */
     assert(!posix_memalign((void**) &pvt->get, getpagesize() * 16, sizeof (int)));
     assert(!posix_memalign((void**) &pvt->put, getpagesize() * 16, sizeof (int)));
-    assert(!posix_memalign((void**) &pvt->fifodata, getpagesize(), pvt->bytes));
-    pvt->bytes = 0;
+    assert(!posix_memalign((void**) &pvt->fifodata, getpagesize(), maxelements * sizeof (void*)));
+    pvt->maxelements = maxelements;
 
     Queue* retvalue = calloc(1, sizeof (Queue*));
     retvalue->data = pvt;
@@ -42,7 +51,7 @@ Queue* create(int size) {
 void destroy(Queue* queue) {
     assert(queue && queue->data);
 
-    Pvt* pvtdata = (Pvt*) queue->data;
+    Pvt* pvtdata = GETPVT(queue);
     free(pvtdata->get);
     free(pvtdata->put);
     free(pvtdata);
@@ -51,11 +60,25 @@ void destroy(Queue* queue) {
 
 void put(Queue* queue, void* input) {
     assert(queue && input);
-
-    Pvt* pvtdata = (Pvt*) queue->data;
+    Pvt* pvtdata = GETPVT(queue);
     assert(pvtdata);
 
+    /** contend with consumer and other producers to get your own unique put location */
+    boolean value = false;
+    int localput;
+    do {
+        localput = *pvtdata->put;
+        if (ISFULL(*pvtdata->get, localput, pvtdata->maxelements)) continue;
+        value = CAS(pvtdata->put, localput, INCREMENT(localput, pvtdata->maxelements));
+    } while (value == false);
 
+    /** at this point you are the only producer that owns localput .. go ahead and modify array */
+    while (TESTINITIALIZED(pvtdata->fifodata[localput]) && TESTNOTCONSUMED(pvtdata->fifodata[localput])) {
+    }
+
+    /** at this point the data is ready to be written previuos owners have moved out */
+    pvtdata->fifodata[localput] = input;
+    barrier_write();
 }
 
 int main(void) {
