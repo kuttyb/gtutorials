@@ -28,10 +28,6 @@ typedef struct {
 } Pvt;
 #define GETPVT(queue) ((Pvt*)queue->data)
 
-/**
-void*  get(Queue*);
- */
-
 Queue* create(int maxelements) {
     Pvt* pvt = calloc(1, sizeof (Pvt));
     assert(pvt);
