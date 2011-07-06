@@ -11,7 +11,7 @@
 #define  SETCONSUMED(ptr)            ((void*)((unsigned long)ptr | 1))
 #define  REALPTR(ptr)                ((void*)(((unsigned long)ptr >> 1) << 1))
 #define  TESTINITIALIZED(ptr)        (ptr != NULL)
-#define  TESTNOTINITIALIEZD(ptr)     (ptr == NULL)
+#define  TESTNOTINITIALIZED(ptr)     (ptr == NULL)
 #define  TESTCONSUMED(ptr)           (REALPTR(ptr) != ptr)
 #define  TESTNOTCONSUMED(ptr)        (REALPTR(ptr) == ptr)
 
@@ -59,9 +59,8 @@ void destroy(Queue* queue) {
 }
 
 void put(Queue* queue, void* input) {
-    assert(queue && input);
+    assert(queue && queue->data && input);
     Pvt* pvtdata = GETPVT(queue);
-    assert(pvtdata);
 
     /** contend with consumer and other producers to get your own unique put location */
     boolean value = false;
@@ -79,6 +78,30 @@ void put(Queue* queue, void* input) {
     /** at this point the data is ready to be written previuos owners have moved out */
     pvtdata->fifodata[localput] = input;
     barrier_write();
+}
+
+void* get(Queue* queue) {
+    assert(queue && queue->data);
+    Pvt* pvtdata = GETPVT(queue);
+
+    int localget;
+    boolean value = false;
+    do {
+        localget = *pvtdata->get;
+        if (ISEMPTY(localget, *pvtdata->put, pvtdata->maxelements)) continue;
+        value = CAS(pvtdata->get, localget, INCREMENT(localget, pvtdata->maxelements));
+    } while (value == false);
+
+    /** at this point consumer owns this slot */
+    while (TESTNOTINITIALIZED(pvtdata->fifodata[localget]) || TESTCONSUMED(pvtdata->fifodata[localget])) {
+    }
+
+    barrier_read();
+    void *data = pvtdata->fifodata[localget];
+    pvtdata->fifodata[localget] = SETCONSUMED(pvtdata->fifodata[localget]);
+    barrier_write();
+
+    return data;
 }
 
 int main(void) {
