@@ -69,13 +69,20 @@ void put(Queue* queue, void* input) {
         value = CAS(pvtdata->put, localput, INCREMENT(localput, pvtdata->maxelements));
     } while (value == false);
 
-    /** at this point you are the only producer that owns localput .. go ahead and modify array */
-    while (TESTINITIALIZED(pvtdata->fifodata[localput]) && TESTNOTCONSUMED(pvtdata->fifodata[localput])) {
-    }
+    value = false;
+    /** There could be multiple producer threads with the same value of PUT. Why?
+     *  Because PUT wraps around...
+     */
+    barrier_acquire();
+    do {
 
-    /** at this point the data is ready to be written previuos owners have moved out */
-    pvtdata->fifodata[localput] = input;
-    barrier_write();
+        void *ptr = pvtdata->fifodata[localput];
+        if (TESTINITIALIZED(ptr) && TESTNOTCONSUMED(ptr)) continue;
+
+        /** ptr looks good CAS your value in */
+        value = CAS(&pvtdata->fifodata[localput], ptr, input);
+    } while (value == false);
+    barrier_release();
 }
 
 void* get(Queue* queue) {
