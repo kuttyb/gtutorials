@@ -1,6 +1,7 @@
 /** Lockless fifo */
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <assert.h>
 #include <unistd.h>
 #include "fifo.h"
@@ -36,6 +37,7 @@ Queue* create(int maxelements) {
     assert(!posix_memalign((void**) &pvt->get, getpagesize() * 16, sizeof (int)));
     assert(!posix_memalign((void**) &pvt->put, getpagesize() * 16, sizeof (int)));
     assert(!posix_memalign((void**) &pvt->fifodata, getpagesize(), maxelements * sizeof (void*)));
+    memset(pvt->fifodata, 0, maxelements * sizeof (void*));
     pvt->maxelements = maxelements;
 
     Queue* retvalue = calloc(1, sizeof (Queue*));
