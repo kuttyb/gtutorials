@@ -33,15 +33,16 @@ void realhandler(int signo, siginfo_t *info, void *context) {
     printf("waking up from sleep\n");
 }
 
+int registerSignalHandler(int signum, void (*handler)(int, siginfo_t*, void*)) {
+    struct sigaction action;
+    action.sa_sigaction = handler;
+    sigemptyset(&action.sa_mask);
+    return sigaction(signum, &action, NULL);
+}
+
 int main(void) {
     /** register signal handler */
-    {
-        struct sigaction action;
-        action.sa_sigaction = realhandler;
-        sigemptyset(&action.sa_mask);
-        action.sa_flags = SA_SIGINFO;
-        assert(!sigaction(SIGNUM, &action, NULL));
-    }
+    assert(!registerSignalHandler(SIGNUM, realhandler));
 
     /** launch threads */
     pthread_t threads[MAXTHREADS];
