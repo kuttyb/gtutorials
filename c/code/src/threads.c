@@ -8,7 +8,7 @@
 
 #define MAXTHREADS  (3)
 #define SLEEPTIME   (2)
-// Use Real Time Signals ... they can be queue, the regular ones cannot
+// Use Real Time Signals ... they can be queued, the regular ones cannot
 #define SIGNUM      (SIGRTMIN + 1)
 
 typedef struct {
