@@ -7,8 +7,8 @@
 #include "types.h"
 
 
-#define MAXTHREADS  (4)
-#define MAXWRITES   (4)
+#define MAXTHREADS  (10)
+#define MAXWRITES   (1000)
 #define SLEEPTIME   (2)
 // Use Real Time Signals ... they can be queued, the regular ones cannot
 #define SIGNUM      (SIGRTMIN + 1)
@@ -21,7 +21,7 @@ int counter;
 int registered;
 
 void realhandler(int signo, siginfo_t *info, void *context) {
-  printf("in the signal handler of thread %d\n", pthread_self());
+  //printf("in the signal handler of thread %d\n", pthread_self());
     __sync_add_and_fetch(&counter, 1);
 }
 
