@@ -7,8 +7,8 @@
 #include "types.h"
 
 
-#define MAXTHREADS  (10)
-#define MAXWRITES   (250)
+#define MAXTHREADS  (4)
+#define MAXWRITES   (2)
 #define SLEEPTIME   (2)
 // Use Real Time Signals ... they can be queued, the regular ones cannot
 #define SIGNUM      (SIGRTMIN + 1)
@@ -76,7 +76,7 @@ int main(void) {
 
   /** party's over */
   for (int counter = 0; counter < MAXTHREADS; counter++) {
-    pthread_join(threads[counter], NULL);
+    assert(!pthread_join(threads[counter], NULL));
   }
 
 
