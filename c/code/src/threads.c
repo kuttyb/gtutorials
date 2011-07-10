@@ -17,12 +17,30 @@ typedef struct {
     long id;
 } PerThread;
 
-int counter = 0;
+int counter;
+int registered;
+
+void realhandler(int signo, siginfo_t *info, void *context) {
+  printf("in the signal handler of thread %d\n", pthread_self());
+    __sync_add_and_fetch(&counter, 1);
+}
+
+int registerSignalHandler(int signum, void (*handler)(int, siginfo_t*, void*)) {
+    struct sigaction action;
+    action.sa_sigaction = handler;
+    sigemptyset(&action.sa_mask);
+    return sigaction(signum, &action, NULL);
+}
+
 void* threadfunction(void* arg) {
     PerThread *pThread = arg;
     printf("starting thread %ld and pid %d\n",
             pThread->id, getpid());
+    assert(!registerSignalHandler(SIGNUM, realhandler));
+    __sync_fetch_and_add(&registered, 1);
+    printf("thread registered signal handler\n");
     
+
     const int max = MAXTHREADS * MAXWRITES;
     while (true) {
       int value = __sync_fetch_and_add(&counter, 0);
@@ -35,21 +53,10 @@ void* threadfunction(void* arg) {
     return NULL;
 }
 
-void realhandler(int signo, siginfo_t *info, void *context) {
-  //    printf("in the signal handler\n");
-    __sync_add_and_fetch(&counter, 1);
-}
-
-int registerSignalHandler(int signum, void (*handler)(int, siginfo_t*, void*)) {
-    struct sigaction action;
-    action.sa_sigaction = handler;
-    sigemptyset(&action.sa_mask);
-    return sigaction(signum, &action, NULL);
-}
-
 int main(void) {
-  /** register signal handler */
-  assert(!registerSignalHandler(SIGNUM, realhandler));
+  counter = 0;
+  registered = 0;
+  barrier_write();
 
   /** launch threads */
   pthread_t threads[MAXTHREADS];
@@ -61,15 +68,19 @@ int main(void) {
   }
 
 
-  /** send them a few signals */
+  /** wait till they ve registered signal handlers before sending signals */
+  printf("main thread: waiting for worker threads to setup handlers\n");
+  boolean value = false;
+  do {
+    int local = __sync_add_and_fetch(&registered, 0);
+    if (local >= MAXTHREADS) break;
+  } while(value == false);
 
-  /** unfortunately cant seem to get pthread_sigqueue to work ....
-      but its ok .. we can pass value in separate per thread
-      queues ... much easier
-  */
+  printf("about to send signals ...\n");
+
   for (int counter = 0; counter < MAXWRITES; counter++) {
     for (int tid = 0; tid < MAXTHREADS; tid++) {
-      pthread_kill(threads[tid], SIGNUM);
+      assert(!pthread_kill(threads[tid], SIGNUM));
     }
   }
 
