@@ -8,7 +8,7 @@
 
 
 #define MAXTHREADS  (4)
-#define MAXWRITES   (2)
+#define MAXWRITES   (4)
 #define SLEEPTIME   (2)
 // Use Real Time Signals ... they can be queued, the regular ones cannot
 #define SIGNUM      (SIGRTMIN + 1)
