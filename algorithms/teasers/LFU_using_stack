@@ -1,0 +1,9 @@
+Think it through but immediate response that comes to mind is a min-heap where array[0] aka root of the heap is the least element.
+
+Stack can be implemented using an array and pop always returns array[0]. So there you have it.
+
+This also means that accesses are expensive since they will cause readding the element in the right place and thats a lg(n) operation.
+
+In order to avoid this use bounds and have pointers to bounds from the heap. So unless your access causes frequency of the accessed element
+to get past the bound there is no need to reposition it within the heap.
+
