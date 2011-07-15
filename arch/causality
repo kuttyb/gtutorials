@@ -1,0 +1,12 @@
+I see the effect but not the cause!!
+  -- Kutty Banerjee (7/14/2011 while sipping tea and watching Anderson Cooper)
+
+Bottomline in memory consistency it means W(A, 1) --> W(B, 1) 
+	   where B is causally dependent on A
+
+	   If you see B but dont see A (latter than A is ok but not earlier)
+	   then we have a causality violation!!
+
+	   x86 wont allow it ... which means its also a slimy way of avoiding
+	   the dreaded mfence :-))
+
