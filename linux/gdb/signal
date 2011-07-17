@@ -1,0 +1,5 @@
+info signals  // to get a list of signal names
+
+
+handle SIG35 nostop noprint // This will let control goto your programs signal handler instead of to gdb
+
