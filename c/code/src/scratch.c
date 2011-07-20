@@ -1,46 +1,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const char *strchr(const char *string, int c) {
-  for ( ; (*string != '\0') && (*string != (char) c); string++){}
 
-  if (*string == '\0') 
-    return NULL;
-  else 
-    return string;
-}
-
-char *__strncpy(const char *src, char *dst, int len) {
-  char *s = dst;
-  for (; (len-- > 0) && (*s++ = *src++) != '\0';) {}
-
-  return dst;
-}
+#define ISSIGNALLED(ptr)  (((((unsigned long)ptr) >> 1) << 1) != (unsigned long)ptr)
+#define SIGNAL(ptr)       (void*)(((unsigned long)ptr) | 1)
+#define GETPTR(ptr)       (void*)((((unsigned long)ptr) >> 1) << 1)
 
 int main(void) {
+  int  a = 20;
+  int *b = &a;
 
-  printf("testing strings\n");
-
-  printf("PRINTING==> %s\n", strchr("this is the data", 'i'));
- 
-  char *src = "first input buffer";
-  char *dst = calloc(200, sizeof(char));
-
-  printf("copying ==> %s\n", __strncpy(src, dst, 4));
- 
-  free(dst);
-
-  char t[] = {'a', 'b', 'c', 'd'};
-  char *p = t;
-  printf(".... %d\n", (int)*p++);
-  p  = t;
-  printf(".... %d\n", *(int*)p++);
-
-  // keep this rule in mind btw .. you get type but not * in 
-  // single line multi variables
-  const char *a = NULL, *b = NULL;
-
-  if (!(a && b)) return 0;
+  printf("b = %p\n", b);
+  
+  int *c = SIGNAL(b);
+  printf("SIGNAL(b) = %p\n", c);
+  printf("ISSIGNALLED(c) = %d\n", ISSIGNALLED(c));
+  printf("ISSIGNALLED(b) = %d\n", ISSIGNALLED(b));
+  printf("GETPTR(c) = %p\n",      GETPTR(c));
 
   return 1;
 }
