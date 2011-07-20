@@ -3,6 +3,14 @@ These are the different types I have listed so far:
 -> Write Never   (read only)
 
 -> Write Once    (publication safety)
+   [Update: I d like to disagree with my earlier assesment. This is not about
+   publication safety where when you get the pointer its assumed its contents
+   are initialized.
+
+   In this case its udnerstood the contents are lazily initialized. The check
+   for isInitialized involves a lock+bool or fence+bool either ways its bad
+   since you pay it for a gazzilion reads. My goal is to take the bool-fence-lock
+   out all of it and replace it with plain vanilla bold reads (yeahhhh!!!) :-)
 
 -> Write Rarely  (mostly readonly but can be written)
 
