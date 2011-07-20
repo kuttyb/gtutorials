@@ -5,7 +5,7 @@ Shared memory types and local implementations/optimizations:
 Easy bring it off readonly pages(s)
 
 
-<b> write once 
+<b> write once  .... [UPDATE] Refer file "writeonce" for the latest.
 
 initialize to the real page with prot_none. Writer does this
 
