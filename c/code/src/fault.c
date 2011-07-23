@@ -27,17 +27,15 @@ int main(void) {
   /** allocate aligned memory */
   assert(!posix_memalign(&memptr, getpagesize(), SIZE * sizeof(int)));
   printf("buffer starts at %p\n", memptr);
-  assert(!mprotect(memptr, SIZE * sizeof(int), PROT_READ));
+  assert(!mprotect(memptr, SIZE * sizeof(int), PROT_NONE));
 
   /** cause the fault */
   int *ptr = memptr;
-  for (int counter = 2; counter < SIZE; counter++) {
-    if (ptr[counter] ==  0x10) {
-      printf("ooops\n");
-    }
-    ptr[counter] = 0x1;
+  //  ptr[0] = 0x10;
+  if (ptr[0] == 0x0) {
+    printf("read succeeded\n");
   }
-  
+
   printf("done accessing the buffer\n");
   free(memptr);
 
