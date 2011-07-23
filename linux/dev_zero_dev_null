@@ -1,0 +1,6 @@
+writes to both goto hell ... they re just ignored
+
+reads from /dev/null return EOF i.e., nothing
+
+reads from /dev/zero return zeroes until the cows come home!
+
