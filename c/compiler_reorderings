@@ -1,0 +1,8 @@
+Based on discussions with GCC devs <apinski and roxfan ... :Andrew Pinski apparently a real guy that works for Cavium>
+
+volatiles cant be reordered past each other but says nothing about non volatiles. There are no partial barriers so 
+use the full barrier.
+
+And yes if you mark a variable as volatile then it wont have other optimizations that assume the variable cannot be set
+from a place that the compiler has knowledge of (like interrupt handlers / device / signal handlers)
+

@@ -25,11 +25,19 @@ These are the different types I have listed so far:
 ---> Bad  Thread Locality (locks ping pong a lot between different threads)
 
 ------> Loosely Contested (even though they ping pong between threads at a time 
-			   there are not a lot of contenders)
+			   there are not a lot of **SIMULTANEOUS** contenders)
 			   < good candidates for lockless algorithms since
-			     rollback will be rare >
+			     rollback will be rare and PerThreadLocking breaks down here
+			     because you keep paying for lock stealing via signals.
+
+			     Q: Can I improve PTL to know there are contenders and	
+			        surrender lock back after first use?
+			     A: Are you listening... ? Its rate of lock owner shift
+			        we re talking of here NOT #simultaneous lock contenders
+			     >
+
 ------> Hotly   Contested (the worst of the lot)
-			   < cant help you .. fix the code. otherwise use 
+			   < cant help you .. fix the code/stripe the lock  otherwise use 
 			     adaptive lock with good throttling and NUMA  
 			     characteristics >
 --------------------------------------------------------------
