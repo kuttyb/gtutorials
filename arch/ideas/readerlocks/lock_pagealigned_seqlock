@@ -62,3 +62,6 @@ writer copy not a stale but consistent copy. This assumes the original version s
 from this problem. Thats a huge assumption lets see what Intel folks say in this 
 thread http://software.intel.com/en-us/forums/showthread.php?t=84579&o=a&s=lr
 
+--> BTW this also suffers from not being able to support pointer chasing!!
+
+
