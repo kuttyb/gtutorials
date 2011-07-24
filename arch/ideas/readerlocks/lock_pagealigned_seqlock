@@ -43,7 +43,22 @@ void writeUnlock(RWLock* lock) {
     CAS(lock->status, 1, 0);
 }
 
-As you can see writer changes version just once not twice because PROT_NONE 
-buys us that window of denial for readers while writer is modifying data!!
+
 =============================================================================
+  Thoughts:
+=============================================================================
+
+--> As you can see writer changes version just once not twice because PROT_NONE 
+buys us that window of denial for readers while writer is modifying data!!
+
+--> I ll make a controversial statement about why I believe this implementation
+is better but first the drawback. This sucks in 8K of VA and 4k of PA. The PA
+we may be able to share with other RW locks not sure yet but the 8K VA is flat out
+gone!
+
+--> This uses mprotect before writer starts modifying data. As a consequence
+if the reader reads versions and doesnt fault and succeeds he is guaranteed latest
+writer copy not a stale but consistent copy. This assumes the original version suffers
+from this problem. Thats a huge assumption lets see what Intel folks say in this 
+thread http://software.intel.com/en-us/forums/showthread.php?t=84579&o=a&s=lr
 
