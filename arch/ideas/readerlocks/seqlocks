@@ -1,5 +1,5 @@
-typical seqlocks:
-
+typical seqlocks: <refer http://lxr.linux.no/linux+v3.0/include/linux/seqlock.h >
+ 
 --------------
 writer():
 --------------
