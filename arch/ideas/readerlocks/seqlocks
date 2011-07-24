@@ -1,0 +1,53 @@
+typical seqlocks:
+
+--------------
+writer():
+--------------
+lock() // protect against other writers
+atomic_incr(version, 1)
+
+change shared data (data)
+
+atomic_incr(version, 1)
+unlock()
+
+--------------
+reader():
+--------------
+outputdata
+do {
+      do {
+   	v0 = load(version);
+      } while(v0 & 1); // if its an odd number dont enter ... writer is modifying
+
+      copy_from_to(data, outputdata)
+
+      v1 = load(version)
+} while( v1 != v0)
+
+return outputdata;
+
+--------------------------------------------------------
+ My Thoughts:
+--------------------------------------------------------
+--> The odd protection is to ensure readers dont go and trash
+cache lines that the writers are modifying since readers will
+have to rollback anyways.
+
+--> My argument being with sufficiently large #readers and a moderate sized
+data odds are against you ... readers will miss that small lil odd check.
+So this has a scalability problem for both large #readers and large data structs.
+Meaning you ll get that cacheline shitstorm anyways!!
+
+--> Also, I m not entirely convinced reader doing plain load of 
+version is guaranteed to get the latest write. Can processors cheat?
+As you can see if he returns old data and old version he is still TLO
+and causally consistent. So you could land up getting stale but consistent
+readers ... which is ok I guess
+
+--> Oh and the biggest issue being this is what I call a SNAPSHOT BASED READER LOCK!!
+Meaning you can get a consistent snapshot of the data but since it involves rollback,
+you may not hold this reader lock to produce other side effects of your own on other
+data structures!!
+
+
