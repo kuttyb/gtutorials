@@ -8,3 +8,8 @@ This also has the 2 known problems with seqlocks:
 
 ---------------- Details ------------------------
 
+Its no different than the other one except that the data ptr is provided by this API.
+
+There are two pointers rptr, wptr the rptr is posix_memalign allocated with mprotect.
+Write locks mremap wptr to rptr and later gives it back with sufficient fences.
+
