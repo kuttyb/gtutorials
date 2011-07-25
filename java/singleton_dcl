@@ -1,0 +1,18 @@
+Refer to your "C" implementation of WriteOnce.
+
+final class Singleton<Factory<T>> {
+      private final Factory<T> factory;
+
+      public Singleton(Factory<T> factory) {
+      	     this.factory = factory;      	     
+      }
+
+      public native T get();
+}
+
+Usage:
+
+Singleton<ChocolateFactory<Chocolate>>  singleton = new Sin.....
+
+Chocolate a = singleton.get();
+
