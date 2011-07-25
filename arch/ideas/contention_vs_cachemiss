@@ -1,7 +1,7 @@
 Dmitriy Vyukov made a very interesting comment in one of his blogs about going all Thread
 Local Storage.
 
-In a nutshell it asks would you rather contend between caches or miss the caches!
+In a nutshell it says " That for caches, I d rather contend than miss"
 
 My counterargument to that being a dumb usage of TLS is not very useful. You want to tile
 memory and stream memory ... more on that later!
