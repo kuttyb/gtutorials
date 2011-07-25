@@ -1,0 +1,15 @@
+Instead of page protecting the lock the data structure is page protected with two separate
+pointers for reading and writing. Writers PROT_NONE the reader page before making changes.
+
+This also has the 2 known problems with seqlocks:
+<a> can only snapshot .. cant produce external side effects while holding reader lock
+
+<b> can't chase pointers
+
+---------------- Details ------------------------
+
+Its no different than the other one except that the data ptr is provided by this API.
+
+There are two pointers rptr, wptr the rptr is posix_memalign allocated with mprotect.
+Write locks mremap wptr to rptr and later gives it back with sufficient fences.
+

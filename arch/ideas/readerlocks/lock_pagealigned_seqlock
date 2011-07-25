@@ -1,0 +1,67 @@
+========================================================================
+	Lock Page Aligned
+========================================================================
+This is my version of seqlock!!
+
+typedef struct {
+    unsigned long physOffset; // page offset /dev/shm/cthreads.pid
+
+    void          *rptr;      // rptr and wptr are two page aligned VAs
+    void          *wptr;      // used by readers and writers respectively!!
+
+    int            status;    // 0 = RO  mode , 1 = W mode
+} RWLock;
+
+void readLock(RWLock* lock, void* src, void* dst, int bytes) {
+     do {
+     	v0    = rptr[0];
+
+	memcpy(src, dst, bytes);
+
+	v1    = rptr[0];
+     } while(v1 != v0);
+}
+
+onReadFault(unsigned long addr) {
+   RWLock* lock = hashGet(addr);
+   
+   barrier_full();
+   while(lock->status) {
+       /** do an adaptive sleep here if you must */
+   }
+}
+
+void writeLock(RWLock* lock) {
+    while(!CAS(lock->status, 0, 1)){} // grab writer lock
+    PROT_NONE(rptr);
+    barrier_release();
+}
+
+void writeUnlock(RWLock* lock) {
+    atomicincr(wptr[0], 1);
+    PROT_READ(rptr);
+    CAS(lock->status, 1, 0);
+}
+
+
+=============================================================================
+  Thoughts:
+=============================================================================
+
+--> As you can see writer changes version just once not twice because PROT_NONE 
+buys us that window of denial for readers while writer is modifying data!!
+
+--> I ll make a controversial statement about why I believe this implementation
+is better but first the drawback. This sucks in 8K of VA and 4k of PA. The PA
+we may be able to share with other RW locks not sure yet but the 8K VA is flat out
+gone!
+
+--> This uses mprotect before writer starts modifying data. As a consequence
+if the reader reads versions and doesnt fault and succeeds he is guaranteed latest
+writer copy not a stale but consistent copy. This assumes the original version suffers
+from this problem. Thats a huge assumption lets see what Intel folks say in this 
+thread http://software.intel.com/en-us/forums/showthread.php?t=84579&o=a&s=lr
+
+--> BTW this also suffers from not being able to support pointer chasing!!
+
+
