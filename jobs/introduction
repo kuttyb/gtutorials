@@ -1,0 +1,32 @@
+My areas of interest and strength are 
+  - GPU internals 
+  - Concurrency (both Data and Task parallel) 
+  - efficient synchronization primitives 
+  - OS kernel Memory Management subsystem 
+  - OS kernel Thread Scheduling subsystem
+  - tuning code for CPU performance
+  - have developed a few lockless algorithms but by no means an expert
+
+
+-> As part of my day job I have
+  - been the SW lead for GPU Thread Scheduling 
+  - been the SW lead for GPU Memory Management 
+  - helped with Cache Coherence and Memory Consistency for various GPU/CPU platforms. 
+  - lately I ve been helping with a DSM implementation between CPU and GPU with the express
+    goal of making CUDA programming easier
+
+
+-> Have a large set of side projects in Java and C mostly involving:
+  - Efficient locks and synchronization primitives that show some or all of these attributes:
+     -- Fenceless
+     -- Atomicsless
+     -- Cache friendly
+     -- NUMA friendly 
+     -- Anti Starvation smarts
+
+  - Task Parallel Library with support for Data Parallel Workloads (both recursive decomposition and parallel-for style data parallel workloads ) Most parts of this library
+    are lockless and some parts avoid using fences where possible. 
+
+  - OS kernel changes to help the above
+
+  - Distributed Shared Memory 
