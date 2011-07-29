@@ -1,0 +1,5 @@
+Essentially these are rules that force to make compiler optimization results visible at certain points ... not covered it in details
+yet but more here ....
+
+http://publications.gbdirect.co.uk/c_book/chapter8/sequence_points.html
+
