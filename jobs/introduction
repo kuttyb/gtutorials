@@ -1,3 +1,14 @@
+Concurrency, Parallelism (Task and Data), weak memory consistency models, Low Latency Synchronization are my areas of interest. While I ve designed a few lockless algorithms I m by no means an expert in the area.
+
+
+At work I ve been the Software Lead for the GPU Kernel team. As part of this, I ve led efforts to improve thread scheduling / memory management / efficient synchronization / data pipelining on current and upcoming GPU architectures and the Software Runtime. These days most of my efforts are concentrated in helping the programming model for NVIDIA's parallel runtime called CUDA, easier and friendlier for x86 CPU programmers.
+
+
+For side projects, I ve used my knowledge of Linux kernel internals/ JVM internals / CPU / GPU / Cache architectures to implement a variety of efficient synchronization primtives in  C and Java. Also implemented a Task Parallel Library and currently in the process of implementing a DSM that uses Entry Consistency.
+
+
+
+=========================================================
 My areas of interest and strength are 
   - GPU internals 
   - Concurrency (both Data and Task parallel) 
