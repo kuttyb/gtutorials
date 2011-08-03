@@ -2,3 +2,10 @@
 < Intel relaxes TSO to Causally ordered as you know ... here they are poking to see if it breaks anybody>
 http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0590.html
 
+<publication safety ...>
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0105.html
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0163.html
+
+<Dan Scales explains why read barriers are required even without value speculation>
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0055.html
+
