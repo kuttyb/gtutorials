@@ -1,46 +1,4 @@
-=================================================================================================
-=======
-Concurrency, Parallelism (Task and Data), weak memory consistency models, Low Latency Synchronization are my areas of interest. While I ve designed a few lockless algorithms I m by no means an expert in the area.
+My areas of interest are Concurrency, Locks, Task Parallelism, Weak Consistency Models, OS Memory Managment, OS Thread Scheduling and above all in building large functionally correct systems. 
 
+I am proficient in C/Java and dabble in Lisp from time to time. I am always open to new and challenging problems in Computer Science.
 
-At work I ve been the Software Lead for the GPU Kernel team. As part of this, I ve led efforts to improve thread scheduling / memory management / efficient synchronization / data pipelining on current and upcoming GPU architectures and the Software Runtime. These days most of my efforts are concentrated in helping the programming model for NVIDIA's parallel runtime called CUDA, easier and friendlier for x86 CPU programmers.
-
-
-For side projects, I ve used my knowledge of Linux kernel internals/ JVM internals / CPU / GPU / Cache architectures to implement a variety of efficient synchronization primtives in  C and Java. Also implemented a Task Parallel Library and currently in the process of implementing a DSM that uses Entry Consistency.
-
-
-
-=========================================================
-My areas of interest and strength are 
-  - GPU internals 
-  - Concurrency (both Data and Task parallel) 
-  - efficient synchronization primitives 
-  - OS kernel Memory Management subsystem 
-  - OS kernel Thread Scheduling subsystem
-  - tuning code for CPU performance
-  - have developed a few lockless algorithms but am by no means, an expert
-
-
--> As part of my day job I have
-  - been the SW lead for GPU Thread Scheduling 
-  - been the SW lead for GPU Memory Management 
-  - helped with Cache Coherence and Memory Consistency for various GPU/CPU platforms. 
-  - lately I ve been helping with a DSM implementation between CPU and GPU with the express
-    goal of making CUDA programming easier
-
-
--> Have a large set of side projects in Java and C mostly involving:
-  - Efficient locks and synchronization primitives that show some or all of these attributes:
-     -- Fenceless
-     -- Atomicsless
-     -- Cache friendly
-     -- NUMA friendly 
-     -- Anti Starvation smarts
-
-  - Task Parallel Library with support for Data Parallel Workloads (both recursive decomposition and parallel-for style data parallel workloads ) Most parts of this library
-    are lockless and some parts avoid using fences where possible. 
-
-  - OS kernel changes to help the above
-
-  - Distributed Shared Memory 
-=============================================================================================
