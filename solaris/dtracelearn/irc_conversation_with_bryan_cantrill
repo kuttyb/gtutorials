@@ -1,0 +1,80 @@
+<CodeWar> I m in 101 of runtime code modification and trying to learn some. If this is Bryan (Dtrace) would love to bother you guys with a few questions after your conversation is done i.e,
+<CodeWar> when we enable a probe .. the probes, are they noops replaced with jumps to new code or is that page replaced with a new copied page that contains extra instructions
+<bcantrill> richlowe: I filed 1347, which includes the diffs for 1347 and 1348.
+<bcantrill> Will mail it out to the list now...
+<bcantrill> CodeWar: it depends on the provider.
+<bcantrill> ...and the ISA.
+<bcantrill> On x86 in the kernel, we create illegal instructions.
+<bcantrill> (For FBT.)
+<CodeWar> and do something in the trap?
+<bcantrill> CodeWar: right.
+<CodeWar> this is when the probe is enabled right? other times those instructions are noops?
+<bcantrill> It could have been done with INT 3's as well (which is how we do it at user-land), but I wanted to steer clear of the traditional debugger path.
+<bcantrill> CodeWar: they are either no-ops (SDT, USDT) or their native instructions (FBT, pid).
+<CodeWar> bcantrill, so when probes are enabled these traps provide strong memory reordering and probably pipeline stalls? is it fair to argue they change your production path substantially
+<bcantrill> Well, definitely depends on your definition of "substantial"....
+<richlowe> bcantrill: are you going to send a webrev to the list or whatever, or are you wanting me to find reviewers for you?
+<CodeWar> sure .. I m trying to learn from you guys' 10+ years of deployment experience.. what really matters 
+<bcantrill> If you had some code that consistently delivers CPI well below 1, then yes, this is substantial.
+<bcantrill> richlowe: will send diffs to the list.
+<bcantrill> Have I said recently that I would love to get the gate onto GH so I could cherry-pick directly? ;)
+<CodeWar> is the shadow code page ( copy of old page + new instructions) something that was tried or does it have other problems 
+<bcantrill> CodeWar: why would one want a shadow code page?  Just update the real thing...
+<CodeWar> bcantrill, fast switching back n forth was my lousy thought 
+<bcantrill> Ah. No, I don't care about that particular problem. ;)
+<CodeWar> ok 
+<bcantrill> Oh, I think I see where you're coming from:
+
+
+<CodeWar> more like a JIT but am not well read enough on how JITs do this
+<bcantrill> the idea is to keep around the original to avoid having to rewrite the page with the native instruction when you hit the probe?
+<CodeWar> yep!!!
+<bcantrill> Ah. Yes, we don't have that problem, and for a very deliberate reason:
+<bcantrill> DTrace is loss-less.
+<bcantrill> If one does this, there will be a window in which another thread on another CPU does not see the instrumented instruction.
+<bcantrill> So for all of our methodologies, we revector to the point after the point of instrumentation, with the architectural state in the correct state given the instruction.
+<bcantrill> Which is a long way of saying that we emulate the instruction. ;)
+<CodeWar> bcantrill, yes that window of death exists except to work around just that issue I was hopiong to prot_none that page and pay for the tlb invalidate cost anyways ignore it
+<bcantrill> CodeWar: blech.
+<CodeWar> let me see if I udnerstood the sequence here:  probe is a software instruction that does nothing or noop .. when enabled there is a look up for the real code 
+<CodeWar> did I get the not enabled case right?
+<bcantrill> Right.
+<bcantrill> (Or executes natively.)
+<CodeWar> remind me again .. what does the execute natively part mean
+<bcantrill> For FBT, for example, we instrument the instruction sequence that establishes the stack frame.
+<bcantrill> So it's not a no-op in that case -- it's a pushl/movl sequence.
+<CodeWar> got it ... I had to look u p what FBT was :-) function based trace
+<bcantrill> Close. ;) "Function Boundary Tracing"
+<CodeWar> well :-) anyways you guys have measured the real impact of unarmed-probes in real life apps I take it and the difference is marginal?
+<CodeWar> I m more worried about locks (CAS) on x86 .. the probe around that ..  does it introduce a stall 
+<bcantrill> You mean the disabled probe effect?
+<CodeWar> Westmeres and i7s have been doing very well with back to back CAS/fences not doing stalls
+<bcantrill> 0.0000000000000000%. ;)
+<CodeWar> yep
+<CodeWar> nice
+<bcantrill> It's just executing native or -- worst case -- a series of nops.
+<CodeWar> series of noops is just fine 
+<bcantrill> (That's for SDT/USDT probes.)
+<bcantrill> For FBT and pid, it's literally native, optimized code.
+<CodeWar> yep yep we had a special peice of hardware once adn we did exactly that ..placed a large set of noops ..
+<bcantrill> richlowe: sent that out to the list.
+<CodeWar> for dtrace I guess it wouldnt matter .. the cost of enabling probes would involve icache flushes ? is that significant for JITs who might be doing this more regularly?
+<bcantrill> CodeWar: yeah, it can -- it depends on the guarantees of the instruction set architecture.
+<bcantrill> x86 -- bless it -- doesn't require anything explicit from the software.  The HW keeps the I$ coherent.
+<CodeWar> bcantrill, never mind it looks like on x86 they re kept coherent so you dont need that flush .. on ARM / Tile and a few of the modern ones it appears one does require it
+<bcantrill> Exactly. ;)
+<CodeWar> SPARC ... same thing?
+<bcantrill> SPARC is more complicated.
+<bcantrill> It depends on how you do the store.
+<CodeWar> always been fascinated by SPARC never worked on it .. tell me more :-)
+<bcantrill> Unfortunately, I have to run -- but I would definitely vector you to the DTrace provider code for more details.
+<bcantrill> usr/src/uts/intel/dtrace/*.c and usr/src/uts/sparc/dtrace/*.c are good starting points.
+<CodeWar> sure pointeres to the code would do great
+<CodeWar> thanks!!
+<bcantrill> fbt.c (on both ISAs) is a good place to start because it's simpler.
+<bcantrill> User-level instrumentation gets very thorny, for a bunch of reasons.
+<bcantrill> Sample of the problems you encounter: http://dtrace.org/blogs/bmc/2011/03/09/when-magic-collides/
+<bcantrill> Okay, have to run.
+<CodeWar> thanks again
+<bcantrill> richlowe: thanks for the guidance!
+<bcantrill> CodeWar: no sweat -- anytime!
