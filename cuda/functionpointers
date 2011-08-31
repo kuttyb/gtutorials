@@ -1,0 +1,4 @@
+For my case I need to translate my ISA to CUDA kernels. 
+
+Use cuLaunchGridAsync its a driver API and its async/uses streams
+
