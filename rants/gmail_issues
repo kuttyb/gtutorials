@@ -1,0 +1,15 @@
+subject 
+  message (id, s->R[])
+   
+Rant against gmail conversations:
+<a> messages appear as a list they should be a tree
+
+<b> each message contains not just message but history (no *hide text* 
+    doesn't always work)
+
+---------------
+<c> Labels with lots of (conversations && messages) are slow to load
+    even if all I will do is pick the latest message in it. Can we 
+    please pipe and page this..
+     Or are we doing a full table scan for label lookups?
+
