@@ -1,0 +1,41 @@
+These are consistency models that do not require read/writes to be carved inside blocks
+like Weak/Release but there are certain rules:
+
+From Strong to Weak:
+<a> Sequential Consistency
+    absolutely no local reorderings and writes from separate sources are uniformly
+    agreed upon by observers
+
+<b> Total Store Order
+    Take SC and allow independent loads to jump past earlier stores from a single
+    source. SPARC made this famous.
+ 
+<c> Causal Consistency
+    Take TSO and allow stores from separate sources to be seen differently by
+    different observers *except* when they are causally related!
+
+<d> Processor Order (FIFO Consistency)
+    Only guarantees stores from a single source will not be reordered. Separate
+    observers can see different interleavings of stores from separate sources!!
+
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/index.html#589
+<Watch out for the thread that reads "...where does SC work and PO doesn't?"
+
+In simple terms relay painting doesn't work with PO:
+
+Thread A:
+  Paint 0-50
+  Flag_A = true;
+
+Thread B:
+  while(!Flag_A) {}
+  Paint 51-100
+  Flag_B = true;
+
+Thread C:
+ while(!Flag_B) {}
+ Paint 101-150
+ Flag_C = true;    /** with PO there's no guarantee you ll see 0-50 painted
+ 	  	       but since you saw B you ll see writes from B aka 51-100
+		       painted alrite */
+
