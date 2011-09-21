@@ -1,0 +1,15 @@
+It acts like a register. So you can do binding prefetches (read Chris Metcalf's paper on
+prefetches and non blocking loads)
+
+So load [mainmem, l1(offset)] at this point l1(offset) acts like a register and the
+compiler can replace address references with this. Duh!!
+
+So you don't suffer from silly cache associativity problems and can control your own
+prefetching logic!!
+
+Spatial locality can be sw controlled too. Meaning if your access pattern is fixed
+but not sequential then you can take a hint and fetch the pattern and this pattern
+can be changed new ones added without changing Silicon. Kind of similar to our
+texture memory yes!
+
+

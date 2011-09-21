@@ -1,0 +1,20 @@
+<conspiracy theory propelled by Bill Rozas' statement about post commit buffers in x86
+ and that its not difficult adding Sequential Consistency>
+
+I ve already summarized my thinking here [refer to comments from anonymous_from_before]
+http://perilsofparallel.blogspot.com/2011/09/impressions-of-newbie-at-intel.html
+
+Another thing: BillR (the guy is a genius) casually mentioned something that
+answers the question I had in my mind for a while viz.,
+" How is it that processors are cache coherent / use MOESI and yet can
+  only provide Causal Consistency and not Total Store Order"
+
+Simple, threaded processors like Intel share the post commit buffer. Stores here
+haven't paid the coherence cost (havent committed). So if another thread on the same
+core reads from it he gets to see stores other cores havent aka Causal Consistency.
+Of course if the read flushed it to L1 then MESI would kick in and ensure all cores
+got the results. But no, this optimization I guess helps them which is why 
+Rick Hudson (Intel) went around JMM archives polling if Causal Consistency broke anybody.
+
+
+

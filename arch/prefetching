@@ -1,0 +1,10 @@
+Intelligent Prefetching is fetching the right line at the right time by not evicting the wrong line.
+
+Dumb prefetching is pulling sequential memory up
+
+Dumb prefetching is evicting lines currently used
+
+Dumb prefetching is pulling memory that will not be required (speculation as compared to load reodering)
+Why is this different? Whether you do load reordering or speculation the key is to not use your head rather
+issue some loads that would have been issued anyways a bit earlier. 
+

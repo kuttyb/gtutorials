@@ -1,0 +1,12 @@
+http://home.eng.iastate.edu/~zzhang/courses/cpre581-f05/lectures/Lecture14.pdf
+
+3Cs for cache misses:
+-> Compulsory: cold fetch. will miss even with an infinite cache
+
+-> Capacity:   simply not enough space to hold data. Will happen even
+   	       if we made it fully associative
+
+-> Conflict:   misses occuring due to different addresses fighting for the
+   	       same set (aka associativity conflicts)
+
+
