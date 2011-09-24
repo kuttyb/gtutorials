@@ -1,0 +1,16 @@
+The following are properties of an operator.
+
+-> Commutativity
+   The order of the operands for this operator doesn't influence final result.
+   E.g., + *
+   Not E.g., -  /
+
+-> Associativity
+   In the execution stream the order of this operator doesn't influence final
+   result
+   (2 + 3) + 5 == 2 + (3 + 5)
+
+   Perf counters show associativity hence we can locally accumulate them in a 
+   thread then do a global merge.
+
+   
