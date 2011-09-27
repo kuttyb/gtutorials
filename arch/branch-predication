@@ -1,0 +1,30 @@
+PREDICATION NOT PREDICTION!!
+
+It is what Itanium and ARM does add an extra register to every instruction as data dependency. For instructions that 
+can execute unconditionally a common register with a value of 1 is used.
+
+Long story short compiler does an if-conversion to convert control dependencies to data dependencies. How? By making
+the conditional statement store its result into a register and adding a data dependency on this register on all
+branch instructions.
+
+Now you can do what Thumb-2 seems to do viz., instead of predicating every instruction you can create a set of 4 instruction
+packet and apply predicate to that.
+
+Anyways the fake data dependency is to prevent the reordering and the register value can be used to either to execute 
+or not execute the instruction. Instead of noop execution one can execute blindly but not do a commit conditionally 
+depending upon whether the processor has a ROB or not.
+
+--------------------------------------
+Why Predicate?
+--------------------------------------
+
+<a> Well you know why my processor does it right? Simplicity :-)
+
+Standard processor architects argue as follows:
+<b> makes parallel scheduling of instructions across separate reservation stations easier
+
+<c> is very ifetch friendly
+
+all in all works out very well for small branches you can argue for the larger branches. If coupled with a BT can be 
+fairly powerful. Of course this also means you can get rid of the BTB
+
