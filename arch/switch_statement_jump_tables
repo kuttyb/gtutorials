@@ -1,0 +1,4 @@
+you want to minimize the #if comparisons done by an integer switch so you use the
+switch value as an index into the code table. tahts it ... tis about minimizing
+if comparisons nothing more nothing less
+
