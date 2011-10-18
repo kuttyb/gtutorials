@@ -2,18 +2,15 @@
 #include <stdlib.h>
 #include <assert.h>
 
+struct ABC {
+  int a;
+  int b;
+};
+
 int main(void) {
-  int* a = calloc(1, sizeof(int));
+  struct ABC a;
+  printf("%p %p\n", &a.a, &a.b);
 
-  a[0]= 2;
-  a = realloc(a, 8192);
-  a[8190] = 2;
-
-  assert(a[0] == 2);
-  assert(a[8190] == 2);
-
-  free(a);
-  printf("done freeing\n");
-  return 1;
+  return 0;
 }
 
