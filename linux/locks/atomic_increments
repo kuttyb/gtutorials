@@ -1,0 +1,14 @@
+On architectures that don't have lock:instruction and only have LL/SC or CAS (viz., anybody
+except Intel) atomic increments can be implemented :
+
+<a> via CAS loop
+    terrible progress properties
+
+<b> via address based hash lock
+    Tilera does this (per Chris Metcalf) use address as n index to get the real lock
+    grab it increment then release.
+
+
+
+
+    
