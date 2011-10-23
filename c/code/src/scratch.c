@@ -17,9 +17,18 @@ static inline uint32_t getlocalend(uint32_t localstart, uint32_t globalend, uint
       localstart+=bulk)
 
 int main(void) {
-  uint32_t localstart, localend;
-  BULKFOR(3, 9, 4, localstart, localend) {
-    printf("localstart %d localend %d\n", localstart, localend);
+  const uint32_t numstreams = 5;
+  const uint32_t start      = 0;
+  const uint32_t end        = 13;
+
+  uint32_t       counter = 0;
+  uint32_t       localstart;
+  uint32_t       localend;
+
+  BULKFOR(start, end, (end - start + 1) / numstreams, localstart, localend) {
+    printf("counter %d has %d to %d\n",
+	   counter, localstart, localend);
+    counter = (counter + 1) % numstreams;
   }
 
   return 0;
