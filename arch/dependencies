@@ -1,0 +1,10 @@
+http://semipublic.comp-arch.net/wiki/Access_ordering_hazards
+
+RAW -> true dependency. short of value prediction latter read cannot be hoisted up
+
+WAW -> output dependency. if you can prove there are no intermediate writes you can
+       get rid of the earlier write.
+
+WAR -> anti dependency. Use register renaming to allow whoever is processing the 
+       earlier read to continue while writing to the renamed register
+
