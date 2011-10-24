@@ -7,9 +7,8 @@ int main(void) {
 
   void*a = calloc(1, sizeof(uint32_t));
 
-  uint32_t counter;
-  while( (counter = (uint32_t)random()) < 0x1000 ) {
-    printf("hehe\n");
+  for( uint32_t i = (uint32_t) random(); i < 0x1000; i++) {
+    printf("hehehaha\n");
   }
 
   free(a);

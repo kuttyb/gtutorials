@@ -1,25 +1,33 @@
-Well lately we ve been abusing forloops to incorporate complex logic BULKFOR FOREACH and so forth..
+Loops are really convenience macros in languages layered on top of branches and jumps.
+Heres how they work:
 
-Lets quickly revise forloop assemblies and possible optimizations:
 
 for(INIT; CONTINUITY_CHECK; POSTEXECUTION_EVENT) {
   BODY
 }
 
-The above gets assembled down to 
-==================================================
+while (CONTINUITY_CHECK) {
+  BODY
+}
+
+The are both translated similarly as below. Of course for while loops you won't
+have INIT or POSTEXECUTION_EVENT but that apart they are exactly the same.
+
+----------------------------------------------
      	  INIT
-          if (!CONTINUITY_CHECK) jmp end
+          if (!CONTINUITY_CHECK) jmp end 
+	  ;; OR  jmp LATCH
 
 START:
           BODY ....
 	  BODY ....
 
 	  POSTEXECUTION_EVENT
-	  if (CONTINUITY_CHECK)  jmp START
+LATCH:	  if (CONTINUITY_CHECK)  jmp START
 
 END:
-==================================================
+----------------------------------------------
+
 
 As you can see the first jmp is taken only on the first
 iteration. If compiler can prove the first iteration will
