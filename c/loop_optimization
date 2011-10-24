@@ -15,8 +15,8 @@ have INIT or POSTEXECUTION_EVENT but that apart they are exactly the same.
 
 ----------------------------------------------
      	  INIT
-          if (!CONTINUITY_CHECK) jmp end 
-	  ;; OR  jmp LATCH
+          ;; EITHER TEST_JMPOUT   if (!CONTINUITY_CHECK) jmp end 
+	  ;; OR     JMP_TESTCODE  jmp LATCH
 
 START:
           BODY ....
@@ -29,7 +29,7 @@ END:
 ----------------------------------------------
 
 
-As you can see the first jmp is taken only on the first
+As you can see the first jmp is taken only on the first,
 iteration. If compiler can prove the first iteration will
 happen unconditionally it can be removed. 
        e.g., for( i = 0; i < 0x1000; i++) // can remove
@@ -40,5 +40,13 @@ happen unconditionally it can be removed.
 The second jmp at the bottom is the backward jump. Based on static BP on most
 microprocessors, forward jumps are not taken and backward jumps are taken.
 So you should get good prediction with this format.
+
+
+GCC 4.6.1, it appears for the first iteration, for loops use TEST_JUMPOUT
+whereas while loops use the JMP_TESTCODE. It would appear for loops are
+assuming it loops atleast once and therefore trying hard to avoid the jump
+(fwd jumps are assumed not taken to BT should be ok here) while loops it
+would appear assume the loop need not be taken and therefore happily do the 
+first jump
 
 
