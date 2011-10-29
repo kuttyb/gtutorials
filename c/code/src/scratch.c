@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include <assert.h>
 
 int main(void) {
-  int* a = calloc(1, sizeof(int));
 
-  a[0]= 2;
-  a = realloc(a, 8192);
-  a[8190] = 2;
+  void*a = calloc(1, sizeof(uint32_t));
 
-  assert(a[0] == 2);
-  assert(a[8190] == 2);
+  for( uint32_t i = (uint32_t) random(); i < 0x1000; i++) {
+    printf("hehehaha\n");
+  }
 
   free(a);
-  printf("done freeing\n");
-  return 1;
+
+  return 0;
 }
 

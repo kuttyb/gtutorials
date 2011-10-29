@@ -1,0 +1,52 @@
+Loops are really convenience macros in languages layered on top of branches and jumps.
+Heres how they work:
+
+
+for(INIT; CONTINUITY_CHECK; POSTEXECUTION_EVENT) {
+  BODY
+}
+
+while (CONTINUITY_CHECK) {
+  BODY
+}
+
+The are both translated similarly as below. Of course for while loops you won't
+have INIT or POSTEXECUTION_EVENT but that apart they are exactly the same.
+
+----------------------------------------------
+     	  INIT
+          ;; EITHER TEST_JMPOUT   if (!CONTINUITY_CHECK) jmp end 
+	  ;; OR     JMP_TESTCODE  jmp LATCH
+
+START:
+          BODY ....
+	  BODY ....
+
+	  POSTEXECUTION_EVENT
+LATCH:	  if (CONTINUITY_CHECK)  jmp START
+
+END:
+----------------------------------------------
+
+
+As you can see the first jmp is taken only on the first,
+iteration. If compiler can prove the first iteration will
+happen unconditionally it can be removed. 
+       e.g., for( i = 0; i < 0x1000; i++) // can remove
+
+       	     for( i = (uint32_t)random(); i < 0x1000; i++) // can't remove
+
+        
+The second jmp at the bottom is the backward jump. Based on static BP on most
+microprocessors, forward jumps are not taken and backward jumps are taken.
+So you should get good prediction with this format.
+
+
+GCC 4.6.1, it appears for the first iteration, for loops use TEST_JUMPOUT
+whereas while loops use the JMP_TESTCODE. It would appear for loops are
+assuming it loops atleast once and therefore trying hard to avoid the jump
+(fwd jumps are assumed not taken to BT should be ok here) while loops it
+would appear assume the loop need not be taken and therefore happily do the 
+first jump
+
+
