@@ -1,0 +1,21 @@
+Load Link Store Conditional
+
+PowerPC[1] and ARM[2] both use this instead of CAS. The advantage being for algorithms trying 
+to implement CAS loops, CAS can suffer from the ABA problem this will not. Well its not 
+entirely true because CAS success can internally bump up an invisible refcnt on the 
+pointer but that will eventually wrap.
+
+Progress properties of LL/SC so far sound horrible. You can abort LL by taking unrelated
+processor interrupts. Its not clear to me how even in the event of non competition 
+this can complete.
+
+
+[1] ldrex / strex : Implemented using a single per core Monitor.
+
+[2] lwarx / stwcx : Implemented using a single per core Reservation. Monitors / Reservations
+    	            are fundamentally similar. Each core stores information if its got
+		    an outstanding LL and its address. Another LL/ interrupt / clrex (ARM)
+		    or a coherence events from relevant observers can clear this state.
+
+
+
