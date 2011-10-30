@@ -1,0 +1,5 @@
+Its very easy to mess it up while playing with compiz settings.
+
+To fix it login using GNOME, open compiz settings manager (CCSM) and tick the Unity Plugin.
+(courtesy toumbo from #ubuntu)
+
