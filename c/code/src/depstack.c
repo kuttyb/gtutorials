@@ -53,8 +53,39 @@ void* getPrev(DependencyStack* stack) {
   return stack->array[stack->prevnext++];
 }
 
+void resetCurrent(DependencyStack* stack) {
+  assert(stack);
+  stack->curnext = 0;
+}
+
+void resetPrev(DependencyStack* stack) {
+  assert(stack);
+  stack->prevnext = 0;
+}
+
+
 int main(void) {
+  uint32_t  data[] = { 0, 1, 2, 3, 4, 5, 6, 7 };
+  const uint32_t size = sizeof(data) / sizeof(data[0]) ;
+  DependencyStack* stack = exportDependencyStack(size);
   
+  /** initialize */
+  for (uint32_t counter = 0; counter < size; counter++) {
+    addCurrent(stack, &data[counter]);
+  }
+  resetCurrent(stack);
+
+  for (uint32_t counter = 0; counter < size / 2; counter++) {
+    assert(*(uint32_t*)getPrev(stack) == (counter * 2));
+    assert(*(uint32_t*)getPrev(stack) == (counter * 2) + 1);
+    addCurrent(stack, &data[size - counter - 1]);
+  }
+  
+  for (uint32_t counter = 0; counter < size; counter++) {
+    printf("array[%d] = %d\n", counter, *(uint32_t*)stack->array[counter]);
+  }
+
+  destroyDependencyStack(stack);
   return 0;
 }
 
