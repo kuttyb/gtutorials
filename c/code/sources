@@ -13,6 +13,7 @@ scratch.c             \
 struct.c              \
 signed.c              \
 mem.c                 \
+depstack.c            \
 fifo.c                \
 nontemp.c             \
 ptr.c

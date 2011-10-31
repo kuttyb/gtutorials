@@ -40,7 +40,7 @@ static void perlogbase(const uint32_t inlogctr, const uint32_t totalelements, co
 static void predux() {
   const uint32_t threads     = 5;
   const uint32_t maxelements = 50;
-  const uint32_t logbase     = 2;
+  const uint32_t logbase     = 3;
 
   uint8_t stop = 0;
   for (uint32_t i = logbase; ; i*=logbase) {
