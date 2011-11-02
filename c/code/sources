@@ -14,6 +14,7 @@ struct.c              \
 signed.c              \
 mem.c                 \
 depstack.c            \
+switch.c              \
 fifo.c                \
 nontemp.c             \
 ptr.c
