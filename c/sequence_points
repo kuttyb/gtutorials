@@ -1,5 +1,9 @@
-Essentially these are rules that force to make compiler optimization results visible at certain points ... not covered it in details
-yet but more here ....
+The side effects of all earlier expressions must be made visible to later expressions past
+sequence points (in a single threaded context)
 
+List of sequence points is described here though I do not know if that is a complete list:
 http://publications.gbdirect.co.uk/c_book/chapter8/sequence_points.html
+
+It is however not true that the compiler *must* writeback register to memory, the rule
+says side effects must be visible so as-if rule optimizations apply!
 
