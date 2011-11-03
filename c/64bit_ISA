@@ -1,0 +1,27 @@
+Typically when ISA's transition 32bit - > 64bit these are the areas that are impacted:
+
+-> 64bit pointers
+-> 64bit registers
+-> enhanced instructions
+
+-> calling convention 
+-> ABI compatibility
+
+Choices:
+-> After transition theres generally 3 modes:
+   --> OLD_ISA32
+   --> NEW_ISA32
+   --> NEW_ISA64
+
+-> If ABI is not broken like AMD64 / ARMv8 then OLD_ISA32 will work on new boxes perhaps
+   with lower perf. 
+
+-> Ideally you want to recompile 32bit code to NEW_ISA32
+
+-> NEW_ISA32 typically disallows 64bit pointers but it depends on whether 64bit registers 
+   are made available. New instructions are always available. SPARCv8PLUS allowed 64bit
+   registers, folks are debating creating AMD32.
+
+
+
+
