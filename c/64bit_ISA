@@ -13,14 +13,21 @@ Choices:
    --> NEW_ISA32
    --> NEW_ISA64
 
--> If ABI is not broken like AMD64 / ARMv8 then OLD_ISA32 will work on new boxes perhaps
-   with lower perf. 
+-> Most processors will let NEW boxes run OLD_ISA32. NEW_ISA32 never works on old boxes.
+
+-> The real question is whether there is an explicit NEW_ISA32 (ARM does its AARCH32 
+   SPARC does its called V8PLUS x86 doesn't until x32abi kicks off. Its not clear to me
+   how MIPS handles this lets ask Jeff)
 
 -> Ideally you want to recompile 32bit code to NEW_ISA32
 
 -> NEW_ISA32 typically disallows 64bit pointers but it depends on whether 64bit registers 
    are made available. New instructions are always available. SPARCv8PLUS allowed 64bit
-   registers, folks are debating creating AMD32.
+   registers, folks are debating creating x32 [1]
+
+
+References:
+[1] https://sites.google.com/site/x32abi/
 
 
 
