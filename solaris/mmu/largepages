@@ -1,0 +1,15 @@
+http://www.solarisinternals.com/wiki/index.php/Multiple_Page_Size_Support
+
+AFAIK and from what Rich Lowe mentioned, they do have transparent huge page support.
+Furthermore it can handle fragmentation by coalescing pages.
+
+Kernel pages PG_NORELOC I m told cannot be relocated. Not sure if its all kernel or
+certain parts that are pinned/cannot take a fault.
+
+The goal is to avoid having these noreloc's interleave fragments to prevent coalescing
+so they re stuck to a contiguous range called "kcage". So far, this is only supported
+on SPARC. It is also useful for FMA (minimizes #boards used for kernel memory)
+
+
+http://technopark02.blogspot.com/2007/09/memory-fragmentation-large-pages-on.html
+
