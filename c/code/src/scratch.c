@@ -43,8 +43,8 @@ void addCurrent(DependencyStack* stack, void* entry) {
 void* getPrev(DependencyStack* stack) {
   assert(stack);
   if (stack->prevnext >= stack->entries) {
-    printf("%s Bailing stack->prevnext %d stack->entries %d\n",
-	   __FUNCTION__, stack->prevnext, stack->entries);
+    /* printf("%s Bailing stack->prevnext %d stack->entries %d\n", */
+    /* 	   __FUNCTION__, stack->prevnext, stack->entries); */
     return NULL;
   } else {
     /* printf("%s returning from entry %d\n", */
@@ -90,6 +90,7 @@ static void perlogbase(const uint32_t inlogctr, const uint32_t totalelements,
   uint32_t perthreadrange = maxelements / (threads * logctr);
   if (!perthreadrange) perthreadrange = 1;
   perthreadrange = perthreadrange * logctr;
+  printf("===========================================\n");
   printf("%s LOGCTR %d PerThreadRange %d\n", __FUNCTION__, logctr, perthreadrange);
 
   uint32_t ls, le;
@@ -120,13 +121,16 @@ static void perlogbase(const uint32_t inlogctr, const uint32_t totalelements,
     printf("\n");
     sid = (sid + 1) % threads;
   }
+  printf("===========================================\n");
 }
 
 static void predux() {
   const uint32_t threads     = 5;
   const uint32_t maxelements = 50;
   const uint32_t logbase     = 3;
-  DependencyStack* depstack  = exportDependencyStack((maxelements / logbase) + 10);
+  const uint32_t depstsize   = (maxelements / logbase) + 1;
+  DependencyStack* depstack  = exportDependencyStack(depstsize);
+  printf("Dependency Stack Size %d\n", depstsize);
 
   uint8_t stop = 0;
   for (uint32_t i = logbase; ; i*=logbase) {
@@ -136,6 +140,8 @@ static void predux() {
     }
     resetCurrent(depstack);
     resetPrev(depstack);
+    printf("%s logbase %d current %d next %d\n",
+	   __FUNCTION__, i, depstack->curnext, depstack->prevnext);
     perlogbase(i, maxelements, threads, depstack, logbase);
   }
 
