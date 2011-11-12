@@ -149,6 +149,10 @@ int main(void) {
 
   predux();
 
+  printf("before\n");
+  __clear_cache((void*)0, (void*)10);
+  printf("after\n");
+
   return 0;
 }
 
