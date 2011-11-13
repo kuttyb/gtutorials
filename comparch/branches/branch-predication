@@ -28,3 +28,9 @@ Standard processor architects argue as follows:
 all in all works out very well for small branches you can argue for the larger branches. If coupled with a BT can be 
 fairly powerful. Of course this also means you can get rid of the BTB
 
+<UPDATE>
+It is also generally argued that predication gets rid of branches. I don't think thats
+true. The real question is how do you avoid the not-taken branch stall. If the branch
+is large, noop'ing it and running the instructions through decode/execution are just as
+likely to produce branch stalls.
+
