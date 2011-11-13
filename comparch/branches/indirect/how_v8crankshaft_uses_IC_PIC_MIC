@@ -1,0 +1,70 @@
+================================================================-
+Summary: <excerpts from irc.freenode.org #v8>
+================================================================-
+Bottomline V8 uses IC and if it misses a few times in IC they
+go megamorphic. There is no PIC.
+
+
+
+================================================================
+<mraleph> no, I meant that of the 100 bytes of instructions unoptimized code generates 80 bytes are IC code. (that is init arguments and do call to IC stub). 
+<CodeWar> the code density when done in hw will be lesser you wouldnt have the call instructions and cmp instructions
+<CodeWar> but a table as you asked earlier will be required and part of that table information can be written back to i-cache ... now if say 20KB **separate** sites start using ICs then we ll have associativity issues
+<mraleph> [on an unrelated note: ARM had JVM in hardware. it did not go very well as I understand :-)]
+<CodeWar> for two reasons <a> legality <b> its a bad idea
+<CodeWar> though I dont think it went badly, it just means from what I ve heard Dalvik doesn't use it :-) they re one and the same however
+<mraleph> what is really interesting to have in hardware is cheap write barriers of some sort...
+<CodeWar> ahhhh 
+<CodeWar> the azul vega guys did that
+<CodeWar> did you check their Zing implementation on x86, they do the read barrier part with pointer nixing
+<mraleph> I think they have read barrier there.
+<CodeWar> yes
+<CodeWar> what do you have in mind for the write barrier? gC?
+<mraleph> yeah I watch what is know pretty closely. 
+<mraleph> argh. I can't type meaningfull english anymore :-/
+<CodeWar> no worries I sort of get what you mean :-)
+<mraleph> I watch what they publish pretty closely.
+<mraleph> yep, GC.
+<CodeWar> the concurrent GC part can be done via other means, fast traps per cpu page tables, long story
+<mraleph> yes. I know that.
+<CodeWar> is V8 GC that large an issue yet? how large are typical heaps
+<mraleph> in V8 we still use write barrier and have incremental GC instead of concurrent one.
+<CodeWar> interesting
+<mraleph> in browser heaps sometimes exceeds it's soft limit that is 700 mb now if I remember correctly.
+<CodeWar> [change of track] now about IC and megamorphic, is the reason you jump from IC to mega because PICs dont add value in real life or they re difficult to cache and maintain
+<mraleph> that happens because people load tons of sites and have extensions installed which inject gigantic scripts into pages
+<CodeWar> I ask because caching 2 or upto 4 PCs for hotspot  areas in BTB is bad but not that bad
+<CodeWar> I see
+<CodeWar> folks gotta love Javascripts and Ruby and Pythons, they create jobs for areas that otherwise wouldnt require computer scientists :-)))
+<mraleph> well I would say megamorphic IC is much easier to implement then a good PIC.
+<CodeWar> let me challenge that a bit, a PIC (I must be abusing the term) that checks for 4 targets can complete faster than a table lookup 
+<mraleph> but I think we really will have a PIC in the future because currently our polymorphic inline is not very precise because of MIC
+<mraleph> (optimizing compiler just uses global cache to build approximation of PIC from MIC… which is obviously flawed).
+<CodeWar> IIUC the transmeta guys used to do this PIC / IC part in their SW layer 
+<mraleph> yes it will be faster then lookup.
+<mraleph> but there are many questions. what happens when the fifth type appears? should we go to mega or should be remove the first type we saw?
+<CodeWar> take the hit and do the real lookup 
+<CodeWar> if the history fo that branch deteroriates you unroll the optimization, the detect unroll is much faster in hw 
+<mraleph> so you suggest mega stub + selected few popular ones on the fast path.
+<CodeWar> well put and yes
+<mraleph> yeah that is doable.
+<CodeWar> but only when done in HW, I m not aware of the intricasies when doing it in the SW layers, I m sure its much more involved 
+<mraleph> if I had cloning machine I would experiment with that :-)
+<CodeWar> I *believe* Hotspot does something like that they run CHA to find out possible targets then either PIC with 2 or IC or pay for the full vtable lookup
+<CodeWar> *hearsay* ... don't quote me on that 
+<mraleph> yeah. but CHA is really not going to fly in JS. 
+<CodeWar> understood
+<mraleph> H does not really exist per se :-)
+<CodeWar> I ve heard JS experts brag about type inference, is this the problem they re referring to?
+<CodeWar> to narrow down the lookup spectrum?
+<mraleph> I have mixed filings about TI that SpiderMonkey uses.
+<mraleph> It is pretty complicated and memory consuming.
+<CodeWar> what is their end goal, why do it
+<mraleph> It was done by PhD student afaik. I think you can solve the same problems with much simpler techniques… but you should really ask SM team about that.
+<CodeWar> I ve heard EricM (Microsoft) and a few other blogs but not knowing JS at all didn't pay much attention, thanks for the details
+<mraleph> well we might be talking about different things :-)
+<mraleph> I am talking about SpiderMonkey TypeInference engine
+<CodeWar> interesting let me look it up 
+<mraleph> there is a paper draft. wait a sec.,
+<mraleph> http://sixgill.org/ti-draft.pdf
+<mraleph> I have to go now; was great talking to you. I am not well versed in HW, so every time you say "oh this can be done in HW too" I am like: o_O wtf is he talking about :-)
