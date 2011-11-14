@@ -1,0 +1,12 @@
+[Background]
+http://www.azulsystems.com/blog/cliff/2010-04-08-inline-caches-and-call-site-optimization
+http://www.azulsystems.com/blog/cliff/2011-10-27-final-fields-part-2#comment-2814
+
+My take being:
+  > statically predict target class for an object
+  > if that fails use CHA at runtime to prove single class possibility and do a direct call
+  > if that fails use inline caching based on first hit
+
+  > only if all of the above fail does it revert back to the megamorphic stub jump
+    which does full v-table scan
+
