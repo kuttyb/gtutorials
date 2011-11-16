@@ -1,0 +1,14 @@
+debootstrap --variant=buildd --arch amd64 oneiric /var/chroot/ http://mirror.anl.gov/pub/ubuntu/
+
+schroot -l to test for the chroot above
+
+On first use do the following 
+ > from outside
+   sudo mount -o bind /proc /var/chroot/proc   
+   sudo cp /etc/resolv.conf /var/chroot/etc/resolv.conf
+
+sudo chroot /var/chroot
+ > then from inside
+   apt-get install ubuntu-minimal
+
+
