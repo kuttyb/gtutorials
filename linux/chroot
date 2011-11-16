@@ -12,3 +12,5 @@ sudo chroot /var/chroot
    apt-get install ubuntu-minimal
 
 
+heres how you mount a folder from outside chroot to inside
+mount -o bind /home/daji/daji/code/ /var/chroot/home/code
