@@ -1,7 +1,9 @@
-the distributed memory model I have in mind uses
+Update
+======
+The below types have already been implemented
 
--> entry consistency (so no placing locks around code instead locks are associated with data which is where they rightly belong)
-
+Details
+=======
 There are 4 types of shared memory:
 
 <a> read/writeable
@@ -13,11 +15,3 @@ There are 4 types of shared memory:
 
 <d> read often  
     (fenceless reads, reader writer locks, low resolution timers)
-
-
-Updates propogations are done lazily and only diffs are sent out. I m toying with doing striped update propogation (essentially 
-sequentially written data such as those belonging to a shared block are kept on separate nearby servers to improve bandwidth
-only when their size exceeds a certain limit)
-
-Compression needs to be factored in too.
-
