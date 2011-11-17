@@ -1,0 +1,64 @@
+Abstract
+========
+> Inner caches on top of Point of Coherence don't have to be coherent when using 
+memory models weaker than weak consistency.
+
+> This applies to JVMs since they use a modified form of Release Consistency. 
+
+> Happens-Before is established using the proposal before that requires determining
+  the lines that were written to while holding the lock. This set will henceforth be
+  called the **WRITE SET**
+
+
+Details
+=======
+
+  lock(lock)
+  acquire.fence    &lock->writeset
+    .....
+    .....
+    .....
+  release.fence    &lock->writeset
+  unlock(lock)
+  
+
+acquire.fence
+-------------
+> acquire.fence has been modified to take in the address of the WRITESET which can be
+  or arbitrary size. The goal is to have a bit for each cacheline but a set associative
+  MASK to reduce its size works too.
+
+> acquire.fence invalidates lines pointed to by the current WRITESET and zeroes WRITESET
+
+> acquire.fence sets a flag on that core such that all subsequent writes will have a 
+  TAG bit set in their cacheline
+
+
+release.fence
+-------------
+> release.fence causes all TAGGED cachelines to be flushed to Point of Coherence (POC)
+
+> release.fence also causes a MASK of all such TAGGED cachelines to be stored in 
+  the WRITESET
+
+
+WRITESET
+--------
+> when a TAGGED cacheline is evicted or written back, the TAG on that cacheline is removed
+  and the WRITESET updated immediately
+
+> the WRITESET can be stored in the inner cache during this operation and flushed out by
+  release.fence
+
+> Thread migrations will need to do a inner full flush or be able to locate all pending
+  WRITESETS (*) and do a sum of flush
+
+  (*) Multiple WRITESETS are possible due to nested locks
+
+
+Biased Locking
+--------------
+> If you couple this with Biased Locking then each thread will have only one WRITESET
+  and the acquire.fence / release.fence instructions will be used only when ownership
+  changes hands.  This is good for reducing overall system coherence traffic.
+

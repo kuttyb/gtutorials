@@ -1,0 +1,27 @@
+> blocks should be variable sized and have a processor-writeable metadata at the top
+
+   ----------------------
+  |  METADATA_SIZE       |
+  |----------------------  
+  |  METADATA            |
+  |----------------------  
+  |  BLOCK               |
+   ----------------------  
+  
+> METADATA can contain
+  > branch   history/target/prediction_strength
+  > indirect call history/target/prediction_strength
+  > data access history/prediction_strength [1]
+
+> The processor should detect and patch this data directly in the i-cache
+  So yes, i-cache will have to be writeback and processor writeable
+
+> If you look careful, this is very similar to JITs except code perf and history
+  is getting updated and speculated very fast without runtime SW initiated code
+  patching.
+
+> Of course METADATASIZE can be 0 if compiler so desires	
+
+[1] this information can be used to do prefetch and speculative coherence
+    i.e., pull cachelines in and pay for coherence and cache misses upfront
+
