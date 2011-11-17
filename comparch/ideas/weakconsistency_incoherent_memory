@@ -5,9 +5,9 @@ memory models weaker than weak consistency.
 
 > This applies to JVMs since they use a modified form of Release Consistency. 
 
-> Happens-Before is established using the proposal before that requires determining
-  the lines that were written to while holding the lock. This set will henceforth be
-  called the **WRITE SET**
+> Happens-Before is established using the proposal before that lwo. The main idea is to
+  mark inner cache lines that were written to while holding the lock. This set will henceforth
+  be called the **WRITE SET**
 
 
 Details
@@ -33,6 +33,7 @@ acquire.fence
 > acquire.fence sets a flag on that core such that all subsequent writes will have a 
   TAG bit set in their cacheline
 
+> [OPEN] What happens to pending TAGGED lines?
 
 release.fence
 -------------
@@ -54,10 +55,10 @@ WRITESET
   WRITESETS (*) and do a sum of flush
 
   (*) Multiple WRITESETS are possible due to nested locks
-
+  [OPEN] This is not resolved yet
 
 Biased Locking
---------------
+==============
 > If you couple this with Biased Locking then each thread will have only one WRITESET
   and the acquire.fence / release.fence instructions will be used only when ownership
   changes hands.  This is good for reducing overall system coherence traffic.
