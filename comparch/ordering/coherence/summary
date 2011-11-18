@@ -1,0 +1,37 @@
+There are 3 suggested ways in these papers to minimize coherency chatter and minimize coherency
+stall.
+
+<a> Speculative Coherence
+<b> Coherence Decoupling
+<c> Coherence Event Prediction
+...........
+
+<a> Speculative Coherence
+    Use Coherence Directory or a separate Directory to hash PC+addr or addr or PC to predict
+    coherent value.
+
+    My addition to this proposal was to use inline caches to store data prefetch information.
+    This solves TLB misses, cache misses and coherence cost all in one
+
+<b> Coherence Decoupling
+    Differentiate between time to get cached value vs time to get permission to use the value.
+    
+    Speculate on returned value and continue forward. If after gaining permission the new 
+    value doesn't match old value then your load was stale, squash dependent instructions.
+
+    Ohh btw ... this solves a few other coherency miss latency problems too:
+    > False Sharing : Because the before-after values will match
+
+    > Silent Stores : Write to the same line from another core that doesn't update the value
+    
+    > Temporarily Silent Stores: Another core writes data but reverts it back. Now this
+      I m not so sure of ... needs more thinking!!
+
+<c>  Coherence Event Prediction
+     Classic OoO style of execution. Use a precommit store buffer and load buffer.
+     PSB and Load don't have to pay for coherence. Load can use Coherence Decoupling
+     to avoid coherence stall whereas PSB is not coherent. At some point commit 
+     instructions atomically and if other cores have written to memory that you 
+     reordered past, rollback.
+
+
