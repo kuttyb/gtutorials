@@ -10,8 +10,14 @@ stall.
     Use Coherence Directory or a separate Directory to hash PC+addr or addr or PC to predict
     coherent value.
 
-    My addition to this proposal was to use inline caches to store data prefetch information.
-    This solves TLB misses, cache misses and coherence cost all in one
+    [update] My addition to this proposal was to use inline caches to store data prefetch information.
+    This solves TLB misses, cache misses and coherence cost all in one.
+
+    [update] Bill countered that by saying all you need is to method inline the inline cache indirect
+    targets. Inline methods can have their loads hoisted up giving you accurate prefetch.
+
+    [update] My counter argument to that being it doesn't help dependent loads where only history helps.
+    It also only helps inline caches for indirect targets not *any* hot trace
 
 <b> Coherence Decoupling
     Differentiate between time to get cached value vs time to get permission to use the value.
