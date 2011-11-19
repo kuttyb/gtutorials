@@ -40,4 +40,10 @@ stall.
      instructions atomically and if other cores have written to memory that you 
      reordered past, rollback.
 
+     There are two simple ways mentioned in literature for doing this
+     [a] non binding preetch: pull memory closer in caches and pay for consistency checks
+         early on. Requires non blocking load instructions (hoist these as high up as 
+	 possible)
+     [b] speculative execution
+
 
