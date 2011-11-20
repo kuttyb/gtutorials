@@ -1,0 +1,17 @@
+http://www.anandtech.com/show/1998/3
+
+> macro-op is when x86 decoder parses instruction queue and sees CISC instructions that can be fused together
+  e.g., fuse cmp and jne [target]
+  So decoder will decode both of these two instructions in unison. Effectively it increases the decoded instructions
+  per cycle count
+
+> micro-op fusion is when decoder takes a single CISC instruction and fuses some of the resultant u-ops together
+  for more efficient downstream scheduling. This can hurt concurrency and or induce pipeline delays.
+  e.g., add [mem], reg
+  load-op-add and store are two separate u-ops
+
+http://www.hotchips.org/archives/hc22video/session7.html
+Brian Currin z196 presentation, @28.34 Intel guy asks why IBM recently decided to go to the fused load-op-ex
+model
+
+
