@@ -1,0 +1,80 @@
+Code Cache
+==========
+The goal here is to survey Hotspot and understand how self modifying code works, what
+are the different data structures, lookups and most importantly how native and interpreted
+code coexist on the same stack.
+
+
+Relevant Source Files/ Classes
+==============================
+Code
+----
+* share/vm/code/codeCache.cpp
+* share/vm/code/codeBlob.cpp
+* share/vm/runtime/sweeper.cpp
+* share/vm/code/compiledIC.cp
+* share/vm/code/nmethod.cpp
+
+Heap
+----
+* share/vm/memory/heap.cpp
+* share/vm/runtime/virtualspace.cpp
+
+CPU
+---
+* cpu/x86/vm/icache_x86.cpp
+* cpu/sparc/vm/icache_sparc.hpp
+
+Details
+=======
+
+CodeCache
+---------
+* Contains the basic lookup table for <ip_addr, CodeBlob>
+* CodeBlob can have several subtypes. The important one being nmethod 
+  that contains natively compiled methods.
+
+nmethod
+-------
+Each nmethod object contains roughly the following information 
+
+* native instructions for that method
+* relocation info (essentially jumps/call/transfers). Now these can be
+  virtual/static/native/inline calls [1]
+* debug info
+* exception info
+
+[1] look at the iterator / switch logic in nmethod::cleanup_inline_caches
+    to understand how the relocation information is disambiguated 
+    based on static/inline/inline cache calls
+
+* Registration of CodeBlob (or say nmethod) with CodeCache 
+  happens in nmethod::nmethod after the object has been 
+  constructed.
+
+* CodeCache::commit is the method and it takes the codecache
+  lock and commits data such that icode can use it.
+  
+* It only does ICache::invalidate. It doesn't appear to be 
+  either changing memory protection when writing to it 
+  or using a separate VA pointer. Not sure why Dalvik
+  is doing it then, the latter is so expensive
+
+ICache
+------
+* ICache::AbstractICache in cpu/x86/vm/icache_x86.hpp and SPARC / zero
+  handle I/D coherence. They re stubs on x86 and SPARC.
+
+* Now there are several aspects to this. d-modifications need to happen
+  at safepoints or holding codecache lock or some other lock, release
+  of which provides the fence. Although its unnecessary on x86/SPARC
+  since stores are not visibly reordered.
+
+* The reader side, aka code, will need a reader lock to avoid load
+  reordering. Unfortunately neither x86 nor SPARC do load reordering
+  so there is not even a hook for this. Not sure what they re doing
+  for ARM/POWERPC. Mind you this is necessary even if I/D are coherent.
+
+* If you think again, Dalvik probably avoids this by doing mprotect
+  which is bound to use IPIs to insert fences on all relevant d's
+  so they solve coherence and consistency in one shot.
