@@ -1,3 +1,12 @@
+=================
+Table of Contents
+=================
+* Code Cache
+* Relevant Source Files / Classes
+* Details
+* JVM Control Options
+
+
 Code Cache
 ==========
 The goal here is to survey Hotspot and understand how self modifying code works, what
@@ -5,8 +14,8 @@ are the different data structures, lookups and most importantly how native and i
 code coexist on the same stack.
 
 
-Relevant Source Files/ Classes
-==============================
+Relevant Source Files / Classes
+===============================
 Code
 ----
 * share/vm/code/codeCache.cpp
@@ -27,7 +36,6 @@ CPU
 
 Details
 =======
-
 CodeCache
 ---------
 * Contains the basic lookup table for <ip_addr, CodeBlob>
@@ -101,3 +109,10 @@ CodeHeap
     CodeBlob* CodeCache::allocate
       CodeHeap::allocate
 
+
+JVM Control Options
+===================
+* java -XX:ReservedCodeCacheSize=512m -XX:InitialCodeCacheSize=32m 
+  Well thats how you control them
+* http://blogs.amd.com/developer/2010/04/12/better-uptime-for-long-running-java-applications/
+  Interesting issue. It appears before this there was no replacement policy
