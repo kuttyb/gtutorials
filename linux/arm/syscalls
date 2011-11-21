@@ -1,0 +1,6 @@
+http://arch.eece.maine.edu/ece471/images/a/a5/Lecture_10_ARM_Linux_Systemcalls.pdf
+
+arch/arm/include/asm/unistd.h
+
+ARM only pvt syscalls (like cacheflush) are at the bottom of that file.
+
