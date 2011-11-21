@@ -1,0 +1,12 @@
+* Stack
+arch/arm/kernel/traps.c: arm_syscall
+  do_cache_op
+	flush_cache_user_range
+	      arch/arm/mm/cache-v7.S: v7_coherent_user_range
+
+
+* This will flush d$ to L2 and invalidate i$ and BTB
+
+
+* It will *NOT* do anything on any other core
+
