@@ -78,3 +78,26 @@ ICache
 * If you think again, Dalvik probably avoids this by doing mprotect
   which is bound to use IPIs to insert fences on all relevant d's
   so they solve coherence and consistency in one shot.
+
+CodeHeap
+--------
+* Bottomline, theres just one mapping to CodeHeap and its RWX
+
+* Use this changeset as a reference
+  http://hg.openjdk.java.net/jdk6/jdk6/hotspot/rev/6bdd6923ba16
+
+* Heres how codecache for storing instructions is reserved. As
+  you can see its using ReservedCodeSpace so there is just one
+  mapping and its rwx
+  For Linux look at os::commit_memory. 
+  Its RWX or RW
+
+* Heres how its reserved to setup the CodeHeap
+    CodeCache::initialize
+      CodeHeap::reserve
+        VirtualSpace::ReservedCodeSpace
+
+* CodeCache allocate picks out of the CodeHeap
+    CodeBlob* CodeCache::allocate
+      CodeHeap::allocate
+
