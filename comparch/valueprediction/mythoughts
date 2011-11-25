@@ -1,0 +1,35 @@
+I have two suggestions/thoughts here closely tied to Instruction Reuse and Value Prediction
+concepts mentioned here:
+
+Trace Based Prefetch
+--------------------
+If you have a trace cache then record data lines that have been associated with that
+trace along with a 2 bit prediction strength and use this to issue non binding prefetches
+
+An extension of this idea is to have SW use inline caches for storing data prefetches
+but recording catching mispredictions and patching is not cheap with SW initiated code
+cache modifications.
+
+
+Value Predictor Table (VPT)
+---------------------------
+Hashed on (PC + key) and returns value. The value could be value at an address or address.
+
+Entries in this table are added by SW exposed instructions. It is essentially a hint from
+SW saying if the PC and key matches theres a good chance the value will match too. Think of
+it as runtime CSE.
+
+The key in question can be either part of the pointer address or any other invariant that
+SW can use. The general idea being if the input to the same code is the same, the data
+used will also be the same. That may not always be the case, hence it needs to be left 
+for SW to decide. 
+
+If you think of it as a Result Cache, it would not be very far off!
+
+Of course instructions speculated using VPT cannot commit until the keys have proved to be
+correct. 
+
+It might be useful to keep the key address current with coherence. So if the key address 
+is written to else where invalidate the cache.
+
+
