@@ -1,0 +1,7 @@
+2 goals:
+
+[a] catch RAW violations from aliased stores
+    (Memory Disambiguation)
+
+[b] catch consistency violations (e.g., load-load reordering where its not legal)
+    
