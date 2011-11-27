@@ -39,3 +39,8 @@ A: Well the loads could execute in the wrong order but mainly because of 3 reaso
 
    --> Of course if the processors dont have coherent caches then this is definitely possible.
        <where you can have multiple cache line owners in X state>
+
+[UPDATE] There are differences between Address Dependent Load reordering and Data Dependent
+         Load reordering. This document talks about the former. Only ALPHA to the best of my 
+	 knowledge does this kind of reordering. All others like PowerPC ARM do the latter.
+
