@@ -1,6 +1,7 @@
-There are 4 main roles of Load Miss Queue (LMQ) and Store Queue (SQ)
---------------------------------------------------------------------------
-[a] Allow Store Forwarding:
+Goals
+=====
+Store Forwarding
+----------------
     Allow loads to get values from the youngest older(**) store
     > where one or both loads/stores are dynamic. Dynamic load/stores 
       are those whose target addresses are not known at instruction 
@@ -8,7 +9,8 @@ There are 4 main roles of Load Miss Queue (LMQ) and Store Queue (SQ)
     > (**) this is also why Store Queues are age ordered)
 
 
-[b] Detect Intra Thread RAW violations for dynamic load/stores:
+Detect Intra Thread RAW violations
+----------------------------------
     // *a->b = 0xabcd
         r0 = load P
     	store (r0 + 10, 0xabcd) << ------ 'X'
@@ -29,10 +31,24 @@ There are 4 main roles of Load Miss Queue (LMQ) and Store Queue (SQ)
     [ii] Instead of hurting the critical path, you check each LQ entry with SQ
          entries at the same address while committing instructions in ROB.
 
-[c] Allow Stores to be committed from ROB in program order
+Program Order Store Commit
+--------------------------
 
-[d] Detect consistency mismatches.
+Detect Consistency Violations
+-----------------------------
     I don't know enough about this yet but ideally if you reorder load issues
     and a cache line invalidate request comes in, you should also search the LQ
     and squash relevant loads. 
+
+
+Tricks / Details 
+================
+[a] For the most part, Store Forwarding is entirely predictable and per Amir R's paper
+    once discovered can be stored in i-cache bit. Going fwd, this avoids storing
+    all stores in the Store Buffer or having all Loads lookup Store Buffer.
+    Of course you ll still need to validate LMQ with SQ before retirement and squash
+    if necessary (and relearn)
+
+[b] AMD Barcelona appears to do LSU1 lookup for loads in parallel to L1 dTLB lookup
+    (neat right? :-))
 
