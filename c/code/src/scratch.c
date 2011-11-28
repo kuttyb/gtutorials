@@ -4,29 +4,29 @@
 #include <inttypes.h>
 #include <assert.h>
 
-#define PREDICATE_GETADDRESS(p)    (void*)((((uintptr_t)p) >> 1) << 1)
-#define PREDICATE_SETTRUE(p)       (void*)(((uintptr_t)p) | 1)
-#define PREDICATE_SETFALSE(p)      (void*)((((uintptr_t)p) | 1) ^ 1)
-#define PREDICATE_GETPREDICATE(p)  (uint32_t)(((((uintptr_t)p) >> 1) << 1) != ((uintptr_t)p))
+static inline uint32_t getlocalend(uint32_t localstart, uint32_t globalend, uint32_t bulk) {
+  uint32_t localend = localstart + bulk - 1;
+  printf("localstart %d globalend %d bulk %d\n", localstart, globalend, bulk);
+  if (localend > globalend) {
+    printf("returning %d\n", globalend);
+    return globalend; 
+  } else {
+    printf("returning %d\n", localend);
+    return localend;
+  }
+}
 
+#define BULKFOR(start, end, bulk, localstart, localend) \
+  for(localstart = start; (localstart <= end) && ((localend = getlocalend(localstart, end, bulk)) <= end); \
+      localstart+=bulk)
 
 int main(void) {
-  int* a = calloc(1, sizeof(int));
-  *a = 2;
+  uint32_t localstart, localend;
 
-  int* b = PREDICATE_GETADDRESS(a);
-  int* c = PREDICATE_SETTRUE(a);
-  int* d = PREDICATE_SETFALSE(c);
-  int* e = PREDICATE_SETTRUE(d);
-  printf("oldptr %p newptr %p settrue_ptr %p setfalse_ptr %p\n", a, b, c, d);
-  printf("value is %d\n", *b);
+  BULKFOR(1, 1, 1, localstart, localend) {
+    printf("printing %d %d\n", localstart, localend);
+  }
 
-  printf("is c predicated %d\n", PREDICATE_GETPREDICATE(c));
-  printf("is d predicated %d\n", PREDICATE_GETPREDICATE(d));
-  printf("is b preidcated %d\n", PREDICATE_GETPREDICATE(b));
-  printf("is e preidcated %d\n", PREDICATE_GETPREDICATE(e));
-
-  free(a);
   return 0;
 }
 
