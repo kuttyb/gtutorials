@@ -4,27 +4,26 @@
 #include <inttypes.h>
 #include <assert.h>
 
-static inline uint32_t getlocalend(uint32_t localstart, uint32_t globalend, uint32_t bulk) {
-  uint32_t localend = localstart + bulk - 1;
-  printf("localstart %d globalend %d bulk %d\n", localstart, globalend, bulk);
-  if (localend > globalend) {
-    printf("returning %d\n", globalend);
-    return globalend; 
-  } else {
-    printf("returning %d\n", localend);
-    return localend;
-  }
+int comp(const void* o, const void* t) {
+  assert(o && t);
+  const uint32_t *one = o;
+  const uint32_t *two = t;
+  
+  if (*one == *two) 
+    return 0;
+  else if (*one > *two)  
+    return 1;
+  else 
+    return -1;
 }
 
-#define BULKFOR(start, end, bulk, localstart, localend) \
-  for(localstart = start; (localstart <= end) && ((localend = getlocalend(localstart, end, bulk)) <= end); \
-      localstart+=bulk)
-
 int main(void) {
-  uint32_t localstart, localend;
+  uint32_t array[] = { 10, 5, 21, 2, 19 };
 
-  BULKFOR(1, 1, 1, localstart, localend) {
-    printf("printing %d %d\n", localstart, localend);
+  qsort(array, 5, sizeof(array[0]), comp);
+
+  for (uint32_t i = 0; i < 5; i++) {
+    printf("%d\n", array[i]);
   }
 
   return 0;
