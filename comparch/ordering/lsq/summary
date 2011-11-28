@@ -52,3 +52,17 @@ Tricks / Details
 [b] AMD Barcelona appears to do LSU1 lookup for loads in parallel to L1 dTLB lookup
     (neat right? :-))
 
+[c] Squashing can be full or partial, the latter being only on those instructions
+    that used the incorrect load value. This is actually quite difficult because
+    it requires maintaining instruction dependency (register) information past
+    execution. Full squashing involves flushing and restarting all instructions
+    past the failed load in program order.
+
+[d] Prediction techniques involve predicting a certain load that is likely to 
+    collide therefore it should wait until all prior ambiguous stores'have had
+    their addresses computed.
+
+    Or you can predict exact load-stores that collide and use a register to
+    capture fwding. None of the above would require associative searches of LSQ
+    but do require squashing.
+    
