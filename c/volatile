@@ -1,0 +1,13 @@
+http://lxr.linux.no/linux+v3.1.4/Documentation/volatile-considered-harmful.txt
+
+Generally for guard variables and shared data that is otherwise protected by a lock
+you do not want to use volatile.
+
+Lockless data structures that use explicit processor fences or memory model assumptions
+should however either use volatile or explicit compiler barriers.
+
+I like what the above document says about volatile preventing compiler optimizations 
+within the critical section.
+
+Bottomilne, acquire release forces sequence points.
+
