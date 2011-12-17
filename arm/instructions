@@ -1,0 +1,18 @@
+=================================
+LDMIA r1, {r2, r3, r4}
+  r2 = r1[0]
+  r3 = r1[4]
+  r4 = r1[8]
+
+ after instruction r1 = r1 + 4 * 3
+
+=================================
+LDMIB  -> same as LDMIA except r1 is incremented before fetch instead of after
+
+=================================
+STMIA  r1, {r2, r3}
+   r1[0]  = r2
+   r1[4]  = r3
+
+=================================
+
