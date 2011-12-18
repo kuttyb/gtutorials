@@ -1,0 +1,6 @@
+xbacklight -get
+           -set %
+
+/sys/class/backlight/*/brightness is the file to look at 
+
+*sudo echo "value" > file
