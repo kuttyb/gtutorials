@@ -4,27 +4,17 @@
 #include <inttypes.h>
 #include <assert.h>
 
-int comp(const void* o, const void* t) {
-  assert(o && t);
-  const uint32_t *one = o;
-  const uint32_t *two = t;
-  
-  if (*one == *two) 
-    return 0;
-  else if (*one > *two)  
-    return 1;
-  else 
-    return -1;
-}
+typedef struct A {
+  int data;
+  struct A* next;
+} ABC;
 
 int main(void) {
-  uint32_t array[] = { 10, 5, 21, 2, 19 };
+  ABC x = { 2, NULL};
 
-  qsort(array, 5, sizeof(array[0]), comp);
+  printf("%d %p\n", x.data, x.next);
 
-  for (uint32_t i = 0; i < 5; i++) {
-    printf("%d\n", array[i]);
-  }
+  printf("%ld\n", sizeof(((ABC*)0)->next));
 
   return 0;
 }
