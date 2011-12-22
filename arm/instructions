@@ -14,3 +14,15 @@ STMIA  r1, {r2, r3}
 
 
 
+===================================================================================================
+[MCR|MRC] CoProcessor Registers
+http://www.heyrick.co.uk/assembler/coprocmnd.html#mrc
+===================================================================================================
+* These transfer control from ARM register to CoProcessor registers
+* MRC transfers from C - > R 
+* MCR transfers from R - > C 
+** i.e., the last alphabet is *FROM* where R = ARM Register and C = Coprocessor
+* MRC  co-pro  op  ARM-reg   copro-reg  copro-reg2  op2 
+* e.g., mcr p15, 0, r0, c8, c3, 1  // flush TLB by MVA 
+
+    
