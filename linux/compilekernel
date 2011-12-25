@@ -1,0 +1,12 @@
+
+// Use inbuilt .config files or copy from /boot or some place else
+~/daji/code/linuxmainline/linux $ ls arch/arm/configs/vexpress_defconfig 
+arch/arm/configs/vexpress_defconfig
+
+~/daji/code/linuxmainline/linux $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- vexpress_defconfig
+
+~/daji/code/linuxmainline/linux $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- clean
+  CLEAN   .
+  CLEAN   .tmp_versions
+
+~/daji/code/linuxmainline/linux $ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- bzImage modules
