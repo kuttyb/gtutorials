@@ -4,27 +4,26 @@
 #include <inttypes.h>
 #include <assert.h>
 
-static inline uint32_t getlocalend(uint32_t localstart, uint32_t globalend, uint32_t bulk) {
-  uint32_t localend = localstart + bulk - 1;
-  if (localend > globalend) {
-    return globalend; 
-  } else {
-    return localend;
-  }
-}
-
-/** Iterate over the range start-end both inclusive in bulk if possible */ 
-#define BULKFOR(start, end, bulk, localstart, localend) \
-  for(localstart = start; (bulk > 0) && (localstart <= end) && ((localend = getlocalend(localstart, end, bulk)) || 1); \
-      localstart+=bulk)
-
 int main(void) {
-  uint32_t localstart, localend;
-  
-  BULKFOR(2, 2, 2, localstart, localend) {
-    printf("localstart %d localend %d size %d\n",
-	   localstart, localend, localend - localstart + 1);
+  uint32_t comp = 2;
+  uint32_t t0 = 0;
+  uint32_t t1 = 2;
+  uint32_t t2 = 2;
+
+  for (uint32_t ctr = 0; ctr < 4; ctr++) {
+    t2 = t2 + 0x40;
+
+    if (1) {
+      t2 = t2 + 0x9000;
+    }
+
+    t0 = t0 + t1 + t2 + comp;
   }
+
+  t1 = t1 + 0x100;
+  t2 = t2 + 0x200;
+
+  printf("t0 0x%x t1 0x%x t2 0x%x\n", t0, t1, t2);
 
   return 0;
 }
