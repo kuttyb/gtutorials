@@ -17,7 +17,8 @@ depstack.c            \
 switch.c              \
 fifo.c                \
 nontemp.c             \
-ptr.c
+ptr.c                 \
+query.c 
 
 ifdef LINUX
 SOURCES += event.c
