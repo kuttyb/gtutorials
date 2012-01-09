@@ -23,15 +23,6 @@ static void intconstants(uint32_t count,...) {
   va_end(list);
 }
 
-static void rtiles(uint32_t count,...) {
-  va_list list;
-  va_start(list, count);
-  for (uint32_t ctr = 0; ctr < count; ctr++) {
-    Tile tile = va_arg(list, Tile);
-    printf("arg[%d] = %d\n", ctr, tile.handle);
-  }
-  va_end(list);
-}
 
 static void stringconstants(uint32_t count,...) {
   va_list list;
@@ -90,11 +81,18 @@ static void testvarargs() {
   stringconstants(3, "first", "second", "third");
 }
 
+#define in +
+
 int main(void) {
   if (0) program();
   
   if (0) testvarargs();
 
+  uint32_t one = 2;
+  uint32_t two = 3;
+
+  printf("data %d\n",
+	 two in one);
 
   return 0;
 }
