@@ -198,7 +198,7 @@ int main(void) {
     assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     assert(putRMAT(rmat, 0x4000, 0x2000, 0));
 
-    for (uint32_t i = 0; i < 0x10; i++) {
+    for (uint32_t i = 0; i < 0x1000; i++) {
         //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
         assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     }
@@ -211,7 +211,7 @@ int main(void) {
     assert(putRMAT(rmat, 0x10000, 0x2000, 4));
     assert(putRMAT(rmat, 0x4000, 0x2000, 0));
 
-    for (uint32_t i = 0; i < 0x10; i++) {
+    for (uint32_t i = 0; i < 0x1000; i++) {
         //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
         assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     }

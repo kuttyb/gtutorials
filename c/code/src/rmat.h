@@ -9,8 +9,8 @@ typedef enum {
 } boolean;
 
 /** These are the separate ProcessIDs that can share the same VA/PA during the same phase */
-#define  MAX_PIDS_ALIASING_VAPA    (0x10) 
-#define  MAX_VAALIASES_PER_PA      (0x10)
+#define  MAX_PIDS_ALIASING_VAPA    (0x4) 
+#define  MAX_VAALIASES_PER_PA      (0x4)
 
 typedef struct {
     uint32_t va_and_phase;
