@@ -46,10 +46,8 @@ boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
 
 static inline uint32_t logbase(uint32_t input) {
     uint32_t ctr = 0;
-    printf("log of %d is ", input);
     for (; input >>= 1; ctr++) {
     }
-    printf("%d\n", ctr);
     return ctr;
 }
 
