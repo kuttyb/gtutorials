@@ -156,7 +156,7 @@ void printRMAT(RMAT* rmat) {
     printf("--------------------------------------\n");
     printf("RMAT Header\n");
     printf("  PA_PAGESIZE   0x%x\n", 1 << rmat->pagesizelog);
-    printf("  PHASES        0x%x\n", rmat->currentphase);
+    printf("  PHASES        0x%x\n", rmat->currentphase + 1);
     printf("  MAXENTRIES    0x%lx\n", rmat->maxentries);
     printf("  VALIDENTRIES  0x%x\n", rmat->numvalidentries);
     printf("--------------------------------------\n");
@@ -194,7 +194,7 @@ int main(void) {
     assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     assert(putRMAT(rmat, 0x4000, 0x2000, 0));
 
-    for (uint32_t i = 0; i < 0x1000; i++) {
+    for (uint32_t i = 0; i < 0x10; i++) {
         //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
         assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     }
@@ -204,10 +204,10 @@ int main(void) {
     assert(putRMAT(rmat, 0x4000, 0x1000, 2));
     assert(putRMAT(rmat, 0x4000, 0x1000, 3));
     assert(putRMAT(rmat, 0x4000, 0x1000, 4));
-    assert(putRMAT(rmat, 0x4000, 0x2000, 4));
+    assert(putRMAT(rmat, 0x10000, 0x2000, 4));
     assert(putRMAT(rmat, 0x4000, 0x2000, 0));
 
-    for (uint32_t i = 0; i < 0x1000; i++) {
+    for (uint32_t i = 0; i < 0x10; i++) {
         //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
         assert(putRMAT(rmat, 0x4000, 0x2000, 4));
     }
