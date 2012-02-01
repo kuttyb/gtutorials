@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="69">
-  <logicalFolder name="root" displayName="root" projectFiles="true">
+<configurationDescriptor version="80">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df name="src" root="../../src">
       <in>alignment.c</in>
       <in>barrier.h</in>
       <in>barrierperf.c</in>
       <in>brk.c</in>
+      <in>depstack.c</in>
       <in>event.c</in>
       <in>fault.c</in>
       <in>fifo.c</in>
@@ -16,9 +17,13 @@
       <in>mem.c</in>
       <in>nontemp.c</in>
       <in>ptr.c</in>
+      <in>query.c</in>
+      <in>rmat.c</in>
+      <in>rmat.h</in>
       <in>scratch.c</in>
       <in>signed.c</in>
       <in>struct.c</in>
+      <in>switch.c</in>
       <in>threads.c</in>
       <in>types.h</in>
     </df>
@@ -37,9 +42,8 @@
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
-        <developmentServer>localhost</developmentServer>
+        <remote-sources-mode>LOCAL_SOURCES</remote-sources-mode>
         <compilerSet>GNU|GNU</compilerSet>
-        <platform>2</platform>
       </toolsSet>
       <makefileType>
         <makeTool>
@@ -47,6 +51,11 @@
           <buildCommand>./linux64.build.sh</buildCommand>
           <cleanCommand>./linux64.build.sh clean</cleanCommand>
           <executablePath></executablePath>
+          <cTool>
+            <incDir>
+              <pElem>../../build</pElem>
+            </incDir>
+          </cTool>
         </makeTool>
       </makefileType>
     </conf>
