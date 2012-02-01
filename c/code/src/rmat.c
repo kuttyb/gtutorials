@@ -28,9 +28,10 @@ VAHashTable* exportVAHashTable(uint32_t maxphases) {
     assert(maxphases);
     VAHashTable* table = calloc(1, sizeof (VAHashTable));
     assert(table);
+    const uint32_t size = MAX_VAALIASES_PER_PA * MAX_PIDS_ALIASING_VAPA * maxphases;
     *table = (VAHashTable){
-        .entries = calloc(maxphases * MAX_ALIASES_PER_PA, sizeof (Entry)),
-        .maxentries = maxphases * MAX_ALIASES_PER_PA,
+        .entries = calloc(size, sizeof (Entry)),
+        .maxentries = size,
     };
     assert(table->entries);
     /** Init Entries */
@@ -80,7 +81,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
     boolean bfreeslotfound = false;
 
     /** Open Chain and Search : You re searching for a va_and_phase match and if found a pid match */
-    for (uint32_t ctr = index; ctr < table->maxentries; ctr++) {
+    for (uint32_t ctr = index; ctr < table->maxentries; ctr += MAX_PIDS_ALIASING_VAPA * rmat->maxphases) {
         if (table->entries[ctr].va_and_phase == va_and_phase) {
             /** linear scan pid list and add if not present */
             for (uint32_t i = 0; i < table->entries[ctr].numpids; i++) {
@@ -89,7 +90,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
                 }
             }
             /** so pid is not present add it if there space */
-            if (table->entries[ctr].numpids < MAX_PIDS_PER_ENTRY) {
+            if (table->entries[ctr].numpids < MAX_PIDS_ALIASING_VAPA) {
                 table->entries[ctr].pids[table->entries[ctr].numpids++] = pid;
                 return true;
             } else {
@@ -105,7 +106,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
     }
 
     /** search from the top */
-    for (uint32_t ctr = 0; ctr < index; ctr++) {
+    for (uint32_t ctr = 0; ctr < index; ctr += MAX_PIDS_ALIASING_VAPA * rmat->maxphases) {
         if (table->entries[ctr].va_and_phase == va_and_phase) {
             /** linear scan pid list and add if not present */
             for (uint32_t i = 0; i < table->entries[ctr].numpids; i++) {
@@ -115,7 +116,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
                 }
             }
             /** so pid is not present add it if there space */
-            if (table->entries[ctr].numpids < MAX_PIDS_PER_ENTRY) {
+            if (table->entries[ctr].numpids < MAX_PIDS_ALIASING_VAPA) {
                 table->entries[ctr].pids[table->entries[ctr].numpids++] = pid;
                 return true;
             } else {
@@ -135,6 +136,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
         table->entries[freeslot].va_and_phase = va_and_phase;
         table->entries[freeslot].pids[0] = pid;
         table->entries[freeslot].numpids = 1;
+
         return true;
     }
 
@@ -145,6 +147,7 @@ void destroyRMAT(RMAT* rmat) {
     assert(rmat && rmat->phys_addr_table);
 
     for (uint32_t ctr = 0; ctr < rmat->maxentries; ctr++) {
+
         if (rmat->phys_addr_table[ctr])
             destroyVAHashTable(rmat->phys_addr_table[ctr]);
     }
@@ -177,6 +180,7 @@ void printRMAT(RMAT* rmat) {
             printf("\tPhase %d: PA 0x%lx VA 0x%x\n",
                     phase, paddr, vaddr);
             for (uint32_t j = 0; j < table->entries[i].numpids; j++) {
+
                 printf("\t\t\tPID %d\n", table->entries[i].pids[j]);
             }
         }

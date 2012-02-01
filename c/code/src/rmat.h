@@ -9,15 +9,15 @@ typedef enum {
 } boolean;
 
 /** These are the separate ProcessIDs that can share the same VA/PA during the same phase */
-#define  MAX_PIDS_PER_ENTRY    (0x10) 
-#define  MAX_ALIASES_PER_PA    (0x10)
+#define  MAX_PIDS_ALIASING_VAPA    (0x10) 
+#define  MAX_VAALIASES_PER_PA      (0x10)
 
 typedef struct {
     uint32_t va_and_phase;
     /** Thats right, linear search. This should fit within a few adjacent cache lines.
      *  Linear searching adjacent cachelines is simpler/better than pointer chasing Trees.
      */
-    uint8_t pids[MAX_PIDS_PER_ENTRY];
+    uint8_t pids[MAX_PIDS_ALIASING_VAPA];
     uint32_t numpids;
 } Entry;
 
