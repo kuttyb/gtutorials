@@ -17,9 +17,9 @@ typedef struct {
      *  times during the same phase, avoid array look up 
      */
     uint32_t va_and_phase;
+    /** TODO initialize */
     uint8_t pids[MAX_PIDS_PER_ENTRY];
-}
-Entry;
+} Entry;
 
 /** Each Entry contains <Key, Value> tuple
        where:

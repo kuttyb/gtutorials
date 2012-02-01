@@ -29,7 +29,7 @@ VAHashTable* exportVAHashTable(uint32_t maxphases) {
     assert(table);
     *table = (VAHashTable){
         .entries = calloc(maxphases * MAX_ALIASES_PER_PA, sizeof (Entry)),
-        .maxentries = maxphases * MAX_ALIASES_PER_PA
+        .maxentries = maxphases * MAX_ALIASES_PER_PA,
     };
     assert(table->entries);
     return table;
