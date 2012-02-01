@@ -8,7 +8,9 @@ typedef enum {
     false, true
 } boolean;
 
-#define  MAX_PIDS_PER_ENTRY    (0x10) /** These are the separate ProcessIDs that can share the same VA/PA during the same phase */
+/** These are the separate ProcessIDs that can share the same VA/PA during the same phase */
+#define  MAX_PIDS_PER_ENTRY    (0x10) 
+#define  MAX_ALIASES_PER_PA    (0x10)
 
 typedef struct {
     /** putting these together is to speed up the everyday case where PA-VA hit several
@@ -30,11 +32,13 @@ typedef struct {
 
 typedef struct {
     VAHashTable** phys_addr_table;
+    uint64_t maxentries;
     uint32_t currentphase;
 } RMAT;
 
 RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases);
 void destroyRMAT(RMAT*);
+VAHashTable* exportVAHashTable(uint32_t maxphases);
 void incrementPhaseRMAT(RMAT*);
 boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
 
