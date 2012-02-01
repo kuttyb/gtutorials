@@ -32,6 +32,10 @@ VAHashTable* exportVAHashTable(uint32_t maxphases) {
         .maxentries = maxphases * MAX_ALIASES_PER_PA,
     };
     assert(table->entries);
+    /** Init Entries */
+    for (uint32_t ctr = 0; ctr < table->maxentries; ctr++) {
+        table->entries[ctr].numpids = 0;
+    }
     return table;
 }
 
@@ -55,39 +59,64 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
 
     /** hash it */
     uint32_t index = va_and_phase % table->maxentries;
-
-    /** open chain and search */
     uint32_t freeslot;
-    boolean balreadypresent = false;
     boolean bfreeslotfound = false;
+
+    /** Open Chain and Search : You re searching for a va_and_phase match and if found a pid match */
     for (uint32_t ctr = index; ctr < table->maxentries; ctr++) {
         if (table->entries[ctr].va_and_phase == va_and_phase) {
             /** linear scan pid list and add if not present */
-            balreadypresent = true;
+            for (uint32_t i = 0; i < table->entries[ctr].numpids; i++) {
+                if (table->entries[ctr].pids[i] == pid) {
+                    return true; /** <PA,VA, phase, pid> tuple is already present do nothing, trivial 80% case*/
+                }
+            }
+            /** so pid is not present add it if there space */
+            if (table->entries[ctr].numpids < MAX_PIDS_PER_ENTRY) {
+                table->entries[ctr].pids[table->entries[ctr].numpids++] = pid;
+                return true;
+            } else {
+                /** no space left for pids, drop it!! */
+                return false;
+            }
         } else if (table->entries[ctr].va_and_phase == 0) {
-            freeslot = ctr; /** thats right choose the latest one to minimize memory distance */
+            /** Remember the nearest free slot in case we have to add va_and_phase */
+            freeslot = ctr;
             bfreeslotfound = true;
         }
     }
 
     /** search from the top */
-    if (balreadypresent == false) {
-        for (uint32_t ctr = 0; ctr < index; ctr++) {
-            if (table->entries[ctr].va_and_phase == va_and_phase) {
-                /** TODO linear scan pid list and add if not present */
-            } else if (table->entries[ctr].va_and_phase == 0) {
-                freeslot = ctr; /** thats right choose the latest one to minimize memory distance */
-                bfreeslotfound = true;
+    for (uint32_t ctr = 0; ctr < index; ctr++) {
+        if (table->entries[ctr].va_and_phase == va_and_phase) {
+            /** linear scan pid list and add if not present */
+            for (uint32_t i = 0; i < table->entries[ctr].numpids; i++) {
+                if (table->entries[ctr].pids[i] == pid) {
+                    /** <PA,VA, phase, pid> tuple is already present do nothing, the trivial 80% case*/
+                    return true;
+                }
             }
+            /** so pid is not present add it if there space */
+            if (table->entries[ctr].numpids < MAX_PIDS_PER_ENTRY) {
+                table->entries[ctr].pids[table->entries[ctr].numpids++] = pid;
+                return true;
+            } else {
+                /** no space left for pids, drop it!! */
+                return false;
+            }
+        } else if (table->entries[ctr].va_and_phase == 0) {
+            /** Remember the nearest free slot in case we have to add va_and_phase */
+            freeslot = ctr;
+            bfreeslotfound = true;
         }
     }
 
-    if (balreadypresent == false) {
-        if (bfreeslotfound == true) {
-            table->entries[freeslot].va_and_phase = va_and_phase;
-            /** TODO insert pid */
-            return true;
-        }
+    /** Too bad, va_and_phase was not found, add it if theres a freeslot found amd create a new Entry */
+    if (bfreeslotfound == true) {
+        table->entries[freeslot].va_and_phase = va_and_phase;
+        table->entries[freeslot].pids[0] = pid;
+        table->entries[freeslot].numpids = 1;
+        return true;
     }
 
     return false;

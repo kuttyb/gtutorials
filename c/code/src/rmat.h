@@ -13,12 +13,12 @@ typedef enum {
 #define  MAX_ALIASES_PER_PA    (0x10)
 
 typedef struct {
-    /** putting these together is to speed up the everyday case where PA-VA hit several
-     *  times during the same phase, avoid array look up 
-     */
     uint32_t va_and_phase;
-    /** TODO initialize */
+    /** Thats right, linear search. This should fit within a few adjacent cache lines.
+     *  Linear searching adjacent cachelines is simpler/better than pointer chasing Trees.
+     */
     uint8_t pids[MAX_PIDS_PER_ENTRY];
+    uint32_t numpids;
 } Entry;
 
 /** Each Entry contains <Key, Value> tuple
