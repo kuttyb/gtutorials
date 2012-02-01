@@ -6,7 +6,6 @@
 
 /**
 void incrementPhaseRMAT(RMAT*);
-boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
  */
 
 RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases) {
@@ -19,6 +18,8 @@ RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases
     *rmat = (RMAT){
         .currentphase = 0,
         .maxentries = num_phys_pages,
+        .maxphases = maxphases,
+        .pagesizelog = logbase(pagesize),
         .phys_addr_table = calloc(num_phys_pages, sizeof (VAHashTable*))
     };
     assert(rmat->phys_addr_table);
@@ -39,6 +40,11 @@ void destroyVAHashTable(VAHashTable* table) {
     assert(table && table->entries);
     free(table->entries);
     free(table);
+}
+
+boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaaddr, uint32_t pid) {
+    assert(rmat);
+    return false;
 }
 
 void destroyRMAT(RMAT* rmat) {

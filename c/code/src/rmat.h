@@ -33,6 +33,8 @@ typedef struct {
 typedef struct {
     VAHashTable** phys_addr_table;
     uint64_t maxentries;
+    uint32_t maxphases;
+    uint32_t pagesizelog;
     uint32_t currentphase;
 } RMAT;
 
@@ -41,5 +43,14 @@ void destroyRMAT(RMAT*);
 VAHashTable* exportVAHashTable(uint32_t maxphases);
 void incrementPhaseRMAT(RMAT*);
 boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
+
+static inline uint32_t logbase(uint32_t input) {
+    uint32_t ctr = 0;
+    printf("log of %d is ", input);
+    for (; input >>= 1; ctr++) {
+    }
+    printf("%d\n", ctr);
+    return ctr;
+}
 
 #endif //__rmat_h__
