@@ -16,6 +16,7 @@ RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases
         .maxentries = num_phys_pages,
         .maxphases = maxphases,
         .pagesizelog = logbase(pagesize),
+        .numvalidentries = 0,
         .phys_addr_table = calloc(num_phys_pages, sizeof (VAHashTable*))
     };
     assert(rmat->phys_addr_table);
@@ -66,8 +67,9 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
     uint64_t paindex = physaddr >> rmat->pagesizelog;
     VAHashTable* table = rmat->phys_addr_table[paindex];
     if (!table) {
-        table = exportVAHashTable(rmat->maxentries);
-        rmat->phys_addr_table[paindex] = table;
+        rmat->phys_addr_table[paindex] = exportVAHashTable(rmat->maxentries);
+        table = rmat->phys_addr_table[paindex];
+        rmat->numvalidentries++;
     }
 
     uint32_t va_and_phase = get_va_and_phase(rmat, vaddr);
@@ -92,6 +94,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
                 return true;
             } else {
                 /** no space left for pids, drop it!! */
+                assert(false);
                 return false;
             }
         } else if (table->entries[ctr].va_and_phase == 0) {
@@ -117,6 +120,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
                 return true;
             } else {
                 /** no space left for pids, drop it!! */
+                assert(false);
                 return false;
             }
         } else if (table->entries[ctr].va_and_phase == 0) {
@@ -149,7 +153,13 @@ void destroyRMAT(RMAT* rmat) {
 
 void printRMAT(RMAT* rmat) {
     assert(rmat);
-    printf("Dumping RMAT\n");
+    printf("--------------------------------------\n");
+    printf("RMAT Header\n");
+    printf("  PA_PAGESIZE   0x%x\n", 1 << rmat->pagesizelog);
+    printf("  PHASES        0x%x\n", rmat->currentphase);
+    printf("  MAXENTRIES    0x%lx\n", rmat->maxentries);
+    printf("  VALIDENTRIES  0x%x\n", rmat->numvalidentries);
+    printf("--------------------------------------\n");
     const uint32_t pagesize = 1 << rmat->pagesizelog;
 
     for (uint32_t ctr = 0; ctr < rmat->maxentries; ctr++) {
@@ -164,18 +174,45 @@ void printRMAT(RMAT* rmat) {
             uint32_t vaddr;
             uint32_t phase;
             split_va_and_phase(rmat, va_and_phase, &vaddr, &phase);
-            printf("\tPhase %d: PA %" PRIu64 " VA %d\n",
+            printf("\tPhase %d: PA 0x%lx VA 0x%x\n",
                     phase, paddr, vaddr);
             for (uint32_t j = 0; j < table->entries[i].numpids; j++) {
                 printf("\t\t\tPID %d\n", table->entries[i].pids[j]);
             }
         }
     }
+    printf("--------------------------------------\n");
 }
 
 int main(void) {
-    RMAT* rmat = exportRMAT(0x10000000, 0x1000, 0x100);
+    RMAT* rmat = exportRMAT(0x20000000, 0x1000, 0x100);
     assert(rmat);
+
+    assert(putRMAT(rmat, 0x4000, 0x1000, 2));
+    assert(putRMAT(rmat, 0x4000, 0x1000, 3));
+    assert(putRMAT(rmat, 0x4000, 0x1000, 4));
+    assert(putRMAT(rmat, 0x4000, 0x2000, 4));
+    assert(putRMAT(rmat, 0x4000, 0x2000, 0));
+
+    for (uint32_t i = 0; i < 0x1000; i++) {
+        //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
+        assert(putRMAT(rmat, 0x4000, 0x2000, 4));
+    }
+
+    incrementPhaseRMAT(rmat);
+
+    assert(putRMAT(rmat, 0x4000, 0x1000, 2));
+    assert(putRMAT(rmat, 0x4000, 0x1000, 3));
+    assert(putRMAT(rmat, 0x4000, 0x1000, 4));
+    assert(putRMAT(rmat, 0x4000, 0x2000, 4));
+    assert(putRMAT(rmat, 0x4000, 0x2000, 0));
+
+    for (uint32_t i = 0; i < 0x1000; i++) {
+        //assert(putRMAT(rmat, 0x4000, 0x2000 + i * 0x1000, 4));
+        assert(putRMAT(rmat, 0x4000, 0x2000, 4));
+    }
+
+    printRMAT(rmat);
 
     destroyRMAT(rmat);
     return 0;

@@ -37,6 +37,7 @@ typedef struct {
     uint32_t maxphases;
     uint32_t pagesizelog;
     uint32_t currentphase;
+    uint32_t numvalidentries;
 } RMAT;
 
 RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases);
