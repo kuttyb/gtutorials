@@ -45,6 +45,22 @@ void destroyVAHashTable(VAHashTable* table) {
     free(table);
 }
 
+static inline uint32_t get_va_and_phase(RMAT* rmat, uint32_t vaddr) {
+    uint32_t va_and_phase = (vaddr >> rmat->pagesizelog) << rmat->pagesizelog;
+    va_and_phase |= rmat->currentphase;
+    return va_and_phase;
+}
+
+static inline void split_va_and_phase(RMAT* rmat, uint32_t va_and_phase, uint32_t* vaddr, uint32_t* phase) {
+    assert(rmat && vaddr && phase);
+    uint32_t mask = (1 << rmat->pagesizelog) - 1;
+    *phase = va_and_phase & mask;
+
+    va_and_phase >>= rmat->pagesizelog;
+    va_and_phase <<= rmat->pagesizelog;
+    *vaddr = va_and_phase;
+}
+
 boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
     assert(rmat);
     uint64_t paindex = physaddr >> rmat->pagesizelog;
@@ -54,8 +70,7 @@ boolean putRMAT(RMAT* rmat, uint64_t physaddr, uint64_t vaddr, uint32_t pid) {
         rmat->phys_addr_table[paindex] = table;
     }
 
-    uint32_t va_and_phase = (vaddr >> rmat->pagesizelog) << rmat->pagesizelog;
-    va_and_phase |= rmat->currentphase;
+    uint32_t va_and_phase = get_va_and_phase(rmat, vaddr);
 
     /** hash it */
     uint32_t index = va_and_phase % table->maxentries;
@@ -130,6 +145,32 @@ void destroyRMAT(RMAT* rmat) {
             destroyVAHashTable(rmat->phys_addr_table[ctr]);
     }
     free(rmat->phys_addr_table);
+}
+
+void printRMAT(RMAT* rmat) {
+    assert(rmat);
+    printf("Dumping RMAT\n");
+    const uint32_t pagesize = 1 << rmat->pagesizelog;
+
+    for (uint32_t ctr = 0; ctr < rmat->maxentries; ctr++) {
+        VAHashTable* table = rmat->phys_addr_table[ctr];
+        if (!table) continue;
+
+        uint64_t paddr = pagesize * ctr;
+        /** Parse VAHashTable */
+        for (uint32_t i = 0; i < table->maxentries; i++) {
+            uint32_t va_and_phase = table->entries[i].va_and_phase;
+            if (!va_and_phase) continue;
+            uint32_t vaddr;
+            uint32_t phase;
+            split_va_and_phase(rmat, va_and_phase, &vaddr, &phase);
+            printf("\tPhase %d: PA %" PRIu64 " VA %d\n",
+                    phase, paddr, vaddr);
+            for (uint32_t j = 0; j < table->entries[i].numpids; j++) {
+                printf("\t\t\tPID %d\n", table->entries[i].pids[j]);
+            }
+        }
+    }
 }
 
 int main(void) {

@@ -43,6 +43,7 @@ RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases
 void destroyRMAT(RMAT*);
 VAHashTable* exportVAHashTable(uint32_t maxphases);
 boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
+void printRMAT(RMAT*);
 
 static inline void incrementPhaseRMAT(RMAT* rmat) {
     assert(rmat);
