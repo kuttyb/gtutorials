@@ -28,6 +28,7 @@ Entry;
  */
 typedef struct {
     Entry* entries;
+    uint32_t maxentries;
 } VAHashTable;
 
 typedef struct {
@@ -41,8 +42,17 @@ typedef struct {
 RMAT* exportRMAT(uint64_t phys_memory_max, uint32_t pagesize, uint32_t maxphases);
 void destroyRMAT(RMAT*);
 VAHashTable* exportVAHashTable(uint32_t maxphases);
-void incrementPhaseRMAT(RMAT*);
 boolean putRMAT(RMAT*, uint64_t physaddr, uint64_t vaaddr, uint32_t pid);
+
+static inline void incrementPhaseRMAT(RMAT* rmat) {
+    assert(rmat);
+    uint32_t max = 1 << rmat->pagesizelog;
+    if (rmat->currentphase < max) {
+        rmat->currentphase++;
+    } else {
+        assert(0);
+    }
+}
 
 static inline uint32_t logbase(uint32_t input) {
     uint32_t ctr = 0;
