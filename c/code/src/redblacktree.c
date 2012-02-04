@@ -17,7 +17,6 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "redblacktree.h"
-#include "stack.h"
 
 static void swap(RBNode* first, RBNode* second) {
     assert(first && second);
@@ -46,14 +45,16 @@ RBTree* exportRBTree(rbcompute keygen) {
     assert(tree);
     *tree = (RBTree){
         .keygen = keygen,
-        .root = NULL
+        .root = NULL,
+        .stack = exportStack(32)
     };
     return tree;
 }
 
 void destroyRBTree(RBTree* tree) {
     assert(tree);
-    traverse(tree, NULL, NULL); /** TODO wire up visitor that frees each node */
+    //traverse(tree, NULL, NULL); /** TODO wire up visitor that frees each node */
+    destroyStack(tree->stack);
     free(tree);
 }
 
@@ -72,24 +73,11 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
 
 int main(void) {
     if (0) swap(NULL, NULL);
+    if (0) traverse(NULL, NULL, NULL);
 
-    int a[] = {0, 1, 2, 3, 4, 5};
-    const uint32_t size = sizeof (a) / sizeof (a[0]);
-
-    Stack* stack = exportStack(10);
-    for (uint32_t ctr = 0; ctr < size; ctr++) {
-        pushStack(stack, &a[ctr]);
-    }
-
-    for (uint32_t ctr = 0; ctr < size; ctr++) {
-        int* data = popStack(stack);
-        assert(data);
-        int index = size - ctr - 1;
-        assert(index >= 0);
-        assert(*data == a[index]);
-    }
-
-    destroyStack(stack);
+    RBTree* tree = exportRBTree(NULL);
+    assert(tree);
+    destroyRBTree(tree);
 
     return 0;
 }

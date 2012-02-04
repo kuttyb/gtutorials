@@ -17,6 +17,7 @@
 #define __redblacktree_h__
 
 #include <inttypes.h>
+#include "stack.h"
 
 typedef enum {
     false, true
@@ -37,7 +38,7 @@ typedef uint64_t(*rbcompute)(void*);
 typedef struct {
     RBNode* root;
     rbcompute keygen;
-    /** TODO Bloom Filter */
+    Stack* stack;
 } RBTree;
 
 RBTree* exportRBTree(rbcompute);
