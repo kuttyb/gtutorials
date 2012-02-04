@@ -40,12 +40,6 @@ static void traverse(RBTree* tree, visitor v, void* arg) {
     v(tree->root, arg);
 }
 
-/*
-RBTree* exportRBTree(rbcompute);
-void destroyRBTree(RBTree*);
-boolean insertKey(RBTree*, void* key, void* value);
-
- */
 RBTree* exportRBTree(rbcompute keygen) {
     RBTree* tree = calloc(1, sizeof (RBTree));
     assert(tree);
