@@ -18,6 +18,7 @@
       <in>nontemp.c</in>
       <in>ptr.c</in>
       <in>query.c</in>
+      <in>redblacktree.h</in>
       <in>rmat.c</in>
       <in>rmat.h</in>
       <in>scratch.c</in>
