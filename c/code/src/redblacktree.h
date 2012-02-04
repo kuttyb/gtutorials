@@ -31,12 +31,13 @@ typedef struct _RBNode {
     struct _RBNode* right;
 } RBNode;
 
+
 typedef uint64_t(*rbcompute)(void*);
 
 typedef struct {
     RBNode* root;
-    rbcompute compute;
-    /** TODO Add a Bloom Filter here */
+    rbcompute keygen;
+    /** TODO Bloom Filter */
 } RBTree;
 
 RBTree* exportRBTree(rbcompute);

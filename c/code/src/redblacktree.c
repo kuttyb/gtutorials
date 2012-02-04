@@ -14,6 +14,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include <assert.h>
 #include "redblacktree.h"
 
@@ -29,6 +30,49 @@ static void swap(RBNode* first, RBNode* second) {
     second->left = temp.left;
     second->right = temp.right;
     second->value = temp.value;
+}
+
+typedef void (*visitor)(RBNode*, void* arg);
+
+static void traverse(RBTree* tree, visitor v, void* arg) {
+    assert(tree);
+    /** TODO write tree parse logic */
+    v(tree->root, arg);
+}
+
+/*
+RBTree* exportRBTree(rbcompute);
+void destroyRBTree(RBTree*);
+boolean insertKey(RBTree*, void* key, void* value);
+
+ */
+RBTree* exportRBTree(rbcompute keygen) {
+    RBTree* tree = calloc(1, sizeof (RBTree));
+    assert(tree);
+    *tree = (RBTree){
+        .keygen = keygen,
+        .root = NULL
+    };
+    return tree;
+}
+
+void destroyRBTree(RBTree* tree) {
+    assert(tree);
+    traverse(tree, NULL, NULL); /** TODO wire up visitor that frees each node */
+    free(tree);
+}
+
+boolean insertKey(RBTree* tree, void* key, void* value) {
+    assert(tree && key);
+    RBNode* node = calloc(1, sizeof (RBNode));
+    assert(node);
+    *node = (RBNode){
+        .computedkey = tree->keygen(key),
+        .left = NULL,
+        .right = NULL,
+        .value = value
+    };
+    return false;
 }
 
 int main(void) {
