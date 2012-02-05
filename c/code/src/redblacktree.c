@@ -41,7 +41,7 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 #define PUSHEDCOMPLETELY(addr) (void*)((uintptr_t)addr | 1)
 #define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
 
-static void traversal(RBTree* tree, rbvisitor v, void* arg) {
+static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     assert(tree && v);
     if (!tree->root) goto traversal_end;
 
@@ -176,15 +176,15 @@ uint64_t keygen(void* input) {
 
 static void printvisitor(RBNode* node, void* arg) {
     assert(node && !arg);
-    printf("%s: node has key 0x%lx value %p\n",
+    printf("%s: node has key %" PRIu64 " value %p\n",
             __FUNCTION__, node->computedkey, node->value);
 }
 
 int main(void) {
     if (0) swap(NULL, NULL);
-    if (0) traversal(NULL, NULL, NULL);
+    if (0) inordertraversal(NULL, NULL, NULL);
 
-    uint32_t a[] = {20, 2, 1, 7, 15, 3};
+    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
 
     RBTree* tree = exportRBTree(keygen);
@@ -198,7 +198,7 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    traversal(tree, printvisitor, NULL);
+    inordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 
