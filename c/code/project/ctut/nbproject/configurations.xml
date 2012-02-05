@@ -17,6 +17,7 @@
       <in>mem.c</in>
       <in>nontemp.c</in>
       <in>ptr.c</in>
+      <in>qfifo.h</in>
       <in>query.c</in>
       <in>redblacktree.c</in>
       <in>redblacktree.h</in>

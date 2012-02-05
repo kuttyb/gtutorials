@@ -66,19 +66,21 @@ static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     Stack* stack = tree->stack;
     emptyStack(stack);
 
-    pushStack(stack, tree->root);
+    pushStack(stack, tree->root, 0);
     while (sizeStack(stack)) {
-        RBNode* node = popStack(stack);
+        uint32_t depth;
+        RBNode* node = popStack(stack, &depth);
         RBNode* realnode = GETADDR(node);
         if (BEENPUSHEDCOMPLETELY(node)) {
             v(realnode, arg);
         } else {
-            if (realnode->right) pushStack(stack, realnode->right);
-            pushStack(stack, PUSHEDCOMPLETELY(realnode));
-            if (realnode->left) pushStack(stack, realnode->left);
+            if (realnode->right) pushStack(stack, realnode->right, depth + 1);
+            pushStack(stack, PUSHEDCOMPLETELY(realnode), depth);
+            if (realnode->left) pushStack(stack, realnode->left, depth + 1);
         }
     }
 traversal_end:
+    printf("%s: Depth of Tree %d\n", __FUNCTION__, maxDepthStack(stack));
     return;
 }
 
@@ -218,7 +220,7 @@ int main(void) {
     if (0) swap(NULL, NULL);
     if (0) inordertraversal(NULL, NULL, NULL);
 
-    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31, 27};
+    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31, 27, 35, 30, 41, 16, 17};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
 
     RBTree* tree = exportRBTree(keygen);
@@ -232,7 +234,8 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    if (1) preordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (0) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 
