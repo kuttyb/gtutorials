@@ -24,6 +24,7 @@
       <in>rmat.h</in>
       <in>scratch.c</in>
       <in>signed.c</in>
+      <in>stack.h</in>
       <in>struct.c</in>
       <in>switch.c</in>
       <in>threads.c</in>

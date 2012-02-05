@@ -99,6 +99,16 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
     return false;
 }
 
+void* value(RBTree* tree, void*key) {
+    assert(tree && key);
+    RBNode* node;
+    if (search(tree, key, &node)) {
+        return node->value;
+    } else {
+        return NULL;
+    }
+}
+
 int main(void) {
     if (0) swap(NULL, NULL);
 
