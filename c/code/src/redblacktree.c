@@ -149,10 +149,10 @@ int main(void) {
     RBTree* tree = exportRBTree(keygen);
     assert(tree);
 
-    assert(insertKey(tree, &a[0], &a[0]));
-    assert(insertKey(tree, &a[1], &a[1]));
-    assert(insertKey(tree, &a[2], &a[2]));
     assert(insertKey(tree, &a[3], &a[3]));
+    assert(insertKey(tree, &a[1], &a[1]));
+    assert(insertKey(tree, &a[0], &a[0]));
+    assert(insertKey(tree, &a[2], &a[2]));
 
     assert(value(tree, &a[0]) == &a[0]);
     assert(value(tree, &a[1]) == &a[1]);
