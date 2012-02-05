@@ -36,10 +36,15 @@ static void swap(RBNode* first, RBNode* second) {
  *  the point of insertion.
  */
 static boolean search(RBTree* tree, void* key, RBNode** lastnode) {
-    assert(tree && tree->root && key);
-    uint64_t realkey = tree->keygen(key);
+    assert(tree && key);
     RBNode* node = tree->root;
 
+    if (!node) {
+        lastnode = NULL;
+        return false;
+    }
+
+    uint64_t realkey = tree->keygen(key);
     boolean bFound = true;
     while (bFound) {
         if (realkey == node->computedkey) {
@@ -98,10 +103,16 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
     };
 
     RBNode* lastnode;
-    if (search(tree, key, &lastnode)) {
+    boolean bvalue = search(tree, key, &lastnode);
+    if (bvalue) {
         /** key exists, just change its value */
         lastnode->value = value;
     } else {
+        if (!lastnode) {
+            /** add the root */
+            tree->root = node;
+            return true;
+        }
         /** key doesn't exist, insert behind the last node */
         if (node->computedkey > lastnode->computedkey) {
             lastnode->right = node;
