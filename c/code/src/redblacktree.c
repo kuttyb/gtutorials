@@ -61,7 +61,7 @@ static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
         }
     }
 traversal_end:
-    printf("%s: Height of Tree is %d\n", __FUNCTION__, tree->stack->height);
+    return;
 }
 
 /** Search for key, if found return true else return false and set lastnode to 
