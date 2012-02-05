@@ -101,11 +101,18 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
     if (search(tree, key, &lastnode)) {
         /** key exists, just change its value */
         lastnode->value = value;
-        return true;
     } else {
-        /** key doesn't exist, insert it at last node */
-        return true;
+        /** key doesn't exist, insert behind the last node */
+        if (node->computedkey > lastnode->computedkey) {
+            lastnode->right = node;
+        } else {
+            lastnode->left = node;
+        }
     }
+
+    /** TODO: Balance the Tree based on whether we re AVL or RB */
+
+    return true;
 }
 
 void* value(RBTree* tree, void*key) {
