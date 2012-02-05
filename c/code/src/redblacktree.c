@@ -32,6 +32,42 @@ static void swap(RBNode* first, RBNode* second) {
     second->value = temp.value;
 }
 
+/** Search for key, if found return true else return false and set lastnode to 
+ *  the point of insertion.
+ */
+static boolean search(RBTree* tree, void* key, RBNode** lastnode) {
+    assert(tree && tree->root && key);
+    uint64_t realkey = tree->keygen(key);
+    RBNode* node = tree->root;
+
+    boolean bFound = true;
+    while (bFound) {
+        if (realkey == node->computedkey) {
+            break;
+        }
+
+        /**  move down ... */
+        if (realkey <= node->computedkey) {
+            if (node->left) {
+                node = node->left;
+            } else {
+                bFound = false;
+                break;
+            }
+        } else if (realkey >= node->computedkey) {
+            if (node->right) {
+                node = node->right;
+            } else {
+                bFound = false;
+                break;
+            }
+        }
+    }
+
+    lastnode = &node;
+    return bFound;
+}
+
 RBTree * exportRBTree(rbcompute keygen) {
     RBTree* tree = calloc(1, sizeof (RBTree));
     assert(tree);

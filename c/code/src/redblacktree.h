@@ -43,6 +43,5 @@ typedef struct {
 
 RBTree* exportRBTree(rbcompute);
 void destroyRBTree(RBTree*);
-boolean insertKey(RBTree*, void* key, void* value);
 
 #endif //__redblacktree_h__
