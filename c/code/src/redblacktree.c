@@ -45,20 +45,17 @@ static void preordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
     if (!tree->root) goto preordertraversal_end;
 
-    Stack* stack = tree->stack;
-    emptyStack(stack);
+    QFifo* fifo = tree->fifo;
+    emptyFifo(fifo);
 
-    uint32_t height = 0;
-    pushStack(stack, tree->root);
-    while (sizeStack(stack)) {
-        RBNode* node = popStack(stack);
+    put(fifo, tree->root);
+    while (sizeFifo(fifo)) {
+        RBNode* node = get(fifo);
         v(node, arg);
-        if (node->right) pushStack(stack, node->right);
-        if (node->left) pushStack(stack, node->left);
-        if (node->left || node->right) height++;
+        if (node->left) put(fifo, node->left);
+        if (node->right) put(fifo, node->right);
     }
 preordertraversal_end:
-    printf("%s: height %d\n", __FUNCTION__, height);
     return;
 }
 
@@ -132,15 +129,23 @@ RBTree * exportRBTree(rbcompute keygen) {
     *tree = (RBTree){
         .keygen = keygen,
         .root = NULL,
-        .stack = exportStack(0x100)
+        .stack = exportStack(0x100),
+        .fifo = exportQFifo(0x100)
     };
     return tree;
 }
 
+void freenodevisitor(RBNode* node, void* arg) {
+    assert(node && !arg);
+    //printf("%s: freeing node %p\n", __FUNCTION__, node);
+    free(node);
+}
+
 void destroyRBTree(RBTree * tree) {
     assert(tree);
-    //traverse(tree, NULL, NULL); /** TODO wire up visitor that frees each node */
+    inordertraversal(tree, freenodevisitor, NULL);
     destroyStack(tree->stack);
+    destroyQFifo(tree->fifo);
     free(tree);
 }
 
@@ -199,11 +204,13 @@ static void printvisitor(RBNode* node, void* arg) {
     assert(node && !arg);
     printf("%s: node %p key %" PRIu64 "\n",
             __FUNCTION__, node, node->computedkey);
-    if (node->left) {
-        printf("\tLeftChild  %p\n", node->left);
-    }
-    if (node->right) {
-        printf("\tRightChild %p\n", node->right);
+    if (0) {
+        if (node->left) {
+            printf("\tLeftChild  %p\n", node->left);
+        }
+        if (node->right) {
+            printf("\tRightChild %p\n", node->right);
+        }
     }
 }
 
@@ -225,8 +232,7 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    if (1) inordertraversal(tree, printvisitor, NULL);
-    if (0) preordertraversal(tree, printvisitor, NULL);
+    if (1) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 

@@ -40,6 +40,7 @@ typedef struct {
     RBNode* root;
     rbcompute keygen;
     Stack* stack;
+    QFifo* fifo;
 } RBTree;
 
 RBTree* exportRBTree(rbcompute);

@@ -61,9 +61,21 @@ static inline void* get(QFifo* fifo) {
     assert(fifo);
     assert(fifo->cursize);
     void* data = fifo->data[fifo->get];
-    fifo->get++;
+    fifo->get = (fifo->get + 1) % fifo->maxelements;
     fifo->cursize--;
     return data;
+}
+
+static inline void emptyFifo(QFifo* fifo) {
+    assert(fifo);
+    fifo->put = 0;
+    fifo->get = 0;
+    fifo->cursize = 0;
+}
+
+static inline uint32_t sizeFifo(QFifo* fifo) {
+    assert(fifo);
+    return fifo->cursize;
 }
 
 #endif //__qfifo_h__
