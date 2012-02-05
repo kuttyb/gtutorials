@@ -16,6 +16,7 @@
 #ifndef __stack_h__
 #define __stack_h__
 
+#include <stdlib.h>
 #include <inttypes.h>
 #include <assert.h>
 

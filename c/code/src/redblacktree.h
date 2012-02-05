@@ -18,6 +18,7 @@
 
 #include <inttypes.h>
 #include "stack.h"
+#include "qfifo.h"
 
 typedef enum {
     false, true
