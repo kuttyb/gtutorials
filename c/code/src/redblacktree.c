@@ -41,8 +41,29 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 #define PUSHEDCOMPLETELY(addr) (void*)((uintptr_t)addr | 1)
 #define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
 
+static void preordertraversal(RBTree* tree, rbvisitor v, void* arg) {
+    assert(tree && v && tree->stack);
+    if (!tree->root) goto preordertraversal_end;
+
+    Stack* stack = tree->stack;
+    emptyStack(stack);
+
+    uint32_t height = 0;
+    pushStack(stack, tree->root);
+    while (sizeStack(stack)) {
+        RBNode* node = popStack(stack);
+        v(node, arg);
+        if (node->right) pushStack(stack, node->right);
+        if (node->left) pushStack(stack, node->left);
+        if (node->left || node->right) height++;
+    }
+preordertraversal_end:
+    printf("%s: height %d\n", __FUNCTION__, height);
+    return;
+}
+
 static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
-    assert(tree && v);
+    assert(tree && v && tree->stack);
     if (!tree->root) goto traversal_end;
 
     Stack* stack = tree->stack;
@@ -198,7 +219,8 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    inordertraversal(tree, printvisitor, NULL);
+    if (0) inordertraversal(tree, printvisitor, NULL);
+    if (1) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 

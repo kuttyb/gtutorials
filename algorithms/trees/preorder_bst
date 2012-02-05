@@ -1,0 +1,14 @@
+<Please Test...>
+
+preorder(root) {
+    add(root); /** data structure here is a FIFO not a Stack */
+    while(!fifoempty()){
+	n = get();
+	visit(n);
+	add(n->left);
+	add(n->right);
+    }
+}
+
+
+
