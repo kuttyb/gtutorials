@@ -96,7 +96,16 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
         .right = NULL,
         .value = value
     };
-    return false;
+
+    RBNode* lastnode;
+    if (search(tree, key, &lastnode)) {
+        /** key exists, just change its value */
+        lastnode->value = value;
+        return true;
+    } else {
+        /** key doesn't exist, insert it at last node */
+        return true;
+    }
 }
 
 void* value(RBTree* tree, void*key) {
