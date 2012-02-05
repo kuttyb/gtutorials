@@ -141,8 +141,8 @@ uint64_t keygen(void* input) {
 }
 
 int main(void) {
-    const uint32_t PART = 1200;
-    const uint32_t ELEM = 0x10000;
+    const uint32_t PART = 12;
+    const uint32_t ELEM = 0x100;
 
     uint64_t* b = calloc(ELEM, sizeof (uint64_t));
 
