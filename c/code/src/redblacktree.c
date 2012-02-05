@@ -32,15 +32,7 @@ static void swap(RBNode* first, RBNode* second) {
     second->value = temp.value;
 }
 
-typedef void (*visitor)(RBNode*, void* arg);
-
-static void traverse(RBTree* tree, visitor v, void* arg) {
-    assert(tree);
-    /** TODO write tree parse logic */
-    v(tree->root, arg);
-}
-
-RBTree* exportRBTree(rbcompute keygen) {
+RBTree * exportRBTree(rbcompute keygen) {
     RBTree* tree = calloc(1, sizeof (RBTree));
     assert(tree);
     *tree = (RBTree){
@@ -51,7 +43,7 @@ RBTree* exportRBTree(rbcompute keygen) {
     return tree;
 }
 
-void destroyRBTree(RBTree* tree) {
+void destroyRBTree(RBTree * tree) {
     assert(tree);
     //traverse(tree, NULL, NULL); /** TODO wire up visitor that frees each node */
     destroyStack(tree->stack);
@@ -73,7 +65,6 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
 
 int main(void) {
     if (0) swap(NULL, NULL);
-    if (0) traverse(NULL, NULL, NULL);
 
     RBTree* tree = exportRBTree(NULL);
     assert(tree);

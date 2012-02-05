@@ -55,4 +55,14 @@ static inline void* popStack(Stack* stack) {
     return data;
 }
 
+static inline void emptyStack(Stack* stack) {
+    assert(stack);
+    stack->tos = 0;
+}
+
+static inline uint32_t sizeStack(Stack* stack) {
+    assert(stack);
+    return stack->tos;
+}
+
 #endif //__stack_h__
