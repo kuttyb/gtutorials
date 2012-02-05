@@ -39,6 +39,7 @@ static inline Stack* exportStack(uint32_t maxsize) {
         .maxdepth = 0,
         .tos = 0
     };
+    assert(stack->data && stack->depth);
     return stack;
 }
 

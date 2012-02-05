@@ -41,25 +41,28 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 #define PUSHEDCOMPLETELY(addr) (void*)((uintptr_t)addr | 1)
 #define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
 
-static void preordertraversal(RBTree* tree, rbvisitor v, void* arg) {
+static uint32_t preordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
     if (!tree->root) goto preordertraversal_end;
 
     QFifo* fifo = tree->fifo;
     emptyFifo(fifo);
 
-    put(fifo, tree->root);
+    put(fifo, tree->root, 0);
     while (sizeFifo(fifo)) {
-        RBNode* node = get(fifo);
+        uint32_t depth;
+        RBNode* node = get(fifo, &depth);
         v(node, arg);
-        if (node->left) put(fifo, node->left);
-        if (node->right) put(fifo, node->right);
+        if (node->left) put(fifo, node->left, depth + 1);
+        if (node->right) put(fifo, node->right, depth + 1);
     }
 preordertraversal_end:
-    return;
+    printf("%s: Height of Tree is %d\n", __FUNCTION__, maxDepthFifo(fifo));
+    return maxDepthFifo(fifo);
 }
 
-static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
+/** returns depth of the tree. Tree with only a root is at depth 0 */
+static uint32_t inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
     if (!tree->root) goto traversal_end;
 
@@ -81,7 +84,7 @@ static void inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
     }
 traversal_end:
     printf("%s: Depth of Tree %d\n", __FUNCTION__, maxDepthStack(stack));
-    return;
+    return maxDepthStack(stack);
 }
 
 /** Search for key, if found return true else return false and set lastnode to 
@@ -220,7 +223,7 @@ int main(void) {
     if (0) swap(NULL, NULL);
     if (0) inordertraversal(NULL, NULL, NULL);
 
-    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31, 27, 35, 30, 41, 16, 17};
+    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31, 27, 35, 30, 41, 16, 17, 4, 5, 6};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
 
     RBTree* tree = exportRBTree(keygen);
@@ -234,8 +237,8 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    if (1) inordertraversal(tree, printvisitor, NULL);
-    if (0) preordertraversal(tree, printvisitor, NULL);
+    if (0) inordertraversal(tree, printvisitor, NULL);
+    if (1) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 

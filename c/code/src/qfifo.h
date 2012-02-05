@@ -22,10 +22,12 @@
 
 typedef struct {
     void** data;
+    uint32_t* depth;
     uint32_t maxelements;
     uint32_t put;
     uint32_t get;
     uint32_t cursize;
+    uint32_t maxdepth;
 } QFifo;
 
 static inline QFifo* exportQFifo(uint32_t maxelements) {
@@ -34,33 +36,44 @@ static inline QFifo* exportQFifo(uint32_t maxelements) {
     assert(fifo);
     *fifo = (QFifo){
         .data = calloc(maxelements, sizeof (void*)),
+        .depth = calloc(maxelements, sizeof (uint32_t)),
         .get = 0,
         .put = 0,
         .maxelements = maxelements,
         .cursize = 0,
+        .maxdepth = 0
     };
-    assert(fifo->data);
+    assert(fifo->data && fifo->depth);
     return fifo;
 }
 
 static inline void destroyQFifo(QFifo* fifo) {
-    assert(fifo && fifo->data);
+    assert(fifo && fifo->data && fifo->depth);
     free(fifo->data);
+    free(fifo->depth);
     free(fifo);
 }
 
-static inline void put(QFifo* fifo, void* data) {
+static inline void put(QFifo* fifo, void* data, uint32_t depth) {
     assert(fifo);
     assert(fifo->cursize < fifo->maxelements);
+    assert(fifo->depth);
     fifo->data[fifo->put] = data;
+    fifo->depth[fifo->put] = depth;
     fifo->put = (fifo->put + 1) % fifo->maxelements;
     fifo->cursize++;
+    if (depth > fifo->maxdepth) {
+        fifo->maxdepth = depth;
+    }
 }
 
-static inline void* get(QFifo* fifo) {
+static inline void* get(QFifo* fifo, uint32_t* depth) {
     assert(fifo);
     assert(fifo->cursize);
+    assert(fifo->depth);
+    assert(depth);
     void* data = fifo->data[fifo->get];
+    *depth = fifo->depth[fifo->get];
     fifo->get = (fifo->get + 1) % fifo->maxelements;
     fifo->cursize--;
     return data;
@@ -71,11 +84,17 @@ static inline void emptyFifo(QFifo* fifo) {
     fifo->put = 0;
     fifo->get = 0;
     fifo->cursize = 0;
+    fifo->maxdepth = 0;
 }
 
 static inline uint32_t sizeFifo(QFifo* fifo) {
     assert(fifo);
     return fifo->cursize;
+}
+
+static inline uint32_t maxDepthFifo(QFifo* fifo) {
+    assert(fifo);
+    return fifo->maxdepth;
 }
 
 #endif //__qfifo_h__
