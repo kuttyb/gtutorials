@@ -42,7 +42,7 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 #define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
 
 static void traversal(RBTree* tree, rbvisitor v, void* arg) {
-    assert(tree && v && arg);
+    assert(tree && v);
     if (!tree->root) return;
 
     Stack* stack = tree->stack;
@@ -55,9 +55,9 @@ static void traversal(RBTree* tree, rbvisitor v, void* arg) {
         if (BEENPUSHEDCOMPLETELY(node)) {
             v(realnode, arg);
         } else {
-            pushStack(stack, realnode->right);
+            if (realnode->right) pushStack(stack, realnode->right);
             pushStack(stack, PUSHEDCOMPLETELY(realnode));
-            pushStack(stack, realnode->left);
+            if (realnode->left) pushStack(stack, realnode->left);
         }
     }
 }
@@ -167,36 +167,38 @@ void* value(RBTree* tree, void*key) {
 }
 
 uint64_t keygen(void* input) {
-    return (uintptr_t) input;
+    assert(input);
+    uint32_t* ptr = input;
+    return *ptr;
+}
+
+static void printvisitor(RBNode* node, void* arg) {
+    assert(node && !arg);
+    printf("%s: node has key 0x%lx value %p\n",
+            __FUNCTION__, node->computedkey, node->value);
 }
 
 int main(void) {
-    const uint32_t PART = 1;
-    const uint32_t ELEM = 0x4;
-
-    uint64_t* b = calloc(ELEM, sizeof (uint64_t));
-
     if (0) swap(NULL, NULL);
     if (0) traversal(NULL, NULL, NULL);
+
+    uint32_t a[] = {20, 2, 1, 7, 15, 3};
+    const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
 
     RBTree* tree = exportRBTree(keygen);
     assert(tree);
 
-    for (uint32_t i = 0; i < PART; i++) {
-        for (uint32_t ctr = 0; ctr < ELEM; ctr++) {
-            assert(insertKey(tree, &b[ctr], &b[ctr]));
-        }
-        printf("tick\n");
+    for (uint32_t ctr = 0; ctr < SIZE; ctr++) {
+        assert(insertKey(tree, &a[ctr], &a[ctr]));
     }
 
-    for (uint32_t i = 0; i < PART; i++) {
-        for (uint32_t ctr = 0; ctr < ELEM; ctr++) {
-            assert(*(uint64_t*) value(tree, &b[ctr]) == b[ctr]);
-        }
+    for (uint32_t ctr = 0; ctr < SIZE; ctr++) {
+        assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
+
+    traversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
-    free(b);
 
     return 0;
 }

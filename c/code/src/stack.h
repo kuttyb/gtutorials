@@ -45,7 +45,12 @@ static inline void destroyStack(Stack* stack) {
 }
 
 static inline void pushStack(Stack* stack, void* data) {
-    assert(stack && data && (stack->tos + 1 < stack->maxelements));
+    assert(stack);
+    if ((stack->tos + 1) >= stack->maxelements) {
+        printf("%s: error, tos %d maxelements %d\n", __FUNCTION__, stack->tos, stack->maxelements);
+        assert(0);
+        return;
+    }
     stack->data[stack->tos++] = data;
 }
 
