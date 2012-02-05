@@ -197,8 +197,14 @@ uint64_t keygen(void* input) {
 
 static void printvisitor(RBNode* node, void* arg) {
     assert(node && !arg);
-    printf("%s: node has key %" PRIu64 " value %p\n",
-            __FUNCTION__, node->computedkey, node->value);
+    printf("%s: node %p key %" PRIu64 "\n",
+            __FUNCTION__, node, node->computedkey);
+    if (node->left) {
+        printf("\tLeftChild  %p\n", node->left);
+    }
+    if (node->right) {
+        printf("\tRightChild %p\n", node->right);
+    }
 }
 
 int main(void) {
@@ -219,8 +225,8 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    if (0) inordertraversal(tree, printvisitor, NULL);
-    if (1) preordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (0) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 
