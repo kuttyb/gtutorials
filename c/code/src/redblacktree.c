@@ -137,29 +137,29 @@ void* value(RBTree* tree, void*key) {
 }
 
 uint64_t keygen(void* input) {
-    uint32_t* ptr = input;
-    return *ptr;
+    return (uintptr_t) input;
 }
 
 int main(void) {
-    uint64_t a[] = {0, 1, 2, 3, 4, 5};
+    const uint32_t PART = 1200;
+    const uint32_t ELEM = 0x10000;
+
+    uint64_t* b = calloc(ELEM, sizeof (uint64_t));
 
     if (0) swap(NULL, NULL);
 
     RBTree* tree = exportRBTree(keygen);
     assert(tree);
 
-    assert(insertKey(tree, &a[3], &a[3]));
-    assert(insertKey(tree, &a[1], &a[1]));
-    assert(insertKey(tree, &a[0], &a[0]));
-    assert(insertKey(tree, &a[2], &a[2]));
-
-    assert(value(tree, &a[0]) == &a[0]);
-    assert(value(tree, &a[1]) == &a[1]);
-    assert(value(tree, &a[2]) == &a[2]);
-    assert(value(tree, &a[3]) == &a[3]);
+    for (uint32_t i = 0; i < PART; i++) {
+        for (uint32_t ctr = 0; ctr < ELEM; ctr++) {
+            assert(insertKey(tree, &b[ctr], &b[ctr]));
+        }
+        printf("tick\n");
+    }
 
     destroyRBTree(tree);
+    free(b);
 
     return 0;
 }
