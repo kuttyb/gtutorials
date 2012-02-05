@@ -237,8 +237,8 @@ int main(void) {
         assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
     }
 
-    if (0) inordertraversal(tree, printvisitor, NULL);
-    if (1) preordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (0) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 
