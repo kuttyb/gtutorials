@@ -1,4 +1,4 @@
-<Please Test...>
+<Tested .. refer to tut/c/code/redblacktree.c>
 
 preorder(root) {
     add(root); /** data structure here is a FIFO not a Stack */
