@@ -32,6 +32,36 @@ static void swap(RBNode* first, RBNode* second) {
     second->value = temp.value;
 }
 
+typedef void (*rbvisitor)(RBNode*, void*arg);
+
+/** For Iterative Inorder traversal, make a distinction between fwd pass and backwd pass
+ *  by nix'ing the pointer
+ */
+#define BEENPUSHEDCOMPLETELY(addr) ((((uintptr_t)addr >> 1) << 1) != (uintptr_t)addr)
+#define PUSHEDCOMPLETELY(addr) (void*)((uintptr_t)addr | 1)
+#define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
+
+static void traversal(RBTree* tree, rbvisitor v, void* arg) {
+    assert(tree && v && arg);
+    if (!tree->root) return;
+
+    Stack* stack = tree->stack;
+    emptyStack(stack);
+
+    pushStack(stack, tree->root);
+    while (sizeStack(stack)) {
+        RBNode* node = popStack(stack);
+        RBNode* realnode = GETADDR(node);
+        if (BEENPUSHEDCOMPLETELY(node)) {
+            v(realnode, arg);
+        } else {
+            pushStack(stack, realnode->right);
+            pushStack(stack, PUSHEDCOMPLETELY(realnode));
+            pushStack(stack, realnode->left);
+        }
+    }
+}
+
 /** Search for key, if found return true else return false and set lastnode to 
  *  the point of insertion.
  */
@@ -79,7 +109,7 @@ RBTree * exportRBTree(rbcompute keygen) {
     *tree = (RBTree){
         .keygen = keygen,
         .root = NULL,
-        .stack = exportStack(32)
+        .stack = exportStack(0x100)
     };
     return tree;
 }
@@ -141,12 +171,13 @@ uint64_t keygen(void* input) {
 }
 
 int main(void) {
-    const uint32_t PART = 12;
-    const uint32_t ELEM = 0x100;
+    const uint32_t PART = 1;
+    const uint32_t ELEM = 0x4;
 
     uint64_t* b = calloc(ELEM, sizeof (uint64_t));
 
     if (0) swap(NULL, NULL);
+    if (0) traversal(NULL, NULL, NULL);
 
     RBTree* tree = exportRBTree(keygen);
     assert(tree);
@@ -156,6 +187,12 @@ int main(void) {
             assert(insertKey(tree, &b[ctr], &b[ctr]));
         }
         printf("tick\n");
+    }
+
+    for (uint32_t i = 0; i < PART; i++) {
+        for (uint32_t ctr = 0; ctr < ELEM; ctr++) {
+            assert(*(uint64_t*) value(tree, &b[ctr]) == b[ctr]);
+        }
     }
 
     destroyRBTree(tree);
