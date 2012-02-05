@@ -1,0 +1,15 @@
+
+push(root, 0)
+while(!empty()){
+    depth;
+    n = pop(&depth);
+    visit(n);
+    push(n->right, depth + 1);
+    push(n->left,  depth + 1);
+}
+
+Frankly it doesn't matter what your traversal algorithm is, as long as push/pop take in and return depth. The 
+same logic applies for FIFO too.
+
+This has been tested and known to work, cool right? Thought over it overnight while sleeping :-)
+
