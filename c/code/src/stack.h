@@ -23,6 +23,7 @@ typedef struct {
     void** data;
     uint32_t tos;
     uint32_t maxelements;
+    uint32_t height;
 } Stack;
 
 static inline Stack* exportStack(uint32_t maxsize) {
@@ -52,6 +53,9 @@ static inline void pushStack(Stack* stack, void* data) {
         return;
     }
     stack->data[stack->tos++] = data;
+    if (stack->tos > stack->height) {
+        stack->height = stack->tos;
+    }
 }
 
 static inline void* popStack(Stack* stack) {
@@ -63,6 +67,7 @@ static inline void* popStack(Stack* stack) {
 static inline void emptyStack(Stack* stack) {
     assert(stack);
     stack->tos = 0;
+    stack->height = 0;
 }
 
 static inline uint32_t sizeStack(Stack* stack) {

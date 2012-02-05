@@ -43,7 +43,7 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 
 static void traversal(RBTree* tree, rbvisitor v, void* arg) {
     assert(tree && v);
-    if (!tree->root) return;
+    if (!tree->root) goto traversal_end;
 
     Stack* stack = tree->stack;
     emptyStack(stack);
@@ -60,6 +60,8 @@ static void traversal(RBTree* tree, rbvisitor v, void* arg) {
             if (realnode->left) pushStack(stack, realnode->left);
         }
     }
+traversal_end:
+    printf("%s: Height of Tree is %d\n", __FUNCTION__, tree->stack->height);
 }
 
 /** Search for key, if found return true else return false and set lastnode to 
