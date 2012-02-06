@@ -188,6 +188,7 @@ void freenodevisitor(RBNode* node, void* arg) {
 
 void destroyRBTree(RBTree * tree) {
     assert(tree);
+    emptyStack(tree->stack);
     preordertraversal(tree, tree->root, freenodevisitor, NULL);
     destroyStack(tree->stack);
     destroyQFifo(tree->fifo);
@@ -259,6 +260,22 @@ static void printvisitor(RBNode* node, void* arg) {
     }
 }
 
+static void test3nodes() {
+    uint32_t a[] = {2, 10, 5};
+    RBTree* tree = exportRBTree(keygen);
+    insertKey(tree, &a[0], &a[0]);
+    insertKey(tree, &a[1], &a[1]);
+    insertKey(tree, &a[2], &a[2]);
+    inordertraversal(tree, tree->root, printvisitor, NULL);
+
+    /** right rotate 2, 10 */
+    RBNode* two;
+    search(tree, &a[0], &two);
+    assert(*(uint32_t*) two->value == 2);
+
+    destroyRBTree(tree);
+}
+
 static void testtree() {
     if (0) preordertraversal(NULL, NULL, NULL, NULL);
 
@@ -310,7 +327,9 @@ static void testtree() {
 }
 
 int main(void) {
-    if (1) testtree();
+    if (0) testtree();
+
+    if (1) test3nodes();
 
     return 0;
 }
