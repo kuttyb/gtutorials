@@ -121,7 +121,8 @@ traversal_end:
 }
 
 /** Search for key, if found return true else return false and set lastnode to 
- *  the point of insertion.
+ *  the point of insertion. In addition, we will return the path taken to 
+ *  arrive at this node in the Stack. Useful for height imbalance detections.
  */
 static boolean search(RBTree* tree, void* key, RBNode** lastnode) {
     assert(tree && key);
@@ -132,9 +133,15 @@ static boolean search(RBTree* tree, void* key, RBNode** lastnode) {
         return false;
     }
 
+    /** Track ancestors used to get to lastnode */
+    uint32_t depth = 0;
+    Stack *stack = tree->stack;
+    emptyStack(stack);
+
     uint64_t realkey = tree->keygen(key);
     boolean bFound = true;
     while (bFound) {
+        pushStack(stack, node, depth++);
         if (realkey == node->computedkey) {
             break;
         }
