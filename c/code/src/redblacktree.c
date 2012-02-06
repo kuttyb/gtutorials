@@ -37,17 +37,16 @@ static inline void copynode(RBNode* src, RBNode* dst) {
 static inline void leftrotate(RBNode* src, RBNode* dst) {
     assert(src && dst);
     swapvalues(src, dst);
-    RBNode* temp = calloc(1, sizeof (RBNode));
-    assert(temp);
-    *temp = *src;
+    RBNode temp;
+    temp = *src;
 
-    temp->left = dst->left;
-    temp->right = src->left;
+    temp.left = dst->left;
+    temp.right = src->left;
 
-    dst->left = temp;
+    dst->left = src;
     dst->right = src->right;
 
-    free(src);
+    *src = temp;
 }
 
 static inline void rightrotate(RBNode* src, RBNode* dst) {
