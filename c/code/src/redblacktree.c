@@ -18,17 +18,14 @@
 #include <assert.h>
 #include "redblacktree.h"
 
-static void swap(RBNode* first, RBNode* second) {
+static void swapvalues(RBNode* first, RBNode* second) {
     assert(first && second);
     RBNode temp = *first;
+
     first->computedkey = second->computedkey;
-    first->left = second->left;
-    first->right = second->right;
     first->value = second->value;
 
     second->computedkey = temp.computedkey;
-    second->left = temp.left;
-    second->right = temp.right;
     second->value = temp.value;
 }
 
@@ -39,16 +36,18 @@ static inline void copynode(RBNode* src, RBNode* dst) {
 
 static inline void leftrotate(RBNode* src, RBNode* dst) {
     assert(src && dst);
-    RBNode s1;
-    copynode(src, &s1);
-    RBNode d1;
-    copynode(dst, &d1);
+    swapvalues(src, dst);
+    RBNode* temp = calloc(1, sizeof (RBNode));
+    assert(temp);
+    *temp = *src;
 
-    s1.left = dst;
-    d1.right = src->left;
+    temp->left = dst->left;
+    temp->right = src->left;
 
-    copynode(&d1, dst);
-    copynode(&s1, src);
+    dst->left = temp;
+    dst->right = src->right;
+
+    free(src);
 }
 
 static inline void rightrotate(RBNode* src, RBNode* dst) {
@@ -242,19 +241,18 @@ static void printvisitor(RBNode* node, void* arg) {
     assert(node && !arg);
     printf("%s: node %p key %" PRIu64 "\n",
             __FUNCTION__, node, node->computedkey);
-    if (0) {
+    if (1) {
         if (node->left) {
-            printf("\tLeftChild  %p\n", node->left);
+            printf("\tLeftChild  %p key %" PRIu64 "\n", node->left, node->left->computedkey);
         }
         if (node->right) {
-            printf("\tRightChild %p\n", node->right);
+            printf("\tRightChild %p key %" PRIu64 "\n", node->right, node->right->computedkey);
         }
     }
 }
 
 static void testtree() {
-    if (0) swap(NULL, NULL);
-    if (0) inordertraversal(NULL, NULL, NULL);
+    if (0) preordertraversal(NULL, NULL, NULL);
 
     uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
@@ -278,9 +276,11 @@ static void testtree() {
 
     /** Great now left rotate about two */
     leftrotate(seven, two);
-    printf("done with rotation\n");
+    printf("done with rotation ... printing\n");
 
-    if (0) preordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, printvisitor, NULL);
+
+    printf("done printing ...\n");
 
     destroyRBTree(tree);
 }
