@@ -31,6 +31,10 @@ typedef struct _RBNode {
     /** pointers */
     struct _RBNode* left;
     struct _RBNode* right;
+
+    /** subtree depths */
+    uint32_t leftdepth;
+    uint32_t rightdepth;
 } RBNode;
 
 

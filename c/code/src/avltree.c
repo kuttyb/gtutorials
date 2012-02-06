@@ -89,8 +89,8 @@ static uint32_t preordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void
         if (node->left) put(fifo, node->left, depth + 1);
         if (node->right) put(fifo, node->right, depth + 1);
     }
-preordertraversal_end:
     printf("%s: Height of Tree is %d\n", __FUNCTION__, maxDepthFifo(fifo));
+preordertraversal_end:
     return maxDepthFifo(fifo);
 }
 
@@ -115,8 +115,8 @@ static uint32_t inordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void*
             if (realnode->left) pushStack(stack, realnode->left, depth + 1);
         }
     }
-traversal_end:
     printf("%s: Depth of Tree %d\n", __FUNCTION__, maxDepthStack(stack));
+traversal_end:
     return maxDepthStack(stack);
 }
 
@@ -174,8 +174,8 @@ RBTree * exportRBTree(rbcompute keygen) {
     *tree = (RBTree){
         .keygen = keygen,
         .root = NULL,
-        .stack = exportStack(0x100),
-        .fifo = exportQFifo(0x100)
+        .stack = exportStack(0x1000),
+        .fifo = exportQFifo(0x1000)
     };
     return tree;
 }
@@ -203,6 +203,8 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
         .computedkey = tree->keygen(key),
         .left = NULL,
         .right = NULL,
+        .leftdepth = 0,
+        .rightdepth = 0,
         .value = value
     };
 
@@ -211,6 +213,7 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
     if (bvalue) {
         /** key exists, just change its value */
         lastnode->value = value;
+        return true;
     } else {
         if (!lastnode) {
             /** add the root */
@@ -220,12 +223,44 @@ boolean insertKey(RBTree* tree, void* key, void* value) {
         /** key doesn't exist, insert behind the last node */
         if (node->computedkey > lastnode->computedkey) {
             lastnode->right = node;
+            lastnode->rightdepth++;
         } else {
             lastnode->left = node;
+            lastnode->leftdepth++;
         }
     }
 
-    /** TODO: Balance the Tree based on whether we re AVL or RB */
+    /** TODO AVL Rotation logic */
+    if (0) {
+        /** Now go upwards in search of an unbalanced node */
+        RBNode* templast = node;
+        for (int ctr = tree->stack->tos - 1; ctr >= 0; ctr--) {
+            RBNode* curnode = tree->stack->data[ctr];
+            if (curnode->right == templast) {
+                if ((curnode->rightdepth - curnode->leftdepth) >= 1) {
+                    /** left rotate */
+                    leftrotate(templast, curnode);
+                    break; /** [A] */
+                } else {
+                    curnode->rightdepth++;
+                }
+            } else {
+                if ((curnode->leftdepth - curnode->rightdepth) >= 1) {
+                    /** right rotate */
+                    rightrotate(templast, curnode);
+                    break; /** [A] */
+                } else {
+                    curnode->leftdepth++;
+                }
+            }
+            templast = curnode;
+        }
+        /** [A] The deal is, we added a node so the depth counter for each of the 
+         *      ancestors should go up by 1. But we also did a rotate so it should negate
+         *      that. Besides, we only rotate once, hence the break, asking us to get out of
+         *      that loop.
+         *  */
+    }
 
     return true;
 }
@@ -329,11 +364,28 @@ static void testtree() {
     destroyRBTree(tree);
 }
 
+uint64_t randomkeygen(void* input) {
+    assert(input);
+    return (uint64_t) random();
+}
+
 int main(void) {
     if (0) testtree();
 
-    if (1) test3nodes();
+    if (0) test3nodes();
 
+    /** Stress Test */
+    RBTree* tree = exportRBTree(randomkeygen);
+
+    for (uint32_t ctr = 0; ctr < 0x10000; ctr++) {
+        insertKey(tree, (void*) 0xabcdabcd, (void*) 0xabcdabcd);
+    }
+
+    for (uint32_t ctr = 0; ctr < 0x10000; ctr++) {
+        assert(!value(tree, (void*) 0xabcd));
+    }
+
+    destroyRBTree(tree);
     return 0;
 }
 
