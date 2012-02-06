@@ -29,13 +29,14 @@ static void swapvalues(RBNode* first, RBNode* second) {
     second->value = temp.value;
 }
 
-static inline void copynode(RBNode* src, RBNode* dst) {
-    assert(src && dst);
-    *dst = *src;
-}
-
 static inline void leftrotate(RBNode* src, RBNode* dst) {
     assert(src && dst);
+    /** Reason we swap values is to contain the impact of rotation.
+     *  If we didn't then the node in the Tree that points to dst
+     *  would have to be fixed to point to src instead. Its easy to 
+     *  avoid that by just copying the values (value + key) from 
+     *  src to dst so the illusion is maintained.
+     */
     swapvalues(src, dst);
     RBNode temp;
     temp = *src;
@@ -51,16 +52,17 @@ static inline void leftrotate(RBNode* src, RBNode* dst) {
 
 static inline void rightrotate(RBNode* src, RBNode* dst) {
     assert(src && dst);
-    RBNode s1;
-    copynode(src, &s1);
-    RBNode d1;
-    copynode(dst, &d1);
+    swapvalues(src, dst);
+    RBNode temp;
+    temp = *src;
 
-    s1.right = dst;
-    d1.left = src->right;
+    temp.left = src->right;
+    temp.right = dst->right;
 
-    copynode(&d1, src);
-    copynode(&s1, dst);
+    dst->right = src;
+    dst->left = src->left;
+
+    *src = temp;
 }
 
 typedef void (*rbvisitor)(RBNode*, void*arg);
@@ -280,6 +282,15 @@ static void testtree() {
     if (1) inordertraversal(tree, printvisitor, NULL);
 
     printf("done printing ...\n");
+
+    /** RIGHT ROTATE AND GET THE ORIGINAL TREE BACK */
+    search(tree, &a[1], &two);
+    assert(*(uint32_t*) two->value == 2);
+    search(tree, &a[3], &seven);
+    assert(*(uint32_t*) seven->value == 7);
+    printf("\n\n =============== RIGHT ROTATE ====\n");
+    rightrotate(two, seven);
+    if (1) inordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 }
