@@ -32,6 +32,39 @@ static void swap(RBNode* first, RBNode* second) {
     second->value = temp.value;
 }
 
+static inline void copynode(RBNode* src, RBNode* dst) {
+    assert(src && dst);
+    *dst = *src;
+}
+
+static inline void leftrotate(RBNode* src, RBNode* dst) {
+    assert(src && dst);
+    RBNode s1;
+    copynode(src, &s1);
+    RBNode d1;
+    copynode(dst, &d1);
+
+    s1.left = dst;
+    d1.right = src->left;
+
+    copynode(&d1, src);
+    copynode(&s1, dst);
+}
+
+static inline void rightrotate(RBNode* src, RBNode* dst) {
+    assert(src && dst);
+    RBNode s1;
+    copynode(src, &s1);
+    RBNode d1;
+    copynode(dst, &d1);
+
+    s1.right = dst;
+    d1.left = src->right;
+
+    copynode(&d1, src);
+    copynode(&s1, dst);
+}
+
 typedef void (*rbvisitor)(RBNode*, void*arg);
 
 /** For Iterative Inorder traversal, make a distinction between fwd pass and backwd pass
@@ -219,7 +252,7 @@ static void printvisitor(RBNode* node, void* arg) {
     }
 }
 
-int main(void) {
+static void testtree() {
     if (0) swap(NULL, NULL);
     if (0) inordertraversal(NULL, NULL, NULL);
 
@@ -241,6 +274,10 @@ int main(void) {
     if (0) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
+}
+
+int main(void) {
+    if (0) testtree();
 
     return 0;
 }
