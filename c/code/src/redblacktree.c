@@ -223,7 +223,7 @@ int main(void) {
     if (0) swap(NULL, NULL);
     if (0) inordertraversal(NULL, NULL, NULL);
 
-    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31, 27, 35, 30, 41, 16, 17, 4, 5, 6};
+    uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
 
     RBTree* tree = exportRBTree(keygen);
