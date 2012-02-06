@@ -74,14 +74,14 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 #define PUSHEDCOMPLETELY(addr) (void*)((uintptr_t)addr | 1)
 #define GETADDR(addr)   (void*)(((uintptr_t)addr >> 1) << 1)
 
-static uint32_t preordertraversal(RBTree* tree, rbvisitor v, void* arg) {
+static uint32_t preordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
-    if (!tree->root) goto preordertraversal_end;
+    if (!start) goto preordertraversal_end;
 
     QFifo* fifo = tree->fifo;
     emptyFifo(fifo);
 
-    put(fifo, tree->root, 0);
+    put(fifo, start, 0);
     while (sizeFifo(fifo)) {
         uint32_t depth;
         RBNode* node = get(fifo, &depth);
@@ -95,14 +95,14 @@ preordertraversal_end:
 }
 
 /** returns depth of the tree. Tree with only a root is at depth 0 */
-static uint32_t inordertraversal(RBTree* tree, rbvisitor v, void* arg) {
+static uint32_t inordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
-    if (!tree->root) goto traversal_end;
+    if (!start) goto traversal_end;
 
     Stack* stack = tree->stack;
     emptyStack(stack);
 
-    pushStack(stack, tree->root, 0);
+    pushStack(stack, start, 0);
     while (sizeStack(stack)) {
         uint32_t depth;
         RBNode* node = popStack(stack, &depth);
@@ -181,7 +181,7 @@ void freenodevisitor(RBNode* node, void* arg) {
 
 void destroyRBTree(RBTree * tree) {
     assert(tree);
-    inordertraversal(tree, freenodevisitor, NULL);
+    inordertraversal(tree, tree->root, freenodevisitor, NULL);
     destroyStack(tree->stack);
     destroyQFifo(tree->fifo);
     free(tree);
@@ -242,7 +242,7 @@ static void printvisitor(RBNode* node, void* arg) {
     assert(node && !arg);
     printf("%s: node %p key %" PRIu64 "\n",
             __FUNCTION__, node, node->computedkey);
-    if (1) {
+    if (0) {
         if (node->left) {
             printf("\tLeftChild  %p key %" PRIu64 "\n", node->left, node->left->computedkey);
         }
@@ -253,7 +253,7 @@ static void printvisitor(RBNode* node, void* arg) {
 }
 
 static void testtree() {
-    if (0) preordertraversal(NULL, NULL, NULL);
+    if (0) preordertraversal(NULL, NULL, NULL, NULL);
 
     uint32_t a[] = {20, 2, 1, 7, 15, 3, 28, 31};
     const uint32_t SIZE = sizeof (a) / sizeof (a[0]);
@@ -265,7 +265,7 @@ static void testtree() {
         assert(insertKey(tree, &a[ctr], &a[ctr]));
     }
 
-    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, tree->root, printvisitor, NULL);
 
     /** search for 2 and then 7, then we ll apply rotations on the tree */
     RBNode* two;
@@ -279,7 +279,7 @@ static void testtree() {
     leftrotate(seven, two);
     printf("done with rotation ... printing\n");
 
-    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, tree->root, printvisitor, NULL);
 
     printf("done printing ...\n");
 
@@ -290,7 +290,9 @@ static void testtree() {
     assert(*(uint32_t*) seven->value == 7);
     printf("\n\n =============== RIGHT ROTATE ====\n");
     rightrotate(two, seven);
-    if (1) inordertraversal(tree, printvisitor, NULL);
+    if (1) inordertraversal(tree, tree->root, printvisitor, NULL);
+    printf(".... PREORDER\n");
+    if (1) preordertraversal(tree, tree->root, printvisitor, NULL);
 
     destroyRBTree(tree);
 }
