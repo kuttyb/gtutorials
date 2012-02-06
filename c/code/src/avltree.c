@@ -269,11 +269,15 @@ static void test3nodes() {
     inordertraversal(tree, tree->root, printvisitor, NULL);
 
     /** right rotate 2, 10 */
-    RBNode* two;
+    RBNode *two;
+    RBNode *ten;
     search(tree, &a[0], &two);
-    assert(*(uint32_t*) two->value == 2);
+    search(tree, &a[1], &ten);
+    rightrotate(ten, two);
 
-    destroyRBTree(tree);
+    /*
+        destroyRBTree(tree);
+     */
 }
 
 static void testtree() {
