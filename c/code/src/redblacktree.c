@@ -47,8 +47,8 @@ static inline void leftrotate(RBNode* src, RBNode* dst) {
     s1.left = dst;
     d1.right = src->left;
 
-    copynode(&d1, src);
-    copynode(&s1, dst);
+    copynode(&d1, dst);
+    copynode(&s1, src);
 }
 
 static inline void rightrotate(RBNode* src, RBNode* dst) {
@@ -266,18 +266,27 @@ static void testtree() {
         assert(insertKey(tree, &a[ctr], &a[ctr]));
     }
 
-    for (uint32_t ctr = 0; ctr < SIZE; ctr++) {
-        assert(*(uint32_t*) value(tree, &a[ctr]) == a[ctr]);
-    }
-
     if (1) inordertraversal(tree, printvisitor, NULL);
+
+    /** search for 2 and then 7, then we ll apply rotations on the tree */
+    RBNode* two;
+    search(tree, &a[1], &two);
+    assert(*(uint32_t*) two->value == 2);
+    RBNode* seven;
+    search(tree, &a[3], &seven);
+    assert(*(uint32_t*) seven->value == 7);
+
+    /** Great now left rotate about two */
+    leftrotate(seven, two);
+    printf("done with rotation\n");
+
     if (0) preordertraversal(tree, printvisitor, NULL);
 
     destroyRBTree(tree);
 }
 
 int main(void) {
-    if (0) testtree();
+    if (1) testtree();
 
     return 0;
 }
