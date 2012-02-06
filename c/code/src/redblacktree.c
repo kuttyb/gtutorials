@@ -181,7 +181,7 @@ void freenodevisitor(RBNode* node, void* arg) {
 
 void destroyRBTree(RBTree * tree) {
     assert(tree);
-    inordertraversal(tree, tree->root, freenodevisitor, NULL);
+    preordertraversal(tree, tree->root, freenodevisitor, NULL);
     destroyStack(tree->stack);
     destroyQFifo(tree->fifo);
     free(tree);
