@@ -18,7 +18,7 @@ switch.c              \
 fifo.c                \
 nontemp.c             \
 ptr.c                 \
-redblacktree.c        \
+avltree.c             \
 rmat.c                \
 query.c 
 

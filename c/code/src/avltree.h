@@ -13,8 +13,8 @@
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __redblacktree_h__
-#define __redblacktree_h__
+#ifndef __avltree_h__
+#define __avltree_h__
 
 #include <inttypes.h>
 #include "stack.h"
@@ -47,4 +47,4 @@ RBTree* exportRBTree(rbcompute);
 void destroyRBTree(RBTree*);
 void* value(RBTree*, void* key);
 
-#endif //__redblacktree_h__
+#endif //__avltree_h__

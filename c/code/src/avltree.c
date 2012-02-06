@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "redblacktree.h"
+#include "avltree.h"
 
 static void swapvalues(RBNode* first, RBNode* second) {
     assert(first && second);
