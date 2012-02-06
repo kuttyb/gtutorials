@@ -273,11 +273,10 @@ static void test3nodes() {
     RBNode *ten;
     search(tree, &a[0], &two);
     search(tree, &a[1], &ten);
-    rightrotate(ten, two);
+    //rightrotate(ten, two);
+    leftrotate(ten, two);
 
-    /*
-        destroyRBTree(tree);
-     */
+    destroyRBTree(tree);
 }
 
 static void testtree() {
