@@ -16,6 +16,7 @@
 #ifndef __stack_h__
 #define __stack_h__
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
 #include <assert.h>
@@ -86,6 +87,13 @@ static inline uint32_t sizeStack(Stack* stack) {
 static inline uint32_t maxDepthStack(Stack* stack) {
     assert(stack);
     return stack->maxdepth;
+}
+
+static inline void printStack(Stack* stack) {
+    assert(stack);
+    for (uint32_t ctr = 0; ctr < stack->tos; ctr++) {
+        printf("%s: Stack[%d]=%p\n", __FUNCTION__, ctr, stack->data[ctr]);
+    }
 }
 
 #endif //__stack_h__

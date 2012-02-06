@@ -277,10 +277,15 @@ static void testtree() {
     /** search for 2 and then 7, then we ll apply rotations on the tree */
     RBNode* two;
     search(tree, &a[1], &two);
+    printf("printing stack after searching for two\n");
     assert(*(uint32_t*) two->value == 2);
+    printStack(tree->stack);
+
     RBNode* seven;
     search(tree, &a[3], &seven);
+    printf("printing stack after searching for seven\n");
     assert(*(uint32_t*) seven->value == 7);
+    printStack(tree->stack);
 
     /** Great now left rotate about two */
     leftrotate(seven, two);
