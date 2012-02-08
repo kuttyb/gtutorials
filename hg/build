@@ -1,0 +1,10 @@
+* So this is usually a pain, download the source from http://mercurial.selenic.com/release/
+
+* Make sure you have python-dev
+
+* make local
+
+* ./hg version
+
+Thats it, a local installation is usually something I prefer!!
+
