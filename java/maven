@@ -16,6 +16,6 @@ Well they do the obvious
 
 Again pretty obvious
 
-[] mvn dependency:list
+[] mvn dependency:tree
  
 To list out dependencies
