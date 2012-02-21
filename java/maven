@@ -1,0 +1,21 @@
+[] mvn dependency:copy-dependencies
+
+This will copy dependencies under target/dependency
+
+[] mvn package
+
+This to do a full build + test + jar
+
+[] mvn compiler:compile
+
+   mvn compiler:testCompile   
+
+Well they do the obvious
+
+[] mvn test
+
+Again pretty obvious
+
+[] mvn dependency:list
+ 
+To list out dependencies
