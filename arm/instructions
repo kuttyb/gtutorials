@@ -15,7 +15,7 @@ STMIA  r1, {r2, r3}
 
 
 ===================================================================================================
-[MCR|MRC] CoProcessor Registers
+[MCR|MRC] CoProcessor Registers   (Remember these travel LEFT)
 http://www.heyrick.co.uk/assembler/coprocmnd.html#mrc
 ===================================================================================================
 * These transfer control from ARM register to CoProcessor registers
