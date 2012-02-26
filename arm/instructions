@@ -15,18 +15,25 @@ STMIA  r1, {r2, r3}
 
 
 ===================================================================================================
-[MCR|MRC] CoProcessor Registers   (Remember these travel LEFT)
+[MCR|MRC] CoProcessor Registers  
 http://www.heyrick.co.uk/assembler/coprocmnd.html#mrc
 ===================================================================================================
-* These transfer control from ARM register to CoProcessor registers
-* Using the travel left plan, MRC does C to R and MCR does R to C
+Transfer from ARM register to coprocessor registers. Direction is leftwards
 
-* E.g., mcr  co-pro  op1  ARM-reg   copro-reg  copro-reg2  op2 
+        mcr  cp0     op1  r         cp1        cp2          op2 
+	--------------------------------------------------------
         mcr  p15     0    r0        c8         c3           1  // flush TLB by MVA 
 
-Essentially 
-<co-pro - copro-reg>    : select a Class of operation like cp15 - c8 is for TLB operations.
 
-<op1, op2, copro-reg2>  : select the individual method within that class. So <0, 1, c3> selects flush by MVA
+[]  {cp0 cp1}        Selects Class 
+[]  {cp2 op1 op2}    Selects Method
 
+    {cp15-c8}  --> TLBFlush Class
+
+    {0, 1, c3} --> Flush_by_MVA method  
+
+    Individual methods have original names this ones called TLBIMVAAIS 
+    {http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/CIHDGCDB.html}
+
+    
 
