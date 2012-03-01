@@ -67,14 +67,18 @@ int main(void) {
 
   /** reconvert back */ 
   assert(vmsapte_convert_largepage_to_smallpage(0x1, 0, 0) == 0x2);
-  assert(vmsapte_convert_largepage_to_smallpage(0x8001, 0, 0) == 0x3);
-  assert(vmsapte_convert_largepage_to_smallpage(0x8005, 0, 0) == 0x7);
-  assert(vmsapte_convert_largepage_to_smallpage(0x5, 0, 0) == 0x6);
+  assert(vmsapte_convert_largepage_to_smallpage(0x8001, 0, 1) == 0x1003);
+  assert(vmsapte_convert_largepage_to_smallpage(0x8005, 0, 2) == 0x2007);
+  assert(vmsapte_convert_largepage_to_smallpage(0x5, 0, 0xf) == 0xf006);
 
   unsigned long val = 0xabcd8241;
   printf("0x%lx 0x%lx\n", val, vmsapte_convert_largepage_to_smallpage(val, 0xabcd, 0));
   printf("0x%lx 0x%lx\n", val, vmsapte_convert_largepage_to_smallpage(val, 0xabcd, 1));
-  
+
+  val = 0xabcdf241;
+  printf("0x%lx 0x%lx\n", val, vmsapte_convert_largepage_to_smallpage(val, 0xabcd, 0));
+  printf("0x%lx 0x%lx\n", val, vmsapte_convert_largepage_to_smallpage(val, 0xabcd, 1));
+
   if (0) {
     /** Test B8-B6 / B14-B12 */
 
