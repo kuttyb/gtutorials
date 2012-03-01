@@ -15,14 +15,25 @@ STMIA  r1, {r2, r3}
 
 
 ===================================================================================================
-[MCR|MRC] CoProcessor Registers
+[MCR|MRC] CoProcessor Registers  
 http://www.heyrick.co.uk/assembler/coprocmnd.html#mrc
 ===================================================================================================
-* These transfer control from ARM register to CoProcessor registers
-* MRC transfers from C - > R 
-* MCR transfers from R - > C 
-** i.e., the last alphabet is *FROM* where R = ARM Register and C = Coprocessor
-* MRC  co-pro  op  ARM-reg   copro-reg  copro-reg2  op2 
-* e.g., mcr p15, 0, r0, c8, c3, 1  // flush TLB by MVA 
+Transfer from ARM register to coprocessor registers. Direction is leftwards
+
+        mcr  cp0     op1  r         cp1        cp2          op2 
+	--------------------------------------------------------
+        mcr  p15     0    r0        c8         c3           1  // flush TLB by MVA 
+
+
+[]  {cp0 cp1}        Selects Class 
+[]  {cp2 op1 op2}    Selects Method
+
+    {cp15-c8}  --> TLBFlush Class
+
+    {0, 1, c3} --> Flush_by_MVA method  
+
+    Individual methods have original names this ones called TLBIMVAAIS 
+    {http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ddi0388f/CIHDGCDB.html}
 
     
+
