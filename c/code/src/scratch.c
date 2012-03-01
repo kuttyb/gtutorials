@@ -17,6 +17,27 @@ static inline unsigned long _set(unsigned long value, int fieldvalue, int hi, in
     ((unsigned long)fieldvalue << (unsigned long)lo);
 }
 
+static inline unsigned long vmsapte_convert_largepage_to_smallpage(unsigned long oldpte, int smallpageaddr) {
+	unsigned long newpte = oldpte;
+	int temp;
+
+	/** Move XN  : B(15)     -> B(0) */
+	temp = _get(newpte, 15, 15);
+	newpte = _set(newpte, temp, 0, 0);
+	
+	/** Move TEX : B(14-12)  -> B(8-6) */
+	temp = _get(newpte, 14, 12);
+	newpte = _set(newpte, temp, 8, 6);
+
+	/** Set B(1) */
+	newpte = _set(newpte, 1, 1, 1);
+
+	/** Program Small Page Addr */
+	newpte = _set(newpte, smallpageaddr, 31, 12);
+
+	return newpte;
+}
+
 static inline unsigned long vmsapte_convert_smallpage_to_largepage(unsigned long oldpte) {
 	unsigned long newpte = oldpte;
 
@@ -43,12 +64,20 @@ int main(void) {
   assert(vmsapte_convert_smallpage_to_largepage(7) == 0x8005);
   assert(vmsapte_convert_smallpage_to_largepage(6) == 0x5);
 
-  /** Test B8-B6 / B14-B12 */
-  unsigned long val = 0x00c1;
-  printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
+  /** reconvert back */ 
+  assert(vmsapte_convert_largepage_to_smallpage(0x1, 0) == 0x2);
+  assert(vmsapte_convert_largepage_to_smallpage(0x8001, 0) == 0x3);
+  assert(vmsapte_convert_largepage_to_smallpage(0x8005, 0) == 0x7);
+  assert(vmsapte_convert_largepage_to_smallpage(0x5, 0) == 0x6);
 
-  val = 0xfff;
-  printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
+  if (0) {
+    /** Test B8-B6 / B14-B12 */
+    unsigned long val = 0x00c1;
+    printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
+
+    val = 0xfff;
+    printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
+  }
 
   return 0;
 }
