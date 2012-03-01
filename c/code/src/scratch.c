@@ -36,11 +36,19 @@ static inline unsigned long vmsapte_convert_smallpage_to_largepage(unsigned long
 
 
 int main(void) {
+  /** Test B0/ B15 / B1 */
   assert(vmsapte_convert_smallpage_to_largepage(2) == 0x1);
   assert(vmsapte_convert_smallpage_to_largepage(3) == 0x8001);
   assert(vmsapte_convert_smallpage_to_largepage(5) == 0x8005);
   assert(vmsapte_convert_smallpage_to_largepage(7) == 0x8005);
   assert(vmsapte_convert_smallpage_to_largepage(6) == 0x5);
+
+  /** Test B8-B6 / B14-B12 */
+  unsigned long val = 0x00c1;
+  printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
+
+  val = 0xfff;
+  printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
 
   return 0;
 }
