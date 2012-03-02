@@ -88,6 +88,21 @@ int main(void) {
     printf("0x%lx 0x%lx\n", val, vmsapte_convert_smallpage_to_largepage(val));
   }
 
+  unsigned int val2 = 0x43e0d61d;
+  if (_get(val, 0, 0) && !_get(val, 1, 1)) {
+    printf("------- LARGE PAGE ALERT do the split: 0x%x\n", val2);
+  }
+
+  val2 = 0x6;
+  if (_get(val2, 0, 0) && !_get(val2, 1, 1)) {
+    printf("------- LARGE PAGE ALERT do the split: 0x%x\n", val2);
+  }
+
+  val2 = 0x7;
+  if (_get(val2, 0, 0) && !_get(val2, 1, 1)) {
+    printf("------- LARGE PAGE ALERT do the split: 0x%x\n", val2);
+  }
+
   return 0;
 }
 
