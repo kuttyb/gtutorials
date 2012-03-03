@@ -183,8 +183,32 @@ static inline unsigned long _set(unsigned long value, int fieldvalue, int hi, in
     ((unsigned long)fieldvalue << (unsigned long)lo);
 }
 
+static inline unsigned long vmsapte_convert_largepage_to_smallpage(unsigned long oldpte, int smallpageaddr, int index) {
+	unsigned long newpte = oldpte;
+	int addr = (smallpageaddr << 4) | index;
+	int temp;
+
+	/** Move XN  : B(15)     -> B(0) */
+	temp = _get(newpte, 15, 15);
+	newpte = _set(newpte, temp, 0, 0);
+	
+	/** Move TEX : B(14-12)  -> B(8-6) */
+	temp = _get(newpte, 14, 12);
+	newpte = _set(newpte, temp, 8, 6);
+
+	/** Set B(1) */
+	newpte = _set(newpte, 1, 1, 1);
+
+	/** Program Small Page Addr */
+	newpte = _set(newpte, addr, 31, 12);
+
+	return newpte;
+}
+
 static inline unsigned long vmsapte_convert_smallpage_to_largepage(unsigned long oldpte, int largepageaddr) {
 	unsigned long newpte = oldpte;
+	
+	largepageaddr = largepageaddr >> 4;
 
 	/** copy B(0) to B(15) ; Set B(0) */
 	newpte = _set(newpte, _get(oldpte, 0, 0), 15, 15);
@@ -237,51 +261,24 @@ static inline bool abort_coalescing_4kpages(pteval_t pteval, pteval_t prev_pteva
 	return true;
 }
 
-/*
- * Take care of architecture specific things when placing a new PTE into
- * a page table, or changing an existing PTE.  Basically, there are two
- * things that we need to take care of:
- *
- *  1. If PG_dcache_clean is not set for the page, we need to ensure
- *     that any cache entries for the kernels virtual memory
- *     range are written back to the page.
- *  2. If we have multiple shared mappings of the same space in
- *     an object, we need to deal with the cache aliasing issues.
- *
- * Note that the pte lock will be held.
- */
-void update_mmu_cache(struct vm_area_struct *vma, unsigned long addr,
-		pte_t *ptep)
-{
-#if __LINUX_ARM_ARCH__ < 6
-	unsigned long pfn = pte_pfn(*ptep);
-	struct address_space *mapping;
-	struct page *page;
+static void __fixup(pte_t* ptep, unsigned long addr) {
+	pte_t* tabletop = (pte_t*)((unsigned long) ptep & ~(unsigned long)0x3f); /** TODO pagetable-*.h these defines */
+	pte_t* tableend = (pte_t*)((unsigned long) tabletop + 0x40);
+	unsigned int val = pte_val(*ptep);
 
-	if (!pfn_valid(pfn))
-		return;
+	/** SPLIT If 64K */
+	if ((val & 3) == 1) {
+		pte_t* ptr = tabletop;
+		int  pagectr = 0;
+		pr_info("------- LARGE PAGE ALERT do the split: 0x%x\n", val);
 
-	/*
-	 * The zero page is never written to, so never has any dirty
-	 * cache lines, and therefore never needs to be flushed.
-	 */
-	page = pfn_to_page(pfn);
-	if (page == ZERO_PAGE(0))
-		return;
-
-	mapping = page_mapping(page);
-	if (!test_and_set_bit(PG_dcache_clean, &page->flags))
-		__flush_dcache_page(mapping, page);
-	if (mapping) {
-		if (cache_is_vivt())
-			make_coherent(mapping, vma, addr, ptep, pfn);
-		else if (vma->vm_flags & VM_EXEC)
-			__flush_icache_all();
-	}
-#else
-	if (1) {
-		pte_t* tabletop = (pte_t*)((unsigned long) ptep & ~(unsigned long)0x3f); /** TODO pagetable-*.h these defines */
-		pte_t* tableend = (pte_t*)((unsigned long) tabletop + 0x40);
+		while ((unsigned long)ptr < (unsigned long)tableend) {
+			unsigned int temppte = *ptr;
+			*ptr = vmsapte_convert_largepage_to_smallpage(temppte, temppte >> 16, pagectr++);
+			ptr++;
+		}
+	} else {
+		/** try to COALESCE if 4k */
 		pte_t* ptr = ptep;
 		pteval_t prev_val = pte_val(*ptr);
 		int    largepageaddr;
@@ -296,11 +293,11 @@ void update_mmu_cache(struct vm_area_struct *vma, unsigned long addr,
 		    If these conditions are not met you can forget it ... 
 		*/
 		/** Test [a] */
-		if (!(*pte_val(tabletop)))
+		if (!(pte_val(*tabletop)))
 			return;
 
 		/** Test [b] */
-		largepageaddr = PTE_SMALL_PHYS_ADDR(*pte_val(tabletop));
+		largepageaddr = PTE_SMALL_PHYS_ADDR(pte_val(*tabletop));
 		if (((largepageaddr >> 4) << 4) != largepageaddr)
 			return;
 
@@ -344,10 +341,58 @@ void update_mmu_cache(struct vm_area_struct *vma, unsigned long addr,
 			*ptr = vmsapte_convert_smallpage_to_largepage(pte_val(*ptr), largepageaddr);
 			LPRINFO("output 0x%lx\n", (unsigned long) pte_val(*ptr));
 		}		
-		pr_info("%s: COALESCE SUCCESS START %p END %p!!\n", 
-			__FUNCTION__, tabletop, tableend);
+		pr_info("%s: COALESCE SUCCESS START PTE %p END PTE %p addr 0x%lx\n", 
+			__FUNCTION__, tabletop, tableend, addr);
 		largepageaddr = 0;
 	}
+}
+
+/*
+ * Take care of architecture specific things when placing a new PTE into
+ * a page table, or changing an existing PTE.  Basically, there are two
+ * things that we need to take care of:
+ *
+ *  1. If PG_dcache_clean is not set for the page, we need to ensure
+ *     that any cache entries for the kernels virtual memory
+ *     range are written back to the page.
+ *  2. If we have multiple shared mappings of the same space in
+ *     an object, we need to deal with the cache aliasing issues.
+ *
+ * Note that the pte lock will be held.
+ */
+void update_mmu_cache(struct vm_area_struct *vma, unsigned long addr,
+		pte_t *pteplinux)
+{
+#if __LINUX_ARM_ARCH__ < 6
+	unsigned long pfn = pte_pfn(*ptep);
+	struct address_space *mapping;
+	struct page *page;
+
+	if (!pfn_valid(pfn))
+		return;
+
+	/*
+	 * The zero page is never written to, so never has any dirty
+	 * cache lines, and therefore never needs to be flushed.
+	 */
+	page = pfn_to_page(pfn);
+	if (page == ZERO_PAGE(0))
+		return;
+
+	mapping = page_mapping(page);
+	if (!test_and_set_bit(PG_dcache_clean, &page->flags))
+		__flush_dcache_page(mapping, page);
+	if (mapping) {
+		if (cache_is_vivt())
+			make_coherent(mapping, vma, addr, ptep, pfn);
+		else if (vma->vm_flags & VM_EXEC)
+			__flush_icache_all();
+	}
+#else
+	pte_t* ptep = &pteplinux[PTE_HWTABLE_PTRS];
+
+	__fixup(ptep, addr);
+
 #endif /** __LINUX_ARM_ARCH__ < 6 */
 }
 
