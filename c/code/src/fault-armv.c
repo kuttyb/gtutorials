@@ -265,9 +265,26 @@ static void __fixup(pte_t* ptep, unsigned long addr) {
 	pte_t* tabletop = (pte_t*)((unsigned long) ptep & ~(unsigned long)0x3f); /** TODO pagetable-*.h these defines */
 	pte_t* tableend = (pte_t*)((unsigned long) tabletop + 0x40);
 	unsigned int val = pte_val(*ptep);
+	bool   bsplitcontigrange = false;
 
-	/** SPLIT If 64K */
-	if ((val & 3) == 1) {
+	/** We are unmapping this page, was it part of a 64K contig range before that ? */
+	if ((val & 3) == 0) {
+		if (unlikely(ptep == tabletop)) {
+			/** ptep is tabletop, check the next entry to decide if its a 64K contig range */
+			if ((pte_val(*(tabletop + 1)) & 3) == 1) {
+				bsplitcontigrange = true;
+			}
+		} else if ((pte_val(*tabletop) & 3) == 1) {
+			bsplitcontigrange = true;
+		}
+	} else 	if ((val & 3) == 1) {
+		/** ... VM is either remapping this page or changing its attribute, either
+		    case do the split */
+		bsplitcontigrange = true;
+	}
+
+	if (bsplitcontigrange == true) {
+		/** If we are changing attributes of a 64K pte, split the range */
 		pte_t* ptr = tabletop;
 		int  pagectr = 0;
 		pr_info("------- LARGE PAGE ALERT do the split: 0x%x\n", val);
@@ -277,11 +294,15 @@ static void __fixup(pte_t* ptep, unsigned long addr) {
 			*ptr = vmsapte_convert_largepage_to_smallpage(temppte, temppte >> 16, pagectr++);
 			ptr++;
 		}
-	} else {
-		/** try to COALESCE if 4k */
+		return;
+	} 
+
+	/** If its a 4K page then try to coalesce a 64K range optimally */
+	if (val & PTE_TYPE_SMALL) {
+		/** We know this is a valid 4K page try to coalesce but be optimal with the search */
 		pte_t* ptr = ptep;
 		pteval_t prev_val = pte_val(*ptr);
-		int    largepageaddr;
+		int    rangestart_smallpageaddr;
 		bool coalesced = true;
 
 		LPRINFO("%s: start: tabletop %p tableend %p ptep %p vaddr 0x%lx\n",
@@ -297,8 +318,8 @@ static void __fixup(pte_t* ptep, unsigned long addr) {
 			return;
 
 		/** Test [b] */
-		largepageaddr = PTE_SMALL_PHYS_ADDR(pte_val(*tabletop));
-		if (((largepageaddr >> 4) << 4) != largepageaddr)
+		rangestart_smallpageaddr = PTE_SMALL_PHYS_ADDR(pte_val(*tabletop));
+		if (((rangestart_smallpageaddr >> 4) << 4) != rangestart_smallpageaddr)
 			return;
 
 		/** Now march upwards checking for  for contiguity and attribute match */
@@ -338,12 +359,11 @@ static void __fixup(pte_t* ptep, unsigned long addr) {
 		for (ptr = tabletop; ptr < tableend; ptr++) {
 			// setup a single 64k chunk and copy it at all 16 locations
 			LPRINFO("%s: input 0x%lx ", __FUNCTION__, (unsigned long) pte_val(*ptr));
-			*ptr = vmsapte_convert_smallpage_to_largepage(pte_val(*ptr), largepageaddr);
+			*ptr = vmsapte_convert_smallpage_to_largepage(pte_val(*ptr), rangestart_smallpageaddr);
 			LPRINFO("output 0x%lx\n", (unsigned long) pte_val(*ptr));
 		}		
 		pr_info("%s: COALESCE SUCCESS START PTE %p END PTE %p addr 0x%lx\n", 
 			__FUNCTION__, tabletop, tableend, addr);
-		largepageaddr = 0;
 	}
 }
 
