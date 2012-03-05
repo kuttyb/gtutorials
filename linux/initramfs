@@ -1,0 +1,4 @@
+update-initramfs -c -v -k kernel-version
+
+do it from within the chroot
+
