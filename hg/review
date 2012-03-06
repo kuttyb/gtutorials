@@ -1,0 +1,3 @@
+sending 10 changesets for review:
+
+hg export --git -r "11::20"
