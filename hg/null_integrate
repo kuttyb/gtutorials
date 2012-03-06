@@ -1,0 +1,23 @@
+[courtesy ArneBab in #mercurial freenode]
+
+So you want to push some changes but ignore a few changesets in between (aka Null integrate them to borrow a p4 term)
+
+
+hg push
+
+...
+Now on the server side lets say you have a - b - c and you want to get rid of "b"
+
+hg export c > c
+
+hg up a
+
+hg import c
+
+Thats it, you ve fractured the tree and created c* but b will be gone along with its history. 
+
+...
+If you d done this on the client side you would have lost the change `b'. I m guessing you don't want that else we wouldnt be having
+this conversation :-)
+
+
