@@ -1,0 +1,18 @@
+We need an Image that agrees with us on layout and Filesystem. So no matter where you get your original img file from,
+neutralize it as follows:
+
+*dd if=/dev/zero of=this.img bs=1024M count=4   // Decide on memory size and tweak count
+
+mkfs.ext4 -F this.img   // Overlay it with EXT4
+
+mkdir dst
+*sudo mount -o loop this.img mnt/
+
+*sudo cp -a SRC_of_img/* mnt/.
+
+sync
+
+*sudo umount mnt
+
+//////
+Thats it, you re good to go now!
