@@ -1,7 +1,7 @@
 include make.defs
 
 CC       = gcc
-CFLAGS   = -g  -Wall -msse2 -march=native -std=gnu99  ${WORDSIZE} 
+CFLAGS   = -O3  -Wall -msse2 -march=native -std=gnu99  ${WORDSIZE} 
 LINUX    = true
 
 include ./../sources
