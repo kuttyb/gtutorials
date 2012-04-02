@@ -1,0 +1,8 @@
+You can use jrmc (the UI) or 
+
+jrcmd 19846 X
+ where X = start_recording 
+         = stop_recording
+	 = check_recording (to get a list of existing recordings)
+	 = dump_recording id=record_id  copy_to_file=outputfilename
+
