@@ -1,0 +1,6 @@
+./jrcmd 19846 hprofdump 
+./jrcmd 19846 print_threads 
+
+that should do the equivalent of your jdump script from hotspot
+
+open hprofdump in Eclipse MAT and run your analysis
