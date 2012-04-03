@@ -6,3 +6,6 @@ jrcmd 19846 X
 	 = check_recording (to get a list of existing recordings)
 	 = dump_recording id=record_id  copy_to_file=outputfilename
 
+======
+
+To have always-on profiling enabled run app with -XX:FlightRecorderOptions=dumponexit=true,dumponexitpath=<path>
