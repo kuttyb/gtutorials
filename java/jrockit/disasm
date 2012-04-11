@@ -28,3 +28,6 @@
    0x7ff6d2c12712:	retq   
    0x7ff6d2c12713:	int3   
 ...
+
+* Heres my question on the JRockit forum asking them to automate this
+  https://forums.oracle.com/forums/thread.jspa?messageID=10267729
