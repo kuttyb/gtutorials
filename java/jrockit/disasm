@@ -1,0 +1,30 @@
+* jrcmd 26138 dump_codemap
+
+* look in Other64.map
+
+>> 0001:00007ff6d2c126e0	org/eclipse/equinox/launcher/Main.main([Ljava/lang/String;)V	00007ff6d2c126e0 f \n
+>> org/eclipse/equinox/launcher/Main	00000000000000b7
+
+* The address of that method's compiled region in the codecache is 0x7ff6d2c126e0
+
+* sudo gdb -p pid 
+(gdb) x/46i 0x7ff6d2c126e0
+   0x7ff6d2c126e0:	sub    $0x8,%rsp
+   0x7ff6d2c126e4:	test   %eax,0x7fffe000
+   0x7ff6d2c126eb:	mov    0x8(%rdi),%ecx
+   0x7ff6d2c126ee:	xor    %rsi,%rsi
+   0x7ff6d2c126f1:	test   %rcx,%rcx
+   0x7ff6d2c126f4:	je     0x7ff6d2c12711
+   0x7ff6d2c126f6:	mov    0x8(%rcx),%eax
+   0x7ff6d2c126f9:	mov    %rcx,(%rsp)
+   0x7ff6d2c126fd:	test   %rax,%rax
+   0x7ff6d2c12700:	je     0x7ff6d2c12711
+   0x7ff6d2c12702:	mov    (%rsp),%rsi
+   0x7ff6d2c12706:	mov    0x8(%rsi),%esi
+   0x7ff6d2c12709:	cmp    %esi,(%rsi)
+   0x7ff6d2c1270b:	callq  0x7ff6d2bc4180
+   0x7ff6d2c12710:	nop
+   0x7ff6d2c12711:	pop    %rcx
+   0x7ff6d2c12712:	retq   
+   0x7ff6d2c12713:	int3   
+...
