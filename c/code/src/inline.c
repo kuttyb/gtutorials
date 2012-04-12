@@ -11,7 +11,7 @@ int localstart(int input) {
   return random() % 0x10;
 }
 
-__attribute__((always_inline)) Type* exportType(void) {
+__attribute__((noinline)) Type* exportType(void) {
   Type* type = calloc(1, sizeof(Type));
   type->start = localstart;
   return type;
