@@ -3,4 +3,7 @@ syntax:glob
 bin/**
 lib/**
 
-project/**private/**
+**/nbproject/**private/**
+**.o
+**/bin/**
+
