@@ -12,12 +12,23 @@ typedef struct {
 
 static boolean _addback(List* list, void* arg) {
     assert(list && arg);
+    PvtData* data = GETDATA(list);
+    ++data->end;
+    ++data->start;
+    list->Protected.print(list);
     return FALSE;
 }
 
 static boolean _remove(List* list, void* arg) {
     assert(list && arg);
     return FALSE;
+}
+
+static void _printList(List* list) {
+    PvtData* data = GETDATA(list);
+    printf("%s: size is %d start %d end %d\n",
+            __FUNCTION__, list->Protected.size,
+            data->start, data->end);
 }
 
 ATTR_FACTORY List* exportList() {
@@ -28,6 +39,8 @@ ATTR_FACTORY List* exportList() {
         .pvt[LIST] = pvt,
         .addback = _addback,
         .remove = _remove,
+        .Protected.print = _printList,
+        .Protected.size = 21,
     };
     return list;
 }

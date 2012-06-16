@@ -13,9 +13,17 @@ static boolean _addback(List* list, void* arg) {
     assert(list && arg);
     PvtData* pvt = GETDATA(list);
     assert(pvt && pvt->max == 10);
+    ++pvt->max;
+    list->Protected.print(list);
     return TRUE;
 }
 
+static void _printTree(List* list) {
+    PvtData* data = GETDATA(list);
+    printf("%s: size is %d max is %d\n",
+            __FUNCTION__, list->Protected.size,
+            data->max);
+}
 
 ATTR_FACTORY List* exportTree() {
     List* list = exportList();
@@ -26,6 +34,7 @@ ATTR_FACTORY List* exportTree() {
     };
     list->pvt[TREE] = pvt;
     list->addback = _addback;
+    list->Protected.print = _printTree;
     return list;
 }
 
