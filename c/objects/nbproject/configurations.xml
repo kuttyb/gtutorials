@@ -2,6 +2,8 @@
 <configurationDescriptor version="80">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df name="tmp" root=".">
+      <df name="bin">
+      </df>
       <in>inline.c</in>
       <in>inline.h</in>
       <in>main.c</in>
