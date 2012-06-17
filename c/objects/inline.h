@@ -3,7 +3,11 @@
 
 #include <inttypes.h>
 
+#ifdef COMPILER_GCC
 #define  ATTR_FACTORY inline __attribute__((always_inline)) __attribute__((malloc)) 
+#else
+#define  ATTR_FACTORY
+#endif
 
 typedef enum {
     FALSE, TRUE
