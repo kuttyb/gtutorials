@@ -10,3 +10,7 @@ jrcmd 19846 X
 
 To have always-on profiling enabled run app as follows (can add other flags that you would use in jrcmd too)
 java -XX:StartFlightRecording=filename=rec.jfr -jar dacapo-9.12-bach.jar eclipse
+
+Later when you open-file this file in jrmc, look under CPU/Threads -> Hot Threads | Hot Methods.
+Lock profiling requires separate enabling and usually comes at a cost IIUC
+
