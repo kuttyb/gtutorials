@@ -14,3 +14,6 @@ java -XX:StartFlightRecording=filename=rec.jfr -jar dacapo-9.12-bach.jar eclipse
 Later when you open-file this file in jrmc, look under CPU/Threads -> Hot Threads | Hot Methods.
 Lock profiling requires separate enabling and usually comes at a cost IIUC
 
+Read this for details on parameters and optionally control what needs to be profiled
+http://docs.oracle.com/cd/E15289_01/doc.40/e15062/optionxx.htm#BABEJCDI
+
