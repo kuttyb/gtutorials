@@ -1,0 +1,15 @@
+Besides starting with default profiling information record (discussed in flightrecording), there are roughly 3 
+approaches to perf debugging using JRMC:
+
+[a] Profile: Thats right, start jrmc, click on the JVM and start flight recording.
+
+[b] Lock Profile: Same as above but click on lock profile and make sure the JVM is started with the correct option
+
+[c] Memleak: Monitor Growth Rate of classes. Find the reddest one, click "add to type graph" and keep expanding until
+    you reach the outermost class whose objects are keeping these class objects alive.
+
+    Now click on get instances, find the highest few objects, click on add to type graph then click to get to Root.
+    
+    That should give you the Dominator object possibly responsible for the leak.
+    http://www.javabeat.net/2011/09/the-memory-leak-detector-oracle-jrockit/
+
