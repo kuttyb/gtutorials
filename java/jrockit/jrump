@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# $1 pid
+
+jrcmd $1 hprofdump filename=/tmp/$1.hprof
+jrcmd $1 print_threads > /tmp/$1.stack
