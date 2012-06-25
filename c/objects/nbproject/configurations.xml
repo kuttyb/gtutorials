@@ -33,6 +33,11 @@
           <buildCommand>./build.sh</buildCommand>
           <cleanCommand>./clean.sh</cleanCommand>
           <executablePath></executablePath>
+          <cTool>
+            <preprocessorList>
+              <Elem>COMPILER_GCC</Elem>
+            </preprocessorList>
+          </cTool>
         </makeTool>
       </makefileType>
     </conf>
