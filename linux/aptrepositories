@@ -1,0 +1,11 @@
+/etc/apt/sources.list
+
+These are the repositories we can fetch software from. Add more as you like. deb-src is to enable source pull.
+
+deb http://mirror.anl.gov/pub/ubuntu hardy main
+deb-src http://mirror.anl.gov/pub/ubuntu hardy main
+deb http://mirror.anl.gov/pub/ubuntu hardy universe
+deb-src http://mirror.anl.gov/pub/ubuntu hardy universe
+
+
+After changing this file, apt-get update and you're ready to go!!
