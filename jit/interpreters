@@ -1,0 +1,45 @@
+Couple of ways of implementing Interpreters:
+
+[a] Switch-case: 
+    while(inst = inst->next(inst)) {
+       switch(inst) {
+          case   i_add:   ... break;
+	  case   i_sub:   ... break;
+       }
+    }   
+
+ Assuming jump tables for the implementation, there are 3 branches here:
+  * the while loop's backward jump
+  * branch to check for inst not going beyond safe switch-case jmp table limits
+  * the actual jmp to jmp table (which should have the code)
+
+
+[b] Indirect Threading:
+    while(inst = inst->next(inst)) {
+       jmp codebase[inst] ; // perhaps some bound checking or maybe that could be done statically or 
+       	    		    // during the bytecode verifier stage
+    }
+
+    * There is the while loop branch
+    * its an indirect call so never a good thing
+
+[c] Direct Threading:
+    while(inst = inst->next(inst)) {
+       jmp inst;
+    }
+
+    * There is the while loop branch
+    * Just a direct branch so thats good
+
+    As you can see, inst is the address of the implementation. Or perhaps you can add a fixed offset to it,
+    it will still be a direct jmp.
+
+[d] Inline Threading:
+    Read David Mandelin's blog http://blog.mozilla.org/dmandelin/2008/08/27/inline-threading-tracemonkey-etc/
+    Bottomline the idea is to create a separate buffer and copy inline the code for each bytecode into it
+    and place a jmp to another dst at the end of the basic block.
+
+    Thats it there are no dynamic dispatches whether direct or indirect beyond the last branch of each
+    basic block.
+    
+    Conceptually you would imagine this is the fastest! 
