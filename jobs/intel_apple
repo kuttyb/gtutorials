@@ -1,6 +1,6 @@
 This is for ASIC companies (Intel/Apple/Qualcomm/Samsung)
 
-[1] I currently work in the JIT Compiler team for Project Denver (NVIDIA's VLIW ARM CPU) maintaining the Branch Profiler and Translation Cache layer of our JIT. I am also responsible for overall CPU performance of Browser JITs, JVMs and Linux kernel (in short make Denver awesome on Linux/Android)
+[1] I currently work in the JIT Compiler team for Project Denver (NVIDIA's VLIW ARM CPU) maintaining the Branch Profiler and Translation Cache layer of our trace JIT. I am also responsible for overall CPU performance of Browser JITs, JVMs and Linux kernel (in short make Denver awesome on Linux/Android)
 
 [2] In the past, I was the Architect for Project Orion, NVIDIA's CPU/GPU on a single ASIC solution and my role was to design and implement changes to the Linux kernel and CUDA runtime to provide CUDA programs with a Unified Address Space. 
 
