@@ -1,0 +1,9 @@
+* connected graph
+
+* maximal connected subgraph : n vertices, then there are 2n edges (undirected graph)
+
+* Graph with no cycles is a Forest. Connected Forest is called a Tree. 
+
+* Degree of a vertex is the #adjacent vertices
+ 
+TODO: read up on Combinations and Permutations
