@@ -1,0 +1,17 @@
+Union-Find Problem :
+===================
+Given a disjointed set of non overlapping regions, given a new entry you find out which set it belongs to (Find problem).
+In addition, you may want to to a Union of two disjointed sets.
+
+I m suggesting using a TreeMap<Key, Disjoint_Set<T>> for this. 
+Key tells you which Set you belong to. Its a sorted tree so we d have nlg(n) search/insert operations.
+
+If both ends are in the same set then do nothing with this entry.
+
+If one vertex exists the other does not, then add both vertices in the TreeMap and have them point to the same
+Disjoint_Set.
+
+If both vertices point to entries that exist and their Disjoint Sets are different, then do a Union of the 
+two disjoint_sets.  This can be efficiently done by having each Set internally have an id. Union of two 
+Sets means clobbering their IDs to have the same value. The keys in the TreeMap would continue pointing to 
+the old Set pointers but these pointers would have values that are equivalent now.
