@@ -1,0 +1,10 @@
+* Happens with GCC on SPARC64 and Itanium but in general it makes me feel uncomfortable using GCC struct bitfields.
+
+* What RM does is way better and more portable (without a doubt!!)
+
+GCC Issue:
+http://gcc.gnu.org/bugzilla/show_bug.cgi?id=52080
+
+Kernel BTRFS guys found it:
+https://lkml.org/lkml/2012/2/1/220
+

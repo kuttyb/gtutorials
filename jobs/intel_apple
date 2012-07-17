@@ -1,0 +1,9 @@
+This is for ASIC companies (Intel/Apple/Qualcomm/Samsung)
+
+[1] I currently work in the JIT Compiler team for Project Denver (NVIDIA's VLIW ARM CPU) maintaining the Branch Profiler and Translation Cache layer of our trace JIT. I am also responsible for overall CPU performance of Browser JITs, JVMs and Linux kernel (in short make Denver awesome on Linux/Android)
+
+[2] In the past, I was the Architect for Project Orion, NVIDIA's CPU/GPU on a single ASIC solution and my role was to design and implement changes to the Linux kernel and CUDA runtime to provide CUDA programs with a Unified Address Space. 
+
+[3] Before that I spent 5 years in the GPU kernel team, helping with thread scheduling, mmu, interrupts and later as the Kernel Lead for the Fermi GPU Architecture.
+
+[4] Outside work, my passion is in Parallel Computing.  I have implemented a Query Processor that AutoParallelizes, extracts Map-Reduce and I/O pipelining from programs written in a C-like Query language. Also wired two separate Task Parallel Libraries and several Locking algorithms.  Details at www.pseudoparallel.com

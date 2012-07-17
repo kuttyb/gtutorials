@@ -14,7 +14,7 @@ Couple of ways of implementing Interpreters:
   * the actual jmp to jmp table (which should have the code)
 
 
-[b] Indirect Threading:
+[b] Token Threading:
     while(inst = inst->next(inst)) {
        jmp codebase[inst] ; // perhaps some bound checking or maybe that could be done statically or 
        	    		    // during the bytecode verifier stage
@@ -33,6 +33,8 @@ Couple of ways of implementing Interpreters:
 
     As you can see, inst is the address of the implementation. Or perhaps you can add a fixed offset to it,
     it will still be a direct jmp.
+    
+    [Btw replace jmp above with call and you have Subroutine Threading]
 
 [d] Inline Threading:
     Read David Mandelin's blog http://blog.mozilla.org/dmandelin/2008/08/27/inline-threading-tracemonkey-etc/
