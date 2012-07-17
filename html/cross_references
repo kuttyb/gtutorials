@@ -1,0 +1,9 @@
+Thats how you declare a tag against a header
+      <a id="ILP"></a><h3>Instruction Level Parallelism</h3> 
+This creates a tag id ILP against the header Instruction Level Parallelism
+
+
+To refer to it use
+      <a href="#ILP">Instruction Level Parallelism</a>
+
+Typically I would create an Appendix at the end and place definitions and other things there.
