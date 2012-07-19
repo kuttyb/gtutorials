@@ -1,0 +1,22 @@
+If the Graph has negative edges then you can't use a Greedy algorithm. Because a non optimal local solution can 
+get better over time with negative edges. This would violate the optimality principle.
+
+Bellman-Ford is the way to find Shortest Path w/o using the Greey Approach.
+
+
+for i = 0 to n
+   for_each v : vertices
+       relax( adjacent_edges(v))
+
+
+where adjacent_vertices returns a set of vertices adjacent to v	
+
+      relax operatetes on edges. Consider edge (u,v)
+      then relax(edge(u,v)) {
+      	   if (d[v] > len(u,v) + d[u]) {
+	      d[v] = len(u,v) + d[u]
+	   }
+      }
+
+
+This has a running time of O(E * V)
