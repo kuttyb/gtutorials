@@ -1,0 +1,17 @@
+http://docs.oracle.com/javase/specs/jls/se5.0/html/exceptions.html#11.3.1
+
+http://www.cs.umd.edu/~pugh/java/memoryModel/archive/0845.html
+
+Bottomline catch blocks should not see any Program Order violation in the same thread. 
+
+Synchronous Exceptions:
+======================
+Not sure how JVMs implement it efficiently but if it was me I would make sure the catch handlers for that thread
+are assumed to be stuck after every instruction and only do those reorderings that would not be visible to code 
+in the catch handler.
+
+Of course if you can prove an instruction cannot throw then go ahead with your reorderings.
+
+Asynchronous Exceptions:
+=======================
+They are polled until a safe point is reached beyond which reorderings are not visible. 
