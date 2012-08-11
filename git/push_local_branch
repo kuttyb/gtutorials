@@ -1,0 +1,8 @@
+git push bit-origin remotes/bit-origin/denver_3.6 denver_3.6
+
+bit-origin : remote repository name
+
+remotes:/bit-origin/denver_3.6 : thats the remote branch
+
+denver_3.6 : local branch 
+
