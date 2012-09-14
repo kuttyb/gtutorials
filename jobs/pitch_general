@@ -1,4 +1,4 @@
 Currently my responsibility involves tweaking the Android stack, from the kernel to V8/Mozilla JITs to get the best performance on NVIDIA's ARMv8 CPU. In addition I maintain the Branch Profiler and Translation Cache units for our home grown JIT called MTS. 
 
-In the past I was the Lead for the GPU kernel specializing in Memory Management and Thread Scheduling. Also spent some time in the CUDA subsystem. In my spare time, I take develop various Parallel Computing frameworks.
+In the past I was the Lead for the GPU kernel specializing in Memory Management and Thread Scheduling. I was the Architect of the team integrating CPU/GPU together on a single SoC for CUDA. In my spare time, I develop various Parallel Computing frameworks.
 
