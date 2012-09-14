@@ -1,4 +1,9 @@
-Currently my responsibility involves tweaking the Android stack, from the kernel to V8/Mozilla JITs to get the best performance on NVIDIA's ARMv8 CPU. In addition I maintain the Branch Profiler and Translation Cache units for our home grown JIT called MTS. 
+I have spent 7 years at various roles in NVIDIA. 
 
-In the past I was the Lead for the GPU kernel specializing in Memory Management and Thread Scheduling. I was the Architect of the team integrating CPU/GPU together on a single SoC for CUDA. In my spare time, I develop various Parallel Computing frameworks.
+Currently I work in the Denver ARM CPU JIT/Runtime team and in addition am also responsible for performance tweaking all layers of the Android stack, from the kernel to V8/Mozilla JITs in order to get the best out of Denver.
+
+Prior to this, I was the Architect of Project Orion, which focussed on providing Unified Virtual Memory between cache coherent ARM CPU and Kepler GPU for CUDA programs. Before that I spent 5 years in the GPU kernel team, specializing in Memory Management, Thread Scheduling, Latency control, Interrupt and was the Kernel Dev Lead for Fermi Architecture.
+
+Outside work, my passion is in Locks, MultiThreading, Parallel Computing and very recently, completed development on Query Processor (Khronos) that takes in Serial C-like code and Auto-Parallelizes it for MultiCore Execution. Details and other projects along with source at www.pseudoparallel.com
+
 
