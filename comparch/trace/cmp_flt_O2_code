@@ -1,0 +1,25 @@
+O1:
+--
+cmp a < b jmp profile_stub // if taken patch to L0
+code_3
+code_4
+code_1
+code_tail
+ret
+
+L0:
+ code_5
+ code_6
+ code_2
+ code_tail
+ ret
+
+
+O2:
+--
+cmp_flt  a < b : stub_fault_routine
+code_3
+code_4
+code_1
+code_tail
+ret
