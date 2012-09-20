@@ -1,11 +1,10 @@
-High Level Summary:
+Highlights:
 ------------------
-* Denver CPU JIT Compiler team, I maintain the Branch Profiler, Translation Cache units
-* Responsible for Android Fullstack CPU perf optimizations for Denver CPU
+* Denver CPU JIT Compiler team, I maintain the Branch Profiler, Translation Cache units. Also responsible for Android Stack CPU Perf Optimizations.
 * Developed Frameworks, libraries to ease writing Parallel Programs and make scaling easier on Future Gen NVIDIA Multicore CPUs
 * Designed, implemented Linux kernel, GPU kernels to present CUDA with a Unified Address Space
-* Fermi Architecture GPU kernel tech lead, lead for Thread Scheduling, Memory mgmt, Interrupts, verification
-Proficient in C, Java, Lisp dabble in Javascript.
+* Fermi Architecture GPU kernel Tech Lead. Focussed on GPU Thread Scheduling, Memory mgmt, Interrupts, verification
+Proficient in C, Java, Lisp, amateur in Javascript. x86/ARM/SPARC
 
 
 

@@ -1,0 +1,52 @@
+Highlights
+----------
+* Denver CPU JIT Compiler team, I maintain the Branch Profiler, Translation Cache units. Also responsible for Android Stack CPU Perf Optimizations.
+* Developed Frameworks, libraries to ease writing Parallel Programs and make scaling easier on Future Gen NVIDIA Multicore CPUs
+* Designed, implemented Linux kernel, GPU kernels to present CUDA with a Unified Address Space
+* Fermi Architecture GPU kernel Tech Lead. Focussed on GPU Thread Scheduling, Memory mgmt, Interrupts, verification
+Proficient in C, Java, Lisp, amateur in Javascript. x86/ARM/SPARC
+
+
+Experience
+----------
+Senior System Software Engineer, NVIDIA  (2005 June ~ Present)
+
+Project Denver - ARM CPU JIT
+============================
+* Denver uses a Trace JIT called MTS to convert ARM instructions to native instructions. I maintain the Branch Profiling and Translation Cache code.
+* Implemented branch-to-assert and lazy assert-to-branch logic. Boosts SPECINT by upto 15%
+* Implemented Adaptive Branch Profiling framework to route hot translations to interpreter for a small time to regather branch weights and retranslate if weights shift. 
+* Implementing logic to keep Translation Cache coherent with ARM Self Modifying Code
+* Implemented various stubs to profile transitions to and from interpreted / optimized code
+* Implementing Object Inlining for Javascript workloads to increase
+prefetching and cache footprint. The goal is
+to speculatively convert pointer chasing loads into runtime
+constants for better cache/prefetch properties. We have hw support to
+monitor memory ranges in 256B chunks for concurrent
+modifications and rollback the speculative code. Work in progress..
+
+Android Stack Perf Optimizations for Denver CPU
+===============================================
+* Linux Kernel : Implemented Large Page Suport for ARMv7 to automatically coalesce contig small pages into 64K pages. 5% IPC boost on SPECFP
+* Linux Kernel : Implemented Thread Local Memory type in kernel. TLB invalidates to this memory are not broadcast to other cores. Patched Mozilla to use this memory type. Helps IPC by 20% on Google V8 Benchmark
+* Implemented Memory Profiler Extension to QEMU to study page access patterns for apps.
+
+
+Application Frameworks for Future Generation Multicore Processors:
+=================================================================
+Goal is to provide libraries, frameworks that make it easy to leverage and scale to lots of CPU cores
+
+Khronos:
+
+Work Distributor
+
+Concurrency Libraries:
+
+Java Task Graph: 
+
+Java concurrency utilities:
+
+Android Stack CPU Optimizations
+===============================
+
+
