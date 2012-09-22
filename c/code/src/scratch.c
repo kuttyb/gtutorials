@@ -1,27 +1,34 @@
 #include <stdio.h>
-#include <inttypes.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <inttypes.h>
 #include <assert.h>
 
-#define CONVERGE_MAX   (5)
-static uint8_t
-converge(uint8_t anchor, uint32_t movable, uint32_t iterations) {
-  const uint32_t maxiterations = iterations > CONVERGE_MAX ? CONVERGE_MAX : iterations;
-  uint32_t i;
+static bool
+change_bbias(uint8_t oldinput, uint8_t newinput, uint8_t tolerance) {
+  if (oldinput == newinput) return false;
 
-  for (i = 0; i < maxiterations && anchor != movable; ++i) {
-    movable = (anchor + movable) / 2;
-  }
+  // make them signed
+  int difference = oldinput - newinput;
+  difference = difference < 0 ? difference * -1 : difference;
 
-  return movable;
+  if (difference > tolerance) 
+    return true;
+  else 
+    return false;
 }
 
 int main(void) {
-  assert(converge(20, 40, 6) == 20);
-  assert(converge(20, 40, 5) == 20);
-  assert(converge(20, 40, 2) == 25);
-  assert(converge(20, 40, 3) == 22);
-  return 0;
+  assert(change_bbias(10, 20, 5));
+  assert(!change_bbias(10, 20, 10));
+  assert(change_bbias(10, 21, 10));
+  assert(!change_bbias(10, 10, 0));
+
+  assert(!change_bbias(20, 10, 10));
+  assert(!change_bbias(20, 12, 10));
+  assert(change_bbias(20, 10, 5));
+  assert(change_bbias(20, 9, 10));
+
+  return EXIT_SUCCESS;
 }
 
