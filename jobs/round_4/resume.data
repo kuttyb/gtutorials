@@ -1,0 +1,15 @@
+Khronos: (Serial Code Parallel Execution)
+=======
+* Designed and implemented from scratch a Stack based virtual machine that compiles and parallelizes input instructions at runtime across multiple cores. Combines advantages of Thread Level Parallelism and Instruction Level Parallelism. Helping a larger team integrate this infrastructure with 2 NVIDIA products.
+
+* VM Instructions allow Tiled memory surfaces to be allocated and have Operators operate upon them. Has support for loops, branches, parallel reduction.
+
+* Dataflow analysis on input Sequential Program forms a Dependency Graph of Operators operating on various Tiles. During execution, this graph is traversed in parallel using multiple worker threads. Because read-write dependency analysis is explicit, there are no locks (90% of the code is lockless)
+
+* Branches are implemented using if-conversion and predication. Also supports Control Speculation across branches. Dynamic Loop unrolling at runtime provides Software Pipelining. Register Renaming is used to avoid WAR stalls.
+
+* Scheduling: Designed a new Graph Coloring algorithm to assign tasks to worker threads. Keeps dependent nodes closer to their parent to minimize intra thread communication while independent nodes are colored separately to maximize concurrency.
+
+* I/O pipelining: Tiles are pipelined from disk to memory to overlay computation with I/O operations and allow computations strictly out of in-RAM contents.
+
+* Parallel Reductions parallelize independent instructions from separate iterations using a Dependency Stack algorithm.
