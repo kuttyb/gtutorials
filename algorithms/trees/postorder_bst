@@ -1,0 +1,15 @@
+very similar to inorder except the push sequence is different in the else branch
+
+push(root)
+
+while(!stack.empty()) {
+  n = pop();
+  if (colored(n)) {
+     visit(n);
+  } else {
+    push(color(n));
+    push(r);
+    push(l);
+  }
+}
+

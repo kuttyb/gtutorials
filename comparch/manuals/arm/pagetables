@@ -1,0 +1,20 @@
+vmsa:
+=====
+2 levels of page tables:
+12 + 8 + 12 (actual page)
+
+middle one is the page table and is of 1k size with 256 entries. Each entry either points to 4K or 64K page.
+
+When pointing to 64K page, all 16 entries have the same value.
+
+
+1MB pages are formed by the PDE directly pointing to the page
+16 PDEs pointing to the same 16MB page is called a Super Section.
+
+TTBR0 and TTBR1 store address of the page directory. There are two based on what the top `n' bits 
+of the MVA are. TTBCR controls the value of `n'.
+This allows kernel and user spaces to share different page tables and not cause reprogramming on 
+context switch.
+
+
+Global/nGlobal bits in the PTE tell the TLB to not discard Global entries on context switch (CONTEXTIDR) changes.
