@@ -7,7 +7,7 @@ while(swapped) {
     swapped = false;	      
     for(i = 1; i < n; i++) {
         if A[i-1] > A[i] {
-	   swap(A[i-1], A[i]);
+	   swapped = swap(A[i-1], A[i]);
         }
     }
 }
