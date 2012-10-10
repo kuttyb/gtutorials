@@ -1,0 +1,31 @@
+The idea is to maintain a state machine of left, center, right, right-right, center, right, right-right and read elements off the list and 
+add to the tree accordingly.
+
+
+void form_bst(List *list) {
+     state = left; // initial state
+     cur = prev = center = null;
+
+     while(!list.empty()) {
+       n = list.next();
+       switch(state) {
+         case left:
+             n->left = cur;  state = center; break;
+
+         case center:
+             n->left = cur;  center = n; state = right; break;
+
+         case right:
+             prev->right = n; state = rright; break;
+  
+         case rright:
+             prev->right = n; state = center; break;
+       }
+
+       prev = cur;
+       if (state == center) 
+          cur = center;
+       else 
+          cur = n;
+     }
+}
