@@ -8,6 +8,8 @@ while(!empty()){
     push(n->left,  depth + 1);
 }
 
+return stack.max_depth_value_seen();
+
 Frankly it doesn't matter what your traversal algorithm is, as long as push/pop take in and return depth. The 
 same logic applies for FIFO too.
 
