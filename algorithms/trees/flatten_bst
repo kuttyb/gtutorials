@@ -1,4 +1,4 @@
-serialize and deserialize a BST using DFS (thats really preorder traversal right?)
+serialize and deserialize a BST using Breadth First Search (thats really preorder traversal right?)
 
 ====================
 SERIALIZE
@@ -11,8 +11,8 @@ serialize(root, file) {
     WRITE(file, n); // Its ok if n is NULL store a standard NULL object in file
 
     if (n != NULL) {
-        push(n->right);
-	push(n->left);
+        qpush(n->left); // add to FIFO
+	qpush(n->right);
     }    
   }
 }
@@ -32,13 +32,8 @@ root deserialize(file) {
 	n->left   =  READ();
 	n->right  =  READ();
 
-	if (n->right != NULL) {
-	   push(n->right);
-	}
-
-	if (n->left != NULL) {
-	   push(n->left);
-	}
+	if (n->left)   qpush(n->right); // push order should match in serialize/deserialize
+	if (n->right)  qpush(n->left);
     }
     
     return root;
