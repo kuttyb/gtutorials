@@ -23,7 +23,7 @@ n-1 worst case.
 
 
 FLATTEN and store to file:
-a simple DFS up and down should do the trick but the trick is to store NULL children too to
+a simple BFS (preorder traversal) up and down should do the trick but the trick is to store NULL children too to
 respect tree structure.
 <refer flatten_bst>
 
