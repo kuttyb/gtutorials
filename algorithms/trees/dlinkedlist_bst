@@ -1,7 +1,8 @@
 < out of place solutions are easy ... just pass in a new linked list in the visitor method >
 
 Q: Convert BST to a sorted dlinklist in place
-A: 
+A: Essentially in-order traverse and have the traversal functor take in prev, cur nodes and switch pointers
+
 
 dlinkify(root) {
   last = NULL;

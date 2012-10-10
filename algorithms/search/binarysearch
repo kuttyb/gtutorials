@@ -1,7 +1,7 @@
 
 while (lo <= hi) {
 
- mid = lo + (hi -lo)/2;
+ mid = ( lo + hi ) / 2;
  if (a[mid] == key) return true;
 
  if (key > a[mid]) lo = mid + 1;

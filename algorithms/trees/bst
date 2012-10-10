@@ -2,7 +2,8 @@ BINARY SEARCH TREE:
 each node can have upto two children left nodes are lesser than equal to parent. right nodes are greater than parent
 
 
-SEARCH should be easy use pre-order iterative from above replace visit with search and conditional return
+SEARCH should be easy use in-order iterative traversal. The traversal function checks for the value passed in, if its
+greater than key then its not present, return. (because inorder is also the sorted ascending order)
 
 DELETION has 3 cases:
 -> leaf node  : easy just delete it hehehe
