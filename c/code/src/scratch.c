@@ -4,16 +4,23 @@
 #include <inttypes.h>
 #include <assert.h>
 
+#define static_array(T, var, e)  \
+    struct var { \
+        T array[e]; \
+        uint32_t elements; \
+    } var = { .elements = e }; 
+
+
+#define set_array(var, index, value)    ({ assert(index < var.elements); var.array[index] = value; })
+#define get_array(var, index)    ({ assert(index < var.elements); var.array[index]; })
+
 int main(void) {
-  uint32_t a = 0xaabbccdd;
- 
-  uint8_t *b;
+    static_array(int, opttrans, 10);
 
-  b = (uint8_t*) &a;
+    set_array(opttrans, 10, 3);
+    printf("%d\n", get_array(opttrans, 10));
 
-  printf("0x%x 0x%x 0x%x 0x%x\n",
-         b[0], b[1], b[2], b[3]);
 
-  return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
