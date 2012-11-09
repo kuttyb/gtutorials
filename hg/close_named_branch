@@ -1,0 +1,6 @@
+hg checkout branch
+
+hg ci -m "closing branch, code has been delivered to mainline already" --close-branch
+
+hg checkout default
+
