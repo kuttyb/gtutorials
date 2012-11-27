@@ -21,6 +21,7 @@ ptr.c                 \
 mmap.c                \
 avltree.c             \
 staticarray.c         \
+lock.c                \
 rmat.c                \
 query.c 
 
