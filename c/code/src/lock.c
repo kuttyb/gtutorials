@@ -65,7 +65,8 @@ static void testSuccess_PointingIntoCycle(void) {
   b.owner = 2;
   c.owner = 1;
   mts_lastlock_grabbed[0] = &a;
-  mts_lastlock_grabbed[2] = &b;
+  mts_lastlock_grabbed[1] = &b;
+  mts_lastlock_grabbed[2] = &c;
 
   printf("\tlock a %p\n\tlock b %p\n\tlock c %p\n", 
          &a, &b, &c);

@@ -6,6 +6,7 @@ void setup(void);
 static inline void invoke(void(*fn)(void), const char *msg) {
   setup();
   printf("START %s\n", msg);
+  printf("=====\n");
   fn();
   printf("DONE %s\n\n", msg);
 }
