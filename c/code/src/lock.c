@@ -101,6 +101,22 @@ static void testSuccess_FirstEntryNull(void) {
   detect_deadlock();  
 }
 
+/** all members are linked and last and first are connected */
+static void testSuccess_FullCycle(void) {
+  mts_spinlock_t a, b, c, d;
+  a.owner = 1;
+  b.owner = 2;
+  c.owner = 3;
+  d.owner = 0;
+  mts_lastlock_grabbed[0] = &a;
+  mts_lastlock_grabbed[1] = &b;
+  mts_lastlock_grabbed[2] = &c;
+  mts_lastlock_grabbed[3] = &d;
+  
+  printf("\tlocka %p\n\tlock b %p\n\tlock c %p\n\tlock d %p\n",
+         &a, &b, &c, &d);
+  detect_deadlock();
+}
 
 int main(void) {
   invoke(testSuccess_SimpleDeadlock, "simpledeadlock");
@@ -108,6 +124,7 @@ int main(void) {
   invoke(testSuccess_PointingIntoCycle, "pointing_into_cycle");
   invoke(testSuccess_PointingIntoCycle2, "pointing_into_cycle2");
   invoke(testSuccess_FirstEntryNull, "first_entry_null");
+  invoke(testSuccess_FullCycle, "full_cycle");
 
   return EXIT_SUCCESS;
 }
