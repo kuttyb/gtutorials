@@ -27,7 +27,7 @@ void detect_deadlock() {
       if (lock->owner == tid) {
         printf("locks %p and %p are deadlocked\n", 
                lock, mts_lastlock_grabbed[tid]);
-        break;        
+        return;       
       }
     }
   }
@@ -38,6 +38,14 @@ void setup(void) {
 }
 
 static void testSuccess_Basic(void) {
+  mts_spinlock_t a,b;
+  a.owner = 1;
+  b.owner = 0;
+  mts_lastlock_grabbed[0] = &a;
+  mts_lastlock_grabbed[1] = &b;
+
+  printf("lock a %p lock b %p\n", &a, &b);
+  detect_deadlock();
 }
 
 int main(void) {
