@@ -134,6 +134,11 @@ static void testSuccess_FullCycle(void) {
   assert_locks(&a, &d);
 }
 
+static void testSuccess_AllNull(void) {
+  detect_deadlock(&r0, &r1);
+  assert(!(r0 || r1));
+}
+
 int main(void) {
   invoke(testSuccess_SimpleDeadlock, "simpledeadlock");
   invoke(testSuccess_NoDeadlock, "nodeadlock");
@@ -141,6 +146,7 @@ int main(void) {
   invoke(testSuccess_PointingIntoCycle2, "pointing_into_cycle2");
   invoke(testSuccess_FirstEntryNull, "first_entry_null");
   invoke(testSuccess_FullCycle, "full_cycle");
+  invoke(testSuccess_AllNull, "all_null");
 
   return EXIT_SUCCESS;
 }
