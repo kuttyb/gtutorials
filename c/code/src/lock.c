@@ -88,11 +88,26 @@ static void testSuccess_PointingIntoCycle2(void) {
 }
 
 
+static void testSuccess_FirstEntryNull(void) {
+  mts_spinlock_t b,c;
+  b.owner = 2;
+  c.owner = 1;
+  mts_lastlock_grabbed[0] = NULL;
+  mts_lastlock_grabbed[1] = &b;
+  mts_lastlock_grabbed[2] = &c;
+
+  printf("\tlock a %p\n\tlock b %p\n\tlock c %p\n", 
+         NULL, &b, &c);
+  detect_deadlock();  
+}
+
+
 int main(void) {
   invoke(testSuccess_SimpleDeadlock, "simpledeadlock");
   invoke(testSuccess_NoDeadlock, "nodeadlock");
   invoke(testSuccess_PointingIntoCycle, "pointing_into_cycle");
   invoke(testSuccess_PointingIntoCycle2, "pointing_into_cycle2");
+  invoke(testSuccess_FirstEntryNull, "first_entry_null");
 
   return EXIT_SUCCESS;
 }
