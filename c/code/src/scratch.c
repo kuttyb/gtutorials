@@ -4,51 +4,20 @@
 #include <inttypes.h>
 #include <assert.h>
 
-#define static_array(T, var, e) \
-    struct { \
-        T data[e]; \
-    } var;
-#define array_size(var)    (sizeof(var.data) / sizeof(var.data[0]))
-#define set_array(var, index, value)   ({ assert(index < array_size(var)); var.data[index] = value; })
-#define get_array(var, index)    ({ assert(index < array_size(var)); var.data[index]; })
-#define foreach_array(var, ptr)  for (uint32_t ctr = 0; (ctr < array_size(var)) && (ptr = &var.data[ctr]); \
-                                      ++ctr)
-#define foreach_range_array(var, ptr, start, end) for (uint32_t ctr = start; (ctr < array_size(var)) && \
-                                                       (ctr < end) && (ptr = &var.data[ctr]); ++ctr)
+#define LOCKSECTION  __attribute__ ((section (".locks")))
 
 typedef struct {
-    int type;
-    int x;
-    static_array(unsigned char, y, 4);
-} ABC;
+    uint8_t acquired;  // Zero implies nobody has the lock.
+    uint8_t level : 4; // The level to be set in the mts_thread_lock_level
+    uint8_t owner : 4; // The owner of the lock (if acquired)
+} mts_spinlock_t;
 
-ABC local;
+#define MTS_LOCK_DECL  LOCKSECTION mts_spinlock_t
+
+MTS_LOCK_DECL a;
 
 int main(void) {
-    for (uint32_t i = 0; i < 4; ++i) {
-        set_array(local.y, i, i + 1);
-    }
 
-    // test individual set/get
-    set_array(local.y, 2, 0);
-    printf("index %x value %d\n", 0, get_array(local.y, 0));
-
-    // test basic iterator
-    unsigned char *ptr;
-    foreach_array(local.y, ptr) {
-        printf("%d\n", *ptr);
-    }
-
-    // test range iterator
-    foreach_range_array(local.y, ptr, 1, 2) {
-        printf("range: %d\n", *ptr);
-    }
-
-    // test range iterator overflow
-    foreach_range_array(local.y, ptr, 0, 200) {
-      printf("overflow_test: %d\n", *ptr);
-    }
-
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
 
