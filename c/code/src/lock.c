@@ -37,19 +37,31 @@ void setup(void) {
   memset(mts_lastlock_grabbed, 0, sizeof(mts_spinlock_t*) * KERNIF_MAX_THREADS);
 }
 
-static void testSuccess_Basic(void) {
+static void testSuccess_SimpleDeadlock(void) {
   mts_spinlock_t a,b;
   a.owner = 1;
   b.owner = 0;
   mts_lastlock_grabbed[0] = &a;
   mts_lastlock_grabbed[1] = &b;
 
-  printf("lock a %p lock b %p\n", &a, &b);
+  printf("\tlock a %p\n\tlock b %p\n", &a, &b);
   detect_deadlock();
 }
 
+static void testSuccess_NoDeadlock(void) {
+  mts_spinlock_t a,b;
+  a.owner = 2;
+  b.owner = 1;
+  mts_lastlock_grabbed[0] = &a;
+  mts_lastlock_grabbed[2] = &b;
+
+  printf("\tlock a %p\n\tlock b %p\n", &a, &b);
+  detect_deadlock();  
+}
+
 int main(void) {
-  invoke(testSuccess_Basic, "basic");
+  invoke(testSuccess_SimpleDeadlock, "simpledeadlock");
+  invoke(testSuccess_NoDeadlock, "nodeadlock");
 
   return EXIT_SUCCESS;
 }
