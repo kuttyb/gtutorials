@@ -16,7 +16,10 @@ typedef struct {
 
 MTS_LOCK_DECL a;
 
+typedef mts_spinlock_t a_t;
+
 int main(void) {
+  a_t x;
 
   return EXIT_SUCCESS;
 }

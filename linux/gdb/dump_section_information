@@ -1,4 +1,4 @@
-maint info section-flags .locks
+maint info section .locks
 
 That will dump information about section ".locks"
 
