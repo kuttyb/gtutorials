@@ -11,13 +11,15 @@ typedef struct {
 
 #define KERNIF_MAX_THREADS   (0x4)
 mts_spinlock_t *mts_lastlock_grabbed[KERNIF_MAX_THREADS];
+mts_spinlock_t *r0;
+mts_spinlock_t *r1;
 
 static inline mts_spinlock_t* mts_getlock_image(mts_spinlock_t *lock) {
   assert(lock->owner < KERNIF_MAX_THREADS);
   return mts_lastlock_grabbed[lock->owner];
 }
 
-void detect_deadlock() {
+void detect_deadlock(mts_spinlock_t **one, mts_spinlock_t **two) {
   // deadlock detection logic
   uint32_t tid, ctr;
   for (tid = 0; tid < KERNIF_MAX_THREADS; ++tid) {
@@ -25,8 +27,10 @@ void detect_deadlock() {
     if (!lock) continue;
     for (ctr = 0; (ctr < KERNIF_MAX_THREADS) && (lock = mts_getlock_image(lock)); ++ctr) {
       if (lock->owner == tid) {
-        printf("locks %p and %p are deadlocked\n", 
-               lock, mts_lastlock_grabbed[tid]);
+        /* printf("locks %p and %p are deadlocked\n",  */
+        /*        lock, mts_lastlock_grabbed[tid]); */
+        *one = lock;
+        *two = mts_lastlock_grabbed[tid];
         return;       
       }
     }
@@ -35,6 +39,22 @@ void detect_deadlock() {
 
 void setup(void) {
   memset(mts_lastlock_grabbed, 0, sizeof(mts_spinlock_t*) * KERNIF_MAX_THREADS);
+  r0 = NULL;
+  r1 = NULL;
+}
+
+static void assert_locks(mts_spinlock_t *one, mts_spinlock_t *two) {
+  if ((one == r0) && (two == r1)) {
+    return;
+  }
+
+  if ((one == r1) && (two == r0)) {
+    return;
+  }
+  
+  printf("locks %p %p do not match r %p %p\n",
+         one, two, r0, r1);
+  assert(0);
 }
 
 static void testSuccess_SimpleDeadlock(void) {
@@ -44,8 +64,8 @@ static void testSuccess_SimpleDeadlock(void) {
   mts_lastlock_grabbed[0] = &a;
   mts_lastlock_grabbed[1] = &b;
 
-  printf("\tlock a %p\n\tlock b %p\n", &a, &b);
-  detect_deadlock();
+  detect_deadlock(&r0, &r1);
+  assert_locks(&a, &b);
 }
 
 static void testSuccess_NoDeadlock(void) {
@@ -55,8 +75,8 @@ static void testSuccess_NoDeadlock(void) {
   mts_lastlock_grabbed[0] = &a;
   mts_lastlock_grabbed[2] = &b;
 
-  printf("\tlock a %p\n\tlock b %p\n", &a, &b);
-  detect_deadlock();  
+  detect_deadlock(&r0, &r1);  
+  assert_locks(NULL, NULL);
 }
 
 static void testSuccess_PointingIntoCycle(void) {
@@ -68,9 +88,8 @@ static void testSuccess_PointingIntoCycle(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  printf("\tlock a %p\n\tlock b %p\n\tlock c %p\n", 
-         &a, &b, &c);
-  detect_deadlock();  
+  detect_deadlock(&r0, &r1);
+  assert_locks(&b, &c);
 }
 
 static void testSuccess_PointingIntoCycle2(void) {
@@ -82,9 +101,8 @@ static void testSuccess_PointingIntoCycle2(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  printf("\tlock a %p\n\tlock b %p\n\tlock c %p\n", 
-         &a, &b, &c);
-  detect_deadlock();  
+  detect_deadlock(&r0, &r1);  
+  assert_locks(&b, &c);
 }
 
 
@@ -96,9 +114,8 @@ static void testSuccess_FirstEntryNull(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  printf("\tlock a %p\n\tlock b %p\n\tlock c %p\n", 
-         NULL, &b, &c);
-  detect_deadlock();  
+  detect_deadlock(&r0, &r1);  
+  assert_locks(&b, &c);
 }
 
 /** all members are linked and last and first are connected */
@@ -113,9 +130,8 @@ static void testSuccess_FullCycle(void) {
   mts_lastlock_grabbed[2] = &c;
   mts_lastlock_grabbed[3] = &d;
   
-  printf("\tlocka %p\n\tlock b %p\n\tlock c %p\n\tlock d %p\n",
-         &a, &b, &c, &d);
-  detect_deadlock();
+  detect_deadlock(&r0, &r1);
+  assert_locks(&a, &d);
 }
 
 int main(void) {
