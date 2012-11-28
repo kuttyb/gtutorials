@@ -19,7 +19,8 @@ static inline mts_spinlock_t* mts_getlock_image(mts_spinlock_t *lock) {
   return mts_lastlock_grabbed[lock->owner];
 }
 
-void detect_deadlock(mts_spinlock_t **one, mts_spinlock_t **two) {
+
+static void mts_detect_deadlock(mts_spinlock_t **one, mts_spinlock_t **two) {
   // deadlock detection logic
   uint32_t tid, ctr;
   for (tid = 0; tid < KERNIF_MAX_THREADS; ++tid) {
@@ -27,8 +28,6 @@ void detect_deadlock(mts_spinlock_t **one, mts_spinlock_t **two) {
     if (!lock) continue;
     for (ctr = 0; (ctr < KERNIF_MAX_THREADS) && (lock = mts_getlock_image(lock)); ++ctr) {
       if (lock->owner == tid) {
-        /* printf("locks %p and %p are deadlocked\n",  */
-        /*        lock, mts_lastlock_grabbed[tid]); */
         *one = lock;
         *two = mts_lastlock_grabbed[tid];
         return;       
@@ -64,7 +63,7 @@ static void testSuccess_SimpleDeadlock(void) {
   mts_lastlock_grabbed[0] = &a;
   mts_lastlock_grabbed[1] = &b;
 
-  detect_deadlock(&r0, &r1);
+  mts_detect_deadlock(&r0, &r1);
   assert_locks(&a, &b);
 }
 
@@ -75,7 +74,7 @@ static void testSuccess_NoDeadlock(void) {
   mts_lastlock_grabbed[0] = &a;
   mts_lastlock_grabbed[2] = &b;
 
-  detect_deadlock(&r0, &r1);  
+  mts_detect_deadlock(&r0, &r1);  
   assert_locks(NULL, NULL);
 }
 
@@ -88,7 +87,7 @@ static void testSuccess_PointingIntoCycle(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  detect_deadlock(&r0, &r1);
+  mts_detect_deadlock(&r0, &r1);
   assert_locks(&b, &c);
 }
 
@@ -101,7 +100,7 @@ static void testSuccess_PointingIntoCycle2(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  detect_deadlock(&r0, &r1);  
+  mts_detect_deadlock(&r0, &r1);  
   assert_locks(&b, &c);
 }
 
@@ -114,7 +113,7 @@ static void testSuccess_FirstEntryNull(void) {
   mts_lastlock_grabbed[1] = &b;
   mts_lastlock_grabbed[2] = &c;
 
-  detect_deadlock(&r0, &r1);  
+  mts_detect_deadlock(&r0, &r1);  
   assert_locks(&b, &c);
 }
 
@@ -130,12 +129,12 @@ static void testSuccess_FullCycle(void) {
   mts_lastlock_grabbed[2] = &c;
   mts_lastlock_grabbed[3] = &d;
   
-  detect_deadlock(&r0, &r1);
+  mts_detect_deadlock(&r0, &r1);
   assert_locks(&a, &d);
 }
 
 static void testSuccess_AllNull(void) {
-  detect_deadlock(&r0, &r1);
+  mts_detect_deadlock(&r0, &r1);
   assert(!(r0 || r1));
 }
 
