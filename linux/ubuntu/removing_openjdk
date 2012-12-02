@@ -1,0 +1,1 @@
+dpkg -l  and apt-get remove openjdk-*  icedtea-* and gcj-*, Thanks Ubuntu but no thanks!
