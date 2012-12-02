@@ -25,9 +25,10 @@ asm_hexdump_uops(uint32_t ctr, uint32_t *mem, const uint32_t size, uint32_t uop,
   // print out old entries and clear array
   if (forceflush || (!index && ctr)) {
     uint32_t base = asm_hexdump_getbase(ctr, size) * 4;
-    for (uint32_t i = 0; i < size; ++i) {
+    uint32_t i;
+    for (i = 0; i < size; ++i) {
       if (!(i % 4)) {
-        printf("\n0x%08x: ", base);
+        printf("\n0x%08x:     ", base);
         base += 16;
       }
       printf("0x%08x      ", mem[i]);
@@ -39,7 +40,6 @@ asm_hexdump_uops(uint32_t ctr, uint32_t *mem, const uint32_t size, uint32_t uop,
 
   return ctr + 1;
 }
-
 
 int main(void) {
   // uops memory dump 
