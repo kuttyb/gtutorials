@@ -3,12 +3,7 @@
 #include <stdbool.h>
 #include <inttypes.h>
 #include <assert.h>
-
-typedef struct {
-  uint32_t bitmap[8];
-  uint16_t base;
-  uint8_t  nextfit_index;
-} SLAB;
+#include "allocator.h"
 
 /** TODO: implement an array to store freed blocks, when array fills up 
     update SLAB with information. If SLAB does not have hte block you are
@@ -38,7 +33,7 @@ static inline uint16_t alloc_mem(bool issmallslab) {
 // giving up (thats the price you pay for NEXTFIT)
 // small has base 64K aligned and large has base 1MB aligned. This logic is hardcoded 
 // and I don't see this changing for the purpose of our allocator.
-static inline void* slab_alloc_nextfit(SLAB *slab, uint16_t units, bool issmallslab) {
+void* slab_alloc(SLAB *slab, uint16_t units, bool issmallslab) {
   if (!slab->base) {
     slab->base = alloc_mem(issmallslab);
     assert(slab->base);
