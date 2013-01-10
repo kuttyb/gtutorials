@@ -1,0 +1,4 @@
+maint info section .locks
+
+That will dump information about section ".locks"
+

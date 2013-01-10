@@ -1,0 +1,9 @@
+dpkg --list | grep linux-image
+
+sudo apt-get purge name-from-above
+
+sudo update-grub2
+
+If you accidentally remove the current kernel as I once did, then do 
+
+sudo apt-get install linux-image-generic

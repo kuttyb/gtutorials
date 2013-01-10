@@ -21,6 +21,8 @@ ptr.c                 \
 mmap.c                \
 avltree.c             \
 allocator.c           \
+staticarray.c         \
+lock.c                \
 rmat.c                \
 query.c 
 
