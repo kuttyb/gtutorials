@@ -29,11 +29,17 @@ static inline uint16_t alloc_mem(bool issmallslab) {
 
 #endif
 
+static inline void set_bit(SLAB *slab, uint16_t start_unit, uint16_t units) {
+}
+
+static inline void reset_bit(SLAB *slab, uint16_t start_unit, uint16_t units){
+}
+
 // TODO if this returns NULL go scan freelist cache for recently freed blocks before
 // giving up (thats the price you pay for NEXTFIT)
 // small has base 64K aligned and large has base 1MB aligned. This logic is hardcoded 
 // and I don't see this changing for the purpose of our allocator.
-void* slab_alloc(SLAB *slab, uint16_t units, bool issmallslab) {
+static inline void* slab_alloc_nextfit(SLAB *slab, uint16_t units, bool issmallslab) {
   if (!slab->base) {
     slab->base = alloc_mem(issmallslab);
     assert(slab->base);
@@ -47,12 +53,62 @@ void* slab_alloc(SLAB *slab, uint16_t units, bool issmallslab) {
   uintptr_t ptr;
   if (issmallslab) {
     ptr = slab->base << 16;
+    reset_bit(slab, slab->nextfit_index, units);
     ptr += slab->nextfit_index << 8;
   } else {
     ptr = slab->base << 20;
+    reset_bit(slab, slab->nextfit_index, units);
     ptr += slab->nextfit_index << 12;
   }
   return (void*) ptr;
+}
+
+void* slab_alloc(uint32_t bytes) {
+  SLAB *slab;
+  bool issmallslab;
+  uint16_t units;
+
+  if (bytes < 4096) {
+    slab = &small_slab[0];
+    issmallslab = true;
+    units = bytes >> 8;
+    if (((bytes >> 8) << 8) != bytes) units++;
+  } else if (bytes < 65536) {
+    slab = &large_slab;
+    issmallslab = false;
+    units = bytes >> 12;
+    if (((bytes >> 8) << 12) != bytes) units++;
+  } else {
+    printf("%d bytes exceeds block size that our allocator can allocate\n",
+           bytes);
+    assert(0);
+    return NULL;
+  }
+  return slab_alloc_nextfit(slab, units, issmallslab);
+}
+
+void slab_free(void *ptr, uint32_t bytes) {
+  assert(ptr);
+  // locate the slab
+  SLAB *slab;
+  uint16_t units;
+  uint16_t start_unit;
+
+  if (bytes < 4096) {
+    slab = &small_slab[0];
+    units = bytes >> 8;
+    if (((bytes >> 8) << 8) != bytes) units++;
+    start_unit = (uint16_t)((uintptr_t)ptr >> 8);
+  } else if (bytes < 65536) {
+    slab = &large_slab;
+    units = bytes >> 12;
+    if (((bytes >> 8) << 12) != bytes) units++;
+    start_unit = (uint16_t)((uintptr_t)ptr >> 12);
+  } else {
+    assert(0);
+  }
+
+  set_bit(slab, start_unit, units);
 }
 
 int main(void) {
