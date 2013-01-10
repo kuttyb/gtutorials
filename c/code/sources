@@ -20,6 +20,7 @@ nontemp.c             \
 ptr.c                 \
 mmap.c                \
 avltree.c             \
+allocator.c           \
 rmat.c                \
 query.c 
 
