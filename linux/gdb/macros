@@ -1,0 +1,22 @@
+define opt
+set $i = $arg0
+printf "total opttrans %d\n", tdesc[$i].num_opttrans + tdesc[$i].num_rbcomp_opttrans
+set $j = 0
+set $total = tdesc[$i].num_opttrans + tdesc[$i].num_rbcomp_opttrans
+while ($j < $total)
+ printf "entry %d is_rollback : %d  lip : 0x%llx\n", $j, tdesc[$i].opttrans[$j].is_rollback, tdesc[$i].opttrans[$j].lip
+ set $j = $j + 1
+end
+end
+
+
+define td
+set $i = 0
+while ($i < 128) 
+ if (tdesc[$i].xlat_id)
+  printf "entry %d xlat_id %d\n", $i, tdesc[$i].xlat_id
+ end
+ set $i = $i + 1
+end
+end
+  
