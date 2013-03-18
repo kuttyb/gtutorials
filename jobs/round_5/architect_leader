@@ -1,2 +1,38 @@
 Software Architect: (ascending chronological order)
 ==================
+
+Tegra T132 SoC / Denver CPU Architect:
+* T132 is the Tegra SoC that replaces ARM A15 with NVIDIA's own CPU code named Denver. My role was to ensure we got the best Perf/Power out of this SoC on Tegra and WoT especially for Browser and Graphics workloads.
+
+Power Management : Denver uses a microkernel called MTS running on baremetal and exposes a Threaded CPU to the OS. Designed scheduling changes to this microkernel to allow Transparent core merging of underused cores. So 3 poorly unused cores get merged into a single core with 4 threads running. This was designed to get Cluster Switching working for Tegra on Windows which did not have this support at that time. 
+
+Cluster Switch Latency : Investigated Perf problems during cluster switching due to cache incoherence between two clusters. Prepared detailed report to justify changes for the next generation SoC.
+
+Implemented QEMU based Memory Profiler to monitor Application's memory usage with a 10% profiling overhead. Trapped TLB miss requests in QEMU to process page access information. 
+
+Implemented Large Page Support for ARMv7 based on MEmory Profile reports of Web Browser memory usage patterns.
+
+Worked with Opera and Mozilla engineers to understand Browser memory usage. Implemented Thread Local Surface type in Linux kernel, TLB invalidates for which are not broadcasted until Threads migrate. Helps GoogleV8 benchmark by about 20%. Discussing disabling snoop filters for such surfaces in the next generation CPU.
+
+
+
+Tegra T124 SoC (ARM driver porting):
+* Tegra has a Unified CPU/GPU framebuffer which is not cache coherent. My role was to coordinate Driver changes across OGL/DX/CUDA and GPU kernel and make sure it was safe for the new FB layout and worked well with the ARM memory model. Documented changes required and implemented the changes for the kernel driver.
+* Did perf investigations to measure impact of L2 flush/invalidate in critical 3D/compute launch code.
+* Did scoping and investigation to understand ordering impact of AXI on GPU hw and its impact on kernel driver code in terms of GPU register read/write ordering completions.
+
+Project Orion: 
+NVIDIA's ARM CPU/Maxwell GPU / custom chipset interconnect Solution for HPC Solution. My role here was to Drive SW/HW changes to implement Uniform Virtual Address Space across a cache coherent CPU/GPU. This required coordinating with L2/Coherence HW leads and kernel/CUDA driver teams. 
+ <pick actual details from resume>
+
+GPU/Chipset Verification Lead: 
+The role was to reach out to the various HW unit leads, SW stack stake holders and make sure we had a CHIP Verification plan that covered all components and was easily measurable.
+ * PCIE verification: Drove changes in our Directed Test Engine to make it runnable from Windows Vista/XP to test ASLM, ASPM, Standby Hibernate, Windows TDR and make sure it covered various interesting HW chipset corner conditions. 
+ * Power Management Verification: Designed a Probe Based Framework which allowed probes to be inserted into the Driver. Probes could introduce arbitrary waits until a certain interesting HW event occurs, like Power transition interrupts. This helped us verify deterministically Engine Power Transitions for Microsoft Vista. Actual implementation was done by a team of 4 members.
+ * Coordinated with Display Driver and Display HW leads to enable testing Display testing with various Multi Engine tests. These tests allow us to measure FB bandwidth that is available to the Display engine without which certain modesets cannot be done.
+ * Increased coverage of trouble areas like GPU context switching, thread scheduling, memory management and ECC.
+
+
+
+
+
