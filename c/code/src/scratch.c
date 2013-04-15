@@ -5,19 +5,25 @@
 #include <inttypes.h>
 #include <assert.h>
 
-void func(uint32_t *a, uint32_t i) {
-  uint32_t *b = &a[i];
-  *b = 10;
-}
-
 int main(void) {
-  uint32_t a[2] = {3, 5};
+  uint32_t a = 0x8;
+  uint32_t b = 0x4;
+  uint32_t c = 0x9;
 
-  func(a, 0);
-  func(a, 1);
-  func(a, 2);
+  int diff1 = a - b;
+  int diff2 = a - c;
+  int diff3 = b - c;
+  int diff4 = c - b;
 
-  printf("values are %d %d\n", a[0], a[1]);
+  printf("%d %d %d %d\n", diff1, diff2, diff3, diff4);
+
+  uint32_t offset = 32;
+  offset = offset - (diff1);
+  printf("offset %d\n", offset);
+
+  offset = 32;
+  offset = offset - (diff2);
+  printf("offset %d\n", offset);
 
   return EXIT_SUCCESS;
 }
