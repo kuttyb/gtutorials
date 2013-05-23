@@ -1,0 +1,13 @@
+http://www.akadia.com/services/ora_enable_core.html
+http://ubuntuforums.org/showthread.php?t=313498
+
+ulimit -c unlimited
+
+# /etc/security/limits.conf
+#
+# Each line describes a limit for a user in the form:
+#
+# <domain> <type> <item> <value>
+#
+*  soft  core  unlimited
+
