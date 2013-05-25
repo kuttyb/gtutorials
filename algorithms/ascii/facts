@@ -1,0 +1,6 @@
+48 to 57 are the digits 0-9
+
+65 is 'A'
+
+97 is 'a' (so set the 5th bit to add 32)
+
