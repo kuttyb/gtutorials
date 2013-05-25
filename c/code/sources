@@ -22,6 +22,7 @@ mmap.c                \
 avltree.c             \
 allocator.c           \
 staticarray.c         \
+atoi.c                \
 lock.c                \
 rmat.c                \
 query.c 
