@@ -3,9 +3,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
-// REMEMBER!! In both reverse and atoi, FIRST ADD THEN MULTIPLY THE POWER VARIABLE
-// BY 10 **NOT** the other way around.
-
+// ================================================================
+// For reverse multiply temp by 10 and for atoi multiply diff by 10
+// ================================================================
 static uint32_t reverse(uint32_t input) {
   uint32_t temp  = 0;
 
