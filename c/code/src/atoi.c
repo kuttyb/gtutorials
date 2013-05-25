@@ -3,6 +3,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
+// REMEMBER!! In both reverse and atoi, FIRST ADD THEN MULTIPLY THE POWER VARIABLE
+// BY 10 **NOT** the other way around.
+
 static uint32_t reverse(uint32_t input) {
   uint32_t temp  = 0;
 
@@ -38,8 +41,8 @@ static int atoi(const char *input) {
 
 
     int oldnum = num;
-    num += i * (temp - 48);
-    //    printf("char is %d i is %d num is %d\n", (temp - 48), i, num);
+    num += (temp -48) * i;
+    // printf("char is %d i is %d num is %d\n", (temp - 48), i, num);
     assert(num >= oldnum); /** check for overflow */
     i *= 10;
     bsignchecked = true;
