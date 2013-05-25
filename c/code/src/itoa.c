@@ -6,6 +6,7 @@
 
 // =====================================================================================
 // The key is reverse, countdigits then add it to the string by successive mod/div steps
+// In countdigits, make sure you special case watch out for 0!
 // =====================================================================================
 static uint32_t reverse(uint32_t input) {
   uint32_t temp  = 0;
