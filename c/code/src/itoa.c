@@ -4,6 +4,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
+// =====================================================================================
+// The key is reverse, countdigits then add it to the string by successive mod/div steps
+// =====================================================================================
 static uint32_t reverse(uint32_t input) {
   uint32_t temp  = 0;
 
