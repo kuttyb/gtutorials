@@ -54,13 +54,13 @@ static int atoi(const char *input) {
 }
 
 int main(void) {
+  assert(atoi( "- 10 $%23") == -1023);
+  assert(atoi( "10- $%23")  == 1023);
+  assert(atoi( "1-0 $%23")  == 1023);
 
-  if (1) {  
-  printf("%d\n", atoi( "- 10 $%23"));
-  printf("%d\n", atoi( "10- $%23"));
-  printf("%d\n", atoi( "1-0 $%23"));
-  }
+  assert(reverse(1234) == 4321);
+  assert(reverse(1023) == 3201);
+  assert(reverse(130)  == 31);
 
-  //  printf("%d\n", reverse(1234));
   return 0;
 }
