@@ -4,78 +4,52 @@
 #include <stdbool.h>
 #include <assert.h>
 
-static uint32_t reverse(uint32_t input) {
-  uint32_t temp  = 0;
-
-  while(input) {    
-    temp  += input % 10;
-    input /= 10;
-    if (input) temp *= 10;
+static int converter_from_hex(char t) {  
+  /** Is it b/w 0-9 */
+  if ((t >= '0') && (t <= '9')) {
+    return t - '0';
   }
-  return temp;
+
+  /** since its > 9 lets convert to lowercase first */
+  t = t | 32;
+  if ((t > 'f') || (t < 'a')) {
+    assert(0); /** invalid digit */
+    return -1;
+  }
+  return t - 'a' + 10;
 }
 
-static uint32_t countdigits(uint32_t a) {
-  if (!a) return 1;
-
-  uint32_t i = 0;
-  for (; a; ++i) { 
-    a /= 10;
-  }
-  return i;
+static int converter_from_binary(char input) {
+  if (input == '0') return 0;
+  if (input == '1') return 1;
+  assert(0); /** invalid input */
+  return -1;
 }
 
-static char* itoa(int input) {
-  int a = input;
-  uint32_t digits;
+static int convert_to_decimal(const char *str, uint32_t base, int(*converter)(char)) {
+  int  sum = 0;
+  bool start = true;
 
-  /** check for negative numbers */
-  if (input < 0) {
-    a = input * -1;
-    digits = countdigits(a) + 1;
-  } else {
-    digits = countdigits(a);
-  }
-
-  char *str = calloc(digits + 1, sizeof(char));
-  assert(str);
-
-  int b = reverse(a);
-  if (0) printf("input num %d reverse %d digits %d\n", 
-                a, b, digits);
-
-  for (uint32_t i = 0; i < digits; ++i) {
-    if ((input < 0) && (!i)) {
-      str[0] = '-';
-      continue;
+  for (; *str; str++) {
+    if (!start) {
+      sum *= base;
     }
-    uint8_t t = b % 10;
-    if (0) printf("adding value %d to pos %d b is %d\n", 
-                  t, i, b);
-    str[i] = t + 48;
-    b /= 10;
+    sum += converter(*str);
+    start = false;
   }
-
-  /** add the null character */
-  str[digits] = '\0';
-  return str;
+  return sum;
 }
 
 int main(void) {
-  if (0) {
-  printf("%s\n", itoa(0));
-  printf("%s\n", itoa(1));
-  printf("%s\n", itoa(1230));
-  printf("%s\n", itoa(100));
-  printf("%s\n", itoa(123));
-  printf("%s\n", itoa(1234));
+  if (1) {
+  printf("%d\n", convert_to_decimal("31", 16, converter_from_hex));
+  printf("%d\n", convert_to_decimal("131", 16, converter_from_hex));
+  printf("%d\n", convert_to_decimal("10a", 16, converter_from_hex));
+  printf("%d\n", convert_to_decimal("A00", 16, converter_from_hex));
+  printf("%d\n", convert_to_decimal("A0", 16, converter_from_hex));
+  printf("%d\n", convert_to_decimal("f", 16, converter_from_hex));
   }
 
-  printf("%s\n", itoa(-2));
-  printf("%s\n", itoa(-21));
-  printf("%s\n", itoa(-210));
-  printf("%s\n", itoa(-200));
-  printf("%s\n", itoa(-201));
 
   return 0;
 }
