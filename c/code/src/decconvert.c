@@ -32,14 +32,10 @@ static int converter_from_binary(char input) {
 
 static int convert_to_decimal(const char *str, uint32_t base, int(*converter)(char)) {
   int  sum = 0;
-  bool start = true;
 
   for (; *str; str++) {
-    if (!start) {
-      sum *= base;
-    }
+    sum *= base; /** first time around sum is zero so this is a noop */    
     sum += converter(*str);
-    start = false;
   }
   return sum;
 }
