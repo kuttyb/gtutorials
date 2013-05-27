@@ -35,7 +35,19 @@ static int stringcmp(const char *src, const char *dst, int *len) {
   return *src - *dst;
 }
 
+static const char* strstr(const char *src, const char *dst) {
+  assert(src && dst);
+  const char *s;
+  const char *d;
+  for (; *src; ++src) {
+    for (s = src, d = dst; *s && *d && *d == *s; s++, d++);
+    if (!*d) return src;
+  }
+  return NULL;
+}
+
 int main(void) {
+  if (0) {
   {
     char dst[100];
     printf("%s\n", stringrev("abc", dst));
@@ -56,6 +68,14 @@ int main(void) {
     int len = 0;
     printf("%d\n", stringcmp(dst, src, &len));
     printf("len %d\n", len);
+  }
+  }
+
+  // strstr
+  {
+    const char src[] = "abc123xyz";
+    const char dst[] = "1231";
+    printf("%s\n", strstr(src, dst));
   }
 
   return 0;
