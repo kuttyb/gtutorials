@@ -21,10 +21,42 @@ static char* stringrev(const char *src, char *dst) {
   return dst;
 }
 
+static void stringcpy(const char *src, char *dst) {
+  assert(src && dst);
+  for (; (*dst = *src) && *src; src++, dst++) {
+  }
+}
+
+static int stringcmp(const char *src, const char *dst, int *len) {
+  int alen = 0;
+  for (; *src && *dst && *dst == *src; src++, dst++, alen++);
+  *len = alen;
+  printf("%s: dst is at %c\n", __FUNCTION__, *dst);
+  return *src - *dst;
+}
+
 int main(void) {
-  char dst[100];
-  printf("%s\n", stringrev("abc", dst));
-  printf("%s\n", stringrev(" a b 123 c", dst));
+  {
+    char dst[100];
+    printf("%s\n", stringrev("abc", dst));
+    printf("%s\n", stringrev(" a b 123 c", dst));
+  }
+
+  {
+    char src[20] = "abcccccccccc";
+    src[2] = '\0';
+    char adst[7] = "xxxxxx";
+    stringcpy(src, adst);
+    printf("%s\n", adst);
+  }
+
+  {
+    const char src[] = "abc123";
+    const char dst[] = "abc";
+    int len = 0;
+    printf("%d\n", stringcmp(dst, src, &len));
+    printf("len %d\n", len);
+  }
 
   return 0;
 }
