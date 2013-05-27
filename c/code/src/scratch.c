@@ -46,6 +46,18 @@ static const char* strstr(const char *src, const char *dst) {
   return NULL;
 }
 
+static const char* strstrlast(const char *src, const char *dst) {
+  assert(src && dst);
+  const char *s;
+  const char *d;
+  const char *last = NULL;
+  for (; *src; ++src) {
+    for (s = src, d = dst; *s && *d && *d == *s; s++, d++);
+    if (!*d) last = src;
+  }
+  return last;
+}
+
 int main(void) {
   if (0) {
   {
@@ -69,14 +81,30 @@ int main(void) {
     printf("%d\n", stringcmp(dst, src, &len));
     printf("len %d\n", len);
   }
-  }
 
   // strstr
   {
     const char src[] = "abc123xyz";
-    const char dst[] = "1231";
-    printf("%s\n", strstr(src, dst));
+    const char dst[] = "yz";
+    const char *x = strstr(src, dst);
+    if (x) 
+      printf("%s\n", x);
+    else 
+      printf("no match\n");
   }
+  }
+
+  // strstrlast
+  {
+    const char src[] = "xabyabzab1ab2ab98";
+    const char dst[] = "ab";
+    const char *x = strstrlast(src, dst);
+    if (x) 
+      printf("%s\n", x);
+    else 
+      printf("no match\n");
+  }
+
 
   return 0;
 }
