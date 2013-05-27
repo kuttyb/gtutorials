@@ -24,6 +24,7 @@ allocator.c           \
 staticarray.c         \
 atoi.c                \
 itoa.c                \
+string.c              \
 decconvert.c          \
 lock.c                \
 rmat.c                \
