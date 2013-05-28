@@ -1,0 +1,50 @@
+-------------------------------------
+NOTE:
+[a] same old logic, use pre-order traversal but store null objects including those for leaf nodes. We store in file just the key so that deserialize can get the value but use separate pointers and create back a similar BST with the same shape and value. We are *NOT* storing pointers.
+
+[b] We did not overload the stack with any special logic. Push ignores NULL pointers and pop doesn't do anything special.
+-------------------------------------
+
+Serialize:
+=========
+
+push(root);
+while(!empty()) {
+  n = pop();
+  WRITE(n);
+  
+  if (!NULL_OBJECT(n)) {
+     if (!n->l) push(NULL_OBJECT);
+     else push(n->l);
+
+     if (!n->r) push (NULL_OBJECT);
+     else push(n->r);
+  }
+}
+
+
+Deserialize: <remember, we only store keys in the file. Null_key is a special key. There are no pointers. This allows for a more
+compact representation with a better chance for compression >
+===========
+key = READ(); 
+if (!VALID(key)) return;
+
+n = FORM(key);  // FORM callocs a Node object and assigns the key field with input key
+push(n);
+while(!empty()) {
+  n = pop(); n0 = null; n1 = null;
+  key = READ();
+  if (valid(key)) {
+     n0 = form(key);
+     push(n0);
+  }
+
+  key = READ();
+  if (valid(key)) {
+     n1 = form(key);
+     push(n1);
+  }  
+
+  n->l = n0;
+  n->r = n1; // These could be nulls but the goal is to get back the old shape
+}
