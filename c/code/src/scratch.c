@@ -4,14 +4,20 @@
 #include <stdbool.h>
 #include <assert.h>
 
-int test(void) {
-     return 3;
+static inline uint32_t getmask(uint32_t hi, uint32_t lo) {
+     uint32_t mask =  1 << (hi - lo + 1);
+     mask -= 1;
+     mask <<= lo;
+     return mask;
+}
+
+static inline uint32_t getval(uint32_t val, uint32_t hi, 
+                              uint32_t lo) {
+     return (val & getmask(hi, lo)) >> lo;
 }
 
 int main(void) {
-     for (test(); test(); test()) {
-          printf("3");
-     }
-
+     printf("0x%x\n", getmask(4, 1));
+     printf("0x%x\n", getval(0xf, 3, 1));
     return 0;
 }
