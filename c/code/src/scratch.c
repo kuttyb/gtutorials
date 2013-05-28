@@ -16,8 +16,19 @@ static inline uint32_t getval(uint32_t val, uint32_t hi,
      return (val & getmask(hi, lo)) >> lo;
 }
 
+
+static inline uint32_t countsetbits(uint32_t val) {
+     uint32_t ctr = 0;
+     for (; val ; ctr++) {
+          val &= val - 1;
+     }
+     return ctr;
+}
+ 
 int main(void) {
-     printf("0x%x\n", getmask(4, 1));
-     printf("0x%x\n", getval(0xf, 3, 1));
+     printf("%d\n", countsetbits(5));
+     printf("%d\n", countsetbits(3));
+     printf("%d\n", countsetbits(0));
+     printf("%d\n", countsetbits(1));
     return 0;
 }
