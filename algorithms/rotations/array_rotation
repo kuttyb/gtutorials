@@ -1,4 +1,7 @@
-worked this out on my own ..
+NOTE:
+====
+worked this out on my own .. Essentially in the first step, reverse the full Array and in the second step either skip the 0th or the last element
+for the array  reversal. For right rotate, skip 0th, for left rotate skip the last (think of the direction of movement to remember this)
 
 let SIZE be the array size.
 

@@ -1,0 +1,37 @@
+Generic pattern being save-shift-restore. Save `k' elements into fifo, shift other elements and trample over these then restore fifo contents at new location.
+===================================================
+LeftRotate(A, k)
+// where k is the size of the temporary buffer provided to you
+j = len - k;
+
+for (i = 0; i < len; ++i) {
+    if (i < k) {
+       T[i] = A[i];
+    } else {
+      A[i-k] = A[i];
+    }   
+}
+
+i = 0;
+for (t = j; t < len; t++) {
+    A[t] = T[i++];
+}
+
+
+RightRotate(A, k)
+// Save 'k' elements
+x = 0;
+for (i = k; i < len; i++) {
+  T[x++] = A[i];
+}
+
+// Shift
+for ( i = j - 1; i >= 0; i--) {
+    A[i + k] = A[i];
+}
+
+// Restore
+for (i = 0; i < k; i++) {
+    A[i] = T[i];
+}
+
