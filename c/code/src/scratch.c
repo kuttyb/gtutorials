@@ -37,9 +37,9 @@ static inline bool isempty(Stack *stack) {
 static  inline uint32_t peek(Stack *stack) {
      assert(stack->tos);
      printf("%s: value %d totalelements %d\n", 
-            __FUNCTION__, stack->data[stack->tos],
+            __FUNCTION__, stack->data[stack->tos - 1],
           stack->tos);
-     return stack->data[stack->tos];
+     return stack->data[stack->tos - 1];
 }
 
 static inline uint32_t pop(Stack *stack) {
@@ -115,6 +115,7 @@ static bool checksquare(uint32_t num) {
 
 int main(void) {
 //     teststack();
+     if (1) {
      Stack *stack = exportStack();
      push(stack, 1);
 
@@ -123,7 +124,10 @@ int main(void) {
           uint32_t val = peek(stack);
           bool bfound = false;
           // Find the next element on the forward path
-          for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
+          bool bunit = true;
+          for (uint32_t i = lastvalue + 1; (i != lastvalue + 1) || (bunit); i = (i + 1) % 17) {
+               bunit = false;
+               if (!i) continue;
                if (checksquare(val + i) && !numexists(stack, i)) {
                     push(stack, i);
                     lastvalue = 0;
@@ -140,5 +144,17 @@ int main(void) {
 
 
      destroyStack(stack);
+     }
+
+#if 0
+     uint32_t lastvalue = 2;
+     bool bunit = true;
+     for (uint32_t i = lastvalue + 1; (i != lastvalue + 1) || (bunit); i = (i + 1) % 17) {
+          bunit = false;
+          if (!i) continue;
+          printf("value is %d\n", i);
+     }
+#endif
+
      return 0;
 }
