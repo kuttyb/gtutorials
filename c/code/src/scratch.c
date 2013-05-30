@@ -57,6 +57,35 @@ static inline void push(Stack *stack, uint32_t data) {
      stack->tos++;
 }
 
+int teststack(void) {
+     Stack *stack = exportStack();
+     assert(isempty(stack));
+     assert(!getsize(stack));
+
+     push(stack, 1);
+     push(stack, 2);
+     assert(getsize(stack) == 2);
+     assert(!isempty(stack));
+     assert(peek(stack) == 2);
+
+     assert(pop(stack) == 2);
+     assert(pop(stack) == 1);
+     assert(isempty(stack));
+     assert(!getsize(stack));
+
+     push(stack, 2);
+     push(stack, 3);
+     push(stack, 4);
+     push(stack, 5);
+     assert(pop(stack) == 5);
+     for (uint32_t i = 0; i < MAXSIZE; ++i) {
+          printf("stack[%d] = %d\n", i, stack->data[i]);
+     }
+     printf("tos %d\n", stack->tos);
+
+     return 0;
+}
+
 
 int main(void) {
      Stack *stack = exportStack();
