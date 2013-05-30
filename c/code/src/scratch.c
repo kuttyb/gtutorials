@@ -57,7 +57,14 @@ static inline void push(Stack *stack, uint32_t data) {
      stack->tos++;
 }
 
-int teststack(void) {
+static bool numexists(Stack *stack, uint32_t num) {
+     for (uint32_t i = 0; i < stack->tos; ++i) {
+          if (stack->data[i] == num) return true;
+     }
+     return false;
+}
+
+void teststack(void) {
      Stack *stack = exportStack();
      assert(isempty(stack));
      assert(!getsize(stack));
@@ -83,35 +90,29 @@ int teststack(void) {
      }
      printf("tos %d\n", stack->tos);
 
-     return 0;
+     assert(!numexists(stack, 5));
+     assert(numexists(stack, 2));
+     assert(numexists(stack, 3));
+     assert(numexists(stack, 4));
+     assert(!numexists(stack, 0));
 }
 
 
 int main(void) {
+     teststack();
+
+     if (0) {
      Stack *stack = exportStack();
-     assert(isempty(stack));
-     assert(!getsize(stack));
 
      push(stack, 1);
-     push(stack, 2);
-     assert(getsize(stack) == 2);
-     assert(!isempty(stack));
-     assert(peek(stack) == 2);
-
-     assert(pop(stack) == 2);
-     assert(pop(stack) == 1);
-     assert(isempty(stack));
-     assert(!getsize(stack));
-
-     push(stack, 2);
-     push(stack, 3);
-     push(stack, 4);
-     push(stack, 5);
-     assert(pop(stack) == 5);
-     for (uint32_t i = 0; i < MAXSIZE; ++i) {
-          printf("stack[%d] = %d\n", i, stack->data[i]);
+     
+     while(!isempty(stack)) {
+          uint32_t val = peek(stack);
+          
      }
-     printf("tos %d\n", stack->tos);
 
+
+     destroyStack(stack);
+     }
      return 0;
 }
