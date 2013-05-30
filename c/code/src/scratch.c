@@ -120,7 +120,12 @@ int main(void) {
 
      uint32_t lastvalue = 0;
      bool backtrack = false;
-     while(!isempty(stack) || (getsize(stack) != 16)) {
+     while(!isempty(stack)) {
+          if (getsize(stack) == 16) {
+               printf("good we found the combination\n");
+               return 0;
+          }
+
           uint32_t val = peek(stack);
 
           if (!backtrack) {
@@ -145,6 +150,7 @@ int main(void) {
                          push(stack, i);
                          bfound = true;
                          backtrack = false;
+                         break;
                     }
                } 
                if (!bfound) {
