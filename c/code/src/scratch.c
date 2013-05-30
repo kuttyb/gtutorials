@@ -115,46 +115,47 @@ static bool checksquare(uint32_t num) {
 
 int main(void) {
 //     teststack();
-     if (1) {
      Stack *stack = exportStack();
      push(stack, 1);
 
      uint32_t lastvalue = 0;
+     bool backtrack = false;
      while(!isempty(stack) || (getsize(stack) != 16)) {
           uint32_t val = peek(stack);
-          bool bfound = false;
-          // Find the next element on the forward path
-          bool bunit = true;
-          for (uint32_t i = lastvalue + 1; (i != lastvalue + 1) || (bunit); i = (i + 1) % 17) {
-               bunit = false;
-               if (!i) continue;
-               if (checksquare(val + i) && !numexists(stack, i)) {
-                    push(stack, i);
-                    lastvalue = 0;
-                    bfound = true;
-                    break;
+
+          if (!backtrack) {
+               // Find the next element on the forward path
+               bool bfound = false;
+               for (uint32_t i = 1; i <= 16; ++i) {
+                    if (checksquare(val + i) && !numexists(stack, i)) {
+                         push(stack, i);
+                         bfound = true;
+                         break;
+                    }
                }
-          }
-                    
-          // No such number found, so pop and backtrack
-          if  (!bfound) {
-               lastvalue = pop(stack);
+               if (!bfound) {
+                    lastvalue = pop(stack);
+                    backtrack = true;
+               }
+          } else {
+               // Backtrack path
+               bool bfound = false;
+               for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
+                    if (checksquare(val + i) && !numexists(stack, i)) {
+                         push(stack, i);
+                         bfound = true;
+                         backtrack = false;
+                    }
+               } 
+               if (!bfound) {
+                    lastvalue = pop(stack);
+                    backtrack = true;
+               }
           }
      }
 
 
      destroyStack(stack);
-     }
-
-#if 0
-     uint32_t lastvalue = 2;
-     bool bunit = true;
-     for (uint32_t i = lastvalue + 1; (i != lastvalue + 1) || (bunit); i = (i + 1) % 17) {
-          bunit = false;
-          if (!i) continue;
-          printf("value is %d\n", i);
-     }
-#endif
 
      return 0;
 }
