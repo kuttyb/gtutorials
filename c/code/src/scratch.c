@@ -36,7 +36,10 @@ static inline bool isempty(Stack *stack) {
 
 static  inline uint32_t peek(Stack *stack) {
      assert(stack->tos);
-     return stack->tos;
+     printf("%s: value %d totalelements %d\n", 
+            __FUNCTION__, stack->data[stack->tos],
+          stack->tos);
+     return stack->data[stack->tos];
 }
 
 static inline uint32_t pop(Stack *stack) {
@@ -44,6 +47,8 @@ static inline uint32_t pop(Stack *stack) {
      stack->tos--;
      uint32_t val = stack->data[stack->tos];
      stack->data[stack->tos] = 0;
+     printf("%s: value %d totalelements %d\n",
+            __FUNCTION__, val, stack->tos);
      return val;
 }
 
@@ -55,6 +60,8 @@ static inline void push(Stack *stack, uint32_t data) {
      assert(stack->tos + 1 < MAXSIZE);
      stack->data[stack->tos] = data;
      stack->tos++;
+     printf("%s: value %d totalelements %d\n",
+            __FUNCTION__, data, stack->tos);
 }
 
 static bool numexists(Stack *stack, uint32_t num) {
@@ -114,15 +121,11 @@ int main(void) {
      uint32_t lastvalue = 0;
      while(!isempty(stack) || (getsize(stack) != 16)) {
           uint32_t val = peek(stack);
-          printf("peek stack value %d lastvalue %d\n", 
-                 val, lastvalue);
           bool bfound = false;
           // Find the next element on the forward path
           for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
                if (checksquare(val + i) && !numexists(stack, i)) {
                     push(stack, i);
-                    printf("pushing value %d peekvalue %d lastvalue %d\n", 
-                           i, val, lastvalue);
                     lastvalue = 0;
                     bfound = true;
                     break;
@@ -132,7 +135,6 @@ int main(void) {
           // No such number found, so pop and backtrack
           if  (!bfound) {
                lastvalue = pop(stack);
-               printf("backtracking: popping value %d\n", lastvalue);
           }
      }
 
