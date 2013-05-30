@@ -36,9 +36,6 @@ static inline bool isempty(Stack *stack) {
 
 static  inline uint32_t peek(Stack *stack) {
      assert(stack->tos);
-     printf("%s: value %d totalelements %d\n", 
-            __FUNCTION__, stack->data[stack->tos - 1],
-          stack->tos);
      return stack->data[stack->tos - 1];
 }
 
@@ -47,8 +44,6 @@ static inline uint32_t pop(Stack *stack) {
      stack->tos--;
      uint32_t val = stack->data[stack->tos];
      stack->data[stack->tos] = 0;
-     printf("%s: value %d totalelements %d\n",
-            __FUNCTION__, val, stack->tos);
      return val;
 }
 
@@ -60,8 +55,6 @@ static inline void push(Stack *stack, uint32_t data) {
      assert(stack->tos + 1 < MAXSIZE);
      stack->data[stack->tos] = data;
      stack->tos++;
-     printf("%s: value %d totalelements %d\n",
-            __FUNCTION__, data, stack->tos);
 }
 
 static bool numexists(Stack *stack, uint32_t num) {
@@ -86,22 +79,6 @@ void teststack(void) {
      assert(pop(stack) == 1);
      assert(isempty(stack));
      assert(!getsize(stack));
-
-     push(stack, 2);
-     push(stack, 3);
-     push(stack, 4);
-     push(stack, 5);
-     assert(pop(stack) == 5);
-     for (uint32_t i = 0; i < MAXSIZE; ++i) {
-          printf("stack[%d] = %d\n", i, stack->data[i]);
-     }
-     printf("tos %d\n", stack->tos);
-
-     assert(!numexists(stack, 5));
-     assert(numexists(stack, 2));
-     assert(numexists(stack, 3));
-     assert(numexists(stack, 4));
-     assert(!numexists(stack, 0));
 }
 
 static bool checksquare(uint32_t num) {
@@ -125,7 +102,7 @@ int main(void) {
                printf("good we found the combination\n");
                printf("========\n");
                for (uint32_t i = 0; i < 16; ++i) {
-                    printf("VAL: %d\n", stack->data[i]);
+                    printf("POS %d\tVAL: %d\n", i, stack->data[i]);
                }
                return 0;
           }
