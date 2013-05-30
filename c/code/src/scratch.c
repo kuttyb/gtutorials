@@ -116,17 +116,19 @@ int main(void) {
      uint32_t lastvalue = 0;
      while(!isempty(stack) || (getsize(stack) != 16)) {
           uint32_t val = peek(stack);
-
+          printf("peek stack value %d\n", val);
           // Find the next element on the forward path
           for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
                if (checksquare(val + i) && !numexists(stack, i)) {
                     push(stack, i);
+                    printf("pushing value %d\n", i);
                     lastvalue = 0;
                     break;
                }
           }
           // No such number found, so pop and backtrack
           lastvalue = pop(stack);
+          printf("backtracking: popping value %d\n", lastvalue);
      }
 
 
