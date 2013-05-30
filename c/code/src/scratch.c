@@ -5,6 +5,10 @@
 #include <stdbool.h>
 #include <assert.h>
 
+/** =====================================================
+    Stack Implementation 
+    =====================================================
+*/
 #define MAXSIZE   (20)
 
 typedef struct _Stack {
@@ -64,23 +68,6 @@ static bool numexists(Stack *stack, uint32_t num) {
      return false;
 }
 
-void teststack(void) {
-     Stack *stack = exportStack();
-     assert(isempty(stack));
-     assert(!getsize(stack));
-
-     push(stack, 1);
-     push(stack, 2);
-     assert(getsize(stack) == 2);
-     assert(!isempty(stack));
-     assert(peek(stack) == 2);
-
-     assert(pop(stack) == 2);
-     assert(pop(stack) == 1);
-     assert(isempty(stack));
-     assert(!getsize(stack));
-}
-
 static bool checksquare(uint32_t num) {
      if ((num == 4) ||  (num == 9) ||
          (num == 16) || (num == 25)) {
@@ -91,56 +78,59 @@ static bool checksquare(uint32_t num) {
 }
 
 int main(void) {
-//     teststack();
      Stack *stack = exportStack();
-     push(stack, 8);
 
-     uint32_t lastvalue = 0;
-     bool backtrack = false;
-     while(!isempty(stack)) {
-          if (getsize(stack) == 16) {
-               printf("good we found the combination\n");
-               printf("========\n");
-               for (uint32_t i = 0; i < 16; ++i) {
-                    printf("POS %d\tVAL: %d\n", i, stack->data[i]);
-               }
-               return 0;
-          }
+     /** Push all roots between 1 - 16 until a match is found */
+     for (uint32_t j = 1; j < 17; j++) {
+          printf("pushing root %d\n", j);
+          push(stack, j);
 
-          uint32_t val = peek(stack);
+          uint32_t lastvalue = 0;
+          bool backtrack = false;
 
-          if (!backtrack) {
-               // Find the next element on the forward path
-               bool bfound = false;
-               for (uint32_t i = 1; i <= 16; ++i) {
-                    if (checksquare(val + i) && !numexists(stack, i)) {
-                         push(stack, i);
-                         bfound = true;
-                         break;
+          while(!isempty(stack)) {
+               if (getsize(stack) == 16) {
+                    printf("Combination found with root %d\n", j);
+                    for (uint32_t i = 0; i < 16; ++i) {
+                         printf("POS %d\tVAL: %d\n", i, stack->data[i]);
                     }
+                    break;
                }
-               if (!bfound) {
-                    lastvalue = pop(stack);
-                    backtrack = true;
-               }
-          } else {
-               // Backtrack path
-               bool bfound = false;
-               for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
-                    if (checksquare(val + i) && !numexists(stack, i)) {
-                         push(stack, i);
-                         bfound = true;
-                         backtrack = false;
-                         break;
+
+               uint32_t val = peek(stack);
+
+               if (!backtrack) {
+                    // FORWARD PATH
+                    bool bfound = false;
+                    for (uint32_t i = 1; i <= 16; ++i) {
+                         if (checksquare(val + i) && !numexists(stack, i)) {
+                              push(stack, i);
+                              bfound = true;
+                              break;
+                         }
                     }
-               } 
-               if (!bfound) {
-                    lastvalue = pop(stack);
-                    backtrack = true;
+                    if (!bfound) {
+                         lastvalue = pop(stack);
+                         backtrack = true;
+                    }
+               } else {
+                    // BACKTRACK PATH
+                    bool bfound = false;
+                    for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
+                         if (checksquare(val + i) && !numexists(stack, i)) {
+                              push(stack, i);
+                              bfound = true;
+                              backtrack = false;
+                              break;
+                         }
+                    } 
+                    if (!bfound) {
+                         lastvalue = pop(stack);
+                         backtrack = true;
+                    }
                }
           }
      }
-
 
      destroyStack(stack);
 
