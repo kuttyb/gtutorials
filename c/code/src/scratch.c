@@ -116,7 +116,7 @@ static bool checksquare(uint32_t num) {
 int main(void) {
 //     teststack();
      Stack *stack = exportStack();
-     push(stack, 1);
+     push(stack, 8);
 
      uint32_t lastvalue = 0;
      bool backtrack = false;
