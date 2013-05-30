@@ -123,6 +123,10 @@ int main(void) {
      while(!isempty(stack)) {
           if (getsize(stack) == 16) {
                printf("good we found the combination\n");
+               printf("========\n");
+               for (uint32_t i = 0; i < 16; ++i) {
+                    printf("VAL: %d\n", stack->data[i]);
+               }
                return 0;
           }
 
