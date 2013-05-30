@@ -82,7 +82,7 @@ int main(void) {
 
      /** Push all roots between 1 - 16 until a match is found */
      for (uint32_t j = 1; j < 17; j++) {
-          printf("pushing root %d\n", j);
+          printf("Search with ROOT %d begun\n", j);
           push(stack, j);
 
           uint32_t lastvalue = 0;
@@ -94,7 +94,7 @@ int main(void) {
                     for (uint32_t i = 0; i < 16; ++i) {
                          printf("POS %d\tVAL: %d\n", i, stack->data[i]);
                     }
-                    break;
+                    goto exit_cleanup;
                }
 
                uint32_t val = peek(stack);
@@ -130,8 +130,10 @@ int main(void) {
                     }
                }
           }
+          printf("Search with ROOT %d done\n", j);
      }
 
+exit_cleanup:
      destroyStack(stack);
 
      return 0;
