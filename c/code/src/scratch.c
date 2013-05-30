@@ -42,7 +42,9 @@ static  inline uint32_t peek(Stack *stack) {
 static inline uint32_t pop(Stack *stack) {
      assert(stack->tos);
      stack->tos--;
-     return stack->data[stack->tos];
+     uint32_t val = stack->data[stack->tos];
+     stack->data[stack->tos] = 0;
+     return val;
 }
 
 static inline uint32_t getsize(Stack *stack) {
@@ -72,6 +74,15 @@ int main(void) {
      assert(isempty(stack));
      assert(!getsize(stack));
 
+     push(stack, 2);
+     push(stack, 3);
+     push(stack, 4);
+     push(stack, 5);
+     assert(pop(stack) == 5);
+     for (uint32_t i = 0; i < MAXSIZE; ++i) {
+          printf("stack[%d] = %d\n", i, stack->data[i]);
+     }
+     printf("tos %d\n", stack->tos);
 
      return 0;
 }
