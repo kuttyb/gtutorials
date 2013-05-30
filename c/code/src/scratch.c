@@ -97,18 +97,36 @@ void teststack(void) {
      assert(!numexists(stack, 0));
 }
 
+static bool checksquare(uint32_t num) {
+     if ((num == 4) ||  (num == 9) ||
+         (num == 16) || (num == 25)) {
+          return true;
+     } else {
+          return false;
+     }
+}
 
 int main(void) {
-     teststack();
+//     teststack();
 
-     if (0) {
+     if (1) {
      Stack *stack = exportStack();
-
      push(stack, 1);
-     
-     while(!isempty(stack)) {
+
+     uint32_t lastvalue = 0;
+     while(!isempty(stack) || (getsize(stack) != 16)) {
           uint32_t val = peek(stack);
-          
+
+          // Find the next element on the forward path
+          for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
+               if (checksquare(val + i) && !numexists(stack, i)) {
+                    push(stack, i);
+                    lastvalue = 0;
+                    break;
+               }
+          }
+          // No such number found, so pop and backtrack
+          lastvalue = pop(stack);
      }
 
 
