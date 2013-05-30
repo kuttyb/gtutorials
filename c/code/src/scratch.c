@@ -108,31 +108,35 @@ static bool checksquare(uint32_t num) {
 
 int main(void) {
 //     teststack();
-
-     if (1) {
      Stack *stack = exportStack();
      push(stack, 1);
 
      uint32_t lastvalue = 0;
      while(!isempty(stack) || (getsize(stack) != 16)) {
           uint32_t val = peek(stack);
-          printf("peek stack value %d\n", val);
+          printf("peek stack value %d lastvalue %d\n", 
+                 val, lastvalue);
+          bool bfound = false;
           // Find the next element on the forward path
           for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
                if (checksquare(val + i) && !numexists(stack, i)) {
                     push(stack, i);
-                    printf("pushing value %d\n", i);
+                    printf("pushing value %d peekvalue %d lastvalue %d\n", 
+                           i, val, lastvalue);
                     lastvalue = 0;
+                    bfound = true;
                     break;
                }
           }
+                    
           // No such number found, so pop and backtrack
-          lastvalue = pop(stack);
-          printf("backtracking: popping value %d\n", lastvalue);
+          if  (!bfound) {
+               lastvalue = pop(stack);
+               printf("backtracking: popping value %d\n", lastvalue);
+          }
      }
 
 
      destroyStack(stack);
-     }
      return 0;
 }
