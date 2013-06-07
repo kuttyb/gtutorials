@@ -100,7 +100,9 @@ int main(void) {
                uint32_t val = peek(stack);
 
                if (!backtrack) {
+                    // ================
                     // FORWARD PATH
+                    // ================
                     bool bfound = false;
                     for (uint32_t i = 1; i <= 16; ++i) {
                          if (checksquare(val + i) && !numexists(stack, i)) {
@@ -114,7 +116,9 @@ int main(void) {
                          backtrack = true;
                     }
                } else {
+                    // ================
                     // BACKTRACK PATH
+                    // ================
                     bool bfound = false;
                     for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
                          if (checksquare(val + i) && !numexists(stack, i)) {
