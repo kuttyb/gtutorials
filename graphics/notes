@@ -1,0 +1,70 @@
+= Infinite Reality (sort-middle)
+
+= Sort-first -- Sort-last hybrid, Sort-first (papers)b
+
+* Pixel Planes 5 (tile based rendering)
+
+= PixelFlow (Sort-Last)
+
+= WireGL (sort-first, cluster based sw-rasterizer)
+  < Q: I did not understand how they do the image
+    composition. What about depth? In sort-first,
+    each Image will be at full resolution and   
+    the compositor will have to decide on depth
+    analysis 
+    A: One way is to retain depth information along
+    with color and let the compositor do a final
+    depth test. Keep in mind, individual rendering
+    pipelines, will have done their own depth testing
+    locally but a global depth testing needs to be 
+    done to establish visibility across others.
+
+    If we passed depth, then what about alpha? Shouldn't
+    that be passed along too? Well, I guess in both
+    sort-first and sort-last some information in addition
+    to just the color needs to be shipped back to the
+    compositor (the reducer)
+
+    Update: Nope! You do not split primitives based on 
+    Object space coordinates. You do so based on 2D
+    Screen space coordinates. And yet this has to be done
+    efficiently. You are taking 3D coordinates and finding
+    their corresponding projections in 2D screen coordinate
+    space
+    http://www.cs.princeton.edu/~funk/sorting.pdf
+
+    My approach would be to Sort-First and if the total #primitives
+    is lower than a threshold, just pass it down the Geometry pipeline
+    and use Clipping to get 2D boundary. Yes this would be like SFR SLI
+    and compositing would need to be done on returned rectangular
+    images.
+
+    If total #primitives is higher than threshold, then find your own
+    bounding 3D cube, say its cube #4 and find out all primitives that
+    are contained within it. So here you would have to go from 2D tile
+    to 3D boundary that matches it when reverse model-view-project
+    transformed. That's it, after that finding primitives is a simple
+    x,y,z test.
+    >
+
+=======
+* Sort-First bins 3D primitives into 2D screen space using a quick algorithm.
+  Then runs the entire pipeline for that bin. Later Image composition is 
+  done without depth (because binning was in screen space)
+
+* Sort-Last is very similar, it runs the entire pipeline and generates an 
+  incomplete image (could be because of SLI-SFR nature or PixelFlow+deferred_shading
+  but important thing is that Image Composition is the huge step here and
+  this includes depth information)
+
+Both of the above are very good from communication point of view and the pipelines
+run w/o communication during a single frame.
+They both have Load-Imbalance problems however. 
+Overlap could be an issue with Sort-First
+
+* Sort-Middle
+ What you would do in a shared-memory interface. Very chatty, essentially Geometry could
+ talk to all Rasterizers (aka mid-frame-rendering communication)
+
+ Could have Load-Imbalance too.
+
