@@ -5,31 +5,25 @@
 = Sort-first -- Sort-last hybrid, Sort-first (papers)b
 
 = Pixel Planes 5 (tile based rendering)
-  My first impression, this seems to be the Sort-First
-  Approach where Primitives in 3D space are binned in 
-  2D screen space Tiles.
+http://www.imgtec.com/powervr/insider/docs/POWERVR%20Series5%20Graphics.SGX%20architecture%20guide%20for%20developers.1.0.8.External.pdf
 
-  Later the whole Rendering pipeline is run for all
-  primitives in this bin. During Rasterization, enough
-  on-chip memory is maintained to store normal, color,
-  xyz information for pixels so that after depth, 
-  Texture and Shading are done.
++ There is TBR and TBDR (Deferred Rendering). Think of it as a Modified Sort-Middle where after G, instead of passing primitives in 2D
+space to the Rendered based on Screen Region, you instead write it to a buffer in memory (binning)
 
-  Since its dealing with a fixed size small Screen Tile
-  say like 32x16, it can afford to allocate this space
-  for Deferred Shading.
++ You are storing primitives in per Screen Region bins. 
 
-  The advantage here (in addition to Deferred Shading)
-  being it is not memory hungry (as there are no write-backs
-  after G)
++ Rasterizer picks from each bin where the Raster tile is guaranteed to be of a small size. Now pay attention ...
+++ depth, color, stencil for such a small Screen space Tile is on chip. Now run the standard Raster pipeline.
+   What you gain is that RMW on these buffers does not touch main memory hence a power and bandwidth win they argue
 
-  If you didn't care about memory b/w, you could use this
-  for some excellent Parallelism by replicating GL cmds,
-  state and Texture across each G+Renderer.
+++ In this mode, in each bin, primitives are stored in OpenGL primitive submission order. Meaning depth test has to take place
+   and you can still have overdraw.
 
-  Image Composition at the end is real simple, since there
-  is no depth calculation required and the regions are 
-  non-overlapping.
+Tile Based Deferred Rendering is the next step forwar where the primitives are stored in z-order thereby getting HSR. Sort of 
+like a smarter depth pass. In addition, because the memory requirements are so low, extra memory is allocated on chip to store
+geometry information like normal, color, some vertex information. After depth, shading and texture are applied. Hence no overdraw
+and the name "Deferred Rendering". This is truly a win!!
+
 
 
 = PixelFlow (Sort-Last)
