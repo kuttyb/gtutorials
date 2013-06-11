@@ -1,12 +1,36 @@
 <Drawbacks/advantages are compared using "LOC" -> Load-Imbalance, Overlap, Communication>
 
-
-
 = Infinite Reality (sort-middle)
 
 = Sort-first -- Sort-last hybrid, Sort-first (papers)b
 
-* Pixel Planes 5 (tile based rendering)
+= Pixel Planes 5 (tile based rendering)
+  My first impression, this seems to be the Sort-First
+  Approach where Primitives in 3D space are binned in 
+  2D screen space Tiles.
+
+  Later the whole Rendering pipeline is run for all
+  primitives in this bin. During Rasterization, enough
+  on-chip memory is maintained to store normal, color,
+  xyz information for pixels so that after depth, 
+  Texture and Shading are done.
+
+  Since its dealing with a fixed size small Screen Tile
+  say like 32x16, it can afford to allocate this space
+  for Deferred Shading.
+
+  The advantage here (in addition to Deferred Shading)
+  being it is not memory hungry (as there are no write-backs
+  after G)
+
+  If you didn't care about memory b/w, you could use this
+  for some excellent Parallelism by replicating GL cmds,
+  state and Texture across each G+Renderer.
+
+  Image Composition at the end is real simple, since there
+  is no depth calculation required and the regions are 
+  non-overlapping.
+
 
 = PixelFlow (Sort-Last)
 
