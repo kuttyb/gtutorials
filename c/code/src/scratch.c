@@ -5,140 +5,31 @@
 #include <stdbool.h>
 #include <assert.h>
 
-/** =====================================================
-    Stack Implementation 
-    =====================================================
-*/
-#define MAXSIZE   (20)
+uint32_t fib(uint32_t n) {
+  if (!n) return 0;
+  if (n == 1) return 1;
 
-typedef struct _Stack {
-     uint32_t data[MAXSIZE];
-     uint32_t tos;
-} Stack;
+  uint32_t f0 = 0;
+  uint32_t f1 = 1;
+  uint32_t fn = 0;
 
-static Stack *exportStack(void) {
-     Stack* stack = calloc(1, sizeof(Stack));
-     assert(stack);
-     *stack = (Stack) {
-          .tos = 0
-     };
-     memset(&stack->data, 0, MAXSIZE * sizeof(uint32_t));
-     return stack;
-}
+  for (uint32_t i = 2; i <= n; ++i) {
+    fn = f0 + f1;
+    uint32_t t = f1;
+    f1 = fn;
+    f0 = t;
+  }
 
-void destroyStack(Stack *stack) {
-     assert(stack);
-     free(stack);     
-}
-
-static inline bool isempty(Stack *stack) {
-     if (!stack->tos) 
-          return true;
-     else 
-          return false;
-}
-
-static  inline uint32_t peek(Stack *stack) {
-     assert(stack->tos);
-     return stack->data[stack->tos - 1];
-}
-
-static inline uint32_t pop(Stack *stack) {
-     assert(stack->tos);
-     stack->tos--;
-     uint32_t val = stack->data[stack->tos];
-     stack->data[stack->tos] = 0;
-     return val;
-}
-
-static inline uint32_t getsize(Stack *stack) {
-     return stack->tos;
-}
-
-static inline void push(Stack *stack, uint32_t data) {
-     assert(stack->tos + 1 < MAXSIZE);
-     stack->data[stack->tos] = data;
-     stack->tos++;
-}
-
-static bool numexists(Stack *stack, uint32_t num) {
-     for (uint32_t i = 0; i < stack->tos; ++i) {
-          if (stack->data[i] == num) return true;
-     }
-     return false;
-}
-
-static bool checksquare(uint32_t num) {
-     if ((num == 4) ||  (num == 9) ||
-         (num == 16) || (num == 25)) {
-          return true;
-     } else {
-          return false;
-     }
+  return fn;
 }
 
 int main(void) {
-     Stack *stack = exportStack();
+  printf("%d\n", fib(0));
+  printf("%d\n", fib(1));
+  printf("%d\n", fib(2));
+  printf("%d\n", fib(3));
+  printf("%d\n", fib(4));
+  printf("%d\n", fib(5));
 
-     /** Push all roots between 1 - 16 until a match is found */
-     for (uint32_t j = 1; j < 17; j++) {
-          printf("Search with ROOT %d begun\n", j);
-          push(stack, j);
-
-          uint32_t lastvalue = 0;
-          bool backtrack = false;
-
-          while(!isempty(stack)) {
-               if (getsize(stack) == 16) {
-                    printf("Combination found with root %d\n", j);
-                    for (uint32_t i = 0; i < 16; ++i) {
-                         printf("POS %d\tVAL: %d\n", i, stack->data[i]);
-                    }
-                    goto exit_cleanup;
-               }
-
-               uint32_t val = peek(stack);
-
-               if (!backtrack) {
-                    // ================
-                    // FORWARD PATH
-                    // ================
-                    bool bfound = false;
-                    for (uint32_t i = 1; i <= 16; ++i) {
-                         if (checksquare(val + i) && !numexists(stack, i)) {
-                              push(stack, i);
-                              bfound = true;
-                              break;
-                         }
-                    }
-                    if (!bfound) {
-                         lastvalue = pop(stack);
-                         backtrack = true;
-                    }
-               } else {
-                    // ================
-                    // BACKTRACK PATH
-                    // ================
-                    bool bfound = false;
-                    for (uint32_t i = lastvalue + 1; i <= 16; ++i) {
-                         if (checksquare(val + i) && !numexists(stack, i)) {
-                              push(stack, i);
-                              bfound = true;
-                              backtrack = false;
-                              break;
-                         }
-                    } 
-                    if (!bfound) {
-                         lastvalue = pop(stack);
-                         backtrack = true;
-                    }
-               }
-          }
-          printf("Search with ROOT %d done\n", j);
-     }
-
-exit_cleanup:
-     destroyStack(stack);
-
-     return 0;
+  return EXIT_SUCCESS;
 }
