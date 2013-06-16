@@ -27,6 +27,7 @@ itoa.c                \
 string.c              \
 decconvert.c          \
 lock.c                \
+fibonacci.c           \
 rmat.c                \
 query.c 
 
