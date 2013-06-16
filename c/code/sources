@@ -28,6 +28,7 @@ string.c              \
 decconvert.c          \
 lock.c                \
 fibonacci.c           \
+factorial.c           \
 rmat.c                \
 query.c 
 

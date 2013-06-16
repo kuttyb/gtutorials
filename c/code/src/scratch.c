@@ -5,32 +5,32 @@
 #include <stdbool.h>
 #include <assert.h>
 
-uint32_t trib(uint32_t n) {
-  if (!n) return 0;
+uint32_t fact(uint32_t n) {
+  if (!n) return 1;
   if (n == 1) return 1;
-  if (n == 2) return 1;
+  
+  return n * fact(n - 1);
+}
 
-  uint32_t f0 = 0;
-  uint32_t f1 = 1;
-  uint32_t f2 = 1;
-  uint32_t fn = 0;
-
-  for (uint32_t i = 3; i <= n; ++i) {
-    fn = f0 + f1 + f2;
-    uint32_t t1 = f2;
-    uint32_t t0 = f1;
-    f2 = fn;
-    f1 = t1;
-    f0 = t0;
+uint32_t ifact(uint32_t n) {
+  if (!n) return 1;
+  
+  uint32_t sum = 1;
+  for (uint32_t i = 1; i <= n; ++i) {
+    sum *= i;
   }
-
-  return fn;
+  return sum;
 }
 
 int main(void) {
-  for (uint32_t i = 0; i < 11; ++i) {
-    printf("%d\n", trib(i));
-  }
+  printf("%d %d\n", fact(2), ifact(2));
+  printf("%d %d\n", fact(1), ifact(1));
+  printf("%d %d\n", fact(0), ifact(0));
+  printf("%d %d\n", fact(3), ifact(3));
+  printf("%d %d\n", fact(4), ifact(4));
+  printf("%d %d\n", fact(5), ifact(5));
+
+
 
   return EXIT_SUCCESS;
 }
