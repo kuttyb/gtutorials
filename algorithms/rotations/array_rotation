@@ -1,7 +1,6 @@
-NOTE:
+NOTE: 
 ====
-worked this out on my own .. Essentially in the first step, reverse the full Array and in the second step either skip the 0th or the last element
-for the array  reversal. For right rotate, skip 0th, for left rotate skip the last (think of the direction of movement to remember this)
+First step do a full rotation of the array. For the next step, if you are moving left, disinclude the right most element in your rotation and if you are moving right, disinclude the left most element for your next rotation
 
 let SIZE be the array size.
 
