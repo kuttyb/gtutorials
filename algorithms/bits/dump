@@ -1,0 +1,27 @@
+MSB set          while_ctr++     val >>= 1
+
+LSB set          val & ~(val - 1)
+
+count set bits   while_ctr++     val &= val - 1
+
+Round to nearest power of 2:
+        if (value) value--;      \
+        value |= value >> 1;     \
+        value |= value >> 2;     \
+        value |= value >> 4;     \
+        value |= value >> 8;     \
+        value |= value >> 16;    \
+        value++;                 \
+
+mask =   (((hi - lo + 1) << 1) - 1) << lo;
+
+setval :  (a & ~mask ) | (val << lo)  // probably a good idea to clip val first
+
+getval :  (a & mask) >> lo
+
+setbits : a | mask
+
+resetbits:  ( a | mask ) ^ mask
+
+togglebits:  (a ^ mask)
+
