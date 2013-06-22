@@ -7,3 +7,17 @@ list->tail->next = NULL
 
 list->tail = t
 
+=======================
+// Version 2 (untested)
+=======================
+head->next = tail
+t = tail
+tail = head
+tail->next = t
+
+last = tail; // find the element that was before the old head
+for (n = tail; n; n = n->next) {
+    if (n == head) break;
+    last = n;
+}
+head = last;

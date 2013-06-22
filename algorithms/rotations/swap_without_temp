@@ -1,3 +1,14 @@
+// Don't use it, just remmeber for interview questions
+// Trouble with this being instruction scheduling is strictly
+// linear due to the imposed instruction dependencies
 X = X ^ Y
 Y = X ^ Y
 X = X ^ Y
+
+
+
+// This can have all sorts of overflow problems
+
+X = X + Y 
+Y = X - Y
+X = X - Y
