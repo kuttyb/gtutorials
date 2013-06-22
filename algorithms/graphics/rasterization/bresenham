@@ -1,0 +1,15 @@
+Hearn and Baker (Chapter 3)
+
+// Make sure you are in the positive quadrant with slope < 1, if not convert x,y and negate numbers
+// as needed
+p = 2dy - dx;
+for (x = 0; x <= max_x; x++) {
+  if (p < 0) {
+     p += 2dy;     
+  } else {
+     p += 2dx - 2dy;
+     y++;
+  }
+  setpixel(x, y);
+}
+
