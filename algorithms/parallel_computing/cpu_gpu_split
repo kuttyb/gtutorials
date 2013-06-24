@@ -1,0 +1,17 @@
+Refer to the attached diagram. 
+
+Case 1 is the poster child for GPU and from there it only starts going downhill.
+
+One thing to keep in mind being even though case 1 maybe best for GPU and case 4 best for CPU,
+most real world benchmarks/apps are Network of Tasks (kernels)
+
+So even if one stage is bad and therefore a bottleneck, you may want to run it on the wrong side
+to avoid communication cost. This is where a good CPU/GPU communication comes in handy of course.
+
+So for e.g., even if you had a slow bottleneck Case 4 in the middle of a vastly Data Parallel 
+Case 1, you may still want to execute the slow case on the GPU to avoid roundtrip costs. Power
+follows a similar argument. 
+
+When you execute the wrong code pattern on the wrong side you land up sucking more power.
+
+
