@@ -6,27 +6,33 @@
 #include <assert.h>
 
 int main(void) {
-  unsigned int a = 0xaabbccdd;
-  unsigned char *ptr;
+  uint32_t a[2][3] = {
+    { 0, 1, 2},
+    { 8, 9, 10}
+  };
 
-  ptr = (unsigned char*)&a;
-
-  // print from lower address to higher address 
-  for (uint32_t i = 0; i < 4; ++i) {
-    printf("ptr[%d] 0x%x\n", i, ptr[i]);
+  // Row order layout print
+  for (uint32_t i = 0; i < 2; i++) {
+    for (uint32_t j = 0; j < 3; j++) {
+      printf("%d\n", a[i][j]);
+    }
   }
 
-  // change endianness
-  for (uint32_t i = 0; i < 2; ++i) {
-    unsigned char x = ptr[3 - i];
-    ptr[3 - i] = ptr[i];
-    ptr[i] = x;
+  // Core memory dump
+  printf("core memory dump\n");
+  uint32_t *ptr = &a[0][0];
+  for (uint32_t i = 0; i < 3 * 2; i++, ptr++) {
+    printf("%d\n", *ptr);
+  }
+  
+  // column order layout print (aka transpose)
+  printf("column order print\n");
+  for (uint32_t i = 0; i < 3; ++i) {
+    for (uint32_t j = 0; j < 2; ++j) {
+      printf("%d\n", a[j][i]);
+    }
   }
 
-  printf("post endian conversion ...\n");
-  for (uint32_t i = 0; i < 4; ++i) {
-    printf("ptr[%d] 0x%x\n", i, ptr[i]);
-  }
 
 
   return EXIT_SUCCESS;
