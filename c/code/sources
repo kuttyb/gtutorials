@@ -26,6 +26,8 @@ atoi.c                \
 itoa.c                \
 string.c              \
 decconvert.c          \
+matrixmult.c          \
+matrix.c              \
 lock.c                \
 fibonacci.c           \
 factorial.c           \
