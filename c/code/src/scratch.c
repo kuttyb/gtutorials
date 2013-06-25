@@ -5,8 +5,8 @@
 #include <stdbool.h>
 #include <assert.h>
 
-uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t length,
-                         uint64_t width, uint64_t height) {
+uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
+                         uint64_t width, uint64_t height, uint64_t *start_addr) {
   uint64_t r0, c0, r, c, addr = 0;
 
   // printf("%s: taddr %"PRIu64" pitch %"PRIu64" length %"PRIu64" width %"PRIu64" height %"PRIu64"\n",
@@ -25,11 +25,17 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t length,
   addr =  r * (width * height) + (c * width);
   addr += r0 * width + c0;
 
+  // align start of this block
+  if (start_addr) 
+    *start_addr = (addr / (width * height)) * width * height;
+
   return addr;
 }
 
 int main(void) {
-  printf("%"PRIu64"\n", get_linear_addr(3,  8, 2, 2, 2));  
+  uint64_t temp;
+  printf("%"PRIu64"\n", get_linear_addr(12,  8, 2, 2, 2, &temp));  
+  printf("%"PRIu64"\n", temp);
 
   return EXIT_SUCCESS;
 }
