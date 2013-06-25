@@ -32,6 +32,10 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
   return addr;
 }
 
+// TODO: To do the recursive version, do addr - *start_addr 
+//       and send this difference down with new set of 
+//       2 window boxes.
+
 int main(void) {
   uint64_t temp;
   printf("%"PRIu64"\n", get_linear_addr(12,  8, 2, 2, 2, &temp));  
