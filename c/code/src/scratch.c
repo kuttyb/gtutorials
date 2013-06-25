@@ -29,7 +29,7 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t length,
 }
 
 int main(void) {
-  if (0) {
+  if (1) {
   // test the first row
   printf("%"PRIu64"\n", get_linear_addr(0, 4, 4, 2, 2));
   printf("%"PRIu64"\n", get_linear_addr(1, 4, 4, 2, 2));
@@ -38,14 +38,14 @@ int main(void) {
   }
 
   // test the second row
-  if (0) {
+  if (1) {
   printf("%"PRIu64"\n", get_linear_addr(2, 4, 4, 2, 2));  
   printf("%"PRIu64"\n", get_linear_addr(3, 4, 4, 2, 2));  
   printf("%"PRIu64"\n", get_linear_addr(6, 4, 4, 2, 2));  
   printf("%"PRIu64"\n", get_linear_addr(7, 4, 4, 2, 2));  
   }
 
-  if (0) {
+  if (1) {
   printf("%"PRIu64"\n", get_linear_addr(8,  4, 4, 2, 2));  
   printf("%"PRIu64"\n", get_linear_addr(9,  4, 4, 2, 2));  
   printf("%"PRIu64"\n", get_linear_addr(12, 4, 4, 2, 2));  
