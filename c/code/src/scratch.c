@@ -51,5 +51,8 @@ int main(void) {
   assert(get_linear_addr(5, 8, 2, 2, 2, &temp) == 9);
   assert(get_linear_addr(10, 8, 2, 2, 2, &temp) == 6);
 
+  // 4 * 4 -> 2 * 2
+  assert(get_linear_addr(2, 4, 4, 2, 2, &temp) == 4);
+
   return EXIT_SUCCESS;
 }
