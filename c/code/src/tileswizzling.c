@@ -5,6 +5,17 @@
 #include <stdbool.h>
 #include <assert.h>
 
+/** THR: (To Help Remember)
+    r  =  a / p
+    c  =  a % p
+
+    r1 =  r / h
+    c1 =  c / w
+                  saddr  =  [(w.h) x (p / w) x r1] + w.h.c1
+    r2 =  r % h
+    c2 =  c % w
+                  offset =  r2.w + c2
+*/
 uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
                          uint64_t width, uint64_t height, uint64_t *offset) {
   uint64_t r0, c0, r, c;
