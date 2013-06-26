@@ -41,5 +41,10 @@ int main(void) {
   printf("%"PRIu64"\n", get_linear_addr(12,  8, 2, 2, 2, &temp));  
   printf("%"PRIu64"\n", temp);
 
+  temp = 0;
+  printf("%"PRIu64"\n", get_linear_addr(10, 8, 4, 4, 2, &temp));
+  printf("%"PRIu64"\n", temp);
+
+  
   return EXIT_SUCCESS;
 }
