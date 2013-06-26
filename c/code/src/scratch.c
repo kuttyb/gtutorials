@@ -53,6 +53,19 @@ int main(void) {
 
   // 4 * 4 -> 2 * 2
   assert(get_linear_addr(2, 4, 4, 2, 2, &temp) == 4);
+  assert(get_linear_addr(3, 4, 4, 2, 2, &temp) == 5);
+  assert(get_linear_addr(6, 4, 4, 2, 2, &temp) == 6);
+  assert(get_linear_addr(7, 4, 4, 2, 2, &temp) == 7);
+
+  assert(get_linear_addr(8, 4, 4, 2, 2, &temp) == 8);
+  assert(get_linear_addr(9, 4, 4, 2, 2, &temp) == 9);
+  assert(get_linear_addr(12, 4, 4, 2, 2, &temp) == 10);
+  assert(get_linear_addr(13, 4, 4, 2, 2, &temp) == 11);
+
+  assert(get_linear_addr(10, 4, 4, 2, 2, &temp) == 12);
+  assert(get_linear_addr(11, 4, 4, 2, 2, &temp) == 13);
+  assert(get_linear_addr(14, 4, 4, 2, 2, &temp) == 14);
+  assert(get_linear_addr(15, 4, 4, 2, 2, &temp) == 15);
 
   return EXIT_SUCCESS;
 }
