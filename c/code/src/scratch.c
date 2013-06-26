@@ -7,7 +7,7 @@
 
 uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
                          uint64_t width, uint64_t height, uint64_t *start_addr) {
-  uint64_t r0, c0, r, c, addr = 0;
+  uint64_t r0, c0, r, c;
 
   // printf("%s: taddr %"PRIu64" pitch %"PRIu64" length %"PRIu64" width %"PRIu64" height %"PRIu64"\n",
   //        __FUNCTION__, taddr, pitch, length, width, height);
@@ -21,15 +21,15 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
   r  = r0 / height;
   c  = c0 / width;
   //  printf("r %"PRIu64" c %"PRIu64"\n", r, c);
+  
+  if (start_addr)
+    *start_addr = ((width * height) * (pitch / width) * r) + (c * (width * height));
 
-  addr =  r * (width * height) + (c * width);
-  addr += r0 * width + c0;
+  uint64_t r3 = r0 % height;
+  uint64_t c3 = c0 % width;
+  uint64_t offset = r3 * width + c3;
 
-  // align start of this block
-  if (start_addr) 
-    *start_addr = (addr / (width * height)) * width * height;
-
-  return addr;
+  return *start_addr + offset;
 }
 
 // TODO: To do the recursive version, do addr - *start_addr 
@@ -38,13 +38,18 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
 
 int main(void) {
   uint64_t temp;
-  printf("%"PRIu64"\n", get_linear_addr(12,  8, 2, 2, 2, &temp));  
-  printf("%"PRIu64"\n", temp);
+  assert(get_linear_addr(12, 8, 2, 2, 2, &temp) == 10);
 
-  temp = 0;
-  printf("%"PRIu64"\n", get_linear_addr(10, 8, 4, 4, 2, &temp));
-  printf("%"PRIu64"\n", temp);
+  // 8 x 4 -> 4 x 2
+  assert(get_linear_addr(10, 8, 4, 4, 2, &temp) == 6);
+  assert(get_linear_addr(8, 8, 4, 4, 2, &temp) == 4);
+  assert(get_linear_addr(9, 8, 4, 4, 2, &temp) == 5);
 
-  
+  // 8 x 2 -> 2 x 2
+  assert(get_linear_addr(8, 8, 2, 2, 2, &temp) == 2);
+  assert(get_linear_addr(9, 8, 2, 2, 2, &temp) == 3);
+  assert(get_linear_addr(5, 8, 2, 2, 2, &temp) == 9);
+  assert(get_linear_addr(10, 8, 2, 2, 2, &temp) == 6);
+
   return EXIT_SUCCESS;
 }
