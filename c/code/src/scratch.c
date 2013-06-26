@@ -26,10 +26,13 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
   return start_addr + off;
 }
 
-// TODO: To do the recursive version, do addr - *start_addr 
-//       and send this difference down with new set of 
-//       2 window boxes.
-
+//
+// To apply recursively for nested tiles, do 
+//    addr = get_linear_addr(oldaddr, ....., &offset);
+//    new_offset = get_linear_addr(offset, ...., NULL);
+//    real_offset = addr - offset + new_offset;
+// Do this recursively as many times as required!
+//
 int main(void) {
   uint64_t temp;
   assert(get_linear_addr(12, 8, 2, 2, 2, &temp) == 10);

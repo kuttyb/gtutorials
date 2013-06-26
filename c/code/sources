@@ -30,6 +30,7 @@ matrixmult.c          \
 matrix.c              \
 lock.c                \
 fibonacci.c           \
+tileswizzling.c       \
 factorial.c           \
 rmat.c                \
 query.c 
