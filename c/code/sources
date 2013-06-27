@@ -31,6 +31,7 @@ matrix.c              \
 lock.c                \
 fibonacci.c           \
 tileswizzling.c       \
+endianness.c          \
 factorial.c           \
 rmat.c                \
 query.c 
