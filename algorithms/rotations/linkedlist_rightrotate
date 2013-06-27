@@ -21,3 +21,9 @@ for (n = tail; n; n = n->next) {
     last = n;
 }
 head = last;
+
+
+// Linked List Left Rotate
+head = tail
+tail = tail->next
+head->next = null
