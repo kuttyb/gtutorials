@@ -12,7 +12,7 @@ void print(char *a) {
 int main(void) {
   // host
   char *a[3];
-  char **b[3];
+  char **b[5];
 
   // elements
   char *x = "xxab";
