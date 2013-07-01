@@ -76,17 +76,19 @@ static void matrix_transpose_using_tiling(void) {
   // surface of tile dims 1xm)
   printf("doing a transpose\n");
   uint64_t addr;
+  uint64_t output[6];
   for (uint64_t i = 0; i < 6; ++i) {    
     addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
     printf("offset %ld at offset %ld\n",
            i, addr);
+    output[i] = addr;
   }
 
   printf("reverting transpose\n");
   for (uint64_t i = 0; i < 6; ++i) {
-    addr = pitch_to_tiled(i, 2, 3, 1, 3, &temp);
+    addr = pitch_to_tiled(output[i], 2, 3, 1, 3, &temp);
     printf("offset %ld at offset %ld\n",
-           i, addr);    
+           output[i], addr);    
   }
 }
 
@@ -142,9 +144,9 @@ int main(void) {
   assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
-  if (1) matrix_transpose_using_tiling();
+  if (0) matrix_transpose_using_tiling();
 
-  if (0) tile_to_pitch_to_back();
+  if (1) tile_to_pitch_to_back();
 
   return EXIT_SUCCESS;
 }
