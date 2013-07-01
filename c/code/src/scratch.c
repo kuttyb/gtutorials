@@ -36,14 +36,14 @@ static inline void transpose_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
   }
 }
 
-#define rows (3)
+#define rows (4)
 #define cols (4)
 int main(void) {
   uint32_t matrix[rows][cols] = {
     {1,  2,   3,  4},
     {5,  6,   7,  8},
     {9,  10, 11, 12},
-    //    {13, 14, 15, 16}
+    {13, 14, 15, 16}
   };
 
   print_matrix((uint32_t*)matrix, rows, cols);
