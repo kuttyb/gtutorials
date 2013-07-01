@@ -112,20 +112,20 @@ static void tile_to_pitch_to_back_nonsquare_nontranspose(void) {
   // 4x8, 2x4
   printf("going from pitch to tiled memory\n");
   const uint64_t p[4] = {8, 4, 4, 2};
-  uint64_t input[32];
+  uint32_t input[32];
   for (uint64_t i = 0; i < 32; ++i) {
     uint64_t addr = pitch_to_tiled(i, p[0], p[1], p[2], p[3], &temp);
-    printf("original offset %ld new offset %ld\n",
-           i, addr);
-    input[i] = addr;
+    input[i] = (uint32_t)addr;
   }
 
+  printmatrix((uint32_t*)input, 4, 8);
+
+  uint32_t output[32];
   printf("going from tiled to pitch memory\n");
   for (uint64_t i = 0; i < 32; ++i) {
-    printf("original offset %ld new offset %ld\n",
-           input[i], 
-           pitch_to_tiled(input[i], p[0], p[1], p[2], p[3], &temp));
+    output[i] = (uint32_t)pitch_to_tiled(input[i], p[0], p[1], p[2], p[3], &temp);
   }
+  printmatrix((uint32_t*)output, 4, 8);
 }
 
 //
