@@ -25,6 +25,13 @@ static inline void print_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
   }
 }
 
+static inline uint32_t get_bit(uint32_t num, uint32_t pos) {
+  return (1 << pos) & num;
+}
+
+static inline uint32_t set_bit(uint32_t num, uint32_t pos) {
+  return num | (1 << pos);
+}
 
 static inline void transpose_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
   uint32_t x = 0;
