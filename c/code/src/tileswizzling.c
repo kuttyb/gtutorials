@@ -5,11 +5,25 @@
 #include <stdbool.h>
 #include <assert.h>
 
-// TODO:
-//   [a] implement Tiled to Pitch
-//   [b] implement Tiled to Tiled
-//   [c] blit routine (out-of-place)
-//   [d] blit routine (in-place)
+/** Conclusions: (VERY IMPORTANT, PLEASE READ!!)
+    -----------
+    [a] To go from pitch to tiled use pitch_to_tiled below
+    
+    [b] To go from tiled to pitch again, apply the same function 
+        below with exactly the same arguments and you'll get your
+        old form back :) See examples/tests below
+
+    [c] To get a transpose of a matrix, apply a special Tile of 
+        dimensions mx1 on a mxn matrix. To get the original back
+        apply the same function back but with different arguments.
+        Essentially now you have a nxm matrix with 1xn Tile.
+        So feed this back and you'll get it back.
+
+    [d] TODO: Write an in place-swizzler
+
+    [e] TODO: Write a burst routine for out-of-place blit
+        between different Surface formats
+*/
 
 /** THR: (To Help Remember)
     r  =  a / p
