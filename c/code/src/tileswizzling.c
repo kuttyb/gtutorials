@@ -82,24 +82,28 @@ static inline void printmatrix(uint32_t *mat, uint32_t r, uint32_t c) {
 static void matrix_transpose_using_tiling(void) {
   uint64_t temp;
 
+  const uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
+  uint32_t op[6];
+  uint32_t op2[6];
+
+  printmatrix((uint32_t*)input, 2, 3);
+
   // Matrix transpose using Tiling (remember mxn matrix, transpose is a tiled
   // surface of tile dims 1xm)
   printf("doing a transpose\n");
   uint64_t addr;
-  uint64_t output[6];
   for (uint64_t i = 0; i < 6; ++i) {    
     addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
-    printf("offset %ld at offset %ld\n",
-           i, addr);
-    output[i] = addr;
+    op[addr] = input[i];
   }
+  printmatrix((uint32_t*)op, 3, 2);
 
   printf("reverting transpose\n");
   for (uint64_t i = 0; i < 6; ++i) {
-    addr = pitch_to_tiled(output[i], 2, 3, 1, 3, &temp);
-    printf("offset %ld at offset %ld\n",
-           output[i], addr);    
+    addr = pitch_to_tiled(i, 2, 3, 1, 3, &temp);
+    op2[addr] = op[i];
   }
+  printmatrix((uint32_t*)op2, 2, 3);
 }
 
 //
