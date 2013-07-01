@@ -45,6 +45,51 @@ uint64_t pitch_to_tiled(uint64_t taddr, uint64_t pitch, uint64_t   length,
   return start_addr + off;
 }
 
+static void tile_to_pitch_to_back(void) {
+  uint64_t temp;
+
+  // 4x2, 2x2
+  printf("going from pitch to tiled memory\n");
+  const uint64_t p[4] = {4, 2, 2, 2};
+  for (uint64_t i = 0; i < 8; ++i) {
+    printf("original offset %ld new offset %ld\n",
+           i, pitch_to_tiled(i, p[0], p[1], p[2], p[3], &temp));
+  }
+
+  printf("going from tiled to pitch memory\n");
+  const uint64_t input[8] = {
+    0, 1, 4, 5, 2, 3, 6, 7
+    //    0, 2, 4, 6, 1, 3, 5, 7
+  };
+  for (uint64_t i = 0; i < 8; ++i) {
+    printf("original offset %ld new offset %ld\n",
+           input[i], 
+           pitch_to_tiled(input[i], p[0], p[1], p[2], p[3], &temp));
+
+  }
+}
+
+static void matrix_transpose_using_tiling(void) {
+  uint64_t temp;
+
+  // Matrix transpose using Tiling (remember mxn matrix, transpose is a tiled
+  // surface of tile dims 1xm)
+  printf("doing a transpose\n");
+  uint64_t addr;
+  for (uint64_t i = 0; i < 6; ++i) {    
+    addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
+    printf("offset %ld at offset %ld\n",
+           i, addr);
+  }
+
+  printf("reverting transpose\n");
+  for (uint64_t i = 0; i < 6; ++i) {
+    addr = pitch_to_tiled(i, 2, 3, 1, 3, &temp);
+    printf("offset %ld at offset %ld\n",
+           i, addr);    
+  }
+}
+
 //
 // To apply recursively for nested tiles, do 
 //    addr = pitch_to_tiled(oldaddr, ....., &offset);
@@ -97,20 +142,9 @@ int main(void) {
   assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
-  printf("doing a transpose\n");
-  uint64_t addr;
-  for (uint64_t i = 0; i < 6; ++i) {    
-    addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
-    printf("offset %ld at offset %ld\n",
-           i, addr);
-  }
+  if (1) matrix_transpose_using_tiling();
 
-  printf("reverting transpose\n");
-  for (uint64_t i = 0; i < 6; ++i) {
-    addr = pitch_to_tiled(i, 2, 3, 1, 3, &temp);
-    printf("offset %ld at offset %ld\n",
-           i, addr);    
-  }
+  if (0) tile_to_pitch_to_back();
 
   return EXIT_SUCCESS;
 }
