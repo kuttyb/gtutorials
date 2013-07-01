@@ -106,6 +106,28 @@ static void matrix_transpose_using_tiling(void) {
   printmatrix((uint32_t*)op2, 2, 3);
 }
 
+static void tile_to_pitch_to_back_nonsquare_nontranspose(void) {
+  uint64_t temp;
+
+  // 4x8, 2x4
+  printf("going from pitch to tiled memory\n");
+  const uint64_t p[4] = {8, 4, 4, 2};
+  uint64_t input[32];
+  for (uint64_t i = 0; i < 32; ++i) {
+    uint64_t addr = pitch_to_tiled(i, p[0], p[1], p[2], p[3], &temp);
+    printf("original offset %ld new offset %ld\n",
+           i, addr);
+    input[i] = addr;
+  }
+
+  printf("going from tiled to pitch memory\n");
+  for (uint64_t i = 0; i < 32; ++i) {
+    printf("original offset %ld new offset %ld\n",
+           input[i], 
+           pitch_to_tiled(input[i], p[0], p[1], p[2], p[3], &temp));
+  }
+}
+
 //
 // To apply recursively for nested tiles, do 
 //    addr = pitch_to_tiled(oldaddr, ....., &offset);
@@ -158,9 +180,11 @@ int main(void) {
   assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
-  if (1) matrix_transpose_using_tiling();
+  if (0) matrix_transpose_using_tiling();
 
   if (0) tile_to_pitch_to_back();
+
+  if (1) tile_to_pitch_to_back_nonsquare_nontranspose();
 
   return EXIT_SUCCESS;
 }
