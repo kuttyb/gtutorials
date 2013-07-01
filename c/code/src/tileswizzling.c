@@ -46,6 +46,8 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
 //
 int main(void) {
   uint64_t temp;
+
+  if (0) {
   assert(get_linear_addr(12, 8, 2, 2, 2, &temp) == 10);
 
   // 8 x 4 -> 4 x 2
@@ -85,6 +87,14 @@ int main(void) {
   assert(get_linear_addr(5 , 8, 2, 2, 2, &temp) == 9);   assert(temp == 1);
   assert(get_linear_addr(12 , 8, 2, 2, 2, &temp) == 10); assert(temp == 2);
   assert(get_linear_addr(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
+  }
+
+  uint64_t addr;
+  for (uint64_t i = 0; i < 6; ++i) {    
+    addr = get_linear_addr(i, 3, 2, 1, 2, &temp);
+    printf("offset %ld at offset %ld\n",
+           i, addr);
+  }
 
   return EXIT_SUCCESS;
 }
