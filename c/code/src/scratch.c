@@ -28,12 +28,11 @@ static inline void print_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
 
 static inline void transpose_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
   uint32_t x = 0;
-  for (uint32_t i = 0; i < r; i++) {
+  for (uint32_t i = 0; i < r; i++, x++) {
     for (uint32_t j = x; j < c; j++) {
       if (i == j) continue;
       swap_elem(matrix, i, j, c, j, i);
     }
-    x++;
   }
 }
 
