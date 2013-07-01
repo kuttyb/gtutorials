@@ -36,9 +36,13 @@ static inline uint32_t set_bit(uint32_t num, uint32_t pos) {
 static inline void transpose_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
   uint32_t x = 0;
   for (uint32_t i = 0; i < r; i++, x++) {
-    for (uint32_t j = x; j < c; j++) {
+    for (uint32_t j = 0; j < c; j++) {
       if (i == j) continue;
-      swap_elem(matrix, i, j, c, j, i, r);
+      if (!get_bit(x, (i * c) + j)) {
+        swap_elem(matrix, i, j, c, j, i, r);
+        x = set_bit(x, (i * c) + j);
+        x = set_bit(x, (j * r) + i);
+      }
     }
   }
 }
