@@ -1,0 +1,22 @@
+// From a Surface to another where the second surface needs Tiled calculations to get at its address.
+// Keep in mind, it could be that the first surface is Tiled and the second is pitched. Doesn't matter,
+// they are symmetrical, point being you travel in a straight line in one and via jumps like below in the
+// other. Which you call pitch and which you call Tiled is upto you ...
+
+void blit(src_addr, p, l, w, h, count) {
+   while(count) {
+     addr = get_tiled_address(src_addr, p, l, w, h, &offset);
+     sx   = offset % w;
+     sy   = offset % h;
+     for (y = sy; y < h; ++y) {
+         for (x = sx; x < w; ++x) {
+             *src_addr++ = *addr++; count--; 
+             if (!count) return;
+         }
+         sx = 0; addr += p;
+     }
+     sy = 0;
+   }
+}
+
+So you do the gla calculation at Tile boundary. 
