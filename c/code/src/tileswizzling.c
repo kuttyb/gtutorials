@@ -97,11 +97,19 @@ int main(void) {
   assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
+  printf("doing a transpose\n");
   uint64_t addr;
   for (uint64_t i = 0; i < 6; ++i) {    
     addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
     printf("offset %ld at offset %ld\n",
            i, addr);
+  }
+
+  printf("reverting transpose\n");
+  for (uint64_t i = 0; i < 6; ++i) {
+    addr = pitch_to_tiled(i, 2, 3, 1, 3, &temp);
+    printf("offset %ld at offset %ld\n",
+           i, addr);    
   }
 
   return EXIT_SUCCESS;
