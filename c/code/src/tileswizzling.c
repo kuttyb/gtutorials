@@ -24,7 +24,7 @@
     -------------------------------------------------------
     This is to get from Pitch to Tiled Format
 */
-uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
+uint64_t pitch_to_tiled(uint64_t taddr, uint64_t pitch, uint64_t   length,
                          uint64_t width, uint64_t height, uint64_t *offset) {
   uint64_t r0, c0, r, c;
 
@@ -47,8 +47,8 @@ uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
 
 //
 // To apply recursively for nested tiles, do 
-//    addr = get_linear_addr(oldaddr, ....., &offset);
-//    new_offset = get_linear_addr(offset, ...., NULL);
+//    addr = pitch_to_tiled(oldaddr, ....., &offset);
+//    new_offset = pitch_to_tiled(offset, ...., NULL);
 //    real_offset = addr - offset + new_offset;
 // Do this recursively as many times as required!
 //
@@ -56,50 +56,50 @@ int main(void) {
   uint64_t temp;
 
   if (0) {
-  assert(get_linear_addr(12, 8, 2, 2, 2, &temp) == 10);
+  assert(pitch_to_tiled(12, 8, 2, 2, 2, &temp) == 10);
 
   // 8 x 4 -> 4 x 2
-  assert(get_linear_addr(10, 8, 4, 4, 2, &temp) == 6);
-  assert(get_linear_addr(8, 8, 4, 4, 2, &temp) == 4);
-  assert(get_linear_addr(9, 8, 4, 4, 2, &temp) == 5);
+  assert(pitch_to_tiled(10, 8, 4, 4, 2, &temp) == 6);
+  assert(pitch_to_tiled(8, 8, 4, 4, 2, &temp) == 4);
+  assert(pitch_to_tiled(9, 8, 4, 4, 2, &temp) == 5);
 
   // 8 x 2 -> 2 x 2
-  assert(get_linear_addr(8, 8, 2, 2, 2, &temp) == 2);
-  assert(get_linear_addr(9, 8, 2, 2, 2, &temp) == 3);
-  assert(get_linear_addr(5, 8, 2, 2, 2, &temp) == 9);
-  assert(get_linear_addr(10, 8, 2, 2, 2, &temp) == 6);
+  assert(pitch_to_tiled(8, 8, 2, 2, 2, &temp) == 2);
+  assert(pitch_to_tiled(9, 8, 2, 2, 2, &temp) == 3);
+  assert(pitch_to_tiled(5, 8, 2, 2, 2, &temp) == 9);
+  assert(pitch_to_tiled(10, 8, 2, 2, 2, &temp) == 6);
 
   // 4 * 4 -> 2 * 2
-  assert(get_linear_addr(2, 4, 4, 2, 2, &temp) == 4);
-  assert(get_linear_addr(3, 4, 4, 2, 2, &temp) == 5);
-  assert(get_linear_addr(6, 4, 4, 2, 2, &temp) == 6);
-  assert(get_linear_addr(7, 4, 4, 2, 2, &temp) == 7);
+  assert(pitch_to_tiled(2, 4, 4, 2, 2, &temp) == 4);
+  assert(pitch_to_tiled(3, 4, 4, 2, 2, &temp) == 5);
+  assert(pitch_to_tiled(6, 4, 4, 2, 2, &temp) == 6);
+  assert(pitch_to_tiled(7, 4, 4, 2, 2, &temp) == 7);
 
-  assert(get_linear_addr(8, 4, 4, 2, 2, &temp) == 8);
-  assert(get_linear_addr(9, 4, 4, 2, 2, &temp) == 9);
-  assert(get_linear_addr(12, 4, 4, 2, 2, &temp) == 10);
-  assert(get_linear_addr(13, 4, 4, 2, 2, &temp) == 11);
+  assert(pitch_to_tiled(8, 4, 4, 2, 2, &temp) == 8);
+  assert(pitch_to_tiled(9, 4, 4, 2, 2, &temp) == 9);
+  assert(pitch_to_tiled(12, 4, 4, 2, 2, &temp) == 10);
+  assert(pitch_to_tiled(13, 4, 4, 2, 2, &temp) == 11);
 
-  assert(get_linear_addr(10, 4, 4, 2, 2, &temp) == 12);   assert(temp == 0);
-  assert(get_linear_addr(11, 4, 4, 2, 2, &temp) == 13);   assert(temp == 1);
-  assert(get_linear_addr(14, 4, 4, 2, 2, &temp) == 14);   assert(temp == 2);
-  assert(get_linear_addr(15, 4, 4, 2, 2, &temp) == 15);   assert(temp == 3);
+  assert(pitch_to_tiled(10, 4, 4, 2, 2, &temp) == 12);   assert(temp == 0);
+  assert(pitch_to_tiled(11, 4, 4, 2, 2, &temp) == 13);   assert(temp == 1);
+  assert(pitch_to_tiled(14, 4, 4, 2, 2, &temp) == 14);   assert(temp == 2);
+  assert(pitch_to_tiled(15, 4, 4, 2, 2, &temp) == 15);   assert(temp == 3);
   
   // 8 x 2 -> 2 x 2
-  assert(get_linear_addr(0 , 8, 2, 2, 2, &temp) == 0);   assert(temp == 0);
-  assert(get_linear_addr(1 , 8, 2, 2, 2, &temp) == 1);   assert(temp == 1);
-  assert(get_linear_addr(8 , 8, 2, 2, 2, &temp) == 2);   assert(temp == 2);
-  assert(get_linear_addr(9 , 8, 2, 2, 2, &temp) == 3);   assert(temp == 3);
+  assert(pitch_to_tiled(0 , 8, 2, 2, 2, &temp) == 0);   assert(temp == 0);
+  assert(pitch_to_tiled(1 , 8, 2, 2, 2, &temp) == 1);   assert(temp == 1);
+  assert(pitch_to_tiled(8 , 8, 2, 2, 2, &temp) == 2);   assert(temp == 2);
+  assert(pitch_to_tiled(9 , 8, 2, 2, 2, &temp) == 3);   assert(temp == 3);
 
-  assert(get_linear_addr(4 , 8, 2, 2, 2, &temp) == 8);   assert(temp == 0);
-  assert(get_linear_addr(5 , 8, 2, 2, 2, &temp) == 9);   assert(temp == 1);
-  assert(get_linear_addr(12 , 8, 2, 2, 2, &temp) == 10); assert(temp == 2);
-  assert(get_linear_addr(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
+  assert(pitch_to_tiled(4 , 8, 2, 2, 2, &temp) == 8);   assert(temp == 0);
+  assert(pitch_to_tiled(5 , 8, 2, 2, 2, &temp) == 9);   assert(temp == 1);
+  assert(pitch_to_tiled(12 , 8, 2, 2, 2, &temp) == 10); assert(temp == 2);
+  assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
   uint64_t addr;
   for (uint64_t i = 0; i < 6; ++i) {    
-    addr = get_linear_addr(i, 3, 2, 1, 2, &temp);
+    addr = pitch_to_tiled(i, 3, 2, 1, 2, &temp);
     printf("offset %ld at offset %ld\n",
            i, addr);
   }
