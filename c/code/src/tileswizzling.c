@@ -5,6 +5,12 @@
 #include <stdbool.h>
 #include <assert.h>
 
+// TODO:
+//   [a] implement Tiled to Pitch
+//   [b] implement Tiled to Tiled
+//   [c] blit routine (out-of-place)
+//   [d] blit routine (in-place)
+
 /** THR: (To Help Remember)
     r  =  a / p
     c  =  a % p
@@ -15,6 +21,8 @@
     r2 =  r % h
     c2 =  c % w
                   offset =  r2.w + c2
+    -------------------------------------------------------
+    This is to get from Pitch to Tiled Format
 */
 uint64_t get_linear_addr(uint64_t taddr, uint64_t pitch, uint64_t   length,
                          uint64_t width, uint64_t height, uint64_t *offset) {
