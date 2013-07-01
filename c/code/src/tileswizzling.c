@@ -69,6 +69,16 @@ static void tile_to_pitch_to_back(void) {
   }
 }
 
+static inline void printmatrix(uint32_t *mat, uint32_t r, uint32_t c) {
+  printf("printing matrix ...\n");
+  for (uint32_t i = 0; i < r; ++i) {
+    for (uint32_t j = 0; j < c; ++j) {
+      printf("%d\t", *(mat + (i * c) + j));
+    }
+    printf("\n");
+  }
+}
+
 static void matrix_transpose_using_tiling(void) {
   uint64_t temp;
 
@@ -144,9 +154,9 @@ int main(void) {
   assert(pitch_to_tiled(13 , 8, 2, 2, 2, &temp) == 11); assert(temp == 3);
   }
 
-  if (0) matrix_transpose_using_tiling();
+  if (1) matrix_transpose_using_tiling();
 
-  if (1) tile_to_pitch_to_back();
+  if (0) tile_to_pitch_to_back();
 
   return EXIT_SUCCESS;
 }
