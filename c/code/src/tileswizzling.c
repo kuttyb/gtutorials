@@ -104,6 +104,7 @@ static inline uint32_t getval(uint32_t val, uint32_t pos) {
 #define gla(n,r,c)  ({uint32_t t = pitch_to_tiled(n, c, r, 1, r, NULL); mask = setval(mask, t); t;})
 
 static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t cols) {
+  assert(rows * cols <= 32);
   uint32_t mask = 0;
   printmatrix((uint32_t*)matrix, rows, cols);
 
@@ -233,8 +234,8 @@ int main(void) {
   if (0) tile_to_pitch_to_back_nonsquare_nontranspose();
 
   {
-    const uint32_t rows = 2;
-    const uint32_t cols = 3;
+    const uint32_t rows = 3;
+    const uint32_t cols = 2;
     uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
 
     if (1) matrix_transpose_inplace(input, rows, cols);
