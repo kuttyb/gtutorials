@@ -101,9 +101,10 @@ static inline uint32_t getval(uint32_t val, uint32_t pos) {
   return (val & (1 << pos)) >> pos;
 }
 
-#define gla(n,r,c)  ({uint32_t t = pitch_to_tiled(n, c, r, 1, r, NULL); mask = setval(mask, t); t;})
+#define gla(n,r,c, sr, sc)  ({uint32_t t = pitch_to_tiled(n, c, r, sc, sr, NULL); mask = setval(mask, t); t;})
 
-static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t cols) {
+static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t cols,
+                                     uint32_t subtile_rows, uint32_t subtile_cols) {
   assert(rows * cols <= 32);
   uint32_t mask = 0;
   printmatrix((uint32_t*)matrix, rows, cols);
@@ -114,7 +115,8 @@ static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t c
 
     uint32_t last = matrix[i];
 
-    for (uint32_t  n = gla(i, rows, cols); n != i; n = gla(n, rows, cols)) {
+    for (uint32_t  n = gla(i, rows, cols, subtile_rows, subtile_cols); 
+         n != i; n = gla(n, rows, cols, subtile_rows, subtile_cols)) {
       uint32_t temp = matrix[n];
       matrix[n] = last;
       last = temp;
@@ -234,11 +236,11 @@ int main(void) {
   if (0) tile_to_pitch_to_back_nonsquare_nontranspose();
 
   {
-    const uint32_t rows = 3;
-    const uint32_t cols = 2;
+    const uint32_t rows = 2;
+    const uint32_t cols = 3;
     uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
 
-    if (1) matrix_transpose_inplace(input, rows, cols);
+    if (1) matrix_transpose_inplace(input, rows, cols, rows, 1);
   }
 
   return EXIT_SUCCESS;
