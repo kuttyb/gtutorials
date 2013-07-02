@@ -173,6 +173,18 @@ static void tile_to_pitch_to_back_nonsquare_nontranspose(void) {
   printmatrix((uint32_t*)output, 4, 8);
 }
 
+static inline void matrix_diagonal_flip(uint32_t *matrix, uint32_t rows, uint32_t cols) {
+  uint32_t x = 0;
+  for (uint32_t i = 0; i < rows; ++i, ++x) {
+    for (uint32_t j = x; j < cols; ++j) {
+      if (i == j) continue;
+      uint32_t temp = matrix[i * cols + j];
+      matrix[i * cols + j] = matrix[(rows - i - 1) * cols + (cols - j - 1)];
+      matrix[(rows - i - 1) * cols + (cols - j - 1)] = temp;
+    }
+  }
+}
+
 //
 // To apply recursively for nested tiles, do 
 //    addr = pitch_to_tiled(oldaddr, ....., &offset);
@@ -241,11 +253,20 @@ int main(void) {
   }
 
   // in place tile swizzling
-  {
+  if (0) {
     uint32_t input[16];
     for (uint32_t i = 0; i < 16; ++i) { input[i] = i; }
     printmatrix(input, 4, 4);
     matrix_transpose_inplace(input, 4, 4, 2, 2);
+    printmatrix(input, 4, 4);
+  }
+
+  if (1) {
+    uint32_t input[16];
+    for (uint32_t i = 0; i < 16; ++i) { input[i] = i; }
+    printmatrix(input, 4, 4);
+    printf("after diagonal flip\n");
+    matrix_diagonal_flip(input, 4, 4);
     printmatrix(input, 4, 4);
   }
 
