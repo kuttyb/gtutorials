@@ -107,7 +107,6 @@ static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t c
                                      uint32_t subtile_rows, uint32_t subtile_cols) {
   assert(rows * cols <= 32);
   uint32_t mask = 0;
-  printmatrix((uint32_t*)matrix, rows, cols);
 
   for (uint32_t i = 0; i < rows * cols; ++i) {
     if (getval(mask, i)) continue;
@@ -123,9 +122,6 @@ static void matrix_transpose_inplace(uint32_t *matrix, uint32_t rows, uint32_t c
     }
     matrix[i] = last;
   }
-
-  printf("printing transpose\n");
-  printmatrix((uint32_t*)matrix, cols, rows);
 }
 
 static void matrix_transpose_using_tiling(void) {
@@ -235,12 +231,22 @@ int main(void) {
 
   if (0) tile_to_pitch_to_back_nonsquare_nontranspose();
 
+  // non square matrix transpose in place using tile swizzling
   {
     const uint32_t rows = 2;
     const uint32_t cols = 3;
     uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
 
-    if (1) matrix_transpose_inplace(input, rows, cols, rows, 1);
+    if (0) matrix_transpose_inplace(input, rows, cols, rows, 1);
+  }
+
+  // in place tile swizzling
+  {
+    uint32_t input[16];
+    for (uint32_t i = 0; i < 16; ++i) { input[i] = i; }
+    printmatrix(input, 4, 4);
+    matrix_transpose_inplace(input, 4, 4, 2, 2);
+    printmatrix(input, 4, 4);
   }
 
   return EXIT_SUCCESS;
