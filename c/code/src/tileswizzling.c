@@ -93,6 +93,39 @@ static inline void printmatrix(uint32_t *mat, uint32_t r, uint32_t c) {
   }
 }
 
+static inline uint32_t setval(uint32_t val, uint32_t pos) {
+  return val | (1 << pos);
+}
+
+static inline uint32_t getval(uint32_t val, uint32_t pos) {
+  return (val & (1 << pos)) >> pos;
+}
+
+#define gla(n)  ({uint32_t t = pitch_to_tiled(n, 3, 2, 1, 2, NULL); mask = setval(mask, t); t;})
+
+static void matrix_transpose_inplace(void) {
+  uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
+  uint32_t mask = 0;
+  printmatrix((uint32_t*)input, 2, 3);
+
+  for (uint32_t i = 0; i < 6; ++i) {
+    if (getval(mask, i)) continue;
+    mask = setval(mask, i);
+
+    uint32_t last = input[i];
+
+    for (uint32_t  n = gla(i); n != i; n = gla(n)) {
+      uint32_t temp = input[n];
+      input[n] = last;
+      last = temp;
+    }
+    input[i] = last;
+  }
+
+  printf("printing transpose\n");
+  printmatrix((uint32_t*)input, 3, 2);
+}
+
 static void matrix_transpose_using_tiling(void) {
   uint64_t temp;
 
@@ -198,7 +231,9 @@ int main(void) {
 
   if (0) tile_to_pitch_to_back();
 
-  if (1) tile_to_pitch_to_back_nonsquare_nontranspose();
+  if (0) tile_to_pitch_to_back_nonsquare_nontranspose();
+
+  if (1) matrix_transpose_inplace();
 
   return EXIT_SUCCESS;
 }
