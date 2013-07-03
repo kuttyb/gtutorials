@@ -3,13 +3,19 @@
 #include <assert.h>
 
 #define lsb(m)   (m & ~(m - 1))
-static inline uint32_t test_mask(uint32_t input) {
+static inline uint32_t test_mask(uint32_t num) {
   uint32_t ctr = 1;
   uint32_t ret = 0;
+  uint32_t input = num;
 
-  printf("%s: starting with input %u\n",
-         __FUNCTION__, input);
-  
+  /** remove trailing 0 bits */
+  while(input) {
+    if (((input >> 1) << 1) == input) 
+      input>>=1;
+    else 
+      break;
+  }
+
   for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1, ctr++) {
     if (!input || (input == 1)) break;
     if (lsb(temp) >> 1 != lsb(input)) goto end;
@@ -17,7 +23,7 @@ static inline uint32_t test_mask(uint32_t input) {
   ret = 1;
 
  end:
-  printf("\t\tloop executed \t\t%d times\n", ctr);
+  printf("input %10u executed %2u times\n", num, ctr);
   return ret;
 }
 
