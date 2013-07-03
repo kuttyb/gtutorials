@@ -4,8 +4,7 @@
 #define lsb(m)   (m & ~(m - 1))
 static inline uint32_t test_mask(uint32_t input) {
   for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1) {
-    if (lsb(temp) >> 1 != lsb(input))
-      return 0;
+    if (lsb(temp) >> 1 != lsb(input)) return 0;
   }
   return 1;
 }
