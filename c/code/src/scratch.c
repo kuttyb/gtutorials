@@ -5,64 +5,28 @@
 #include <stdbool.h>
 #include <assert.h>
 
-static inline uint32_t elem(uint32_t *matrix, uint32_t r, uint32_t c, uint32_t stride) {
-  return matrix[(stride * r) + c];
+#define lsb(m)   (m & ~(m - 1))
+
+static inline bool test_mask(uint32_t input) {
+  if (!input) return true;
+  uint32_t temp = input & (input - 1);
+  if (!temp)  return true;
+  return lsb(temp) >> 1 == lsb(input);
 }
 
-static inline void swap_elem(uint32_t *matrix, uint32_t r, uint32_t c, uint32_t stride,
-                             uint32_t r1, uint32_t c1, uint32_t stride1) {
-  uint32_t temp = matrix[(stride * r1) + c1];
-  matrix[(stride1 * r1) + c1] = matrix[(stride * r) + c];
-  matrix[(stride * r) + c] = temp;
-}
+int main(void) {  
+  assert(test_mask(8));
+  assert(test_mask(7));
+  assert(test_mask(0));
+  assert(!test_mask(10));
+  assert(test_mask(12));
+  assert(test_mask(1));
+  assert(test_mask(4));
+  assert(!test_mask(5));
 
-static inline void print_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
-  for (uint32_t i = 0; i < r; ++i) {
-    for (uint32_t j = 0; j < c; ++j) {
-      printf("%d\t", elem((uint32_t*)matrix, i, j, c));
-    }
-    printf("\n");
-  }
-}
-
-static inline uint32_t get_bit(uint32_t num, uint32_t pos) {
-  return (1 << pos) & num;
-}
-
-static inline uint32_t set_bit(uint32_t num, uint32_t pos) {
-  printf("setting bit %d in val 0x%x\n", pos, num);
-  return num | (1 << pos);
-}
-
-static inline void transpose_matrix(uint32_t *matrix, uint32_t r, uint32_t c) {
-  uint32_t x = 0;
-  for (uint32_t i = 0; i < r; i++, x++) {
-    for (uint32_t j = 0; j < c; j++) {
-      if (i == j) continue;
-      if (!get_bit(x, (i * c) + j)) {
-        swap_elem(matrix, i, j, c, j, i, r);
-        x = set_bit(x, (i * c) + j);
-        x = set_bit(x, (j * r) + i);
-      }
-    }
-  }
-}
-
-#define rows (3)
-#define cols (4)
-int main(void) {
-  uint32_t matrix[rows][cols] = {
-    {1,  2,   3,  4},
-    {5,  6,   7,  8},
-    {9,  10, 11, 12},
-    //    {13, 14, 15, 16}
-  };
-
-  print_matrix((uint32_t*)matrix, rows, cols);
-
-  printf("applying transpose in place\n");
-  transpose_matrix((uint32_t*)matrix, rows, cols);
-  print_matrix((uint32_t*)matrix, cols, rows);
+  assert(!test_mask(49));
+  assert(!test_mask(52));
+  assert(!test_mask(53));
 
   return 1;
 }
