@@ -2,29 +2,10 @@
 #include <assert.h>
 
 #define lsb(m)   (m & ~(m - 1))
-
-static inline uint32_t test_m(uint32_t input) {
-  uint32_t temp = input & (input - 1);
-  return !temp ? 1 : lsb(temp) >> 1 == lsb(input);
-}
-
 static inline uint32_t test_mask(uint32_t input) {
-  for (; input; input>>=1) {
-    /** Consider the format 
-           A1 - X - A0
-        where A1 and A0 are 1s and X is the 0s.
-        test_m() only works if len(A0) == 1.
-        So this loop will run for len(A0) num
-        of times.
-
-        The other obvious solution to this problem is
-        hi = MSB(x); lo = MSB(LSB(x);
-        mask = ((1 << (hi - lo + 1)) - 1) << lo
-        return mask & input
-        The MSB part here will loop over len(A1 + X + A0)
-        
-        This solution one takes a much shorter loop length */
-    if (!test_m(input)) return 0;
+  for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1) {
+    if (lsb(temp) >> 1 != lsb(input))
+      return 0;
   }
   return 1;
 }
@@ -48,6 +29,9 @@ int main(void) {
   assert(test_mask(1));
   assert(test_mask(4));
   assert(test_mask(8));
+  assert(test_mask(16));
+  assert(test_mask(32));
+  assert(test_mask(64));
 
   // Fail these
   assert(!test_mask(5));
