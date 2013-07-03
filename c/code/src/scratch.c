@@ -11,29 +11,14 @@ static inline int least_set_bit(uint32_t v) {
   return r;
 }
 
-#define lsb(m)   (m & ~(m - 1))
 static inline uint32_t test_mask(uint32_t num) {
-  uint32_t ctr = 1;
-  uint32_t ret = 0;
   uint32_t input = num;
-
-  /** remove trailing 0 bits */  
-  input >>= least_set_bit(input);
-
-  for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1, ctr++) {
-    if (!input || (input == 1)) break;
-    if (lsb(temp) >> 1 != lsb(input)) goto end;
-  }
-  ret = 1;
-
- end:
-  printf("input %10u executed %2u times\n", num, ctr);
-  return ret;
+  input >>= least_set_bit(num);
+  return !((input + 1) & input);
 }
 
 int main(void) {  
-  // Fail these (they are special in that they
-  // have > 1 contig 1s before hitting a zero
+  // Fail these (they are special in that they have > 1 contig 1s before hitting a zero  
   // followed by more 1s
   assert(!test_mask(22));
   assert(!test_mask(11));  
@@ -71,7 +56,6 @@ int main(void) {
   assert(test_mask(112));
   assert(test_mask(0xffffffff));
 
-  
   return 1;
 }
 
