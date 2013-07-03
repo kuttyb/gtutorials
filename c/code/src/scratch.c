@@ -1,12 +1,24 @@
+#include <stdio.h>
 #include <inttypes.h>
 #include <assert.h>
 
 #define lsb(m)   (m & ~(m - 1))
 static inline uint32_t test_mask(uint32_t input) {
-  for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1) {
-    if (lsb(temp) >> 1 != lsb(input)) return 0;
+  uint32_t ctr = 1;
+  uint32_t ret = 0;
+
+  printf("%s: starting with input %u\n",
+         __FUNCTION__, input);
+  
+  for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1, ctr++) {
+    if (!input || (input == 1)) break;
+    if (lsb(temp) >> 1 != lsb(input)) goto end;
   }
-  return 1;
+  ret = 1;
+
+ end:
+  printf("\t\tloop executed \t\t%d times\n", ctr);
+  return ret;
 }
 
 int main(void) {  
@@ -43,11 +55,12 @@ int main(void) {
   // Pass these
   assert(test_mask(7));
   assert(test_mask(6));
+  assert(test_mask(48));
   assert(test_mask(12));
   assert(test_mask(15));
   assert(test_mask(112));
   assert(test_mask(0xffffffff));
-  assert(test_mask(0xffffffff - 1));
+
   
   return 1;
 }
