@@ -2,19 +2,23 @@
 #include <inttypes.h>
 #include <assert.h>
 
+/** courtesy Stanford Bit Twiddling hacks */
+static inline int least_set_bit(uint32_t v) {
+  if (!v) return 0;
+  int r;                     // the result goes here
+  float f = (float)(v & -v); // cast the least significant bit in v to a float
+  r = (*(uint32_t *)&f >> 23) - 0x7f;
+  return r;
+}
+
 #define lsb(m)   (m & ~(m - 1))
 static inline uint32_t test_mask(uint32_t num) {
   uint32_t ctr = 1;
   uint32_t ret = 0;
   uint32_t input = num;
 
-  /** remove trailing 0 bits */
-  while(input) {
-    if (((input >> 1) << 1) == input) 
-      input>>=1;
-    else 
-      break;
-  }
+  /** remove trailing 0 bits */  
+  input >>= least_set_bit(input);
 
   for (uint32_t temp; (temp = input & (input - 1)) && input; input>>=1, ctr++) {
     if (!input || (input == 1)) break;
