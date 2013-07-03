@@ -2,19 +2,13 @@
 #include <inttypes.h>
 #include <assert.h>
 
-/** courtesy Stanford Bit Twiddling hacks */
-static inline int least_set_bit(uint32_t v) {
-  if (!v) return 0;
-  int r;                     // the result goes here
-  float f = (float)(v & -v); // cast the least significant bit in v to a float
-  r = (*(uint32_t *)&f >> 23) - 0x7f;
-  return r;
-}
-
 static inline uint32_t test_mask(uint32_t num) {
-  uint32_t input = num;
-  input >>= least_set_bit(num);
-  return !((input + 1) & input);
+  /** remove trailing zeroes */
+  for (; num; num>>=1) {
+    if (((num >> 1) << 1) != num) break;
+  }
+  /** test if after adding 1 its a power of 2 :-) */
+  return !((num + 1) & num);
 }
 
 int main(void) {  
