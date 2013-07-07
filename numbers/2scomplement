@@ -1,0 +1,9 @@
+Used to represent negative numbers in most languages.
+
+Can represent (where 2^n-1 = X) -(X) to (X - 1)
+
+To convert just flip the bits and add 1. Or in all honesty, you take 2^n and subtract the number from it.
+
+For e.g., in a 8bit system, 0xff is -1 because its 2^8 = 256 => 256 - 1, 254 is -2 and so forth.
+
+
