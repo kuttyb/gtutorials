@@ -6,4 +6,4 @@ To convert just flip the bits and add 1. Or in all honesty, you take 2^n and sub
 
 For e.g., in a 8bit system, 0xff is -1 because its 2^8 = 256 => 256 - 1, 254 is -2 and so forth.
 
-
+Useful because you can do addition/subtraction/mutiplication with positive and negative numbers (in the 2s complement form) using regular arithmentic operators and the overflow/carry bits.
