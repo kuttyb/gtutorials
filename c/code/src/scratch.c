@@ -3,12 +3,30 @@
 #include <inttypes.h>
 #include <assert.h>
 
-int main(void) {
-  float a = 2.341234f;
-  
-  printf("%f %e\n",
-         a, a);
+typedef union {
+  int num;
+  unsigned char mem[4];
+} A;
 
+static void print(A x) {
+  printf("%d\n", x.num);
+  printf("0x%x-%x-%x-%x\n",
+         (unsigned char)x.mem[3], 
+         (unsigned char)x.mem[2], 
+         (unsigned char)x.mem[1],
+         (unsigned char)x.mem[0]);
+}
+
+int main(void) {
+  A x = { -2 };
+  print(x);
+
+  x.num = -3;
+  print(x);
+
+  x.num = -1;
+  print(x);
+  
   return EXIT_SUCCESS;
 }
 

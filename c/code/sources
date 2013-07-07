@@ -33,6 +33,7 @@ fibonacci.c           \
 tileswizzling.c       \
 endianness.c          \
 bits.c                \
+numbers.c             \
 factorial.c           \
 rmat.c                \
 query.c 
