@@ -1,0 +1,11 @@
+The IEEE 754 format defines binary32, binary64 and binary128. The first 2 are commonly known as float, double in programming languages.
+
+Float (binary32)
+================
+S -- Exponent -- Mantissa ( 1 -- 8 -- 23 )
+
+decimal number = 1.mantissa * 2 ^ (e - 127) * (-1) * sign
+ 
+The sign for the exponent can be negative. The exponents are stored in the biased form, meaning for 8 bits you get 255, divide that by 2 and you get 127. That's it, 127 is 0 128 is 1 and so forth.
+
+
