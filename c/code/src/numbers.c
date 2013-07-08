@@ -77,9 +77,11 @@ static void test_float(void) {
 
 /** Given binary32 memory, return the float value */
 static inline float binary_to_float(uint32_t mask) {
+  if (!mask) return 0.0f;
+
   /** handle the exponent and return for 0, negative numbers */
   int exponent = (get32(mask, 30, 23)) - 127;
-
+         
   /** mantissa handling, adjust for the invisible 24th bit
       and denormalize it */
   uint32_t mantissa = get32(mask, 22, 0);
@@ -87,7 +89,9 @@ static inline float binary_to_float(uint32_t mask) {
 
   uint32_t non_fraction = get32(mantissa, 23, (23 - exponent));
   uint32_t fraction     = get32(mantissa, (22 - exponent), 0);
-  
+  printf("%s: mask 0x%x exponent %d mantissa 0x%x non_fraction 0x%x fraction 0x%x\n",
+         __FUNCTION__, mask, exponent, mantissa, non_fraction, fraction);
+
   float value = non_fraction;
   /** add the fraction */
   uint32_t power = 22 - exponent + 1;
@@ -120,6 +124,9 @@ static void test_to_float(void) {
   assert(binary_to_float(*ptr) == a);
 
   a = 0.01f;
+  assert(binary_to_float(*ptr) == a);
+
+  a = 0.0f;
   assert(binary_to_float(*ptr) == a);
 }
 
