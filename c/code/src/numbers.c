@@ -89,8 +89,8 @@ static inline float binary_to_float(uint32_t mask) {
 
   uint32_t non_fraction = get32(mantissa, 23, (23 - exponent));
   uint32_t fraction     = get32(mantissa, (22 - exponent), 0);
-  printf("%s: mask 0x%x exponent %d mantissa 0x%x non_fraction 0x%x fraction 0x%x\n",
-         __FUNCTION__, mask, exponent, mantissa, non_fraction, fraction);
+  if (0) printf("%s: mask 0x%x exponent %d mantissa 0x%x non_fraction 0x%x fraction 0x%x\n",
+                __FUNCTION__, mask, exponent, mantissa, non_fraction, fraction);
 
   float value = non_fraction;
   /** add the fraction */
