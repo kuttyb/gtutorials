@@ -51,8 +51,42 @@ static void test_masklogic(void) {
   assert(test_mask(0xffffffff));
 }
 
+/** Courtesy: http://leetcode.com/2011/08/reverse-bits.html */
+uint32_t swapBits(uint32_t x, uint32_t i, uint32_t j) {
+  uint32_t lo = ((x >> i) & 1);
+  uint32_t hi = ((x >> j) & 1);
+  if (lo ^ hi) {
+    x ^= ((1U << i) | (1U << j));
+  }
+  return x;
+}
+ 
+uint32_t reverseXor(uint32_t x) {
+  uint32_t n = sizeof(x) * 8;
+  for (uint32_t i = 0; i < n/2; i++) {
+    x = swapBits(x, i, n-i-1);
+  }
+  return x;
+}
+
+static inline uint32_t reverse_bits(uint32_t input) {
+     uint32_t value = input;
+     uint32_t s = (sizeof(input) * 8) - 1;
+
+     for (input>>=1; input; input>>=1) {
+          value<<=1;
+          value |= input & 0x1;
+          s--;
+     }
+     value <<= s;
+     return value;
+}
+
 int main(void) {
      test_masklogic();
      
+     printf("0x%x\n", reverse_bits(0x6));
+     printf("0x%x\n", reverseXor(0x6));
+
      return 0;
 }
