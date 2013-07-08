@@ -4,14 +4,16 @@
 #include <assert.h>
 
 int main(void) {
-     unsigned int a = 0x2;
+     int a = -10;
+     int b = -3;
+     int c = 200;
+     int d = 5000;
 
-     printf("0x%x 0x%x 0x%x\n", a, -a, ~a + 1);
-     
-     a = a * -1;
-     if (a < 0) {
-          printf("bad\n");
-     }
+     printf("0x%x 0x%x 0x%x\n", a, b, a ^ b);
+
+     printf("0x%x 0x%x 0x%x\n", c, d, c ^ d);
+
+     printf("0x%x 0x%x 0x%x\n", a, c, a ^ c);
 
      return EXIT_SUCCESS;
 }

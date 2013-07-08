@@ -25,3 +25,13 @@ resetbits:  ( a | mask ) ^ mask
 
 togglebits:  (a ^ mask)
 
+signextend_primitive type:  uint32_t temp = 0 ; temp -= msb(input); 
+                            uint64_t op = ((uint64_t)temp << 32) | input;
+
+signextend_smaller_than_primitive_type: (say b bits of a 32 bit integer)
+                            uint32_t temp = 0;
+                            temp -= get(input, b-1, b-1); // prepare the sign bits
+                            setval(temp, b-1, 0, input);  // overlay old val on the lower bits
+
+
+                

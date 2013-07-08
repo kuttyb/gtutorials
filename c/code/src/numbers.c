@@ -89,7 +89,7 @@ static inline float binary_to_float(uint32_t mask) {
 
   uint32_t non_fraction = get32(mantissa, 23, (23 - exponent));
   uint32_t fraction     = get32(mantissa, (22 - exponent), 0);
-  if (0) printf("%s: mask 0x%x exponent %d mantissa 0x%x non_fraction 0x%x fraction 0x%x\n",
+  if (1) printf("%s: mask 0x%x exponent %d mantissa 0x%x non_fraction 0x%x fraction 0x%x\n",
                 __FUNCTION__, mask, exponent, mantissa, non_fraction, fraction);
 
   float value = non_fraction;
@@ -131,10 +131,21 @@ static void test_to_float(void) {
 }
 
 int main(void) {
-  test_float();
+     float a = 2.0f;
+     binary_to_float(*(uint32_t*)&a);
 
-  test_to_float();
+     a = 3.0f;
+     binary_to_float(*(uint32_t*)&a);
 
+     a = 1.0f;
+     binary_to_float(*(uint32_t*)&a);
+
+     if (0) {
+          test_float();
+     
+          test_to_float();
+     }
+     
   /** understand 2s complement basics */
   if (0) {
     A x = { -2 };
@@ -155,21 +166,7 @@ int main(void) {
     x.num = x.s;
     printnum(x);
   }
-  
-  /** floating point arithmetic (binary32) */
-  /** s--exponent--mantissa 1-8-23 
-      exponenent can be negative in the biased
-      form. Do e - 127 to get the number */
-  if (0) {
-    A x = { 0 };
-    x.f = 1.213415f;
-    printnum(x);
-
-    A y = { 0 };
-    y.f = 1.113415f;
-    printnum(y);
-  }
-  
+    
   return EXIT_SUCCESS;
 }
 
