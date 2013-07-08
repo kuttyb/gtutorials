@@ -71,7 +71,7 @@ uint32_t reverseXor(uint32_t x) {
 
 static inline uint32_t reverse_bits(uint32_t input) {
      uint32_t value = input;
-     uint32_t s = (sizeof(input) * 8) - 1;
+     uint32_t s = 31;
 
      for (input>>=1; input; input>>=1) {
           value<<=1;
