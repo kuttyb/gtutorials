@@ -39,7 +39,7 @@ static inline int float_to_int(float input) {
 
   /** handle the exponent and return for 0, negative numbers */
   int exponent = (get32(mask, 30, 23)) - 127;
-  if (exponent <= 0) {
+  if (exponent < 0) {
     return 0;
   }
 
@@ -69,10 +69,31 @@ static void test_float(void) {
   assert(float_to_int(0.02343f) == 0);
   assert(float_to_int(0.0f) == 0);
   assert(float_to_int(0.12419f) == 0);
+
+  assert(float_to_int(1.25f) == 1);
+  assert(float_to_int(0.25f) == 0);
+}
+
+
+/** Given binary32 memory, return the float value */
+static inline float binary_to_float(uint32_t mask) {
+  /** handle the exponent and return for 0, negative numbers */
+  int exponent = (get32(mask, 30, 23)) - 127;
+  printf("mask 0x%x exponent %d\n", mask, exponent);
+
+  /** mantissa handling, adjust for the invisible 24th bit
+      and denormalize it */
+  uint32_t mantissa = get32(mask, 22, 0);
+  mantissa |= (1 << 23);
+  mantissa >>= 23 - exponent; 
+  printf("mantissa 0x%x\n", mantissa);
+
+  return 0.0f;
 }
 
 int main(void) {
   test_float();
+
 
   /** understand 2s complement basics */
   if (0) {
