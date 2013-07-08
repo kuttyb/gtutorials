@@ -30,36 +30,49 @@ static void printnum(A x) {
                                           ~getmask32((unsigned int)hi, (unsigned int)lo)) | \
     ((unsigned int)fieldValue << (unsigned int)lo)
 
-/** truncate not round. Round is easy, just add 0.5 to float before doing the below */
-static inline int float_to_int(float finput) {
-  uint32_t *x = (uint32_t*)&finput;
+/** truncate not round. Round is easy, just add 0.5 to float before doing the below 
+    s -- exponent -- mantissa  -> 1 -- 8 -- 23
+*/
+static inline int float_to_int(float input) {
+  uint32_t *x = (uint32_t*)&input;
   uint32_t mask = *x;
 
+  /** handle the exponent and return for 0, negative numbers */
   int exponent = (get32(mask, 30, 23)) - 127;
-  if (0) printf("exponent 0x%x\n", exponent);
   if (exponent <= 0) {
     return 0;
   }
 
-  exponent = exponent > 22 ? 22 : exponent;
-
+  /** mantissa handling, adjust for the invisible 24th bit
+      and denormalize it */
   uint32_t mantissa = get32(mask, 22, 0);
   mantissa |= (1 << 23);
-  if (0) printf("mantissa 0x%x\n", mantissa);
-  mantissa >>= 23 - exponent;
-  if (0) printf("normalized mantissa 0x%x\n\n", mantissa);
+  mantissa >>= 23 - exponent; 
 
+  /** check sign and return truncated integer */
   if (get32(mask, 31, 31)) 
     return mantissa * -1;
   else
     return mantissa;
 }
 
+static void test_float(void) {
+  assert(float_to_int(101.1252f) == 101);
+  assert(float_to_int(101.0f) == 101);
+
+  assert(float_to_int(101.0f) == 101);
+  assert(float_to_int(101.909f) == 101);
+
+  assert(float_to_int(-101.0f) == -101);
+  assert(float_to_int(-10242343.3423424234f) == -10242343);
+
+  assert(float_to_int(0.02343f) == 0);
+  assert(float_to_int(0.0f) == 0);
+  assert(float_to_int(0.12419f) == 0);
+}
+
 int main(void) {
-  printf("%d\n", float_to_int(101.1252f));
-  printf("%d\n", float_to_int(101.0f));
-  printf("%d\n", float_to_int(101.90f));
-  printf("%d\n", float_to_int(-101.90f));
+  test_float();
 
   /** understand 2s complement basics */
   if (0) {
