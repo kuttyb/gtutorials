@@ -4,16 +4,10 @@
 #include <assert.h>
 
 int main(void) {
-     int a = -10;
-     int b = -3;
-     int c = 200;
-     int d = 5000;
+     uint32_t a = 0xfffffffe;
+     int b = a;
 
-     printf("0x%x 0x%x 0x%x\n", a, b, a ^ b);
-
-     printf("0x%x 0x%x 0x%x\n", c, d, c ^ d);
-
-     printf("0x%x 0x%x 0x%x\n", a, c, a ^ c);
+     printf("0x%x 0x%x\n", a, b);
 
      return EXIT_SUCCESS;
 }
