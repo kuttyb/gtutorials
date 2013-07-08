@@ -88,28 +88,28 @@ static inline float binary_to_float(uint32_t mask) {
 
   uint32_t non_fraction = get32(mantissa, 23, (23 - exponent));
   uint32_t fraction     = get32(mantissa, (22 - exponent), 0);
-  printf("non_fraction 0x%x fraction 0x%x\n", non_fraction,
-         fraction);
   
   float value = non_fraction;
   /** add the fraction */
   uint32_t power = 22 - exponent + 1;
   for (; fraction; fraction>>=1) {
-    if (fraction & 1)
+    if (fraction & 1) {
       value += 1.0f / ((1 << power) * 1.0f);
-    printf("\tfraction 0x%x power %d value %f\n",
-           fraction, power, value);      
+    }
     power--;
   }
 
-  return value;
+  if (get32(mask, 31, 31)) 
+    return value * -1.0f;
+  else 
+    return value;
 }
 
 int main(void) {
   test_float();
 
   //  float a = 1.25f;
-  float a = 1.5f;
+  float a = -1.512132f;
   uint32_t *ptr = (uint32_t*)&a;
   uint32_t x = *ptr;
 
