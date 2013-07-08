@@ -1,0 +1,22 @@
+bit twiddling hacks
+===================
+[a] detect 2 variables have the same sign 
+    return ((a ^ b) < 0)
+
+[b] sign extension (constant and variable)
+
+[c] bit merging based on a mask
+
+[d] reverse bits (obvious way)
+
+[e] modulus division (w/o division operator)
+
+[f] logbase 2
+
+[g] logbase 10
+
+[h] consecutive zero bits
+
+[i] interleave bits
+
+

@@ -4,11 +4,15 @@
 #include <assert.h>
 
 int main(void) {
-  float f = 21.94f;
-  int   x = (int)f;
+     unsigned int a = 0x2;
 
-  printf("%f %d\n", f, x);
-  
-  return EXIT_SUCCESS;
+     printf("0x%x 0x%x 0x%x\n", a, -a, ~a + 1);
+     
+     a = a * -1;
+     if (a < 0) {
+          printf("bad\n");
+     }
+
+     return EXIT_SUCCESS;
 }
 

@@ -11,7 +11,7 @@ static inline uint32_t test_mask(uint32_t num) {
   return !((num + 1) & num);
 }
 
-int main(void) {  
+static void test_masklogic(void) {  
   // Fail these (they are special in that they have > 1 contig 1s before hitting a zero  
   // followed by more 1s
   assert(!test_mask(22));
@@ -49,7 +49,10 @@ int main(void) {
   assert(test_mask(15));
   assert(test_mask(112));
   assert(test_mask(0xffffffff));
-
-  return 1;
 }
 
+int main(void) {
+     test_masklogic();
+     
+     return 0;
+}
