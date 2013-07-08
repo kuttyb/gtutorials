@@ -79,7 +79,6 @@ static void test_float(void) {
 static inline float binary_to_float(uint32_t mask) {
   /** handle the exponent and return for 0, negative numbers */
   int exponent = (get32(mask, 30, 23)) - 127;
-  printf("mask 0x%x exponent %d\n", mask, exponent);
 
   /** mantissa handling, adjust for the invisible 24th bit
       and denormalize it */
@@ -105,15 +104,29 @@ static inline float binary_to_float(uint32_t mask) {
     return value;
 }
 
-int main(void) {
-  test_float();
-
+static void test_to_float(void) {
   //  float a = 1.25f;
   float a = -1.512132f;
   uint32_t *ptr = (uint32_t*)&a;
-  uint32_t x = *ptr;
+  assert(binary_to_float(*ptr) == a);
 
-  printf("%f\n", binary_to_float(x));
+  a = 1.25f;
+  assert(binary_to_float(*ptr) == a);
+
+  a = 1.5f;
+  assert(binary_to_float(*ptr) == a);
+
+  a = 0.2f;
+  assert(binary_to_float(*ptr) == a);
+
+  a = 0.01f;
+  assert(binary_to_float(*ptr) == a);
+}
+
+int main(void) {
+  test_float();
+
+  test_to_float();
 
   /** understand 2s complement basics */
   if (0) {
