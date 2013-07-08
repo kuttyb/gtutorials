@@ -1,0 +1,29 @@
+static inline float binary_to_float(uint32_t mask) {
+  if (!mask) return 0.0f;
+
+  /** handle the exponent and return for 0, negative numbers */
+  int exponent = (get32(mask, 30, 23)) - 127;
+         
+  /** mantissa handling, adjust for the invisible 24th bit
+      and denormalize it */
+  uint32_t mantissa = get32(mask, 22, 0);
+  mantissa |= (1 << 23);
+
+  uint32_t non_fraction = get32(mantissa, 23, (23 - exponent));
+  uint32_t fraction     = get32(mantissa, (22 - exponent), 0);
+
+  float value = non_fraction;
+  /** add the fraction */
+  uint32_t power = 22 - exponent + 1;
+  for (; fraction; fraction>>=1) {
+    if (fraction & 1) {
+      value += 1.0f / ((1 << power) * 1.0f);
+    }
+    power--;
+  }
+
+  if (get32(mask, 31, 31)) 
+    return value * -1.0f;
+  else 
+    return value;
+}
