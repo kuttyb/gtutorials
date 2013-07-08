@@ -49,13 +49,17 @@ static inline int float_to_int(float finput) {
   mantissa >>= 23 - exponent;
   if (0) printf("normalized mantissa 0x%x\n\n", mantissa);
 
-  return mantissa;
+  if (get32(mask, 31, 31)) 
+    return mantissa * -1;
+  else
+    return mantissa;
 }
 
 int main(void) {
   printf("%d\n", float_to_int(101.1252f));
   printf("%d\n", float_to_int(101.0f));
   printf("%d\n", float_to_int(101.90f));
+  printf("%d\n", float_to_int(-101.90f));
 
   /** understand 2s complement basics */
   if (0) {
