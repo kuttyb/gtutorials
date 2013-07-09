@@ -9,12 +9,9 @@
 static inline void transpose(uint32_t *matrix, uint32_t rows, uint32_t cols, uint32_t *dst) {
      for (uint32_t i = 0; i < cols; ++i) {
           for (uint32_t j = 0; j < rows; ++j) {
-//               printf("%3d\t", *gmat(matrix, rows, cols, j, i));
                *gmat(dst, cols, rows, i, j) = *gmat(matrix, rows, cols, j, i);
           }
-          //        printf("\n");
      }
-//     printf("------\n");
 }
 
 static inline void print_matrix(uint32_t *matrix, uint32_t rows, uint32_t cols) {
