@@ -4,8 +4,9 @@
 #include <stdbool.h>
 #include <assert.h>
 
-enum state { a, b, c };
+enum state { a, b, c }; /** yes here two is a variable and the type is enum state */
 enum state ad = b;
+
 
 typedef enum { x, y, z } start_state;
 start_state one = z;
