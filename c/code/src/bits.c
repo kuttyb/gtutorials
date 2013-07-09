@@ -96,6 +96,10 @@ static inline uint32_t lsb_powerof2(uint32_t input) {
      return (temp >> 23) - 127; 
 }
 
+static inline uint32_t lsb(uint32_t input) {
+     return lsb_powerof2(input & ~(input - 1));
+}
+
 int main(void) {
      test_masklogic();
 
@@ -103,6 +107,9 @@ int main(void) {
      assert(lsb_powerof2(0x4) == 2);
      assert(lsb_powerof2(0x8) == 3);
      assert(lsb_powerof2(0x10) == 4);
+     assert(lsb(0xc) == 2);
+     assert(lsb(0x9) == 0);
+     assert(lsb(0xe) == 1);
 
      printf("0x%x\n", reverse_bits(0x6));
      printf("0x%x\n", reverseXor(0x6));
