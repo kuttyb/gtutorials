@@ -15,7 +15,7 @@ Round to nearest power of 2:
 
 mask =   (((hi - lo + 1) << 1) - 1) << lo;
 
-setval :  (a & ~mask ) | (val << lo)  // probably a good idea to clip val first
+setval :  (a & ~mask ) | ((val & mask) << lo)  // probably a good idea to clip val first
 
 getval :  (a & mask) >> lo
 
