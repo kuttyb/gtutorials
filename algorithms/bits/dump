@@ -57,3 +57,13 @@ MSB (log base 2 - lg(n) steps, this is essentially a binary search :) Its asking
            r |=  s[i]
         }
     }
+
+
+LSB (bit position not the value)
+    x = a & -a // (or a & ~(a - ), they'll both take you to 2s complement of the negative number so 
+               // either is fine. This returns the LSB value
+    float t = (float) x;
+    return get_exponent(t); // for a power of 2 number, the exponent is the log :) Why? Hint, floats
+                            // are stored as 1.xxx * 2^e, and in this case all x's are zeroes :)
+
+
