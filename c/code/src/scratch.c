@@ -3,15 +3,14 @@
 #include <inttypes.h>
 #include <assert.h>
 
+#define bitfor(t, num)  for(; num && ((t = num & 1) || 1); num>>=1)
+
 int main(void) {
-     uint32_t a = 0xc;
-     uint32_t b = -a;
-     float x = (float) (a & -a);
-     
-     printf("0x%x 0x%x 0x%x 0x%x\n", a, b, a & b, a & ~(a-1));
-     printf("0x%x 0x%x\n", *(uint32_t*)&x, ((*(uint32_t*)&x) >> 23) - 127);
-     
-     
+     uint32_t a = 0xa;
+     uint32_t t;
+     bitfor(t, a) {
+          printf("%d\n", t);
+     }
 
      return EXIT_SUCCESS;
 }
