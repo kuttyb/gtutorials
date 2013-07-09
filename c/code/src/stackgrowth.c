@@ -4,6 +4,18 @@
 #include <stdbool.h>
 #include <assert.h>
 
+enum state { a, b, c };
+enum state ad = b;
+
+typedef enum { x, y, z } start_state;
+start_state one = z;
+
+typedef uint64_t addr_t;
+
+
+
+
+
 __attribute__((noinline)) static void bottom(uintptr_t *addr) {
    int localvar = random() % 201;
    *addr = (uintptr_t)&localvar;
