@@ -25,6 +25,15 @@ resetbits:  ( a | mask ) ^ mask
 
 togglebits:  (a ^ mask)
 
+reverse_bits:
+     value = input; s = 31;
+     for (input >>=1; input; input >>= 1) { value << = 1; value |= input & 0x1; s--}
+     value <<= s; return value;
+
+You can also compare all bits in a for (i = 0; i < n/2; i++) loop and swap bits that are 
+different by Xor'ing them by set bits at the locations i, n-i-1 positions. The above one
+however runs faster!
+
 signextend_primitive type:  uint32_t temp = 0 ; temp -= msb(input); 
                             uint64_t op = ((uint64_t)temp << 32) | input;
 
@@ -33,5 +42,18 @@ signextend_smaller_than_primitive_type: (say b bits of a 32 bit integer)
                             temp -= get(input, b-1, b-1); // prepare the sign bits
                             setval(temp, b-1, 0, input);  // overlay old val on the lower bits
 
+modulus for power of 2:
+        m = n % d where d is a power of 2
+          = n & (d - 1)
 
-                
+
+MSB (log base 2 - lg(n) steps, this is essentially a binary search :) Its asking do you have
+     your MSB in the first half, no? Then how about the second half and so forth
+    b[] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000};
+    S[] = {1, 2, 4, 8, 16};
+    for (i = 4; i >= 0; --i) {
+        if (v & b[i]) {
+           v >>= s[i];
+           r |=  s[i]
+        }
+    }
