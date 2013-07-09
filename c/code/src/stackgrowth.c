@@ -4,19 +4,19 @@
 #include <stdbool.h>
 #include <assert.h>
 
-static void bottom(uintptr_t *addr) {
+__attribute__((noinline)) static void bottom(uintptr_t *addr) {
    int localvar = random() % 201;
    *addr = (uintptr_t)&localvar;
    printf("lower addr 0x%"PRIxPTR"\n", *addr);
 }
 
-static bool grow_downwards(void) {
+__attribute__((noinline)) static bool grow_downwards(void) {
    int localvar = random() % 12;
+   uintptr_t cur  = (uintptr_t)&localvar;
+   printf("upper addr 0x%"PRIxPTR"\n", cur);
 
    uintptr_t next;
    bottom(&next);
-   uintptr_t cur  = (uintptr_t)&localvar;
-   printf("upper addr 0x%"PRIxPTR"\n", cur);
 
    if (next < cur) 
       return true;
