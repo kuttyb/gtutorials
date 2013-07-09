@@ -82,9 +82,28 @@ static inline uint32_t reverse_bits(uint32_t input) {
      return value;
 }
 
+static inline uint32_t lsb_powerof2(uint32_t input) {
+     float a = (float) input;
+     uint32_t temp = *(uint32_t*)&a;
+     /** return exponent part of the float.
+         This only works for power of 2, meaning one 1
+         and all trailing zeroes after that.
+         Why?
+         Because floats are stored as 1.xxx * 2^e
+         but since its guaranteed the xxx's here are zeroes
+         we know the e here is the bit shift :)
+     */
+     return (temp >> 23) - 127; 
+}
+
 int main(void) {
      test_masklogic();
-     
+
+     assert(lsb_powerof2(0x2) == 1);
+     assert(lsb_powerof2(0x4) == 2);
+     assert(lsb_powerof2(0x8) == 3);
+     assert(lsb_powerof2(0x10) == 4);
+
      printf("0x%x\n", reverse_bits(0x6));
      printf("0x%x\n", reverseXor(0x6));
 
