@@ -1,16 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <stdbool.h>
 #include <assert.h>
 
-#define bitfor(t, num)  for(; num && ((t = num & 1) || 1); num>>=1)
+static void bottom(uintptr_t *addr) {
+   int localvar = random() % 201;
+   *addr = (uintptr_t)&localvar;
+   printf("lower addr 0x%"PRIxPTR"\n", *addr);
+}
+
+static bool grow_downwards(void) {
+   int localvar = random() % 12;
+
+   uintptr_t next;
+   bottom(&next);
+   uintptr_t cur  = (uintptr_t)&localvar;
+   printf("upper addr 0x%"PRIxPTR"\n", cur);
+
+   if (next < cur) 
+      return true;
+   else
+      return false;
+}
 
 int main(void) {
-     uint32_t a = 0xa;
-     uint32_t t;
-     bitfor(t, a) {
-          printf("%d\n", t);
-     }
-
+     printf("Does stack grow downwards? %s\n",
+            grow_downwards() ? "yes" : "no");
+     
      return EXIT_SUCCESS;
 }

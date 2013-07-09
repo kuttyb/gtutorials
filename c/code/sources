@@ -34,6 +34,7 @@ tileswizzling.c       \
 endianness.c          \
 bits.c                \
 numbers.c             \
+stackgrowth.c         \
 factorial.c           \
 rmat.c                \
 query.c 

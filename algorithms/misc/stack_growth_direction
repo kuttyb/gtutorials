@@ -1,0 +1,24 @@
+Which way does the stack grow?
+==============================
+
+printf("Does stack grow downwards? %s\n",
+            grow_downwards() ? "yes" : "no");
+
+bool grow_downwards(void) {
+   int localvar = random() % 12;
+
+   uintptr_t next = bottom();
+   uintptr_t cur  = (uintptr_t)&localvar;
+
+   if (next < cur) 
+      return true;
+   else
+      return false;
+}
+
+uintptr_t bottom(void) {
+   int localvar = random() % 201;
+   return &localvar;
+}
+
+
