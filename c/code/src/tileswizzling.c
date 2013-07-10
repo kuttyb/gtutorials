@@ -244,16 +244,17 @@ int main(void) {
   if (0) tile_to_pitch_to_back_nonsquare_nontranspose();
 
   // non square matrix transpose in place using tile swizzling
-  {
+  if (0) {
     const uint32_t rows = 2;
     const uint32_t cols = 3;
     uint32_t input[6] = { 0, 1, 2, 3, 4, 5 };
-
-    if (0) matrix_transpose_inplace(input, rows, cols, rows, 1);
+    printmatrix(input, 2, 3);
+    if (1) matrix_transpose_inplace(input, rows, cols, rows, 1);
+    printmatrix(input, 3, 2);
   }
 
   // in place tile swizzling
-  if (0) {
+  if (1) {
     uint32_t input[16];
     for (uint32_t i = 0; i < 16; ++i) { input[i] = i; }
     printmatrix(input, 4, 4);
@@ -261,7 +262,7 @@ int main(void) {
     printmatrix(input, 4, 4);
   }
 
-  if (1) {
+  if (0) {
     uint32_t input[16];
     for (uint32_t i = 0; i < 16; ++i) { input[i] = i; }
     printmatrix(input, 4, 4);
