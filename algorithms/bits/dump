@@ -1,6 +1,6 @@
 MSB set          while_ctr++     val >>= 1
 
-LSB set          val & ~(val - 1)
+LSB set          val & ~(val - 1)   or val & -val // ~(val - 1) = ~val + 1 which is 2's complement which is -val
 
 count set bits   while_ctr++     val &= val - 1
 
