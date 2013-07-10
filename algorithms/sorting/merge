@@ -31,7 +31,7 @@ void merge(A, low, mid, high) {
 	    new[i] = A[right++];
 	 } else {
 	    new[i] = A[left++];
-	    right;
+	    right++;
 	 }
      }     
 }
