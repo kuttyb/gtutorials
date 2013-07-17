@@ -13,7 +13,7 @@ Round to nearest power of 2:
         value |= value >> 16;    \
         value++;                 \
 
-mask =   (((hi - lo + 1) << 1) - 1) << lo;
+mask =   ((1 << (hi - lo + 1)) - 1) << lo;
 
 setval :  (a & ~mask ) | ((val & mask) << lo)  // probably a good idea to clip val first
 
