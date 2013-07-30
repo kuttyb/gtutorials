@@ -1,0 +1,25 @@
+https://github.com/apitrace/apitrace (cmake and build first)
+
+
+Capture
+=======
+./../../../apitrace/build/apitrace trace --api gl ./glxgears
+
+Dump Calls (Not State)
+========== 
+./../../../apitrace/build/apitrace dump glxgears.trace
+
+Replay (Possibly using a different GL Renderer)
+======
+./../../../apitrace/build/apitrace replay glxgears.trace
+
+Trim by frameset
+================
+./../../../apitrace/build/apitrace trim  --frames 200-212  glxgears.trace -o triage.trace 
+
+
+Dump State
+==========
+./../../../apitrace/build/apitrace replay -D 19 ./glxgears.trace  ;;  Dump state at call#19
+                                                                  ;;  call numbers provided in 
+                                                                  ;;  replay
