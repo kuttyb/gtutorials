@@ -1,0 +1,3 @@
+sudo apt-get install libglm-dev libglew-dev libglfw-dev
+
+Thats for building basic Apps, don't need libglm unless you are using Modern OpenGL that removes glTranslate and co
