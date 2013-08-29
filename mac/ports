@@ -1,0 +1,7 @@
+Get the pkg for Mountain Lion from http://www.macports.org/install.php
+
+Install Xcode from the AppStore. In Xcode, goto preferences -> Download and get the command line tools.
+
+Thats it, now start port search and port install all you like :)
+<haven't figured out how to control source compilation with special flags yet, later ...>
+
