@@ -1,0 +1,106 @@
+<irker987> mmoll@macports.org * https://trac.macports.org/changeset/110497 /trunk/dports/games/xmj/Portfile: 
+<irker987> games/xmj: update to 1.13
+<CodeWar> Is there a way to have multiple local repositories (if that is the correct term) one at /opt/local/bin another at /opt/local_second/bin each with different versions of certain tools. The goal then being to play with PATH to decide which gets used
+<Ionic_> CodeWar: yes, sure
+<CodeWar> Ionic_, should I install macports twice for that or is there something you could point me to for it
+<Ionic_> CodeWar: yes, of course, there's no way to mangle two prefixes
+<CodeWar> Ionic_, not sure I followed can you elaborate
+<Ionic_> CodeWar: if you want to use two prefixes (i.e., /opt/local and /opt/local_second), you'll have to install macports in each of them separately
+<Ionic_> this will also cause double maintenance work and installing packages (especially dependencies) twice
+<CodeWar> Ionic_, which is fine, I intend for these 2 installations to be completely unrelated and isolated
+<CodeWar> bottomline being Macports does not install anything outside /opt/local_prefix correct?
+<Ionic_> almost correct, yes
+<Ionic_> there may be instances when MP installs outside its prefix, but that should be exceptional only
+* maccampus has quit (Quit: Textual IRC Client: www.textualapp.com)
+* maccampus (~textual@ip-81-11-196-233.dsl.scarlet.be) has joined #macports
+<Ionic_> (like, there was a time when macports installed libcxx(abi) libraries to /lib or something, but that's gone now)
+<Ionic_> but in very general (and really), yes, MP does only put stuff into its configured prefix
+* maccampus has quit (Client Quit)
+<neverpanic> Ionic_: Is that really gone? I remember that broke an OS upgrade path and wanted to file a bug for that in a while now.
+<CodeWar> Excellent, I need to have build environment for very different projects that don't play very nice with each other. On Debian I struggled using because it would install in /usr/bin but Macports seems need and almost mimics chroot for me
+<Ionic_> neverpanic: that was me :)
+<Ionic_> neverpanic: well, it's still there for OS X < 10.7, I guess
+<neverpanic> Ionic_: that's a problem, isn't it?
+* mojca (5a9d8254@gateway/web/freenode/ip.90.157.130.84) has joined #macports
+<Ionic_> neverpanic: it is, true
+<Ionic_> thankfully snc provided binaries to fix my system
+<Ionic_> but that breakage was bad
+<su_v> you'll have to configure '--with-applications-dir' though, and with ports which use launchd, it requires some effort if you have to launch daemons per prefix
+<neverpanic> CodeWar: On Debian systems you could use Linux Containers, chroots and a lot of other similar solutions
+<Ionic_> su_v: mh? why?
+<CodeWar> neverpanic, chroot is way too heavy for this but yes it works. You almost need a mini Ubuntu installation on each of your chroots
+<su_v> launchd services usually are installed global
+<neverpanic> Ionic_: the launchd plist files might conflict.
+<su_v> IIRC (I do not allow MacPorts to do that=
+* maccampus (~textual@ip-81-11-196-233.dsl.scarlet.be) has joined #macports
+<su_v> )
+* maccampus has quit (Client Quit)
+* maccampus (~textual@ip-81-11-196-233.dsl.scarlet.be) has joined #macports
+<neverpanic> well, theoretically what MacPorts does would be equally possible on Debian systems
+<CodeWar> Is there a way to control whether MP downloads prebuilt packages during port install xyz or whether that is locally built on my machine (perhaps with special compiler flags)
+<neverpanic> It would just mean building everything from source
+<neverpanic> CodeWar: port -s
+<CodeWar> Thanks
+* maccampus has quit (Client Quit)
+<neverpanic> will always build from source
+<neverpanic> there's also an option in macports.conf you can set
+<su_v> if you install into a custom prefix, you cannot use binary packages anyway (or rather there are none available)
+<neverpanic> see man 5 macports.conf, buildfromsource
+* jlf (~user@pdpc/supporter/active/jlf) has joined #macports
+<Ionic_> neverpanic: ok, yeah
+<irker987> cal@macports.org * https://trac.macports.org/changeset/110498 /trunk/dports/lang/ghc-bootstrap/Portfile: 
+<irker987> ghc-bootstrap: disable livecheck
+<CodeWar> macports.conf buildfromsource appears to control the default behavious. Neat! 
+<CodeWar> Is there a way to control whether macports goes to the main MP server or to a local one that I have created. Essentially I am hoping to mimic a Maven type repository for our team 
+<geekosaur> sources.conf
+<CodeWar> got it
+<geekosaur> (note that `port selfupdate` to update macports itself still goes to the main MP repo)
+<CodeWar> thats fine we would not maintain macports the code itself, just individual components for our project 
+<Ionic_> you can also set your own portfile repository which will override macports stuff
+<neverpanic> CodeWar: Sounds like you need http://guide.macports.org/#development.local-repositories
+<CodeWar> Nice. I had used pkgsrc on Solaris a while ago, is the Macports code base shared with that or just completely separate forks at this point
+<geekosaur> completely separate; pkgsrc is based on bsdish makefiles, macports is tcl-based
+* maccampu_ (~textual@ip-81-11-196-233.dsl.scarlet.be) has joined #macports
+<CodeWar> neverpanic, thanks, I was reading the manuals to get something like that :)
+<neverpanic> geekosaur: sounds like they have the same roots, though
+<CodeWar> what does the MP server use .. Linux or FreeBSD?
+<geekosaur> same basic concept, different implementation.
+<Ionic_> the basic idea, yes
+<neverpanic> CodeWar: which MacPorts server?
+<geekosaur> likewise gentoo portage, same idea, different implementation from either pkgsrc/bsdports or macports
+<Ionic_> CodeWar: likely OS X :p
+<CodeWar> neverpanic,  the central one I suppose, the one that my Macbook Air talks to if I did nothing special
+<Ionic_> MP is hosted by macosforge/Apple
+<neverpanic> the webserver? the buildbots? the package server/distribution servers?
+<Ionic_> mirrors are running whatever they feel like
+<neverpanic> that would be rsync.macports.org, very likely running Linux
+<CodeWar> all of them? just curious how far OS X goes for developing backends
+<neverpanic> Not sure though, Apple manages the hardware for us.
+<neverpanic> Pretty much the only servers running OS X at this point are the buildbots
+<Ionic_> neverpanic: I don't think apple would be running Linux
+<neverpanic> All the others have been switched to Linux a while ago
+<neverpanic> Ionic_: Oh, they do
+<neverpanic> Ionic_: They have lots of Linux boxes, apparently; e.g., all their cloud-services are handled by Linux servers
+* r1pp3r (~Adium@p579E81D1.dip0.t-ipconnect.de) has joined #macports
+<Ionic_> interesting
+<CodeWar> use the best tool for the job apparently
+<neverpanic> I'm sure there's mails in the mailing list archives from Bill where he explicitly states that, too
+<Ionic_> CodeWar: or something... one guy I know is cross-compiling binaries for OS X on Linux, that's scary.
+* Giby_The_Kid has quit (Ping timeout: 245 seconds)
+<neverpanic> e.g.: https://lists.macosforge.org/pipermail/macports-dev/2013-March/022439.html
+<Ionic_> I see :)
+* r1pp3r has quit (Ping timeout: 264 seconds)
+* MobGod has quit (Remote host closed the connection)
+* MobGod (~mobgod@unaffiliated/mobgod) has joined #macports
+* MobGod has quit (Excess Flood)
+* MobGod (~mobgod@unaffiliated/mobgod) has joined #macports
+<CodeWar> Apparently non /opt/local installations of Macports require building MP from source. Anyways got that done and it appears to work.  /Users/xyz/opt/local/bin/port works but requires root privileges. I guess this has become the default Ports installation for the system now
+<Ionic_> it shouldn't require root priviledges if you install everything into your home dir?
+<CodeWar> Ionic_, it does but I noticed during make install it tried to do something with /usr/xxx which is why I had to do sudo make install. Its all installed under my home_dir and works fine. I ll try and play with the build+ install MP from scratch to understand why make install required root privileges
+<irker987> stromnov@macports.org * https://trac.macports.org/changeset/110499 /trunk/dports/gis/gdal/Portfile: 
+<irker987> gdal: update to version 1.10.1
+<neverpanic> CodeWar: It's not necessarily the default installation; multiple installations can require root privileges
+<neverpanic> if you want a non-root install, there's a parameter you need to pass to ./configure to achieve that
+<CodeWar> with_no_root_privileges
+<CodeWar> and thanks
+* maccampu_ has quit (Quit: Computer has gone to sleep.)

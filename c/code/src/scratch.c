@@ -4,57 +4,22 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define  gmat(a, r, c, i, j)         (a + i*c + j)
+typedef uint32_t (^ fptr)(uint32_t a);
 
-static inline void transpose(uint32_t *matrix, uint32_t rows, uint32_t cols, uint32_t *dst) {
-     for (uint32_t i = 0; i < cols; ++i) {
-          for (uint32_t j = 0; j < rows; ++j) {
-               *gmat(dst, cols, rows, i, j) = *gmat(matrix, rows, cols, j, i);
-          }
-     }
-}
-
-static inline void swap(uint32_t *a, uint32_t *b) {
-     uint32_t temp = *a;
-     *a = *b;
-     *b = temp;
-}
-
-static inline void flipcolumns(uint32_t *matrix, uint32_t rows, uint32_t cols) {
-     for (uint32_t i = 0; i < cols/2; ++i) {
-          for (uint32_t j = 0; j < rows; ++j) {
-               swap(gmat(matrix, rows, cols, j, i), gmat(matrix, rows, cols, j, cols - i - 1));
-          }
-     }
-}
-
-static inline void fliprows(uint32_t *matrix, uint32_t rows, uint32_t cols) {
-     for (uint32_t i = 0; i < rows/2; ++i) {
-          for (uint32_t j = 0; j < cols; ++j) {
-               swap(gmat(matrix, rows, cols, i, j),
-                    gmat(matrix, rows, cols, rows - i - 1, j));
-          }
-     }
-}
-
-static inline void print_matrix(uint32_t *matrix, uint32_t rows, uint32_t cols) {
-     for (uint32_t i = 0; i < rows; ++i) {
-          for (uint32_t j = 0; j < cols; ++j) {
-               printf("%3d\t", *gmat(matrix, rows, cols, i, j));
-          }
-          printf("\n");
-     }
-     printf("------\n");
+void execute(fptr a, uint32_t input) {
+  uint32_t value = a(input);
+  printf("returned value of closure was %d\n", value);
 }
 
 int main(void) {
-     uint32_t mat[3][2] = {
-          {0, 1},
-          {2, 3 },
-          {4, 5 }
-     };
-     uint32_t dst[2][3] = { {0} };
-
-
-     return EXIT_SUCCESS;
+  uint32_t value = 23;
+  execute(^(uint32_t input) {
+      printf("speaking from inside a closure with value %d\n", input);
+      return input + 10;
+    }, value);
+  
+  value++;
+  printf("local value is %d\n", value);
+  
+    return EXIT_SUCCESS;
 }
