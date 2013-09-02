@@ -5,3 +5,7 @@ Install Xcode from the AppStore. In Xcode, goto preferences -> Download and get 
 Thats it, now start port search and port install all you like :)
 <haven't figured out how to control source compilation with special flags yet, later ...>
 
+Btw this is how you build Macports on your local machine. The idea is to have multiple such installations all operating w/o root privileges
+./configure --with-no-root-privileges --prefix=/Users/kutty_banerjee/bin/macports 
+
+
