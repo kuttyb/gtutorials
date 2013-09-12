@@ -1,0 +1,18 @@
+// Create a Texture Object and assign it parameters and storage
+glGenTextures(&handle)
+glBindTexture(GL_TEXTURE_2D, handle) // Tell him all future calls will set the 2D Texture bound to it 
+  glTexParameter(GL_TEXTURE_2D, ...);
+  glTexImage2D(...); // Upload your image, we need to checkout the details for mipmaps
+  ...
+glBindTexture(GL_TEXTURE_2D, 0);
+
+
+// In the Rendering Loop
+glActiveTexture(texture_uint_number); // Essentially you are saying the next bind will bind that texture to this on chip Texture Unit
+glBindTexture(GL_TEXTURE_2D, handle);
+glUniform1iARB(glsl_sampler_variable_handle, texture_unit_from_active_texture); 
+					     // This will assign that Sampler2D variable in your glsl Shader to the given Texture
+					     // Object and the Texture Unit. That's it, Texture2D calls from inside the shader
+					     // will now get the state from this Texture and go through that HW unit and use 
+					     // the mentioned Sampler parameters
+
