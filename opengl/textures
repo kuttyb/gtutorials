@@ -15,4 +15,5 @@ glUniform1iARB(glsl_sampler_variable_handle, texture_unit_from_active_texture);
 					     // Object and the Texture Unit. That's it, Texture2D calls from inside the shader
 					     // will now get the state from this Texture and go through that HW unit and use 
 					     // the mentioned Sampler parameters
-
+					     // Or read this for more details
+					     // http://www.opengl.org/wiki/GLSL_Sampler#Binding_textures_to_samplers
