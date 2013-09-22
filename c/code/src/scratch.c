@@ -37,10 +37,29 @@ inline bool is_chipspecific_register(uint32_t reg_offset, const AGXChipSpecificR
   return false;
 }
 
+static inline void print_region(const AGXRegisterRegion *region, uint32_t count) {
+  printf("%s: region passed in starts at %p\n", 
+         __FUNCTION__, region);
+
+  for (uint32_t ctr = 0; ctr < count; ctr++) {
+    printf("iteration %d: start %d end %d\n",
+           ctr, region[ctr].start, region[ctr].end);
+  }
+}
+
 int main(void) {
-  AGXRegisterRegion a = (AGXRegisterRegion) {
-    .start = 10, .end = 20
+  const AGXRegisterRegion a[2] =  {
+    //    .start = 10, .end = 20
+    {10, 20},
+    {40, 60}
   };
-    
-    return EXIT_SUCCESS;
+ 
+  printf("address of array is %p\n", a);
+  uint32_t *ptr = (uint32_t*)a;
+  printf("%d %d %d %d\n", ptr[0], ptr[1], ptr[2], ptr[3]);
+  
+
+  print_region(a, sizeof(a) / sizeof(a[0]));
+  
+  return EXIT_SUCCESS;
 }
