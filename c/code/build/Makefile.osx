@@ -1,0 +1,7 @@
+include make.defs
+
+CC       = clang
+CFLAGS   = -g  -Wall -msse2 -march=native -std=gnu99  ${WORDSIZE} 
+
+include ./../sources
+include make.rules

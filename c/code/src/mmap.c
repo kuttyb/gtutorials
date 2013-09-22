@@ -9,7 +9,7 @@
 int main(void) {
   const ssize_t size = 0x4000000;
   const int data = 0xabcdabcd;
-  uint32_t *ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
+  uint32_t *ptr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANON, -1, 0);
   assert(ptr);
 
   printf("accessing memory %p size 0x%lx\n", ptr, size);

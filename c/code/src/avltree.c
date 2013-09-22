@@ -76,10 +76,11 @@ typedef void (*rbvisitor)(RBNode*, void*arg);
 
 static uint32_t preordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
-    if (!start) goto preordertraversal_end;
 
     QFifo* fifo = tree->fifo;
     emptyFifo(fifo);
+
+    if (!start) goto preordertraversal_end;
 
     put(fifo, start, 0);
     while (sizeFifo(fifo)) {
@@ -97,10 +98,11 @@ preordertraversal_end:
 /** returns depth of the tree. Tree with only a root is at depth 0 */
 static uint32_t inordertraversal(RBTree* tree, RBNode* start, rbvisitor v, void* arg) {
     assert(tree && v && tree->stack);
-    if (!start) goto traversal_end;
 
     Stack* stack = tree->stack;
     emptyStack(stack);
+
+    if (!start) goto traversal_end;
 
     pushStack(stack, start, 0);
     while (sizeStack(stack)) {

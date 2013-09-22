@@ -66,7 +66,7 @@ static void tile_to_pitch_to_back(void) {
   printf("going from pitch to tiled memory\n");
   const uint64_t p[4] = {4, 2, 2, 2};
   for (uint64_t i = 0; i < 8; ++i) {
-    printf("original offset %ld new offset %ld\n",
+    printf("original offset %"PRIu64" new offset %"PRIu64"\n",
            i, pitch_to_tiled(i, p[0], p[1], p[2], p[3], &temp));
   }
 
@@ -76,7 +76,7 @@ static void tile_to_pitch_to_back(void) {
     //    0, 2, 4, 6, 1, 3, 5, 7
   };
   for (uint64_t i = 0; i < 8; ++i) {
-    printf("original offset %ld new offset %ld\n",
+    printf("original offset %"PRIu64" new offset %"PRIu64"\n",
            input[i], 
            pitch_to_tiled(input[i], p[0], p[1], p[2], p[3], &temp));
 

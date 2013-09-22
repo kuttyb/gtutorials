@@ -160,7 +160,7 @@ void printRMAT(RMAT* rmat) {
     printf("RMAT Header\n");
     printf("  PA_PAGESIZE   0x%x\n", 1 << rmat->pagesizelog);
     printf("  PHASES        0x%x\n", rmat->currentphase + 1);
-    printf("  MAXENTRIES    0x%lx\n", rmat->maxentries);
+    printf("  MAXENTRIES    0x%"PRIx64"\n", rmat->maxentries);
     printf("  VALIDENTRIES  0x%x\n", rmat->numvalidentries);
     printf("--------------------------------------\n");
     const uint32_t pagesize = 1 << rmat->pagesizelog;
@@ -177,7 +177,7 @@ void printRMAT(RMAT* rmat) {
             uint32_t vaddr;
             uint32_t phase;
             split_va_and_phase(rmat, va_and_phase, &vaddr, &phase);
-            printf("\tPhase %d: PA 0x%lx VA 0x%x\n",
+            printf("\tPhase %d: PA 0x%"PRIx64" VA 0x%x\n",
                     phase, paddr, vaddr);
             for (uint32_t j = 0; j < table->entries[i].numpids; j++) {
 
