@@ -63,6 +63,21 @@ static void testbasic(void) {
   print_region(a, sizeof(a) / sizeof(a[0]));
 }
 
+static inline void print_stats(const AGXChipSpecificRegisterRegion *region, uint32_t count) {
+
+}
+
+static void testwholeregion(void) {
+  const AGXChipSpecificRegisterRegion a[2] = {
+    {{10, 40}, 110},
+    {{60, 80}, 600}
+  };
+
+  print_stats(a, sizeof(a) / sizeof(a[0]));
+}
+
 int main(void) {
-  testbasic();
+  if (0) testbasic();
+
+  testwholeregion();
 }
