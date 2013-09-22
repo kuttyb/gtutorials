@@ -39,44 +39,65 @@ typedef struct
 
 
 int main(void) {
-  const AGXChipSpecificRegisterRegion a[2] = {
+  const AGXChipSpecificRegisterRegion a[] = {
     {{10, 40}, 110},
-    {{60, 80}, 600}
+    {{60, 80}, 600},
+    {{80, 90}, 700},
   };
 
   uint32_t new_range = 0;
   bool temp = false;
 
-  temp = is_chipspecific_register(9, a, 2, &new_range);
+  temp = is_chipspecific_register(9, a, 3, &new_range);
   assert(temp == false);
   assert(new_range == 0);
 
-  temp = is_chipspecific_register(10, a, 2, &new_range);
+  temp = is_chipspecific_register(10, a, 3, &new_range);
   assert(temp == true);
   assert(new_range == 110);
 
 
-  temp = is_chipspecific_register(11, a, 2, &new_range);
+  temp = is_chipspecific_register(11, a, 3, &new_range);
   assert(temp == true);
   assert(new_range == 111);
 
-  temp = is_chipspecific_register(12, a, 2, &new_range);
+  temp = is_chipspecific_register(12, a, 3, &new_range);
   assert(temp == true);
   assert(new_range == 112);
 
-  temp = is_chipspecific_register(40, a, 2, &new_range);
+  temp = is_chipspecific_register(40, a, 3, &new_range);
   assert(temp == true);
   assert(new_range == 140);
 
   new_range = 0;
-  temp = is_chipspecific_register(41, a, 2, &new_range);
+  temp = is_chipspecific_register(41, a, 3, &new_range);
   assert(temp == false);
   assert(new_range == 0);
 
   new_range = 0;
-  temp = is_chipspecific_register(44, a, 2, &new_range);
+  temp = is_chipspecific_register(44, a, 3, &new_range);
   assert(temp == false);
   assert(new_range == 0);
+
+  new_range = 0;
+  temp = is_chipspecific_register(59, a, 3, &new_range);
+  assert(temp == false);
+  assert(new_range == 0);
+
+  new_range = 0;
+  temp = is_chipspecific_register(60, a, 3, &new_range);
+  assert(temp == true);
+  assert(new_range == 600);
+
+  new_range = 0;
+  temp = is_chipspecific_register(79, a, 3, &new_range);
+  assert(temp == true);
+  assert(new_range == 619);
+
+  new_range = 0;
+  temp = is_chipspecific_register(60, a, 3, &new_range);
+  assert(temp == true);
+  assert(new_range == 600);
 
   return 0;
 }
