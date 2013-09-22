@@ -64,5 +64,9 @@ int main(void) {
   assert(temp == true);
   assert(new_range == 112);
 
+  temp = is_chipspecific_register(40, a, 2, &new_range);
+  assert(temp == true);
+  assert(new_range == 140);
+
   return 0;
 }
