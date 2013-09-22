@@ -17,7 +17,7 @@ typedef struct
 } AGXChipSpecificRegisterRegion;
 
 
-inline bool is_chipspecific_register(uint32_t reg_offset, const AGXChipSpecificRegisterRegion * per_chip_region, uint32_t per_chip_count,
+ bool is_chipspecific_register(uint32_t reg_offset, const AGXChipSpecificRegisterRegion * per_chip_region, uint32_t per_chip_count,
                                      uint32_t *new_reg_offset)
 {
   if (!(per_chip_region && new_reg_offset && per_chip_count))
@@ -37,54 +37,32 @@ inline bool is_chipspecific_register(uint32_t reg_offset, const AGXChipSpecificR
   return false;
 }
 
-static inline void print_region(const AGXRegisterRegion *region, uint32_t count) {
-  printf("%s: region passed in starts at %p\n", 
-         __FUNCTION__, region);
 
-  for (uint32_t ctr = 0; ctr < count; ctr++) {
-    printf("iteration %d: start %d end %d\n",
-           ctr, region[ctr].start, region[ctr].end);
-  }
-}
-
-static void testbasic(void) {
-  const AGXRegisterRegion a[2] =  {
-    //    .start = 10, .end = 20
-    {10, 20},
-    {40, 60}
-  };
- 
-  printf("%s: address of array is %p\n", __FUNCTION__, a);
-  uint32_t *ptr = (uint32_t*)a;
-  printf("%s: %d %d %d %d\n", 
-         __FUNCTION__, ptr[0], ptr[1], ptr[2], ptr[3]);
-  
-
-  print_region(a, sizeof(a) / sizeof(a[0]));
-}
-
-static inline bool print_stats(const AGXChipSpecificRegisterRegion *region, uint32_t count) {
-  if (!(region && count)) return false;
-
-  for(uint32_t ctr = 0; ctr < count; ctr++) {
-    printf("start: %d end: %d new_range: %d\n",
-           region[ctr].range.start, region[ctr].range.end, region[ctr].chipspecific_range_start);
-  }
-
-  return true;
-}
-
-static void testwholeregion(void) {
+int main(void) {
   const AGXChipSpecificRegisterRegion a[2] = {
     {{10, 40}, 110},
     {{60, 80}, 600}
   };
 
-  print_stats(a, sizeof(a) / sizeof(a[0]));
-}
+  uint32_t new_range = 0;
+  bool temp = false;
 
-int main(void) {
-  if (0) testbasic();
+  temp = is_chipspecific_register(9, a, 2, &new_range);
+  assert(temp == false);
+  assert(new_range == 0);
 
-  testwholeregion();
+  temp = is_chipspecific_register(10, a, 2, &new_range);
+  assert(temp == true);
+  assert(new_range == 110);
+
+
+  temp = is_chipspecific_register(11, a, 2, &new_range);
+  assert(temp == true);
+  assert(new_range == 111);
+
+  temp = is_chipspecific_register(12, a, 2, &new_range);
+  assert(temp == true);
+  assert(new_range == 112);
+
+  return 0;
 }
