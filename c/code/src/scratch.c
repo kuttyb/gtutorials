@@ -63,8 +63,15 @@ static void testbasic(void) {
   print_region(a, sizeof(a) / sizeof(a[0]));
 }
 
-static inline void print_stats(const AGXChipSpecificRegisterRegion *region, uint32_t count) {
+static inline bool print_stats(const AGXChipSpecificRegisterRegion *region, uint32_t count) {
+  if (!(region && count)) return false;
 
+  for(uint32_t ctr = 0; ctr < count; ctr++) {
+    printf("start: %d end: %d new_range: %d\n",
+           region[ctr].range.start, region[ctr].range.end, region[ctr].chipspecific_range_start);
+  }
+
+  return true;
 }
 
 static void testwholeregion(void) {
