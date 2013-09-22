@@ -42,7 +42,7 @@ int main(void) {
   const AGXChipSpecificRegisterRegion a[] = {
     {{10, 40}, 110},
     {{60, 80}, 600},
-    {{80, 90}, 700},
+    {{84, 90}, 700},
   };
 
   uint32_t new_range = 0;
@@ -98,6 +98,16 @@ int main(void) {
   temp = is_chipspecific_register(60, a, 3, &new_range);
   assert(temp == true);
   assert(new_range == 600);
+
+  new_range = 0;
+  temp = is_chipspecific_register(84, a, 3, &new_range);
+  assert(temp == true);
+  assert(new_range == 700);
+
+  new_range = 0;
+  temp = is_chipspecific_register(90, a, 3, &new_range);
+  assert(temp == true);
+  assert(new_range == 706);
 
   return 0;
 }
