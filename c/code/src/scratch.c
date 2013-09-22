@@ -47,19 +47,22 @@ static inline void print_region(const AGXRegisterRegion *region, uint32_t count)
   }
 }
 
-int main(void) {
+static void testbasic(void) {
   const AGXRegisterRegion a[2] =  {
     //    .start = 10, .end = 20
     {10, 20},
     {40, 60}
   };
  
-  printf("address of array is %p\n", a);
+  printf("%s: address of array is %p\n", __FUNCTION__, a);
   uint32_t *ptr = (uint32_t*)a;
-  printf("%d %d %d %d\n", ptr[0], ptr[1], ptr[2], ptr[3]);
+  printf("%s: %d %d %d %d\n", 
+         __FUNCTION__, ptr[0], ptr[1], ptr[2], ptr[3]);
   
 
   print_region(a, sizeof(a) / sizeof(a[0]));
-  
-  return EXIT_SUCCESS;
+}
+
+int main(void) {
+  testbasic();
 }
