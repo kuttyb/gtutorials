@@ -1,0 +1,3 @@
+# To remove all files from all changelists
+svn changelist --remove --depth infinity .
+
