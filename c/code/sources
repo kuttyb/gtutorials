@@ -4,8 +4,6 @@ SOURCES          +=   \
 alignment.c           \
 barrierperf.c         \
 brk.c                 \
-filebackedmem.c       \
-threads.c             \
 filemem.c             \
 fault.c               \
 filters.c             \
@@ -40,6 +38,7 @@ rmat.c                \
 query.c 
 
 ifdef LINUX
-SOURCES += event.c
+SOURCES += event.c filebackedmem.c thread.c
+
 endif
 
