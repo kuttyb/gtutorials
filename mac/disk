@@ -1,0 +1,3 @@
+diskutil list  to list all disk partitions, devices and state.
+
+diskutil unmount /dev/diskname to unmount partitions. If its a .dmg file that got mounted, then you don't need to use sudo to get it off.
