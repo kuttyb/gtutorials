@@ -7,3 +7,4 @@ lib/**
 **.o
 **/bin/**
 
+cpp/code/bin/**
