@@ -1,3 +1,4 @@
 #! /bin/sh
 
-rm *.o test
+rm *.o 
+rm ./bin/test
