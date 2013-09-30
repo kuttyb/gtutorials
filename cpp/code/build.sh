@@ -7,4 +7,6 @@ export BIN="./bin"
 
 ${CXX} ${CXXFLAGS} -c *.cpp
 
-${CXX} ${LDFLAGS} *.o -o ${BIN}/test
+${CXX} ${LDFLAGS} main.o -o ${BIN}/test
+
+${CXX} ${LDFLAGS} t.o -o ${BIN}/g
