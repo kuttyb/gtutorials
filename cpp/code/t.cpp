@@ -31,6 +31,7 @@ int main(void)
 	
 	X<int> a;
 	cout<< a.add(3, 4) << endl;
-
+	cout<< a.multiply(3, 4) << endl;
+	
 	return 0;
 }
