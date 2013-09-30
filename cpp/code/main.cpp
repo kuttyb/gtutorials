@@ -11,56 +11,56 @@ const uint64_t Base::classvar = 0x32;
 
 // ----------------------------------------------
 Base::Base(uint32_t i) : var(i), x(2) {
-  cout<<"base ctor..."<<endl;
+    cout<<"base ctor..."<<endl;
 }
 
 Base::~Base() {
-  cout<<"base dtor..."<< endl;
+    cout<<"base dtor..."<< endl;
 }
 
 void Derived::print(void)  {
-  assert(y);
-  cout<<"Derived: value is " << localvar << endl;
+    assert(y);
+    cout<<"Derived: value is " << localvar << endl;
 }
 
 void Base::print(void)  {
-  assert(x);
-  cout<<" Base: value is " << var << endl;
+    assert(x);
+    cout<<" Base: value is " << var << endl;
 }
 
 uint64_t Base::getclassvar(void) {
-  return classvar;
+    return classvar;
 }
 
 // ----------------------------------------------
 Derived::Derived() : Base(0), localvar(200), y(2) {
-  cout<<"Derived ctor...."<<endl;
+    cout<<"Derived ctor...."<<endl;
 }
 
 Derived::~Derived() {
-  cout<<"Derived dtor..."<< endl;
+    cout<<"Derived dtor..."<< endl;
 }
 // ----------------------------------------------
 
 static void test_reference(Base & base) {
-  cout << __FUNCTION__ << " flag value is " << base.flag << endl;
-  base.flag = 1200;
-  cout << "static value is " << Base::getclassvar() << endl;
+    cout << __FUNCTION__ << " flag value is " << base.flag << endl;
+    base.flag = 1200;
+    cout << "static value is " << Base::getclassvar() << endl;
 }
 
 static void test_pointers(void)   {
-  Derived *d = new Derived();
-  d->flag = 21;
-  test_reference(*d);
-  cout<<"pointer has value " << d->flag << endl;
-  delete d;
+    Derived *d = new Derived();
+    d->flag = 21;
+    test_reference(*d);
+    cout<<"pointer has value " << d->flag << endl;
+    delete d;
 }
 
 
 int main(void) {
-  cout << "static value pre object construction is " << Base::getclassvar() << endl;
+    cout << "static value pre object construction is " << Base::getclassvar() << endl;
 
-  test_pointers();
+    test_pointers();
 
-  return 0;
+    return 0;
 }
