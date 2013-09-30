@@ -1,6 +1,6 @@
 #include <inttypes.h>
 #include <iostream>
-#include <assert.h>
+#include <cassert>
 #include "first.h"
 
 using std::cout;
