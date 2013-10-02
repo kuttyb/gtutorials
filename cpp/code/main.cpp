@@ -48,19 +48,41 @@ static void test_reference(Base & base) {
 	cout << "static value is " << Base::getclassvar() << endl;
 }
 
+<<<<<<< local
+static void test_pointers(void)
+{
+    Derived *d = new Derived();
+    d->flag = 21;
+    test_reference(*d);
+    cout<<"pointer has value " << d->flag << endl;
+    delete d;
+=======
 static void test_pointers(void)   {
 	Derived *d = new Derived();
 	d->flag = 21;
 	test_reference(*d);
 	cout<<"pointer has value " << d->flag << endl;
 	delete d;
+>>>>>>> other
 }
 
 
 int main(void) {
+<<<<<<< local
+    cout << "static value pre object construction is " << Base::getclassvar() << endl;
+=======
 	cout << "static value pre object construction is " << Base::getclassvar() << endl;
+>>>>>>> other
 
+<<<<<<< local
+    test_pointers();
+=======
 	test_pointers();
+>>>>>>> other
 
+<<<<<<< local
+    return 0;
+=======
 	return 0;
+>>>>>>> other
 }
