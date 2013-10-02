@@ -8,3 +8,5 @@ lib/**
 **/bin/**
 
 cpp/code/bin/**
+
+.tags
