@@ -1,0 +1,7 @@
+As it turns out, if you did diskutil list, you will find that the Recovery Disk comes as part of the Installation.
+
+Reboot and press the Command and "S" keys down and you will enter the shell which is already at root.
+
+[a] If you want to restart the Installation process for update again (say you lost root passwd or got stripped of admin rights for some reason)
+    in this mode, just delete /var/db/.AppleSetupDone and reboot
+
