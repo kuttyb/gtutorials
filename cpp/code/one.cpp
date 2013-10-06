@@ -94,6 +94,21 @@ int main(void)
 		delete one;
 	}
 	cout << "----------------------------" << endl;
+	
+	// Array Initialization
+	{
+		One list[] = 
+			{
+				One(2, 3, 8), One(1, 5, 2), One(1, 1, 1), One(1, 2, 3)
+			};
+		cout << "printing array values " << endl;
+		
+		for (uint32_t i = 0; i < sizeof(list) / sizeof(One); i++) 
+		{
+			cout << list[i].latest_value() << endl;
+		}
+	}
+	cout << "----------------------------" << endl;
 
 	cout <<"tearing down program" << endl;
 	
