@@ -26,7 +26,7 @@ class Two : public One
 public:
 	Two(void);
 	~Two(void);
-	
+	uint32_t latest_value(void);
 };
 
 
