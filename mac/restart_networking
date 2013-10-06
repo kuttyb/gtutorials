@@ -1,0 +1,6 @@
+*sudo ifconfig en1 down
+  sleep or wait a bit
+*sudo ifconfig en1 up
+
+Of course use the correct interface, it doesn't have to be en1 or en0.
+
