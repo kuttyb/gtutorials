@@ -63,7 +63,7 @@ int main(void)
 	// by value
 	cout<<"testing the latest software" << endl;
 	{
-		One<int> one(2, 3, 8, 1);
+		One<uint64_t> one(2, 3, 8, 1);
 		one.value();
 		
 	}
@@ -71,7 +71,7 @@ int main(void)
 
 	// by pointer
 	{
-		One<int> *two = new Two<int>(2);
+		One<uint64_t> *two = new Two<uint64_t>(2);
 		two->value();
 		two->latest_value();
 		delete two;
@@ -80,16 +80,16 @@ int main(void)
 
 	// by reference
 	{
-		Two<int> two(2);
-		One<int>  &ref = two;
+		Two<uint64_t> two(2);
+		One<uint64_t>  &ref = two;
 		ref.latest_value();
 	}
 	cout << "----------------------------" << endl;
 
 	// by reference (from a pointer)
 	{
-		One<int> *one = new Two<int>(2);
-		One<int> &ref = *one;
+		One<uint64_t> *one = new Two<uint64_t>(2);
+		One<uint64_t> &ref = *one;
 		ref.latest_value();
 		delete one;
 	}
@@ -97,13 +97,13 @@ int main(void)
 	
 	// Array Initialization
 	{
-		One<int> list[] = 
+		One<uint64_t> list[] = 
 			{
-				One<int>(2, 3, 8, 1), One<int>(1, 5, 2, 2), One<int>(1, 1, 1, 3), One<int>(1, 2, 3, 4)
+				One<uint64_t>(2, 3, 8, 1), One<uint64_t>(1, 5, 2, 2), One<uint64_t>(1, 1, 1, 3), One<uint64_t>(1, 2, 3, 4)
 			};
 		cout << "printing array values " << endl;
 		
-		for (uint32_t i = 0; i < sizeof(list) / sizeof(One<int>); i++) 
+		for (uint32_t i = 0; i < sizeof(list) / sizeof(One<uint64_t>); i++) 
 		{
 			cout << list[i].latest_value() << endl;
 		}
