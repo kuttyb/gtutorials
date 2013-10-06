@@ -1,4 +1,5 @@
 #include <inttypes.h>
+#include <stdio.h>
 
 template<class T>
 class A 
@@ -20,6 +21,7 @@ class X : public A<X>
 public:
 	uint64_t multiply(uint32_t input, uint32_t m) 
 	{
+		printf("X speaking\n");
 		return input * m;
 	}
 
@@ -34,6 +36,7 @@ class Y : public A<Y>
 public:
 	uint64_t multiply(uint32_t input, uint32_t m) 
 	{
+		printf("Y speaking\n");
 		return input * m + 3;
 	}
 
@@ -60,5 +63,6 @@ int main(void)
 
 
 	delete a;
-	return ctr % 100;
+	printf("value is %lld\n", ctr % 100);
+	return 0;
 }
