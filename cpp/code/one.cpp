@@ -8,26 +8,26 @@ using std::endl;
 // ---------------------------------------------------------
 //   Class One
 // ---------------------------------------------------------
-const uint32_t One::uuid = 0x10;
-uint32_t One::var_id = 12;
+template<class T>const uint32_t One<T>::uuid = 0x10;
+template<class T> uint32_t One<T>::var_id = 12;
 
-One::One(uint32_t x, uint32_t y, uint64_t _local) : m_x(x), m_y(y), local(_local) 
+template<class T> One<T>::One(uint32_t x, uint32_t y, uint64_t _local, T t) : m_x(x), m_y(y), m_t(t), local(_local)
 {
 	cout << "ctor of One" <<endl;
 }
 
 
-One::~One(void) 
+template<class T> One<T>::~One(void) 
 {
 	cout <<"dtor of One" << endl;
 }
 	
-uint64_t One::value(void) 
+template<class T> uint64_t One<T>::value(void) 
 {
 	return m_x;
 }
 
-uint32_t One::latest_value(void) 
+template<class T> uint32_t One<T>::latest_value(void) 
 {
 	cout << "One::latest_value" << endl;
 	
@@ -39,21 +39,21 @@ uint32_t One::latest_value(void)
 // ---------------------------------------------------------
 //   Class Two
 // ---------------------------------------------------------
-Two::Two(void) : One(2, 3, 19) 
+template<class T> Two<T>::Two(T t) : One<T>(2, 3, 19, t) 
 {
 	cout << "ctor of Two" << endl;
 }
 
-Two::~Two(void) 
+template<class T> Two<T>::~Two(void) 
 {
 	cout << "dtor of Tw" << endl;
 }
 
-uint32_t Two::latest_value(void) 
+template<class T> uint32_t Two<T>::latest_value(void) 
 {
 	cout << "Two::latest_value" << endl;
 	
-	return static_cast<uint32_t>(local / 2);
+	return static_cast<uint32_t>(this->local / 2);
 }
 
 
@@ -63,7 +63,7 @@ int main(void)
 	// by value
 	cout<<"testing the latest software" << endl;
 	{
-		One one(2, 3, 8);
+		One<int> one(2, 3, 8, 1);
 		one.value();
 		
 	}
@@ -71,7 +71,7 @@ int main(void)
 
 	// by pointer
 	{
-		One *two = new Two();
+		One<int> *two = new Two<int>(2);
 		two->value();
 		two->latest_value();
 		delete two;
@@ -80,16 +80,16 @@ int main(void)
 
 	// by reference
 	{
-		Two two;
-		One  &ref = two;
+		Two<int> two(2);
+		One<int>  &ref = two;
 		ref.latest_value();
 	}
 	cout << "----------------------------" << endl;
 
 	// by reference (from a pointer)
 	{
-		One *one = new Two();
-		One &ref = *one;
+		One<int> *one = new Two<int>(2);
+		One<int> &ref = *one;
 		ref.latest_value();
 		delete one;
 	}
@@ -97,13 +97,13 @@ int main(void)
 	
 	// Array Initialization
 	{
-		One list[] = 
+		One<int> list[] = 
 			{
-				One(2, 3, 8), One(1, 5, 2), One(1, 1, 1), One(1, 2, 3)
+				One<int>(2, 3, 8, 1), One<int>(1, 5, 2, 2), One<int>(1, 1, 1, 3), One<int>(1, 2, 3, 4)
 			};
 		cout << "printing array values " << endl;
 		
-		for (uint32_t i = 0; i < sizeof(list) / sizeof(One); i++) 
+		for (uint32_t i = 0; i < sizeof(list) / sizeof(One<int>); i++) 
 		{
 			cout << list[i].latest_value() << endl;
 		}
