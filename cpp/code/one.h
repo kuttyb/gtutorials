@@ -21,6 +21,15 @@ public:
 	virtual uint32_t latest_value(void);
 };
 
+class Two : public One
+{
+public:
+	Two(void);
+	~Two(void);
+	
+};
+
+
 
 
 #endif //__one_h__
