@@ -29,18 +29,36 @@ public:
 	}
 };
 
+class Y : public A<Y> 
+{
+public:
+	uint64_t multiply(uint32_t input, uint32_t m) 
+	{
+		return input * m + 3;
+	}
+
+	uint64_t passthru(uint64_t val) 
+	{
+		return val + 4;
+	}
+};
 	
+static inline A<X>* factory(void) 
+{
+	return new X();
+}
+
 
 int main(void) 
 {
 	uint64_t ctr =0;
+	A<X> *a = factory();
 
-	{
-		A<X> *a = new X();
-		ctr += a->multiply(2, 3);
-		ctr += a->passthru(3);
-		delete a;
-	}
+	
+	ctr += a->multiply(2, 3);
+	ctr += a->passthru(3);
 
+
+	delete a;
 	return ctr % 100;
 }
