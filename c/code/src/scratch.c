@@ -4,110 +4,24 @@
 #include <stdbool.h>
 #include <assert.h>
 
-typedef struct
-{
-	uint32_t	start;
-	uint32_t	end;
-} AGXRegisterRegion;
-
-typedef struct
-{
-        AGXRegisterRegion  range;
-        uint32_t        chipspecific_range_start;
-} AGXChipSpecificRegisterRegion;
-
-
- bool is_chipspecific_register(uint32_t reg_offset, const AGXChipSpecificRegisterRegion * per_chip_region, uint32_t per_chip_count,
-                                     uint32_t *new_reg_offset)
-{
-  if (!(per_chip_region && new_reg_offset && per_chip_count))
-  {
-    return false;
+static inline void print_region(uint32_t *ptr, uint32_t elems) {
+  for(uint32_t i = 0; i < elems; ++i) {
+    printf("%d\n", ptr[i]);
   }
- 
-  for (int region = 0; region < per_chip_count; region++) {
-    if ((per_chip_region[region].range.start <= reg_offset) && (reg_offset <= per_chip_region[region].range.end))
-    {
-      uint32_t diff = reg_offset - per_chip_region[region].range.start;
-      *new_reg_offset = per_chip_region[region].chipspecific_range_start + diff;
-      return true;
-    }
-  }
-
-  return false;
 }
 
-
 int main(void) {
-  const AGXChipSpecificRegisterRegion a[] = {
-    {{10, 40}, 110},
-    {{60, 80}, 600},
-    {{84, 90}, 700},
-  };
+  uint32_t *list = calloc(5, sizeof(uint32_t));
+  assert(list);
 
-  uint32_t new_range = 0;
-  bool temp = false;
+  print_region(list, 5);
 
-  temp = is_chipspecific_register(9, a, 3, &new_range);
-  assert(temp == false);
-  assert(new_range == 0);
+  uint32_t a[5] = { 0, 1, 2, 3, 4};
+  
 
-  temp = is_chipspecific_register(10, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 110);
+  print_region(list, 5);
 
-
-  temp = is_chipspecific_register(11, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 111);
-
-  temp = is_chipspecific_register(12, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 112);
-
-  temp = is_chipspecific_register(40, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 140);
-
-  new_range = 0;
-  temp = is_chipspecific_register(41, a, 3, &new_range);
-  assert(temp == false);
-  assert(new_range == 0);
-
-  new_range = 0;
-  temp = is_chipspecific_register(44, a, 3, &new_range);
-  assert(temp == false);
-  assert(new_range == 0);
-
-  new_range = 0;
-  temp = is_chipspecific_register(59, a, 3, &new_range);
-  assert(temp == false);
-  assert(new_range == 0);
-
-  new_range = 0;
-  temp = is_chipspecific_register(60, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 600);
-
-  new_range = 0;
-  temp = is_chipspecific_register(79, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 619);
-
-  new_range = 0;
-  temp = is_chipspecific_register(60, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 600);
-
-  new_range = 0;
-  temp = is_chipspecific_register(84, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 700);
-
-  new_range = 0;
-  temp = is_chipspecific_register(90, a, 3, &new_range);
-  assert(temp == true);
-  assert(new_range == 706);
+  free(list);
 
   return 0;
 }
