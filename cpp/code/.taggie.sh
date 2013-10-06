@@ -1,0 +1,1 @@
+#! /bin/shrm .tagsfind . -name "*.cpp" -exec etags --declarations -a -o .tags {} \;find . -name "*.h" -exec etags --declarations -a -o .tags {} \;
