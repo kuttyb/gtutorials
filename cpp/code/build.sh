@@ -10,3 +10,5 @@ ${CXX} ${CXXFLAGS} -c *.cpp
 ${CXX} ${LDFLAGS} main.o -o ${BIN}/test
 
 ${CXX} ${LDFLAGS} t.o -o ${BIN}/g
+
+${CXX} ${LDFLAGS} one.o -o ${BIN}/one
