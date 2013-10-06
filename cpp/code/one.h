@@ -18,7 +18,7 @@ public:
 	One(uint32_t x, uint32_t y, uint64_t local);
 	virtual ~One(void);
 	uint64_t value(void);
-	uint32_t latest_value(void);
+	virtual uint32_t latest_value(void);
 };
 
 
