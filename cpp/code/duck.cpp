@@ -3,32 +3,21 @@
 template<class T>
 class A 
 {
-private:
-	T* m_t;
-	
 public:
-	A(T* t) : m_t(t) 
-	{
-	}
-
 	uint64_t multiply(uint32_t input, uint32_t m) 
 	{
-		return m_t->multiply(input, m);
+		return static_cast<T*>(this)->multiply(input, m);
 	}
 	
 	uint64_t passthru(uint64_t val) 
 	{
-		return m_t->passthru(val);
+		return static_cast<T*>(this)->passthru(val);
 	}
 };
 
 class X : public A<X> 
 {
 public:
-	X(void) : A<X>(this)
-	{
-	}
-	
 	uint64_t multiply(uint32_t input, uint32_t m) 
 	{
 		return input * m;
