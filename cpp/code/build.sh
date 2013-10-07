@@ -18,3 +18,5 @@ ${CXX} ${LDFLAGS} duck.o -o ${BIN}/duck
 ${CXX} ${LDFLAGS} static.o -o ${BIN}/static
 
 ${CXX} ${LDFLAGS} comparison.o -o ${BIN}/comparison
+
+${CXX} ${LDFLAGS} specialization.o -o ${BIN}/specialization
