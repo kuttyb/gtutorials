@@ -16,3 +16,5 @@ ${CXX} ${LDFLAGS} one.o -o ${BIN}/one
 ${CXX} ${LDFLAGS} duck.o -o ${BIN}/duck
 
 ${CXX} ${LDFLAGS} static.o -o ${BIN}/static
+
+${CXX} ${LDFLAGS} comparison.o -o ${BIN}/comparison
