@@ -1,11 +1,14 @@
 #include <iostream>
+#include <assert.h>
 
 using std::cout;
 using std::endl;
 
 template<class T>
-static void function(T input, int x) 
+void function(T input, int x) 
 {
+	assert(input && x);
+	
 	cout<<"generic version" << endl;
 }
 
@@ -13,14 +16,18 @@ static void function(T input, int x)
 // leave template<> empty w/o providing the Parameterized
 // type
 template<>
-static void function(int input, int x) 
+void function(int input, int x) 
 {
+	assert(input && x);
+	
 	cout << "integer version" << endl;
 }
 
 template<>
-static void function(float input, int x)
+void function(float input, int x)
 {
+	assert(input && x);
+	
 	cout << "float version" << endl;
 }
 
