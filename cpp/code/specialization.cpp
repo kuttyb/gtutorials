@@ -11,6 +11,8 @@ using std::endl;
 // function templates.
 //
 
+// ----------------------------------------------
+// Class Partial Specialization
 template <class T, class U>
 class X
 {
@@ -32,19 +34,34 @@ public:
 	}
 };
 
+// Fully Specialized Class
+template <>
+class X<double, double>
+{
+public:
+	void func(double one, double two) 
+	{
+		cout << "printing fully specialized " << one << " " << two << endl;
+	}
+};
 
+// ----------------------------------------------
 
 
 int main(void) 
 {
-	// This should use the fully specialized version
+	// This should use the generic versino
 	X<float, float> a;
 	a.func(2.03f, 3.1f);
 	
-	// This should use the partially specialized one 
+	// This should use the partially specialized version 
 	// with an integer bias
 	X<int, float> b;
 	b.func(2, 3.4f);
+
+	// This should use the fully specialized version
+	X<double, double> c;
+	c.func(3.03f, 3.3f);
 
 	return 0;
 }
