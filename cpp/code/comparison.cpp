@@ -31,6 +31,13 @@ void function(float input, int x)
 	cout << "float version" << endl;
 }
 
+static void function(float* input, int x)
+{
+	assert(input && x);
+	
+	cout << "non templated version" << endl;
+}
+
 
 int main(void) 
 {
@@ -40,6 +47,8 @@ int main(void)
 	
 	function<double>(2.03f, 3);
 	
+	float a = 2.03f;
+	function(&a, 3);
 	
 	return 0;
 }
