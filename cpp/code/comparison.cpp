@@ -7,8 +7,7 @@ using std::endl;
 template<class T>
 void function(T input, int x) 
 {
-	assert(input && x);
-	
+	cout << input << " " << x << " " << endl;
 	cout<<"generic version" << endl;
 }
 
@@ -26,9 +25,7 @@ void function(int input, int x)
 template<>
 void function(float input, int x)
 {
-	assert(input && x);
-	
-	cout << "float version" << endl;
+	cout << "float version" << input << " " << x << endl;
 }
 
 static void function(float* input, int x)
