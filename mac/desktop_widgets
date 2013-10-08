@@ -1,0 +1,3 @@
+http://osxdaily.com/2013/01/18/add-dashboard-widgets-desktop-mac-os-x/
+
+defaults write com.apple.dashboard devmode YES
