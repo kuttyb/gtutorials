@@ -1,0 +1,9 @@
+[a] run usbterm on the host from the directory inside kcache all the way inside build to where the kernelcache.development.n56 file is
+
+[b] start nanokdp and hit enter to enter iboot
+
+[c] usb get kernelcache.development.n56
+
+[d] bootx ;; this will boot in memory with the kernelcache provided
+
+[e] that's it, now the system is recoverable and you can instal kernelcache using xcrun the usual way

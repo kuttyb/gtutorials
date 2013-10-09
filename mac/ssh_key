@@ -1,1 +1,24 @@
 https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678
+
+[] ssh-keygen to create your keys (this will prompt you for a passphrase)
+
+[] place it under ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub
+
+[] ssh-add -l
+   To list keys already installed
+
+[] ssh-add ~/.ssh/id_rsa
+   To add this key
+
+That's it! Now provide your public key to whatever site requires it and you are in business
+
+-------
+local> ssh <username>@svn.xxx.com
+remote> mkdir .ssh
+remote> chmod 700 .ssh
+remote> touch .ssh/authorized_keys
+remote> chmod 600 .ssh/authorized_keys
+remote> exit
+local> cat ~/.ssh/id_rsa.pub | ssh <username>@svn.xxx.com 'cat >> .ssh/authorized_keys'
+
+
