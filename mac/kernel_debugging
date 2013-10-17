@@ -1,0 +1,10 @@
+Using trace:
+
+trace -t
+  to print out the current trace buffer
+
+trace -i -g num_elements
+  to initialize the buffer size
+
+trace -g
+  to print out status of kernel tracing
