@@ -18,3 +18,8 @@ Btw this is how you build Macports on your local machine. The idea is to have mu
 -------
 port installed requested
   This will give you the list of Ports you installed (vs dependencies installed)
+
+-------
+port -v selfupdate     // to install the latest version of ports
+port upgrade outdated  // to install the latest version of everything
+
