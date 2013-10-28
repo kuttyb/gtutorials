@@ -9,3 +9,8 @@ Btw this is how you build Macports on your local machine. The idea is to have mu
 ./configure --with-no-root-privileges --prefix=/Users/kutty_banerjee/bin/macports 
 
 
+=------
+/etc/macports/macports.conf
+  buildfromsource <use this option>
+  build_arch
+
