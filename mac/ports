@@ -14,3 +14,7 @@ Btw this is how you build Macports on your local machine. The idea is to have mu
   buildfromsource <use this option>
   build_arch
 
+
+-------
+port installed requested
+  This will give you the list of Ports you installed (vs dependencies installed)
