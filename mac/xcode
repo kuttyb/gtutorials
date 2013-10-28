@@ -1,0 +1,7 @@
+xcodebuild -license 
+  On a fresh Xcode install, this will prompt you to agree to the license. Invoke this from Terminal and not emacs since it waits for page down.
+
+xcode-select -install
+  Again, on a fresh Xcode install, this will install the command line tools.
+
+----- For Mavericks, you need this before installing Macports
