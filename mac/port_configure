@@ -1,0 +1,7 @@
+#! /bin/sh
+
+export TCL_DIR="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Tcl.framework/Versions/8.5"
+echo "TCL dir is $TCL_DIR"
+./configure --with-no-root-privileges --prefix=/Users/kbanerjee/bin/macports_2 --with-tcl=$TCL_DIR --with-tclinclude=$TCL_DIR/Headers
+
+# Atleast on Mavericks, you need to explicitly pass in the tcl path directives to get it to work
