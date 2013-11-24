@@ -1,0 +1,13 @@
+# To create a database just do 
+gtags from the source root
+Its really really fast
+
+To update the database because of changed files, do gtags -i or global -u
+
+# To search the database do
+~/daji/code/work/agx $ global -irx  submitbuffer
+submitBuffer      425 ../_out/System/Library/Frameworks/Kernel.framework/Versions/A/PrivateHeaders/IOKit/graphics/IOAccel1/IOAccelChannel.h 	virtual void submitBuffer(IOAccelCommandDescriptor *comm_desc, const char *file, int line) = 0;
+
+
+# Don't know yet how to integrate with Emacs and do regular expressions
+
