@@ -10,3 +10,8 @@ lib/**
 cpp/code/bin/**
 
 .tags
+
+GRTAGS
+GTAGS
+GPATH
+

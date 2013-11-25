@@ -11,3 +11,14 @@ submitBuffer      425 ../_out/System/Library/Frameworks/Kernel.framework/Version
 
 # Don't know yet how to integrate with Emacs and do regular expressions
 
+-------------------
+Add this to your .emacs file and we are in business. Make sure you to pick up the correct (locally modified) ggtags.el file from icloud
+
+;; ===================================
+;; GNU Global (GTags)
+;; ===================================
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+              (ggtags-mode 1))))
+(load-library "ggtags")
