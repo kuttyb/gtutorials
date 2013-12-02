@@ -4,24 +4,33 @@
 #include <stdbool.h>
 #include <assert.h>
 
-static inline void print_region(uint32_t *ptr, uint32_t elems) {
-  for(uint32_t i = 0; i < elems; ++i) {
-    printf("%d\n", ptr[i]);
-  }
-}
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE0      0x01000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE1      0x02000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE2      0x04000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE3      0x08000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE4      0x10000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE5      0x20000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE6      0x40000000
+#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE7      0x80000000
 
-int main(void) {
-  uint32_t *list = calloc(5, sizeof(uint32_t));
-  assert(list);
+typedef uint16_t bitfield16_t;
 
-  print_region(list, 5);
+int main(void) 
+{
+	const uint32_t input = 0x03000000;
+	bitfield16_t temp = 0;
+	assert(1 << 24 == GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE0);
 
-  uint32_t a[5] = { 0, 1, 2, 3, 4};
-  
-
-  print_region(list, 5);
-
-  free(list);
-
-  return 0;
+	temp = (bitfield16_t)((input &  (GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE0 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE1 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE2 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE3 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE4 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE5 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE6 |
+					 GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE7)) >> 24);
+	
+	printf("0x%x\n", temp);
+	
+	return 0;
 }
