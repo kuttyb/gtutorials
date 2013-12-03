@@ -17,19 +17,17 @@ typedef uint16_t bitfield16_t;
 
 int main(void) 
 {
-	const uint32_t input = 0xff000000;
-
-	if (input &  (GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE0 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE1 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE2 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE3 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE4 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE5 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE6 |
-				      GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE7))
+	const uint32_t bitenable = 0x2;
+	for (uint32_t i = 0, mask = 1; i < 32; ++i, mask <<= 1) 
 	{
-		printf("works\n");
+		if (bitenable & mask) 
+		{
+			printf("kbb: ctr %d bitenable 0x%x mask 0x%x\n",
+			       i, bitenable, mask);
+		}
+		
 	}
+	
 	
 	
 	return 0;
