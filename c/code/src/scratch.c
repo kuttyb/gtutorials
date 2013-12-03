@@ -17,7 +17,7 @@ typedef uint16_t bitfield16_t;
 
 int main(void) 
 {
-	const uint32_t bitenable = 0x2;
+	const uint32_t bitenable = 0x5;
 	for (uint32_t i = 0, mask = 1; i < 32; ++i, mask <<= 1) 
 	{
 		if (bitenable & mask) 
