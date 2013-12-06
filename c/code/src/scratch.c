@@ -12,7 +12,8 @@ int main(void)
 	printf("max_mask 0x%x\n", max_mask);
 
 	bool bzero = false;
-	for (uint32_t increment = 3, mask = 0; increment && (max_mask != mask); --increment) 
+	uint32_t mask = 0;
+	for (uint32_t increment = 3; increment && (max_mask != mask); --increment) 
 	{
 		for (uint32_t i = 0; i <= max_elements; i+= increment) 
 		{
@@ -30,6 +31,8 @@ int main(void)
 			printf("increment 0x%x: index 0x%x mask 0x%x\n", increment, i, mask);
 		}
 	}
+
+	assert(max_mask == mask);
 
 	return 0;
 }
