@@ -7,7 +7,7 @@
 
 int main(void) 
 {
-	const uint32_t max_elements = 0x5;
+	const uint32_t max_elements = 0x8;
 	const uint32_t max_mask     = (1 << max_elements) - 1;
 	printf("max_mask 0x%x\n", max_mask);
 
