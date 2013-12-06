@@ -8,31 +8,35 @@
 int main(void) 
 {
 	const uint32_t max_elements = 0x8;
-	const uint32_t max_mask     = (1 << max_elements) - 1;
+	const uint32_t max_mask     = (1 << (max_elements + 1)) - 1;
 	printf("max_mask 0x%x\n", max_mask);
 
-	bool bzero = false;
 	uint32_t mask = 0;
+	uint32_t sum = 0;
 	for (uint32_t increment = 3; increment && (max_mask != mask); --increment) 
 	{
 		for (uint32_t i = 0; i <= max_elements; i+= increment) 
 		{
-			if (!i && bzero) continue;
-			bzero = true;
+			const uint32_t local_mask = 1 << i;
+			if (mask & local_mask) continue;
+			mask |= local_mask;
+
+			printf("\nstart index : 0x%x\n", i);			
+			sum++;
+			
 			
 			if (i) 
 			{
-				const uint32_t j = i - 1;
-				const uint32_t local_mask = 1 << j;
-				if (mask & local_mask) continue;
-				mask |= local_mask;
+				printf("clip_plane: index 0x%x\n", i - 1);
 			}
 			
-			printf("increment 0x%x: index 0x%x mask 0x%x\n", increment, i, mask);
+			printf("stop index: 0x%x\n\n", i);
+			sum++;
 		}
 	}
 
-	assert(max_mask == mask);
+	assert(mask == max_mask);
+	assert(sum == (max_elements + 1) * 2);
 
 	return 0;
 }
