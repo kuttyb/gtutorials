@@ -16,21 +16,17 @@ int main(void)
 	{
 		for (uint32_t i = 0; i <= max_elements; i+= increment) 
 		{
-			if (!i) 
+			if (!i && bzero) continue;
+			bzero = true;
+			
+			if (i) 
 			{
-				if (!bzero) 
-					bzero = true;
-				else
-					continue;
-			}
-			else 
-			{
-				
 				const uint32_t j = i - 1;
 				const uint32_t local_mask = 1 << j;
 				if (mask & local_mask) continue;
 				mask |= local_mask;
 			}
+			
 			printf("increment 0x%x: index 0x%x mask 0x%x\n", increment, i, mask);
 		}
 	}
