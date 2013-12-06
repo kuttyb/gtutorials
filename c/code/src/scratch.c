@@ -4,31 +4,23 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE0      0x01000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE1      0x02000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE2      0x04000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE3      0x08000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE4      0x10000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE5      0x20000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE6      0x40000000
-#define GLD_STATE2_TRANSFORM_CLIP_PLANE_MODE7      0x80000000
-
-typedef uint16_t bitfield16_t;
 
 int main(void) 
 {
-	const uint32_t bitenable = 0x5;
-	for (uint32_t i = 0, mask = 1; i < 32; ++i, mask <<= 1) 
+	const uint32_t max_elements = 0x5;
+	const uint32_t max_mask     = (1 << max_elements) - 1;
+	printf("max_mask 0x%x\n", max_mask);
+
+	for (uint32_t increment = 3, mask = 0; increment && (max_mask != mask); --increment) 
 	{
-		if (bitenable & mask) 
+		for (uint32_t i = 0; i < max_elements; i+= increment) 
 		{
-			printf("kbb: ctr %d bitenable 0x%x mask 0x%x\n",
-			       i, bitenable, mask);
+			const uint32_t local_mask = 1 << i;
+			if (mask & local_mask) continue;
+			mask |= local_mask;
+			printf("increment 0x%x: index 0x%x mask 0x%x\n", increment, i, mask);
 		}
-		
 	}
-	
-	
-	
+
 	return 0;
 }
