@@ -5,6 +5,8 @@ export LDFLAGS="--stdlib=libc++ -lc++ -O4"
 export CXX=clang++
 export BIN="./bin"
 
+echo "Building ..."
+
 ${CXX} ${CXXFLAGS} -c *.cpp
 
 ${CXX} ${LDFLAGS} main.o -o ${BIN}/test
@@ -20,3 +22,5 @@ ${CXX} ${LDFLAGS} static.o -o ${BIN}/static
 ${CXX} ${LDFLAGS} comparison.o -o ${BIN}/comparison
 
 ${CXX} ${LDFLAGS} specialization.o -o ${BIN}/specialization
+
+echo "... Done"
