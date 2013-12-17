@@ -4,24 +4,39 @@
 #include <stdbool.h>
 #include <assert.h>
 
-static inline void print_region(uint32_t *ptr, uint32_t elems) {
-  for(uint32_t i = 0; i < elems; ++i) {
-    printf("%d\n", ptr[i]);
-  }
-}
 
-int main(void) {
-  uint32_t *list = calloc(5, sizeof(uint32_t));
-  assert(list);
+int main(void) 
+{
+	const uint32_t max_elements = 0x8;
+	const uint32_t max_mask     = (1 << (max_elements + 1)) - 1;
+	printf("max_mask 0x%x\n", max_mask);
 
-  print_region(list, 5);
+	uint32_t mask = 0;
+	uint32_t sum = 0;
+	for (uint32_t increment = 3; increment && (max_mask != mask); --increment) 
+	{
+		for (uint32_t i = 0; i <= max_elements; i+= increment) 
+		{
+			const uint32_t local_mask = 1 << i;
+			if (mask & local_mask) continue;
+			mask |= local_mask;
 
-  uint32_t a[5] = { 0, 1, 2, 3, 4};
-  
+			printf("\nstart index : 0x%x\n", i);			
+			sum++;
+			
+			
+			if (i) 
+			{
+				printf("clip_plane: index 0x%x\n", i - 1);
+			}
+			
+			printf("stop index: 0x%x\n\n", i);
+			sum++;
+		}
+	}
 
-  print_region(list, 5);
+	assert(mask == max_mask);
+	assert(sum == (max_elements + 1) * 2);
 
-  free(list);
-
-  return 0;
+	return 0;
 }

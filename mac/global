@@ -22,3 +22,6 @@ Add this to your .emacs file and we are in business. Make sure you to pick up th
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
               (ggtags-mode 1))))
 (load-library "ggtags")
+
+--------------------
+If MacPorts does not get global/gtags working properly, just download the source and config/compile/install yourself, its easy!

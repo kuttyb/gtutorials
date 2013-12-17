@@ -1,0 +1,3 @@
+svn propedit svn:ignore .
+
+This will open up the ignore list in your favorite editor. Thereafter you can do the needful.
