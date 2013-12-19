@@ -1,4 +1,5 @@
 #! /bin/sh
 
 rm *.o 
-rm ./bin/test
+rm ./bin/*
+
