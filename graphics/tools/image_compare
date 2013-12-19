@@ -1,0 +1,1 @@
+compare -verbose -metric AE -fuzz 0.4% with_change/ASTC_00004_image_04_RGBA_ASTC_12x12.png wo_change/ASTC_00004_image_04_RGBA_ASTC_12x12.png /dev/null
