@@ -51,18 +51,3 @@ static inline A<X>* factory(void)
 	return new X();
 }
 
-
-int main(void) 
-{
-	uint64_t ctr =0;
-	A<X> *a = factory();
-
-	
-	ctr += a->multiply(2, 3);
-	ctr += a->passthru(3);
-
-
-	delete a;
-	printf("value is %lld\n", ctr % 100);
-	return 0;
-}
