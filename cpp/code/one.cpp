@@ -58,7 +58,7 @@ template<class T> uint32_t Two<T>::latest_value(void)
 
 
 // ---------------------------------------------------------
-int main(void) 
+int test_one(void)
 {
 	// by value
 	cout<<"testing the latest software" << endl;

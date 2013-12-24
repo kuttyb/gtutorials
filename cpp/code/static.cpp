@@ -47,7 +47,7 @@ public:
 };
 
 	
-int main(void) 
+int test_static(void)
 {
 	A<X> a;
 	a.print_all();

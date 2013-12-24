@@ -36,7 +36,7 @@ static void function(float* input, int x)
 }
 
 
-int main(void) 
+int test_comparison(void)
 {
 	function<int>(2, 3);
 

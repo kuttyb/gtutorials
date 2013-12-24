@@ -25,7 +25,7 @@ template <class T> T X<T>::multiply(T one, T two)
 }
 // ------------------------------------------
 
-int main(void) 
+int test_t(void)
 {
 	cout << "hi there" << endl;
 	

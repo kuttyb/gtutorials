@@ -48,7 +48,7 @@ public:
 // ----------------------------------------------
 
 
-int main(void) 
+int test_specialization(void)
 {
 	// This should use the generic versino
 	X<float, float> a;
