@@ -52,6 +52,7 @@ static inline A<X>* factory(void)
 }
 
 
+
 int test_duck(void)
 {
 	uint64_t ctr =0;

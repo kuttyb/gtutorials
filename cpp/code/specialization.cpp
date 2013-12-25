@@ -55,7 +55,7 @@ int test_specialization(void)
 	a.func(2.03f, 3.1f);
 	
 	// This should use the partially specialized version 
-	// with an integer bias
+	// with an integer bias,
 	X<int, float> b;
 	b.func(2, 3.4f);
 
