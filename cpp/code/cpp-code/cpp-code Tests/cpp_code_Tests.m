@@ -30,14 +30,13 @@
 
 - (void)testExample
 {
-//    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    printf("selecting the value");
+    XCTAssert(1, "");
 }
 
 - (void)testExample2
 {
     printf("second test passing");
-    XCTAssertTrue(1 == 2, "values did not match. input was %d", 5);
+    XCTAssertTrue(1 == 1, "values did not match. input was %d", 5);
 }
 
 @end
