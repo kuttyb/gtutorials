@@ -28,6 +28,16 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B797BBC2186B54450056EBA6"
+               BuildableName = "cpp-code Tests.xctest"
+               BlueprintName = "cpp-code Tests"
+               ReferencedContainer = "container:cpp-code.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
