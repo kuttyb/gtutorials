@@ -17,5 +17,4 @@ GPATH
 
 **/build/**
 
-# Particular Xcode files that change on every usage
-cpp/code/cpp-code/cpp-code.xcodeproj/project.xcworkspace/xcuserdata/kbanerjee.xcuserdatad/UserInterfaceState.xcuserstate
+**/**.xcuserstate
