@@ -12,23 +12,14 @@ int main(int argc, const char * argv[])
 {
 
 	@autoreleasepool {
-	    
 	    // insert code here...
-		NSDate *now = [NSDate date];
+		NSDate *now = [[NSDate alloc] init];
 	    NSLog(@"This NSDate object lives at %p", now);
 		NSLog(@"The date is %@", now);
+		NSLog(@"time elapsed %f", [now timeIntervalSince1970]);
 		
-		double seconds = [now timeIntervalSince1970];
-		NSLog(@"time elapsed %f", seconds);
-		
-		// kbb: Notice how multiple arguments are sent
-		//      Key point here being, the selector is NOT of the type method(arg1, arg2)
-		//		Instead, it is of the type  "method - arg1 - arg2"
-		//		The entire method-arg combination decides what message is being sent to the
-		//		object. Best to think in terms of Message sending rather than method calling :)
-		NSCalendar *cal = [NSCalendar currentCalendar];
-		unsigned long day = [cal ordinalityOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:now];
-		NSLog(@"This is day %lu of the month", day);
+		// multiple arguments in message sending
+		NSLog(@"This is day %lu of the month", [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:now]);
 	}
 	
     return 0;
