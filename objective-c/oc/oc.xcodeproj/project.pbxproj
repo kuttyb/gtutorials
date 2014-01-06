@@ -11,6 +11,7 @@
 		B78160611877643300684163 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B78160601877643300684163 /* main.m */; };
 		B78160651877643300684163 /* oc.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B78160641877643300684163 /* oc.1 */; };
 		B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5A187B4291008C9263 /* KBOne.m */; };
+		B7E6ED5E187B5167008C9263 /* KBTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5D187B5167008C9263 /* KBTwo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		B78160641877643300684163 /* oc.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = oc.1; sourceTree = "<group>"; };
 		B7E6ED59187B4291008C9263 /* KBOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOne.h; sourceTree = "<group>"; };
 		B7E6ED5A187B4291008C9263 /* KBOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOne.m; sourceTree = "<group>"; };
+		B7E6ED5C187B5167008C9263 /* KBTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwo.h; sourceTree = "<group>"; };
+		B7E6ED5D187B5167008C9263 /* KBTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				B78160601877643300684163 /* main.m */,
+				B7E6ED5C187B5167008C9263 /* KBTwo.h */,
+				B7E6ED5D187B5167008C9263 /* KBTwo.m */,
 				B7E6ED59187B4291008C9263 /* KBOne.h */,
 				B7E6ED5A187B4291008C9263 /* KBOne.m */,
 				B78160641877643300684163 /* oc.1 */,
@@ -144,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E6ED5E187B5167008C9263 /* KBTwo.m in Sources */,
 				B78160611877643300684163 /* main.m in Sources */,
 				B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */,
 			);

@@ -11,7 +11,6 @@
 @implementation KBOne {
 	// private and protected goes in here
 @private int privVar;
-@protected int protVar;
 }
 
 -(int) add:(int)inputOne INPUTTWO:(int)inputTwo {
