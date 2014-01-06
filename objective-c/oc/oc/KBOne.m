@@ -8,7 +8,11 @@
 
 #import "KBOne.h"
 
-@implementation KBOne
+@implementation KBOne {
+	// private and protected goes in here
+@private int privVar;
+@protected int protVar;
+}
 
 -(int) add:(int)inputOne INPUTTWO:(int)inputTwo {
 	// accessing protected variables is easy, just access them
@@ -18,6 +22,17 @@
 	self.localProp = pubVar;
 	[self setLocalProp: pubVar];
 	
+	// Set private and protected values
+	privVar = self.localProp;
+	protVar = self.localProp;
+	
 	return pubVar;
 }
+
+-(void) dumpState {
+	NSLog(@"Dumping State");
+	NSLog(@"\tprotVar = %d", protVar);
+	NSLog(@"\tprivVar = %d", privVar);
+}
+
 @end

@@ -17,6 +17,7 @@ int main(int argc, const char * argv[])
 		NSLog(@"return value is %d", [one add:3 INPUTTWO:5]);
 		NSLog(@"property value is %d", [one localProp]);
 		NSLog(@"public var is %d", one->pubVar);
+		[one dumpState];
 	}
 	
     return 0;

@@ -19,6 +19,8 @@
 
 -(int) add:(int) inputOne INPUTTWO:(int) inputTwo;
 
+-(void) dumpState;
+
 @end
 
 
