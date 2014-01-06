@@ -7,19 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KBOne.h"
 
 int main(int argc, const char * argv[])
 {
 
 	@autoreleasepool {
-	    // insert code here...
-		NSDate *now = [[NSDate alloc] init];
-	    NSLog(@"This NSDate object lives at %p", now);
-		NSLog(@"The date is %@", now);
-		NSLog(@"time elapsed %f", [now timeIntervalSince1970]);
-		
-		// multiple arguments in message sending
-		NSLog(@"This is day %lu of the month", [[NSCalendar currentCalendar] ordinalityOfUnit:NSDayCalendarUnit inUnit:NSMonthCalendarUnit forDate:now]);
+		KBOne *one = [[KBOne alloc] init];
+		NSLog(@"return value is %d", [one add:3 INPUTTWO:5]);
+		NSLog(@"property value is %d", [one localProp]);
+		NSLog(@"public var is %d", one->pubVar);
 	}
 	
     return 0;

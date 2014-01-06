@@ -10,6 +10,7 @@
 		B781605E1877643300684163 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B781605D1877643300684163 /* Foundation.framework */; };
 		B78160611877643300684163 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B78160601877643300684163 /* main.m */; };
 		B78160651877643300684163 /* oc.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B78160641877643300684163 /* oc.1 */; };
+		B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5A187B4291008C9263 /* KBOne.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		B78160601877643300684163 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B78160631877643300684163 /* oc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oc-Prefix.pch"; sourceTree = "<group>"; };
 		B78160641877643300684163 /* oc.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = oc.1; sourceTree = "<group>"; };
+		B7E6ED59187B4291008C9263 /* KBOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOne.h; sourceTree = "<group>"; };
+		B7E6ED5A187B4291008C9263 /* KBOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOne.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				B78160601877643300684163 /* main.m */,
+				B7E6ED59187B4291008C9263 /* KBOne.h */,
+				B7E6ED5A187B4291008C9263 /* KBOne.m */,
 				B78160641877643300684163 /* oc.1 */,
 				B78160621877643300684163 /* Supporting Files */,
 			);
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B78160611877643300684163 /* main.m in Sources */,
+				B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +257,7 @@
 				B781606A1877643300684163 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
