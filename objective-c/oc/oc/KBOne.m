@@ -29,6 +29,16 @@
 	return pubVar;
 }
 
+-(BOOL) compareThree:(int)one TWO:(int)two THREE:(int)three {
+	if ((one > two) && (two > three)) {
+		privVar = one;
+		protVar = one;
+		return true;
+	}
+	else
+		return false;
+}
+
 -(void) dumpState {
 	NSLog(@"Dumping State");
 	NSLog(@"\tprotVar = %d", protVar);

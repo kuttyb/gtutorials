@@ -18,6 +18,8 @@ int main(int argc, const char * argv[])
 		NSLog(@"property value is %d", [one localProp]);
 		NSLog(@"public var is %d", one->pubVar);
 		[one dumpState];
+		[one compareThree:20 TWO:10 THREE:3];
+		[one dumpState];
 	}
 	
     return 0;

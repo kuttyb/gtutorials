@@ -21,6 +21,8 @@
 
 -(void) dumpState;
 
+-(BOOL) compareThree:(int) one TWO:(int) two THREE:(int)three;
+
 @end
 
 
