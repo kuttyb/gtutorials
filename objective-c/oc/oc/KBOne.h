@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#include "KBNode.h"
 
-@interface KBOne : NSObject {
+@interface KBOne : NSObject <KBNode> {
 	// protected variables here (default is protected) you can change it with @public, @protected, @private
 	// General rule of thumb seemes to be to keep protected and private in the .m file instead and keep the
 	// interface clean for public consumption.
@@ -18,11 +19,6 @@
 
 @property (nonatomic) int localProp;
 
--(int) add:(int) inputOne INPUTTWO:(int) inputTwo;
-
--(void) dumpState;
-
--(BOOL) compareThree:(int) one TWO:(int) two THREE:(int)three;
 
 @end
 
