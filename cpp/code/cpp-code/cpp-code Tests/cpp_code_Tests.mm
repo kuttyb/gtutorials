@@ -75,6 +75,7 @@ int test_one(void)
 - (void)testExample2
 {
     printf("second test passing");
+    func_name();
     XCTAssertTrue(1 == 1, "values did not match. input was %d", 5);
 }
 

@@ -4,6 +4,10 @@
 using std::cout;
 using std::endl;
 
+void func_name(void)
+{
+    printf("this is the data\n");
+}
 
 // ---------------------------------------------------------
 //   Class One

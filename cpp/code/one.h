@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+void func_name(void);
+
 template<class T>
 class One 
 {
