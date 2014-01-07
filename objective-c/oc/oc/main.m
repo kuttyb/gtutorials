@@ -15,7 +15,7 @@
 int main(int argc, const char * argv[])
 {
 	@autoreleasepool {
-		id<KBNode> one = [KBFactory initTwo];
+		id<KBNode> one = [KBFactory initThree];
 		
 		NSLog(@"return value is %d", [one add:3 INPUTTWO:5]);
 
