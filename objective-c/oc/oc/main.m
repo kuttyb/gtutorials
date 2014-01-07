@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KBTwo.h"
 #import "KBNode.h"
-#import "KBThree.h"
 #import "KBFactory.h"
 
 int main(int argc, const char * argv[])
 {
 	@autoreleasepool {
-		id<KBNode> one = [KBFactory initThree];
+		id<KBNode> one = [KBFactory initTwo];
 		
 		NSLog(@"return value is %d", [one add:3 INPUTTWO:5]);
 
