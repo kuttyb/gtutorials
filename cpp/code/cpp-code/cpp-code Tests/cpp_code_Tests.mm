@@ -18,7 +18,7 @@ using std::endl;
 
 @end
 
-
+#if 0
 // ---------------------------------------------------------
 int test_one(void)
 {
@@ -51,6 +51,7 @@ int test_one(void)
 	
 	return 0;
 }
+#endif
 
 @implementation cpp_code_Tests
 
