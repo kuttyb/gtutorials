@@ -31,31 +31,6 @@ int test_one(void)
 	}
 	cout << "----------------------------" << endl;
     
-	// by pointer
-	{
-		One<uint64_t> *two = new Two<uint64_t>(2);
-		two->value();
-		two->latest_value();
-		delete two;
-	}
-	cout << "----------------------------" << endl;
-    
-	// by reference
-	{
-		Two<uint64_t> two(2);
-		One<uint64_t>  &ref = two;
-		ref.latest_value();
-	}
-	cout << "----------------------------" << endl;
-    
-	// by reference (from a pointer)
-	{
-		One<uint64_t> *one = new Two<uint64_t>(2);
-		One<uint64_t> &ref = *one;
-		ref.latest_value();
-		delete one;
-	}
-	cout << "----------------------------" << endl;
 	
 	// Array Initialization
 	{
