@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-void func_name(void);
+int test_one(void);
 
 template<class T>
 class One 
