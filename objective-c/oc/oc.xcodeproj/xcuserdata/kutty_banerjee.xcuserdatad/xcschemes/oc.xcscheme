@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B78160591877643300684163"
-               BuildableName = "oc"
+               BlueprintIdentifier = "B70B9AFD187BA26B00CBFBDB"
+               BuildableName = "oc.framework"
                BlueprintName = "oc"
                ReferencedContainer = "container:oc.xcodeproj">
             </BuildableReference>
@@ -28,16 +28,17 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B70B9B14187BA26B00CBFBDB"
+               BuildableName = "ocTests.xctest"
+               BlueprintName = "ocTests"
+               ReferencedContainer = "container:oc.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B78160591877643300684163"
-            BuildableName = "oc"
-            BlueprintName = "oc"
-            ReferencedContainer = "container:oc.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -48,15 +49,6 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B78160591877643300684163"
-            BuildableName = "oc"
-            BlueprintName = "oc"
-            ReferencedContainer = "container:oc.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -66,15 +58,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B78160591877643300684163"
-            BuildableName = "oc"
-            BlueprintName = "oc"
-            ReferencedContainer = "container:oc.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

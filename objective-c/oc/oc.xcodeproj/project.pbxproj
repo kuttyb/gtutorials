@@ -7,124 +7,196 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B781605E1877643300684163 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B781605D1877643300684163 /* Foundation.framework */; };
-		B78160611877643300684163 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B78160601877643300684163 /* main.m */; };
-		B78160651877643300684163 /* oc.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B78160641877643300684163 /* oc.1 */; };
-		B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5A187B4291008C9263 /* KBOne.m */; };
-		B7E6ED5E187B5167008C9263 /* KBTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5D187B5167008C9263 /* KBTwo.m */; };
-		B7E6ED65187B6064008C9263 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED64187B6064008C9263 /* Test.m */; };
-		B7E6ED68187B7517008C9263 /* KBThree.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED67187B7517008C9263 /* KBThree.m */; };
-		B7E6ED6B187B7D66008C9263 /* KBFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED6A187B7D66008C9263 /* KBFactory.m */; };
+		B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
+		B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */; };
+		B70B9B10187BA26B00CBFBDB /* oc.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B0F187BA26B00CBFBDB /* oc.m */; };
+		B70B9B17187BA26B00CBFBDB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B16187BA26B00CBFBDB /* XCTest.framework */; };
+		B70B9B18187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
+		B70B9B1B187BA26B00CBFBDB /* oc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9AFE187BA26B00CBFBDB /* oc.framework */; };
+		B70B9B21187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B1F187BA26B00CBFBDB /* InfoPlist.strings */; };
+		B70B9B23187BA26B00CBFBDB /* ocTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B22187BA26B00CBFBDB /* ocTests.m */; };
+		B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */; };
+		B70B9B36187BA2AE00CBFBDB /* KBFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */; };
+		B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B2E187BA2AE00CBFBDB /* KBNode.h */; };
+		B70B9B38187BA2AE00CBFBDB /* KBOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B2F187BA2AE00CBFBDB /* KBOne.h */; };
+		B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B30187BA2AE00CBFBDB /* KBOne.m */; };
+		B70B9B3A187BA2AE00CBFBDB /* KBThree.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B31187BA2AE00CBFBDB /* KBThree.h */; };
+		B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B32187BA2AE00CBFBDB /* KBThree.m */; };
+		B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B33187BA2AE00CBFBDB /* KBTwo.h */; };
+		B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B34187BA2AE00CBFBDB /* KBTwo.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		B78160581877643300684163 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				B78160651877643300684163 /* oc.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
+/* Begin PBXContainerItemProxy section */
+		B70B9B19187BA26B00CBFBDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B70B9AF5187BA26A00CBFBDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B70B9AFD187BA26B00CBFBDB;
+			remoteInfo = oc;
 		};
-/* End PBXCopyFilesBuildPhase section */
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B781605A1877643300684163 /* oc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = oc; sourceTree = BUILT_PRODUCTS_DIR; };
-		B781605D1877643300684163 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		B78160601877643300684163 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		B78160631877643300684163 /* oc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oc-Prefix.pch"; sourceTree = "<group>"; };
-		B78160641877643300684163 /* oc.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = oc.1; sourceTree = "<group>"; };
-		B7E6ED59187B4291008C9263 /* KBOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOne.h; sourceTree = "<group>"; };
-		B7E6ED5A187B4291008C9263 /* KBOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOne.m; sourceTree = "<group>"; };
-		B7E6ED5C187B5167008C9263 /* KBTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwo.h; sourceTree = "<group>"; };
-		B7E6ED5D187B5167008C9263 /* KBTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwo.m; sourceTree = "<group>"; };
-		B7E6ED62187B5FA1008C9263 /* KBNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode.h; sourceTree = "<group>"; };
-		B7E6ED63187B6064008C9263 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		B7E6ED64187B6064008C9263 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
-		B7E6ED66187B7517008C9263 /* KBThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBThree.h; sourceTree = "<group>"; };
-		B7E6ED67187B7517008C9263 /* KBThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBThree.m; sourceTree = "<group>"; };
-		B7E6ED69187B7D66008C9263 /* KBFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFactory.h; sourceTree = "<group>"; };
-		B7E6ED6A187B7D66008C9263 /* KBFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFactory.m; sourceTree = "<group>"; };
+		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B70B9B01187BA26B00CBFBDB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B70B9B04187BA26B00CBFBDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B70B9B05187BA26B00CBFBDB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B70B9B06187BA26B00CBFBDB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B70B9B09187BA26B00CBFBDB /* oc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "oc-Info.plist"; sourceTree = "<group>"; };
+		B70B9B0B187BA26B00CBFBDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B70B9B0D187BA26B00CBFBDB /* oc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "oc-Prefix.pch"; sourceTree = "<group>"; };
+		B70B9B0E187BA26B00CBFBDB /* oc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = oc.h; sourceTree = "<group>"; };
+		B70B9B0F187BA26B00CBFBDB /* oc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = oc.m; sourceTree = "<group>"; };
+		B70B9B15187BA26B00CBFBDB /* ocTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ocTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B70B9B16187BA26B00CBFBDB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B70B9B1E187BA26B00CBFBDB /* ocTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ocTests-Info.plist"; sourceTree = "<group>"; };
+		B70B9B20187BA26B00CBFBDB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B70B9B22187BA26B00CBFBDB /* ocTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ocTests.m; sourceTree = "<group>"; };
+		B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFactory.h; sourceTree = "<group>"; };
+		B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFactory.m; sourceTree = "<group>"; };
+		B70B9B2E187BA2AE00CBFBDB /* KBNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode.h; sourceTree = "<group>"; };
+		B70B9B2F187BA2AE00CBFBDB /* KBOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBOne.h; sourceTree = "<group>"; };
+		B70B9B30187BA2AE00CBFBDB /* KBOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBOne.m; sourceTree = "<group>"; };
+		B70B9B31187BA2AE00CBFBDB /* KBThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBThree.h; sourceTree = "<group>"; };
+		B70B9B32187BA2AE00CBFBDB /* KBThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBThree.m; sourceTree = "<group>"; };
+		B70B9B33187BA2AE00CBFBDB /* KBTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwo.h; sourceTree = "<group>"; };
+		B70B9B34187BA2AE00CBFBDB /* KBTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B78160571877643300684163 /* Frameworks */ = {
+		B70B9AFA187BA26B00CBFBDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B781605E1877643300684163 /* Foundation.framework in Frameworks */,
+				B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B70B9B12187BA26B00CBFBDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B9B18187BA26B00CBFBDB /* Cocoa.framework in Frameworks */,
+				B70B9B17187BA26B00CBFBDB /* XCTest.framework in Frameworks */,
+				B70B9B1B187BA26B00CBFBDB /* oc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B78160511877643300684163 = {
+		B70B9AF4187BA26A00CBFBDB = {
 			isa = PBXGroup;
 			children = (
-				B781605F1877643300684163 /* oc */,
-				B781605C1877643300684163 /* Frameworks */,
-				B781605B1877643300684163 /* Products */,
+				B70B9B07187BA26B00CBFBDB /* oc */,
+				B70B9B1C187BA26B00CBFBDB /* ocTests */,
+				B70B9B00187BA26B00CBFBDB /* Frameworks */,
+				B70B9AFF187BA26B00CBFBDB /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B781605B1877643300684163 /* Products */ = {
+		B70B9AFF187BA26B00CBFBDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B781605A1877643300684163 /* oc */,
+				B70B9AFE187BA26B00CBFBDB /* oc.framework */,
+				B70B9B15187BA26B00CBFBDB /* ocTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B781605C1877643300684163 /* Frameworks */ = {
+		B70B9B00187BA26B00CBFBDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B781605D1877643300684163 /* Foundation.framework */,
+				B70B9B01187BA26B00CBFBDB /* Cocoa.framework */,
+				B70B9B16187BA26B00CBFBDB /* XCTest.framework */,
+				B70B9B03187BA26B00CBFBDB /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		B781605F1877643300684163 /* oc */ = {
+		B70B9B03187BA26B00CBFBDB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B78160601877643300684163 /* main.m */,
-				B7E6ED5C187B5167008C9263 /* KBTwo.h */,
-				B7E6ED5D187B5167008C9263 /* KBTwo.m */,
-				B7E6ED59187B4291008C9263 /* KBOne.h */,
-				B7E6ED62187B5FA1008C9263 /* KBNode.h */,
-				B7E6ED66187B7517008C9263 /* KBThree.h */,
-				B7E6ED69187B7D66008C9263 /* KBFactory.h */,
-				B7E6ED6A187B7D66008C9263 /* KBFactory.m */,
-				B7E6ED67187B7517008C9263 /* KBThree.m */,
-				B7E6ED63187B6064008C9263 /* Test.h */,
-				B7E6ED64187B6064008C9263 /* Test.m */,
-				B7E6ED5A187B4291008C9263 /* KBOne.m */,
-				B78160641877643300684163 /* oc.1 */,
-				B78160621877643300684163 /* Supporting Files */,
+				B70B9B04187BA26B00CBFBDB /* Foundation.framework */,
+				B70B9B05187BA26B00CBFBDB /* CoreData.framework */,
+				B70B9B06187BA26B00CBFBDB /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B70B9B07187BA26B00CBFBDB /* oc */ = {
+			isa = PBXGroup;
+			children = (
+				B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */,
+				B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */,
+				B70B9B2E187BA2AE00CBFBDB /* KBNode.h */,
+				B70B9B2F187BA2AE00CBFBDB /* KBOne.h */,
+				B70B9B30187BA2AE00CBFBDB /* KBOne.m */,
+				B70B9B31187BA2AE00CBFBDB /* KBThree.h */,
+				B70B9B32187BA2AE00CBFBDB /* KBThree.m */,
+				B70B9B33187BA2AE00CBFBDB /* KBTwo.h */,
+				B70B9B34187BA2AE00CBFBDB /* KBTwo.m */,
+				B70B9B0E187BA26B00CBFBDB /* oc.h */,
+				B70B9B0F187BA26B00CBFBDB /* oc.m */,
+				B70B9B08187BA26B00CBFBDB /* Supporting Files */,
 			);
 			path = oc;
 			sourceTree = "<group>";
 		};
-		B78160621877643300684163 /* Supporting Files */ = {
+		B70B9B08187BA26B00CBFBDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B78160631877643300684163 /* oc-Prefix.pch */,
+				B70B9B09187BA26B00CBFBDB /* oc-Info.plist */,
+				B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */,
+				B70B9B0D187BA26B00CBFBDB /* oc-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B70B9B1C187BA26B00CBFBDB /* ocTests */ = {
+			isa = PBXGroup;
+			children = (
+				B70B9B22187BA26B00CBFBDB /* ocTests.m */,
+				B70B9B1D187BA26B00CBFBDB /* Supporting Files */,
+			);
+			path = ocTests;
+			sourceTree = "<group>";
+		};
+		B70B9B1D187BA26B00CBFBDB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B70B9B1E187BA26B00CBFBDB /* ocTests-Info.plist */,
+				B70B9B1F187BA26B00CBFBDB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		B70B9AFB187BA26B00CBFBDB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B9B3A187BA2AE00CBFBDB /* KBThree.h in Headers */,
+				B70B9B38187BA2AE00CBFBDB /* KBOne.h in Headers */,
+				B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */,
+				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
+				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		B78160591877643300684163 /* oc */ = {
+		B70B9AFD187BA26B00CBFBDB /* oc */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B78160681877643300684163 /* Build configuration list for PBXNativeTarget "oc" */;
+			buildConfigurationList = B70B9B26187BA26B00CBFBDB /* Build configuration list for PBXNativeTarget "oc" */;
 			buildPhases = (
-				B78160561877643300684163 /* Sources */,
-				B78160571877643300684163 /* Frameworks */,
-				B78160581877643300684163 /* CopyFiles */,
+				B70B9AF9187BA26B00CBFBDB /* Sources */,
+				B70B9AFA187BA26B00CBFBDB /* Frameworks */,
+				B70B9AFB187BA26B00CBFBDB /* Headers */,
+				B70B9AFC187BA26B00CBFBDB /* Resources */,
 			);
 			buildRules = (
 			);
@@ -132,53 +204,130 @@
 			);
 			name = oc;
 			productName = oc;
-			productReference = B781605A1877643300684163 /* oc */;
-			productType = "com.apple.product-type.tool";
+			productReference = B70B9AFE187BA26B00CBFBDB /* oc.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B70B9B14187BA26B00CBFBDB /* ocTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B70B9B29187BA26B00CBFBDB /* Build configuration list for PBXNativeTarget "ocTests" */;
+			buildPhases = (
+				B70B9B11187BA26B00CBFBDB /* Sources */,
+				B70B9B12187BA26B00CBFBDB /* Frameworks */,
+				B70B9B13187BA26B00CBFBDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B70B9B1A187BA26B00CBFBDB /* PBXTargetDependency */,
+			);
+			name = ocTests;
+			productName = ocTests;
+			productReference = B70B9B15187BA26B00CBFBDB /* ocTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		B78160521877643300684163 /* Project object */ = {
+		B70B9AF5187BA26A00CBFBDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "kutty banerjee";
+				TargetAttributes = {
+					B70B9B14187BA26B00CBFBDB = {
+						TestTargetID = B70B9AFD187BA26B00CBFBDB;
+					};
+				};
 			};
-			buildConfigurationList = B78160551877643300684163 /* Build configuration list for PBXProject "oc" */;
+			buildConfigurationList = B70B9AF8187BA26A00CBFBDB /* Build configuration list for PBXProject "oc" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = B78160511877643300684163;
-			productRefGroup = B781605B1877643300684163 /* Products */;
+			mainGroup = B70B9AF4187BA26A00CBFBDB;
+			productRefGroup = B70B9AFF187BA26B00CBFBDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B78160591877643300684163 /* oc */,
+				B70B9AFD187BA26B00CBFBDB /* oc */,
+				B70B9B14187BA26B00CBFBDB /* ocTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		B70B9AFC187BA26B00CBFBDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B70B9B13187BA26B00CBFBDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B9B21187BA26B00CBFBDB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		B78160561877643300684163 /* Sources */ = {
+		B70B9AF9187BA26B00CBFBDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7E6ED5E187B5167008C9263 /* KBTwo.m in Sources */,
-				B7E6ED65187B6064008C9263 /* Test.m in Sources */,
-				B7E6ED68187B7517008C9263 /* KBThree.m in Sources */,
-				B78160611877643300684163 /* main.m in Sources */,
-				B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */,
-				B7E6ED6B187B7D66008C9263 /* KBFactory.m in Sources */,
+				B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */,
+				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
+				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
+				B70B9B10187BA26B00CBFBDB /* oc.m in Sources */,
+				B70B9B36187BA2AE00CBFBDB /* KBFactory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B70B9B11187BA26B00CBFBDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B9B23187BA26B00CBFBDB /* ocTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B70B9B1A187BA26B00CBFBDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B70B9AFD187BA26B00CBFBDB /* oc */;
+			targetProxy = B70B9B19187BA26B00CBFBDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B70B9B0B187BA26B00CBFBDB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B70B9B1F187BA26B00CBFBDB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B70B9B20187BA26B00CBFBDB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		B78160661877643300684163 /* Debug */ = {
+		B70B9B24187BA26B00CBFBDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -215,7 +364,7 @@
 			};
 			name = Debug;
 		};
-		B78160671877643300684163 /* Release */ = {
+		B70B9B25187BA26B00CBFBDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,46 +395,105 @@
 			};
 			name = Release;
 		};
-		B78160691877643300684163 /* Debug */ = {
+		B70B9B27187BA26B00CBFBDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "oc/oc-Prefix.pch";
+				INFOPLIST_FILE = "oc/oc-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
 		};
-		B781606A1877643300684163 /* Release */ = {
+		B70B9B28187BA26B00CBFBDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "oc/oc-Prefix.pch";
+				INFOPLIST_FILE = "oc/oc-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		B70B9B2A187BA26B00CBFBDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oc.framework/Versions/A/oc";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oc/oc-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ocTests/ocTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B70B9B2B187BA26B00CBFBDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oc.framework/Versions/A/oc";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "oc/oc-Prefix.pch";
+				INFOPLIST_FILE = "ocTests/ocTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B78160551877643300684163 /* Build configuration list for PBXProject "oc" */ = {
+		B70B9AF8187BA26A00CBFBDB /* Build configuration list for PBXProject "oc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B78160661877643300684163 /* Debug */,
-				B78160671877643300684163 /* Release */,
+				B70B9B24187BA26B00CBFBDB /* Debug */,
+				B70B9B25187BA26B00CBFBDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B78160681877643300684163 /* Build configuration list for PBXNativeTarget "oc" */ = {
+		B70B9B26187BA26B00CBFBDB /* Build configuration list for PBXNativeTarget "oc" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B78160691877643300684163 /* Debug */,
-				B781606A1877643300684163 /* Release */,
+				B70B9B27187BA26B00CBFBDB /* Debug */,
+				B70B9B28187BA26B00CBFBDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		B70B9B29187BA26B00CBFBDB /* Build configuration list for PBXNativeTarget "ocTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B70B9B2A187BA26B00CBFBDB /* Debug */,
+				B70B9B2B187BA26B00CBFBDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = B78160521877643300684163 /* Project object */;
+	rootObject = B70B9AF5187BA26A00CBFBDB /* Project object */;
 }
