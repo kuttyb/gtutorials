@@ -14,4 +14,11 @@ public:
 	
 };
 
+template <class T>
+class X : public A<T>
+{
+public:
+	T multiply(T one, T two);
+};
+
 #endif //__t_h__

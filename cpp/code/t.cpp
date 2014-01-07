@@ -11,14 +11,6 @@ template <class T> T A<T>::add(T one, T two)
 }
 
 // ------------------------------------------
-template <class T>
-class X : public A<T>
-{
-public:
-	T multiply(T one, T two);
-};
-
-
 template <class T> T X<T>::multiply(T one, T two) 
 {
 	return one * two;
