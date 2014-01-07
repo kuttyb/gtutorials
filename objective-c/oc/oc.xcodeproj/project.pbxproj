@@ -14,6 +14,7 @@
 		B7E6ED5E187B5167008C9263 /* KBTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED5D187B5167008C9263 /* KBTwo.m */; };
 		B7E6ED65187B6064008C9263 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED64187B6064008C9263 /* Test.m */; };
 		B7E6ED68187B7517008C9263 /* KBThree.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED67187B7517008C9263 /* KBThree.m */; };
+		B7E6ED6B187B7D66008C9263 /* KBFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E6ED6A187B7D66008C9263 /* KBFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +45,8 @@
 		B7E6ED64187B6064008C9263 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		B7E6ED66187B7517008C9263 /* KBThree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBThree.h; sourceTree = "<group>"; };
 		B7E6ED67187B7517008C9263 /* KBThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBThree.m; sourceTree = "<group>"; };
+		B7E6ED69187B7D66008C9263 /* KBFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBFactory.h; sourceTree = "<group>"; };
+		B7E6ED6A187B7D66008C9263 /* KBFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 				B7E6ED59187B4291008C9263 /* KBOne.h */,
 				B7E6ED62187B5FA1008C9263 /* KBNode.h */,
 				B7E6ED66187B7517008C9263 /* KBThree.h */,
+				B7E6ED69187B7D66008C9263 /* KBFactory.h */,
+				B7E6ED6A187B7D66008C9263 /* KBFactory.m */,
 				B7E6ED67187B7517008C9263 /* KBThree.m */,
 				B7E6ED63187B6064008C9263 /* Test.h */,
 				B7E6ED64187B6064008C9263 /* Test.m */,
@@ -166,6 +171,7 @@
 				B7E6ED68187B7517008C9263 /* KBThree.m in Sources */,
 				B78160611877643300684163 /* main.m in Sources */,
 				B7E6ED5B187B4291008C9263 /* KBOne.m in Sources */,
+				B7E6ED6B187B7D66008C9263 /* KBFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
