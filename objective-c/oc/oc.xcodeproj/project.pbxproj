@@ -24,6 +24,8 @@
 		B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B32187BA2AE00CBFBDB /* KBThree.m */; };
 		B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */ = {isa = PBXBuildFile; fileRef = B70B9B33187BA2AE00CBFBDB /* KBTwo.h */; };
 		B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B34187BA2AE00CBFBDB /* KBTwo.m */; };
+		B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */; };
+		B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B41187BA5FF00CBFBDB /* KBTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,9 @@
 		B70B9B32187BA2AE00CBFBDB /* KBThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBThree.m; sourceTree = "<group>"; };
 		B70B9B33187BA2AE00CBFBDB /* KBTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTwo.h; sourceTree = "<group>"; };
 		B70B9B34187BA2AE00CBFBDB /* KBTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTwo.m; sourceTree = "<group>"; };
+		B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestTwo.m; sourceTree = "<group>"; };
+		B70B9B40187BA5FF00CBFBDB /* KBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTest.h; sourceTree = "<group>"; };
+		B70B9B41187BA5FF00CBFBDB /* KBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +161,11 @@
 		B70B9B1C187BA26B00CBFBDB /* ocTests */ = {
 			isa = PBXGroup;
 			children = (
+				B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */,
 				B70B9B22187BA26B00CBFBDB /* ocTests.m */,
 				B70B9B1D187BA26B00CBFBDB /* Supporting Files */,
+				B70B9B40187BA5FF00CBFBDB /* KBTest.h */,
+				B70B9B41187BA5FF00CBFBDB /* KBTest.m */,
 			);
 			path = ocTests;
 			sourceTree = "<group>";
@@ -294,6 +302,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B70B9B23187BA26B00CBFBDB /* ocTests.m in Sources */,
+				B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */,
+				B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

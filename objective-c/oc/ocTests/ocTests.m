@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "KBTest.h"
 #import "KBNode.h"
 #import "KBFactory.h"
 
@@ -29,14 +30,9 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testBasic
 {
-	@autoreleasepool {
-		NSLog(@"return value is %d", [subject add:3 INPUTTWO:5]);
-		[subject dumpState];
-		[subject compareThree:20 TWO:10 THREE:3];
-		[subject dumpState];
-	}
+	[KBTest test_body:subject];
 }
 
 @end
