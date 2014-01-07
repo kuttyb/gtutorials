@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <assert.h>
+#import "one.h"
 
 
 @interface cpp_code_Tests : XCTestCase
