@@ -17,19 +17,6 @@ using std::endl;
 
 @end
 
-class TestLocal {
-public:
-    static void test(void);
-};
-
-void TestLocal::test(void) {
-        cout << "hi there" << endl;
-        
-        X<int> a;
-        cout<< a.add(3, 4) << endl;
-        cout<< a.multiply(3, 4) << endl;
-}
-
 @implementation TestT
 
 - (void)setUp
@@ -46,8 +33,11 @@ void TestLocal::test(void) {
 
 - (void)testExample
 {
-    TestLocal::test();
+    cout << "hi there" << endl;
     
+    X<int> a;
+    cout<< a.add(3, 4) << endl;
+    cout<< a.multiply(3, 4) << endl;
 }
 
 @end

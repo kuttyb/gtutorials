@@ -3,8 +3,6 @@
 
 #include <stdint.h>
 
-int test_one(void);
-
 template<class T>
 class One 
 {
