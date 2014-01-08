@@ -1,0 +1,6 @@
+From the command line thus:
+
+xcodebuild -scheme cpp-code test
+
+i.e., make sure you invoke them using -scheme and not target.
+
