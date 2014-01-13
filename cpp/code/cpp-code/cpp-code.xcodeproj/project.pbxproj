@@ -20,6 +20,9 @@
 		B7885CB718693B7A004125B5 /* t.h in Headers */ = {isa = PBXBuildFile; fileRef = B7885CAE18693B7A004125B5 /* t.h */; };
 		B797BBC6186B54460056EBA6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B797BBC5186B54460056EBA6 /* XCTest.framework */; };
 		B797BBCC186B54460056EBA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B797BBCA186B54460056EBA6 /* InfoPlist.strings */; };
+		B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */; };
+		B7C54F0218837E6E00A0678E /* NonTemplate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7C54F0018837E6E00A0678E /* NonTemplate.cpp */; };
+		B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C54F0118837E6E00A0678E /* NonTemplate.h */; };
 		B7DB1E68187BDF2E0003E18E /* libcpp-code.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7885C9F18693B39004125B5 /* libcpp-code.dylib */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +54,9 @@
 		B797BBC9186B54460056EBA6 /* cpp-code Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cpp-code Tests-Info.plist"; sourceTree = "<group>"; };
 		B797BBCB186B54460056EBA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B797BBCF186B54460056EBA6 /* cpp-code Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cpp-code Tests-Prefix.pch"; sourceTree = "<group>"; };
+		B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNonTemplate.mm; sourceTree = "<group>"; };
+		B7C54F0018837E6E00A0678E /* NonTemplate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NonTemplate.cpp; path = ../NonTemplate.cpp; sourceTree = "<group>"; };
+		B7C54F0118837E6E00A0678E /* NonTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NonTemplate.h; path = ../NonTemplate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,8 @@
 		B7885C9618693B39004125B5 = {
 			isa = PBXGroup;
 			children = (
+				B7C54F0018837E6E00A0678E /* NonTemplate.cpp */,
+				B7C54F0118837E6E00A0678E /* NonTemplate.h */,
 				B7885CA618693B7A004125B5 /* comparison.cpp */,
 				B7885CA718693B7A004125B5 /* duck.cpp */,
 				B7885CA818693B7A004125B5 /* first.h */,
@@ -111,6 +119,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */,
 				B78634A2187D244800A51F7D /* TestOne.mm */,
 				B76037B2187C0DDE005BDD0E /* TestT.mm */,
 				B797BBC8186B54460056EBA6 /* Supporting Files */,
@@ -137,6 +146,7 @@
 			files = (
 				B7885CB718693B7A004125B5 /* t.h in Headers */,
 				B7885CB118693B7A004125B5 /* first.h in Headers */,
+				B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */,
 				B7885CB318693B7A004125B5 /* one.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -227,6 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7C54F0218837E6E00A0678E /* NonTemplate.cpp in Sources */,
 				B7885CB618693B7A004125B5 /* t.cpp in Sources */,
 				B7885CB218693B7A004125B5 /* one.cpp in Sources */,
 				B7885CB018693B7A004125B5 /* duck.cpp in Sources */,
@@ -241,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */,
+				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,
 				B78634A3187D244800A51F7D /* TestOne.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

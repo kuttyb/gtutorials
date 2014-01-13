@@ -1,0 +1,39 @@
+//
+//  TestT.m
+//  cpp-code
+//
+//  Created by Kutty Banerjee on 1/7/14.
+//  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
+//
+
+#import <XCTest/XCTest.h>
+#include <iostream>
+#include "NonTemplate.h"
+
+@interface TestNonTemplate : XCTestCase
+
+@end
+
+@implementation TestNonTemplate {
+    NonTemplate *subject;
+}
+
+- (void)setUp
+{
+    [super setUp];
+    subject = new NonTemplate(3);
+}
+
+- (void)tearDown
+{
+    delete subject;
+    [super tearDown];
+}
+
+- (void)testExample
+{
+    std::cout << "hi there" << std::endl;
+    subject->print();
+}
+
+@end
