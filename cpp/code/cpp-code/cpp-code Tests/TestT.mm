@@ -17,27 +17,26 @@ using std::endl;
 
 @end
 
-@implementation TestT
+@implementation TestT {
+    X<int> *subject;
+}
 
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    subject = new X<int>();
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    delete subject;
     [super tearDown];
 }
 
 - (void)testExample
 {
-    cout << "hi there" << endl;
-    
-    X<int> a;
-    cout<< a.add(3, 4) << endl;
-    cout<< a.multiply(3, 4) << endl;
+    subject->add(3, 4);
+    subject->multiply(4, 8);
 }
 
 @end

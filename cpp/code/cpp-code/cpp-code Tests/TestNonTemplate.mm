@@ -32,7 +32,6 @@
 
 - (void)testExample
 {
-    std::cout << "hi there" << std::endl;
     subject->print();
 }
 

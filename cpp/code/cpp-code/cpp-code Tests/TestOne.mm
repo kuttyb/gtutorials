@@ -17,46 +17,40 @@ using std::endl;
 
 @end
 
-@implementation TestOne
+@implementation TestOne {
+    One<uint64_t> *subject;
+}
 
 - (void)setUp
 {
     [super setUp];
+    subject = new One<uint64_t>(2, 3, 8, 1);
 }
 
 - (void)tearDown
 {
+    delete subject;
     [super tearDown];
 }
 
 - (void)testExample
 {
     // by value
-    cout<<"testing the latest software" << endl;
+    subject->value();
+    
+    One<uint64_t>* list[] =
     {
-        One<uint64_t> one(2, 3, 8, 1);
-        one.value();
-        
-    }
-    cout << "----------------------------" << endl;
+        new One<uint64_t>(2, 3, 8, 1), new One<uint64_t>(1, 5, 2, 2), new One<uint64_t>(1, 1, 1, 3), new One<uint64_t>(1, 2, 3, 4)
+    };
     
-    
-    // Array Initialization
+    for (uint32_t i = 0; i < sizeof(list) / sizeof(One<uint64_t>); i++)
     {
-        One<uint64_t> list[] =
-        {
-            One<uint64_t>(2, 3, 8, 1), One<uint64_t>(1, 5, 2, 2), One<uint64_t>(1, 1, 1, 3), One<uint64_t>(1, 2, 3, 4)
-        };
-        cout << "printing array values " << endl;
-        
-        for (uint32_t i = 0; i < sizeof(list) / sizeof(One<uint64_t>); i++)
-        {
-            cout << list[i].latest_value() << endl;
-        }
+        cout << list[i]->latest_value() << endl;
     }
-    cout << "----------------------------" << endl;
     
-    cout <<"tearing down program" << endl;
+    for (uint32_t i = 0; i < sizeof(list) / sizeof(list[0]); ++i) {
+        delete list[i];
+    }
 }
 
 @end
