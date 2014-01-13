@@ -1,0 +1,4 @@
+template class A<uint64_t>;
+
+This is how you force a template to be instantiated for a type without allocating object storage for it.
+Useful in Libraries.
