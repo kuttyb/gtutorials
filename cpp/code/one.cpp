@@ -56,11 +56,12 @@ template<class T> uint32_t Two<T>::latest_value(void)
 }
 
 // ---------------------------------------------------------
-int test_one(void)
-{
-    One<uint64_t> one(2, 3, 8, 1);
-    one.value();
-	return 0;
+One<uint64_t> createInteger(void) {
+    return One<uint64_t>(2, 3, 8, 1);
+}
+
+One<float> createFloat(void) {
+    return One<float>(3.0f, 2.0f, 1.0f, 0.0f);
 }
 
 

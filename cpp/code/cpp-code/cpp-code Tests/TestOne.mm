@@ -34,7 +34,7 @@ using std::endl;
     // by value
     cout<<"testing the latest software" << endl;
     {
-        One<uint64_t> one(2, 3, 8, 1);
+        One<uint64_t> one = createInteger();
         one.value();
         
     }
@@ -45,7 +45,7 @@ using std::endl;
     {
         One<uint64_t> list[] =
         {
-            One<uint64_t>(2, 3, 8, 1), One<uint64_t>(1, 5, 2, 2), One<uint64_t>(1, 1, 1, 3), One<uint64_t>(1, 2, 3, 4)
+            createInteger(), createInteger(), createInteger(), createInteger(), createInteger()
         };
         cout << "printing array values " << endl;
         

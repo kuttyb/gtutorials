@@ -23,6 +23,9 @@ public:
 	virtual uint32_t latest_value(void);
 };
 
+One<uint64_t> createInteger(void);
+One<float> createFloat(void);
+
 template<class T>
 class Two : public One<T>
 {
