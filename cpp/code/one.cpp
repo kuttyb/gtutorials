@@ -56,11 +56,6 @@ template<class T> uint32_t Two<T>::latest_value(void)
 }
 
 // ---------------------------------------------------------
-int test_one(void)
-{
-    One<uint64_t> one(2, 3, 8, 1);
-    one.value();
-	return 0;
-}
-
+template class One<uint64_t>;
+template class One<float>;
 
