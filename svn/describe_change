@@ -1,0 +1,5 @@
+# This will give changelist description + branch 
+svn log -v -c 38232
+
+# This will give the actual changes
+svn diff -c 38232 

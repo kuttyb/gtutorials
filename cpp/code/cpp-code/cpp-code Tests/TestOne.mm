@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include "one.h"
+#include "ConfigOne.h"
 
 using std::cout;
 using std::endl;
@@ -18,18 +18,18 @@ using std::endl;
 @end
 
 @implementation TestOne {
-    One<uint64_t> *subject;
+	ConfigOne *factory;
 }
 
 - (void)setUp
 {
     [super setUp];
-    subject = new One<uint64_t>(2, 3, 8, 1);
+	factory = new ConfigOne();
 }
 
 - (void)tearDown
 {
-    delete subject;
+	delete factory;
     [super tearDown];
 }
 
@@ -40,16 +40,22 @@ using std::endl;
     
     One<uint64_t>* list[] =
     {
-        new One<uint64_t>(2, 3, 8, 1), new One<uint64_t>(1, 5, 2, 2), new One<uint64_t>(1, 1, 1, 3), new One<uint64_t>(1, 2, 3, 4)
-    };
-    
-    for (uint32_t i = 0; i < sizeof(list) / sizeof(One<uint64_t>); i++)
-    {
-        cout << list[i]->latest_value() << endl;
+        One<uint64_t> one = factory->createInteger();
+        one.value();
     }
     
-    for (uint32_t i = 0; i < sizeof(list) / sizeof(list[0]); ++i) {
-        delete list[i];
+    // Array Initialization
+    {
+        One<float> list[] =
+        {
+			factory->createFloat(), factory->createFloat(), factory->createFloat(), factory->createFloat()
+        };
+        cout << "printing array values " << endl;
+        
+        for (uint32_t i = 0; i < sizeof(list) / sizeof(One<float>); i++)
+        {
+            cout << list[i].latest_value() << endl;
+        }
     }
 }
 

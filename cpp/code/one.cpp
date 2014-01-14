@@ -32,6 +32,7 @@ template<class T> uint32_t One<T>::latest_value(void)
 	
 	return m_y;
 }
+
 // ---------------------------------------------------------
 
 
