@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B71E10901884CFD3008EBEC1 /* ConfigOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B71E108F1884CFD3008EBEC1 /* ConfigOne.h */; };
+		B71E10921884D162008EBEC1 /* ConfigOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B71E10911884D162008EBEC1 /* ConfigOne.cpp */; };
 		B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */ = {isa = PBXBuildFile; fileRef = B76037B2187C0DDE005BDD0E /* TestT.mm */; };
 		B78634A3187D244800A51F7D /* TestOne.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78634A2187D244800A51F7D /* TestOne.mm */; };
 		B7885CAF18693B7A004125B5 /* comparison.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CA618693B7A004125B5 /* comparison.cpp */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B71E108F1884CFD3008EBEC1 /* ConfigOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigOne.h; sourceTree = "<group>"; };
+		B71E10911884D162008EBEC1 /* ConfigOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigOne.cpp; sourceTree = "<group>"; };
 		B76037B2187C0DDE005BDD0E /* TestT.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestT.mm; sourceTree = "<group>"; };
 		B78634A2187D244800A51F7D /* TestOne.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestOne.mm; sourceTree = "<group>"; };
 		B7885C9F18693B39004125B5 /* libcpp-code.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libcpp-code.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +92,8 @@
 				B7885CA718693B7A004125B5 /* duck.cpp */,
 				B7885CA818693B7A004125B5 /* first.h */,
 				B7885CA918693B7A004125B5 /* one.cpp */,
+				B71E108F1884CFD3008EBEC1 /* ConfigOne.h */,
+				B71E10911884D162008EBEC1 /* ConfigOne.cpp */,
 				B7885CAA18693B7A004125B5 /* one.h */,
 				B7885CAB18693B7A004125B5 /* specialization.cpp */,
 				B7885CAC18693B7A004125B5 /* static.cpp */,
@@ -148,6 +154,7 @@
 				B7885CB118693B7A004125B5 /* first.h in Headers */,
 				B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */,
 				B7885CB318693B7A004125B5 /* one.h in Headers */,
+				B71E10901884CFD3008EBEC1 /* ConfigOne.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +250,7 @@
 				B7885CB018693B7A004125B5 /* duck.cpp in Sources */,
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* comparison.cpp in Sources */,
+				B71E10921884D162008EBEC1 /* ConfigOne.cpp in Sources */,
 				B7885CB518693B7A004125B5 /* static.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

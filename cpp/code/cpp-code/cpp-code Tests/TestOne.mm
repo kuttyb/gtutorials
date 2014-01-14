@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include "one.h"
+#include "ConfigOne.h"
 
 using std::cout;
 using std::endl;
@@ -17,15 +17,19 @@ using std::endl;
 
 @end
 
-@implementation TestOne
+@implementation TestOne {
+	ConfigOne *factory;
+}
 
 - (void)setUp
 {
     [super setUp];
+	factory = new ConfigOne();
 }
 
 - (void)tearDown
 {
+	delete factory;
     [super tearDown];
 }
 
@@ -34,7 +38,7 @@ using std::endl;
     // by value
     cout<<"testing the latest software" << endl;
     {
-        One<uint64_t> one = One<uint64_t>::createInteger(2, 3, 8, 1);
+        One<uint64_t> one = factory->createInteger();
         one.value();
         
     }
@@ -45,11 +49,11 @@ using std::endl;
     {
         One<float> list[] =
         {
-            One<float>::createFloat(2, 3, 8, 1), One<float>::createFloat(1, 5, 2, 2), One<float>::createFloat(1, 1, 1, 3), One<float>::createFloat(1, 2, 3, 4)
+			factory->createFloat(), factory->createFloat(), factory->createFloat(), factory->createFloat()
         };
         cout << "printing array values " << endl;
         
-        for (uint32_t i = 0; i < sizeof(list) / sizeof(One<uint64_t>); i++)
+        for (uint32_t i = 0; i < sizeof(list) / sizeof(One<float>); i++)
         {
             cout << list[i].latest_value() << endl;
         }

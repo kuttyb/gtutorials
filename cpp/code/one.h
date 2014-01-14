@@ -6,6 +6,7 @@
 template<class T>
 class One 
 {
+	friend class ConfigOne;
 private:
 	uint32_t m_x;
 	uint32_t m_y;
@@ -21,9 +22,6 @@ public:
 	virtual ~One(void);
 	uint64_t value(void);
 	virtual uint32_t latest_value(void);
-	// Types that are allowed tobe instantiated
-	static One<uint64_t> createInteger(uint32_t one, uint32_t two, uint64_t three, uint64_t four);
-	static One<float> createFloat(uint32_t one, uint32_t two, uint64_t local, float t);
 };
 
 template<class T>
