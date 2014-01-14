@@ -36,9 +36,6 @@ using std::endl;
 - (void)testExample
 {
     // by value
-    subject->value();
-    
-    One<uint64_t>* list[] =
     {
         One<uint64_t> one = factory->createInteger();
         one.value();
