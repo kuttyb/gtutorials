@@ -36,6 +36,11 @@ template<class T> uint32_t One<T>::latest_value(void)
 template<>
 One<uint64_t> One<uint64_t>::createInteger(uint32_t one, uint32_t two, uint64_t three, uint64_t four) { return One<uint64_t>(one, two, three, four);}
 
+template<>
+One<float> One<float>::createFloat(uint32_t one, uint32_t two, uint64_t local, float t) {
+	return One<float>(one, two, local, t);
+}
+
 // ---------------------------------------------------------
 
 

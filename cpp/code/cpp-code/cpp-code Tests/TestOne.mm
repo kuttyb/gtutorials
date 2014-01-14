@@ -43,9 +43,9 @@ using std::endl;
     
     // Array Initialization
     {
-        One<uint64_t> list[] =
+        One<float> list[] =
         {
-            One<uint64_t>::createInteger(2, 3, 8, 1), One<uint64_t>::createInteger(1, 5, 2, 2), One<uint64_t>::createInteger(1, 1, 1, 3), One<uint64_t>::createInteger(1, 2, 3, 4)
+            One<float>::createFloat(2, 3, 8, 1), One<float>::createFloat(1, 5, 2, 2), One<float>::createFloat(1, 1, 1, 3), One<float>::createFloat(1, 2, 3, 4)
         };
         cout << "printing array values " << endl;
         
