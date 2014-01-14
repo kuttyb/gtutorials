@@ -32,6 +32,10 @@ template<class T> uint32_t One<T>::latest_value(void)
 	
 	return m_y;
 }
+
+template<>
+One<uint64_t> One<uint64_t>::createInteger(uint32_t one, uint32_t two, uint64_t three, uint64_t four) { return One<uint64_t>(one, two, three, four);}
+
 // ---------------------------------------------------------
 
 
