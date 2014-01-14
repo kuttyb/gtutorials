@@ -427,7 +427,7 @@
 				B7885CA218693B39004125B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B7885CA318693B39004125B5 /* Build configuration list for PBXNativeTarget "cpp-code" */ = {
 			isa = XCConfigurationList;
@@ -436,7 +436,7 @@
 				B7885CA518693B39004125B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		B797BBD4186B54460056EBA6 /* Build configuration list for PBXNativeTarget "cpp-code Tests" */ = {
 			isa = XCConfigurationList;
@@ -445,7 +445,7 @@
 				B797BBD3186B54460056EBA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
