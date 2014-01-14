@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B707A4471885081B008C99FF /* More.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B707A4451885081B008C99FF /* More.cpp */; };
+		B707A4481885081B008C99FF /* More.h in Headers */ = {isa = PBXBuildFile; fileRef = B707A4461885081B008C99FF /* More.h */; };
 		B752A1FC1884EF670084C81C /* ConfigOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B752A1FA1884EF670084C81C /* ConfigOne.cpp */; };
 		B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B752A1FB1884EF670084C81C /* ConfigOne.h */; };
 		B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */ = {isa = PBXBuildFile; fileRef = B76037B2187C0DDE005BDD0E /* TestT.mm */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B707A4451885081B008C99FF /* More.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = More.cpp; sourceTree = "<group>"; };
+		B707A4461885081B008C99FF /* More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = More.h; sourceTree = "<group>"; };
 		B752A1FA1884EF670084C81C /* ConfigOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigOne.cpp; path = ../ConfigOne.cpp; sourceTree = "<group>"; };
 		B752A1FB1884EF670084C81C /* ConfigOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigOne.h; path = ../ConfigOne.h; sourceTree = "<group>"; };
 		B76037B2187C0DDE005BDD0E /* TestT.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestT.mm; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				B7885CA718693B7A004125B5 /* duck.cpp */,
 				B7885CA818693B7A004125B5 /* first.h */,
 				B7885CA918693B7A004125B5 /* one.cpp */,
+				B707A4451885081B008C99FF /* More.cpp */,
+				B707A4461885081B008C99FF /* More.h */,
 				B7885CAA18693B7A004125B5 /* one.h */,
 				B7885CAB18693B7A004125B5 /* specialization.cpp */,
 				B7885CAC18693B7A004125B5 /* static.cpp */,
@@ -155,6 +161,7 @@
 				B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */,
 				B7885CB318693B7A004125B5 /* one.h in Headers */,
 				B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */,
+				B707A4481885081B008C99FF /* More.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B707A4471885081B008C99FF /* More.cpp in Sources */,
 				B7C54F0218837E6E00A0678E /* NonTemplate.cpp in Sources */,
 				B7885CB618693B7A004125B5 /* t.cpp in Sources */,
 				B7885CB218693B7A004125B5 /* one.cpp in Sources */,
