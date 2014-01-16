@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
 //
 #include <iostream>
+#include <assert.h>
 #include "Function.h"
 
 using std::cout;
@@ -24,11 +25,11 @@ int func(int input) {
 }
 
 
-int _main(void) {
-    if (1) {
-        func(3.0f);
-        func(4);
-    }
+int _dummymain(void) {
+    // for compile time tricks only, not meant to be invoked at runtime!!
+    func<float>(3.0f);
+    func<int>(4);
+    assert(0);
     return 0;
 }
 
