@@ -9,7 +9,7 @@ using std::endl;
 // In the case of duck.cpp, it is different. We explicitly define the interface that T adheres to and it is that of the Base class.
 //
 // ----------------------------------------------
-template <class T>
+template <typename T>
 class A
 {
 private:
@@ -28,7 +28,7 @@ public :
 	int print_all(void);
 };
 
-template<class T> int A<T>::print_all(void) 
+template<typename T> int A<T>::print_all(void)
 {
 	cout<< "data begins here" << endl;
 	int value = m_t->multiply();

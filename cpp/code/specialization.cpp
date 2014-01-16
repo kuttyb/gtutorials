@@ -14,7 +14,7 @@ using std::endl;
 
 // ----------------------------------------------
 // Class Partial Specialization
-template <class T, class U>
+template <typename T, typename U>
 class X
 {
 public:	
@@ -25,7 +25,7 @@ public:
 };
 
 	
-template <class U>
+template <typename U>
 class X<int, U>
 {
 public:	

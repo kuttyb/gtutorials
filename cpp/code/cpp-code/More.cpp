@@ -11,23 +11,23 @@
 using std::cout;
 using std::endl;
 
-template <class T>
+template <typename T>
 int More<T>::classVar = 3;
 
-template<class T>
+template<typename T>
 const int More<T>::classConstant = 0x10;
 
-template <class T>
+template <typename T>
 void More<T>::print(T data) {
     cout << "the data is " << data << endl;
 
 }
 
-template <class T>
+template <typename T>
 More<T>::More(void) : localvar(2), localconst(3) {
 }
 
-template <class T>
+template <typename T>
 void More<T>::printClass(void) {
     cout << "printing class data" << endl;
 }

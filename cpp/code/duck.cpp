@@ -1,7 +1,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-template<class T>
+template<typename T>
 class A 
 {
 public:

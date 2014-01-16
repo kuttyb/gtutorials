@@ -1,7 +1,7 @@
 #ifndef __t_h__
 #define __t_h__
 
-template <class T>
+template <typename T>
 class A
 {
 private:
@@ -14,7 +14,7 @@ public:
 	
 };
 
-template <class T>
+template <typename T>
 class X : public A<T>
 {
 public:

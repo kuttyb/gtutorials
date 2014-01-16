@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-template<class T>
+template<typename T>
 class One 
 {
 	friend class ConfigOne;
@@ -24,7 +24,7 @@ public:
 	virtual uint32_t latest_value(void);
 };
 
-template<class T>
+template<typename T>
 class Two : public One<T>
 {
 protected:
@@ -33,8 +33,5 @@ public:
 	~Two(void);
 	uint32_t latest_value(void);
 };
-
-
-
 
 #endif //__one_h__

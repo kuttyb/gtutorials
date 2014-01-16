@@ -12,7 +12,7 @@
 using std::cout;
 using std::endl;
 
-template <class T>
+template <typename T>
 T func(T input) {
     cout<< "generic version " << input << endl;
     return input;

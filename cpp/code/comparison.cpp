@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-template<class T>
+template<typename T>
 void function(T input, int x) 
 {
 	cout << input << " " << x << " " << endl;

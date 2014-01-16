@@ -3,15 +3,15 @@
 
 using namespace std;
 
-template <class T> const int A<T>::id = 0x20;
+template <typename T> const int A<T>::id = 0x20;
 
-template <class T> T A<T>::add(T one, T two) 
+template <typename T> T A<T>::add(T one, T two)
 {
 	return one + two;
 }
 
 // ------------------------------------------
-template <class T> T X<T>::multiply(T one, T two) 
+template <typename T> T X<T>::multiply(T one, T two)
 {
 	return one * two;
 }

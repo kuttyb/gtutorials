@@ -9,7 +9,7 @@
 #ifndef __cpp_code__More__
 #define __cpp_code__More__
 
-template <class T>
+template <typename T>
 class More {
 private:
     struct _pvt;
