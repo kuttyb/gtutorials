@@ -23,7 +23,12 @@ int func(int input) {
     return input + 3;
 }
 
+
 int _main(void) {
-    func(3.0f);
-    return func(4);
+    if (1) {
+        func(3.0f);
+        func(4);
+    }
+    return 0;
 }
+

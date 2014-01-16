@@ -14,4 +14,5 @@
 template <class T> T func(T input);
 template <int> int func(int input);
 
+
 #endif /* defined(__cpp_code__Function__) */
