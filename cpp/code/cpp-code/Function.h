@@ -33,4 +33,8 @@ bool is_type_valid(char input) {
     return true;
 }
 
+constexpr int get_area(int input, int two) {
+    return input + two;
+}
+
 #endif /* defined(__cpp_code__Function__) */
