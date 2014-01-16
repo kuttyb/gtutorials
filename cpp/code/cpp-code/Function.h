@@ -9,10 +9,28 @@
 #ifndef __cpp_code__Function__
 #define __cpp_code__Function__
 
-#include <iostream>
-
 template <typename T> T func(T input);
 template <int> int func(int input);
 
+// Type-Traits
+template <typename T>
+bool is_type_valid(T input) {
+    return false;
+}
+
+template <>
+bool is_type_valid(int input) {
+    return true;
+}
+
+template <>
+bool is_type_valid(float input) {
+    return false;
+}
+
+template <>
+bool is_type_valid(char input) {
+    return true;
+}
 
 #endif /* defined(__cpp_code__Function__) */

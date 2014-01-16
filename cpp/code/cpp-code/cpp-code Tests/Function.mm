@@ -30,6 +30,9 @@
 {
     func(2);
     func(3.0f);
+    XCTAssert(is_type_valid(2), "type: int mismatched");
+    XCTAssert(!is_type_valid(2.0f), "type: float mismatched");
+    XCTAssert(is_type_valid('c'), "type: char mismatched");
 }
 
 @end
