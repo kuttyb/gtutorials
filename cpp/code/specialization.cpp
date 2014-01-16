@@ -24,7 +24,8 @@ public:
 	}
 };
 
-	
+
+// Partially Specialized Class
 template <typename U>
 class X<int, U>
 {

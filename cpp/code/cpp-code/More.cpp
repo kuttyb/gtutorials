@@ -14,9 +14,6 @@ using std::endl;
 template <typename T>
 int More<T>::classVar = 3;
 
-template<typename T>
-const int More<T>::classConstant = 0x10;
-
 template <typename T>
 void More<T>::print(T data) {
     cout << "the data is " << data << endl;

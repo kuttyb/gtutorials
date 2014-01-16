@@ -22,7 +22,8 @@ public:
     // all sorts of variables :)
     static void printClass(void);
     static int classVar;
-    static const int classConstant;
+    // Apparently these can be thankfully instantiated inside the Class declaration
+    static const int classConstant = 0x20;
 };
 
 #endif /* defined(__cpp_code__More__) */
