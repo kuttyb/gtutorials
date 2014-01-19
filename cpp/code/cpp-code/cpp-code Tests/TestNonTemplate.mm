@@ -14,6 +14,10 @@
 
 @end
 
+@interface TestNonTemplate ()
+- (void)testExample;
+@end
+
 @implementation TestNonTemplate {
     NonTemplate *subject;
 }
