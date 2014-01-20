@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #include "KBNode.h"
+#import "KBNode2.h"
 
-@interface KBOne : NSObject <KBNode> {
+@interface KBOne : NSObject <KBNode, KBNode2> {
 	// protected variables here (default is protected) you can change it with @public, @protected, @private
 	// General rule of thumb seemes to be to keep protected and private in the .m file instead and keep the
 	// interface clean for public consumption.

@@ -8,6 +8,10 @@
 
 #import "KBOne.h"
 
+@interface KBOne ()
+- (int)add:(int)inputOne INPUTTWO:(int)inputTwo;
+@end
+
 @implementation KBOne {
 	// private and protected goes in here
 @private
@@ -37,6 +41,10 @@
 	}
 	else
 		return false;
+}
+
+- (int)getMyNumber {
+    return privVar;
 }
 
 -(void) dumpState {

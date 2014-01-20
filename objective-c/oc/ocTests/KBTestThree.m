@@ -13,16 +13,15 @@
 
 @interface KBTestThree : XCTestCase
 
+@property(nonatomic, strong) id <KBNode> subject;
 @end
 
-@implementation KBTestThree {
-    id<KBNode> subject;
-}
+@implementation KBTestThree
 
 - (void)setUp
 {
     [super setUp];
-    subject = [KBFactory initThree];
+    self.subject = [KBFactory initThree];
 }
 
 - (void)tearDown
@@ -32,7 +31,7 @@
 
 - (void)testExample
 {
-    [KBTest test_body:subject];
+    [KBTest test_body:self.subject];
 }
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6ABA3205EEEDDF8CC217B208 /* KBTestFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA3C414806BE39C4362C49 /* KBTestFour.m */; };
+		6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */; };
 		B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
 		B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */; };
 		B70B9B10187BA26B00CBFBDB /* oc.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B0F187BA26B00CBFBDB /* oc.m */; };
@@ -40,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6ABA372AD6E891666F0A82A7 /* KBTestFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTestFour.h; sourceTree = "<group>"; };
+		6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode2.h; sourceTree = "<group>"; };
+		6ABA3C414806BE39C4362C49 /* KBTestFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestFour.m; sourceTree = "<group>"; };
 		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70B9B01187BA26B00CBFBDB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B70B9B04187BA26B00CBFBDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,6 +151,7 @@
 				B70B9B0E187BA26B00CBFBDB /* oc.h */,
 				B70B9B0F187BA26B00CBFBDB /* oc.m */,
 				B70B9B08187BA26B00CBFBDB /* Supporting Files */,
+				6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */,
 			);
 			path = oc;
 			sourceTree = "<group>";
@@ -169,6 +175,8 @@
 				B70B9B1D187BA26B00CBFBDB /* Supporting Files */,
 				B70B9B40187BA5FF00CBFBDB /* KBTest.h */,
 				B70B9B41187BA5FF00CBFBDB /* KBTest.m */,
+				6ABA3C414806BE39C4362C49 /* KBTestFour.m */,
+				6ABA372AD6E891666F0A82A7 /* KBTestFour.h */,
 			);
 			path = ocTests;
 			sourceTree = "<group>";
@@ -194,6 +202,7 @@
 				B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */,
 				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
 				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
+				6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +317,7 @@
 				B7DB1E67187BD1F30003E18E /* KBTestThree.m in Sources */,
 				B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */,
 				B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */,
+				6ABA3205EEEDDF8CC217B208 /* KBTestFour.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +384,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -405,6 +416,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
