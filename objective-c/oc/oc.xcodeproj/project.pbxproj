@@ -42,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6ABA372AD6E891666F0A82A7 /* KBTestFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTestFour.h; sourceTree = "<group>"; };
 		6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode2.h; sourceTree = "<group>"; };
 		6ABA3C414806BE39C4362C49 /* KBTestFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestFour.m; sourceTree = "<group>"; };
 		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,7 +175,6 @@
 				B70B9B40187BA5FF00CBFBDB /* KBTest.h */,
 				B70B9B41187BA5FF00CBFBDB /* KBTest.m */,
 				6ABA3C414806BE39C4362C49 /* KBTestFour.m */,
-				6ABA372AD6E891666F0A82A7 /* KBTestFour.h */,
 			);
 			path = ocTests;
 			sourceTree = "<group>";
