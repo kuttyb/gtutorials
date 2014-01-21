@@ -16,6 +16,8 @@ public:
 };
 
 class DDerived : public DBasex<DDerived> {
+public:
+    void start(void);
 };
 
 #endif /* defined(__cpp_code__DBase__) */

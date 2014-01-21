@@ -16,3 +16,7 @@ void DBasex<T>::start(void) {
     return static_cast<T*>(this)->start();
 }
 
+void DDerived::start(void) {
+
+}
+

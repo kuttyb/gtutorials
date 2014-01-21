@@ -34,23 +34,26 @@ public:
 class Y : public A<Y> 
 {
 public:
-	uint64_t multiply(uint32_t input, uint32_t m) 
-	{
-		printf("Y speaking\n");
-		return input * m + 3;
-	}
-
-	uint64_t passthru(uint64_t val) 
-	{
-		return val + 4;
-	}
+    uint64_t multiply(uint32_t input, uint32_t m);
+    uint64_t passthru(uint64_t val);
 };
-	
+
+uint64_t Y::multiply(uint32_t input, uint32_t m)
+{
+    printf("Y speaking\n");
+    return input * m + 3;
+}
+
+uint64_t Y::passthru(uint64_t val)
+{
+    return val + 4;
+}
+
+
 static inline A<X>* factory(void) 
 {
 	return new X();
 }
-
 
 
 int test_duck(void)
