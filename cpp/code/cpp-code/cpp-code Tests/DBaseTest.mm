@@ -8,8 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #include "DBase.h"
-#include "E.h"
-#include "F.h"
+#include "E.hpp"
+#include "F.hpp"
 
 @interface DBaseTest : XCTestCase
 
