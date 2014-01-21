@@ -46,11 +46,16 @@ template <>
 class X<double, double>
 {
 public:
-	void func(double one, double two) 
-	{
-		cout << "printing fully specialized " << one << " " << two << endl;
-	}
+	void func(double one, double two);
 };
+
+
+// And this is how you define a FULLY specialized class, don't write the template<> part
+// since everything has been fully specialized already
+void X<double, double>::func(double one, double two)
+{
+//    cout << "printing fully specialized " << one << " " << two << endl;
+}
 
 // ----------------------------------------------
 
