@@ -9,7 +9,7 @@
 #ifndef cpp_code_F_h
 #define cpp_code_F_h
 
-#include "E.h"
+#include "E.hpp"
 
 class F : public E<F> {
 public:
