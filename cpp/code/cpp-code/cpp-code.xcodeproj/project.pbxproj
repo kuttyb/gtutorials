@@ -10,6 +10,8 @@
 		B707A4471885081B008C99FF /* More.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B707A4451885081B008C99FF /* More.cpp */; };
 		B707A4481885081B008C99FF /* More.h in Headers */ = {isa = PBXBuildFile; fileRef = B707A4461885081B008C99FF /* More.h */; };
 		B719F5CF188F147E001766D3 /* A.h in Headers */ = {isa = PBXBuildFile; fileRef = B719F5CE188F147E001766D3 /* A.h */; };
+		B7436665188F203F0096C8AE /* DBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436663188F203F0096C8AE /* DBase.cpp */; };
+		B7436666188F203F0096C8AE /* DBase.h in Headers */ = {isa = PBXBuildFile; fileRef = B7436664188F203F0096C8AE /* DBase.h */; };
 		B752A1FC1884EF670084C81C /* ConfigOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B752A1FA1884EF670084C81C /* ConfigOne.cpp */; };
 		B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B752A1FB1884EF670084C81C /* ConfigOne.h */; };
 		B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */ = {isa = PBXBuildFile; fileRef = B76037B2187C0DDE005BDD0E /* TestT.mm */; };
@@ -48,6 +50,8 @@
 		B707A4451885081B008C99FF /* More.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = More.cpp; sourceTree = "<group>"; };
 		B707A4461885081B008C99FF /* More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = More.h; sourceTree = "<group>"; };
 		B719F5CE188F147E001766D3 /* A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A.h; sourceTree = "<group>"; };
+		B7436663188F203F0096C8AE /* DBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DBase.cpp; sourceTree = "<group>"; };
+		B7436664188F203F0096C8AE /* DBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBase.h; sourceTree = "<group>"; };
 		B752A1FA1884EF670084C81C /* ConfigOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigOne.cpp; path = ../ConfigOne.cpp; sourceTree = "<group>"; };
 		B752A1FB1884EF670084C81C /* ConfigOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigOne.h; path = ../ConfigOne.h; sourceTree = "<group>"; };
 		B76037B2187C0DDE005BDD0E /* TestT.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestT.mm; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				B752A1FB1884EF670084C81C /* ConfigOne.h */,
 				B7C54F0018837E6E00A0678E /* NonTemplate.cpp */,
 				B7C54F0118837E6E00A0678E /* NonTemplate.h */,
+				B7436663188F203F0096C8AE /* DBase.cpp */,
+				B7436664188F203F0096C8AE /* DBase.h */,
 				B7885CA618693B7A004125B5 /* comparison.cpp */,
 				B7885CA718693B7A004125B5 /* duck.cpp */,
 				B7885CA818693B7A004125B5 /* first.h */,
@@ -174,6 +180,7 @@
 				B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */,
 				B7885CB318693B7A004125B5 /* one.h in Headers */,
 				B7F871711887B611001CAF3D /* Function.h in Headers */,
+				B7436666188F203F0096C8AE /* DBase.h in Headers */,
 				B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */,
 				B707A4481885081B008C99FF /* More.h in Headers */,
 			);
@@ -266,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B707A4471885081B008C99FF /* More.cpp in Sources */,
+				B7436665188F203F0096C8AE /* DBase.cpp in Sources */,
 				B7C54F0218837E6E00A0678E /* NonTemplate.cpp in Sources */,
 				B7885CB618693B7A004125B5 /* t.cpp in Sources */,
 				B7885CB218693B7A004125B5 /* one.cpp in Sources */,
