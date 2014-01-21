@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #include "DBase.h"
+#include "E.h"
+#include "F.h"
 
 @interface DBaseTest : XCTestCase
 
@@ -15,16 +17,19 @@
 
 @implementation DBaseTest {
     DBasex<DDerived> *subject;
+    E<F> *b;
 }
 
 - (void)setUp
 {
     [super setUp];
     subject = new DBasex<DDerived>();
+    b = new E<F>();
 }
 
 - (void)tearDown
 {
+    delete b;
     delete subject;
     [super tearDown];
 }
@@ -33,6 +38,8 @@
 {
     XCTAssert(subject, "");
     subject->start();
+    F x;
+    b->start(x);
 }
 
 @end
