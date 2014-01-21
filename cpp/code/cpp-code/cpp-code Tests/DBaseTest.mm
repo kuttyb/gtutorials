@@ -32,6 +32,7 @@
 - (void)testExample
 {
     XCTAssert(subject, "");
+    subject->start();
 }
 
 @end

@@ -13,10 +13,11 @@ using std::endl;
 
 template <typename T>
 void DBasex<T>::start(void) {
-    return static_cast<T*>(this)->start();
+     return static_cast<T*>(this)->start();
 }
 
 void DDerived::start(void) {
-
+    cout << "Derived class speaking" << endl;
 }
 
+template class DBasex<DDerived>;
