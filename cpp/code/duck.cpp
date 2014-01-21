@@ -1,20 +1,20 @@
 #include <inttypes.h>
 #include <stdio.h>
+#include "A.h"
+
+#define IMPL(T) static_cast<T*>(this)
 
 template<typename T>
-class A 
+uint64_t A<T>::multiply(uint32_t input, uint32_t m)
 {
-public:
-	uint64_t multiply(uint32_t input, uint32_t m) 
-	{
-		return static_cast<T*>(this)->multiply(input, m);
-	}
+    return IMPL(T)->multiply(input, m);
+}
 	
-	uint64_t passthru(uint64_t val) 
-	{
-		return static_cast<T*>(this)->passthru(val);
-	}
-};
+template<typename T>
+uint64_t A<T>::passthru(uint64_t val)
+{
+    return IMPL(T)->passthru(val);
+}
 
 class X : public A<X> 
 {
