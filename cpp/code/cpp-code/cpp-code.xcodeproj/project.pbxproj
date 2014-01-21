@@ -12,6 +12,7 @@
 		B719F5CF188F147E001766D3 /* A.h in Headers */ = {isa = PBXBuildFile; fileRef = B719F5CE188F147E001766D3 /* A.h */; };
 		B7436665188F203F0096C8AE /* DBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436663188F203F0096C8AE /* DBase.cpp */; };
 		B7436666188F203F0096C8AE /* DBase.h in Headers */ = {isa = PBXBuildFile; fileRef = B7436664188F203F0096C8AE /* DBase.h */; };
+		B743666A188F30DD0096C8AE /* DBaseTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7436669188F30DD0096C8AE /* DBaseTest.mm */; };
 		B752A1FC1884EF670084C81C /* ConfigOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B752A1FA1884EF670084C81C /* ConfigOne.cpp */; };
 		B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B752A1FB1884EF670084C81C /* ConfigOne.h */; };
 		B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */ = {isa = PBXBuildFile; fileRef = B76037B2187C0DDE005BDD0E /* TestT.mm */; };
@@ -52,6 +53,7 @@
 		B719F5CE188F147E001766D3 /* A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A.h; sourceTree = "<group>"; };
 		B7436663188F203F0096C8AE /* DBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DBase.cpp; sourceTree = "<group>"; };
 		B7436664188F203F0096C8AE /* DBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBase.h; sourceTree = "<group>"; };
+		B7436669188F30DD0096C8AE /* DBaseTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DBaseTest.mm; sourceTree = "<group>"; };
 		B752A1FA1884EF670084C81C /* ConfigOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigOne.cpp; path = ../ConfigOne.cpp; sourceTree = "<group>"; };
 		B752A1FB1884EF670084C81C /* ConfigOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigOne.h; path = ../ConfigOne.h; sourceTree = "<group>"; };
 		B76037B2187C0DDE005BDD0E /* TestT.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestT.mm; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7436669188F30DD0096C8AE /* DBaseTest.mm */,
 				B7F871741887B76B001CAF3D /* Function.mm */,
 				B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */,
 				B78634A2187D244800A51F7D /* TestOne.mm */,
@@ -292,6 +295,7 @@
 			files = (
 				B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */,
 				B7F871751887B76B001CAF3D /* Function.mm in Sources */,
+				B743666A188F30DD0096C8AE /* DBaseTest.mm in Sources */,
 				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,
 				B78634A3187D244800A51F7D /* TestOne.mm in Sources */,
 			);
