@@ -30,11 +30,16 @@ template <typename U>
 class X<int, U>
 {
 public:	
-	void func(int one, U two)
-	{
-		cout << "printing partially specialized " << one << " " << two << endl;
-	}
+	void func(int one, U two);
 };
+
+// Damn so this is how you define (not declare) a partially specialized function outside its header
+template <typename U>
+void X<int, U>::func(int one, U two)
+{
+    cout << "printing partially specialized " << one << " " << two << endl;
+}
+
 
 // Fully Specialized Class
 template <>
