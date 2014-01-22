@@ -14,7 +14,7 @@
 @end
 
 @implementation DOneTest {
-    DOne *subject;
+    BaseOne<DOne> *subject;
 }
 
 - (void)setUp
@@ -31,7 +31,7 @@
 
 - (void)testExample
 {
-    subject->start(subject);
+    subject->start(nil);
 }
 
 @end

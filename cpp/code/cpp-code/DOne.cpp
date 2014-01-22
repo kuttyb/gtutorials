@@ -15,4 +15,5 @@ template class BaseOne<DOne>;
 
 void DOne::start(DOne *input) {
     if (input) ref = input;
+    cout << "Derived class speaking" << endl;
 }
