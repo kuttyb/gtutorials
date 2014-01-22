@@ -32,6 +32,7 @@
 - (void)testExample
 {
     subject->start(nil);
+    
 }
 
 @end

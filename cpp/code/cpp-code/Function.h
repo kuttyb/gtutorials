@@ -37,4 +37,15 @@ constexpr int get_area(int input, int two) {
     return input + two;
 }
 
+// Type-assert
+template <typename T>
+constexpr bool IS_INTEGER(T input) {
+    return false;
+}
+
+template <>
+constexpr bool IS_INTEGER(int input) {
+    return true;
+}
+
 #endif /* defined(__cpp_code__Function__) */

@@ -33,6 +33,10 @@
     XCTAssert(is_type_valid(2), "type: int mismatched");
     XCTAssert(!is_type_valid(2.0f), "type: float mismatched");
     XCTAssert(is_type_valid('c'), "type: char mismatched");
+    
+    static_assert(IS_INTEGER(3), "need to pass an integer");
+    // This will fail compilation
+    //static_assert(IS_INTEGER('c'), "please don't pass in a character");
 }
 
 @end
