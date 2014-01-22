@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include "ConfigOne.h"
+#include "testinc.h"
 
 using std::cout;
 using std::endl;

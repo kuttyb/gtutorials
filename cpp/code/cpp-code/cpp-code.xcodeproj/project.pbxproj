@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		B707A4471885081B008C99FF /* More.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B707A4451885081B008C99FF /* More.cpp */; };
 		B707A4481885081B008C99FF /* More.h in Headers */ = {isa = PBXBuildFile; fileRef = B707A4461885081B008C99FF /* More.h */; };
+		B719F5CF188F147E001766D3 /* A.h in Headers */ = {isa = PBXBuildFile; fileRef = B719F5CE188F147E001766D3 /* A.h */; };
+		B743667A188F3C4F0096C8AE /* testinc.h in Headers */ = {isa = PBXBuildFile; fileRef = B7436679188F3C4F0096C8AE /* testinc.h */; };
+		B751F717188F647A00CC8228 /* BaseOne.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B751F716188F647A00CC8228 /* BaseOne.hpp */; };
+		B751F71A188F654C00CC8228 /* DOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B751F718188F654C00CC8228 /* DOne.cpp */; };
+		B751F71B188F654C00CC8228 /* DOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F719188F654C00CC8228 /* DOne.h */; };
+		B751F71D188F658D00CC8228 /* BaseOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F71C188F658D00CC8228 /* BaseOne.h */; };
+		B751F721188F675400CC8228 /* DOneTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = B751F720188F675400CC8228 /* DOneTest.mm */; };
 		B752A1FC1884EF670084C81C /* ConfigOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B752A1FA1884EF670084C81C /* ConfigOne.cpp */; };
 		B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B752A1FB1884EF670084C81C /* ConfigOne.h */; };
 		B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */ = {isa = PBXBuildFile; fileRef = B76037B2187C0DDE005BDD0E /* TestT.mm */; };
@@ -46,6 +53,13 @@
 /* Begin PBXFileReference section */
 		B707A4451885081B008C99FF /* More.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = More.cpp; sourceTree = "<group>"; };
 		B707A4461885081B008C99FF /* More.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = More.h; sourceTree = "<group>"; };
+		B719F5CE188F147E001766D3 /* A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = A.h; sourceTree = "<group>"; };
+		B7436679188F3C4F0096C8AE /* testinc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testinc.h; sourceTree = "<group>"; };
+		B751F716188F647A00CC8228 /* BaseOne.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BaseOne.hpp; sourceTree = "<group>"; };
+		B751F718188F654C00CC8228 /* DOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DOne.cpp; sourceTree = "<group>"; };
+		B751F719188F654C00CC8228 /* DOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOne.h; sourceTree = "<group>"; };
+		B751F71C188F658D00CC8228 /* BaseOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOne.h; sourceTree = "<group>"; };
+		B751F720188F675400CC8228 /* DOneTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DOneTest.mm; sourceTree = "<group>"; };
 		B752A1FA1884EF670084C81C /* ConfigOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ConfigOne.cpp; path = ../ConfigOne.cpp; sourceTree = "<group>"; };
 		B752A1FB1884EF670084C81C /* ConfigOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigOne.h; path = ../ConfigOne.h; sourceTree = "<group>"; };
 		B76037B2187C0DDE005BDD0E /* TestT.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestT.mm; sourceTree = "<group>"; };
@@ -96,6 +110,12 @@
 		B7885C9618693B39004125B5 = {
 			isa = PBXGroup;
 			children = (
+				B751F716188F647A00CC8228 /* BaseOne.hpp */,
+				B751F71C188F658D00CC8228 /* BaseOne.h */,
+				B751F718188F654C00CC8228 /* DOne.cpp */,
+				B751F719188F654C00CC8228 /* DOne.h */,
+				B7436679188F3C4F0096C8AE /* testinc.h */,
+				B719F5CE188F147E001766D3 /* A.h */,
 				B752A1FA1884EF670084C81C /* ConfigOne.cpp */,
 				B752A1FB1884EF670084C81C /* ConfigOne.h */,
 				B7C54F0018837E6E00A0678E /* NonTemplate.cpp */,
@@ -139,6 +159,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B751F720188F675400CC8228 /* DOneTest.mm */,
 				B7F871741887B76B001CAF3D /* Function.mm */,
 				B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */,
 				B78634A2187D244800A51F7D /* TestOne.mm */,
@@ -167,11 +188,16 @@
 			files = (
 				B7885CB718693B7A004125B5 /* t.h in Headers */,
 				B7885CB118693B7A004125B5 /* first.h in Headers */,
+				B751F717188F647A00CC8228 /* BaseOne.hpp in Headers */,
+				B719F5CF188F147E001766D3 /* A.h in Headers */,
+				B751F71D188F658D00CC8228 /* BaseOne.h in Headers */,
+				B743667A188F3C4F0096C8AE /* testinc.h in Headers */,
 				B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */,
 				B7885CB318693B7A004125B5 /* one.h in Headers */,
 				B7F871711887B611001CAF3D /* Function.h in Headers */,
 				B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */,
 				B707A4481885081B008C99FF /* More.h in Headers */,
+				B751F71B188F654C00CC8228 /* DOne.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +295,7 @@
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* comparison.cpp in Sources */,
 				B7F871701887B611001CAF3D /* Function.cpp in Sources */,
+				B751F71A188F654C00CC8228 /* DOne.cpp in Sources */,
 				B752A1FC1884EF670084C81C /* ConfigOne.cpp in Sources */,
 				B7885CB518693B7A004125B5 /* static.cpp in Sources */,
 			);
@@ -279,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B76037B3187C0DDE005BDD0E /* TestT.mm in Sources */,
+				B751F721188F675400CC8228 /* DOneTest.mm in Sources */,
 				B7F871751887B76B001CAF3D /* Function.mm in Sources */,
 				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,
 				B78634A3187D244800A51F7D /* TestOne.mm in Sources */,

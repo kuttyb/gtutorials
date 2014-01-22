@@ -1,20 +1,20 @@
 #include <inttypes.h>
 #include <stdio.h>
+#include "A.h"
+
+#define IMPL(T) static_cast<T*>(this)
 
 template<typename T>
-class A 
+uint64_t A<T>::multiply(uint32_t input, uint32_t m)
 {
-public:
-	uint64_t multiply(uint32_t input, uint32_t m) 
-	{
-		return static_cast<T*>(this)->multiply(input, m);
-	}
+    return IMPL(T)->multiply(input, m);
+}
 	
-	uint64_t passthru(uint64_t val) 
-	{
-		return static_cast<T*>(this)->passthru(val);
-	}
-};
+template<typename T>
+uint64_t A<T>::passthru(uint64_t val)
+{
+    return IMPL(T)->passthru(val);
+}
 
 class X : public A<X> 
 {
@@ -34,23 +34,26 @@ public:
 class Y : public A<Y> 
 {
 public:
-	uint64_t multiply(uint32_t input, uint32_t m) 
-	{
-		printf("Y speaking\n");
-		return input * m + 3;
-	}
-
-	uint64_t passthru(uint64_t val) 
-	{
-		return val + 4;
-	}
+    uint64_t multiply(uint32_t input, uint32_t m);
+    uint64_t passthru(uint64_t val);
 };
-	
+
+uint64_t Y::multiply(uint32_t input, uint32_t m)
+{
+    printf("Y speaking\n");
+    return input * m + 3;
+}
+
+uint64_t Y::passthru(uint64_t val)
+{
+    return val + 4;
+}
+
+
 static inline A<X>* factory(void) 
 {
 	return new X();
 }
-
 
 
 int test_duck(void)
