@@ -15,5 +15,4 @@ public:
     void start(T *input);
 };
 
-
 #endif
