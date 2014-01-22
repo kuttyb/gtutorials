@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <vector>
+#include <boost/tti/has_member_function.hpp>
 #include "DOne.h"
 
 @interface DOneTest : XCTestCase
