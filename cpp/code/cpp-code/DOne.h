@@ -12,8 +12,10 @@
 #include "BaseOne.h"
 
 class DOne : public BaseOne<DOne> {
+private:
+    DOne *ref;
 public:
-    void start(void);
+    void start(DOne *input);
 };
 
 #endif /* defined(__cpp_code__DOne__) */

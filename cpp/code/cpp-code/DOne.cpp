@@ -13,6 +13,6 @@
 // Include BaseOne and instantiate it with type Derived
 template class BaseOne<DOne>;
 
-void DOne::start(void) {
-    
+void DOne::start(DOne *input) {
+    if (input) ref = input;
 }

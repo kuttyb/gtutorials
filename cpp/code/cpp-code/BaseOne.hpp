@@ -17,9 +17,9 @@ using std::endl;
 
 
 template <typename T>
-void BaseOne<T>::start(void) {
+void BaseOne<T>::start(T *input) {
     cout << "Base class speaking" << endl;
-    return static_cast<T*>(this)->start();
+    return static_cast<T*>(this)->start(input);
 }
 
 

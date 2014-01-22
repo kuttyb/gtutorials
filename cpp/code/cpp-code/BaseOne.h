@@ -12,7 +12,7 @@
 template <typename T>
 class BaseOne {
 public:
-    void start(void);
+    void start(T *input);
 };
 
 

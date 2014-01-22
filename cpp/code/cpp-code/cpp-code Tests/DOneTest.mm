@@ -31,7 +31,7 @@
 
 - (void)testExample
 {
-    subject->start();
+    subject->start(subject);
 }
 
 @end
