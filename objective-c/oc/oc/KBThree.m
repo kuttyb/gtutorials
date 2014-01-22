@@ -17,6 +17,10 @@
 -(void) dumpState {
 }
 
+-(int) getMyNumber {
+    return 0;
+}
+
 -(BOOL) compareThree:(int) one TWO:(int) two THREE:(int)three {
 	return false;
 }

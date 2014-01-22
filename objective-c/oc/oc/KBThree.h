@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "KBNode.h"
+#import "KBNode2.h"
 
-@interface KBThree : NSObject <KBNode>
+@interface KBThree : NSObject <KBNode, KBNode2>
 
 @end
