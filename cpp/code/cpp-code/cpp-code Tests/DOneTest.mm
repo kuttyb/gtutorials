@@ -7,11 +7,14 @@
 //
 
 #import <XCTest/XCTest.h>
+#include <vector>
 #include "DOne.h"
 
 @interface DOneTest : XCTestCase
 
 @end
+
+using std::vector;
 
 @implementation DOneTest {
     BaseOne<DOne> *subject;
