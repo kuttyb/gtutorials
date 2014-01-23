@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B743668A188F3F920096C8AE /* cpp_cmd.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B7436689188F3F920096C8AE /* cpp_cmd.1 */; };
-		B7436692188F57540096C8AE /* Base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436690188F57540096C8AE /* Base.cpp */; };
-		B7436695188F585A0096C8AE /* Derived.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436693188F585A0096C8AE /* Derived.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,10 +28,6 @@
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B7436689188F3F920096C8AE /* cpp_cmd.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cpp_cmd.1; sourceTree = "<group>"; };
-		B7436690188F57540096C8AE /* Base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base.cpp; sourceTree = "<group>"; };
-		B7436691188F57540096C8AE /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
-		B7436693188F585A0096C8AE /* Derived.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Derived.cpp; sourceTree = "<group>"; };
-		B7436694188F585A0096C8AE /* Derived.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Derived.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,10 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				B7436687188F3F920096C8AE /* main.cpp */,
-				B7436690188F57540096C8AE /* Base.cpp */,
-				B7436691188F57540096C8AE /* Base.h */,
-				B7436693188F585A0096C8AE /* Derived.cpp */,
-				B7436694188F585A0096C8AE /* Derived.h */,
 				B7436689188F3F920096C8AE /* cpp_cmd.1 */,
 			);
 			path = "cpp-cmd";
@@ -127,8 +117,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7436692188F57540096C8AE /* Base.cpp in Sources */,
-				B7436695188F585A0096C8AE /* Derived.cpp in Sources */,
 				B7436688188F3F920096C8AE /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +225,7 @@
 				B743668F188F3F920096C8AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
