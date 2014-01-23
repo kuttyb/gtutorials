@@ -12,32 +12,54 @@ using std::endl;
 
 #include "NumberTemplates.hpp"
 
-// Fake Objective-C Protocols
-template <typename T>
-class A{
-private:
-    int __contract(T type) {
-        int x = type.print(3.4f); // int  print (float)
-        type.print_more(x);       // void print_more(int)
-    }
-    T _var;
+class X {
 public:
-    void set(T input) {
+    int print(float f) {return 0;}
+    void print_more(double  x) {}
+};
+
+class Y {
+public:
+    int call_value(void) { return 0;}
+};
+
+class C :  public Y {
+};
+
+class D : public X {
+};
+
+class E {
+};
+
+#define ASSERT_TYPE_START private: static const bool x_y =
+#define ASSERT_TYPE_INHERITS(U, V)   ((U*)NULL == (V*)NULL) &&
+#define ASSERT_TYPE_END    false;
+
+template <typename T, typename U>
+class A{
+ASSERT_TYPE_START
+    ASSERT_TYPE_INHERITS(T, X)
+    ASSERT_TYPE_INHERITS(U, Y)
+ASSERT_TYPE_END
+    
+private:
+    float _var;
+    
+public:
+    void set(float input) {
         _var = input;
+        cout << "yes its working" << endl;
     }
 };
 
-class X {
-public:
-    int print(float f) { return f;}
-    void print_more(double  x) { }
-};
 
 int main(void) {
     num_main();
-    X b;
-    A<X> s;
-    s.set(b);
+    
+    A<D, C> n;
+//    A<E, C> n; // this fails compilation as expected!!
+    n.set(3.f);
     
     return 0;
 }
