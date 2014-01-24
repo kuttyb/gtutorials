@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
-		B743668A188F3F920096C8AE /* cpp_cmd.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B7436689188F3F920096C8AE /* cpp_cmd.1 */; };
 		B7DDC100189222DA00EC77B8 /* BridgeTemplates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7DDC0FE189222DA00EC77B8 /* BridgeTemplates.cpp */; };
 		B7DDC1091892240200EC77B8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7DDC1081892240200EC77B8 /* XCTest.framework */; };
 		B7DDC10F1892240200EC77B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7DDC10D1892240200EC77B8 /* InfoPlist.strings */; };
@@ -32,7 +31,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				B743668A188F3F920096C8AE /* cpp_cmd.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -41,7 +39,6 @@
 /* Begin PBXFileReference section */
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B7436689188F3F920096C8AE /* cpp_cmd.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cpp_cmd.1; sourceTree = "<group>"; };
 		B78BE0F1189102E800ABEEFB /* NumberTemplates.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NumberTemplates.hpp; sourceTree = "<group>"; };
 		B7DDC0FE189222DA00EC77B8 /* BridgeTemplates.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BridgeTemplates.cpp; path = "cpp-cmd/BridgeTemplates.cpp"; sourceTree = "<group>"; };
 		B7DDC0FF189222DA00EC77B8 /* BridgeTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BridgeTemplates.h; path = "cpp-cmd/BridgeTemplates.h"; sourceTree = "<group>"; };
@@ -100,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				B7436687188F3F920096C8AE /* main.cpp */,
-				B7436689188F3F920096C8AE /* cpp_cmd.1 */,
 			);
 			path = "cpp-cmd";
 			sourceTree = "<group>";
