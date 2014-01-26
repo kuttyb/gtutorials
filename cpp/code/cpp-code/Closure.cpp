@@ -24,3 +24,19 @@ int test_nonstate_lambda(void) {
     return 0;
 }
 
+static int state_func(std::function<int (int, int)> aptr, int one, int two) {
+    return aptr(one, two);
+}
+
+int test_state_lambda(void) {
+    int x = 3;
+    auto a = [&x] (int a, int b) {
+        return a + b + x;
+    };
+    
+    ++x;
+    state_func(a, 3, 4);
+    ++x;
+    
+    return 0;
+}
