@@ -21,6 +21,8 @@
 		B7C54F0218837E6E00A0678E /* Initialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7C54F0018837E6E00A0678E /* Initialization.cpp */; };
 		B7C54F0318837E6E00A0678E /* Initialization.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C54F0118837E6E00A0678E /* Initialization.h */; };
 		B7CF87021894C23D0046FCC5 /* Template.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CF87011894C23D0046FCC5 /* Template.h */; };
+		B7CF87051894C6680046FCC5 /* Closure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7CF87031894C6680046FCC5 /* Closure.cpp */; };
+		B7CF87061894C6680046FCC5 /* Closure.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CF87041894C6680046FCC5 /* Closure.h */; };
 		B7DB1E68187BDF2E0003E18E /* libcpp-code.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7885C9F18693B39004125B5 /* libcpp-code.dylib */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		B7C54F0018837E6E00A0678E /* Initialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Initialization.cpp; path = ../Initialization.cpp; sourceTree = "<group>"; };
 		B7C54F0118837E6E00A0678E /* Initialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Initialization.h; path = ../Initialization.h; sourceTree = "<group>"; };
 		B7CF87011894C23D0046FCC5 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
+		B7CF87031894C6680046FCC5 /* Closure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Closure.cpp; sourceTree = "<group>"; };
+		B7CF87041894C6680046FCC5 /* Closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Closure.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				B751F716188F647A00CC8228 /* BaseOne.hpp */,
+				B7CF87031894C6680046FCC5 /* Closure.cpp */,
+				B7CF87041894C6680046FCC5 /* Closure.h */,
 				B751F71C188F658D00CC8228 /* BaseOne.h */,
 				B751F718188F654C00CC8228 /* DOne.cpp */,
 				B751F719188F654C00CC8228 /* DOne.h */,
@@ -142,6 +148,7 @@
 				B751F71D188F658D00CC8228 /* BaseOne.h in Headers */,
 				B7C54F0318837E6E00A0678E /* Initialization.h in Headers */,
 				B7CF87021894C23D0046FCC5 /* Template.h in Headers */,
+				B7CF87061894C6680046FCC5 /* Closure.h in Headers */,
 				B751F71B188F654C00CC8228 /* DOne.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C54F0218837E6E00A0678E /* Initialization.cpp in Sources */,
+				B7CF87051894C6680046FCC5 /* Closure.cpp in Sources */,
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */,
 				B751F71A188F654C00CC8228 /* DOne.cpp in Sources */,
