@@ -30,13 +30,16 @@ static int state_func(std::function<int (int, int)> aptr, int one, int two) {
 
 int test_state_lambda(void) {
     int x = 3;
-    auto a = [&x] (int a, int b) {
+    int y = 4;
+    std::function<int (int, int)> a = [&x] (int a, int b) {
         return a + b + x;
     };
     
     ++x;
+    ++y;
     state_func(a, 3, 4);
     ++x;
     
+    state_func(a, 3, 4);
     return 0;
 }
