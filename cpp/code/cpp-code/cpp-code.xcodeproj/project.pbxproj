@@ -34,6 +34,7 @@
 		B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */; };
 		B7C54F0218837E6E00A0678E /* NonTemplate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7C54F0018837E6E00A0678E /* NonTemplate.cpp */; };
 		B7C54F0318837E6E00A0678E /* NonTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C54F0118837E6E00A0678E /* NonTemplate.h */; };
+		B7CF87021894C23D0046FCC5 /* TypeAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CF87011894C23D0046FCC5 /* TypeAssert.h */; };
 		B7DB1E68187BDF2E0003E18E /* libcpp-code.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7885C9F18693B39004125B5 /* libcpp-code.dylib */; };
 		B7F871701887B611001CAF3D /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7F8716E1887B611001CAF3D /* Function.cpp */; };
 		B7F871711887B611001CAF3D /* Function.h in Headers */ = {isa = PBXBuildFile; fileRef = B7F8716F1887B611001CAF3D /* Function.h */; };
@@ -82,6 +83,7 @@
 		B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNonTemplate.mm; sourceTree = "<group>"; };
 		B7C54F0018837E6E00A0678E /* NonTemplate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = NonTemplate.cpp; path = ../NonTemplate.cpp; sourceTree = "<group>"; };
 		B7C54F0118837E6E00A0678E /* NonTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NonTemplate.h; path = ../NonTemplate.h; sourceTree = "<group>"; };
+		B7CF87011894C23D0046FCC5 /* TypeAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeAssert.h; sourceTree = "<group>"; };
 		B7F8716E1887B611001CAF3D /* Function.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
 		B7F8716F1887B611001CAF3D /* Function.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function.h; sourceTree = "<group>"; };
 		B7F871741887B76B001CAF3D /* Function.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Function.mm; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				B751F719188F654C00CC8228 /* DOne.h */,
 				B7436679188F3C4F0096C8AE /* testinc.h */,
 				B719F5CE188F147E001766D3 /* A.h */,
+				B7CF87011894C23D0046FCC5 /* TypeAssert.h */,
 				B752A1FA1884EF670084C81C /* ConfigOne.cpp */,
 				B752A1FB1884EF670084C81C /* ConfigOne.h */,
 				B7C54F0018837E6E00A0678E /* NonTemplate.cpp */,
@@ -197,6 +200,7 @@
 				B7F871711887B611001CAF3D /* Function.h in Headers */,
 				B752A1FD1884EF670084C81C /* ConfigOne.h in Headers */,
 				B707A4481885081B008C99FF /* More.h in Headers */,
+				B7CF87021894C23D0046FCC5 /* TypeAssert.h in Headers */,
 				B751F71B188F654C00CC8228 /* DOne.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
