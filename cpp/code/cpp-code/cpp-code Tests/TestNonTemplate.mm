@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include "NonTemplate.h"
+#include "Initialization.h"
 
 @interface TestNonTemplate : XCTestCase
 

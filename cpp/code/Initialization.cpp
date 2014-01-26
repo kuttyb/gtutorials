@@ -7,7 +7,7 @@
 //
 
 #include <iostream>
-#include "NonTemplate.h"
+#include "Initialization.h"
 
 const int NonTemplate::VALUE = 3;
 

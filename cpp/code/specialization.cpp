@@ -1,5 +1,4 @@
 #include <iostream>
-#include "More.h"
 
 using std::cout;
 using std::endl;
@@ -61,7 +60,6 @@ void X<double, double>::func(double one, double two)
 
 int test_specialization(void)
 {
-    More<uint32_t> more;
 	// This should use the generic versino
 	X<float, float> a;
 	a.func(2.03f, 3.1f);

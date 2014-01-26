@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "BaseOne.h"
+#include "Template.h"
 
 using std::cout;
 using std::endl;
