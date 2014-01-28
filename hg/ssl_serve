@@ -1,0 +1,3 @@
+Do this if you want the remote user to also be able to push (assuming you simply don't care about security and couldn't be bothered with SSL)
+
+hg serve -p 12002 --config web.push_ssl=No --config "web.allow_push=*"
