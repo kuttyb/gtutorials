@@ -1,0 +1,5 @@
+git checkout crash_git_hashtag_id
+
+git checkout -b temporary_branch
+
+// Do the last step only if you are about to make changes at this change so you would be forking a branch here.
