@@ -1,0 +1,3 @@
+hg forget somefile
+
+that will make sure that we stop tracking that file!
