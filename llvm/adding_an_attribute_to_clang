@@ -1,0 +1,3 @@
+http://clang.llvm.org/docs/InternalsManual.html#how-to-add-an-attribute
+
+Lock, interrupt attributes can be added thus. Very similar to GCC only better documented :)
