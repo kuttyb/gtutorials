@@ -3,3 +3,8 @@ jmap -dump:live,file=heap2.hprof 5172
 
 // thats how you open it directly
 jvisualvm --openfile heap2.hprof 
+
+
+jstack pid should print out the stack.
+
+Thats it, you have the heap off which you can query object states and internal stats/counters. And you have the stack trace. Use OQL scripts and write a custom dump for your app. There you go, its already ready for you to use.
