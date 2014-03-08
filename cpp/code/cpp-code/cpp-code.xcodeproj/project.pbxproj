@@ -15,6 +15,7 @@
 		B751F71B188F654C00CC8228 /* DOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F719188F654C00CC8228 /* DOne.h */; };
 		B751F71D188F658D00CC8228 /* BaseOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F71C188F658D00CC8228 /* BaseOne.h */; };
 		B751F721188F675400CC8228 /* DOneTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = B751F720188F675400CC8228 /* DOneTest.mm */; };
+		B77C936D18CB86450012D67B /* TestSets.mm in Sources */ = {isa = PBXBuildFile; fileRef = B77C936C18CB86450012D67B /* TestSets.mm */; };
 		B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CA618693B7A004125B5 /* function_specialization.cpp */; };
 		B7885CB418693B7A004125B5 /* specialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CAB18693B7A004125B5 /* specialization.cpp */; };
 		B7885CB518693B7A004125B5 /* static_ducktyping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CAC18693B7A004125B5 /* static_ducktyping.cpp */; };
@@ -49,6 +50,7 @@
 		B751F719188F654C00CC8228 /* DOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOne.h; sourceTree = "<group>"; };
 		B751F71C188F658D00CC8228 /* BaseOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOne.h; sourceTree = "<group>"; };
 		B751F720188F675400CC8228 /* DOneTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DOneTest.mm; sourceTree = "<group>"; };
+		B77C936C18CB86450012D67B /* TestSets.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSets.mm; sourceTree = "<group>"; };
 		B7885C9F18693B39004125B5 /* libcpp-code.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libcpp-code.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7885CA618693B7A004125B5 /* function_specialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_specialization.cpp; path = ../function_specialization.cpp; sourceTree = "<group>"; };
 		B7885CAB18693B7A004125B5 /* specialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = specialization.cpp; path = ../specialization.cpp; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B77C936C18CB86450012D67B /* TestSets.mm */,
 				B74CAE1518A72CBD005653D7 /* TestBaseUnit.mm */,
 				B7A153861895029400FAEAC1 /* TestClosure.mm */,
 				B751F720188F675400CC8228 /* DOneTest.mm */,
@@ -276,6 +279,7 @@
 			files = (
 				B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
+				B77C936D18CB86450012D67B /* TestSets.mm in Sources */,
 				B751F721188F675400CC8228 /* DOneTest.mm in Sources */,
 				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,
 			);
