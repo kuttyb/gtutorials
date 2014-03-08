@@ -40,13 +40,13 @@ using std::set;
     a.erase(a.find(3));
 }
 
-static bool test_elements(const set<int> *input, const int *expected, const int elements) {
+-(void) test_elements:(const set<int>*)input EXPECTED:(const int*)expected ELEMENTS:(const int)elements
+{
     int i = 0;
-    for (set<int>::iterator x = input->begin(); x != input->end(); x++, ++i) {
-        if (i >= elements) return false;
-        if (expected[i] != *x) return false;
+    for (set<int>::iterator x = input->begin(); x != input->end(); x++, i++) {
+        XCTAssert(i < elements, "Expected %d elements found an element at index %d", elements, i);
+        XCTAssert(*x == expected[i], "Expected %d found %d", expected[i], *x);
     }
-    return true;
 }
 
 - (void)testIteration
@@ -59,17 +59,22 @@ static bool test_elements(const set<int> *input, const int *expected, const int 
     {
         const int table[] = {1, 3, 5};
         const int size = sizeof(table) / sizeof(table[0]);
-        XCTAssert(test_elements(&x, table, size), "mismatch");
+        [self test_elements:&x EXPECTED:table ELEMENTS:size];
     }
     
     {
         const int table[] = {1, 5};
         const int size = sizeof(table) / sizeof(table[0]);
         x.erase(x.find(3));
-        XCTAssert(test_elements(&x, table, size), "mismatch");
+        [self test_elements:&x EXPECTED:table ELEMENTS:size];
     }
     
     XCTAssert(x.find(3) == x.end(), "erase did not work");
+}
+
+- (void) testUserDefinedElement
+{
+    XCTAssert(true, "");
 }
 
 @end
