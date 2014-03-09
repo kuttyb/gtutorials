@@ -16,28 +16,31 @@ using std::set;
 
 @end
 
-@implementation TestSets
+@implementation TestSets {
+    set<int> *subject;
+}
 
 - (void)setUp
 {
     [super setUp];
+    subject = new set<int>();
 }
 
 - (void)tearDown
 {
+    delete subject;
     [super tearDown];
 }
 
 
 - (void)testBasicOps
 {
-    set<int> a;
-    a.insert(2);
-    a.insert(3);
-    a.insert(5);
-    XCTAssert(a.size() == 3, "size is %lu instead", a.size());
-    XCTAssert(a.find(3) != a.end(), "element 3 not found");
-    a.erase(a.find(3));
+    subject->insert(2);
+    subject->insert(3);
+    subject->insert(5);
+    XCTAssert(subject->size() == 3, "size is %lu instead", subject->size());
+    XCTAssert(subject->find(3) != subject->end(), "element 3 not found");
+    subject->erase(subject->find(3));
 }
 
 -(void) test_elements:(const set<int>*)input EXPECTED:(const int*)expected ELEMENTS:(const int)elements
@@ -51,25 +54,24 @@ using std::set;
 
 - (void)testIteration
 {
-    set<int> x;
-    x.insert(3);
-    x.insert(5);
-    x.insert(1);
+    subject->insert(3);
+    subject->insert(5);
+    subject->insert(1);
     
     {
         const int table[] = {1, 3, 5};
         const int size = sizeof(table) / sizeof(table[0]);
-        [self test_elements:&x EXPECTED:table ELEMENTS:size];
+        [self test_elements:subject EXPECTED:table ELEMENTS:size];
     }
     
     {
         const int table[] = {1, 5};
         const int size = sizeof(table) / sizeof(table[0]);
-        x.erase(x.find(3));
-        [self test_elements:&x EXPECTED:table ELEMENTS:size];
+        subject->erase(subject->find(3));
+        [self test_elements:subject EXPECTED:table ELEMENTS:size];
     }
     
-    XCTAssert(x.find(3) == x.end(), "erase did not work");
+    XCTAssert(subject->find(3) == subject->end(), "erase did not work");
 }
 
 - (void) testUserDefinedElement
