@@ -110,8 +110,8 @@ bool Range::operator<(const Range &other) const {
     // -------------------------------------------------------------
     if (is_in_range(other.base_address, base_address, bytes) ||
          is_in_range(other.base_address + bytes, base_address, bytes)) {
-        printf("equal_case: self: 0x%llx 0x%llx, other: 0x%llx 0x%llx\n",
-               base_address, bytes, other.base_address, other.bytes);
+        if (0) printf("equal_case: self: 0x%llx 0x%llx, other: 0x%llx 0x%llx\n",
+                      base_address, bytes, other.base_address, other.bytes);
         return false;
     }
     
@@ -134,15 +134,15 @@ bool Range::operator<(const Range &other) const {
     Range three_tail_overlap(0x55, 0x10);
     
     set<Range> x;
-    x.insert(two);
-    x.insert(three);
-    x.insert(four);
-    x.insert(one);
+    XCTAssert(x.insert(two).second == true, "insert failed");
+    XCTAssert(x.insert(three).second == true, "insert failed");
+    XCTAssert(x.insert(four).second == true, "insert failed");
+    XCTAssert(x.insert(one).second == true, "insert failed");
     
-    printf("TEST: Making sure overlaps are not added\n");
-    x.insert(three);
-    x.insert(three_head_overlap);
-    x.insert(three_tail_overlap);
+    XCTAssert(x.insert(three).second == false, "inserting an overlap should not succeed");
+    XCTAssert(x.insert(three_head_overlap).second == false, "inserting an overlap should not succeed");
+    XCTAssert(x.insert(three_tail_overlap).second == false, "inserting an overlap should not succeed");
+
     XCTAssert(x.size() == 4, "size expected 2 found %ld", x.size());
     
     for (set<Range>::iterator itr = x.begin(); itr != x.end(); itr++) {
