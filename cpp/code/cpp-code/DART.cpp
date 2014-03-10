@@ -8,6 +8,7 @@
 #include <iostream>
 #include "DART.h"
 
+#pragma mark Range class elements
 void Range::print() {
     printf("print: base_addr 0x%llx bytes 0x%llx\n", base_address, bytes);
 }
@@ -43,4 +44,34 @@ bool Range::operator<(const Range &other) const {
     } else {
         return true;
     }
+}
+
+#pragma mark DART class elements
+void DART::clear() {
+    // Invalidate all addresses
+    table.clear();
+}
+
+void DART::add_write_range(uint64_t base, uint64_t length) {
+    if (!is_overlapping) return;
+    
+    Range range(base, length);
+    // Insertion failures imply there is an overlap (WAW)
+    if (table.insert(range).second == false) {
+        is_overlapping = true;
+    }
+}
+
+void DART::add_read_range(uint64_t base, uint64_t length) {
+    if (!is_overlapping) return;
+ 
+    Range range(base, length);
+    if (table.find(range) != table.end()) {
+        // Meaning the Range exists so this is an overlap (RAW)
+        is_overlapping = true;
+    }
+}
+
+bool DART::overlapping() const {
+    return is_overlapping;
 }
