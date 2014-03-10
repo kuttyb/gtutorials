@@ -105,8 +105,9 @@ bool Range::operator<(const Range &other) const {
     
     // -------------------------------------------------------------
     // Check for overlap and return false (to make them look equal)
+    //   i.e., Is the other's head in the range or its tail is
+    //         is in the range
     // -------------------------------------------------------------
-    // Is the other's head in the range or its tail is in the range ...
     if (is_in_range(other.base_address, base_address, bytes) ||
          is_in_range(other.base_address + bytes, base_address, bytes)) {
         printf("equal_case: self: 0x%llx 0x%llx, other: 0x%llx 0x%llx\n",
