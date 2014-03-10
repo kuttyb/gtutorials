@@ -22,6 +22,7 @@ private:
     uint64_t bytes;
 };
 
+// DART (Dirty Address Range Table)
 class DART {
 private:
     std::set<Range> table;
