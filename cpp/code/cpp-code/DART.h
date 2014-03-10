@@ -34,6 +34,7 @@ public:
     bool overlapping() const;
     void add_write_range(uint64_t base, uint64_t lenth);
     void add_read_range(uint64_t base, uint64_t length);
+    void print() const;
 };
 
 #endif /* defined(__cpp_code__DART__) */

@@ -50,10 +50,11 @@ bool Range::operator<(const Range &other) const {
 void DART::clear() {
     // Invalidate all addresses
     table.clear();
+    is_overlapping = false;
 }
 
 void DART::add_write_range(uint64_t base, uint64_t length) {
-    if (!is_overlapping) return;
+    if (is_overlapping) return;
     
     Range range(base, length);
     // Insertion failures imply there is an overlap (WAW)
@@ -63,7 +64,7 @@ void DART::add_write_range(uint64_t base, uint64_t length) {
 }
 
 void DART::add_read_range(uint64_t base, uint64_t length) {
-    if (!is_overlapping) return;
+    if (is_overlapping) return;
  
     Range range(base, length);
     if (table.find(range) != table.end()) {
@@ -74,4 +75,15 @@ void DART::add_read_range(uint64_t base, uint64_t length) {
 
 bool DART::overlapping() const {
     return is_overlapping;
+}
+
+void DART::print() const {
+    printf("DART: is_overlapping : %d\n", is_overlapping);
+    
+    printf("DART: ================\n");
+    printf("DART: Dirty Addresses (%ld elements)\n", table.size());
+    for (std::set<Range>::iterator itr = table.begin(); itr != table.end(); itr++) {
+        static_cast<Range>(*itr).print();
+    }
+    printf("DART: ================\n");
 }

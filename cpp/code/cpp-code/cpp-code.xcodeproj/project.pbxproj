@@ -18,6 +18,7 @@
 		B77C936D18CB86450012D67B /* TestSets.mm in Sources */ = {isa = PBXBuildFile; fileRef = B77C936C18CB86450012D67B /* TestSets.mm */; };
 		B785527E18CD5775006CEC85 /* DART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B785527C18CD5775006CEC85 /* DART.cpp */; };
 		B785527F18CD5775006CEC85 /* DART.h in Headers */ = {isa = PBXBuildFile; fileRef = B785527D18CD5775006CEC85 /* DART.h */; };
+		B785528118CD5CDE006CEC85 /* TestDART.mm in Sources */ = {isa = PBXBuildFile; fileRef = B785528018CD5CDE006CEC85 /* TestDART.mm */; };
 		B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CA618693B7A004125B5 /* function_specialization.cpp */; };
 		B7885CB418693B7A004125B5 /* specialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CAB18693B7A004125B5 /* specialization.cpp */; };
 		B7885CB518693B7A004125B5 /* static_ducktyping.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7885CAC18693B7A004125B5 /* static_ducktyping.cpp */; };
@@ -55,6 +56,7 @@
 		B77C936C18CB86450012D67B /* TestSets.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSets.mm; sourceTree = "<group>"; };
 		B785527C18CD5775006CEC85 /* DART.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DART.cpp; sourceTree = "<group>"; };
 		B785527D18CD5775006CEC85 /* DART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DART.h; sourceTree = "<group>"; };
+		B785528018CD5CDE006CEC85 /* TestDART.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestDART.mm; sourceTree = "<group>"; };
 		B7885C9F18693B39004125B5 /* libcpp-code.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "libcpp-code.dylib"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7885CA618693B7A004125B5 /* function_specialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = function_specialization.cpp; path = ../function_specialization.cpp; sourceTree = "<group>"; };
 		B7885CAB18693B7A004125B5 /* specialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = specialization.cpp; path = ../specialization.cpp; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B785528018CD5CDE006CEC85 /* TestDART.mm */,
 				B77C936C18CB86450012D67B /* TestSets.mm */,
 				B74CAE1518A72CBD005653D7 /* TestBaseUnit.mm */,
 				B7A153861895029400FAEAC1 /* TestClosure.mm */,
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B785528118CD5CDE006CEC85 /* TestDART.mm in Sources */,
 				B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
 				B77C936D18CB86450012D67B /* TestSets.mm in Sources */,
