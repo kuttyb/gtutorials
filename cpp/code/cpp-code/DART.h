@@ -1,13 +1,13 @@
 //
-//  Range.h
+//  DART.h
 //  cpp-code
 //
 //  Created by Kutty Banerjee on 3/9/14.
 //  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
 //
 
-#ifndef __cpp_code__Range__
-#define __cpp_code__Range__
+#ifndef __cpp_code__DART__
+#define __cpp_code__DART__
 
 class Range {
 public:
@@ -20,4 +20,4 @@ private:
     uint64_t bytes;
 };
 
-#endif /* defined(__cpp_code__Range__) */
+#endif /* defined(__cpp_code__DART__) */
