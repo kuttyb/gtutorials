@@ -103,4 +103,32 @@ using std::set;
     }
 }
 
+- (void) testEndToEndAscendingOrderInserts
+{
+    Range one(0, 9);
+    Range two(10, 10);
+    set<Range> x;
+    x.insert(one);
+    x.insert(two);
+    XCTAssert(x.size() == 2, "");
+    
+    for (set<Range>::iterator itr = x.begin(); itr != x.end(); itr++) {
+        static_cast<Range>(*itr).print();
+    }
+}
+
+- (void) testEndToEndDescendingOrderInserts
+{
+    Range one(0, 9);
+    Range two(10, 10);
+    set<Range> x;
+    x.insert(two);
+    x.insert(one);
+    XCTAssert(x.size() == 2, "");
+    
+    for (set<Range>::iterator itr = x.begin(); itr != x.end(); itr++) {
+        static_cast<Range>(*itr).print();
+    }
+}
+
 @end
