@@ -1,0 +1,20 @@
+I come from a Comp Architecture / Hardware background and as part of my day job mostly write Functional and Cycle ACcurate simulators for Deeply pipelined Hardware Devices. 
+
+We  mimic via C++, some of the things Rust seems to offer as first class features (tasks, single-ownership of data across tasks)  Naturally RUST caught our attention. 
+
+The existing codebase is already subdivided into modules that talk over ports and naturally align with individual stages of the Pipeline owning Data and passing the ownership to the next stage of the pipeline. 
+
+My questions being more implementation related based on what we have learnt so far for systems like this
+
+
+[a] Is there an easy way to dump out a particular Tasks' heap? Since each Task appears to have its own Heap?
+
+[b] Plans/existing ways to record-replay comm::port messages so that one could capture from field and debug in a unit environment? For this one would require [a] as well
+
+[c] Has to do with Scheduling tasks. Please point me to the code if needed. What we found is modules (your tasks) that talk to each other a lot via messages (be it synchronous or asynchronous messaages) are better of being placed in the same OS thread and converted to a synchronous call interface "behind the scenes"[**]. This saves on queuing overhead and moves the system faster.
+
+[d] Queues that are entirely contained within a single OS thread (meaning tasks that are owned by an OS thread) can elide locks around their queues. Atomics are expensive especially on ARM architectures. 
+
+[**] At runtime isolate the Tasks that are chatting with each other the most in terms of volume and frequency of messages, make sure they both get scheduled by the same OS thread, elide the locks on their queues. And if the frequency keeps up, make the postMessage interface a direct function call.
+
+http://www.reddit.com/r/rust/comments/22uzr0/rust_for_hardware_simulators/
