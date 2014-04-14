@@ -31,6 +31,9 @@
 		B7CF87021894C23D0046FCC5 /* Template.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CF87011894C23D0046FCC5 /* Template.h */; };
 		B7CF87051894C6680046FCC5 /* Lambda.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7CF87031894C6680046FCC5 /* Lambda.cpp */; };
 		B7CF87061894C6680046FCC5 /* Lambda.h in Headers */ = {isa = PBXBuildFile; fileRef = B7CF87041894C6680046FCC5 /* Lambda.h */; };
+		B7D230C018FB8179008EEC49 /* TypeAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D230BF18FB8179008EEC49 /* TypeAssert.h */; };
+		B7D230C318FB8200008EEC49 /* BridgeTemplates.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7D230C118FB8200008EEC49 /* BridgeTemplates.cpp */; };
+		B7D230C418FB8200008EEC49 /* BridgeTemplates.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D230C218FB8200008EEC49 /* BridgeTemplates.h */; };
 		B7DB1E68187BDF2E0003E18E /* libcpp-code.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7885C9F18693B39004125B5 /* libcpp-code.dylib */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +76,9 @@
 		B7CF87011894C23D0046FCC5 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
 		B7CF87031894C6680046FCC5 /* Lambda.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Lambda.cpp; sourceTree = "<group>"; };
 		B7CF87041894C6680046FCC5 /* Lambda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lambda.h; sourceTree = "<group>"; };
+		B7D230BF18FB8179008EEC49 /* TypeAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypeAssert.h; sourceTree = "<group>"; };
+		B7D230C118FB8200008EEC49 /* BridgeTemplates.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BridgeTemplates.cpp; sourceTree = "<group>"; };
+		B7D230C218FB8200008EEC49 /* BridgeTemplates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgeTemplates.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,9 @@
 				B751F716188F647A00CC8228 /* BaseOne.hpp */,
 				B7CF87031894C6680046FCC5 /* Lambda.cpp */,
 				B7CF87041894C6680046FCC5 /* Lambda.h */,
+				B7D230BF18FB8179008EEC49 /* TypeAssert.h */,
+				B7D230C118FB8200008EEC49 /* BridgeTemplates.cpp */,
+				B7D230C218FB8200008EEC49 /* BridgeTemplates.h */,
 				B751F71C188F658D00CC8228 /* BaseOne.h */,
 				B751F718188F654C00CC8228 /* DOne.cpp */,
 				B751F719188F654C00CC8228 /* DOne.h */,
@@ -176,6 +185,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D230C018FB8179008EEC49 /* TypeAssert.h in Headers */,
 				B751F717188F647A00CC8228 /* BaseOne.hpp in Headers */,
 				B751F71D188F658D00CC8228 /* BaseOne.h in Headers */,
 				B785527F18CD5775006CEC85 /* DART.h in Headers */,
@@ -184,6 +194,7 @@
 				B7CF87021894C23D0046FCC5 /* Template.h in Headers */,
 				B7CF87061894C6680046FCC5 /* Lambda.h in Headers */,
 				B751F71B188F654C00CC8228 /* DOne.h in Headers */,
+				B7D230C418FB8200008EEC49 /* BridgeTemplates.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7D230C318FB8200008EEC49 /* BridgeTemplates.cpp in Sources */,
 				B7C54F0218837E6E00A0678E /* Initialization.cpp in Sources */,
 				B74CAE1318A729E8005653D7 /* BaseUnit.cpp in Sources */,
 				B7CF87051894C6680046FCC5 /* Lambda.cpp in Sources */,
