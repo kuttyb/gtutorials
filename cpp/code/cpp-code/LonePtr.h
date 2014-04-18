@@ -25,7 +25,6 @@ public:
     T* get();
     void set(T *ref);
     void reset();
-    static LonePtr<T> make_ptr(T *ptr);
 };
 
 #endif /* defined(__cpp_code__LonePtr__) */

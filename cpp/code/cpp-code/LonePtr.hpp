@@ -22,11 +22,6 @@ T* LonePtr<T>::get() {
 }
 
 template <typename T>
-LonePtr<T> LonePtr<T>::make_ptr(T *ptr) {
-    return LonePtr<T>(ptr);
-}
-
-template <typename T>
 LonePtr<T>::LonePtr(const LonePtr<T>& other) {
     m_ptr = other.m_ptr;
 }
