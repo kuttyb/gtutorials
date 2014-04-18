@@ -27,7 +27,6 @@ template class LonePtr<int>;
 
 - (void)tearDown
 {
-    subject.reset();
     [super tearDown];
 }
 

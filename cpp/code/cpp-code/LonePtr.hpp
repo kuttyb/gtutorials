@@ -5,7 +5,7 @@
 //  Created by Kutty Banerjee on 4/18/14.
 //  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
 //
-
+#include <assert.h>
 #include "LonePtr.h"
 
 using std::cout;
@@ -26,6 +26,15 @@ LonePtr<T>::LonePtr(const LonePtr<T>& other) {
     m_ptr = other.m_ptr;
 }
 
+template <typename T>
+LonePtr<T>::LonePtr(LonePtr<T>&& other) {
+    assert(0);
+}
+
+template <typename T>
+LonePtr<T>& LonePtr<T>::operator=(LonePtr<T>&& rhs) {
+    assert(0);
+}
 
 template <typename T>
 LonePtr<T>& LonePtr<T>::operator=(const LonePtr<T>& rhs) {
@@ -40,6 +49,12 @@ void LonePtr<T>::setIfNotSet(T *ptr) {
 }
 
 template <typename T>
-void LonePtr<T>::reset() {
-    m_ptr = NULL;
+bool LonePtr<T>::move(LonePtr<T>& other) {
+    if (m_ptr && !other.m_ptr) {
+        other.m_ptr = m_ptr;
+        m_ptr = NULL;
+        return true;
+    } else {
+        return false;
+    }
 }
