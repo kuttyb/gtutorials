@@ -32,6 +32,13 @@ LonePtr<T>::LonePtr(LonePtr<T>&& other) {
 }
 
 template <typename T>
+LonePtr<T>::~LonePtr() {
+    if (m_ptr) {
+        delete m_ptr;
+    }
+}
+
+template <typename T>
 LonePtr<T>& LonePtr<T>::operator=(LonePtr<T>&& rhs) {
     assert(0);
 }

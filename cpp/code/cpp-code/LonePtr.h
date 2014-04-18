@@ -24,6 +24,7 @@ private:
     
 public:
     LonePtr(){}
+    ~LonePtr();
     LonePtr(T *ptr);
     T* get();
     void setIfNotSet(T *ref);
