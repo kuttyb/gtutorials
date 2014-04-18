@@ -22,7 +22,7 @@ template class LonePtr<int>;
 - (void)setUp
 {
     [super setUp];
-    subject.set(new int());
+    subject.setIfNotSet(new int());
 }
 
 - (void)tearDown

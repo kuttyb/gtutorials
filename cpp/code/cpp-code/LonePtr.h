@@ -23,7 +23,7 @@ public:
     LonePtr(){}
     LonePtr(T *ptr);
     T* get();
-    void set(T *ref);
+    void setIfNotSet(T *ref);
     void reset();
 };
 

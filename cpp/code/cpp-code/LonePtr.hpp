@@ -33,7 +33,7 @@ LonePtr<T>& LonePtr<T>::operator=(const LonePtr<T>& rhs) {
 }
 
 template <typename T>
-void LonePtr<T>::set(T *ptr) {
+void LonePtr<T>::setIfNotSet(T *ptr) {
     if (!m_ptr) {
         m_ptr = ptr;
     }
