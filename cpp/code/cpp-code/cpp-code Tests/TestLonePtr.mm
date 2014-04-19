@@ -34,8 +34,9 @@ template class LonePtr<int>;
 {
     XCTAssert(subject.get(), "pointer should not be null");
     LonePtr<int> x;
-    std::move(subject);
     XCTAssert(subject.get(), "");
+    // When enabled, it should fail build
+    // LonePtr<int> y = std::move(x);
 }
 
 - (void)testOurMoveWorks
@@ -54,6 +55,9 @@ template class LonePtr<int>;
 {
     LonePtr<int> x;
     x.setIfNotSet(new int());
+    
+    // when enabled this should fail build
+    // subject.test(x);
 }
 
 @end
