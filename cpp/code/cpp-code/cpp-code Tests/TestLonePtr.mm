@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#include <iostream>
+#include <vector>
+#include <string>
 #include "LonePtr.hpp"
 
 @interface TestLonePtr : XCTestCase
@@ -58,6 +61,45 @@ template class LonePtr<int>;
     
     // when enabled this should fail build
     // subject.test(x);
+}
+
+using std::cout;
+using std::endl;
+using std::string;
+using std::vector;
+
+// bottomline is that after a move you can still use the string object
+// or so it seems. Unless of course we use unique_ptr
+- (void) testMoveSemantics
+{
+    string x("my data");
+    cout << x << endl;
+    
+    vector<string> list;
+    list.push_back(x);
+    for (auto temp : list) {
+        cout << temp << endl;
+    }
+    XCTAssert(true, "");
+    
+    cout << x << endl;
+}
+
+using std::unique_ptr;
+- (void) testMoveSemanticsUniquePtr
+{
+    unique_ptr<int> x(new int());
+    *x = 2;
+    
+    vector<unique_ptr<int>> list;
+    list.push_back(std::move(x));
+    
+    if (0) cout << *x << endl;
+    
+    unique_ptr<int> temp;
+    for (auto itr = list.begin(); (itr != list.end()) && (temp = std::move(*itr)); itr++) {
+        cout << *temp << endl;
+    }
 }
 
 @end
