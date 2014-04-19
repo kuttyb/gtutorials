@@ -29,6 +29,7 @@ public:
     T* get();
     void setIfNotSet(T *ref);
     bool move(LonePtr<T>& other);
+    void test(LonePtr<T> input);
 };
 
 #endif /* defined(__cpp_code__LonePtr__) */

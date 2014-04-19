@@ -1,0 +1,8 @@
+[a] implement dereference operator (* and ->)
+
+[b] remove LonePtr<T>::get() since it leaks the pointer out
+
+[c] Convince yourself that you cannot copy/clone/move LonePtr<T> anyother way
+    but to do LonePtr<T>>::move(LonePtr<T>)
+    
+    This will ensure that LonePtrs stay among LonePtrs

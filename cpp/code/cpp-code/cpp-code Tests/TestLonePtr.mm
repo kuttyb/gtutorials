@@ -50,4 +50,10 @@ template class LonePtr<int>;
     XCTAssert(x.get(), "");
 }
 
+- (void) testMoveFailsCompile
+{
+    LonePtr<int> x;
+    x.setIfNotSet(new int());
+}
+
 @end
