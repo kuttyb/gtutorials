@@ -30,9 +30,24 @@ template class LonePtr<int>;
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testMoveDoesNotMove
 {
     XCTAssert(subject.get(), "pointer should not be null");
+    LonePtr<int> x;
+    std::move(subject);
+    XCTAssert(subject.get(), "");
+}
+
+- (void)testOurMoveWorks
+{
+    LonePtr<int> x;
+    
+    XCTAssert(!x.get(), "");
+    XCTAssert(subject.get(), "");
+    
+    subject.move(x);
+    XCTAssert(!subject.get(), "");
+    XCTAssert(x.get(), "");
 }
 
 @end
