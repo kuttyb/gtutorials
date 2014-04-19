@@ -46,7 +46,7 @@ template class LonePtr<int>;
     XCTAssert(!x.get(), "");
     XCTAssert(subject.get(), "");
     
-    subject.move(x);
+    subject.moveto(x);
     XCTAssert(!subject.get(), "");
     XCTAssert(x.get(), "");
 }

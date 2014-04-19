@@ -43,7 +43,7 @@ void LonePtr<T>::test(LonePtr<T> input) {
 }
 
 template <typename T>
-bool LonePtr<T>::move(LonePtr<T>& other) {
+bool LonePtr<T>::moveto(LonePtr<T>& other) {
     if (m_ptr && !other.m_ptr) {
         other.m_ptr = m_ptr;
         m_ptr = NULL;
