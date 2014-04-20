@@ -463,6 +463,11 @@
 					/Users/kbanerjee/bin/macports/include,
 				);
 				INFOPLIST_FILE = "cpp-code Tests/cpp-code Tests-Info.plist";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -484,6 +489,11 @@
 					/Users/kbanerjee/bin/macports/include,
 				);
 				INFOPLIST_FILE = "cpp-code Tests/cpp-code Tests-Info.plist";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(OTHER_CFLAGS)",
+					"-Wall",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};

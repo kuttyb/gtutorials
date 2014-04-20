@@ -35,6 +35,7 @@ template class LonePtr<int>;
 
 - (void)testOurMoveWorks
 {
+    XCTAssert(*subject == 3, "");
     LonePtr<int> x;
     subject.moveto(x);
     XCTAssert(*x == 3, "");
