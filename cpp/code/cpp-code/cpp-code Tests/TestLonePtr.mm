@@ -25,7 +25,7 @@ template class LonePtr<int>;
 - (void)setUp
 {
     [super setUp];
-    subject.setIfNotSet(new int());
+    subject.setIfNotSet(new int(3));
 }
 
 - (void)tearDown
@@ -33,25 +33,11 @@ template class LonePtr<int>;
     [super tearDown];
 }
 
-- (void)testMoveDoesNotMove
-{
-    XCTAssert(subject.get(), "pointer should not be null");
-    LonePtr<int> x;
-    XCTAssert(subject.get(), "");
-    // When enabled, it should fail build
-    // LonePtr<int> y = std::move(x);
-}
-
 - (void)testOurMoveWorks
 {
     LonePtr<int> x;
-    
-    XCTAssert(!x.get(), "");
-    XCTAssert(subject.get(), "");
-    
     subject.moveto(x);
-    XCTAssert(!subject.get(), "");
-    XCTAssert(x.get(), "");
+    XCTAssert(*x == 3, "");
 }
 
 - (void) testMoveFailsCompile

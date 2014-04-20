@@ -16,11 +16,6 @@ LonePtr<T>::LonePtr(T *ptr) {
     m_ptr = ptr;
 }
 
-template <typename T>
-T* LonePtr<T>::get() {
-    return m_ptr;
-}
-
 
 template <typename T>
 LonePtr<T>::~LonePtr() {
@@ -38,8 +33,13 @@ void LonePtr<T>::setIfNotSet(T *ptr) {
 }
 
 template <typename T>
-void LonePtr<T>::test(LonePtr<T> input) {
-    assert(input.get());
+T LonePtr<T>::operator*() const {
+    return *m_ptr;
+}
+
+template <typename T>
+T LonePtr<T>::operator->() const {
+    return *m_ptr;
 }
 
 template <typename T>

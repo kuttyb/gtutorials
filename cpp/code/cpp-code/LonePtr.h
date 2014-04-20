@@ -26,10 +26,12 @@ public:
     LonePtr(){}
     ~LonePtr();
     LonePtr(T *ptr);
-    T* get();
     void setIfNotSet(T *ref);
     bool moveto(LonePtr<T>& other);
-    void test(LonePtr<T> input);
+    
+    // Overloaded dereference and member access operators
+    T operator*() const;
+    T operator->() const;
 };
 
 #endif /* defined(__cpp_code__LonePtr__) */
