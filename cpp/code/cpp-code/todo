@@ -1,8 +1,3 @@
-[] Convince yourself that you cannot copy/clone/move LonePtr<T> anyother way
-    but to do LonePtr<T>>::move(LonePtr<T>)
-    
-    This will ensure that LonePtrs stay among LonePtrs
-
 [] understand destructor logic for member objects. Does one have to do it explicitly for value, smart_ptr and ptr types
    or whats the logic. I suspect except for the last, others are implicitly taken care of.
 
