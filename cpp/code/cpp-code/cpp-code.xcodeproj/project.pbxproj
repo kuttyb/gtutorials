@@ -18,6 +18,9 @@
 		B751F71B188F654C00CC8228 /* DOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F719188F654C00CC8228 /* DOne.h */; };
 		B751F71D188F658D00CC8228 /* BaseOne.h in Headers */ = {isa = PBXBuildFile; fileRef = B751F71C188F658D00CC8228 /* BaseOne.h */; };
 		B751F721188F675400CC8228 /* DOneTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = B751F720188F675400CC8228 /* DOneTest.mm */; };
+		B7602DB219036C01003AF5CB /* SmartPtr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7602DB019036C01003AF5CB /* SmartPtr.cpp */; };
+		B7602DB319036C01003AF5CB /* SmartPtr.h in Headers */ = {isa = PBXBuildFile; fileRef = B7602DB119036C01003AF5CB /* SmartPtr.h */; };
+		B7602DB519036E4E003AF5CB /* TestPtr.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7602DB419036E4E003AF5CB /* TestPtr.mm */; };
 		B77C936D18CB86450012D67B /* TestSets.mm in Sources */ = {isa = PBXBuildFile; fileRef = B77C936C18CB86450012D67B /* TestSets.mm */; };
 		B785527E18CD5775006CEC85 /* DART.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B785527C18CD5775006CEC85 /* DART.cpp */; };
 		B785527F18CD5775006CEC85 /* DART.h in Headers */ = {isa = PBXBuildFile; fileRef = B785527D18CD5775006CEC85 /* DART.h */; };
@@ -62,6 +65,9 @@
 		B751F719188F654C00CC8228 /* DOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOne.h; sourceTree = "<group>"; };
 		B751F71C188F658D00CC8228 /* BaseOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseOne.h; sourceTree = "<group>"; };
 		B751F720188F675400CC8228 /* DOneTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DOneTest.mm; sourceTree = "<group>"; };
+		B7602DB019036C01003AF5CB /* SmartPtr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SmartPtr.cpp; sourceTree = "<group>"; };
+		B7602DB119036C01003AF5CB /* SmartPtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartPtr.h; sourceTree = "<group>"; };
+		B7602DB419036E4E003AF5CB /* TestPtr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPtr.mm; sourceTree = "<group>"; };
 		B77C936C18CB86450012D67B /* TestSets.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSets.mm; sourceTree = "<group>"; };
 		B785527C18CD5775006CEC85 /* DART.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DART.cpp; sourceTree = "<group>"; };
 		B785527D18CD5775006CEC85 /* DART.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DART.h; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 				B7D230C218FB8200008EEC49 /* BridgeTemplates.h */,
 				B751F71C188F658D00CC8228 /* BaseOne.h */,
 				B751F718188F654C00CC8228 /* DOne.cpp */,
+				B7602DB019036C01003AF5CB /* SmartPtr.cpp */,
+				B7602DB119036C01003AF5CB /* SmartPtr.h */,
 				B751F719188F654C00CC8228 /* DOne.h */,
 				B7CF87011894C23D0046FCC5 /* Template.h */,
 				B7C54F0018837E6E00A0678E /* Initialization.cpp */,
@@ -165,6 +173,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7602DB419036E4E003AF5CB /* TestPtr.mm */,
 				A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */,
 				B785528018CD5CDE006CEC85 /* TestDART.mm */,
 				B77C936C18CB86450012D67B /* TestSets.mm */,
@@ -195,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7D230C018FB8179008EEC49 /* TypeAssert.h in Headers */,
+				B7602DB319036C01003AF5CB /* SmartPtr.h in Headers */,
 				B751F717188F647A00CC8228 /* BaseOne.hpp in Headers */,
 				B751F71D188F658D00CC8228 /* BaseOne.h in Headers */,
 				B785527F18CD5775006CEC85 /* DART.h in Headers */,
@@ -299,6 +309,7 @@
 				A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */,
 				B74CAE1318A729E8005653D7 /* BaseUnit.cpp in Sources */,
 				B7CF87051894C6680046FCC5 /* Lambda.cpp in Sources */,
+				B7602DB219036C01003AF5CB /* SmartPtr.cpp in Sources */,
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */,
 				B751F71A188F654C00CC8228 /* DOne.cpp in Sources */,
@@ -313,6 +324,7 @@
 			files = (
 				B785528118CD5CDE006CEC85 /* TestDART.mm in Sources */,
 				B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */,
+				B7602DB519036E4E003AF5CB /* TestPtr.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
 				A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */,
 				B77C936D18CB86450012D67B /* TestSets.mm in Sources */,

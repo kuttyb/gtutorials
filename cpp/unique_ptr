@@ -1,0 +1,33 @@
+When using unique_ptr<T> and you would like to pass T* to a function, declare that function to use T & ref and pass it thus:
+
+template <typename T>
+void func(T & ref) {
+  cout << ref << endl;
+  ref++;
+}
+
+...
+unique_ptr<int> x(new int());
+...
+func(*x.get());
+
+
+
+Your intention is to make sure that the passed in function can only dereference the pointer, not copy/assign/move it. Well, since we are passing in a reference he can do neither.
+
+Now there is another way viz.,
+template <typename T>
+void func(unique_ptr<T> & ref) {
+  cout << *ref << endl;
+  ref++;
+}
+
+
+[] Now you cannot copy ref locally, you cannot assign it locally, you cannot std::move it locally. Why because doing so will reset the pointer (internal of unique_ptr) which would
+violate the const part of "const unique_ptr<T>"
+
+[] However, this makes the receiving function kind of limited since it can only be used by callers that have a unique pointer. So stick to the reference part for this.
+I m hearing rumors of exempt_ptr being added into C++ to do this.
+
+[] And if someone really wanted to be dumb, they could do T * ptr = ref.get() and thereby retain a copy of the pointer and defeating the entire purpose here. So once again,
+stick with T & ref!!
