@@ -1,0 +1,68 @@
+* Experienced in System Software, Computer Architecture, Parallel Computing, Compilers and in SW/HW boundaries. 
+* Seeking a Senior Architect or Management position. 
+* Worked on Drivers/Firmware/Compilers and HW Simulator Implementations for CPUs and GPUs.
+* Familiar with System-C/TLM, Perf & Power Models
+* Was the GPU Kernel Lead for Fermi Generation of GPUs.
+
+
+Apple : iOS GPU Softare Engineer   [Aug 2014 ~ Present]
+* Added in  Firmware, a "Multi Linear Regresison Model" for Predicting Runtime GPU Power Consumption based on HW utilization and voltage/freq values.
+* Augmented Firmware with a "Sorted-Credit" based policy for Fairness in GPU Work Scheduling
+* Added GPU Compiler and Driver support to implement efficient vertex clipping for user planes (OpenGL)
+* Added DataFlow logic in Driver to Automatically eliminate CPU/GPU Cache Flushes for OpenCL Kernels that do not have RAW/WAW/WAR dependencies
+
+
+Intel: GPU Platform Architect      [May 2013 ~ Aug 2013]
+* Lead Cross-Team initiative for Low Power Compute Implementation on next-gen Intel GPUs
+
+
+
+NVIDIA: Software Architect [May 2005 ~ May 2013]
+
+Project Denver - (NVIDIA's native ARM CPU)
+--------------
+* Did CPU Perf Analysis of Graphics, Web and JVM workloads and followed up with HW and various SW teams using various Simulators
+  Identified Instruction scheduling stalls, Missing Speculative Optimizations, Excessive Rollback of Instructions
+  and Speculative state, Cache False Sharing.
+
+* Augmented QEMU to do Memory Profiling with an additional ~15% overhead. Captured Physical Pages accessed
+  from various threads/cores using various Page Types. Data mined this using a Relational Database to print out
+  Page-Access Patterns, Page-Migration Patters for CPU/GPU workloads.
+
+* Denver uses a Hypervisor to Trace JIT compile ARM to native VLIW after Trace Profiling. I maintained the Trace Profiler codebase.
+  As part of that role implemented:
+  * BranchAssert instruction in traces to remove cold paths and improve instruction scheduling.
+  * Lazy Branch Assert to avoid recompiling traces for 10% branches
+  * Trace Compaction for better icache utilization
+  * Branch Reprofiling to detect dynamic changes in branch weights of a running program and trigger recompilation
+  * Elide fence/atomic instructions for speculative instructions and provide a rollback if during commit another core accesses that memory. Helps JVM workloads.
+  * Patched static GCC compiler for codebase and added extra GCC method attributes to enforce lock composition rules.
+  
+* Added Large Page support in Tegra Linux Kernel using a BSD-like Lazy Page Coalescing approach
+* Added "Thread Local Heap" support in Browser JIT and Tegra kernel to elide TLB invalidate IPIs and cache snoop for memory for private memory.
+
+
+Project Orion  - NVIDIA's CPU/GPU on a SoC for High Performance CUDA Platforms
+-------------
+* Responsible for coordinating with HW and SW teams to implement Uniform Virtual Memory (UVM) "A shared address space" allowing pointer passing between CPU and GPU.
+* My role was to drive adding features in GPU/SoC to make this happen. That included adding support for GPU Page fault handling, GPU TLB redesign, Page Migration logic based on faults
+  and low-latency interrupt delivery capability in the GPU via microcontroller.
+* Designed ARM64 Linux kernel changes to make this possible. Code was written by another team member.
+* Implemented Simulator changes to test Performance impact of False-sharing and Page ping-pong.
+Project was eventually cancelled but the above work moved to a different Project.
+
+
+GPU Verification Lead
+---------------------
+
+
+Fermi Generation GPU Kernel Lead
+--------------------------------
+
+
+GPU Thread Scheduling Lead
+--------------------------
+
+GPU Driver
+----------
+
