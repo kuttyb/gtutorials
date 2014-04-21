@@ -51,6 +51,16 @@ Project Orion  - NVIDIA's CPU/GPU on a SoC for High Performance CUDA Platforms
 * Implemented Simulator changes to test Performance impact of False-sharing and Page ping-pong.
 Project was eventually cancelled but the above work moved to a different Project.
 
+Parallel Computing Framework:
+----------------------------
+* During Sabatthical implemented Khronos, a SW implementation of an Out-of-Order (OoO) proccesor. Its a Stack Based Virtual Machine with its own Instruction Set. Instructions are very similar
+  to OpenCL kernels and Operands are Tiled Regions of Memory.
+* Added DataFlow logic to form an Anti-Dependency Graph from input Instructions and walk the Graph using separate CPU threads to obtain Parallel Execution. 
+* Tiles can be Pipelined from Disk right before Instruction execution to minimize Working Set and allow in memory execution.
+* Has support for Loops, Branches very similar to Loop Caches in Modern OoO processors. Also has an instruction for Parallel Reduction.
+* Implemented Task Parallel Library with efficient locking characteristics and various Concurrency Primitives as Base Libraries on which Khronos is built.
+* GPU migration support using OpenCL was started but did not get the time to complete it.
+
 
 GPU Verification Lead
 ---------------------
