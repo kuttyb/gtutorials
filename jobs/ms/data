@@ -1,7 +1,7 @@
 * Experienced in System Software, Computer Architecture, Parallel Computing, Compilers and in SW/HW boundaries. 
 * Seeking a Senior Architect or Management position. 
 * Worked on Drivers/Firmware/Compilers and HW Simulator Implementations for CPUs and GPUs.
-* Familiar with System-C/TLM, Perf & Power Models
+* Familiar with System-C(TLM)/C/Java/C++/Objective-C. 
 * Was the GPU Kernel Lead for Fermi Generation of GPUs.
 
 
@@ -13,7 +13,7 @@ Apple : iOS GPU Softare Engineer   [Aug 2014 ~ Present]
 
 
 Intel: GPU Platform Architect      [May 2013 ~ Aug 2013]
-* Lead Cross-Team initiative for Low Power Compute Implementation on next-gen Intel GPUs
+* Architect for a Cross-Team initiative on Low Power Compute Implementation on next-gen Intel GPUs
 
 
 
@@ -21,9 +21,9 @@ NVIDIA: Software Architect [May 2005 ~ May 2013]
 
 Project Denver - (NVIDIA's native ARM CPU)
 --------------
-* Did CPU Perf Analysis of Graphics, Web and JVM workloads and followed up with HW and various SW teams using various Simulators
-  Identified Instruction scheduling stalls, Missing Speculative Optimizations, Excessive Rollback of Instructions
-  and Speculative state, Cache False Sharing.
+* Did CPU Perf Analysis of Graphics, Web and JVM workloads and coordinated with HW and various SW teams.
+  Identified Instruction Scheduling stalls, Missing Speculative Optimizations, Excessive Rollback of Instructions
+  and Speculative state, Cache False Sharing in various workloads.
 
 * Augmented QEMU to do Memory Profiling with an additional ~15% overhead. Captured Physical Pages accessed
   from various threads/cores using various Page Types. Data mined this using a Relational Database to print out
@@ -64,7 +64,13 @@ Parallel Computing Framework:
 
 GPU Verification Lead
 ---------------------
-
+* Coordinate with various HW unit teams, SW driver teams, diag team to create a Unified Testing strategy for Next-Gen GPUs. 
+* Added support for Asynchronous-Event Testing in Drivers/Firmware using Probes. Useful for testing Interrupt and Firmware code that interfaces closely with Hardware.
+* Augmented a Framework called "Policy Manager" that lets you control induced fault conditions via scripts at runtime and verifies correct handling.
+* Implemented SM2, NVIDIA's "Automated Test Infrastructure". This was my Side Project that is used by 4 Driver/Firmware teams at NVIDIA today. Provides a Schema for Test Description,
+  Test Dependencies and Test Installation Prerequisites in a Javascript File. This is then parsed, dependencies fetched, tests executed and results stored in a central database. Tests
+  can be hierarchically combined, excluded, augmented.
+  Team of 3 engineers maintain this code base today. Tests
 
 Fermi Generation GPU Kernel Lead
 --------------------------------
