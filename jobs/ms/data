@@ -1,24 +1,22 @@
-* Experienced in System Software, Computer Architecture, Parallel Computing, Compilers and in SW/HW boundaries. 
-* Seeking a Senior Architect or Management position. 
-* Worked on Drivers/Firmware/Compilers and HW Simulator Implementations for CPUs and GPUs.
-* Familiar with System-C(TLM)/C/Java/C++/Objective-C. 
-* Was the GPU Kernel Lead for Fermi Generation of GPUs.
+* Experienced in System Software, Computer Architecture, Parallel Computing, Compilers and in SW/HW boundaries. Seeking a Senior Architect or Management position. 
 
-
+-------------------------------------------------------
 Apple : iOS GPU Softare Engineer   [Aug 2014 ~ Present]
+-------------------------------------------------------
 * Added in  Firmware, a "Multi Linear Regresison Model" for Predicting Runtime GPU Power Consumption based on HW utilization and voltage/freq values.
 * Augmented Firmware with a "Sorted-Credit" based policy for Fairness in GPU Work Scheduling
 * Added GPU Compiler and Driver support to implement efficient vertex clipping for user planes (OpenGL)
 * Added DataFlow logic in Driver to Automatically eliminate CPU/GPU Cache Flushes for OpenCL Kernels that do not have RAW/WAW/WAR dependencies
 
-
+-------------------------------------------------------
 Intel: GPU Platform Architect      [May 2013 ~ Aug 2013]
+-------------------------------------------------------
 * Architect for a Cross-Team initiative on Low Power Compute Implementation on next-gen Intel GPUs
 
 
-
+-------------------------------------------------------
 NVIDIA: Software Architect [May 2005 ~ May 2013]
-
+-------------------------------------------------------
 Project Denver - (NVIDIA's native ARM CPU)
 --------------
 * Did CPU Perf Analysis of Graphics, Web and JVM workloads and coordinated with HW and various SW teams.
@@ -75,7 +73,7 @@ GPU Verification Lead
 Fermi Generation (DX11 Compatible) GPU Kernel Lead
 --------------------------------
 * As the Kernel lead, lead a team of 25 engineers and oversaw development across Simulation, RTL, Emulation and Bringup. Role included Task Assignment, initial Triage, interaction
-with Hardware Teams. Was responsible for overall progress of the Kernel team for Fermi.
+with Hardware Teams, mentoring new engineers and interns. Was responsible for overall progress of the Kernel team for Fermi.
 
 * Was the first engineer to start work on the Kernel/Firmware for Fermi. Wrote and helped large parts of the Fermi kernel code including Thread Scheduling, Interrupt Handling, Memory Management,
 Page Table Setup, Context Switch support (Fermi was the first GPU to have a dedicated microcontroller for Context Switching), Cache Management, TLB batching.
@@ -87,6 +85,7 @@ GPU Thread Scheduling Lead
 * Lead the Fermi Command Buffer and Thread Scheduling Unit in the Driver. Fermi added Hardware support for DX11 Per Node Command Buffers. 
 * Replaced the old timeslice based Scheduler with separate Per Node Priority Queues that enqueued incoming buffers from the DXG kernel. Also known as Buffer Based Scheduling.
 * Added Support to hold off Buffer supply (throttle) to Enable Engine Power Gating. 
+* Did lots of Code Refactoring.
 * Implemented various Power Management schemes.
 
 GPU Driver
