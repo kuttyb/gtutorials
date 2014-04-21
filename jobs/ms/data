@@ -72,13 +72,24 @@ GPU Verification Lead
   can be hierarchically combined, excluded, augmented.
   Team of 3 engineers maintain this code base today. Tests
 
-Fermi Generation GPU Kernel Lead
+Fermi Generation (DX11 Compatible) GPU Kernel Lead
 --------------------------------
+* As the Kernel lead, lead a team of 25 engineers and oversaw development across Simulation, RTL, Emulation and Bringup. Role included Task Assignment, initial Triage, interaction
+with Hardware Teams. Was responsible for overall progress of the Kernel team for Fermi.
 
+* Was the first engineer to start work on the Kernel/Firmware for Fermi. Wrote and helped large parts of the Fermi kernel code including Thread Scheduling, Interrupt Handling, Memory Management,
+Page Table Setup, Context Switch support (Fermi was the first GPU to have a dedicated microcontroller for Context Switching), Cache Management, TLB batching.
+
+* Worked on parts of the GPU Functional Model Simulator.
 
 GPU Thread Scheduling Lead
 --------------------------
+* Lead the Fermi Command Buffer and Thread Scheduling Unit in the Driver. Fermi added Hardware support for DX11 Per Node Command Buffers. 
+* Replaced the old timeslice based Scheduler with separate Per Node Priority Queues that enqueued incoming buffers from the DXG kernel. Also known as Buffer Based Scheduling.
+* Added Support to hold off Buffer supply (throttle) to Enable Engine Power Gating. 
+* Implemented various Power Management schemes.
 
 GPU Driver
 ----------
+* Worked on various layers of the NVIDIA GPU Kernel driver stack. Fixed bugs. Helped in bringup.
 
