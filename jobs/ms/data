@@ -62,13 +62,24 @@ Parallel Computing Framework:
 
 GPU Verification Lead
 ---------------------
-* Coordinate with various HW unit teams, SW driver teams, diag team to create a Unified Testing strategy for Next-Gen GPUs. 
-* Added support for Asynchronous-Event Testing in Drivers/Firmware using Probes. Useful for testing Interrupt and Firmware code that interfaces closely with Hardware.
-* Augmented a Framework called "Policy Manager" that lets you control induced fault conditions via scripts at runtime and verifies correct handling.
+* After Fermi, lead a Cross-Team effort to unify Verification efforts of various Hardware and Software/Driver teams on the MDiag-MODS Platform. 
+  MDIAG is NVIDIA's Verification Platform where Kernel and OpenGL drivers are compiled as userland libraries and loaded on a micro-Linux installation.
+  Also includes a Trace-Player to playback realworld CPU/GPU app traces. Works with Silicon and Simulators and targets Directed Deterministic verification of the Hardware.
+
+* Augmented "Policy-Manager", A Layer responsible for inducing faults/events and boundary conditions that allow testing hard-to-hit conditions deterministically.
+  Added "Probes" to Policy Manager. Probes are hooks in Drivers which can be programmed at runtime using a script to wait for asynchronous conditions to occur. 
+  Allows an external script to force certain hard-race conditions to deterministically occur and ensure Driver performs correctly.
+
+  Used this Framework to extensively test Power Management and Clock Frequency changing code.
+
+* Coordinated with Hardware and Software teams working on PCI-E, Display, Cache/TLB, Clocks, Graphics and Video to beef up Verification using the above Framework. Role was
+  to work as an Evangelist of this Framework and ensure beefing up coverage.
+
 * Implemented SM2, NVIDIA's "Automated Test Infrastructure". This was my Side Project that is used by 4 Driver/Firmware teams at NVIDIA today. Provides a Schema for Test Description,
   Test Dependencies and Test Installation Prerequisites in a Javascript File. This is then parsed, dependencies fetched, tests executed and results stored in a central database. Tests
   can be hierarchically combined, excluded, augmented.
   Team of 3 engineers maintain this code base today. Tests
+
 
 Fermi Generation (DX11 Compatible) GPU Kernel Lead
 --------------------------------
