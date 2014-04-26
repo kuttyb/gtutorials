@@ -6,3 +6,4 @@ http://www.linkedin.com/jobs2/view/11267238?trk=vsrp_jobs_res_name&trkInfo=VSRPs
 + Firmware thingie
 + Add more details about Microkernel MTS, Power Mgmt RM, Parallel Build Windows, Windbg
 + MTS interrupt, locking, compiler changes
++ Dump out state from live system, analyze offline, lockstat, deadlock analysis,
