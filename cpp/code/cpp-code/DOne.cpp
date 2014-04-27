@@ -27,7 +27,7 @@ public:
 
 
 void DOne::start(DOne *input) {
-    std::function<void (int& ref, int context_id)> f = [] (int& ref, int context_id) {
+    auto f = [] (int& ref, int context_id) {
         
     };
     
