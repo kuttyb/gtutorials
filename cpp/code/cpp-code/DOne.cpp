@@ -16,6 +16,15 @@
 template class BaseOne<DOne>;
 
 template <typename T>
+class Module {
+public:
+    void createContext(int context_id);
+    T getContert(int context_id);
+    void init(void) = 0;
+    void destroy(void) = 0;
+};
+
+template <typename T>
 class Port {
 private:
     const int m_id;
