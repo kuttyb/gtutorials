@@ -9,11 +9,30 @@
 #include "BaseOne.hpp"
 
 #include "DOne.h"
+#include <memory>
+#include <functional>
 
 // Include BaseOne and instantiate it with type Derived
 template class BaseOne<DOne>;
 
+template <typename T>
+class Port {
+private:
+    const int m_id;
+    const std::function<void (T&, int)> dispatcher;
+public:
+    Port(int id, std::function<void (T&, int)>dispatcher) : m_id(id) {}
+    void dispatch(T& ref, int context_id) { dispatcher(ref, context_id);}
+};
+
+
 void DOne::start(DOne *input) {
+    std::function<void (int& ref, int context_id)> f = [] (int& ref, int context_id) {
+        
+    };
+    
+    Port<int> port(3, f);
+    
     if (input) ref = input;
     cout << "Derived class speaking" << endl;
 }
