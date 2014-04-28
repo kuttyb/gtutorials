@@ -31,6 +31,9 @@
 		B797BBC6186B54460056EBA6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B797BBC5186B54460056EBA6 /* XCTest.framework */; };
 		B797BBCC186B54460056EBA6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B797BBCA186B54460056EBA6 /* InfoPlist.strings */; };
 		B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A153861895029400FAEAC1 /* TestClosure.mm */; };
+		B7A1C6EC190E3AD80051E930 /* SplitClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A1C6EA190E3AD80051E930 /* SplitClass.cpp */; };
+		B7A1C6ED190E3AD80051E930 /* SplitClass.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A1C6EB190E3AD80051E930 /* SplitClass.h */; };
+		B7A1C6EF190E3B3C0051E930 /* SplitTwo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7A1C6EE190E3B3C0051E930 /* SplitTwo.cpp */; };
 		B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */; };
 		B7C54F0218837E6E00A0678E /* Initialization.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7C54F0018837E6E00A0678E /* Initialization.cpp */; };
 		B7C54F0318837E6E00A0678E /* Initialization.h in Headers */ = {isa = PBXBuildFile; fileRef = B7C54F0118837E6E00A0678E /* Initialization.h */; };
@@ -82,6 +85,9 @@
 		B797BBCB186B54460056EBA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B797BBCF186B54460056EBA6 /* cpp-code Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cpp-code Tests-Prefix.pch"; sourceTree = "<group>"; };
 		B7A153861895029400FAEAC1 /* TestClosure.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestClosure.mm; sourceTree = "<group>"; };
+		B7A1C6EA190E3AD80051E930 /* SplitClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplitClass.cpp; sourceTree = "<group>"; };
+		B7A1C6EB190E3AD80051E930 /* SplitClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitClass.h; sourceTree = "<group>"; };
+		B7A1C6EE190E3B3C0051E930 /* SplitTwo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SplitTwo.cpp; sourceTree = "<group>"; };
 		B7C54EFE18837ACA00A0678E /* TestNonTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestNonTemplate.mm; sourceTree = "<group>"; };
 		B7C54F0018837E6E00A0678E /* Initialization.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Initialization.cpp; path = ../Initialization.cpp; sourceTree = "<group>"; };
 		B7C54F0118837E6E00A0678E /* Initialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Initialization.h; path = ../Initialization.h; sourceTree = "<group>"; };
@@ -133,6 +139,9 @@
 				A8DD8EFB190192AC005BE89C /* LonePtr.hpp */,
 				A8DD8EFC190192AC005BE89C /* LonePtr.h */,
 				B7CF87041894C6680046FCC5 /* Lambda.h */,
+				B7A1C6EA190E3AD80051E930 /* SplitClass.cpp */,
+				B7A1C6EB190E3AD80051E930 /* SplitClass.h */,
+				B7A1C6EE190E3B3C0051E930 /* SplitTwo.cpp */,
 				B7D230BF18FB8179008EEC49 /* TypeAssert.h */,
 				B7D230C118FB8200008EEC49 /* BridgeTemplates.cpp */,
 				B7D230C218FB8200008EEC49 /* BridgeTemplates.h */,
@@ -206,6 +215,7 @@
 				B7D230C018FB8179008EEC49 /* TypeAssert.h in Headers */,
 				B7602DB319036C01003AF5CB /* SmartPtr.h in Headers */,
 				B751F717188F647A00CC8228 /* BaseOne.hpp in Headers */,
+				B7A1C6ED190E3AD80051E930 /* SplitClass.h in Headers */,
 				B751F71D188F658D00CC8228 /* BaseOne.h in Headers */,
 				B785527F18CD5775006CEC85 /* DART.h in Headers */,
 				A8DD8EFE190192AC005BE89C /* LonePtr.h in Headers */,
@@ -309,11 +319,13 @@
 				A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */,
 				B74CAE1318A729E8005653D7 /* BaseUnit.cpp in Sources */,
 				B7CF87051894C6680046FCC5 /* Lambda.cpp in Sources */,
+				B7A1C6EC190E3AD80051E930 /* SplitClass.cpp in Sources */,
 				B7602DB219036C01003AF5CB /* SmartPtr.cpp in Sources */,
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */,
 				B751F71A188F654C00CC8228 /* DOne.cpp in Sources */,
 				B7885CB518693B7A004125B5 /* static_ducktyping.cpp in Sources */,
+				B7A1C6EF190E3B3C0051E930 /* SplitTwo.cpp in Sources */,
 				B785527E18CD5775006CEC85 /* DART.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
