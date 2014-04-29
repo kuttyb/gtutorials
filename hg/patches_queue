@@ -1,0 +1,4 @@
+http://stackoverflow.com/questions/14569555/mercurial-queues-export-a-patch
+
+thats how you ship your queue changes. pulling in the changes is easy, use hg qimport
+
