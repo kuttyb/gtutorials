@@ -4,16 +4,25 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define ALIGNGRAN(V, G)         (({assert(ISPOT(G));}), (((V) + ((G) - 1ULL)) & ~((G) - 1ULL)))
-#define ISPOT(V)                ((V) && ((V) & ((V) - 1)) == 0)
-	
+void hex_to_float(uint32_t input) 
+{
+	float *ptr = (float *)&input;
+	printf("input 0x%x output %f\n", input, *ptr);
+}
 
 int main(void) 
 {
-  const uint32_t x = 0x4;
-  const uint32_t a = 0x1000;
-
-  printf("0x%x 0x%llx\n", x, ALIGNGRAN(x, a));
-
-  return 0;
+	const uint32_t input[] = 
+		{
+			0xfe6 
+		};
+	
+	const uint32_t size = sizeof(input) / sizeof(input[0]);
+	
+	for (uint32_t i = 0; i < size; ++i) 
+	{
+		hex_to_float(input[i]);
+	}
+	
+	return 0;
 }
