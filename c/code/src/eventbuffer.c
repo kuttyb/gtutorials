@@ -6,11 +6,11 @@
 
 typedef struct 
 {
-	uint8_t   type;
-	uint32_t  arg0;
-	uint32_t  arg1;
-	uint32_t  arg2;
-	uint32_t  arg3;
+	uint32_t   type;
+	uint64_t  arg0;
+	uint64_t  arg1;
+	uint64_t  arg2;
+	uint64_t  arg3;
 } Event;
 
 #define TRACEBUF_MAX  (8)
@@ -21,7 +21,7 @@ typedef struct
 Event tracebuf[TRACEBUF_MAX];
 uint32_t tracebuf_index;
 
-void add_event(uint8_t type, uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) 
+void add_event(uint8_t type, uint64_t arg0, uint64_t arg1, uint64_t arg2, uint64_t arg3) 
 {
 	Event *ptr = &tracebuf[tracebuf_index];
 	ptr->type = type;
@@ -38,7 +38,7 @@ void print_events(void)
 	for (uint32_t i = 0; i < TRACEBUF_MAX; ++i) 
 	{
 		Event *event = &tracebuf[i];
-		printf("tracebuf[%d]=%d 0x%x 0x%x 0x%x 0x%x\n", 
+		printf("tracebuf[%d]=%d 0x%llx 0x%llx 0x%llx 0x%llx\n", 
 		       i, event->type, event->arg0, event->arg1, event->arg2, event->arg3);
 	}
 }
@@ -46,15 +46,12 @@ void print_events(void)
 
 int main(void) 
 {
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
-	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	printf("addr is %p\n", &tracebuf);
+	
+	for (uint32_t i = 0; i <= TRACEBUF_MAX; ++i) 
+	{
+		add_event(TRACEBUF_EVENT_MINIT, i, i+1, i+2, i+3);		
+	}
 
 	print_events();
 	
