@@ -1,7 +1,8 @@
 In the hex format
 
-x -s4 -fx -c24 0xffffff800096ddb0
-
 ;; if you want to print double words at a time
 ;; --format x is essentially your format specifier
 x -s8 -fx -c24 0xffffff8000955db0
+
+;; This will produce the hexdump that offline parsers can postprocessk
+x -s4 -fx -c8192 0xffffff809a431db0 --force
