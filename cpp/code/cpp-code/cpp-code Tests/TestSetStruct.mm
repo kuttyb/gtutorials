@@ -9,57 +9,56 @@
 #import <XCTest/XCTest.h>
 #include <set>
 #include <iostream>
+#include <array>
 
 @interface TestSetStruct : XCTestCase
 
 @end
 
-class Event {
-private:
-    uint64_t m_type;
-    uint64_t m_timestamp;
-    uint64_t m_arg0;
-    uint64_t m_arg1;
-    uint64_t m_arg2;
-public:
-    Event(uint64_t type, uint64_t timestamp, uint64_t arg0, uint64_t arg1, uint64_t arg2) {
-        m_type      = type;
-        m_timestamp = timestamp;
-        m_arg0      = arg0;
-        m_arg1      = arg1;
-        m_arg2      = arg2;
-    }
-    bool operator<(const Event & other) const;
-};
-
-bool Event::operator<(const Event & other) const {
-    if (other.m_timestamp > m_timestamp)
-        return true;
-    else
-        return false;
-}
-
-using std::set;
+typedef struct {
+    uint64_t  type;
+    uint64_t  timestamp;
+    uint64_t  arg0;
+    uint64_t  arg1;
+    uint64_t  arg2;
+} Event;
 
 @implementation TestSetStruct {
-    set<Event> *subject;
+    std::set<Event *> subject;
 }
 
 - (void)setUp
 {
     [super setUp];
-    subject = new set<Event>();
+    subject.clear();
 }
 
 - (void)tearDown
 {
-    delete subject;
     [super tearDown];
 }
 
 - (void)testBasic
 {
+    std::array<Event, 5> list{
+        {
+            {2, 10, 3, 4, 5},
+            {2, 5, 3, 4, 5},
+            {4, 3, 3, 4, 5},
+            {1, 30, 3, 4, 5},
+            {1, 1, 3, 4, 5},
+        }
+    };
 
+    for (auto & temp : list) {
+        subject.insert(&temp);
+    }
+
+    for (std::set<Event*>::iterator x = subject.begin(); x != subject.end(); x++ ){
+        Event *ptr = *x;
+        printf("0x%llx \n",
+               ptr->type);
+    }
 }
 
 @end
