@@ -32,7 +32,9 @@ tileswizzling.c       \
 endianness.c          \
 bits.c                \
 numbers.c             \
+hexfloat.c            \
 stackgrowth.c         \
+eventbuffer.c         \
 factorial.c           \
 rmat.c                \
 query.c 

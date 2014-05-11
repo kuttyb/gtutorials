@@ -4,16 +4,59 @@
 #include <stdbool.h>
 #include <assert.h>
 
-#define ALIGNGRAN(V, G)         (({assert(ISPOT(G));}), (((V) + ((G) - 1ULL)) & ~((G) - 1ULL)))
-#define ISPOT(V)                ((V) && ((V) & ((V) - 1)) == 0)
-	
+typedef struct 
+{
+	uint8_t   type;
+	uint32_t  arg0;
+	uint32_t  arg1;
+	uint32_t  arg2;
+	uint32_t  arg3;
+} Event;
+
+#define TRACEBUF_MAX  (8)
+#define TRACEBUF_EVENT_MINIT    (0x1)
+#define TRACEBUF_EVENT_MCOMMIT  (0x2)
+#define TRACEBUF_EVENT_MRELEASE (0x3)
+
+Event tracebuf[TRACEBUF_MAX];
+uint32_t tracebuf_index;
+
+void add_event(uint8_t type, uint32_t arg0, uint32_t arg1, uint32_t arg2, uint32_t arg3) 
+{
+	Event *ptr = &tracebuf[tracebuf_index];
+	ptr->type = type;
+	ptr->arg0 = arg0;
+	ptr->arg1 = arg1;
+	ptr->arg2 = arg2;
+	ptr->arg3 = arg3;
+	printf("adding at index %d\n", tracebuf_index);
+	tracebuf_index = (tracebuf_index + 1) % TRACEBUF_MAX;
+}
+
+void print_events(void) 
+{
+	for (uint32_t i = 0; i < TRACEBUF_MAX; ++i) 
+	{
+		Event *event = &tracebuf[i];
+		printf("tracebuf[%d]=%d 0x%x 0x%x 0x%x 0x%x\n", 
+		       i, event->type, event->arg0, event->arg1, event->arg2, event->arg3);
+	}
+}
+
 
 int main(void) 
 {
-  const uint32_t x = 0x4;
-  const uint32_t a = 0x1000;
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
+	add_event(TRACEBUF_EVENT_MINIT, 1, 2, 3, 4);
 
-  printf("0x%x 0x%llx\n", x, ALIGNGRAN(x, a));
-
-  return 0;
+	print_events();
+	
+	return 0;
 }
