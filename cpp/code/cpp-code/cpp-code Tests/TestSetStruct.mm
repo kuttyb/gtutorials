@@ -54,10 +54,9 @@ typedef struct {
         subject.insert(&temp);
     }
 
-    for (std::set<Event*>::iterator x = subject.begin(); x != subject.end(); x++ ){
-        Event *ptr = *x;
-        printf("0x%llx \n",
-               ptr->type);
+    for (Event * temp : subject) {
+        printf(" %lld  %lld  %lld  %lld  %lld\n",
+               temp->type, temp->timestamp, temp->arg0, temp->arg1, temp->arg2);
     }
 }
 
