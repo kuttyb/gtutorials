@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A888F9411920031500AB20C8 /* TestSetStruct.mm in Sources */ = {isa = PBXBuildFile; fileRef = A888F9401920031500AB20C8 /* TestSetStruct.mm */; };
 		A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFB190192AC005BE89C /* LonePtr.hpp */; };
 		A8DD8EFE190192AC005BE89C /* LonePtr.h in Headers */ = {isa = PBXBuildFile; fileRef = A8DD8EFC190192AC005BE89C /* LonePtr.h */; };
 		A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A888F9401920031500AB20C8 /* TestSetStruct.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSetStruct.mm; sourceTree = "<group>"; };
 		A8DD8EFB190192AC005BE89C /* LonePtr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LonePtr.hpp; sourceTree = "<group>"; };
 		A8DD8EFC190192AC005BE89C /* LonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonePtr.h; sourceTree = "<group>"; };
 		A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLonePtr.mm; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A888F9401920031500AB20C8 /* TestSetStruct.mm */,
 				B7602DB419036E4E003AF5CB /* TestPtr.mm */,
 				A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */,
 				B785528018CD5CDE006CEC85 /* TestDART.mm */,
@@ -339,6 +342,7 @@
 				B7602DB519036E4E003AF5CB /* TestPtr.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
 				A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */,
+				A888F9411920031500AB20C8 /* TestSetStruct.mm in Sources */,
 				B77C936D18CB86450012D67B /* TestSets.mm in Sources */,
 				B751F721188F675400CC8228 /* DOneTest.mm in Sources */,
 				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,

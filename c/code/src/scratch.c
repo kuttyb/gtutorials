@@ -9,8 +9,6 @@ typedef struct {
   uint32_t  voltage;
 } Unit;
 
-const Unit x[4]     =  { {1, 3}, {4, 9}, {12, 27}, {24, 108}};
-
 float list[4] = {0.0f, 1.0f, 0.0f, 0.0f};
 
 int main(void) 
