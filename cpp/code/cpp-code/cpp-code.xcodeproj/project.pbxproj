@@ -11,6 +11,7 @@
 		A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFB190192AC005BE89C /* LonePtr.hpp */; };
 		A8DD8EFE190192AC005BE89C /* LonePtr.h in Headers */ = {isa = PBXBuildFile; fileRef = A8DD8EFC190192AC005BE89C /* LonePtr.h */; };
 		A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */; };
+		B7169D40192462ED007A8BEA /* TestCRTP.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7169D3F192462ED007A8BEA /* TestCRTP.mm */; };
 		B74CAE1318A729E8005653D7 /* BaseUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B74CAE1118A729E8005653D7 /* BaseUnit.cpp */; };
 		B74CAE1418A729E8005653D7 /* BaseUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = B74CAE1218A729E8005653D7 /* BaseUnit.h */; };
 		B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */ = {isa = PBXBuildFile; fileRef = B74CAE1518A72CBD005653D7 /* TestBaseUnit.mm */; };
@@ -62,6 +63,7 @@
 		A8DD8EFB190192AC005BE89C /* LonePtr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LonePtr.hpp; sourceTree = "<group>"; };
 		A8DD8EFC190192AC005BE89C /* LonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonePtr.h; sourceTree = "<group>"; };
 		A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLonePtr.mm; sourceTree = "<group>"; };
+		B7169D3F192462ED007A8BEA /* TestCRTP.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCRTP.mm; sourceTree = "<group>"; };
 		B74CAE1118A729E8005653D7 /* BaseUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseUnit.cpp; path = ../BaseUnit.cpp; sourceTree = "<group>"; };
 		B74CAE1218A729E8005653D7 /* BaseUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseUnit.h; path = ../BaseUnit.h; sourceTree = "<group>"; };
 		B74CAE1518A72CBD005653D7 /* TestBaseUnit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBaseUnit.mm; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7169D3F192462ED007A8BEA /* TestCRTP.mm */,
 				A888F9401920031500AB20C8 /* TestSetStruct.mm */,
 				B7602DB419036E4E003AF5CB /* TestPtr.mm */,
 				A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */,
@@ -339,6 +342,7 @@
 			files = (
 				B785528118CD5CDE006CEC85 /* TestDART.mm in Sources */,
 				B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */,
+				B7169D40192462ED007A8BEA /* TestCRTP.mm in Sources */,
 				B7602DB519036E4E003AF5CB /* TestPtr.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
 				A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */,
