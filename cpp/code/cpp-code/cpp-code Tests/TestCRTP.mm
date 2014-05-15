@@ -15,7 +15,7 @@ public:
     void dump() { std::cout << "\t\tType class" << std::endl; }
 };
 
-class EncodeTwo : public EncoderOne {
+class EncoderTwo : public EncoderOne {
 public:
     void dump() { std::cout << "\t\tSecondType class" << std::endl; }
 };
@@ -79,7 +79,7 @@ void Derived<Encoder>::print() {
     }
     
     {
-        Base<Derived<X>, X> object;
+        Base<Derived<EncoderTwo>, EncoderTwo> object;
         object.print();
     }
 }
