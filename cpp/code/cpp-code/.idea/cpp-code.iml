@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CIDR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../BaseUnit.cpp">
+      <sourceFolder url="file://$MODULE_DIR$/../BaseUnit.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../BaseUnit.h">
+      <sourceFolder url="file://$MODULE_DIR$/../BaseUnit.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Initialization.cpp">
+      <sourceFolder url="file://$MODULE_DIR$/../Initialization.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../Initialization.h">
+      <sourceFolder url="file://$MODULE_DIR$/../Initialization.h" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$/../function_specialization.cpp">
+      <sourceFolder url="file://$MODULE_DIR$/../function_specialization.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../specialization.cpp">
+      <sourceFolder url="file://$MODULE_DIR$/../specialization.cpp" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../static_ducktyping.cpp">
+      <sourceFolder url="file://$MODULE_DIR$/../static_ducktyping.cpp" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
+

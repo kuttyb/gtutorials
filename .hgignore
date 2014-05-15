@@ -20,3 +20,5 @@ GPATH
 **/**.xcuserstate
 
 **/.DS_Store
+
+**xcuserdata**

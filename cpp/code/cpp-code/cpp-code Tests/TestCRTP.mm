@@ -8,43 +8,50 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "TypeAssert.h"
 
-class Type {
+class EncoderOne {
 public:
     void dump() { std::cout << "\t\tType class" << std::endl; }
 };
 
-class SecondType {
+class EncodeTwo : public EncoderOne {
 public:
     void dump() { std::cout << "\t\tSecondType class" << std::endl; }
 };
 
+class X {
+public:
+    void dump() {}
+};
 
-
-template <typename SelfType, typename Strategy>
+template <typename Subtype, typename Encoder>
 class Base {
+    ASSERT_TYPE_START
+    ASSERT_TYPE_INHERITS(Encoder, EncoderOne)
+    ASSERT_TYPE_END
 private:
-    Strategy s;
+    Encoder s;
 public:
     void print();
 };
-template <typename SelfType, typename Strategy>
-void Base<SelfType, Strategy>::print() {
+template <typename Subtype, typename Encoder>
+void Base<Subtype, Encoder>::print() {
     std::cout<< std::endl << "Base class" << std::endl;
     s.dump();
-    static_cast<SelfType*>(this)->print();
+    static_cast<Subtype*>(this)->print();
 }
 
 
 
-template <typename Strategy>
-class Derived : public Base<Derived<Strategy>, Strategy> {
+template <typename Encoder>
+class Derived : public Base<Derived<Encoder>, Encoder> {
 public:
     void print();
 };
 
-template <typename Strategy>
-void Derived<Strategy>::print() {
+template <typename Encoder>
+void Derived<Encoder>::print() {
     std::cout<< "Derived class" << std::endl << std::endl;
 }
 
@@ -52,16 +59,13 @@ void Derived<Strategy>::print() {
 
 
 @interface TestCRTP : XCTestCase
-
 @end
 
 @implementation TestCRTP
-
 - (void)setUp
 {
     [super setUp];
 }
-
 - (void)tearDown
 {
     [super tearDown];
@@ -70,12 +74,12 @@ void Derived<Strategy>::print() {
 - (void)testExample
 {
     {
-        Base<Derived<Type>, Type> object;
+        Base<Derived<EncoderOne>, EncoderOne> object;
         object.print();
     }
     
     {
-        Base<Derived<SecondType>, SecondType> object;
+        Base<Derived<X>, X> object;
         object.print();
     }
 }
