@@ -4,7 +4,7 @@
 using std::cout;
 using std::endl;
 
-template<typename T>
+template<typename T, typename U>
 void function(T input, int x) 
 {
 	cout << input << " " << x << " " << endl;
@@ -14,7 +14,7 @@ void function(T input, int x)
 // When you are specializing the type on your own, 
 // leave template<> empty w/o providing the Parameterized
 // type
-template<>
+template<typename U>
 void function(int input, int x) 
 {
 	assert(input && x);
@@ -22,7 +22,7 @@ void function(int input, int x)
 	cout << "integer version" << endl;
 }
 
-template<>
+template<int>
 void function(float input, int x)
 {
 	cout << "float version" << input << " " << x << endl;

@@ -1,0 +1,64 @@
+==============================================================================
+NOTE: For Classes, specialization is explicit. For functions, it is implicit.
+
+So template <> class X <int, float, string> { .. };
+But never template <> void func<int, float, string>( ... ) { .. }
+The latter is deduced.
+==============================================================================
+
+Class
+=====
+[a] Original
+
+template <typename T, typename U, typename V>
+class X {
+};
+
+[b] Partial
+
+template <typename V, typename U>
+class X<int> {
+};
+
+// whatever is being specialized, place it next to the class name i.e., class X <int> and 
+// leave the unspecialized ones up there with the typenames
+
+[c] Full
+template <>
+class X <int, int, float> {
+};
+
+Make sure the empty template <> is maintained
+
+
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------
+Function
+========
+[a] Original
+
+template <typename T, typename U, typename V>
+void func(T a, U b) { }
+
+
+[b] Partial
+
+template <typename V>
+void func(int a, float b) { }
+
+
+[c] Full
+
+template <string>
+void func(int a, float b) { }
+
+
+So the key here is you never explicitly write what the specialized types are. So never do void func<int, int, float>.
+That is deduced. 
+
+Notice in [c] we did a Full Specialization by providing template <string> which is a Type Parameter that is not actively
+used. Its done thus and not template <> void func<int>(int a, float b) { }
+
+
+

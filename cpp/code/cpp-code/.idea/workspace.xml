@@ -23,19 +23,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TestCRTP.mm" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
+      <file leaf-file-name="TestBaseUnit.mm" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestBaseUnit.mm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="10" selection-start="213" selection-end="213" vertical-scroll-proportion="0.07860262" vertical-offset="120" max-vertical-offset="1209">
+            <state line="28" column="43" selection-start="369" selection-end="369" vertical-scroll-proportion="0.76637554" vertical-offset="0" max-vertical-offset="650">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BridgeTemplates.cpp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BridgeTemplates.cpp">
+      <file leaf-file-name="TestCRTP.mm" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="481">
+            <state line="58" column="26" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="1209">
               <folding />
             </state>
           </provider>
@@ -61,7 +61,7 @@
     <option name="width" value="1436" />
     <option name="height" value="818" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -121,13 +121,13 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="vcs.Mercurial" />
+    <property name="options.lastSelected" value="project.propDebugger" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
   </component>
-  <component name="RunManager" selected="XCTest/Kiwi.All in TestCRTP.mm">
+  <component name="RunManager" selected="XCTest/Kiwi.All in TestBaseUnit">
     <configuration default="false" name="All in TestClosure" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" SCHEME_NAME="All in TestClosure" PROJECT_NAME="cpp-code" TARGET_NAME="cpp-code Tests" CONFIG_NAME="Release" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" TEST_CLASS="TestClosure" TEST_MODE="SUITE_TEST">
       <envs />
       <RunnerSettings RunnerId="AppRunner" />
@@ -135,6 +135,18 @@
       <method />
     </configuration>
     <configuration default="false" name="All in TestCRTP.mm" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" SCHEME_NAME="All in TestCRTP.mm" PROJECT_NAME="cpp-code" TARGET_NAME="cpp-code Tests" CONFIG_NAME="Release" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" TEST_PATTERN="TestCRTP" TEST_MODE="PATTERN">
+      <envs />
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="-[TestLonePtr testMoveSemanticsUniquePtr]" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" SCHEME_NAME="-[TestLonePtr testMoveSemanticsUniquePtr]" PROJECT_NAME="cpp-code" TARGET_NAME="cpp-code Tests" CONFIG_NAME="Release" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" TEST_CLASS="TestLonePtr" TEST_METHOD="testMoveSemanticsUniquePtr" TEST_MODE="SUITE_TEST">
+      <envs />
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="All in TestBaseUnit" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" SCHEME_NAME="All in TestBaseUnit" PROJECT_NAME="cpp-code" TARGET_NAME="cpp-code Tests" CONFIG_NAME="Release" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" TEST_CLASS="TestBaseUnit" TEST_MODE="SUITE_TEST">
       <envs />
       <RunnerSettings RunnerId="AppRunner" />
       <ConfigurationWrapper RunnerId="AppRunner" />
@@ -162,16 +174,20 @@
       <envs />
       <method />
     </configuration>
-    <list size="4">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Application.cpp-code" />
-      <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestClosure" />
-      <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP.mm" />
-      <item index="3" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP" />
+      <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP" />
+      <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestClosure" />
+      <item index="3" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP.mm" />
+      <item index="4" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestLonePtr testMoveSemanticsUniquePtr]" />
+      <item index="5" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestBaseUnit" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP.mm" />
-        <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestClosure" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestBaseUnit" />
+        <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestLonePtr testMoveSemanticsUniquePtr]" />
+        <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestCRTP.mm" />
+        <item index="3" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestClosure" />
       </list>
     </recent_temporary>
   </component>
@@ -191,6 +207,7 @@
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
     <option name="IGNORE_EXTERNALS" value="false" />
+    <configuration useDefault="true">$USER_HOME$/.subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
   <component name="TaskManager">
@@ -225,22 +242,22 @@
     <frame x="2" y="22" width="1436" height="818" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32596686" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32458565" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872927" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24982308" sideWeight="0.6712707" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25395682" sideWeight="0.6712707" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964029" sideWeight="0.6712707" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872927" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292011" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -256,6 +273,34 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="41" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BridgeTemplates.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="35" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="143" max-vertical-offset="481">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BridgeTemplates.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="481">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="10" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0" vertical-offset="156" max-vertical-offset="1209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="44" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" vertical-offset="377" max-vertical-offset="1209">
@@ -293,13 +338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BridgeTemplates.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="481">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../BaseUnit.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="458">
@@ -307,9 +345,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestLonePtr.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="26" selection-start="1237" selection-end="1237" vertical-scroll-proportion="0.5742358" vertical-offset="660" max-vertical-offset="1274">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BridgeTemplates.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="34" selection-start="364" selection-end="364" vertical-scroll-proportion="0.53930134" vertical-offset="0" max-vertical-offset="494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BridgeTemplates.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="17" selection-start="339" selection-end="339" vertical-scroll-proportion="0.510917" vertical-offset="0" max-vertical-offset="481">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestCRTP.mm">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="213" selection-end="213" vertical-scroll-proportion="0.07860262" vertical-offset="120" max-vertical-offset="1209">
+        <state line="58" column="26" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0" vertical-offset="182" max-vertical-offset="1209">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp-code Tests/TestBaseUnit.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="43" selection-start="369" selection-end="369" vertical-scroll-proportion="0.76637554" vertical-offset="0" max-vertical-offset="650">
           <folding />
         </state>
       </provider>

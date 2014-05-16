@@ -13,7 +13,7 @@ using std::endl;
 
 // ----------------------------------------------
 // Class Partial Specialization
-template <typename T, typename U>
+template <typename T, typename U, typename Z>
 class X
 {
 public:	
@@ -25,16 +25,16 @@ public:
 
 
 // Partially Specialized Class
-template <typename U>
-class X<int, U>
+template <typename Z, typename U>
+class X<Z, int, U>
 {
 public:	
 	void func(int one, U two);
 };
 
 // Damn so this is how you define (not declare) a partially specialized function outside its header
-template <typename U>
-void X<int, U>::func(int one, U two)
+template <typename Z, typename U>
+void X<Z, int, U>::func(int one, U two)
 {
     cout << "printing partially specialized " << one << " " << two << endl;
 }
@@ -42,7 +42,7 @@ void X<int, U>::func(int one, U two)
 
 // Fully Specialized Class
 template <>
-class X<double, double>
+class X<double, double, double>
 {
 public:
 	void func(double one, double two);
@@ -51,7 +51,7 @@ public:
 
 // And this is how you define a FULLY specialized class, don't write the template<> part
 // since everything has been fully specialized already
-void X<double, double>::func(double one, double two)
+void X<double, double, double>::func(double one, double two)
 {
     cout << "printing fully specialized " << one << " " << two << endl;
 }
@@ -61,16 +61,16 @@ void X<double, double>::func(double one, double two)
 int test_specialization(void)
 {
 	// This should use the generic versino
-	X<float, float> a;
+	X<float, float, int> a;
 	a.func(2.03f, 3.1f);
 	
 	// This should use the partially specialized version 
 	// with an integer bias,
-	X<int, float> b;
+	X<int, float, int> b;
 	b.func(2, 3.4f);
 
 	// This should use the fully specialized version
-	X<double, double> c;
+	X<double, double, double> c;
 	c.func(3.03f, 3.3f);
 
 	return 0;

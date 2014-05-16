@@ -10,12 +10,12 @@
 #include <iostream>
 #include "TypeAssert.h"
 
-class EncoderOne {
+class BaseEncoder {
 public:
     void dump() { std::cout << "\t\tType class" << std::endl; }
 };
 
-class EncoderTwo : public EncoderOne {
+class EncoderTwo : public BaseEncoder {
 public:
     void dump() { std::cout << "\t\tSecondType class" << std::endl; }
 };
@@ -28,7 +28,7 @@ public:
 template <typename Subtype, typename Encoder>
 class Base {
     ASSERT_TYPE_START
-    ASSERT_TYPE_INHERITS(Encoder, EncoderOne)
+    ASSERT_TYPE_INHERITS(Encoder, BaseEncoder)
     ASSERT_TYPE_END
 private:
     Encoder s;
@@ -74,7 +74,7 @@ void Derived<Encoder>::print() {
 - (void)testExample
 {
     {
-        Base<Derived<EncoderOne>, EncoderOne> object;
+        Base<Derived<BaseEncoder>, BaseEncoder> object;
         object.print();
     }
     
