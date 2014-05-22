@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <inttypes.h>
-#include <stdbool.h>
 #include <assert.h>
 
 #define MAX(a,b) 					(((a) > (b)) ? (a) : (b))
@@ -9,6 +7,7 @@
 
 int main(void) 
 {
+#if 1
   uint32_t transfer_output;
   uint32_t transfer_min_clamp   = (uint32_t)-260;
   uint32_t transfer_max_clamp   = 0;
@@ -29,6 +28,11 @@ int main(void)
 
 	transfer_output = transfer_output_base + transfer_output;
 	printf("transfer_output %d\n", transfer_output);
+#else
+	uint32_t   a = 10;
+	int32_t   b = -2;
+	assert(a > b);
+#endif 
 
   return 0;
 }
