@@ -10,6 +10,8 @@ filters.c             \
 scratch.c             \
 struct.c              \
 signed.c              \
+signed2.c             \
+signedrules.c         \
 mem.c                 \
 depstack.c            \
 switch.c              \
