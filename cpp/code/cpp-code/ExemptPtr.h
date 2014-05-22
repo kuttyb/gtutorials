@@ -33,7 +33,6 @@ public:
 	
 	// Overloaded dereference and member access operators
 	T operator*() const  { return *m_ptr; }
-	T operator->() const { return *m_ptr; }
 };
 
 #endif /* defined(__cpp_code__ExemptPtr__) */
