@@ -61,4 +61,14 @@ Notice in [c] we did a Full Specialization by providing template <string> which 
 used. Its done thus and not template <> void func<int>(int a, float b) { }
 
 
+UPDATE: You can explicitly specialize by providing the type inside the template declaration like this
+template <int, int, int> 
+void function(int a, int b, int c)
+     
+        Thats fine
 
+Course you just don't explicitly specialize thus 
+template <>
+void function<int, int, int>(int a, int b, int c)
+
+The latter style is done for Class Type specialization. 
