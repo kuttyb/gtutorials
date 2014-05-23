@@ -21,6 +21,7 @@ public:
 
 void test_func(ExemptPtr<X> & ref) {
 	(*ref).print();
+	ref->print();
 }
 
 @interface TestExemptPtr : XCTestCase
@@ -44,6 +45,12 @@ void test_func(ExemptPtr<X> & ref) {
 	ExemptPtr<X> x(new X());
 	test_func(x);
 	(*x).print();
+	x->print();
+	
+	std::unique_ptr<X> y(new X());
+	(*y).print();
+	y->print();
+	
 }
 
 @end

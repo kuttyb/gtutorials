@@ -38,8 +38,8 @@ T LonePtr<T>::operator*() const {
 }
 
 template <typename T>
-T LonePtr<T>::operator->() const {
-    return *m_ptr;
+T* LonePtr<T>::operator->() const {
+    return m_ptr;
 }
 
 template <typename T>

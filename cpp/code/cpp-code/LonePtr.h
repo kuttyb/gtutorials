@@ -31,7 +31,7 @@ public:
     
     // Overloaded dereference and member access operators
     T operator*() const;
-    T operator->() const;
+    T* operator->() const;
 };
 
 #endif /* defined(__cpp_code__LonePtr__) */
