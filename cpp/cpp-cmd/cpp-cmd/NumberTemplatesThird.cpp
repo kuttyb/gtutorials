@@ -10,7 +10,7 @@
 #include "NumberTemplates.hpp"
 
 template <>
-void DataStore<3>::print(void) {
+void DataStore<Three>::print(void) {
     cout << "3: array of size 3" << endl;
 }
 

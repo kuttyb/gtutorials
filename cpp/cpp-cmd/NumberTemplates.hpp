@@ -14,17 +14,23 @@
 using std::cout;
 using std::endl;
 
-template <int T>
+typedef enum {
+    Base  = 1,
+    Two   = 2,
+    Three = 3
+} DataStoreTypes;
+
+template <DataStoreTypes T>
 class DataStore{
 private:
-    int _array[T];
+    int _array[5];
 public:
     void print(void);
 };
 
-template <int T>
+template <DataStoreTypes T>
 void DataStore<T>::print(void) {
-    cout <<"Generic: size of the array is " << T << endl;
+    cout <<"Generic: size of the array is " << 5 << endl;
 }
 
 

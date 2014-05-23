@@ -10,7 +10,7 @@
 #include "NumberTemplates.hpp"
 
 template <>
-void DataStore<2>::print(void) {
+void DataStore<Two>::print(void) {
     cout << "2: size of the array is " << 2 << endl;
 }
 

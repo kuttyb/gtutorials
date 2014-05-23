@@ -11,11 +11,11 @@
 
 int num_main(void)
 {
-    DataStore<3> x;
+    DataStore<Three> x;
     x.print();
-    DataStore<2> y;
+    DataStore<Two> y;
     y.print();
-    DataStore<5> z;
+    DataStore<Base> z;
     z.print();
     
     return 0;
