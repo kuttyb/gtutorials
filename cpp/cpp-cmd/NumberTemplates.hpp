@@ -9,6 +9,11 @@
 #ifndef cpp_cmd_NumberTemplates_h
 #define cpp_cmd_NumberTemplates_h
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 template <int T>
 class DataStore{
 private:
@@ -19,17 +24,7 @@ public:
 
 template <int T>
 void DataStore<T>::print(void) {
-    cout <<"size of the array is " << T << endl;
-}
-
-int num_main(void)
-{
-    DataStore<3> x;
-    x.print();
-    DataStore<5> y;
-    y.print();
-    
-    return 0;
+    cout <<"Generic: size of the array is " << T << endl;
 }
 
 

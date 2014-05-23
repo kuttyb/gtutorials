@@ -10,7 +10,7 @@
 #define cpp_cmd_TypeAssert_h
 
 #define ASSERT_TYPE_START private: static const bool x_y =
-#define ASSERT_TYPE_INHERITS(U, V)   ((U*)NULL == (V*)NULL) &&
+#define ASSERT_TYPE_INHERITS(U, V)   (static_cast<U*>(NULL) == static_cast<V*>(NULL)) &&
 #define ASSERT_TYPE_END    false;
 
 #endif
