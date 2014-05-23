@@ -1,0 +1,5 @@
+$(SDK_DIR)
+
+That's how you set them
+
+"xcodebuild -showBuildSettings" will list out the various variables that are part of this project
