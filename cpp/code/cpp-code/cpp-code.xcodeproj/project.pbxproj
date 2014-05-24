@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		A888F9411920031500AB20C8 /* TestSetStruct.mm in Sources */ = {isa = PBXBuildFile; fileRef = A888F9401920031500AB20C8 /* TestSetStruct.mm */; };
+		A8D72132193128C2004CE5C1 /* IA.h in Headers */ = {isa = PBXBuildFile; fileRef = A8D72131193128C2004CE5C1 /* IA.h */; };
+		A8D721341931292E004CE5C1 /* One.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D721331931292E004CE5C1 /* One.cpp */; };
+		A8D7213719312A2B004CE5C1 /* Two.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D7213519312A2B004CE5C1 /* Two.cpp */; };
+		A8D7213E19312CB2004CE5C1 /* TestV2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8D7213D19312CB2004CE5C1 /* TestV2.mm */; };
 		A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFB190192AC005BE89C /* LonePtr.hpp */; };
 		A8DD8EFE190192AC005BE89C /* LonePtr.h in Headers */ = {isa = PBXBuildFile; fileRef = A8DD8EFC190192AC005BE89C /* LonePtr.h */; };
 		A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */; };
@@ -63,6 +67,10 @@
 
 /* Begin PBXFileReference section */
 		A888F9401920031500AB20C8 /* TestSetStruct.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSetStruct.mm; sourceTree = "<group>"; };
+		A8D72131193128C2004CE5C1 /* IA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IA.h; sourceTree = "<group>"; };
+		A8D721331931292E004CE5C1 /* One.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = One.cpp; sourceTree = "<group>"; };
+		A8D7213519312A2B004CE5C1 /* Two.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Two.cpp; sourceTree = "<group>"; };
+		A8D7213D19312CB2004CE5C1 /* TestV2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestV2.mm; sourceTree = "<group>"; };
 		A8DD8EFB190192AC005BE89C /* LonePtr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LonePtr.hpp; sourceTree = "<group>"; };
 		A8DD8EFC190192AC005BE89C /* LonePtr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonePtr.h; sourceTree = "<group>"; };
 		A8DD8EFF190193EB005BE89C /* TestLonePtr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLonePtr.mm; sourceTree = "<group>"; };
@@ -129,6 +137,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8D72130193128AC004CE5C1 /* v2 */ = {
+			isa = PBXGroup;
+			children = (
+				A8D721331931292E004CE5C1 /* One.cpp */,
+				A8D72131193128C2004CE5C1 /* IA.h */,
+				A8D7213519312A2B004CE5C1 /* Two.cpp */,
+			);
+			name = v2;
+			sourceTree = "<group>";
+		};
 		B74CAE1018A72963005653D7 /* HAL */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +164,7 @@
 				B74CAE1018A72963005653D7 /* HAL */,
 				B751F716188F647A00CC8228 /* BaseOne.hpp */,
 				B7CF87031894C6680046FCC5 /* Lambda.cpp */,
+				A8D72130193128AC004CE5C1 /* v2 */,
 				A8DD8EFB190192AC005BE89C /* LonePtr.hpp */,
 				A8DD8EFC190192AC005BE89C /* LonePtr.h */,
 				B7D9A4B1192EC003002CF7D1 /* ExemptPtr.h */,
@@ -193,6 +212,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A8D7213D19312CB2004CE5C1 /* TestV2.mm */,
 				B702ED04192EC2CB00AEA2D7 /* TestExemptPtr.mm */,
 				B7D9A4AE192EBDA1002CF7D1 /* TestReference.mm */,
 				B7169D3F192462ED007A8BEA /* TestCRTP.mm */,
@@ -237,6 +257,7 @@
 				B74CAE1418A729E8005653D7 /* BaseUnit.h in Headers */,
 				B7C54F0318837E6E00A0678E /* Initialization.h in Headers */,
 				B7CF87021894C23D0046FCC5 /* Template.h in Headers */,
+				A8D72132193128C2004CE5C1 /* IA.h in Headers */,
 				B7CF87061894C6680046FCC5 /* Lambda.h in Headers */,
 				B751F71B188F654C00CC8228 /* DOne.h in Headers */,
 				B7D9A4B3192EC003002CF7D1 /* ExemptPtr.h in Headers */,
@@ -330,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8D7213719312A2B004CE5C1 /* Two.cpp in Sources */,
 				B7D230C318FB8200008EEC49 /* BridgeTemplates.cpp in Sources */,
 				B7C54F0218837E6E00A0678E /* Initialization.cpp in Sources */,
 				A8DD8EFD190192AC005BE89C /* LonePtr.hpp in Sources */,
@@ -338,6 +360,7 @@
 				B7A1C6EC190E3AD80051E930 /* SplitClass.cpp in Sources */,
 				B7602DB219036C01003AF5CB /* SmartPtr.cpp in Sources */,
 				B7885CB418693B7A004125B5 /* specialization.cpp in Sources */,
+				A8D721341931292E004CE5C1 /* One.cpp in Sources */,
 				B7885CAF18693B7A004125B5 /* function_specialization.cpp in Sources */,
 				B751F71A188F654C00CC8228 /* DOne.cpp in Sources */,
 				B7885CB518693B7A004125B5 /* static_ducktyping.cpp in Sources */,
@@ -353,6 +376,7 @@
 				B785528118CD5CDE006CEC85 /* TestDART.mm in Sources */,
 				B74CAE1618A72CBD005653D7 /* TestBaseUnit.mm in Sources */,
 				B7169D40192462ED007A8BEA /* TestCRTP.mm in Sources */,
+				A8D7213E19312CB2004CE5C1 /* TestV2.mm in Sources */,
 				B702ED05192EC2CB00AEA2D7 /* TestExemptPtr.mm in Sources */,
 				B7602DB519036E4E003AF5CB /* TestPtr.mm in Sources */,
 				B7A153871895029400FAEAC1 /* TestClosure.mm in Sources */,
