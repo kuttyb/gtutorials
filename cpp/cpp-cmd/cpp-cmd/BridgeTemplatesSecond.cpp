@@ -14,3 +14,7 @@ void DataStore<DataStoreSecond>::print(void) {
     cout << "2: size of the array is " << 2 << endl;
 }
 
+void DataStoreFourth::print() {
+    cout << "Fourth speaking" << endl;
+    DataStore::print();
+}

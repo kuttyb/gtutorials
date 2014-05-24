@@ -18,6 +18,9 @@ int num_main(void)
     DataStore<void> z;
     z.print();
     
+    DataStoreFourth fourth;
+    fourth.print();
+    
     return 0;
 }
 

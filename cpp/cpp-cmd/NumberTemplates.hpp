@@ -33,4 +33,9 @@ class DataStoreSecond : public DataStore<DataStoreSecond> {
 class DataStoreThird  : public DataStore<DataStoreThird> {
 };
 
+class DataStoreFourth  : public DataStore<DataStoreThird> {
+public:
+    void print(void);
+};
+
 #endif
