@@ -11,6 +11,7 @@
 
 #include <iostream>
 
+#pragma mark Base
 template <typename SUBTYPE>
 class Base {
 public:
@@ -20,6 +21,7 @@ public:
     void print_all(void) { print(); print_more(); print_most(); }
 };
 
+#pragma mark D1
 class D1 : public Base<D1> {
 public:
     void print(void);
@@ -27,6 +29,7 @@ public:
     void print_most(void);
 };
 
+#pragma mark D2
 class D2 : public D1, public Base<D2> {
 public:
     void print(void);
@@ -34,11 +37,12 @@ public:
     void print_most(void);
 };
 
+#pragma mark D3
 class D3 : public D2, public Base<D3>   {
 public:
     void print(void);
     void print_more(void);
-    void print_most(void);
+   void print_most(void);
 };
 
 #endif /* defined(__cpp_cmd__Base__) */
