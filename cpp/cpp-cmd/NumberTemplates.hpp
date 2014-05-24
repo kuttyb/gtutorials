@@ -14,7 +14,7 @@
 using std::cout;
 using std::endl;
 
-template <typename T>
+template <typename Subtype>
 class DataStore{
 private:
     int _array[5];
@@ -22,8 +22,8 @@ public:
     void print(void);
 };
 
-template <typename T>
-void DataStore<T>::print(void) {
+template <typename Subtype>
+void DataStore<Subtype>::print(void) {
     cout <<"Generic: size of the array is " << 5 << endl;
 }
 
