@@ -76,4 +76,12 @@ void test_class(void) {
     test_class();
 }
 
+- (void)testImplInheritance
+{
+    Twenty twenty;
+    
+    Client<One, Twenty> client;
+    client.setup(twenty);
+}
+
 @end

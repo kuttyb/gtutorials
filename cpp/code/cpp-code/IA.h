@@ -25,4 +25,6 @@ class One : public IA<One> {
 class Two : public IA<Two> {
 };
 
+class Twenty : public IA<Twenty> {
+};
 #endif
