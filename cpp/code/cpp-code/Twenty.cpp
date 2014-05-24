@@ -15,7 +15,6 @@ using std::endl;
 template <>
 void IA<Twenty>::print() {
     cout << " Twenty speaking " << endl;
-//    Two::print();
  }
 
 template <>

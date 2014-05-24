@@ -12,6 +12,7 @@
 /* Pure Interface(Java) or Protocol(Objective-C) */
 template <typename SUBTYPE>
 class IA {
+protected:
 public :
     void print(void);
     int  add(int a, int b);
@@ -25,6 +26,6 @@ class One : public IA<One> {
 class Two : public IA<Two> {
 };
 
-class Twenty : public IA<Twenty> {
+class Twenty : public IA<Twenty>, Two {
 };
 #endif
