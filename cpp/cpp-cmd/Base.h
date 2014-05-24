@@ -18,7 +18,7 @@ public:
     void print(void) { static_cast<SUBTYPE*>(this)->print();}
     void print_more(void) { static_cast<SUBTYPE*>(this)->print_more(); }
     void print_most(void) { static_cast<SUBTYPE*>(this)->print_most(); }
-    void print_all(void) { print(); print_more(); print_most(); }
+    void print_all(void)  { print(); print_more(); print_most(); }
 };
 
 #pragma mark D1
