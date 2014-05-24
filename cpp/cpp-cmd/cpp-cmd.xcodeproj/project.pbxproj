@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8784E92193141AD00D1B66E /* D1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8784E90193141AD00D1B66E /* D1.cpp */; };
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B7455934192F1C5F008FCAAE /* BridgeTemplatesSecond.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7455933192F1C5F008FCAAE /* BridgeTemplatesSecond.cpp */; };
 		B7455936192F1D70008FCAAE /* NumberTemplatesThird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7455935192F1D70008FCAAE /* NumberTemplatesThird.cpp */; };
@@ -39,6 +40,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A8784E8E1931402E00D1B66E /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base.h; sourceTree = "<group>"; };
+		A8784E90193141AD00D1B66E /* D1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = D1.cpp; sourceTree = "<group>"; };
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B7455933192F1C5F008FCAAE /* BridgeTemplatesSecond.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BridgeTemplatesSecond.cpp; path = "cpp-cmd/BridgeTemplatesSecond.cpp"; sourceTree = "<group>"; };
@@ -74,11 +77,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A8784E8C1931401F00D1B66E /* CRTP */ = {
+			isa = PBXGroup;
+			children = (
+				A8784E8E1931402E00D1B66E /* Base.h */,
+				A8784E90193141AD00D1B66E /* D1.cpp */,
+			);
+			name = CRTP;
+			sourceTree = "<group>";
+		};
 		B743667B188F3F920096C8AE = {
 			isa = PBXGroup;
 			children = (
 				B7DDC0FE189222DA00EC77B8 /* BridgeTemplates.cpp */,
 				B7DDC1011892231600EC77B8 /* TypeAssert.h */,
+				A8784E8C1931401F00D1B66E /* CRTP */,
 				B7DDC0FF189222DA00EC77B8 /* BridgeTemplates.h */,
 				B78BE0F1189102E800ABEEFB /* NumberTemplates.hpp */,
 				B7455933192F1C5F008FCAAE /* BridgeTemplatesSecond.cpp */,
@@ -220,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8784E92193141AD00D1B66E /* D1.cpp in Sources */,
 				B7DDC100189222DA00EC77B8 /* BridgeTemplates.cpp in Sources */,
 				B7455934192F1C5F008FCAAE /* BridgeTemplatesSecond.cpp in Sources */,
 				B7455936192F1D70008FCAAE /* NumberTemplatesThird.cpp in Sources */,

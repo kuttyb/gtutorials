@@ -7,26 +7,11 @@
 //
 #include <assert.h>
 #include <iostream>
-#include "NumberTemplates.hpp"
-
-int num_main(void)
-{
-    DataStore<DataStoreThird> x;
-    x.print();
-    DataStore<DataStoreSecond> y;
-    y.print();
-    DataStore<void> z;
-    z.print();
-    
-    DataStoreFourth fourth;
-    fourth.print();
-    
-    return 0;
-}
+#include "Base.h"
 
 int main(void) {
-    
-    num_main();
+    Base<D3> d;
+    d.print_all();
     
     return 0;
 }
