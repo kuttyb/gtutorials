@@ -11,13 +11,15 @@
 
 #include <iostream>
 
+#define DISPATCH(T)  (static_cast<T*>(this))
+
 #pragma mark Base
 template <typename SUBTYPE>
 class Base {
 public:
-    void print(void) { static_cast<SUBTYPE*>(this)->print();}
-    void print_more(void) { static_cast<SUBTYPE*>(this)->print_more(); }
-    void print_most(void) { static_cast<SUBTYPE*>(this)->print_most(); }
+    void print(void)      { DISPATCH(SUBTYPE)->print();      }
+    void print_more(void) { DISPATCH(SUBTYPE)->print_more(); }
+    void print_most(void) { DISPATCH(SUBTYPE)->print_most(); }
     void print_all(void)  { print(); print_more(); print_most(); }
 };
 
@@ -42,7 +44,7 @@ class D3 : public D2, public Base<D3>   {
 public:
     void print(void);
     void print_more(void);
-   void print_most(void);
+    void print_most(void);
 };
 
 #endif /* defined(__cpp_cmd__Base__) */
