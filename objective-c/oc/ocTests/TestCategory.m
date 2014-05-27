@@ -20,7 +20,7 @@
 - (void)setUp
 {
     [super setUp];
-    subject = [[Second alloc]init];
+    subject = [[First alloc]init];
 }
 
 - (void)tearDown

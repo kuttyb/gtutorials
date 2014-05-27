@@ -32,6 +32,8 @@
 		B7E5E8A71934260E002D30E2 /* First.h in Headers */ = {isa = PBXBuildFile; fileRef = B7E5E8A51934260E002D30E2 /* First.h */; };
 		B7E5E8A81934260E002D30E2 /* First.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E5E8A61934260E002D30E2 /* First.m */; };
 		B7E5E8AA1934286B002D30E2 /* TestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E5E8A91934286B002D30E2 /* TestCategory.m */; };
+		B7E5E8AD19342E67002D30E2 /* FirstDisplay.h in Headers */ = {isa = PBXBuildFile; fileRef = B7E5E8AB19342E67002D30E2 /* FirstDisplay.h */; };
+		B7E5E8AE19342E67002D30E2 /* FirstDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E5E8AC19342E67002D30E2 /* FirstDisplay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		B7E5E8A51934260E002D30E2 /* First.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = First.h; sourceTree = "<group>"; };
 		B7E5E8A61934260E002D30E2 /* First.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = First.m; sourceTree = "<group>"; };
 		B7E5E8A91934286B002D30E2 /* TestCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCategory.m; sourceTree = "<group>"; };
+		B7E5E8AB19342E67002D30E2 /* FirstDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstDisplay.h; sourceTree = "<group>"; };
+		B7E5E8AC19342E67002D30E2 /* FirstDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstDisplay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +204,8 @@
 			isa = PBXGroup;
 			children = (
 				B7E5E8A51934260E002D30E2 /* First.h */,
+				B7E5E8AB19342E67002D30E2 /* FirstDisplay.h */,
+				B7E5E8AC19342E67002D30E2 /* FirstDisplay.m */,
 				B7E5E8A61934260E002D30E2 /* First.m */,
 			);
 			name = categories;
@@ -218,6 +224,7 @@
 				B7E5E8A71934260E002D30E2 /* First.h in Headers */,
 				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
 				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
+				B7E5E8AD19342E67002D30E2 /* FirstDisplay.h in Headers */,
 				6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +326,7 @@
 			files = (
 				B7E5E8A81934260E002D30E2 /* First.m in Sources */,
 				B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */,
+				B7E5E8AE19342E67002D30E2 /* FirstDisplay.m in Sources */,
 				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
 				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
 				B70B9B10187BA26B00CBFBDB /* oc.m in Sources */,
