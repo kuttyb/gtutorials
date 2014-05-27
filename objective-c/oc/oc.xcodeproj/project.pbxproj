@@ -29,6 +29,9 @@
 		B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */; };
 		B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B41187BA5FF00CBFBDB /* KBTest.m */; };
 		B7DB1E67187BD1F30003E18E /* KBTestThree.m in Sources */ = {isa = PBXBuildFile; fileRef = B7DB1E66187BD1F30003E18E /* KBTestThree.m */; };
+		B7E5E8A71934260E002D30E2 /* First.h in Headers */ = {isa = PBXBuildFile; fileRef = B7E5E8A51934260E002D30E2 /* First.h */; };
+		B7E5E8A81934260E002D30E2 /* First.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E5E8A61934260E002D30E2 /* First.m */; };
+		B7E5E8AA1934286B002D30E2 /* TestCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E5E8A91934286B002D30E2 /* TestCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		B70B9B40187BA5FF00CBFBDB /* KBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBTest.h; sourceTree = "<group>"; };
 		B70B9B41187BA5FF00CBFBDB /* KBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTest.m; sourceTree = "<group>"; };
 		B7DB1E66187BD1F30003E18E /* KBTestThree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestThree.m; sourceTree = "<group>"; };
+		B7E5E8A51934260E002D30E2 /* First.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = First.h; sourceTree = "<group>"; };
+		B7E5E8A61934260E002D30E2 /* First.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = First.m; sourceTree = "<group>"; };
+		B7E5E8A91934286B002D30E2 /* TestCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCategory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 		B70B9B07187BA26B00CBFBDB /* oc */ = {
 			isa = PBXGroup;
 			children = (
+				B7E5E8A419342566002D30E2 /* categories */,
 				B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */,
 				B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */,
 				B70B9B2E187BA2AE00CBFBDB /* KBNode.h */,
@@ -168,6 +175,7 @@
 		B70B9B1C187BA26B00CBFBDB /* ocTests */ = {
 			isa = PBXGroup;
 			children = (
+				B7E5E8A91934286B002D30E2 /* TestCategory.m */,
 				B7DB1E66187BD1F30003E18E /* KBTestThree.m */,
 				B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */,
 				B70B9B22187BA26B00CBFBDB /* ocTests.m */,
@@ -188,6 +196,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B7E5E8A419342566002D30E2 /* categories */ = {
+			isa = PBXGroup;
+			children = (
+				B7E5E8A51934260E002D30E2 /* First.h */,
+				B7E5E8A61934260E002D30E2 /* First.m */,
+			);
+			name = categories;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -198,6 +215,7 @@
 				B70B9B3A187BA2AE00CBFBDB /* KBThree.h in Headers */,
 				B70B9B38187BA2AE00CBFBDB /* KBOne.h in Headers */,
 				B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */,
+				B7E5E8A71934260E002D30E2 /* First.h in Headers */,
 				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
 				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
 				6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */,
@@ -299,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E5E8A81934260E002D30E2 /* First.m in Sources */,
 				B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */,
 				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
 				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
@@ -312,6 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B70B9B23187BA26B00CBFBDB /* ocTests.m in Sources */,
+				B7E5E8AA1934286B002D30E2 /* TestCategory.m in Sources */,
 				B7DB1E67187BD1F30003E18E /* KBTestThree.m in Sources */,
 				B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */,
 				B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */,
