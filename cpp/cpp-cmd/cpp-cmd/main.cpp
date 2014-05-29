@@ -7,7 +7,7 @@
 //
 #include <assert.h>
 #include <iostream>
-#include "Base.h"
+#include "D1.hpp"
 
 #pragma mark DummyClass
 class Dummy {
@@ -16,6 +16,8 @@ public:
     void print_more(void) {}
     void print_most(void) {}
 };
+
+template class D3<Dummy>;
 
 #pragma mark Client
 template <typename FIELD, typename MEMBER>
@@ -38,10 +40,11 @@ void Client<FIELD, MEMBER>::setup(Base<MEMBER> input) {
     input.print_all();
 }
 
+
 int main(void) {
     // Client<D1, Dummy> b; // This will not compile so it almost acts like Java Generics Wildcards
-    Client<D1, D3> b;
-    D3 input;
+    Client<D1, D3<Dummy> > b;
+    D3<Dummy> input;
     
     b.setup(input);
     

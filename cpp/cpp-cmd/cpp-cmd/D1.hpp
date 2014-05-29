@@ -39,15 +39,18 @@ void D2::print_most() {
 }
 
 #pragma mark D3
-void D3::print_more(void) {
+template <typename X>
+void D3<X>::print_more(void) {
     cout << "D3 print_more" << endl;
 }
 
-void D3::print(void) {
+template <typename X>
+void D3<X>::print(void) {
     D2::print();
 }
 
-void D3::print_most(void) {
+template <typename X>
+void D3<X>::print_most(void) {
     D1::print_most();
 }
 
