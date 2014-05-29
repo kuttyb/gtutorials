@@ -40,7 +40,8 @@ public:
 };
 
 #pragma mark D3
-class D3 : public D2, public Base<D3>   {
+template <typename X>
+class D3 : public D2, public Base<D3<X> >   {
 public:
     void print(void);
     void print_more(void);

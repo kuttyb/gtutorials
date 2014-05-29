@@ -15,7 +15,6 @@
 using std::cout;
 using std::endl;
 
-
 template <typename T>
 void BaseOne<T>::start(T *input) {
     cout << "Base class speaking" << endl;
