@@ -42,11 +42,16 @@ void Client<FIELD, MEMBER>::setup(Base<MEMBER> input) {
 
 
 int main(void) {
+#if 0
     // Client<D1, Dummy> b; // This will not compile so it almost acts like Java Generics Wildcards
     Client<D1, D3<Dummy> > b;
     D3<Dummy> input;
     
     b.setup(input);
+#endif
+    
+    Base<D2> *b = new D2(3);
+    b->print();
     
     return 0;
 }

@@ -21,6 +21,8 @@ public :
 
 /* Interface Inheritance, pure and simplel */
 class One : public IA<One> {
+public:
+    int field;
 };
 
 class Two : public IA<Two> {
