@@ -25,7 +25,12 @@ public:
 
 #pragma mark D1
 class D1 : public Base<D1> {
+private:
+    int d1_state;
 public:
+    D1(int d1_input) : d1_state(d1_input){
+        std::cout << "D1 ctor" << std::endl;
+    }
     void print(void);
     void print_more(void);
     void print_most(void);
@@ -33,7 +38,12 @@ public:
 
 #pragma mark D2
 class D2 : public D1, public Base<D2> {
+private:
+    int state;
 public:
+    D2(int input) : D1(input + 10), state(input) {
+        std::cout << "D2 ctor" << std::endl;
+    }
     void print(void);
     void print_more(void);
     void print_most(void);

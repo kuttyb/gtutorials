@@ -13,7 +13,7 @@ using std::endl;
 
 #pragma mark D1
 void D1::print(void) {
-    cout << "D1 print" << endl;
+    cout << "D1 print " << d1_state << endl;
 }
 
 void D1::print_more() {
@@ -27,8 +27,9 @@ void D1::print_most() {
 
 #pragma mark D2
 void D2::print(void) {
-    cout << "D2 print" << endl;
-}
+    D1::print();
+    cout << "D2 print " << state << endl;
+ }
 
 void D2::print_more(void) {
     D1::print_more();
