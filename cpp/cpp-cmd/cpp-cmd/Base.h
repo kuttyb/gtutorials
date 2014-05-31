@@ -20,7 +20,13 @@ public:
     void print(void)      { DISPATCH(SUBTYPE)->print();      }
     void print_more(void) { DISPATCH(SUBTYPE)->print_more(); }
     void print_most(void) { DISPATCH(SUBTYPE)->print_most(); }
-    void print_all(void)  { print(); print_more(); print_most(); }
+    void print_all(void)  {
+        print();
+        print_more();
+        print_most();
+        std::cout << "size is " << Base<SUBTYPE>::get_size() << std::endl;
+    }
+    uint32_t get_size(void) const;
 };
 
 #pragma mark D1

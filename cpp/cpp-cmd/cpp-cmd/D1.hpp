@@ -62,3 +62,23 @@ void D3<X>::print_most(void) {
     cout << "==Type Specialization at play==" << endl;
 }
 
+#pragma mark Type Specializations
+template <typename SUBTYPE>
+uint32_t Base<SUBTYPE>::get_size() const {
+    return 100;
+}
+
+template <>
+uint32_t Base<D1>::get_size() const {
+    return 1;
+}
+
+template <>
+uint32_t Base<D2>::get_size() const {
+    return 2;
+}
+
+template <>
+uint32_t Base<D3<Dummy> >::get_size() const {
+    return 3;
+}

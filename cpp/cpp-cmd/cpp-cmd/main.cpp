@@ -34,7 +34,7 @@ void Client<FIELD, MEMBER>::setup(Base<MEMBER> input) {
 
 
 int main(void) {
-#if 1
+#if 0
     {
         // Client<D1, Dummy> b; // This will not compile so it almost acts like Java Generics Wildcards
         Client<D1, D3<Dummy> > b;
@@ -43,24 +43,31 @@ int main(void) {
     }
 #endif
     
-#if 1
+#if 0
     {
         Base<D2> *b = new D2(3);
         b->print();
     }
 #endif
     
-#if 1
+#if 0
     {
         Base<D1> *b = new D1(2);
         b->print();
     }
 #endif
     
-#if 1
+#if 0
     {
         Base<D3<Dummy> > d3;
         d3.print_most();
+    }
+#endif
+    
+#if 1
+    {
+        Base<D1> d;
+        d.print_all();
     }
 #endif
     return 0;
