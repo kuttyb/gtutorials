@@ -11,6 +11,10 @@
 using std::cout;
 using std::endl;
 
+// Keep in mind, Type Specialization going from one type to another
+// only works when the types are already part of your Inheritance
+// hierarchy
+
 template <typename SUBTYPE>
 void Base<SUBTYPE>::specialize()
 {
