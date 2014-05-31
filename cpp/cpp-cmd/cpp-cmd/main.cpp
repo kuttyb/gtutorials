@@ -47,7 +47,6 @@ int main(void) {
     {
         Base<D2> *b = new D2(3);
         b->print();
-        b->specialize();
     }
 #endif
     
@@ -55,7 +54,6 @@ int main(void) {
     {
         Base<D1> *b = new D1(2);
         b->print();
-        b->specialize();
     }
 #endif
     

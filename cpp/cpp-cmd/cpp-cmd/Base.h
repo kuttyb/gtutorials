@@ -21,7 +21,6 @@ public:
     void print_more(void) { DISPATCH(SUBTYPE)->print_more(); }
     void print_most(void) { DISPATCH(SUBTYPE)->print_most(); }
     void print_all(void)  { print(); print_more(); print_most(); }
-    void specialize(void);
 };
 
 #pragma mark D1
