@@ -65,6 +65,13 @@ int main(void) {
 #endif
     
 #if 1
+    // Type Specialization to get the correct get_size
+    // for D2 when invoked from a base class method print_all
+    // only works when invoked from the Base class object (albeit
+    // type specialized)
+    //
+    // As in the second case, if you went directly from the Derived
+    // class, it will not work.
     {
         Base<D2> d;
         d.print_all();

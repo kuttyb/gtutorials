@@ -24,7 +24,7 @@ public:
         print();
         print_more();
         print_most();
-        std::cout << "size is " << Base<SUBTYPE>::get_size() << std::endl;
+        std::cout << "size is " << get_size() << std::endl;
     }
     uint32_t get_size(void) const;
 };
