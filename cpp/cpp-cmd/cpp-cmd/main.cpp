@@ -9,14 +9,6 @@
 #include <iostream>
 #include "D1.hpp"
 
-#pragma mark DummyClass
-class Dummy {
-public:
-    void print(void)      {}
-    void print_more(void) {}
-    void print_most(void) {}
-};
-
 template class D3<Dummy>;
 
 #pragma mark Client
@@ -42,16 +34,36 @@ void Client<FIELD, MEMBER>::setup(Base<MEMBER> input) {
 
 
 int main(void) {
-#if 0
-    // Client<D1, Dummy> b; // This will not compile so it almost acts like Java Generics Wildcards
-    Client<D1, D3<Dummy> > b;
-    D3<Dummy> input;
-    
-    b.setup(input);
+#if 1
+    {
+        // Client<D1, Dummy> b; // This will not compile so it almost acts like Java Generics Wildcards
+        Client<D1, D3<Dummy> > b;
+        D3<Dummy> input(2);
+        b.setup(input);
+    }
 #endif
     
-    Base<D2> *b = new D2(3);
-    b->print();
+#if 1
+    {
+        Base<D2> *b = new D2(3);
+        b->print();
+        b->specialize();
+    }
+#endif
     
+#if 1
+    {
+        Base<D1> *b = new D1(2);
+        b->print();
+        b->specialize();
+    }
+#endif
+    
+#if 1
+    {
+        Base<D3<Dummy> > d3;
+        d3.print_most();
+    }
+#endif
     return 0;
 }

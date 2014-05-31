@@ -11,6 +11,12 @@
 using std::cout;
 using std::endl;
 
+template <typename SUBTYPE>
+void Base<SUBTYPE>::specialize()
+{
+    cout << "Generic version of specialized code" << endl;
+}
+
 #pragma mark D1
 void D1::print(void) {
     cout << "D1 print " << d1_state << endl;
@@ -24,6 +30,11 @@ void D1::print_most() {
     cout << "D1 print_most" << endl;
 }
 
+template <>
+void Base<D1>::specialize()
+{
+    cout << "D1 specialized" << endl;
+}
 
 #pragma mark D2
 void D2::print(void) {
@@ -39,6 +50,12 @@ void D2::print_most() {
     D1::print_most();
 }
 
+template <>
+void Base<D2>::specialize()
+{
+    cout << "D2 specializing" << endl;
+}
+
 #pragma mark D3
 template <typename X>
 void D3<X>::print_more(void) {
@@ -48,10 +65,25 @@ void D3<X>::print_more(void) {
 template <typename X>
 void D3<X>::print(void) {
     D2::print();
+    Base<D1>::specialize();
 }
 
 template <typename X>
 void D3<X>::print_most(void) {
     D1::print_most();
+    // As you can see, I am taking care of both using
+    // type specialization
+    cout << "==Type Specialization at play==" << endl;
+    Base<D3<X> >::specialize();
+    Base<D2>::specialize();
+    Base<D1>::specialize();
+}
+
+// Bottomline, Type Specialization and Inheritance can both
+// survive in harmony
+template <>
+void Base<D3<Dummy> >::specialize()
+{
+    cout << "D3 specialized" << endl;
 }
 

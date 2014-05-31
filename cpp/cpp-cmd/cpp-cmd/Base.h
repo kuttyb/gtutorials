@@ -21,6 +21,7 @@ public:
     void print_more(void) { DISPATCH(SUBTYPE)->print_more(); }
     void print_most(void) { DISPATCH(SUBTYPE)->print_most(); }
     void print_all(void)  { print(); print_more(); print_most(); }
+    void specialize(void);
 };
 
 #pragma mark D1
@@ -53,9 +54,18 @@ public:
 template <typename X>
 class D3 : public D2, public Base<D3<X> >   {
 public:
+    D3(int input) : D2(input){}
     void print(void);
     void print_more(void);
     void print_most(void);
+};
+
+#pragma mark DummyClass
+class Dummy {
+public:
+    void print(void)      {}
+    void print_more(void) {}
+    void print_most(void) {}
 };
 
 #endif /* defined(__cpp_cmd__Base__) */
