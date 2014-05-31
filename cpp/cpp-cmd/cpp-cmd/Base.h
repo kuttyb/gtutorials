@@ -53,6 +53,9 @@ public:
     void print(void);
     void print_more(void);
     void print_most(void);
+    void local(void) {
+        Base<D1>::print_all();
+    }
 };
 
 #pragma mark D3

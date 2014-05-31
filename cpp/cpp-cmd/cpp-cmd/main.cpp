@@ -66,8 +66,13 @@ int main(void) {
     
 #if 1
     {
-        Base<D1> d;
+        Base<D2> d;
         d.print_all();
+    }
+    
+    {
+        D2 x(2);
+        x.local();
     }
 #endif
     return 0;
