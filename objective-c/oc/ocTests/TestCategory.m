@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "First.h"
+#import "FirstDisplay.h"
 
 @interface TestCategory : XCTestCase
 
@@ -31,6 +32,7 @@
 - (void)testExample
 {
     [subject printValues];
+    [subject crazyLastMinuteAddition];
     NSLog(@"printing outcome %d\n", [subject addNumbers:2 SECOND:3]);
 }
 
