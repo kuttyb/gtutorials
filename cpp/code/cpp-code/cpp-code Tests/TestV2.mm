@@ -25,6 +25,15 @@ class D1 : public B {
 class D2 : public D1 {
 };
 
+template <typename... PARAMS>
+class Value {
+public:
+    void parseargs() {
+        size_t n = sizeof...(PARAMS);
+        cout << "number of template arguments is " << n << endl;
+    }
+};
+
 template <typename T>
 void addback(vector<IA<T> > & vec, IA<T> & input) {
     vec.push_back(input);
@@ -112,6 +121,12 @@ void test_class(void) {
     IA<One> z = a.at(0);
     z.print();
     addback(a, z);
+}
+
+- (void)testVariadicTemplates
+{
+    Value<int, float, int, IA<Twenty> > x;
+    x.parseargs();
 }
 
 @end
