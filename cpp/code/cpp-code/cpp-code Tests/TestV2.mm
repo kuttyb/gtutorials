@@ -11,6 +11,7 @@
 #include <vector>
 #include <memory>
 #include <tuple>
+#include <utility>
 #include "IA.h"
 
 using std::cout;
@@ -18,24 +19,31 @@ using std::endl;
 using std::vector;
 
 class B {
+public:
+	void print() { cout << "b" << endl;}
 };
 
-class D1 : public B {
+class D1  {
+public:
+	void print() { cout << "d1" << endl; }
 };
 
 class D2 : public D1 {
 };
 
-template <typename... PARAMS>
+template <size_t ARGS, typename... PARAMS>
 class Value {
 private:
     std::tuple<PARAMS...> args;
 public:
-    void parseargs() {
-        size_t n = sizeof...(PARAMS);
-        cout << "number of template arguments is " << n << endl;
-        cout << "first template argument is " << std::get<0>(args) << endl;
+	void parseargs() {
+		std::get<ARGS - 1>(args).print();
+		if (ARGS <= 1) return;
+		
+//		Value<ARGS - 1, std::forward<PARAMS>(args)...> y;
+//		y.parseargs();
     }
+	
 };
 
 template <typename T>
@@ -129,8 +137,10 @@ void test_class(void) {
 
 - (void)testVariadicTemplates
 {
-    Value<double, float, int, IA<Twenty> > x;
-    x.parseargs();
+#if 1
+	Value<2, B, D1> x;
+	x.parseargs();
+#endif
 }
 
 @end
