@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 #include <memory>
+#include <tuple>
 #include "IA.h"
 
 using std::cout;
@@ -27,10 +28,13 @@ class D2 : public D1 {
 
 template <typename... PARAMS>
 class Value {
+private:
+    std::tuple<PARAMS...> args;
 public:
     void parseargs() {
         size_t n = sizeof...(PARAMS);
         cout << "number of template arguments is " << n << endl;
+        cout << "first template argument is " << std::get<0>(args) << endl;
     }
 };
 
@@ -125,7 +129,7 @@ void test_class(void) {
 
 - (void)testVariadicTemplates
 {
-    Value<int, float, int, IA<Twenty> > x;
+    Value<double, float, int, IA<Twenty> > x;
     x.parseargs();
 }
 
