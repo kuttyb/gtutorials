@@ -8,11 +8,29 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include <vector>
+#include <memory>
 #include "IA.h"
 
 using std::cout;
 using std::endl;
+using std::vector;
 
+class B {
+};
+
+class D1 : public B {
+};
+
+class D2 : public D1 {
+};
+
+template <typename T>
+void addback(vector<IA<T> > & vec, IA<T> & input) {
+    vec.push_back(input);
+}
+
+#pragma mark Client (delegates IA)
 template <typename IA_FIELD, typename IA_METHOD>
 class Client {
 private:
@@ -84,4 +102,17 @@ void test_class(void) {
     client.setup(twenty);
 }
 
+- (void)testVector
+{
+    vector<IA<One> > a;
+    One x;
+    x.print();
+    addback(a, x);
+    
+    IA<One> z = a.at(0);
+    z.print();
+    addback(a, z);
+}
+
 @end
+
