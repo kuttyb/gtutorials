@@ -1,0 +1,4 @@
+For merging r1002 do this from the destination directory
+
+svn merge -r 1001:1002 https://svn.dev.your/repo/trunk/src .
+
