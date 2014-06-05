@@ -78,6 +78,7 @@ int main(void) {
     }
     
     {
+        cout << " second part" << endl;
         D2 x(2);
         x.local();
     }
