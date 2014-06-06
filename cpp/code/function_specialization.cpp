@@ -35,6 +35,28 @@ static void function(float* input, int x)
 	cout << "non templated version" << endl;
 }
 
+// Specialize branches within a function optimized for certain paths
+template <bool N>
+void perform(int input) {
+    cout << input << endl;
+    if (N == true) {
+        cout << "generic version: true path "  << endl;
+    } else {
+        cout << "generic version: false path " << endl;
+    }
+}
+
+template <>
+void perform<true>(int input) {
+    cout << input << endl;
+    cout << "generic version: true path " << endl;
+}
+
+template <>
+void perform<false>(int input) {
+    cout << input << endl;
+    cout << "generic version: false path" << endl;
+}
 
 int test_comparison(void)
 {
@@ -47,5 +69,8 @@ int test_comparison(void)
 	float a = 2.03f;
 	function(&a, 3);
 	
+    perform<true>(3);
+    perform<false>(2);
+    
 	return 0;
 }
