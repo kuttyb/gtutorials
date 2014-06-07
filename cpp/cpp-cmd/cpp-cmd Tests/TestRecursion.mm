@@ -22,7 +22,7 @@ class Y { public: void print() { cout << "Y speaking" << endl; } };
 template <size_t N, typename... T>
 class Functor {
 public:
-    void method(T... input) {
+    void method(T&... input) {
         std::tuple<T...> args(input...);
         std::get<N>(args).print();
         Functor<N - 1, T...> x;
@@ -34,7 +34,7 @@ public:
 template <typename... T>
 class Functor<0, T...> {
 public:
-    void method(T... input) {
+    void method(T&... input) {
         std::tuple<T...> args(input...);
         std::get<0>(args).print();
     }
