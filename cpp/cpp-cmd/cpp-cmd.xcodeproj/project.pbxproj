@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
+		B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D68F151942F84000D34C1A /* TestRecursion.mm */; };
 		B7DDC1091892240200EC77B8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7DDC1081892240200EC77B8 /* XCTest.framework */; };
 		B7DDC10F1892240200EC77B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7DDC10D1892240200EC77B8 /* InfoPlist.strings */; };
-		B7DDC1111892240200EC77B8 /* cpp_cmd_Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DDC1101892240200EC77B8 /* cpp_cmd_Tests.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,12 +38,12 @@
 /* Begin PBXFileReference section */
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DDC1011892231600EC77B8 /* TypeAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeAssert.h; path = "cpp-cmd/TypeAssert.h"; sourceTree = "<group>"; };
 		B7DDC1061892240200EC77B8 /* cpp-cmd Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cpp-cmd Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DDC1081892240200EC77B8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B7DDC10C1892240200EC77B8 /* cpp-cmd Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cpp-cmd Tests-Info.plist"; sourceTree = "<group>"; };
 		B7DDC10E1892240200EC77B8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B7DDC1101892240200EC77B8 /* cpp_cmd_Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = cpp_cmd_Tests.mm; sourceTree = "<group>"; };
 		B7DDC1121892240200EC77B8 /* cpp-cmd Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cpp-cmd Tests-Prefix.pch"; sourceTree = "<group>"; };
 		B7E266D21936F181002A67B3 /* Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Base.h; path = "cpp-cmd/Base.h"; sourceTree = "<group>"; };
 		B7E266D31936F181002A67B3 /* D1.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = D1.hpp; path = "cpp-cmd/D1.hpp"; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B7DDC1101892240200EC77B8 /* cpp_cmd_Tests.mm */,
+				B7D68F151942F84000D34C1A /* TestRecursion.mm */,
 				B7DDC10B1892240200EC77B8 /* Supporting Files */,
 			);
 			path = "cpp-cmd Tests";
@@ -227,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7DDC1111892240200EC77B8 /* cpp_cmd_Tests.mm in Sources */,
+				B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
