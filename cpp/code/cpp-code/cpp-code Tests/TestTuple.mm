@@ -31,6 +31,14 @@ using std::endl;
     [super tearDown];
 }
 
+//
+// We are going to learn the following here
+//      [a] std::tuple
+//      [b] std::make_tuple
+//      [c] std::tuple_size
+//      [d] std::tuple_element
+//      [e] std::get<N>(tuple_var)
+//
 - (void)testLearnMakeAndSizeTuple
 {
     // declare a tuple
@@ -40,7 +48,8 @@ using std::endl;
     x = std::make_tuple(3, 2.1f);
     
     // print its size (using type)
-    cout <<std::tuple_size<std::tuple<int, float> >::value << endl;
+    size_t n = std::tuple_size<std::tuple<int, float> >::value;
+    XCTAssert(n == 2);
     
     // get each type
     std::tuple_element<0, std::tuple<int, float> >::type   first_val;
@@ -50,7 +59,8 @@ using std::endl;
     first_val   = std::get<0>(x);
     second_val  = std::get<1>(x);
     
-    cout << "values are " << first_val << " and " << second_val << endl;
+    XCTAssert(first_val == 3);
+    XCTAssert(second_val == 2.1f);
 }
 
 @end
