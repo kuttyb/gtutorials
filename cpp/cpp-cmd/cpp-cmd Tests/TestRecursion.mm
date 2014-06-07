@@ -16,30 +16,7 @@ using std::endl;
 class X { public: void print() { cout << "X speaking" << endl; } };
 class Y { public: void print() { cout << "Y speaking" << endl; } };
 
-
-// Class Specialization
-template <size_t N, typename... T>
-class Functor {
-public:
-    static void method(T&... input) {
-        std::tuple<T...> args(input...);
-        std::get<N - 1>(args).print();
-        
-        // Recurse ...
-        Functor<N - 1, T...>::method(input...);
-    }
-};
-
-// Class Partial Specialization
-template <typename... T>
-class Functor<1, T...> {
-public:
-    static void method(T&... input) {
-        std::tuple<T...> args(input...);
-        std::get<0>(args).print();
-    }
-};
-
+#pragma mark Type Container class -
 template <typename... T>
 struct ABC {
     std::tuple<T...> args;
@@ -52,6 +29,29 @@ struct ABC {
         return std::tuple_size<std::tuple<T...> >::value;
     }
 };
+
+
+#pragma mark Type Processor class -
+template <size_t N, typename... T>
+class Functor {
+public:
+    static void method(ABC<T...>& input) {
+        std::get<N - 1>(input.args).print();
+        
+        // Recurse ...
+        Functor<N - 1, T...>::method(input);
+    }
+};
+
+// Class Partial Specialization
+template <typename... T>
+class Functor<1, T...> {
+public:
+    static void method(ABC<T...>& input) {
+        std::get<0>(input.args).print();
+    }
+};
+
 
 @interface TestRecursion : XCTestCase
 
@@ -75,7 +75,7 @@ struct ABC {
     {
         ABC<X, Y, Y> data(a, b, c);
         
-        Functor<data.size(), X, Y, Y>::method(a, b, c);
+        Functor<data.size(), X, Y, Y>::method(data);
     }
 }
 
