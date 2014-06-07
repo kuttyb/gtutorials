@@ -24,7 +24,9 @@ class Functor {
 public:
     void method(T&... input) {
         std::tuple<T...> args(input...);
-        std::get<N>(args).print();
+        std::get<N - 1>(args).print();
+        
+        // Recurse ...
         Functor<N - 1, T...> x;
         x.method(input...);
     }
@@ -32,7 +34,7 @@ public:
 
 // Class Partial Specialization
 template <typename... T>
-class Functor<0, T...> {
+class Functor<1, T...> {
 public:
     void method(T&... input) {
         std::tuple<T...> args(input...);
@@ -60,7 +62,7 @@ public:
 {
     X a; Y b; Y c;
     {
-        Functor<4, X, X, X, Y, Y> m;
+        Functor<5, X, X, X, Y, Y> m;
         m.method(a, a, a, b, c);
     }
 }
