@@ -13,21 +13,21 @@ using std::cout;
 using std::endl;
 
 // Class Specialization
-template <typename T, size_t N>
+template <size_t N, typename... T>
 class Functor {
 public:
-    static void method(T input) {
+    static void method(T... input) {
         cout << "generic version value : " << N << endl;
-        Functor<T, N - 1> x;
-        x.method(input);
+        Functor<N - 1, T...> x;
+        x.method(input...);
     }
 };
 
 // Class Partial Specialization
-template <typename T>
-class Functor<T, 0> {
+template <typename... T>
+class Functor<0, T...> {
 public:
-    static void method(T input) {
+    static void method(T... input) {
         cout << "0 specialized class" << endl;
     }
 };
@@ -50,7 +50,7 @@ public:
 
 - (void)testExample
 {
-    Functor<int, 5> x;
+    Functor<5, int> x;
     x.method(10);
 }
 
