@@ -40,6 +40,14 @@ public:
     }
 };
 
+template <typename... T>
+struct ABC {
+    std::tuple<T...> args;
+    ABC(T... input) {
+        args = std::make_tuple(input...);
+    }
+};
+
 @interface TestRecursion : XCTestCase
 
 @end
@@ -58,9 +66,14 @@ public:
 
 - (void)testExample
 {
+#define  TYPE_LIST  5, X, X, X, Y, Y
+#define  PARAM_LIST a, a, a, b, c
+    
+
     X a; Y b; Y c;
     {
-        Functor<5, X, X, X, Y, Y>::method(a, a, a, b, c);
+        Functor<TYPE_LIST>::method(PARAM_LIST);
+        Functor<TYPE_LIST>::method(PARAM_LIST);
     }
 }
 
