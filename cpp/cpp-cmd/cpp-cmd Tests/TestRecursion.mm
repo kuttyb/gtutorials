@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include <tuple>
+#include <utility>
 
 using std::cout;
 using std::endl;
@@ -19,6 +21,12 @@ public:
     static void method(T... input) {
         cout << "generic version value : " << N << endl;
         Functor<N - 1, T...> x;
+        
+        if (std::tuple_size<std::tuple<T...> >::value == 0) return;
+        
+        std::tuple<T...> args(input...);
+        cout << "kbb: printing value " << std::get<N>(args) << endl;
+        
         x.method(input...);
     }
 };
@@ -29,6 +37,8 @@ class Functor<0, T...> {
 public:
     static void method(T... input) {
         cout << "0 specialized class" << endl;
+        std::tuple<T...> args(input...);
+        cout << "kbb: printing value " << std::get<0>(args) << endl;
     }
 };
 
@@ -50,8 +60,8 @@ public:
 
 - (void)testExample
 {
-    Functor<5, int> x;
-    x.method(10);
+    Functor<2, int, int, float> x;
+    x.method(2, 3, 4.3f);
 }
 
 @end
