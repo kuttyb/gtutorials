@@ -22,8 +22,6 @@ public:
         cout << "generic version value : " << N << endl;
         Functor<N - 1, T...> x;
         
-        if (std::tuple_size<std::tuple<T...> >::value == 0) return;
-        
         std::tuple<T...> args(input...);
         cout << "kbb: printing value " << std::get<N>(args) << endl;
         
