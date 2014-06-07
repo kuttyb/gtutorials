@@ -14,17 +14,18 @@
 using std::cout;
 using std::endl;
 
+class X { public: void print() { cout << "X speaking" << endl; } };
+class Y { public: void print() { cout << "Y speaking" << endl; } };
+
+
 // Class Specialization
 template <size_t N, typename... T>
 class Functor {
 public:
     static void method(T... input) {
-        cout << "generic version value : " << N << endl;
-        Functor<N - 1, T...> x;
-        
         std::tuple<T...> args(input...);
-        cout << "kbb: printing value " << std::get<N>(args) << endl;
-        
+        std::get<N>(args).print();
+        Functor<N - 1, T...> x;
         x.method(input...);
     }
 };
@@ -34,9 +35,8 @@ template <typename... T>
 class Functor<0, T...> {
 public:
     static void method(T... input) {
-        cout << "0 specialized class" << endl;
         std::tuple<T...> args(input...);
-        cout << "kbb: printing value " << std::get<0>(args) << endl;
+        std::get<0>(args).print();
     }
 };
 
@@ -58,8 +58,9 @@ public:
 
 - (void)testExample
 {
-    Functor<2, int, int, float> x;
-    x.method(2, 3, 4.3f);
+    X a; Y b; Y c;
+    Functor<2, X, Y, Y> m;
+    m.method(a, b, c);
 }
 
 @end
