@@ -9,7 +9,6 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include <tuple>
-#include <utility>
 
 using std::cout;
 using std::endl;
@@ -22,13 +21,12 @@ class Y { public: void print() { cout << "Y speaking" << endl; } };
 template <size_t N, typename... T>
 class Functor {
 public:
-    void method(T&... input) {
+    static void method(T&... input) {
         std::tuple<T...> args(input...);
         std::get<N - 1>(args).print();
         
         // Recurse ...
-        Functor<N - 1, T...> x;
-        x.method(input...);
+        Functor<N - 1, T...>::method(input...);
     }
 };
 
@@ -36,7 +34,7 @@ public:
 template <typename... T>
 class Functor<1, T...> {
 public:
-    void method(T&... input) {
+    static void method(T&... input) {
         std::tuple<T...> args(input...);
         std::get<0>(args).print();
     }
@@ -62,8 +60,7 @@ public:
 {
     X a; Y b; Y c;
     {
-        Functor<5, X, X, X, Y, Y> m;
-        m.method(a, a, a, b, c);
+        Functor<5, X, X, X, Y, Y>::method(a, a, a, b, c);
     }
 }
 
