@@ -47,6 +47,10 @@ struct ABC {
     ABC(T... input) {
         args = std::make_tuple(input...);
     }
+    
+    constexpr size_t size() const {
+        return std::tuple_size<std::tuple<T...> >::value;
+    }
 };
 
 @interface TestRecursion : XCTestCase
@@ -69,10 +73,10 @@ struct ABC {
 {
     X a; Y b; Y c;
     {
-        Functor<3, X, Y, Y>::method(a, b, c);
+        ABC<X, Y, Y> data(a, b, c);
+        
+        Functor<data.size(), X, Y, Y>::method(a, b, c);
     }
-    
-    ABC<X, Y, Y> data(a, b, c);
 }
 
 @end
