@@ -13,8 +13,8 @@
 using std::cout;
 using std::endl;
 
-class X { public: void print() { cout << "X speaking" << endl; } };
-class Y { public: void print() { cout << "Y speaking" << endl; } };
+class X { public: void print(int x) { cout << "X speaking " << x << endl; } };
+class Y { public: void print(int x) { cout << "Y speaking " << x << endl; } };
 
 
 @interface TestRecursion : XCTestCase
@@ -39,7 +39,7 @@ class Y { public: void print() { cout << "Y speaking" << endl; } };
     {
         TypeContainer<X, Y, Y, X> data(a, b, c, a);
         
-        TypeProcessor<data.size(), X, Y, Y, X>::method(data);
+        TypeProcessor<data.size(), int, X, Y, Y, X>::method(3, data);
     }
 }
 

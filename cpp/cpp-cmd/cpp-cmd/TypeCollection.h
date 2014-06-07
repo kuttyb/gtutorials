@@ -27,23 +27,23 @@ struct TypeContainer {
 
 
 #pragma mark Type Processor class -
-template <size_t N, typename... T>
+template <size_t N, typename D, typename... T>
 class TypeProcessor {
 public:
-    static void method(TypeContainer<T...>& input) {
-        std::get<N>(input.args).print();
+    static void method(D value, TypeContainer<T...>& input) {
+        std::get<N>(input.args).print(value);
         
         // Recurse ...
-        TypeProcessor<N - 1, T...>::method(input);
+        TypeProcessor<N - 1, D, T...>::method(value, input);
     }
 };
 
 // Class Partial Specialization
-template <typename... T>
-class TypeProcessor<0, T...> {
+template <typename D, typename... T>
+class TypeProcessor<0, D, T...> {
 public:
-    static void method(TypeContainer<T...>& input) {
-        std::get<0>(input.args).print();
+    static void method(D value, TypeContainer<T...>& input) {
+        std::get<0>(input.args).print(value);
     }
 };
 
