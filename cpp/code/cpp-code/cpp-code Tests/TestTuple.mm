@@ -13,14 +13,21 @@
 using std::cout;
 using std::endl;
 
+class AB {public: void print() { cout << "AB" << endl; } };
+class XY {public: void print() { cout << "XY" << endl; } };
+
 template <typename T, typename... Ts>
-void printer(const T& t, const Ts&... ts) {
+void printer(T& t, Ts&... ts) {
+    // This is how you initialize a tuple by unpacking 'ts'
+    //
+
     // Duck Typing
     t.print();
     
     if (sizeof...(ts) == 0) return;
     
-    printer(ts...);   // not recursion!
+    std::tuple<Ts...> args(ts...);
+    printer(std::get<0>(args), ts...);   // not recursion!
 }
 
 @interface TestTuple : XCTestCase
@@ -71,6 +78,14 @@ void printer(const T& t, const Ts&... ts) {
     
     XCTAssert(first_val == 3);
     XCTAssert(second_val == 2.1f);
+}
+
+-(void)testVariadicMethods
+{
+    AB x;
+    XY y;
+    XY z;
+    printer(x, y, z);
 }
 
 @end
