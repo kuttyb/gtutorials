@@ -21,7 +21,7 @@ struct TypeContainer {
     }
     
     constexpr size_t size() const {
-        return std::tuple_size<std::tuple<T...> >::value;
+        return std::tuple_size<std::tuple<T...> >::value - 1;
     }
 };
 
@@ -31,7 +31,7 @@ template <size_t N, typename... T>
 class TypeProcessor {
 public:
     static void method(TypeContainer<T...>& input) {
-        std::get<N - 1>(input.args).print();
+        std::get<N>(input.args).print();
         
         // Recurse ...
         TypeProcessor<N - 1, T...>::method(input);
@@ -40,7 +40,7 @@ public:
 
 // Class Partial Specialization
 template <typename... T>
-class TypeProcessor<1, T...> {
+class TypeProcessor<0, T...> {
 public:
     static void method(TypeContainer<T...>& input) {
         std::get<0>(input.args).print();
