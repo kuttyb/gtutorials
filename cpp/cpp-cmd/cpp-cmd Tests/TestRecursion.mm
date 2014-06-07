@@ -43,6 +43,7 @@ public:
 template <typename... T>
 struct ABC {
     std::tuple<T...> args;
+    
     ABC(T... input) {
         args = std::make_tuple(input...);
     }
@@ -66,15 +67,12 @@ struct ABC {
 
 - (void)testExample
 {
-#define  TYPE_LIST  5, X, X, X, Y, Y
-#define  PARAM_LIST a, a, a, b, c
-    
-
     X a; Y b; Y c;
     {
-        Functor<TYPE_LIST>::method(PARAM_LIST);
-        Functor<TYPE_LIST>::method(PARAM_LIST);
+        Functor<3, X, Y, Y>::method(a, b, c);
     }
+    
+    ABC<X, Y, Y> data(a, b, c);
 }
 
 @end
