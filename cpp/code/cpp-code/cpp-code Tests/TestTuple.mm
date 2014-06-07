@@ -13,6 +13,16 @@
 using std::cout;
 using std::endl;
 
+template <typename T, typename... Ts>
+void printer(const T& t, const Ts&... ts) {
+    // Duck Typing
+    t.print();
+    
+    if (sizeof...(ts) == 0) return;
+    
+    printer(ts...);   // not recursion!
+}
+
 @interface TestTuple : XCTestCase
 
 @end
