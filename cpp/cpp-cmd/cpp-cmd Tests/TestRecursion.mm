@@ -37,9 +37,10 @@ class Y { public: void print(int x) { cout << "Y speaking " << x << endl; } };
 {
     X a; Y b; Y c;
     {
-        TypeContainer<X, Y, Y, X> data(a, b, c, a);
+        TypeContainer<X, Y, Y, X, X> data(&a, &b, &c, &a, &a);
+        int value = 3;
         
-        TypeProcessor<data.size(), int, X, Y, Y, X>::method(3, data);
+        TypeProcessor<data.size(), int, X, Y, Y, X, X>::method(&value, &data);
     }
 }
 
