@@ -59,8 +59,15 @@ public:
 - (void)testExample
 {
     X a; Y b; Y c;
-    Functor<2, X, Y, Y> m;
-    m.method(a, b, c);
+    {
+        Functor<2, X, Y, Y> m;
+        m.method(a, b, c);
+    }
+    
+    {
+        Functor<4, X, X, X, Y, Y> m;
+        m.method(a, a, a, b, b);
+    }
 }
 
 @end
