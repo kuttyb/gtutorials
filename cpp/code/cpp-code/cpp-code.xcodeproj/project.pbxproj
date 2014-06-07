@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A851F9F41942B72800D91510 /* TestTuple.mm in Sources */ = {isa = PBXBuildFile; fileRef = A851F9F31942B72800D91510 /* TestTuple.mm */; };
 		A888F9411920031500AB20C8 /* TestSetStruct.mm in Sources */ = {isa = PBXBuildFile; fileRef = A888F9401920031500AB20C8 /* TestSetStruct.mm */; };
 		A8D72132193128C2004CE5C1 /* IA.h in Headers */ = {isa = PBXBuildFile; fileRef = A8D72131193128C2004CE5C1 /* IA.h */; };
 		A8D721341931292E004CE5C1 /* One.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8D721331931292E004CE5C1 /* One.cpp */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A851F9F31942B72800D91510 /* TestTuple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTuple.mm; sourceTree = "<group>"; };
 		A888F9401920031500AB20C8 /* TestSetStruct.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSetStruct.mm; sourceTree = "<group>"; };
 		A8D72131193128C2004CE5C1 /* IA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IA.h; sourceTree = "<group>"; };
 		A8D721331931292E004CE5C1 /* One.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = One.cpp; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		B797BBC7186B54460056EBA6 /* cpp-code Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A851F9F31942B72800D91510 /* TestTuple.mm */,
 				A8D7213D19312CB2004CE5C1 /* TestV2.mm */,
 				B702ED04192EC2CB00AEA2D7 /* TestExemptPtr.mm */,
 				B7D9A4AE192EBDA1002CF7D1 /* TestReference.mm */,
@@ -387,6 +390,7 @@
 				A8DD8F00190193EB005BE89C /* TestLonePtr.mm in Sources */,
 				A888F9411920031500AB20C8 /* TestSetStruct.mm in Sources */,
 				B77C936D18CB86450012D67B /* TestSets.mm in Sources */,
+				A851F9F41942B72800D91510 /* TestTuple.mm in Sources */,
 				B7D9A4AF192EBDA1002CF7D1 /* TestReference.mm in Sources */,
 				B751F721188F675400CC8228 /* DOneTest.mm in Sources */,
 				B7C54EFF18837ACA00A0678E /* TestNonTemplate.mm in Sources */,
