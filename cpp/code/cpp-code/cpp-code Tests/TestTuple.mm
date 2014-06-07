@@ -17,24 +17,40 @@ using std::endl;
 
 @end
 
-@implementation TestTuple {
-    std::tuple<int, float> x;
-}
+@implementation TestTuple
 
 - (void)setUp
 {
     [super setUp];
+    cout << "-----" << endl;
 }
 
 - (void)tearDown
 {
+    cout << "-----" << endl;
     [super tearDown];
 }
 
 - (void)testLearnMakeAndSizeTuple
 {
+    // declare a tuple
+    std::tuple<int, float> x;
+    
+    // explicitly initialize it
     x = std::make_tuple(3, 2.1f);
+    
+    // print its size (using type)
     cout <<std::tuple_size<std::tuple<int, float> >::value << endl;
+    
+    // get each type
+    std::tuple_element<0, std::tuple<int, float> >::type   first_val;
+    std::tuple_element<1, std::tuple<int, float> >::type   second_val;
+    
+    // get each type's value
+    first_val   = std::get<0>(x);
+    second_val  = std::get<1>(x);
+    
+    cout << "values are " << first_val << " and " << second_val << endl;
 }
 
 @end
