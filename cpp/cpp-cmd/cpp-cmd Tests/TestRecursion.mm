@@ -8,49 +8,13 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include <tuple>
+#include "TypeCollection.h"
 
 using std::cout;
 using std::endl;
 
 class X { public: void print() { cout << "X speaking" << endl; } };
 class Y { public: void print() { cout << "Y speaking" << endl; } };
-
-#pragma mark Type Container class -
-template <typename... T>
-struct ABC {
-    std::tuple<T...> args;
-    
-    ABC(T... input) {
-        args = std::make_tuple(input...);
-    }
-    
-    constexpr size_t size() const {
-        return std::tuple_size<std::tuple<T...> >::value;
-    }
-};
-
-
-#pragma mark Type Processor class -
-template <size_t N, typename... T>
-class Functor {
-public:
-    static void method(ABC<T...>& input) {
-        std::get<N - 1>(input.args).print();
-        
-        // Recurse ...
-        Functor<N - 1, T...>::method(input);
-    }
-};
-
-// Class Partial Specialization
-template <typename... T>
-class Functor<1, T...> {
-public:
-    static void method(ABC<T...>& input) {
-        std::get<0>(input.args).print();
-    }
-};
 
 
 @interface TestRecursion : XCTestCase
@@ -73,9 +37,9 @@ public:
 {
     X a; Y b; Y c;
     {
-        ABC<X, Y, Y> data(a, b, c);
+        TypeContainer<X, Y, Y, X> data(a, b, c, a);
         
-        Functor<data.size(), X, Y, Y>::method(data);
+        TypeProcessor<data.size(), X, Y, Y, X>::method(data);
     }
 }
 
