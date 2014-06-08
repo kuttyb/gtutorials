@@ -36,6 +36,14 @@ public:
         // Recurse ...
         TypeProcessor<N - 1, D, T...>::method(value, input);
     }
+    
+    static void factory(TypeContainer<T...> * input) {
+        std::get<N>(input->args) =
+         std::tuple_element<N, std::tuple<T*...> >::type::create();
+        
+        // Recurse ...
+        TypeProcessor<N - 1, D, T...>::factory(input);
+    }
 };
 
 // Class Partial Specialization
@@ -44,6 +52,11 @@ class TypeProcessor<0, D, T...> {
 public:
     static void method(D * value, TypeContainer<T...> * input) {
         std::get<0>(input->args)->print(*value);
+    }
+    
+    static void factory(TypeContainer<T...> * input) {
+        std::get<0>(input->args) =
+        std::tuple_element<0, std::tuple<T*...> >::type::create();
     }
 };
 

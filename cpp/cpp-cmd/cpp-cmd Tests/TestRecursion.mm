@@ -13,8 +13,27 @@
 using std::cout;
 using std::endl;
 
-class X { public: void print(int x) { cout << "X speaking " << x << endl; } };
-class Y { public: void print(int x) { cout << "Y speaking " << x << endl; } };
+class X {
+public:
+    void print(int x) {
+        cout << "X speaking " << x << endl;
+    }
+    
+    static X* create() {
+        return new X();
+    }
+};
+
+class Y {
+public:
+    void print(int x) {
+        cout << "Y speaking " << x << endl;
+    }
+    
+    static Y* create() {
+        return new Y();
+    }
+};
 
 
 @interface TestRecursion : XCTestCase
@@ -33,15 +52,23 @@ class Y { public: void print(int x) { cout << "Y speaking " << x << endl; } };
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testObserverPattern
 {
     X a; Y b; Y c;
-    {
-        TypeContainer<X, Y, Y, X, X> data(&a, &b, &c, &a, &a);
-        int value = 3;
-        
-        TypeProcessor<data.size(), int, X, Y, Y, X, X>::method(&value, &data);
-    }
+    int value = 3;
+    
+    TypeContainer<X, Y, Y, X, X> data(&a, &b, &c, &a, &a);
+    
+    //
+    // You are invoking method which will cause each Type to invoke print
+    // on its variable with input parameter value... Classic Observer Pattern
+    // (replace print with notify)
+    //
+    // Also use to store CRTP objects in a collection to operate upon in
+    // bulk.
+    //
+    TypeProcessor<data.size(), int, X, Y, Y, X, X>::method(&value, &data);
 }
+
 
 @end
