@@ -38,7 +38,7 @@
 /* Begin PBXFileReference section */
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		B774C4BF1943A46400A639A8 /* TypeCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeCollection.h; path = "cpp-cmd/TypeCollection.h"; sourceTree = "<group>"; };
+		B774C4BF1943A46400A639A8 /* typevector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = typevector.h; path = "cpp-cmd/typevector.h"; sourceTree = "<group>"; };
 		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DDC1011892231600EC77B8 /* TypeAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeAssert.h; path = "cpp-cmd/TypeAssert.h"; sourceTree = "<group>"; };
 		B7DDC1061892240200EC77B8 /* cpp-cmd Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cpp-cmd Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,7 +81,7 @@
 		B743667B188F3F920096C8AE = {
 			isa = PBXGroup;
 			children = (
-				B774C4BF1943A46400A639A8 /* TypeCollection.h */,
+				B774C4BF1943A46400A639A8 /* typevector.h */,
 				B7DDC1011892231600EC77B8 /* TypeAssert.h */,
 				A8784E8C1931401F00D1B66E /* CRTP */,
 				B7436686188F3F920096C8AE /* cpp-cmd */,

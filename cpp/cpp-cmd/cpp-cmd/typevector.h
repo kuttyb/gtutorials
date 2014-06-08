@@ -1,5 +1,5 @@
 //
-//  TypeCollection.h
+//  typevector.h
 //  cpp-cmd
 //
 //  Created by kuttyb on 6/7/14.
