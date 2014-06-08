@@ -1,0 +1,20 @@
+[a]
+std::function< return_type (input_arg_type0, input_arg_type1...)> fptr
+  = [capture_block] (input args) -> return_type {
+
+    };
+
+
+[b]
+capture_block can contain comma separated list of variables from the surrounding block either passed by value or reference or a generic default [&] or [=] saying all variables
+are available via reference or value.
+
+[c]
+e.g., [&val] (int a, int b) -> float {
+      	   return (a + b + val) * 1.0f;
+      } 
+
+
+[d]
+No shy of C++14, lamdbas cannot accept template arguements. WAR is to pass in void * and int enum_index and pattern match to do the cast. See TestRecursion::testLambda for an
+example.
