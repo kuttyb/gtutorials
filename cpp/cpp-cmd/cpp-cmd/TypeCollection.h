@@ -28,13 +28,13 @@ struct TypeContainer {
 
 #pragma mark Type Processor class -
 template <size_t N, typename D, typename... T>
-class TypeProcessor {
+class foreach_type {
 public:
     static void method(D * value, TypeContainer<T...> * input) {
         std::get<N>(input->args)->print(*value);
         
         // Recurse ...
-        TypeProcessor<N - 1, D, T...>::method(value, input);
+        foreach_type<N - 1, D, T...>::method(value, input);
     }
     
     static void factory(TypeContainer<T...> * input) {
@@ -42,13 +42,13 @@ public:
         std::get<N>(input->args) = l.create();
         
         // Recurse ...
-        TypeProcessor<N - 1, D, T...>::factory(input);
+        foreach_type<N - 1, D, T...>::factory(input);
     }
 };
 
 // Class Partial Specialization
 template <typename D, typename... T>
-class TypeProcessor<0, D, T...> {
+class foreach_type<0, D, T...> {
 public:
     static void method(D * value, TypeContainer<T...> * input) {
         std::get<0>(input->args)->print(*value);
