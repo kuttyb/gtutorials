@@ -14,7 +14,7 @@ using std::cout;
 using std::endl;
 
 class X {
-private:
+public:
     int local;
 public:
     void print(int x) {
@@ -29,7 +29,7 @@ public:
 };
 
 class Y {
-private:
+public:
     int local;
 public:
     void print(int x) {
@@ -75,9 +75,23 @@ public:
     // Also use to store CRTP objects in a collection to operate upon in
     // bulk.
     //
+    a.local = 20;
+    b.local = 20;
+    c.local = 20;
     foreach_type<data.size(), int, X, Y, Y, X, X>::method(&value, &data);
 }
 
+//
+// Q: Why is this an "Abstract" Factory?
+// A: Because changing foreach_type<...>::factory(..)
+//    to foreach_type<...>::factoryTypeTwo(...)
+//    would ensure all my types get a different kind of widget
+//
+//    Also learn to appreciate that with Templates you can pass type information
+//    around and have the factory method invoke a static method in the Type
+//    to create the object. Something you could not do with Generics that are
+//    wildcard'ed wth Interface.
+//
 - (void)testAbstractFactory
 {
     typevector<X, Y, X> data(NULL, NULL, NULL);
