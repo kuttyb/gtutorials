@@ -70,7 +70,7 @@ struct choose_larger <T1, T2, false> {
 
 -(void)testLargerType
 {
-    choose_larger<double, int> x;
+    choose_larger<char, double> x;
     cout << "size is " << sizeof(x) << endl;
 }
 
