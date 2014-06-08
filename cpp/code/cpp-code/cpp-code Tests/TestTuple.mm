@@ -80,12 +80,4 @@ void printer(T& t, Ts&... ts) {
     XCTAssert(second_val == 2.1f);
 }
 
--(void)testVariadicMethods
-{
-    AB x;
-    XY y;
-    XY z;
-    printer(x, y, z);
-}
-
 @end

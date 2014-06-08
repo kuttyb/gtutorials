@@ -31,13 +31,27 @@ int test_nonstate_lambda(void) {
     
     func(a, 3, 4);
     
+    state_func(a, 2, 3);
+    
     return 0;
 }
 
 
 int test_state_lambda(void) {
     int x = 3;
+    
+    // General Lambda Syntax:
+    // ----------------------
+    // std::function<return_type (input args)> ptr =
+    // [capture] (input args) -> return_type { .... body }
+    //
+    // [Capture : If you leave it empty [] it means you cannot
+    //            use variables from the surrounding scope
+    //            [&var] means capture by reference whereas
+    //            [var ] means capture by value (aka snapshot)
+    //
     std::function<int (int, int)> a = [&x] (int a, int b) -> int {
+        x++;
         return a + b + x;
     };
     
