@@ -10,6 +10,7 @@
 #define cpp_cmd_TypeCollection_h
 
 #include <tuple>
+#include <functional>
 
 #pragma mark Type Container class -
 template <typename... T>
@@ -35,6 +36,13 @@ public:
         
         // Recurse ...
         foreach_type<N - 1, D, T...>::method(value, input);
+    }
+    
+    static void execute(typevector<T...> * input, std::function<void (void *, int)> func) {
+        func(std::get<N>(input->args), N);
+        
+        // Recurse ...
+        foreach_type<N - 1, D, T...>::execute(input, func);
     }
     
     static void factory(typevector<T...> * input) {
@@ -65,6 +73,11 @@ public:
         l = (typename std::tuple_element<0, std::tuple<T...> >::type * )ptr;
         std::get<0>(input->args) = l->create();
     }
+    
+    static void execute(typevector<T...> * input, std::function<void (void *, int)> func) {
+        func(std::get<0>(input->args), 0);
+    }
+    
 };
 
 

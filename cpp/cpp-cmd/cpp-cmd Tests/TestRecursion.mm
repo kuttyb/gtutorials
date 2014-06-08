@@ -104,4 +104,42 @@ public:
     foreach_type<data.size(), int, X, Y, X>::method(&val, &data);
 }
 
+// Because Templates and Lambdas don't mix we have to do pattern matching as below :-(
+// TODO: Find out how the C++14 version helps
+-(void)testLambda
+{
+    typevector<X, Y, X> data(NULL, NULL, NULL);
+    foreach_type<data.size(), voidPtr, X, Y, X>::factory(&data);
+    
+    int value = 102;
+    
+    auto x = [value] (void *argument, int index)  {
+        cout << "lambda getting invoked with index " << index << " " << endl;
+        switch (index) {
+            case 0:
+            {
+                X* ptr = static_cast<X*>(argument);
+                ptr->print(value);
+            }
+                break;
+                
+            case 1:
+            {
+                Y* ptr = static_cast<Y*>(argument);
+                ptr->print(value);
+            }
+                break;
+                
+            case 2:
+            {
+                X * ptr = static_cast<X *>(argument);
+                ptr->print(value);
+            }
+                break;
+        }
+    };
+    
+    foreach_type<data.size(), voidPtr, X, Y, X>::execute(&data, x);
+}
+
 @end
