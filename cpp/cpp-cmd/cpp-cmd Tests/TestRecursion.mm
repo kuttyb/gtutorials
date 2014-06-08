@@ -70,5 +70,16 @@ public:
     TypeProcessor<data.size(), int, X, Y, Y, X, X>::method(&value, &data);
 }
 
+- (void)testAbstractFactory
+{
+    TypeContainer<X, Y, X> data(NULL, NULL, NULL);
+    
+    // Create all the objects using their respective Type Factory methods
+    TypeProcessor<data.size(), voidPtr, X, Y, X>::factory(&data);
+    
+    // Invoke all of them to ensure they got created properly
+    int val = 9;
+    TypeProcessor<data.size(), int, X, Y, X>::method(&val, &data);
+}
 
 @end

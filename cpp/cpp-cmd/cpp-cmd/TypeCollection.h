@@ -38,8 +38,8 @@ public:
     }
     
     static void factory(TypeContainer<T...> * input) {
-        std::get<N>(input->args) =
-         std::tuple_element<N, std::tuple<T*...> >::type::create();
+        typename std::tuple_element<N, std::tuple<T...> >::type l;
+        std::get<N>(input->args) = l.create();
         
         // Recurse ...
         TypeProcessor<N - 1, D, T...>::factory(input);
@@ -55,8 +55,8 @@ public:
     }
     
     static void factory(TypeContainer<T...> * input) {
-        std::get<0>(input->args) =
-        std::tuple_element<0, std::tuple<T*...> >::type::create();
+        typename std::tuple_element<0, std::tuple<T...> >::type l;
+        std::get<0>(input->args) = l.create();
     }
 };
 
