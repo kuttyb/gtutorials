@@ -13,10 +13,10 @@
 
 #pragma mark Type Container class -
 template <typename... T>
-struct TypeContainer {
+struct typevector {
     std::tuple<T*...> args;
     
-    TypeContainer(T*... input) {
+    typevector(T*... input) {
         args = std::make_tuple(input...);
     }
     
@@ -30,14 +30,14 @@ struct TypeContainer {
 template <size_t N, typename D, typename... T>
 class foreach_type {
 public:
-    static void method(D * value, TypeContainer<T...> * input) {
+    static void method(D * value, typevector<T...> * input) {
         std::get<N>(input->args)->print(*value);
         
         // Recurse ...
         foreach_type<N - 1, D, T...>::method(value, input);
     }
     
-    static void factory(TypeContainer<T...> * input) {
+    static void factory(typevector<T...> * input) {
         typename std::tuple_element<N, std::tuple<T...> >::type l;
         std::get<N>(input->args) = l.create();
         
@@ -50,11 +50,11 @@ public:
 template <typename D, typename... T>
 class foreach_type<0, D, T...> {
 public:
-    static void method(D * value, TypeContainer<T...> * input) {
+    static void method(D * value, typevector<T...> * input) {
         std::get<0>(input->args)->print(*value);
     }
     
-    static void factory(TypeContainer<T...> * input) {
+    static void factory(typevector<T...> * input) {
         typename std::tuple_element<0, std::tuple<T...> >::type l;
         std::get<0>(input->args) = l.create();
     }

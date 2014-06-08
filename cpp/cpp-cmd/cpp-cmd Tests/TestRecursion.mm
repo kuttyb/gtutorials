@@ -57,7 +57,7 @@ public:
     X a; Y b; Y c;
     int value = 3;
     
-    TypeContainer<X, Y, Y, X, X> data(&a, &b, &c, &a, &a);
+    typevector<X, Y, Y, X, X> data(&a, &b, &c, &a, &a);
     
     //
     // You are invoking method which will cause each Type to invoke print
@@ -72,7 +72,7 @@ public:
 
 - (void)testAbstractFactory
 {
-    TypeContainer<X, Y, X> data(NULL, NULL, NULL);
+    typevector<X, Y, X> data(NULL, NULL, NULL);
     
     // Create all the objects using their respective Type Factory methods
     foreach_type<data.size(), voidPtr, X, Y, X>::factory(&data);
