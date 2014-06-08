@@ -38,6 +38,14 @@ public:
     }
     
     static void factory(typevector<T...> * input) {
+        //
+        // TODO: This is dumb but it doesn't let me do
+        //       tuple_element<...>::type::create()
+        //
+        //       So yes, I am allocating an object on the stack
+        //       only to call the static Factory method on it.
+        //       Yep dumb indeed but correct :(
+        //
         typename std::tuple_element<N, std::tuple<T...> >::type l;
         std::get<N>(input->args) = l.create();
         
