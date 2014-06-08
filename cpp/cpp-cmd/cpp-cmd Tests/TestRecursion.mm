@@ -14,24 +14,32 @@ using std::cout;
 using std::endl;
 
 class X {
+private:
+    int local;
 public:
     void print(int x) {
-        cout << "X speaking " << x << endl;
+        cout << "X speaking " << x << " local: " << local << endl;
     }
     
     static X* create() {
-        return new X();
+        X* t =  new X();
+        t->local = 10;
+        return t;
     }
 };
 
 class Y {
+private:
+    int local;
 public:
     void print(int x) {
-        cout << "Y speaking " << x << endl;
+        cout << "Y speaking " << x << " local: " << local << endl;
     }
     
     static Y* create() {
-        return new Y();
+        Y* y = new Y();
+        y->local = 10;
+        return y;
     }
 };
 
