@@ -101,7 +101,7 @@ public:
     
     // Invoke all of them to ensure they got created properly
     int val = 9;
-    foreach_type<data.size(), int, X, Y, X>::method(&val, &data);
+    foreach_type<data.size(), int, X, Y, X>::method(&val, &data);    
 }
 
 @end

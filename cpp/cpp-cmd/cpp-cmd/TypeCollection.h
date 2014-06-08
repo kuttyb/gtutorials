@@ -38,16 +38,13 @@ public:
     }
     
     static void factory(typevector<T...> * input) {
-        //
-        // TODO: This is dumb but it doesn't let me do
-        //       tuple_element<...>::type::create()
-        //
-        //       So yes, I am allocating an object on the stack
-        //       only to call the static Factory method on it.
-        //       Yep dumb indeed but correct :(
-        //
-        typename std::tuple_element<N, std::tuple<T...> >::type l;
-        std::get<N>(input->args) = l.create();
+        typename std::tuple_element<N, std::tuple<T...> >::type * l;
+        int x = 3; void *ptr = &x;
+        l = (typename std::tuple_element<N, std::tuple<T...> >::type * )ptr;
+        // Calling a static method so just need a non-null pointer to beat the type system
+        // TODO: This will blow up if ::create uses static data in its Type Class
+        //       Goal is to find out how to do tuple_element<N, ....>::type::static_method()
+        std::get<N>(input->args) = l->create();
         
         // Recurse ...
         foreach_type<N - 1, D, T...>::factory(input);
@@ -63,8 +60,10 @@ public:
     }
     
     static void factory(typevector<T...> * input) {
-        typename std::tuple_element<0, std::tuple<T...> >::type l;
-        std::get<0>(input->args) = l.create();
+        typename std::tuple_element<0, std::tuple<T...> >::type * l;
+        int x = 3; void *ptr = &x;
+        l = (typename std::tuple_element<0, std::tuple<T...> >::type * )ptr;
+        std::get<0>(input->args) = l->create();
     }
 };
 
