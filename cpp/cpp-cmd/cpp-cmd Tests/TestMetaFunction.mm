@@ -44,6 +44,25 @@ struct choose_larger <T1, T2, false> {
     T2 largertype;
 };
 
+#pragma mark Exercise 3 (if)
+template <bool cond, typename T1, typename T2>
+struct if_ {
+    static void body() {
+        cout << "true clause " << endl;
+    }
+};
+
+// you could either put the body or if its just a type you want to select then
+// declare it as a field with the same name. Probably great for checking properties
+// of types at compile time to avoid nasty branchy code at runtime.
+template <typename T1, typename T2>
+struct if_ <false, T1, T2> {
+    static void body() {
+        cout << "false clause " << endl;
+    }
+};
+
+
 @interface TestMetaFunction : XCTestCase
 
 @end
@@ -72,6 +91,12 @@ struct choose_larger <T1, T2, false> {
 {
     choose_larger<char, double> x;
     cout << "size is " << sizeof(x) << endl;
+}
+
+-(void)testIf
+{
+    if_<(sizeof(int) > sizeof(double)), int, double> x;
+    x.body();
 }
 
 @end
