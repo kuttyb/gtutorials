@@ -35,7 +35,7 @@ private:
     int d1_state;
 public:
     D1(int d1_input) : d1_state(d1_input){
-        std::cout << "D1 ctor" << std::endl;
+//        std::cout << "D1 ctor" << std::endl;
     }
     void print(void);
     void print_more(void);
@@ -48,13 +48,13 @@ private:
     int state;
 public:
     D2(int input) : D1(input + 10), state(input) {
-        std::cout << "D2 ctor" << std::endl;
+//        std::cout << "D2 ctor" << std::endl;
     }
     void print(void);
     void print_more(void);
     void print_most(void);
     void local(void) {
-        Base<D1>::print_all();
+        Base<D2>::print_all();
     }
 };
 

@@ -64,21 +64,17 @@ int main(void) {
     }
 #endif
     
-#if 1
-    // Type Specialization to get the correct get_size
-    // for D2 when invoked from a base class method print_all
-    // only works when invoked from the Base class object (albeit
-    // type specialized)
-    //
-    // As in the second case, if you went directly from the Derived
-    // class, it will not work.
+#if 0
     {
         Base<D2> d;
         d.print_all();
     }
+#endif
     
+#if 1
+    // CRTP and type specialization both work irrespective of whether
+    // you went from Derived class pointer or the base class pointer.
     {
-        cout << " second part" << endl;
         D2 x(2);
         x.local();
     }
