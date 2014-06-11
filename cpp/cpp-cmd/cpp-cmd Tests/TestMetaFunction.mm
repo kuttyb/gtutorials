@@ -62,6 +62,17 @@ struct if_ <false, T1, T2> {
     }
 };
 
+#pragma mark Exercise 4 (Higher Order Functions)
+// Takes in a Meta Function and returns a Meta Function
+template <typename T1, bool n, typename T2, typename T3>
+struct higher_ {
+    static if_<false, T2, T3> func() {
+        if_<n, T2, T3>::body();
+        cout << "higher order function internals " << endl;
+        if_<false, T2, T3> x;
+        return x;
+    }
+};
 
 @interface TestMetaFunction : XCTestCase
 
@@ -97,6 +108,11 @@ struct if_ <false, T1, T2> {
 {
     if_<(sizeof(int) > sizeof(double)), int, double> x;
     x.body();
+}
+
+-(void)testHigher
+{
+    higher_<int, true, int, float>::func().body();
 }
 
 @end
