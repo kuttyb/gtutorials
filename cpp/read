@@ -1,5 +1,2 @@
 SFINAE and how it lets you choose between overloaded function templates
 
-Functional C++
-http://msdn.microsoft.com/en-us/magazine/jj553512.aspx
-https://www.fpcomplete.com/blog/2012/09/functional-patterns-in-c
