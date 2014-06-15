@@ -29,8 +29,7 @@ struct typevector {
 
 #pragma mark Type Processor class -
 template <size_t N, typename D, typename... T>
-class foreach_type {
-public:
+struct foreach_type {
     static void method(D * value, typevector<T...> * input) {
         std::get<N>(input->args)->print(*value);
         
@@ -61,8 +60,7 @@ public:
 
 // Class Partial Specialization
 template <typename D, typename... T>
-class foreach_type<0, D, T...> {
-public:
+struct foreach_type<0, D, T...> {
     static void method(D * value, typevector<T...> * input) {
         std::get<0>(input->args)->print(*value);
     }
