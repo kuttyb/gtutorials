@@ -10,6 +10,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include <type_traits>
 
 using std::cout;
 using std::endl;
@@ -32,6 +33,17 @@ struct Local {
 struct Global {
     bool operator==(const Global & other) { return true; }
 };
+
+class A {};
+
+class B : public A {};
+
+class C {};
+
+template <typename T, typename enable_if<std::is_base_of<A, T>::value, T>::type * = nullptr>
+void ATypes(T input) {
+    
+}
 
 #pragma mark Trait checks
 template <typename T>
