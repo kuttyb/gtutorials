@@ -33,13 +33,13 @@ using std::endl;
 
 - (void)testExample
 {
-    _if<true, int>::_do([] (int input)  {
-        cout << "kbb: executing " << input << endl;
-    }, 20);
+    _if<true, float>::_do([] (float input)  {
+        cout << "printing input value " << input << endl;
+    }, 10.345f);
     
-    
-    _if<false, int>::_do([] (int input) {
-    }, 10);
+    _if<false, float>::_do([] (float input) {
+        cout << "printing input value " << input << endl;
+    }, 10.34f);
 }
 
 @end
