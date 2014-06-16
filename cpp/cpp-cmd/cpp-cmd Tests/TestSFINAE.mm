@@ -2,6 +2,8 @@
 //  TestSFINAE.mm
 //  cpp-cmd
 //
+//  This is a feature used on functions to enfore input types obey certain traits
+//
 //  Created by Kutty Banerjee on 6/15/14.
 //  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
 //
@@ -23,7 +25,12 @@ struct enable_if <true, T> {
 };
 
 #pragma mark Local Class
-class Local {
+struct Local {
+    bool operator==(const Local & other)  { return true; }
+};
+
+struct Global {
+    bool operator==(const Global & other) { return true; }
 };
 
 #pragma mark Trait checks
@@ -36,6 +43,21 @@ template <>
 struct is_special_trait <Local> {
     static const bool value = true;
 };
+
+#pragma mark Function Overloads
+// We are placing a type assert using traits on T by using enable_if on the return type
+template <typename T>
+typename enable_if<is_special_trait<T>::value, T>::type
+func(T input) {
+    cout << "func speaking : overload 1 " << endl;
+    return input;
+}
+
+// Placing type assert using traits on the input value
+template <typename T>
+void func(typename enable_if<is_special_trait<T>::value, T>::type input, int arg) {
+    cout << " func speaking : overload 2 " << endl;
+}
 
 #pragma mark Obj-C
 @interface TestSFINAE : XCTestCase
@@ -54,9 +76,34 @@ struct is_special_trait <Local> {
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testBasics
 {
+    // Ensure Traits are working properly
+    cout << "check Global: " << is_special_trait<Global>::value << endl;
+    cout << "check Local : " << is_special_trait<Local>::value  << endl;
     
+    // Ensure enable_if is working correctly
+    enable_if<is_special_trait<Local>::value, Local>::type * x = 0;
+    XCTAssert(!x);
+    
+#if 0
+    // This would not compile correctly
+    enable_if<is_special_trait<Global>::value, Global>::type  = 0;
+    XCTAssert(!y);
+#endif
+}
+
+- (void)testTypeAssertOnReturnType
+{
+    Local x;
+    Local y = func(x);
+    XCTAssert(x == y);
+}
+
+- (void)testTypeAssertOnInputType
+{
+    Local x;
+    func<Local>(x, 3); // This should use the second overloaded function
 }
 
 @end
