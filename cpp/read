@@ -1,2 +1,6 @@
 SFINAE and how it lets you choose between overloaded function templates
 
+[] C++11 template aliases
+
+[] C++11 template parameter list and SFINAE
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */ = {isa = PBXBuildFile; fileRef = A81CE954194EB50700ACA024 /* TestSFINAE.mm */; };
 		A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */; };
 		B7114F111944E10000E9C000 /* TestLambda.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7114F101944E10000E9C000 /* TestLambda.mm */; };
 		B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */ = {isa = PBXBuildFile; fileRef = B731E32719450C7400742F88 /* TestMetaFunction.mm */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A81CE954194EB50700ACA024 /* TestSFINAE.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSFINAE.mm; sourceTree = "<group>"; };
 		A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateTemplate.mm; sourceTree = "<group>"; };
 		B7114F101944E10000E9C000 /* TestLambda.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLambda.mm; sourceTree = "<group>"; };
 		B731E32719450C7400742F88 /* TestMetaFunction.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMetaFunction.mm; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A81CE954194EB50700ACA024 /* TestSFINAE.mm */,
 				A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */,
 				B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */,
 				B7FEFD41194E1FA400432759 /* TestTypeList.mm */,
@@ -252,6 +255,7 @@
 				A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
+				A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
