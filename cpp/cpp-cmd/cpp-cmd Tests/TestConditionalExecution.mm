@@ -9,25 +9,10 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include <functional>
+#include "conditional.h"
 
 using std::cout;
 using std::endl;
-
-#pragma mark C++
-template <bool n, typename INPUT>
-struct _if {
-    static void _do(std::function<void (INPUT input)> func, INPUT args) {
-        cout << "executing: input " << args << endl;
-        return func(args);
-    }
-};
-
-template <typename INPUT>
-struct _if<false, INPUT> {
-    // Do nothing
-    static void _do(std::function<void (INPUT input)> func, INPUT args) {
-    }
-};
 
 #pragma mark Objective-C
 @interface TestConditionalExecution : XCTestCase
@@ -49,12 +34,12 @@ struct _if<false, INPUT> {
 - (void)testExample
 {
     _if<true, int>::_do([] (int input)  {
-    }, 10);
+        cout << "kbb: executing " << input << endl;
+    }, 20);
     
     
     _if<false, int>::_do([] (int input) {
     }, 10);
 }
-
 
 @end
