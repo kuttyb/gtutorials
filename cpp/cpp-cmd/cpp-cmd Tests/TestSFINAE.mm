@@ -45,17 +45,16 @@ struct is_special_trait <Local> {
 };
 
 #pragma mark Function Overloads
-// We are placing a type assert using traits on T by using enable_if on the return type
-template <typename T>
-typename enable_if<is_special_trait<T>::value, T>::type
-func(T input) {
+// Place the type assert using the extra typename parameter below. Its similar to your TypeAssert except
+// this is handy when you are using type traits (pure structs being passed to generic algorithm/ functions)
+template <typename T, typename enable_if<is_special_trait<T>::value, T>::type * = nullptr>
+T func(T input) {
     cout << "func speaking : overload 1 " << endl;
     return input;
 }
 
-// Placing type assert using traits on the input value
-template <typename T>
-void func(typename enable_if<is_special_trait<T>::value, T>::type input, int arg) {
+template <typename T, typename enable_if<is_special_trait<T>::value, T>::type * = nullptr>
+void func(T input, int arg) {
     cout << " func speaking : overload 2 " << endl;
 }
 
