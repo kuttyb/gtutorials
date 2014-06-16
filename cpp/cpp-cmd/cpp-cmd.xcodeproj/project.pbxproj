@@ -10,6 +10,7 @@
 		B7114F111944E10000E9C000 /* TestLambda.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7114F101944E10000E9C000 /* TestLambda.mm */; };
 		B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */ = {isa = PBXBuildFile; fileRef = B731E32719450C7400742F88 /* TestMetaFunction.mm */; };
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
+		B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */; };
 		B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D68F151942F84000D34C1A /* TestRecursion.mm */; };
 		B7DDC1091892240200EC77B8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7DDC1081892240200EC77B8 /* XCTest.framework */; };
 		B7DDC10F1892240200EC77B8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7DDC10D1892240200EC77B8 /* InfoPlist.strings */; };
@@ -44,6 +45,7 @@
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B774C4BF1943A46400A639A8 /* typevector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = typevector.h; path = "cpp-cmd/typevector.h"; sourceTree = "<group>"; };
+		B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConditionalExecution.mm; sourceTree = "<group>"; };
 		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DDC1011892231600EC77B8 /* TypeAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeAssert.h; path = "cpp-cmd/TypeAssert.h"; sourceTree = "<group>"; };
 		B7DDC1061892240200EC77B8 /* cpp-cmd Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cpp-cmd Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +127,7 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */,
 				B7FEFD41194E1FA400432759 /* TestTypeList.mm */,
 				B731E32719450C7400742F88 /* TestMetaFunction.mm */,
 				B7114F101944E10000E9C000 /* TestLambda.mm */,
@@ -242,6 +245,7 @@
 				B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */,
 				B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
+				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
