@@ -57,6 +57,16 @@ struct is_special_trait <Local> {
     static const bool value = true;
 };
 
+template <>
+struct is_special_trait <int> {
+    static const bool value = true;
+};
+
+template <>
+struct is_special_trait <float> {
+	static const bool value = true;
+};
+
 #pragma mark Function Overloads
 // Place the type assert using the extra typename parameter below. Its similar to your TypeAssert except
 // this is handy when you are using type traits (pure structs being passed to generic algorithm/ functions)
@@ -116,6 +126,12 @@ void func(T input, int arg) {
 {
     Local x;
     func<Local>(x, 3); // This should use the second overloaded function
+}
+
+- (void)testPrimitiveTypesforTraits
+{
+	func(3, 2);
+	func(3, 2.5f);
 }
 
 - (void)testInheritance
