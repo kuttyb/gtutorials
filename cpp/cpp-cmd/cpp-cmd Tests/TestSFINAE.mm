@@ -40,9 +40,10 @@ class B : public A {};
 
 class C {};
 
+// We are enforcing Type Hierarchy (aka Type Assert) as part of the template signature
 template <typename T, typename enable_if<std::is_base_of<A, T>::value, T>::type * = nullptr>
 void ATypes(T input) {
-    
+    cout << "testing inheritance " << endl;
 }
 
 #pragma mark Trait checks
@@ -115,6 +116,19 @@ void func(T input, int arg) {
 {
     Local x;
     func<Local>(x, 3); // This should use the second overloaded function
+}
+
+- (void)testInheritance
+{
+    A a;
+    B b;
+    ATypes(a);
+    ATypes(b);
+#if 0 
+    // This obviously does not compile
+    C c;
+    ATypes(c);
+#endif
 }
 
 @end
