@@ -1,0 +1,6 @@
+instead of specializing on formal types, you can formalize on traits and make sure various types just conform to one of the traits :)
+
+So say you had 15 types that resulted in a particular body of code and 2 types that used another body of code (meaning we have 17 specializations  here)
+
+The right thing to do here is to have just 2 specializations based off 2 traits and ask these types to conform to either of the above traits.
+
