@@ -67,14 +67,6 @@ public:
         }
     };
     
-    template <typename TT>
-    class Y : public Policy<Y<TT> > {
-    public:
-        void print() {
-            cout << "inner second policy speaking" << endl;
-        }
-    };
-    
     Policy<X<POLICY_TYPE> > * getPolicy() {
         return new X<POLICY_TYPE>(this);
     }
