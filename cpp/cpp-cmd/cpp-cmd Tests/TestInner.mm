@@ -13,9 +13,9 @@
 using std::cout;
 using std::endl;
 
-#pragma mark Interface
+#pragma mark Interface that all Iterators must obey
 template <typename ST>
-class Policy {
+class Iterator {
 public:
     void print() { DISPATCH(ST)->print(); }
 };
@@ -23,25 +23,32 @@ public:
 
 #pragma mark C++
 template <typename T>
-class Outer {
+class Vector {
 private:
     T localvar;
 public:
-    Outer(int value) : localvar(value) {}
+    Vector(int value) : localvar(value) {}
     
-    class InnerOne : public Policy<InnerOne>{
-        Outer & m_outer;
+#pragma mark Iterator Inner classes
+    class IteratorOne : public Iterator<IteratorOne>{
+        Vector & m_Vector;
     public:
-        InnerOne(Outer & outer) : m_outer(outer) {}
-        void print() { cout << "Inner 1: speaking outer " << m_outer.localvar++ << endl; }
+        IteratorOne(Vector & Vector) : m_Vector(Vector) {}
+        void print() { cout << "Iterator 1: speaking Vector " << m_Vector.localvar++ << endl; }
     };
     
-    class InnerTwo : public Policy<InnerTwo> {
-        Outer & m_outer;
+    class IteratorTwo : public Iterator<IteratorTwo> {
+        Vector & m_Vector;
     public:
-        InnerTwo(Outer & outer) : m_outer(outer) {}
-        void print() { cout << "Inner 2: speaking " << m_outer.localvar++ << endl; }
+        IteratorTwo(Vector & Vector) : m_Vector(Vector) {}
+        void print() { cout << "Iterator 2: speaking " << m_Vector.localvar++ << endl; }
     };
+    
+public:
+    // Factories to hide the fact that one had to provide Vector & to the Iterator classes
+    // for them to get access to private this* state of Vector
+    IteratorOne  iteratorOne() { return IteratorOne(*this); }
+    IteratorTwo  iteratorTwo() { return IteratorTwo(*this); }
 };
 
 #pragma mark Objective-C
@@ -63,13 +70,10 @@ public:
 
 - (void)testExample
 {
-    Outer<int> b(9);
+    Vector<int> b(9);
     
-    Outer<int>::InnerOne a(b);
-    a.print();
-    
-    Outer<int>::InnerTwo x(b);
-    x.print();
+    b.iteratorOne().print();
+    b.iteratorTwo().print();
 }
 
 @end
