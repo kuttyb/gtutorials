@@ -10,8 +10,7 @@
 #define __cpp_cmd__Base__
 
 #include <iostream>
-
-#define DISPATCH(T)  (static_cast<T*>(this))
+#include "crtp.h"
 
 #pragma mark Base
 template <typename SUBTYPE>

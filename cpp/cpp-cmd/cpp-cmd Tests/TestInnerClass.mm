@@ -8,9 +8,17 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "crtp.h"
 
 using std::cout;
 using std::endl;
+
+#pragma mark Strategy Pattern (pass in policy)
+template <typename SUBTYPE>
+class Policy {
+public:
+    void print() { DISPATCH(SUBTYPE)->print(); }
+};
 
 #pragma mark C++
 // Inner Classes:
@@ -24,25 +32,8 @@ using std::endl;
 //     supplied to them via some means.
 //
 class A {
-public:
 private:
     int localvar;
-    
-#pragma mark inner-class
-    class X {
-    private:
-        A* outer;
-        int one;
-    public:
-        X(A * ptr) { outer = ptr; }
-        X(X & other) { outer = other.outer; one = 2; }
-        int get_one() {
-            return one + outer->localvar;
-        }
-    };
-    
-private:
-    X  x;
     
 public:
     A() : x(this) {
@@ -54,6 +45,20 @@ public:
         cout << "value of two is " << localvar << " " <<  endl;
         cout << " inner value is " << x.get_one() << " " << endl;
     }
+#pragma mark inner-class
+private:
+    class X {
+    private:
+        A* outer;
+        int one;
+    public:
+        X(A * ptr) { outer = ptr; }
+        X(X & other) { outer = other.outer; one = 2; }
+        int get_one() {
+            return one + outer->localvar;
+        }
+    };
+    X x;
 };
 
 #pragma mark Objective-C
