@@ -34,23 +34,24 @@ public:
 // [d] As you will see, we used this for the Strategy Pattern, its passed in to A and is a member
 //     and can be changed while instantiating A without changing code in A
 //
+template <typename POLICY_TYPE>
 class A {
 private:
     int localvar;
     
 public:
-    A() : x(this) {
+    A() {
         localvar  = 3;
     }
     
     void print() {
         localvar++;
         cout << "value of two is " << localvar << " " <<  endl;
-        cout << " inner value is " << x.get_one() << " " << endl;
     }
     
 #pragma mark inner-class
-    class X : public Policy<X> {
+    template <typename TT>
+    class X  : public Policy<X<TT> >  {
     private:
         A* outer;
         int one;
@@ -62,18 +63,23 @@ public:
         }
         
         void print() {
-            cout << "inner policy speaking" << endl;
+            cout << "inner generic policy speaking" << endl;
         }
     };
     
-    Policy<A::X> & getPolicy() {
-        return x;
+    template <typename TT>
+    class Y : public Policy<Y<TT> > {
+    public:
+        void print() {
+            cout << "inner second policy speaking" << endl;
+        }
+    };
+    
+    Policy<X<POLICY_TYPE> > * getPolicy() {
+        return new X<POLICY_TYPE>(this);
     }
-    
-    
-private:
-    X x;
 };
+
 
 #pragma mark Objective-C
 @interface TestInnerClass : XCTestCase
@@ -94,9 +100,8 @@ private:
 
 - (void)testExample
 {
-    A a;
-    a.print();
-    a.getPolicy().print();
+    A<int> a;
+    a.getPolicy()->print();
 }
 
 
