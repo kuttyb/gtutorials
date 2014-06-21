@@ -8,18 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include "crtp.h"
 
 using std::cout;
 using std::endl;
-
-#pragma mark Interface that all Iterators must obey
-template <typename ST>
-class Iterator {
-public:
-    void print() { DISPATCH(ST)->print(); }
-};
-
 
 #pragma mark C++
 template <typename T>
@@ -30,14 +21,14 @@ public:
     Vector(int value) : localvar(value) {}
     
 #pragma mark Iterator Inner classes
-    class IteratorOne : public Iterator<IteratorOne>{
+    class IteratorOne {
         Vector & m_Vector;
     public:
         IteratorOne(Vector & Vector) : m_Vector(Vector) {}
         void print() { cout << "Iterator 1: speaking Vector " << m_Vector.localvar++ << endl; }
     };
     
-    class IteratorTwo : public Iterator<IteratorTwo> {
+    class IteratorTwo {
         Vector & m_Vector;
     public:
         IteratorTwo(Vector & Vector) : m_Vector(Vector) {}
