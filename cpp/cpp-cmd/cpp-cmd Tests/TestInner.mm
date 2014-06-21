@@ -30,17 +30,17 @@ public:
     Outer(int value) : localvar(value) {}
     
     class InnerOne : public Policy<InnerOne>{
-        Outer * m_outer;
+        Outer & m_outer;
     public:
-        InnerOne(Outer * outer) : m_outer(outer) {}
-        void print() { cout << "Inner 1: speaking outer " << m_outer->localvar++ << endl; }
+        InnerOne(Outer & outer) : m_outer(outer) {}
+        void print() { cout << "Inner 1: speaking outer " << m_outer.localvar++ << endl; }
     };
     
     class InnerTwo : public Policy<InnerTwo> {
-        Outer * m_outer;
+        Outer & m_outer;
     public:
-        InnerTwo(Outer * outer) : m_outer(outer) {}
-        void print() { cout << "Inner 2: speaking " << m_outer->localvar++ << endl; }
+        InnerTwo(Outer & outer) : m_outer(outer) {}
+        void print() { cout << "Inner 2: speaking " << m_outer.localvar++ << endl; }
     };
 };
 
@@ -65,10 +65,10 @@ public:
 {
     Outer<int> b(9);
     
-    Outer<int>::InnerOne a(&b);
+    Outer<int>::InnerOne a(b);
     a.print();
     
-    Outer<int>::InnerTwo x(&b);
+    Outer<int>::InnerTwo x(b);
     x.print();
 }
 
