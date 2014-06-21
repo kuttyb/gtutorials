@@ -13,7 +13,7 @@
 using std::cout;
 using std::endl;
 
-#pragma mark Strategy Pattern (pass in policy)
+#pragma mark Interfaces
 template <typename SUBTYPE>
 class Policy {
 public:
@@ -31,6 +31,9 @@ public:
 // [c] They **DON'T** have access to this* of the enclosing class, therefore it needs to be
 //     supplied to them via some means.
 //
+// [d] As you will see, we used this for the Strategy Pattern, its passed in to A and is a member
+//     and can be changed while instantiating A without changing code in A
+//
 class A {
 private:
     int localvar;
@@ -45,9 +48,9 @@ public:
         cout << "value of two is " << localvar << " " <<  endl;
         cout << " inner value is " << x.get_one() << " " << endl;
     }
+    
 #pragma mark inner-class
-private:
-    class X {
+    class X : public Policy<X> {
     private:
         A* outer;
         int one;
@@ -57,7 +60,18 @@ private:
         int get_one() {
             return one + outer->localvar;
         }
+        
+        void print() {
+            cout << "inner policy speaking" << endl;
+        }
     };
+    
+    Policy<A::X> & getPolicy() {
+        return x;
+    }
+    
+    
+private:
     X x;
 };
 
@@ -82,6 +96,7 @@ private:
 {
     A a;
     a.print();
+    a.getPolicy().print();
 }
 
 
