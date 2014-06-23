@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include "crtp.h"
+#include "typeassert.h"
 
 using std::cout;
 using std::endl;
@@ -94,6 +95,8 @@ public:
 {
     A<int> a;
     a.getPolicy()->print();
+    Policy<int> x;
+    cout << sizeof(x) << endl;
 }
 
 

@@ -11,19 +11,10 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include <type_traits>
+#include "typeassert.h"
 
 using std::cout;
 using std::endl;
-
-#pragma mark C++ enable_if
-template <bool n, typename T = void>
-struct enable_if {
-};
-
-template <typename T>
-struct enable_if <true, T> {
-    typedef T type;
-};
 
 #pragma mark Local Class
 struct Local {

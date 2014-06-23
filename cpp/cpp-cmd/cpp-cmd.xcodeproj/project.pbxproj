@@ -57,7 +57,7 @@
 		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DA8E5B1956037500549305 /* crtp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crtp.h; path = "cpp-cmd/crtp.h"; sourceTree = "<group>"; };
 		B7DA8E5C1956219E00549305 /* TestInner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInner.mm; sourceTree = "<group>"; };
-		B7DDC1011892231600EC77B8 /* TypeAssert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypeAssert.h; path = "cpp-cmd/TypeAssert.h"; sourceTree = "<group>"; };
+		B7DDC1011892231600EC77B8 /* typeassert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = typeassert.h; path = "cpp-cmd/typeassert.h"; sourceTree = "<group>"; };
 		B7DDC1061892240200EC77B8 /* cpp-cmd Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cpp-cmd Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7DDC1081892240200EC77B8 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B7DDC10C1892240200EC77B8 /* cpp-cmd Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "cpp-cmd Tests-Info.plist"; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				B7DA8E5B1956037500549305 /* crtp.h */,
 				B774C4BF1943A46400A639A8 /* typevector.h */,
-				B7DDC1011892231600EC77B8 /* TypeAssert.h */,
+				B7DDC1011892231600EC77B8 /* typeassert.h */,
 				B7B79DF9194E840400ADAFB8 /* conditional.h */,
 				A8784E8C1931401F00D1B66E /* CRTP */,
 				B7436686188F3F920096C8AE /* cpp-cmd */,
