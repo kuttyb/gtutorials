@@ -17,6 +17,9 @@ template <typename... T>
 struct typevector {
     std::tuple<T*...> args;
     
+    typevector() {
+    }
+    
     typevector(T*... input) {
         args = std::make_tuple(input...);
     }
@@ -56,6 +59,15 @@ struct foreach_type {
         // Recurse ...
         foreach_type<N - 1, D, T...>::factory(input);
     }
+    
+    static void destroy(typevector<T...> * input) {
+        if (std::get<N>(input->args)) {
+            delete std::get<N>(input->args);
+        }
+        
+        // Recurse ...
+        foreach_type<N - 1, D, T...>::destroy(input);
+    }
 };
 
 // Class Partial Specialization
@@ -70,6 +82,12 @@ struct foreach_type<0, D, T...> {
         int x = 3; void *ptr = &x;
         l = (typename std::tuple_element<0, std::tuple<T...> >::type * )ptr;
         std::get<0>(input->args) = l->create();
+    }
+    
+    static void destroy(typevector<T...> * input) {
+        if (std::get<0>(input->args)) {
+            delete std::get<0>(input->args);
+        }
     }
     
     static void execute(typevector<T...> * input, std::function<void (void *, int)> func) {

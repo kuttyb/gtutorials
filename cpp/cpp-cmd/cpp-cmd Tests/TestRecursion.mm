@@ -94,14 +94,20 @@ public:
 //
 - (void)testAbstractFactory
 {
-    typevector<X, Y, X> data(NULL, NULL, NULL);
+    typevector<X, Y, X> data;
     
     // Create all the objects using their respective Type Factory methods
     foreach_type<data.size(), voidPtr, X, Y, X>::factory(&data);
     
     // Invoke all of them to ensure they got created properly
     int val = 9;
+    {
+        X* local = std::get<0>(data.args);
+        local->local = 15;
+    }
     foreach_type<data.size(), int, X, Y, X>::method(&val, &data);
+    
+    foreach_type<data.size(), int, X, Y, X>::destroy(&data);
 }
 
 // Because Templates and Lambdas don't mix we have to do pattern matching as below :-(
