@@ -24,7 +24,7 @@ int main(void)
 	const uint32_t input[] = 
 		{
 			//			0x44f07c29, 0x44e9ceb8, 0x4577019a,
-			0x0, 0x3f800000, 0x3fafdf3b, 0x3feeb852,
+			0x0, 0x3f800000, 0x3fafdf3b, 0x3feeb852, 0x40034396
 		};
 	
 	const uint32_t size = sizeof(input) / sizeof(input[0]);
@@ -52,7 +52,7 @@ int main(void)
 		{
 			//			1923.88f, 1870.46f, 3952.1f,
 			//			0.0f, 1.0f, 1.3737f, 1.6408f, 1.9545f
-			0.0f, 1.0f, 1.374f, 1.865f,
+			0.0f, 1.0f, 1.374f, 1.865f, 2.051f
 		};
 
 	for (uint32_t i = 0; i < sizeof(finput) / sizeof(finput[0]); ++i) 
