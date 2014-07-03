@@ -14,6 +14,7 @@
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B78B0775195575140057B23D /* TestInnerClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78B0774195575140057B23D /* TestInnerClass.mm */; };
 		B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */; };
+		B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7CA048B1966166A00E8C013 /* TestFilter.mm */; };
 		B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D68F151942F84000D34C1A /* TestRecursion.mm */; };
 		B7DA8E5D1956219E00549305 /* TestInner.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DA8E5C1956219E00549305 /* TestInner.mm */; };
 		B7DDC1091892240200EC77B8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7DDC1081892240200EC77B8 /* XCTest.framework */; };
@@ -54,6 +55,7 @@
 		B78B0774195575140057B23D /* TestInnerClass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInnerClass.mm; sourceTree = "<group>"; };
 		B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConditionalExecution.mm; sourceTree = "<group>"; };
 		B7B79DF9194E840400ADAFB8 /* conditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conditional.h; path = "cpp-cmd/conditional.h"; sourceTree = "<group>"; };
+		B7CA048B1966166A00E8C013 /* TestFilter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFilter.mm; sourceTree = "<group>"; };
 		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DA8E5B1956037500549305 /* crtp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = crtp.h; path = "cpp-cmd/crtp.h"; sourceTree = "<group>"; };
 		B7DA8E5C1956219E00549305 /* TestInner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInner.mm; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7CA048B1966166A00E8C013 /* TestFilter.mm */,
 				B7DA8E5C1956219E00549305 /* TestInner.mm */,
 				B78B0774195575140057B23D /* TestInnerClass.mm */,
 				A81CE954194EB50700ACA024 /* TestSFINAE.mm */,
@@ -262,6 +265,7 @@
 				B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */,
 				B7DA8E5D1956219E00549305 /* TestInner.mm in Sources */,
 				A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */,
+				B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
 				B78B0775195575140057B23D /* TestInnerClass.mm in Sources */,
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
