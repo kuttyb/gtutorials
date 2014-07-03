@@ -15,13 +15,13 @@ using std::endl;
 
 struct FilterOne {
 	void print(int input) {
-		cout << "filter one speaking and you passed me  " << input << endl;
+		cout << "filter one   speaking and you passed me " << input << endl;
 	}
 };
 
 struct FilterTwo {
 	void print(int input) {
-		cout << "Filter two speaking and you passed me " << input << endl;
+		cout << "Filter two   speaking and you passed me " << input << endl;
 	}
 };
 
