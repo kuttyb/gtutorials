@@ -1,3 +1,13 @@
 git log origin/master..HEAD^
 
 that compares your current local branch with the remote branch on the remote repository
+
+=======
+git diff master..test   // plain old diff between the two branches
+    	 		// meaning the lines that are different
+
+git whatchanged master..test // just the changelists that are different
+
+git diff --name-status test..master // Files that are different
+
+
