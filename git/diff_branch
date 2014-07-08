@@ -7,6 +7,8 @@ git diff master..test   // plain old diff between the two branches
     	 		// meaning the lines that are different
 
 git whatchanged master..test // just the changelists that are different
+    			     // their_branch..your_branch
+			     // i.e, if one of the branches is the current branch you are on
 
 git diff --name-status test..master // Files that are different
 

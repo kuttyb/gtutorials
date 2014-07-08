@@ -1,0 +1,21 @@
+git svn clone ssh-svn://....addr/trunk .
+
+git checkout -b feature_1
+
+hack away 
+
+git svn rebase  // This will bring SVN changes to this branch
+    		// if there is a conflict you will get conflict markers
+		// At which point you fix them and do 
+		// git add .
+		// This is the equivalent of hg resolve -m 
+		// git rebase --continue
+		// That's it!
+
+If you wish to submit directly from your branch
+git svn dcmmoit --dry-run // then remove the --dry-run
+
+Later you will have to update master
+git checkout master
+git svn rebase
+
