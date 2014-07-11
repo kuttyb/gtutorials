@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>40EF0942-5F34-4857-9503-1ADB751F0563</string>
+	<string>02BDE889-8397-49D7-9672-255A0D913FED</string>
 	<key>IDESourceControlProjectName</key>
 	<string>cpp-cmd</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C96B61A0-2033-47AC-8900-A3476EC3FCA8</key>
-		<string>default</string>
+		<key>6D3C7C86-2514-4946-B655-6525906656AE</key>
+		<string>ssh://bitbucket.org/kuttyb/gtutorials.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>cpp/cpp-cmd/cpp-cmd.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C96B61A0-2033-47AC-8900-A3476EC3FCA8</key>
+		<key>6D3C7C86-2514-4946-B655-6525906656AE</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>default</string>
+	<string>ssh://bitbucket.org/kuttyb/gtutorials.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C96B61A0-2033-47AC-8900-A3476EC3FCA8</string>
+	<string>6D3C7C86-2514-4946-B655-6525906656AE</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C96B61A0-2033-47AC-8900-A3476EC3FCA8</string>
+			<string>6D3C7C86-2514-4946-B655-6525906656AE</string>
 			<key>IDESourceControlWCCName</key>
-			<string>tutorials</string>
+			<string>gtutorials</string>
 		</dict>
 	</array>
 </dict>
