@@ -28,4 +28,8 @@ port list inactive     // name says it all, keep this in mind but the few times 
      	  	       // it didn't do the right thing. Listed ports that I knew I was 
 		       // using and that too, their latest versions
 
+<<<<<<< HEAD
 // testing resolves
+=======
+// conflicting change
+>>>>>>> conflicting change
