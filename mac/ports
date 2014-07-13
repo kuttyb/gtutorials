@@ -27,3 +27,5 @@ port uninstall leaves  // Get rid of unused packages
 port list inactive     // name says it all, keep this in mind but the few times I tried it
      	  	       // it didn't do the right thing. Listed ports that I knew I was 
 		       // using and that too, their latest versions
+
+// testing resolves
