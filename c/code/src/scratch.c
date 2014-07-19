@@ -7,15 +7,30 @@ uint32_t load_4b(uint64_t addr) {
 }
 
 uint8_t load_1b(uint64_t addr) {
-  uint32_t tmask     = (0xff << ((addr & 0x3) << 3));
-  uint32_t data      = load_4b(addr & ~(0x3U)) & tmask;
-  
-  return (uint8_t)(data >> ((addr & 0x3) << 3));
+  const uint8_t  sft    = (addr & 0x3) << 3;
+  uint32_t       data   = load_4b(addr & ~(0x3U)) & (0xff << sft);
+  return (uint8_t)(data >> sft);
+}
+
+uint16_t load_2b(uint64_t addr) {
+  const uint8_t  sft    = (addr & 0x3) << 3;
+  uint32_t       data   = load_4b(addr & ~(0x3U)) & (0xffff << sft);
+  return (uint16_t)(data >> sft);
 }
 
 int main(void) 
 {
-  printf("data is 0x%x\n", load_1b(0xab49));
-	
+#if 0
+  printf("data is 0x%x\n", load_1b(0xab44));
+  printf("data is 0x%x\n", load_1b(0xab45));
+  printf("data is 0x%x\n", load_1b(0xab46));
+  printf("data is 0x%x\n", load_1b(0xab47));
+#endif
+
+  printf("data is 0x%x\n", load_2b(0xab44));
+  printf("data is 0x%x\n", load_2b(0xab45));
+  printf("data is 0x%x\n", load_2b(0xab46));
+  printf("data is 0x%x\n", load_2b(0xab47));
+
   return 0;
 }
