@@ -1,0 +1,12 @@
+git rebase -i HEAD~4  // where 4 is the number of changes including HEAD that you want to muck with
+
+This will open up a prompt
+// Btw change your preferred editor to emacsclient thus
+git config --global core.edior emacsclient
+
+Top of the prompt choose the first one as pick or edit message and apply squash to all others below it. This will
+cause them to do hg qfold (or fold the commits into one)
+
+Once you save and exit, it will open up another prompt with all the commit messages in place. Trim them in place and
+save and you are in business!!
+
