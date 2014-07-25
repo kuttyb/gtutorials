@@ -1,0 +1,6 @@
+git reset --hard ba0dae7d40c573477ac11ada4b4be06cc2df0e1e
+
+This is the same as stripping the changeset before this
+git gc --prune=now
+
+To get rid of changelists that are stripped and don't have any parents
