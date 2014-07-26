@@ -1,0 +1,10 @@
+from the branch where you did your changes 
+
+arc diff --create HEAD~3  // Assuming you made 3 local changes
+
+After you make some review improvements 
+
+arc diff HEAD~5          //  Assuming you made 2 more local chnages
+
+So yes at every stage, provide the total number of HEAD~h count correctly and you should be fine.
+
