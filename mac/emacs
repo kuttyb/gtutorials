@@ -1,0 +1,2 @@
+emacsclient ... won't work unless you copy the one in your icloud. But first you ll have to rename the one at /usr/bin.
+Likewise with emacs
