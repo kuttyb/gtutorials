@@ -38,6 +38,7 @@ hexfloat.c            \
 stackgrowth.c         \
 eventbuffer.c         \
 factorial.c           \
+bytemask_loadstore.c  \
 rmat.c                \
 query.c 
 

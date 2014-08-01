@@ -2,35 +2,31 @@
 #include <inttypes.h>
 #include <assert.h>
 
-uint32_t load_4b(uint64_t addr) {
-  return 0xaabbccdd;
-}
-
-uint8_t load_1b(uint64_t addr) {
-  const uint8_t  sft    = (addr & 0x3) << 3;
-  uint32_t       data   = load_4b(addr & ~(0x3U)) & (0xff << sft);
-  return (uint8_t)(data >> sft);
-}
-
-uint16_t load_2b(uint64_t addr) {
-  const uint8_t  sft    = (addr & 0x3) << 3;
-  uint32_t       data   = load_4b(addr & ~(0x3U)) & (0xffff << sft);
-  return (uint16_t)(data >> sft);
-}
 
 int main(void) 
 {
-#if 0
-  printf("data is 0x%x\n", load_1b(0xab44));
-  printf("data is 0x%x\n", load_1b(0xab45));
-  printf("data is 0x%x\n", load_1b(0xab46));
-  printf("data is 0x%x\n", load_1b(0xab47));
-#endif
-
-  printf("data is 0x%x\n", load_2b(0xab44));
-  printf("data is 0x%x\n", load_2b(0xab45));
-  printf("data is 0x%x\n", load_2b(0xab46));
-  printf("data is 0x%x\n", load_2b(0xab47));
-
-  return 0;
+	const uint32_t agxk_gart_page_size = 0x1000;
+	uint64_t last_va_committed = 0x0ULL;
+	uint64_t virtual_address;
+	uint64_t addr_loop[] = 
+		{
+			0x0, 0x1000, 0x2000, 0x4000,
+			0x9000, 0xc000, 0xd000,
+			0x12000
+		};
+	
+	for (uint32_t i = 0; i < sizeof(addr_loop) / sizeof(addr_loop[0]); ++i)
+	{
+		virtual_address = addr_loop[i];
+		
+		if ((last_va_committed != 0x0ULL) &&
+		    ((virtual_address - last_va_committed) > agxk_gart_page_size))
+		{
+			printf("kbb: Detected a hole between VA 0x%llx and 0x%llx -> Needs Padding\n", last_va_committed, virtual_address);	
+			printf("kbb: Padding VA 0x%llx\n\n", last_va_committed + agxk_gart_page_size);			
+		}
+		last_va_committed = virtual_address;
+	}
+	
+	return 0;
 }
