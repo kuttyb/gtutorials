@@ -1,0 +1,8 @@
+# Call this from your branch and it will generate a diff with master 
+git format-patch master --stdout > file.patch
+
+# And this should apply the patch
+git apply file.patch
+ 
+  you could use --stat or --check to get details about the patch or whether it will give grief while merging
+
