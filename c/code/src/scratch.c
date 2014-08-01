@@ -19,7 +19,7 @@ int main(void)
 	{
 		virtual_address = addr_loop[i];
 		
-		if ((last_va_committed != 0x0ULL) &&
+		if (last_va_committed &&
 		    ((virtual_address - last_va_committed) > agxk_gart_page_size))
 		{
 			printf("kbb: Detected a hole between VA 0x%llx and 0x%llx -> Needs Padding\n", last_va_committed, virtual_address);	
