@@ -1,0 +1,2 @@
+# Similar to hg addrem
+git add -A .
