@@ -1,0 +1,11 @@
+# To work on a remote branch
+git checkout remotes/origin/branchcode
+
+# To create a local branch at this changelist
+git checkout -b mylocalbranch
+
+# To create a mapping between the two branches so that pull/push finds the correct remote branch
+git branch --set-upstream-to=origin/branchcode mylocalbranch
+
+That's it!!
+git pull --rebase  should do the trick hereafter
