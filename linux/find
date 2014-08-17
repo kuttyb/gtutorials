@@ -1,0 +1,4 @@
+Yep the find command,
+
+you can use find . -type f
+to only search for files and not directories
