@@ -1,3 +1,0 @@
-git config branch.autosetuprebase always --global
-git config branch.*branch-name*.rebase true
-

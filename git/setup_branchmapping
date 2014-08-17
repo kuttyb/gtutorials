@@ -9,3 +9,31 @@ git branch --set-upstream-to=origin/branchcode mylocalbranch
 
 That's it!!
 git pull --rebase  should do the trick hereafter
+
+
+# This will ensure that when you push it will only push the current branch to the one
+# git pull would pull from. The other is matching, which means all branches will update their
+# changes to their matching remote ones (way too dangerous even when using staging branches for
+# remote branches)
+git config --global push.default simple
+
+# If you want to explicitly control which remote branch you want to push your local
+# branch changes to
+git push origin La:Ra // where La is local and Ra is remote
+
+# ==========================================================
+# Old notes on remote branches that I had
+# ==========================================================
+git push bit-origin remotes/bit-origin/denver_3.6 denver_3.6
+
+bit-origin : remote repository name
+
+remotes:/bit-origin/denver_3.6 : thats the remote branch
+
+denver_3.6 : local branch 
+
+
+# ==========================================================
+# Old notes on remote branches that I had
+# ==========================================================
+Heres how you control the pull default
