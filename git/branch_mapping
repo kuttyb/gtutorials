@@ -17,6 +17,8 @@ git pull --rebase  should do the trick hereafter
 # remote branches)
 git config --global push.default simple
 
+http://stackoverflow.com/questions/948354/default-behavior-of-git-push-without-a-branch-specified
+
 # If you want to explicitly control which remote branch you want to push your local
 # branch changes to
 git push origin La:Ra // where La is local and Ra is remote
@@ -37,3 +39,4 @@ denver_3.6 : local branch
 # Old notes on remote branches that I had
 # ==========================================================
 Heres how you control the pull default
+
