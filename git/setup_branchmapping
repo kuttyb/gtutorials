@@ -36,4 +36,7 @@ denver_3.6 : local branch
 # ==========================================================
 # Old notes on remote branches that I had
 # ==========================================================
-Heres how you control the pull default
+These will ensure git pull defaults to git pull --rebase
+git config branch.autosetuprebase always
+git config branch.*branch-name*.rebase true
+
