@@ -40,5 +40,9 @@ denver_3.6 : local branch
 # ==========================================================
 Heres how you control the pull default
 
+# ==========================================================
+# To push a new local branch upstream, having created the local branch
+# do this
+# ==========================================================
+git push --set-upstream origin Local
 
-# More changes to go in here
