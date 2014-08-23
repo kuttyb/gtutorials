@@ -46,3 +46,4 @@ Heres how you control the pull default
 # ==========================================================
 git push --set-upstream origin Local
 
+# conflicting change from master
