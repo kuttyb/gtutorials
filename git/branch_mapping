@@ -46,4 +46,10 @@ Heres how you control the pull default
 # ==========================================================
 git push --set-upstream origin Local
 
-# conflicting change from master
+# ==========================================================
+# Deleting a remote branch
+# ==========================================================
+git push origin :remotebranchname
+
+# Then delete it locally too
+git branch -D localbranchname
