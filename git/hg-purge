@@ -1,2 +1,3 @@
 git clean -f -d
 
+# consider doinga --dry-run once before doing it
