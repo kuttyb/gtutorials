@@ -10,6 +10,11 @@ git branch --set-upstream-to=origin/branchcode mylocalbranch
 That's it!!
 git pull --rebase  should do the trick hereafter
 
+# ==========================================================
+# Pull Default change (rebase)
+# ==========================================================
+git config --global branch.autosetuprebase always # Force all new branches to automatically use rebase      
+git config --global branch.*branch-name*.rebase true
 
 # This will ensure that when you push it will only push the current branch to the one
 # git pull would pull from. The other is matching, which means all branches will update their
