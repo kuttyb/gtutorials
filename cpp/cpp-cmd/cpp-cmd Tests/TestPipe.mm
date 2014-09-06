@@ -12,7 +12,12 @@
 using std::cout;
 using std::endl;
 
-#pragma mark C++ Generic Methods
+#pragma mark C++
+template <typename T, size_t fifo_depth>
+void Pipe<T, fifo_depth>::execute(T & input, uint32_t context_id) {
+    cout << "Pipe execute" << endl;
+}
+
 template <typename T, size_t fifo_depth>
 void Pipe<T, fifo_depth>::enqueue(T input, uint32_t context_id) {
     
@@ -22,13 +27,6 @@ template <typename T, size_t fifo_depth>
 void Pipe<T, fifo_depth>::run(void) {
     
 }
-
-#pragma mark Partial Specialization
-template <typename T, size_t fifo_depth>
-void Pipe<T, fifo_depth>::execute(T & input, uint32_t context_id) {
-    cout << "Pipe execute" << endl;
-}
-
 
 #pragma mark Objective-C
 @interface TestPipe : XCTestCase
