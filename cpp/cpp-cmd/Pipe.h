@@ -11,9 +11,12 @@
 
 #include <iostream>
 #include <array>
+#include <tuple>
 
-template <typename T, size_t fifo_depth>
+template <typename T, size_t fifo_depth, typename... M>
 class Pipe {
+private:
+    std::array<T, fifo_depth> queue;
 public:
     // Individual run of the Pipeline (synchronous and inside one thread)
     void execute(T & input, uint32_t context_id);

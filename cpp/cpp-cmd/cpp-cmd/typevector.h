@@ -40,6 +40,14 @@ struct foreach_type {
         foreach_type<N - 1, D, T...>::method(value, input);
     }
     
+    static void executemodule(D * input, uint32_t context_id) {
+        typename std::tuple_element<N, std::tuple<T...> >::type l;
+        l.execute(input, context_id);
+        
+        // Recurse ...
+        foreach_type<N-1, D, T...>::executemodule(input, context_id);
+    }
+    
     static void execute(typevector<T...> * input, std::function<void (void *, int)> func) {
         func(std::get<N>(input->args), N);
         
@@ -77,6 +85,11 @@ struct foreach_type<0, D, T...> {
         std::get<0>(input->args)->print(*value);
     }
     
+    static void executemodule(D * input, uint32_t context_id) {
+        typename std::tuple_element<0, std::tuple<T...> >::type l;
+        l.execute(input, context_id);
+    }
+
     static void factory(typevector<T...> * input) {
         typename std::tuple_element<0, std::tuple<T...> >::type * l;
         int x = 3; void *ptr = &x;
