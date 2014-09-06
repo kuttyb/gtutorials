@@ -72,6 +72,7 @@ public:
 - (void)testExample
 {
     int value = 5;
+    // Heres how you setup a new Hardware Pipeline
     Pipe<int, 4, One, One> x;
     x.init();
     x.execute(value, 8);
