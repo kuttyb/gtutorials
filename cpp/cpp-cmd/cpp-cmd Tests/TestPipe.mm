@@ -60,11 +60,8 @@ public:
 
 - (void)testExample
 {
-    Pipe<int, 4, One, One> x;
-    x.run();
-    x.enqueue(2, 3);
-    
     int value = 5;
+    Pipe<int, 4, One, One> x;
     x.execute(value, 8);
 }
 
