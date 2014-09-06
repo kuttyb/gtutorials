@@ -28,7 +28,7 @@ void Pipe<I, T, fifo_depth, M...>::enqueue(I input, uint32_t context_id) {
 }
 
 template <typename I, typename T, size_t fifo_depth, typename... M>
-void Pipe<I, T, fifo_depth, M...>::run(void) {
+void Pipe<I, T, fifo_depth, M...>::run(uint32_t context_id) {
     
 }
 

@@ -15,22 +15,17 @@
 /*
  TODO:
  =====
- Pipe should have T for its transaction data type, I for its input data type.
+ [a] Add a std::map and store pointer to queue entries and its context_id
+     enqueue adds into it and run searches it for the correct context_id.
  
- We wish to keep these separate since I will be supplied by enqueue and its copy by value. Doing a copy by value of T where only 2 fields are actually copied over is bad.
+ [b] Add a Fifo wrapper around queue that enqueue adds into. Should have 
+     Basic Fifo behaviour and later add thread blocking behaviour using a
+     Condition Variable.
  
- struct PipeEntry {
- T        pipe_heap;
- I        input;
- uint32_t context_id;
- PipeEntry(I input, uint32_t context_id);
- };
- 
- 
- PipeEntry entries[fifo_depth];
- 
- In enqueue:
- lock add and clear entries' pipe_heap
+ [c] After this spend your time in getting Locking correct. Keep in mind
+     some Modules may have the same lock for all context_ids so create a
+     PipeLock struct and in addition to the Module Lock mask, place a bit
+     to capture this information.
  */
 template <typename T, typename I>
 struct PipeEntry {
@@ -55,7 +50,7 @@ public:
     // Queue work for future execution
     void enqueue(I input, uint32_t context_id);
     // Pick a ready Pipeline instance and launch execute on it
-    void run();
+    void run(uint32_t context_id);
     // Understand what kind of locking would be required by the individual
     // modules
     void setup_locks();
