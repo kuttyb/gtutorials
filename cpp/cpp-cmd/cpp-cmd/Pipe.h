@@ -13,6 +13,26 @@
 #include <array>
 #include <tuple>
 
+/*
+ TODO:
+ =====
+ Pipe should have T for its transaction data type, I for its input data type.
+ 
+ We wish to keep these separate since I will be supplied by enqueue and its copy by value. Doing a copy by value of T where only 2 fields are actually copied over is bad.
+ 
+ struct PipeEntry {
+ T        pipe_heap;
+ I        input;
+ uint32_t context_id;
+ PipeEntry(I input, uint32_t context_id);
+ };
+ 
+ 
+ PipeEntry entries[fifo_depth];
+ 
+ In enqueue:
+ lock add and clear entries' pipe_heap
+ */
 template <typename T, size_t fifo_depth, typename... M>
 class Pipe {
 private:
