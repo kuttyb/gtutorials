@@ -60,7 +60,7 @@ public:
     int value = 5;
     // Heres how you setup a new Hardware Pipeline
     Pipe<int, 4, Two, Two, One> x;
-    x.init();
+    x.setup_locks();
     x.execute(value, 8);
 }
 

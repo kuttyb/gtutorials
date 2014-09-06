@@ -27,7 +27,7 @@ public:
     void run();
     // Understand what kind of locking would be required by the individual
     // modules
-    void init();
+    void setup_locks();
 };
 
 

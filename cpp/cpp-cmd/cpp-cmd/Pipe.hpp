@@ -33,7 +33,7 @@ void Pipe<T, fifo_depth, M...>::run(void) {
 }
 
 template <typename T, size_t fifo_depth, typename... M>
-void Pipe<T, fifo_depth, M...>::init(void) {
+void Pipe<T, fifo_depth, M...>::setup_locks(void) {
     cout << "Initializing locks" << endl;
     foreach_type<std::tuple_size<std::tuple<M...> >::value - 1, uint64_t, M...>::executemodule(&lock_mask, 0);
 }
