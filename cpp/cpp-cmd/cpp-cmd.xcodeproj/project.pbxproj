@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */ = {isa = PBXBuildFile; fileRef = A81CE954194EB50700ACA024 /* TestSFINAE.mm */; };
+		A8272A3919BABD83007156CD /* TestPipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8272A3819BABD83007156CD /* TestPipeline.mm */; };
+		A8CA32A519BAC68800B711FA /* TestFunctionalInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */; };
 		A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */; };
 		B7114F111944E10000E9C000 /* TestLambda.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7114F101944E10000E9C000 /* TestLambda.mm */; };
 		B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */ = {isa = PBXBuildFile; fileRef = B731E32719450C7400742F88 /* TestMetaFunction.mm */; };
@@ -46,6 +48,10 @@
 
 /* Begin PBXFileReference section */
 		A81CE954194EB50700ACA024 /* TestSFINAE.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSFINAE.mm; sourceTree = "<group>"; };
+		A8272A3719BABC07007156CD /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		A8272A3819BABD83007156CD /* TestPipeline.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPipeline.mm; sourceTree = "<group>"; };
+		A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalInheritance.mm; sourceTree = "<group>"; };
+		A8CA32A619BAC75F00B711FA /* functionalderivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functionalderivation.h; sourceTree = "<group>"; };
 		A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateTemplate.mm; sourceTree = "<group>"; };
 		B7114F101944E10000E9C000 /* TestLambda.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLambda.mm; sourceTree = "<group>"; };
 		B731E32719450C7400742F88 /* TestMetaFunction.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMetaFunction.mm; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 			children = (
 				B7DA8E5B1956037500549305 /* crtp.h */,
 				B774C4BF1943A46400A639A8 /* typevector.h */,
+				A8CA32A619BAC75F00B711FA /* functionalderivation.h */,
+				A8272A3719BABC07007156CD /* Header.h */,
 				B7DDC1011892231600EC77B8 /* typeassert.h */,
 				B7B79DF9194E840400ADAFB8 /* conditional.h */,
 				A8784E8C1931401F00D1B66E /* CRTP */,
@@ -141,6 +149,8 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
+				A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */,
+				A8272A3819BABD83007156CD /* TestPipeline.mm */,
 				B7CA048B1966166A00E8C013 /* TestFilter.mm */,
 				B7DA8E5C1956219E00549305 /* TestInner.mm */,
 				B78B0774195575140057B23D /* TestInnerClass.mm */,
@@ -263,6 +273,7 @@
 				B7114F111944E10000E9C000 /* TestLambda.mm in Sources */,
 				B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */,
 				B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */,
+				A8CA32A519BAC68800B711FA /* TestFunctionalInheritance.mm in Sources */,
 				B7DA8E5D1956219E00549305 /* TestInner.mm in Sources */,
 				A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */,
 				B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */,
@@ -270,6 +281,7 @@
 				B78B0775195575140057B23D /* TestInnerClass.mm in Sources */,
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
 				A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */,
+				A8272A3919BABD83007156CD /* TestPipeline.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
