@@ -10,6 +10,7 @@
 		A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */ = {isa = PBXBuildFile; fileRef = A81CE954194EB50700ACA024 /* TestSFINAE.mm */; };
 		A8272A3919BABD83007156CD /* TestPipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8272A3819BABD83007156CD /* TestPipeline.mm */; };
 		A84AE79419BB6ABF004194C2 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A84AE79319BB6ABF004194C2 /* GLKit.framework */; };
+		A84AE79619BB895C004194C2 /* Pipe.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A84AE79519BB895C004194C2 /* Pipe.hpp */; };
 		A8CA32A519BAC68800B711FA /* TestFunctionalInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */; };
 		A8CA32B119BAE10800B711FA /* TestPipe.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8CA32B019BAE10800B711FA /* TestPipe.mm */; };
 		A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */; };
@@ -50,12 +51,13 @@
 
 /* Begin PBXFileReference section */
 		A81CE954194EB50700ACA024 /* TestSFINAE.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSFINAE.mm; sourceTree = "<group>"; };
-		A8272A3719BABC07007156CD /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Header.h; path = ../Header.h; sourceTree = "<group>"; };
 		A8272A3819BABD83007156CD /* TestPipeline.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPipeline.mm; sourceTree = "<group>"; };
 		A84AE79319BB6ABF004194C2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A84AE79519BB895C004194C2 /* Pipe.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Pipe.hpp; sourceTree = "<group>"; };
+		A84AE79719BB8A3E004194C2 /* functionalderivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functionalderivation.h; sourceTree = "<group>"; };
+		A84AE79819BB8A3E004194C2 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		A84AE79919BB8A3E004194C2 /* Pipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pipe.h; sourceTree = "<group>"; };
 		A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalInheritance.mm; sourceTree = "<group>"; };
-		A8CA32A619BAC75F00B711FA /* functionalderivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = functionalderivation.h; path = ../functionalderivation.h; sourceTree = "<group>"; };
-		A8CA32AF19BADF3000B711FA /* Pipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pipe.h; path = ../Pipe.h; sourceTree = "<group>"; };
 		A8CA32B019BAE10800B711FA /* TestPipe.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPipe.mm; sourceTree = "<group>"; };
 		A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateTemplate.mm; sourceTree = "<group>"; };
 		B7114F101944E10000E9C000 /* TestLambda.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLambda.mm; sourceTree = "<group>"; };
@@ -133,13 +135,14 @@
 		B7436686188F3F920096C8AE /* cpp-cmd */ = {
 			isa = PBXGroup;
 			children = (
+				A84AE79719BB8A3E004194C2 /* functionalderivation.h */,
+				A84AE79819BB8A3E004194C2 /* Header.h */,
+				A84AE79919BB8A3E004194C2 /* Pipe.h */,
 				B7DA8E5B1956037500549305 /* crtp.h */,
 				B774C4BF1943A46400A639A8 /* typevector.h */,
 				B7DDC1011892231600EC77B8 /* typeassert.h */,
 				B7B79DF9194E840400ADAFB8 /* conditional.h */,
-				A8CA32AF19BADF3000B711FA /* Pipe.h */,
-				A8CA32A619BAC75F00B711FA /* functionalderivation.h */,
-				A8272A3719BABC07007156CD /* Header.h */,
+				A84AE79519BB895C004194C2 /* Pipe.hpp */,
 				B7436687188F3F920096C8AE /* main.cpp */,
 			);
 			path = "cpp-cmd";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7436688188F3F920096C8AE /* main.cpp in Sources */,
+				A84AE79619BB895C004194C2 /* Pipe.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +418,7 @@
 		B7DDC1161892240200EC77B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -426,6 +431,7 @@
 				);
 				INFOPLIST_FILE = "cpp-cmd Tests/cpp-cmd Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "cpp-cmd";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -433,6 +439,7 @@
 		B7DDC1171892240200EC77B8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -441,6 +448,7 @@
 				GCC_PREFIX_HEADER = "cpp-cmd Tests/cpp-cmd Tests-Prefix.pch";
 				INFOPLIST_FILE = "cpp-cmd Tests/cpp-cmd Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "cpp-cmd";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
