@@ -12,29 +12,18 @@
 #pragma mark C++ - Module Classes
 class One {
 public:
-    void execute(int * input, uint32_t context_id) {
-        cout << "module_one : input " << *input << " context_id " << context_id << endl;
-        *input = 20;
+    void execute(PipeEntry<int, int> * entry) {
+        cout << "One: " << entry->pipe_intermediate_data << " " <<
+        entry->pipe_input << " " << entry->context_id << endl;
+        entry->pipe_intermediate_data *= 10;
     }
     
-    void execute(uint64_t * lock_mask, uint32_t context_id) {
-        *lock_mask |= 1;
-        cout << "module_one : preparing lock mask " << *lock_mask << endl;
+    void execute(PipeEntry<uint64_t, uint8_t> * entry) {
+        entry->pipe_intermediate_data |= 1;
+        cout << "module_one : preparing lock mask " << entry->pipe_intermediate_data << endl;
     }
 };
 
-class Two {
-public:
-    void execute(int * input, uint32_t context_id) {
-        cout << "module_two : input " << *input << " context_id " << context_id << endl;
-        *input = 80;
-    }
-    
-    void execute(uint64_t * lock_mask, uint32_t context_id) {
-        *lock_mask |= 4;
-        cout << "module_two : preparing lock mask " << *lock_mask << endl;
-    }
-};
 
 #pragma mark Objective-C
 @interface TestPipe : XCTestCase
@@ -57,11 +46,12 @@ public:
 
 - (void)testExample
 {
-    int value = 5;
     // Heres how you setup a new Hardware Pipeline
-    Pipe<int, 4, Two, Two, One> x;
+    Pipe<int, int, 4, One, One> x;
     x.setup_locks();
-    x.execute(value, 8);
+    
+    PipeEntry<int, int> y (2, 3, 10);
+    x.execute(&y);
 }
 
 @end

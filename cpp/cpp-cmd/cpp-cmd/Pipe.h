@@ -10,7 +10,6 @@
 #define cpp_cmd_Pipe_h
 
 #include <iostream>
-#include <array>
 #include <tuple>
 
 /*
@@ -33,16 +32,28 @@
  In enqueue:
  lock add and clear entries' pipe_heap
  */
-template <typename T, size_t fifo_depth, typename... M>
+template <typename T, typename I>
+struct PipeEntry {
+    T   pipe_intermediate_data;
+    I   pipe_input;
+    uint32_t context_id;
+    PipeEntry(T intermed, I input, uint32_t cid) :
+    pipe_intermediate_data(intermed),
+    pipe_input(input), context_id(cid) {}
+    PipeEntry() {}
+};
+
+template <typename I, typename T, size_t fifo_depth, typename... M>
 class Pipe {
 private:
-    std::array<T, fifo_depth> queue;
+    PipeEntry<T, I> queue[fifo_depth];
     uint64_t  lock_mask;
 public:
+    Pipe() {}
     // Individual run of the Pipeline (synchronous and inside one thread)
-    void execute(T & input, uint32_t context_id);
+    void execute(PipeEntry<T, I> * entry);
     // Queue work for future execution
-    void enqueue(T input, uint32_t context_id);
+    void enqueue(I input, uint32_t context_id);
     // Pick a ready Pipeline instance and launch execute on it
     void run();
     // Understand what kind of locking would be required by the individual
