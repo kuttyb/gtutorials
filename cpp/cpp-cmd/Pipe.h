@@ -17,6 +17,7 @@ template <typename T, size_t fifo_depth, typename... M>
 class Pipe {
 private:
     std::array<T, fifo_depth> queue;
+    uint64_t  lock_mask;
 public:
     // Individual run of the Pipeline (synchronous and inside one thread)
     void execute(T & input, uint32_t context_id);
@@ -24,6 +25,9 @@ public:
     void enqueue(T input, uint32_t context_id);
     // Pick a ready Pipeline instance and launch execute on it
     void run();
+    // Understand what kind of locking would be required by the individual
+    // modules
+    void init();
 };
 
 

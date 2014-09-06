@@ -30,12 +30,23 @@ void Pipe<T, fifo_depth, M...>::run(void) {
     
 }
 
+template <typename T, size_t fifo_depth, typename... M>
+void Pipe<T, fifo_depth, M...>::init(void) {
+    cout << "Initializing locks" << endl;
+    foreach_type<std::tuple_size<std::tuple<M...> >::value - 1, uint64_t, M...>::executemodule(&lock_mask, 0);
+}
+
 #pragma mark C++ - Module Classes
 class One {
 public:
     void execute(int * input, uint32_t context_id) {
         cout << " module : input " << *input << " context_id " << context_id << endl;
         *input = 20;
+    }
+    
+    void execute(uint64_t * lock_mask, uint32_t context_id) {
+        *lock_mask |= 1;
+        cout << " module : preparing lock mask " << *lock_mask << endl;
     }
 };
 
@@ -62,6 +73,7 @@ public:
 {
     int value = 5;
     Pipe<int, 4, One, One> x;
+    x.init();
     x.execute(value, 8);
 }
 
