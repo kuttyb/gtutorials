@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */ = {isa = PBXBuildFile; fileRef = A81CE954194EB50700ACA024 /* TestSFINAE.mm */; };
 		A8272A3919BABD83007156CD /* TestPipeline.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8272A3819BABD83007156CD /* TestPipeline.mm */; };
+		A84AE79419BB6ABF004194C2 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A84AE79319BB6ABF004194C2 /* GLKit.framework */; };
 		A8CA32A519BAC68800B711FA /* TestFunctionalInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */; };
 		A8CA32B119BAE10800B711FA /* TestPipe.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8CA32B019BAE10800B711FA /* TestPipe.mm */; };
 		A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8DF39C7194E9D8600BC05D5 /* TestTemplateTemplate.mm */; };
@@ -51,6 +52,7 @@
 		A81CE954194EB50700ACA024 /* TestSFINAE.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSFINAE.mm; sourceTree = "<group>"; };
 		A8272A3719BABC07007156CD /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Header.h; path = ../Header.h; sourceTree = "<group>"; };
 		A8272A3819BABD83007156CD /* TestPipeline.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPipeline.mm; sourceTree = "<group>"; };
+		A84AE79319BB6ABF004194C2 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalInheritance.mm; sourceTree = "<group>"; };
 		A8CA32A619BAC75F00B711FA /* functionalderivation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = functionalderivation.h; path = ../functionalderivation.h; sourceTree = "<group>"; };
 		A8CA32AF19BADF3000B711FA /* Pipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Pipe.h; path = ../Pipe.h; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A84AE79419BB6ABF004194C2 /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,6 +148,7 @@
 		B7DDC1071892240200EC77B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A84AE79319BB6ABF004194C2 /* GLKit.framework */,
 				B7DDC1081892240200EC77B8 /* XCTest.framework */,
 			);
 			name = Frameworks;
