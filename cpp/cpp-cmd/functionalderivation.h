@@ -9,7 +9,7 @@
 #ifndef cpp_cmd_functionalderivation_h
 #define cpp_cmd_functionalderivation_h
 
-#pragma mark Functional Classes
+#pragma mark Functional Classes (Behaviour only - extend using composition)
 template <typename T>
 class Base {
 public:
@@ -25,7 +25,14 @@ public:
 };
 
 
-#pragma mark Data Classes
+#pragma mark Data Classes (no Behaviour - extend using Inheritance)
+//
+// We could have used Composition for this too but then
+// Base<T>::common(T & input) would have had to do input.compositevar
+// which would have prevented it from working with G4P
+//
+// So Data Inheritance, Functional Composition (Higher order functions)
+//
 struct G4P {
     int x;
     int y;
