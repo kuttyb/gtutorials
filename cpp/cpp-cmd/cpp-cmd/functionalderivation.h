@@ -24,6 +24,9 @@ public:
     void common(T & input);
 };
 
+#pragma mark Pure Functions
+template <typename T>
+void common(T & input);
 
 #pragma mark Data Classes (no Behaviour - extend using Inheritance)
 //
