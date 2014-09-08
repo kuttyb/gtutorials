@@ -20,7 +20,7 @@
 		B73B12DB19BD49B6009EECDE /* TestTraits.mm in Sources */ = {isa = PBXBuildFile; fileRef = B73B12DA19BD49B6009EECDE /* TestTraits.mm */; };
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B78B0775195575140057B23D /* TestInnerClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78B0774195575140057B23D /* TestInnerClass.mm */; };
-		B7B4EE5419BD9145000B9C97 /* TestFunctional.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EE5319BD9145000B9C97 /* TestFunctional.mm */; };
+		B7B4EE5419BD9145000B9C97 /* TestFunctionalCompositional.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */; };
 		B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */; };
 		B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7CA048B1966166A00E8C013 /* TestFilter.mm */; };
 		B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D68F151942F84000D34C1A /* TestRecursion.mm */; };
@@ -71,7 +71,7 @@
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B774C4BF1943A46400A639A8 /* typevector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typevector.h; sourceTree = "<group>"; };
 		B78B0774195575140057B23D /* TestInnerClass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInnerClass.mm; sourceTree = "<group>"; };
-		B7B4EE5319BD9145000B9C97 /* TestFunctional.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctional.mm; sourceTree = "<group>"; };
+		B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalCompositional.mm; sourceTree = "<group>"; };
 		B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConditionalExecution.mm; sourceTree = "<group>"; };
 		B7B79DF9194E840400ADAFB8 /* conditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conditional.h; sourceTree = "<group>"; };
 		B7CA048B1966166A00E8C013 /* TestFilter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFilter.mm; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		B7DDC10A1892240200EC77B8 /* cpp-cmd Tests */ = {
 			isa = PBXGroup;
 			children = (
-				B7B4EE5319BD9145000B9C97 /* TestFunctional.mm */,
+				B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */,
 				B723A64C19BD89C200B6EB55 /* TestSpecialization.mm */,
 				B73B12DA19BD49B6009EECDE /* TestTraits.mm */,
 				A8CA32B019BAE10800B711FA /* TestPipe.mm */,
@@ -306,7 +306,7 @@
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
 				A81CE955194EB50700ACA024 /* TestSFINAE.mm in Sources */,
 				A8CA32B119BAE10800B711FA /* TestPipe.mm in Sources */,
-				B7B4EE5419BD9145000B9C97 /* TestFunctional.mm in Sources */,
+				B7B4EE5419BD9145000B9C97 /* TestFunctionalCompositional.mm in Sources */,
 				A8272A3919BABD83007156CD /* TestPipeline.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

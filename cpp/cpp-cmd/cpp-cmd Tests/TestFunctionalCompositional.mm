@@ -1,5 +1,5 @@
 //
-//  TestFunctional.m
+//  TestFunctionalCompositional.mm
 //  cpp-cmd
 //
 //  Created by kuttyb on 9/8/14.
