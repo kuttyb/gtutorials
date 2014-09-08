@@ -18,9 +18,10 @@ struct One {
     One(int _x, int _y) : x(_x), y(_y) {}
 };
 
-struct Two : public One {
+struct Two {
     float a;
-    Two(float _a, int x, int y) : a(_a), One(x, y) {}
+    One base;
+    Two(float _a, int x, int y) : a(_a), base(x, y) {}
 };
 
 #pragma mark - C++ functions (template specialization including Higher Order Functions)
@@ -35,7 +36,7 @@ template <> void common<One>(One input) {
 template <> void common<Two>(Two input) {
     cout << "Two version: " << endl;
     // Higher order functions making this easy. (No CRTP or Virtual functions or OO)
-    common<One>(input);
+    common(input.base);
 }
 
 #pragma mark - C++ functions (trait specialization)
@@ -57,7 +58,7 @@ template <typename T, typename enable_if<is_good<T>::value, T>::type * = nullptr
 void print(T input) { cout << "good method" << endl; }
 
 template <typename T, typename enable_if<is_bad<T>::value, T>::type  * = nullptr>
-void print(T input) { cout << "bad method"  << endl; }
+void print(T input) { cout << "bad method"  << endl; print(input.base);}
 
 
 #pragma mark - Obejctive C
@@ -90,6 +91,7 @@ void print(T input) { cout << "bad method"  << endl; }
 - (void)testTraitSpecialization
 {
     One a(2, 3); Two b(3.4, 2, 1);
+    print(a);
     print(b);
 }
 
