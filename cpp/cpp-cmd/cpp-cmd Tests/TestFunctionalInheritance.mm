@@ -34,9 +34,7 @@ void common(G4P & input) {
 template <>
 void common(G4G & input) {
     cout << "G4G version" << endl;
-    // Higher order functions
-    G4P & base = input;
-    common(base);
+    common<G4P>(input);
 }
 
 #pragma mark Objective-C
