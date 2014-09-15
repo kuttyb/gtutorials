@@ -45,6 +45,11 @@ denver_3.6 : local branch
 # ==========================================================
 Heres how you control the pull default
 
+git branch --set-upstream-to=remotes/origin/Name-of-Branch
+
+This tells Git to pull from this remote branch for your local
+current branch.
+
 # ==========================================================
 # To push a new local branch upstream, having created the local branch
 # do this
