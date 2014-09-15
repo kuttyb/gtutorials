@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bb23e75f-6654-471b-b178-762370120fb3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../.gitignore" afterPath="$PROJECT_DIR$/../../.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bb23e75f-6654-471b-b178-762370120fb3" name="Default" comment="" />
     <ignored path="cpp-cmd.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,11 +25,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.4418672">
       <split-first>
         <leaf>
-          <file leaf-file-name="TestInner.mm" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="TestInner.mm" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestInner.mm">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39507958" vertical-offset="0" max-vertical-offset="988">
-                  <caret line="21" column="78" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+                <state vertical-scroll-proportion="0.5861071" vertical-offset="297" max-vertical-offset="988">
+                  <caret line="54" column="74" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
                   <folding />
                 </state>
               </provider>
@@ -52,7 +49,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TestFunctionalInheritance.mm" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="TestFunctionalInheritance.mm" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestFunctionalInheritance.mm">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.56729376" vertical-offset="401" max-vertical-offset="1092">
@@ -161,7 +158,7 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="XCTest/Kiwi.All in TestInner.mm">
+  <component name="RunManager" selected="XCTest/Kiwi.-[TestInner testExample]">
     <configuration default="false" name="All in TestInner.mm" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cpp-cmd" TARGET_NAME="cpp-cmd Tests" CONFIG_NAME="Debug" SCHEME_NAME="All in TestInner.mm" TEST_PATTERN="TestInner" TEST_MODE="PATTERN" XCODE_SKIPPED_TESTS_HASH_CODE="-1546188782">
       <envs />
       <RunnerSettings RunnerId="AppRunner" />
@@ -175,6 +172,12 @@
       <method />
     </configuration>
     <configuration default="false" name="-[TestFunctionalInheritance testFunctionsDerived]" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cpp-cmd" TARGET_NAME="cpp-cmd Tests" CONFIG_NAME="Debug" SCHEME_NAME="-[TestFunctionalInheritance testFunctionsDerived]" TEST_CLASS="TestFunctionalInheritance" TEST_METHOD="testFunctionsDerived" TEST_MODE="SUITE_TEST" XCODE_SKIPPED_TESTS_HASH_CODE="712208443">
+      <envs />
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="-[TestInner testExample]" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" temporary="true" WORKING_DIR="" PASS_PARENT_ENVS="FALSE" PROJECT_NAME="cpp-cmd" TARGET_NAME="cpp-cmd Tests" CONFIG_NAME="Debug" SCHEME_NAME="-[TestInner testExample]" TEST_CLASS="TestInner" TEST_METHOD="testExample" TEST_MODE="SUITE_TEST" XCODE_SKIPPED_TESTS_HASH_CODE="-1546188782">
       <envs />
       <RunnerSettings RunnerId="AppRunner" />
       <ConfigurationWrapper RunnerId="AppRunner" />
@@ -200,19 +203,23 @@
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
+      <RunnerSettings RunnerId="AppRunner" />
+      <ConfigurationWrapper RunnerId="AppRunner" />
       <method />
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.cpp-cmd" />
       <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner.mm" />
       <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner" />
       <item index="3" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestFunctionalInheritance testFunctionsDerived]" />
+      <item index="4" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestInner testExample]" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner.mm" />
-        <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestFunctionalInheritance testFunctionsDerived]" />
-        <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestInner testExample]" />
+        <item index="1" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner.mm" />
+        <item index="2" class="java.lang.String" itemvalue="XCTest/Kiwi.-[TestFunctionalInheritance testFunctionsDerived]" />
+        <item index="3" class="java.lang.String" itemvalue="XCTest/Kiwi.All in TestInner" />
       </list>
     </recent_temporary>
   </component>
@@ -237,7 +244,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2093784" sideWeight="0.49607125" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49659508" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32896176" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -272,7 +279,18 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/cpp-cmd Tests/TestInner.mm</url>
+          <line>63</line>
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestInner.mm">
@@ -386,18 +404,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestInner.mm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39507958" vertical-offset="0" max-vertical-offset="988">
-          <caret line="21" column="78" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestFunctionalInheritance.mm">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.56729376" vertical-offset="401" max-vertical-offset="1092">
           <caret line="61" column="69" selection-start-line="61" selection-start-column="25" selection-end-line="61" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cpp-cmd Tests/TestInner.mm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5861071" vertical-offset="297" max-vertical-offset="988">
+          <caret line="54" column="74" selection-start-line="54" selection-start-column="1" selection-end-line="54" selection-end-column="1" />
           <folding />
         </state>
       </provider>
