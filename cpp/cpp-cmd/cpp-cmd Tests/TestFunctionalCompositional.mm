@@ -57,7 +57,7 @@ template <> struct is_bad<Two>   { static const bool value = true; };
 template <typename T, typename enable_if<is_good<T>::value, T>::type * = nullptr>
 void print(T input) { cout << "good method" << endl; }
 
-template <typename T, typename enable_if<is_bad<T>::value, T>::type  * = nullptr>
+template <typename T, typename = typename enable_if<is_bad<T>::value, T>::type>
 void print(T input) { cout << "bad method"  << endl; print(input.base);}
 
 
