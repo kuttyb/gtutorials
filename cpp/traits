@@ -2,5 +2,17 @@ instead of specializing on formal types, you can formalize on traits and make su
 
 So say you had 15 types that resulted in a particular body of code and 2 types that used another body of code (meaning we have 17 specializations  here)
 
-The right thing to do here is to have just 2 specializations based off 2 traits and ask these types to conform to either of the above traits.
+The right thing to do here is to have just 2 specializations based off 2 traits and ask these types to conform to either of the above traits. Of course, 
+this only works with Methods as structs cannot be specialized on 2 separate traits. No such thing as struct/class overloading.
+
+
+Here is an e.g., 
+template <typename T, typename enable_if<is_good<T>::value, T>::type * = nullptr>
+void print(T input) { cout << "good method" << endl; }
+
+template <typename T, typename = typename enable_if<is_bad<T>::value, T>::type>
+void print(T input) { cout << "bad method"  << endl; print(input.base);}
+
+Notice the 2 different methods of placing bounds around type T. They are both acceptable btw.
+
 
