@@ -1,0 +1,14 @@
+* Covariant / Contravariant / Invariant
+  Consider X is a subtype of Y.
+  What is the relation between R(X) and R(Y)?
+
+  If it is a subtype then the Relationship R() is called covariant (meaning it preserves the subtyping)
+
+  If it is a supertype, then the Relationship R() is called contravariant (meaning it reverses the subtyping)
+
+  If it is neither, then the Relationship R() is called invariant (meaning it removes the subtyping)
+  
+  In Java, Arrays are covariant whereas Generics are Invariant.
+
+
+* assignment, method call, call return value (aka assignment)
