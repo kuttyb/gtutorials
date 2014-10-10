@@ -1,0 +1,11 @@
+# Examples of querying Objects from a Java Heap dump using OQL
+select x from local.scratch.TopLevelTracer x where x.last_id == 1630
+select x.last_id from local.scratch.TopLevelTracer x where x.last_id >= 1200
+
+# Compound print statement where localid: and firstid: are random strings we are
+# using to annotate the fields
+select {localid: x.local_id, firstid: x.start_id} from local.scratch.TopLevelTracer x
+
+# If you wanted to pick a thread with a particular name here is how Thread.name : char[]
+# comparison works
+select x from java.lang.Thread x where (x.name[7] == '4' && x.name[6] == '-')

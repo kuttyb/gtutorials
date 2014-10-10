@@ -1,0 +1,28 @@
+Closures: (About Closures in general but the focus is on Java and C++)
+=========
+These are the concepts that are involved.
+
+[a] Capture Site:
+This is the site in the code where the closure is constructed. It could capture variables
+from the surrounding scope or not. After capture it is assigned to a Call Signature
+variable.
+
+[b] Call Site:
+This is where the Lambda is actually executed. It does not have to be in the same scope
+as [a] above.
+
+[c] Call Signature
+This is the signature of the variables that expect lambdas. For C++ it is a Function object
+or function pointer (if no capture is involved). For Java it is an interface with a single
+method (thank goodness no new syntax)
+
+[d] Capture Signature (internal)
+This is applied at the Capture Site [a] and is used to describe what variables from the surrounding
+scope are being captured. This could be implicit (Java) or explicit (C++)
+
+For Java, this signature is internal to the compiler and contains the method handle, its static input
+types, its static return types, its dynamic input types. Dynamic input types are essentially type
+inferences of the capture variables. The setup of this signature and the capture logic is done just one
+and all future capture site usages are free.
+
+https://www.youtube.com/watch?v=MLksirK9nnE

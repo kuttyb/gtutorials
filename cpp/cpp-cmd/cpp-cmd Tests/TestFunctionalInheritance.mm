@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "TypeAssert.h"
 #include "functionalderivation.h"
 
 using std::cout;
@@ -37,6 +38,19 @@ void common(G4G & input) {
     common<G4P>(input);
 }
 
+#pragma mark Pointer trait
+template <typename T>
+struct is_pointer {
+   static constexpr T pointer = nullptr;
+   static const bool value = true;
+};
+
+// TODO: kbb: Need to implement is_value<T>
+template <typename T, typename enable_if<is_pointer<T>::value, T>::type * = nullptr>
+void deal_with_data(T input) {
+    cout << "this is a pointer speaking and its value is " << *input << endl;
+}
+
 #pragma mark Objective-C
 @interface TestFunctionalInheritance : XCTestCase
 
@@ -54,6 +68,13 @@ void common(G4G & input) {
 {
     cout << "====================" << endl;
     [super tearDown];
+}
+
+- (void)testPointers
+{
+    int  value = 10;
+    int *ptr   = &value;
+    deal_with_data(ptr);
 }
 
 - (void)testClasses
