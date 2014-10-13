@@ -10,31 +10,31 @@
 	<string>oc</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8D4751A1-458F-43D8-894B-B5C08D3C5C6B</key>
-		<string>default</string>
+		<key>DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF</key>
+		<string>bitbucket.org:kuttyb/gtutorials.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>objective-c/oc/oc.xcodeproj/project.xcworkspace</string>
+	<string>objective-c/oc/oc.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8D4751A1-458F-43D8-894B-B5C08D3C5C6B</key>
+		<key>DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>default</string>
+	<string>bitbucket.org:kuttyb/gtutorials.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8D4751A1-458F-43D8-894B-B5C08D3C5C6B</string>
+	<string>DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8D4751A1-458F-43D8-894B-B5C08D3C5C6B</string>
+			<string>DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF</string>
 			<key>IDESourceControlWCCName</key>
-			<string>tutorials</string>
+			<string>gtutorials</string>
 		</dict>
 	</array>
 </dict>
