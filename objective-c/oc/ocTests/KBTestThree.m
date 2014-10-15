@@ -36,7 +36,7 @@
 - (void)testArray
 {
     // Create a mutable array and add some numbers into it
-    NSMutableArray * data = [[NSMutableArray alloc]init];
+    NSArray * data = [[NSMutableArray alloc]init];
     [data addObject:[NSNumber numberWithInt:3]];
     [data addObject:[NSNumber numberWithInt:31]];
     [data addObject:[NSNumber numberWithInt:22]];
