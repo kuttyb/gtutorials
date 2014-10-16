@@ -1,4 +1,13 @@
-MSB set          while_ctr++     val >>= 1
+MSB set
+static inline uint32_t msb(uint32_t value)
+{
+	uint32_t ctr = 0;
+	while(value>>=1)
+	{
+		ctr++;
+	}
+	return ctr;
+}
 
 LSB set          val & ~(val - 1)   or val & -val // ~(val - 1) = ~val + 1 which is 2's complement which is -val
 
