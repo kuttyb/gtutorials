@@ -21,6 +21,11 @@
     subject = [[KBOne alloc]init];
 }
 
+- (KBTestFour * ) build
+{
+    return self;
+}
+
 - (void)tearDown
 {
     [super tearDown];
@@ -28,6 +33,8 @@
 
 -(void) testOne {
     XCTAssert(subject, "");
+    KBTestFour * data = [self build];
+    XCTAssert(data != nil);
 }
 
 @end
