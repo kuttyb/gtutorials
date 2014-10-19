@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6ABA3205EEEDDF8CC217B208 /* KBTestFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA3C414806BE39C4362C49 /* KBTestFour.m */; };
 		6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */; };
+		A85B189F19F397AA00315F35 /* PractiseOne.m in Sources */ = {isa = PBXBuildFile; fileRef = A85B189E19F397AA00315F35 /* PractiseOne.m */; };
 		B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
 		B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */; };
 		B70B9B10187BA26B00CBFBDB /* oc.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B0F187BA26B00CBFBDB /* oc.m */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode2.h; sourceTree = "<group>"; };
 		6ABA3C414806BE39C4362C49 /* KBTestFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestFour.m; sourceTree = "<group>"; };
+		A85B189E19F397AA00315F35 /* PractiseOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractiseOne.m; sourceTree = "<group>"; };
 		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70B9B01187BA26B00CBFBDB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B70B9B04187BA26B00CBFBDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A85B189D19F3952200315F35 /* practise */ = {
+			isa = PBXGroup;
+			children = (
+				A85B189E19F397AA00315F35 /* PractiseOne.m */,
+			);
+			name = practise;
+			sourceTree = "<group>";
+		};
 		B70B9AF4187BA26A00CBFBDB = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +158,7 @@
 		B70B9B07187BA26B00CBFBDB /* oc */ = {
 			isa = PBXGroup;
 			children = (
+				A85B189D19F3952200315F35 /* practise */,
 				B7E5E8A419342566002D30E2 /* categories */,
 				B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */,
 				B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */,
@@ -329,6 +340,7 @@
 				B7E5E8AE19342E67002D30E2 /* FirstDisplay.m in Sources */,
 				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
 				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
+				A85B189F19F397AA00315F35 /* PractiseOne.m in Sources */,
 				B70B9B10187BA26B00CBFBDB /* oc.m in Sources */,
 				B70B9B36187BA2AE00CBFBDB /* KBFactory.m in Sources */,
 			);
