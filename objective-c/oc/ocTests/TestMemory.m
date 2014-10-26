@@ -8,11 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
-#import "Memory.h"
+#import "MemoryWrapper.h"
 
 @interface TestMemory : XCTestCase {
-    Memory * subject;
-    Memory * test;
+    MemoryWrapper * subject;
 }
 
 @end
@@ -21,19 +20,16 @@
 
 - (void)setUp {
     [super setUp];
-    subject = [[Memory alloc] initWithData:10];
-    test    = [Memory newMemory:10];
+    subject = [[MemoryWrapper alloc] initWithData:10];
 }
 
 - (void)tearDown {
     [subject release];
-    [test    release];
     [super   tearDown];
 }
 
 - (void)testExample {
     [subject printIndex:2 COUNT:20];
-    [test    printIndex:2 COUNT:20];
 }
 
 @end

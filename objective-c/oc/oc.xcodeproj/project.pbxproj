@@ -13,6 +13,8 @@
 		A883993C19FD487400CB1A00 /* TestMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = A883993B19FD487400CB1A00 /* TestMemory.m */; };
 		A883993F19FD48CF00CB1A00 /* Memory.h in Headers */ = {isa = PBXBuildFile; fileRef = A883993D19FD48CF00CB1A00 /* Memory.h */; };
 		A883994019FD48CF00CB1A00 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = A883993E19FD48CF00CB1A00 /* Memory.m */; };
+		A883994319FD5BAD00CB1A00 /* MemoryWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */; };
+		A883994419FD5BAD00CB1A00 /* MemoryWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */; };
 		B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
 		B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */; };
 		B70B9B10187BA26B00CBFBDB /* oc.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B0F187BA26B00CBFBDB /* oc.m */; };
@@ -57,6 +59,8 @@
 		A883993B19FD487400CB1A00 /* TestMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMemory.m; sourceTree = "<group>"; };
 		A883993D19FD48CF00CB1A00 /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
 		A883993E19FD48CF00CB1A00 /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
+		A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryWrapper.h; sourceTree = "<group>"; };
+		A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryWrapper.m; sourceTree = "<group>"; };
 		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70B9B01187BA26B00CBFBDB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B70B9B04187BA26B00CBFBDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,6 +172,8 @@
 				B7E5E8A419342566002D30E2 /* categories */,
 				B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */,
 				B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */,
+				A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */,
+				A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */,
 				B70B9B2E187BA2AE00CBFBDB /* KBNode.h */,
 				B70B9B2F187BA2AE00CBFBDB /* KBOne.h */,
 				B70B9B30187BA2AE00CBFBDB /* KBOne.m */,
@@ -245,6 +251,7 @@
 				B7E5E8A71934260E002D30E2 /* First.h in Headers */,
 				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
 				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
+				A883994319FD5BAD00CB1A00 /* MemoryWrapper.h in Headers */,
 				B7E5E8AD19342E67002D30E2 /* FirstDisplay.h in Headers */,
 				6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */,
 			);
@@ -347,6 +354,7 @@
 			files = (
 				B7E5E8A81934260E002D30E2 /* First.m in Sources */,
 				B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */,
+				A883994419FD5BAD00CB1A00 /* MemoryWrapper.m in Sources */,
 				B7E5E8AE19342E67002D30E2 /* FirstDisplay.m in Sources */,
 				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
 				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
