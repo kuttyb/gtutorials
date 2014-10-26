@@ -20,6 +20,7 @@
     if (self)
     {
         capacity = max_elements;
+        list     = [[NSArray alloc] initWithObjects:@"first", @"second", @"third", @"fourth", nil];
     }
     
     return self;
@@ -35,13 +36,16 @@
 -(void) dealloc
 {
     printf("Freeing Memory Object\n");
-    [list autorelease];
+    [list  release];
     [super dealloc];
 }
 
 -(void) printIndex:(uint32_t) index COUNT:(uint32_t) count
 {
-    printf("capacity is %d", capacity);
+    printf("capacity is %d\n", capacity);
+    if (index >= [list count]) return;
+    
+    printf("at index %d value is %s\n", index, [list[index]cString]);
 }
 
 @end

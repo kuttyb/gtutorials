@@ -26,12 +26,14 @@
 }
 
 - (void)tearDown {
-    [subject autorelease];
-    [test autorelease];
-    [super tearDown];
+    [subject release];
+    [test    release];
+    [super   tearDown];
 }
 
 - (void)testExample {
+    [subject printIndex:2 COUNT:20];
+    [test    printIndex:2 COUNT:20];
 }
 
 @end
