@@ -36,8 +36,6 @@
 -(void) dealloc
 {
     printf("Freeing Memory Object\n");
-    [list  release];
-    [super dealloc];
 }
 
 -(void) printIndex:(uint32_t) index COUNT:(uint32_t) count

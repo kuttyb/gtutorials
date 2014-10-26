@@ -14,15 +14,15 @@
 @implementation KBFactory
 
 + (id<KBNode>) initOne {
-    return [[[KBOne alloc] init] autorelease];
+    return [[KBOne alloc] init];
 }
 
 + (id<KBNode>) initTwo {
-    return [[[KBTwo alloc] init] autorelease];
+    return [[KBTwo alloc] init];
 }
 
 + (id<KBNode>) initThree {
-    return [[[KBThree alloc] init] autorelease];
+    return [[KBThree alloc] init];
 }
 
 @end
