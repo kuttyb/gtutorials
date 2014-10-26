@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #import "MemoryWrapper.h"
+#import "Memory.h"
 
 @interface TestMemory : XCTestCase {
     MemoryWrapper * subject;
@@ -30,6 +31,8 @@
 
 - (void)testExample {
     [subject printIndex:2 COUNT:20];
+    subject.delegate = [[Memory alloc] initWithData:20];
+    XCTAssert([subject delegate] != nil);
 }
 
 @end
