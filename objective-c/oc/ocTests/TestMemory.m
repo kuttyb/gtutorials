@@ -26,6 +26,8 @@
 }
 
 - (void)tearDown {
+    [subject autorelease];
+    [test autorelease];
     [super tearDown];
 }
 

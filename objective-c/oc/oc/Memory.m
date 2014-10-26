@@ -31,6 +31,14 @@
     return [[Memory alloc] initWithData:max_elements];
 }
 
+#pragma mark - Destructor
+-(void) dealloc
+{
+    printf("Freeing Memory Object\n");
+    [list autorelease];
+    [super dealloc];
+}
+
 -(void) printIndex:(uint32_t) index COUNT:(uint32_t) count
 {
     printf("capacity is %d", capacity);
