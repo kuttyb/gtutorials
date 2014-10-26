@@ -41,10 +41,8 @@
 
 -(void) printIndex:(uint32_t) index COUNT:(uint32_t) count
 {
-    printf("capacity is %d\n", capacity);
-    if (index >= [list count]) return;
-    
-    printf("at index %d value is %s\n", index, [list[index]cString]);
+    printf("at index %d value is %s capacity is %d\n",
+           index, [list[index]cString], capacity);
 }
 
 @end

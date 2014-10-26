@@ -25,7 +25,13 @@
 }
 
 - (void)tearDown {
-    [subject release];
+    /* There you go, we were right, this should implement hidden [subject release]
+     * with ARC or perhaps it does a [subject autorelease], I don't care. It gets
+     * the dealloc to be invoked which lets me free the memory that I might be 
+     * managing manually at times.
+     */
+    subject = nil;
+    printf("done calling nil\n");
     [super   tearDown];
 }
 
