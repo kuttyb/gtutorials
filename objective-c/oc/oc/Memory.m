@@ -9,7 +9,8 @@
 #import "Memory.h"
 
 @implementation Memory {
-    NSArray * list;
+    /* For all pointers (non properties) the default is __strong */
+    __strong NSArray * list;
     uint32_t  capacity;
 }
 
