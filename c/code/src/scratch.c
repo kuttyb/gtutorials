@@ -46,8 +46,8 @@ static inline uint32_t getPadPages(uint32_t virtual_length, uint32_t * num_pad_p
 int main(void) 
 {
   uint32_t       num_pad_pages;
-  const uint32_t page_size = 0x1000;
-  //const uint32_t page_size = 0x4000;
+  //const uint32_t page_size = 0x1000;
+  const uint32_t page_size = 0x4000;
 
 #if 1
   // POT sizes
