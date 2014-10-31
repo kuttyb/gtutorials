@@ -19,3 +19,11 @@ Again pretty obvious
 [] mvn dependency:tree
  
 To list out dependencies
+
+[] mvn3 install -DskipTests=TRUE
+
+Install without running tests
+
+[] mvn3 exec:java -Dexec.mainClass="local.scratchpad.Trial" -Dexec.classpathScope=runtime  -Dexec.args="arg0 arg1 arg2"  
+
+This will let you run individual Main classes inside your project while respecting the Maven class dependencies.

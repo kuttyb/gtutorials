@@ -34,7 +34,11 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF</string>
 			<key>IDESourceControlWCCName</key>
+<<<<<<< HEAD
 			<string>gtut</string>
+=======
+			<string>gtutorials</string>
+>>>>>>> ff0caa803c16f32bdb2a70dd28054acb93d9a870
 		</dict>
 	</array>
 </dict>

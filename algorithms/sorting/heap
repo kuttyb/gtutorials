@@ -3,9 +3,14 @@ Lecture 20
 Lecture 21
 http://www.youtube.com/watch?v=HjPmZuOXkHQ&feature=related
 
-nlg(n) 
+The above lectures are good for understanding what a Min-Heap is and its properties.
+>
 
-HEAP SORT:
+
+For just Heap sort use this link instead and jump to 23:41(m)
+http://www.youtube.com/watch?v=HjPmZuOXkHQ&feature=related
+
+HEAP SORT: (nlg(n))
    create heap in place from input array [1] // this  is O(n)
    for (i = 0; i < n; i++) {                 // this  is lg(n)
        swap(i, n - i);    // this is called min-delete
