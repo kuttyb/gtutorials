@@ -17,6 +17,7 @@
 		[subject compareThree:20 TWO:10 THREE:3];
 		[subject dumpState];
 	}
+    // Testing
 }
 
 @end

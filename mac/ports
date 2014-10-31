@@ -28,8 +28,6 @@ port list inactive     // name says it all, keep this in mind but the few times 
      	  	       // it didn't do the right thing. Listed ports that I knew I was 
 		       // using and that too, their latest versions
 
-<<<<<<< HEAD
-// testing resolves
-=======
-// conflicting change
->>>>>>> conflicting change
+-------
+port install boost build.jobs=10  // This will use parallel make and pass that number
+// You can also control it in etc/macports/macports.conf buildmakejobs=n

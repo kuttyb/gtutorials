@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		6ABA3205EEEDDF8CC217B208 /* KBTestFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA3C414806BE39C4362C49 /* KBTestFour.m */; };
 		6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */ = {isa = PBXBuildFile; fileRef = 6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */; };
+		A85B189F19F397AA00315F35 /* PractiseOne.m in Sources */ = {isa = PBXBuildFile; fileRef = A85B189E19F397AA00315F35 /* PractiseOne.m */; };
+		A883993C19FD487400CB1A00 /* TestMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = A883993B19FD487400CB1A00 /* TestMemory.m */; };
+		A883993F19FD48CF00CB1A00 /* Memory.h in Headers */ = {isa = PBXBuildFile; fileRef = A883993D19FD48CF00CB1A00 /* Memory.h */; };
+		A883994019FD48CF00CB1A00 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = A883993E19FD48CF00CB1A00 /* Memory.m */; };
+		A883994319FD5BAD00CB1A00 /* MemoryWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */; };
+		A883994419FD5BAD00CB1A00 /* MemoryWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */; };
 		B70B9B02187BA26B00CBFBDB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B9B01187BA26B00CBFBDB /* Cocoa.framework */; };
 		B70B9B0C187BA26B00CBFBDB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B70B9B0A187BA26B00CBFBDB /* InfoPlist.strings */; };
 		B70B9B10187BA26B00CBFBDB /* oc.m in Sources */ = {isa = PBXBuildFile; fileRef = B70B9B0F187BA26B00CBFBDB /* oc.m */; };
@@ -49,6 +55,12 @@
 /* Begin PBXFileReference section */
 		6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KBNode2.h; sourceTree = "<group>"; };
 		6ABA3C414806BE39C4362C49 /* KBTestFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KBTestFour.m; sourceTree = "<group>"; };
+		A85B189E19F397AA00315F35 /* PractiseOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PractiseOne.m; sourceTree = "<group>"; };
+		A883993B19FD487400CB1A00 /* TestMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMemory.m; sourceTree = "<group>"; };
+		A883993D19FD48CF00CB1A00 /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		A883993E19FD48CF00CB1A00 /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
+		A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryWrapper.h; sourceTree = "<group>"; };
+		A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryWrapper.m; sourceTree = "<group>"; };
 		B70B9AFE187BA26B00CBFBDB /* oc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = oc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70B9B01187BA26B00CBFBDB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B70B9B04187BA26B00CBFBDB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -106,6 +118,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A85B189D19F3952200315F35 /* practise */ = {
+			isa = PBXGroup;
+			children = (
+				A85B189E19F397AA00315F35 /* PractiseOne.m */,
+			);
+			name = practise;
+			sourceTree = "<group>";
+		};
 		B70B9AF4187BA26A00CBFBDB = {
 			isa = PBXGroup;
 			children = (
@@ -148,9 +168,12 @@
 		B70B9B07187BA26B00CBFBDB /* oc */ = {
 			isa = PBXGroup;
 			children = (
+				A85B189D19F3952200315F35 /* practise */,
 				B7E5E8A419342566002D30E2 /* categories */,
 				B70B9B2C187BA2AE00CBFBDB /* KBFactory.h */,
 				B70B9B2D187BA2AE00CBFBDB /* KBFactory.m */,
+				A883994119FD5BAD00CB1A00 /* MemoryWrapper.h */,
+				A883994219FD5BAD00CB1A00 /* MemoryWrapper.m */,
 				B70B9B2E187BA2AE00CBFBDB /* KBNode.h */,
 				B70B9B2F187BA2AE00CBFBDB /* KBOne.h */,
 				B70B9B30187BA2AE00CBFBDB /* KBOne.m */,
@@ -162,6 +185,8 @@
 				B70B9B0F187BA26B00CBFBDB /* oc.m */,
 				B70B9B08187BA26B00CBFBDB /* Supporting Files */,
 				6ABA3A4EE94A0CD7F88C4776 /* KBNode2.h */,
+				A883993D19FD48CF00CB1A00 /* Memory.h */,
+				A883993E19FD48CF00CB1A00 /* Memory.m */,
 			);
 			path = oc;
 			sourceTree = "<group>";
@@ -179,6 +204,7 @@
 		B70B9B1C187BA26B00CBFBDB /* ocTests */ = {
 			isa = PBXGroup;
 			children = (
+				A883993B19FD487400CB1A00 /* TestMemory.m */,
 				B7E5E8A91934286B002D30E2 /* TestCategory.m */,
 				B7DB1E66187BD1F30003E18E /* KBTestThree.m */,
 				B70B9B3E187BA4D700CBFBDB /* KBTestTwo.m */,
@@ -218,12 +244,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A883993F19FD48CF00CB1A00 /* Memory.h in Headers */,
 				B70B9B3A187BA2AE00CBFBDB /* KBThree.h in Headers */,
 				B70B9B38187BA2AE00CBFBDB /* KBOne.h in Headers */,
 				B70B9B3C187BA2AE00CBFBDB /* KBTwo.h in Headers */,
 				B7E5E8A71934260E002D30E2 /* First.h in Headers */,
 				B70B9B35187BA2AE00CBFBDB /* KBFactory.h in Headers */,
 				B70B9B37187BA2AE00CBFBDB /* KBNode.h in Headers */,
+				A883994319FD5BAD00CB1A00 /* MemoryWrapper.h in Headers */,
 				B7E5E8AD19342E67002D30E2 /* FirstDisplay.h in Headers */,
 				6ABA3ACB3DA426F2DB67EBB0 /* KBNode2.h in Headers */,
 			);
@@ -326,10 +354,13 @@
 			files = (
 				B7E5E8A81934260E002D30E2 /* First.m in Sources */,
 				B70B9B39187BA2AE00CBFBDB /* KBOne.m in Sources */,
+				A883994419FD5BAD00CB1A00 /* MemoryWrapper.m in Sources */,
 				B7E5E8AE19342E67002D30E2 /* FirstDisplay.m in Sources */,
 				B70B9B3B187BA2AE00CBFBDB /* KBThree.m in Sources */,
 				B70B9B3D187BA2AE00CBFBDB /* KBTwo.m in Sources */,
+				A85B189F19F397AA00315F35 /* PractiseOne.m in Sources */,
 				B70B9B10187BA26B00CBFBDB /* oc.m in Sources */,
+				A883994019FD48CF00CB1A00 /* Memory.m in Sources */,
 				B70B9B36187BA2AE00CBFBDB /* KBFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +373,7 @@
 				B7E5E8AA1934286B002D30E2 /* TestCategory.m in Sources */,
 				B7DB1E67187BD1F30003E18E /* KBTestThree.m in Sources */,
 				B70B9B42187BA5FF00CBFBDB /* KBTest.m in Sources */,
+				A883993C19FD487400CB1A00 /* TestMemory.m in Sources */,
 				B70B9B3F187BA4D700CBFBDB /* KBTestTwo.m in Sources */,
 				6ABA3205EEEDDF8CC217B208 /* KBTestFour.m in Sources */,
 			);
@@ -450,6 +482,7 @@
 		B70B9B27187BA26B00CBFBDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -465,6 +498,7 @@
 		B70B9B28187BA26B00CBFBDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -481,6 +515,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oc.framework/Versions/A/oc";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -503,6 +538,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/oc.framework/Versions/A/oc";
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
