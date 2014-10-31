@@ -7,15 +7,9 @@ void agxsAssert(uint32_t expr)
 {
   assert(expr);
 }
-
-#define ALIGNGRAN_NPOT(V, G)    (((V) + (G) - 1ULL) - (((V) + (G) - 1ULL) % (G)))
 #define ALIGNGRAN(V, G)         (({agxsAssert(ISPOT(G));}), (((V) + ((G) - 1ULL)) & ~((G) - 1ULL)))
-#define ALIGNDIFF(V, G)         (((V) + ((G) - 1ULL)) / (G))
-#define PADGRAN(V, G)           (ALIGNGRAN((V), (G)) - (V))
-#define ALIGNSIZE(V, S)         (((V) + ((1U << (S)) - 1)) & ~((1U << (S)) - 1))
-#define ALIGNFIELD(V, S)        (((V) + ((1 << (S)) - 1)) >> (S))
 #define ISPOT(V)                ((V) && ((V) & ((V) - 1)) == 0)
-#define IS_ALIGNED_TO_POT(V, A) (({agxsAssert(ISPOT(A));}), !((V) & ((A) - 1)))
+
 
 const uint32_t agxk_gart_page_size  = 0x1000;
 const uint32_t agxk_gart_page_shift = 12;
