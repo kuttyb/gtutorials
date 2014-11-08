@@ -1,0 +1,10 @@
+cd ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin/Contents/
+
+open Info.plist
+
+add the new UUID into the list DVTPlugInCompatibilityUUIDs
+
+==================
+defaults read /Applications/Xcode.app/Contents/Info DVTPlugInCompatibilityUUID
+
+The above command should provide you with the new UUID
