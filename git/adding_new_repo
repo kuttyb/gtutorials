@@ -1,0 +1,3 @@
+git remote add origin git@gitlab.sd.apple.com:kbanerjee/agx_analyzer.git
+git push -u origin master
+
