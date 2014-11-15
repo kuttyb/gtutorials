@@ -27,3 +27,50 @@ Install without running tests
 [] mvn3 exec:java -Dexec.mainClass="local.scratchpad.Trial" -Dexec.classpathScope=runtime  -Dexec.args="arg0 arg1 arg2"  
 
 This will let you run individual Main classes inside your project while respecting the Maven class dependencies.
+
+==================================
+Packaging Uber Jars
+==================================
+[] For packaging a Uber Jar that you can use to run your app with java -jar app.jar, you have to add the following snipped to the end of your pom.xml.
+This will essentially tell Maven what the main class is and that it should package all the dependencies into a single Uber Jar (using the Shade    
+Plugin)
+
+[] mvn3 package should trigger this and create app.jar under target. The non uber jar (w/o the dependencies) will be renamed under target as original-app.jar
+
+
+  <build>
+    <plugins>
+      <plugin>
+	<!-- Build an executable JAR -->
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<version>2.4</version>
+	<configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>com.apple.analyzer.Parser</mainClass>
+            </manifest>
+          </archive>
+	</configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <!-- put your configurations here -->
+        </configuration>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
