@@ -1,0 +1,6 @@
+When using JDK8, you have to add these 2 flags before starting the Application to be monitored.
+
+"-XX:+UnlockCommercialFeatures -XX:+FlightRecorder"
+
+java -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -jar analyzer-1.0-SNAPSHOT.jar /Users/kutty_banerjee/tmp/2.log 
+
