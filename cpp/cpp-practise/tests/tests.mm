@@ -20,26 +20,23 @@ struct One {
 struct Two {
     float a;
     One b;
-    Two(float input) { a = input; }
 };
 
-#pragma mark - Composite Functions
-struct X {
-    int a;
+namespace BIG {
+    class SELECTOR {
+    public:
+        typedef One Line;
+        typedef Two Linenext;
+    };
 };
 
-struct Y {
-    int a;
+namespace SMALL {
+    class SELECTOR {
+    public:
+        typedef Two Line;
+        typedef One Linenext;
+    };
 };
-
-template <typename T>
-void print(T input) { cout << "generic printer" << endl; }
-
-template <>
-void print(X input) { cout << "X speaking" << endl; }
-
-template <>
-void print(Y input) { cout << "Y speaking" << endl; }
 
 #pragma mark - Second order Pure Functions
 template <typename T>
@@ -47,13 +44,21 @@ void operate(T input) {
     cout << "generic version" << endl;
 }
 
+template <>
 void operate(One input) {
     cout << "One speaking" << endl;
 }
 
+template <>
 void operate(Two input) {
     cout << "Two speaking" << endl;
     operate(input.b);
+}
+
+template <typename X>
+void top() {
+    typename X::Linenext var;
+    operate(var);
 }
 
 @interface tests : XCTestCase
@@ -71,10 +76,7 @@ void operate(Two input) {
 }
 
 - (void)testBasic {
-    operate(3);
-    One a; Two b(2.3f);
-    operate(a);
-    operate(b);
+    top<SMALL::SELECTOR>();
 }
 
 @end
