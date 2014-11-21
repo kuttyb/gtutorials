@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
+		A8571A251A1FA74B00F2D4C7 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8571A231A1FA74B00F2D4C7 /* Type.cpp */; };
+		A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */ = {isa = PBXBuildFile; fileRef = A8571A241A1FA74B00F2D4C7 /* Type.h */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
-		B71E74891A1F32E500C13FC2 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +24,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A8571A231A1FA74B00F2D4C7 /* Type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type.cpp; sourceTree = SOURCE_ROOT; };
+		A8571A241A1FA74B00F2D4C7 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = SOURCE_ROOT; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,7 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B71E74891A1F32E500C13FC2 /* libcpp-practise.a in Frameworks */,
+				A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +72,8 @@
 		B71E74731A1F32AE00C13FC2 /* cpp-practise */ = {
 			isa = PBXGroup;
 			children = (
+				A8571A231A1FA74B00F2D4C7 /* Type.cpp */,
+				A8571A241A1FA74B00F2D4C7 /* Type.h */,
 			);
 			path = "cpp-practise";
 			sourceTree = "<group>";
@@ -96,6 +102,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8571A251A1FA74B00F2D4C7 /* Type.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +364,7 @@
 				B71E747E1A1F32AE00C13FC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B71E748C1A1F32E500C13FC2 /* Build configuration list for PBXNativeTarget "tests" */ = {
 			isa = XCConfigurationList;
@@ -364,6 +373,7 @@
 				B71E748E1A1F32E500C13FC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
