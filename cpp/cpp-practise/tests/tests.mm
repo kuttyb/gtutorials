@@ -23,15 +23,16 @@ struct Two {
 };
 
 namespace BIG {
-    class SELECTOR {
+    class TypeFactory {
     public:
+        // Each of these classes are DI points, think GUICE annotation points
         typedef One Line;
         typedef Two Linenext;
     };
 };
 
 namespace SMALL {
-    class SELECTOR {
+    class TypeFactory {
     public:
         typedef Two Line;
         typedef One Linenext;
@@ -55,9 +56,9 @@ void operate(Two input) {
     operate(input.b);
 }
 
-template <typename X>
+template <typename TypeFactory>
 void top() {
-    typename X::Linenext var;
+    typename TypeFactory::Linenext var;
     operate(var);
 }
 
@@ -76,7 +77,7 @@ void top() {
 }
 
 - (void)testBasic {
-    top<SMALL::SELECTOR>();
+    top<BIG::TypeFactory>();
 }
 
 @end
