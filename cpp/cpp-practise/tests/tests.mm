@@ -29,6 +29,7 @@ public:
     typedef Two Linenext;
     // BRN table / Compile time properties etc
     constexpr static bool BRN123 = true;
+    constexpr static bool BRN234 = false;
 };
 
 class TypeFactorySmall {
@@ -37,6 +38,7 @@ public:
     typedef One Linenext;
     // BRN table
     constexpr static bool BRN123 = false;
+    constexpr static bool BRN234 = true;
 };
 
 class TypeFactoryBiggish : public TypeFactoryBig {
@@ -63,12 +65,19 @@ void operate(Two input) {
 
 #pragma mark - BRNs
 template <bool val>
-void applyBRN123() {
-}
+void applyBRN123() {}
 
 template <>
 void applyBRN123<true>() {
     cout << "Applying BRN123" << endl;
+}
+
+template <bool val>
+void applyBRN234() {}
+
+template <>
+void applyBRN234<true>() {
+    cout << "Applying BRN234" << endl;
 }
 
 #pragma mark - Top level function
@@ -76,7 +85,10 @@ template <typename TypeFactory>
 void top() {
     typename TypeFactory::Linenext var;
     operate(var);
+    
     applyBRN123<TypeFactory::BRN123>();
+    
+    applyBRN234<TypeFactory::BRN234>();
 }
 
 @interface tests : XCTestCase
@@ -94,7 +106,7 @@ void top() {
 }
 
 - (void)testBasic {
-    top<TypeFactorySmall>();
+    top<TypeFactoryBiggish>();
 }
 
 @end
