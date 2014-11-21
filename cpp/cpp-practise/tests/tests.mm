@@ -22,21 +22,17 @@ struct Two {
     One b;
 };
 
-namespace BIG {
-    class TypeFactory {
-    public:
-        // Each of these classes are DI points, think GUICE annotation points
-        typedef One Line;
-        typedef Two Linenext;
-    };
+class TypeFactoryBig {
+public:
+    // Each of these classes are DI points, think GUICE annotation points
+    typedef One Line;
+    typedef Two Linenext;
 };
 
-namespace SMALL {
-    class TypeFactory {
-    public:
-        typedef Two Line;
-        typedef One Linenext;
-    };
+class TypeFactorySmall{
+public:
+    typedef Two Line;
+    typedef One Linenext;
 };
 
 #pragma mark - Second order Pure Functions
@@ -77,7 +73,7 @@ void top() {
 }
 
 - (void)testBasic {
-    top<BIG::TypeFactory>();
+    top<TypeFactoryBig>();
 }
 
 @end
