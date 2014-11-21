@@ -12,6 +12,7 @@
 using std::cout;
 using std::endl;
 
+#pragma mark - Data Classes
 struct One {
     int a;
 };
@@ -22,6 +23,25 @@ struct Two {
     Two(float input) { a = input; }
 };
 
+#pragma mark - Composite Functions
+struct X {
+    int a;
+};
+
+struct Y {
+    int a;
+};
+
+template <typename T>
+void print(T input) { cout << "generic printer" << endl; }
+
+template <>
+void print(X input) { cout << "X speaking" << endl; }
+
+template <>
+void print(Y input) { cout << "Y speaking" << endl; }
+
+#pragma mark - Second order Pure Functions
 template <typename T>
 void operate(T input) {
     cout << "generic version" << endl;
