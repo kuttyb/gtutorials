@@ -27,12 +27,16 @@ public:
     // Each of these classes are DI points, think GUICE annotation points
     typedef One Line;
     typedef Two Linenext;
+    // BRN table / Compile time properties etc
+    constexpr static bool BRN123 = true;
 };
 
 class TypeFactorySmall {
 public:
     typedef Two Line;
     typedef One Linenext;
+    // BRN table
+    constexpr static bool BRN123 = false;
 };
 
 class TypeFactoryBiggish : public TypeFactoryBig {
@@ -57,10 +61,22 @@ void operate(Two input) {
     operate(input.b);
 }
 
+#pragma mark - BRNs
+template <bool val>
+void applyBRN123() {
+}
+
+template <>
+void applyBRN123<true>() {
+    cout << "Applying BRN123" << endl;
+}
+
+#pragma mark - Top level function
 template <typename TypeFactory>
 void top() {
     typename TypeFactory::Linenext var;
     operate(var);
+    applyBRN123<TypeFactory::BRN123>();
 }
 
 @interface tests : XCTestCase
@@ -78,7 +94,7 @@ void top() {
 }
 
 - (void)testBasic {
-    top<TypeFactoryBiggish>();
+    top<TypeFactorySmall>();
 }
 
 @end
