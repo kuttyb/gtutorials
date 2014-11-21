@@ -29,9 +29,14 @@ public:
     typedef Two Linenext;
 };
 
-class TypeFactorySmall{
+class TypeFactorySmall {
 public:
     typedef Two Line;
+    typedef One Linenext;
+};
+
+class TypeFactoryBiggish : public TypeFactoryBig {
+public:
     typedef One Linenext;
 };
 
@@ -73,7 +78,7 @@ void top() {
 }
 
 - (void)testBasic {
-    top<TypeFactoryBig>();
+    top<TypeFactoryBiggish>();
 }
 
 @end
