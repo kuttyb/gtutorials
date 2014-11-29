@@ -24,15 +24,25 @@ struct Two
     One b;
 };
 
+class BRNTable {
+public:
+    constexpr static bool BRN123 = false;
+    constexpr static bool BRN234 = false;
+};
+
 class ConfigBig
 {
 public:
     // Each of these classes are DI points, think GUICE annotation points
     typedef One Line;
     typedef Two Linenext;
-    // BRN table / Compile time properties etc
-    constexpr static bool BRN123 = true;
-    constexpr static bool BRN234 = false;
+    
+    // Properties
+    class BRN : public BRNTable
+    {
+    public:
+        constexpr static bool BRN123 = true;
+    };
 };
 
 class ConfigSmall
@@ -40,17 +50,23 @@ class ConfigSmall
 public:
     typedef Two Line;
     typedef One Linenext;
-    // BRN table (override the ones you don't like)
-    constexpr static bool BRN123 = false;
-    constexpr static bool BRN234 = true;
+
+    class BRN : public BRNTable
+    {
+    public:
+        constexpr static bool BRN234 = true;
+    };
 };
 
 class ConfigBiggish : public ConfigBig
 {
 public:
     typedef One Linenext;
-    // BRN table
-    constexpr static bool BRN123 = false;
+    class BRN : public ConfigBig::BRN
+    {
+    public:
+        constexpr static bool BRN123 = false;
+    };
 };
 
 #pragma mark - Second order Pure Functions
@@ -102,9 +118,9 @@ void top()
     typename TypeFactory::Linenext var;
     Operation::operate(var);
     
-    applyBRN123<TypeFactory::BRN123>();
+    applyBRN123<TypeFactory::BRN::BRN123>();
     
-    applyBRN234<TypeFactory::BRN234>();
+    applyBRN234<TypeFactory::BRN::BRN234>();
 }
 
 @interface tests : XCTestCase
