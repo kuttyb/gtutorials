@@ -31,6 +31,9 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     set catalogue_index  [expr $va >> 24]
     set directory_index  [expr [expr $va >> 12] & 0xfff]
     set pagetable_index  [expr [expr $va & 0xfff]]
+    # Track what levels are valid
+    set directory_valid  1
+    set pagetable_valid  1
 
     # ==================================================
     # Process First Level (at each level print
@@ -40,32 +43,37 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # Test if catalogue entry is valid
     if {[expr $catalogue_entry & 0x1] != 1} {
 	puts "Catalogue entry does not exist at index $catalogue_index"
-	return 0
+	set directory_valid 0
+	set pagetable_valid 0
     }
     puts "$catbase_addr: $catalogue_entry"
-    set directory_addr [expr $catalogue_entry & ~0xfff]
 
     # ==================================================
     # Process Second Level
     # ==================================================
-    set directory_entry [read_memory_dword [expr $directory_addr + [expr $directory_index * 4]]]
-    if {[expr $directory_entry & 0x1] != 1} {
-	puts "Directory entry does not exist at index $directory_index"
-	return 0
+    if {$directory_valid == 1} {
+	set directory_addr [expr $catalogue_entry & ~0xfff]
+	set directory_entry [read_memory_dword [expr $directory_addr + [expr $directory_index * 4]]]
+	if {[expr $directory_entry & 0x1] != 1} {
+	    puts "Directory entry does not exist at index $directory_index"
+	    set pagetable_valid 0
+	}
+	puts "$directory_addr: $directory_entry"
     }
-    puts "$directory_addr: $directory_entry"
-    set pagetable_addr [expr $directory_entry & ~0xfff]
 
     # ==================================================
     # Process Last Level
     # ==================================================
-    set pagetable_entry [read_memory_dword [expr $pagetable_addr + [expr $pagetable_index * 8]]]
-    if {[expr $pagetable_entry & 0x1] != 1} {
-	puts "PageTable entry does not exist at index $pagetable_index"
-	return 0
+    if {[expr $directory_valid && $pagetable_valid] == 1} {
+	set pagetable_addr [expr $directory_entry & ~0xfff]
+	set pagetable_entry [read_memory_dword [expr $pagetable_addr + [expr $pagetable_index * 8]]]
+	if {[expr $pagetable_entry & 0x1] != 1} {
+	    puts "PageTable entry does not exist at index $pagetable_index"
+	    return 0
+	}
+	puts "$pagetable_addr: $pagetable_entry"
+	set pagetable_addr [expr $pagetable_entry & ~0xfff]
     }
-    puts "$pagetable_addr: $pagetable_entry"
-    set pagetable_addr [expr $pagetable_entry & ~0xfff]
 
     # For verbose, print out entrire catalogue, directory and page table
     # for the said indices
@@ -80,20 +88,24 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     }
 
     if {$dir_verbose == 1} {
-	# Print Directory (entire level)
-	set addr $directory_addr
-	for {set i 0} {$i < 2048} {incr i} {
-	    puts "$addr: [read_memory_dword $addr]"
-	    set addr [expr $addr + 4]
+	if {$directory_valid && $pagetable_valid} {
+	    # print Directory (entire level)
+	    set addr $directory_addr
+	    for {set i 0} {$i < 2048} {incr i} {
+		puts "$addr: [read_memory_dword $addr]"
+		set addr [expr $addr + 4]
+	    }
 	}
     }
 
     if {$pt_verbose == 1} {
-	# Print PageTable (entire level)
-	set addr $pagetable_addr
-	for {set i 0} {$i < 2048} {incr i} {
-	    puts "$addr: [read_memory_dword $addr] [read_memory_dword [expr $addr +4 ]]"
-	    set addr [expr $addr + 8 ]
+	if {$pagetable_valid == 1} {
+	    # Print PageTable (entire level)
+	    set addr $pagetable_addr
+	    for {set i 0} {$i < 2048} {incr i} {
+		puts "$addr: [read_memory_dword $addr] [read_memory_dword [expr $addr +4 ]]"
+		set addr [expr $addr + 8 ]
+	    }
 	}
     }
 
