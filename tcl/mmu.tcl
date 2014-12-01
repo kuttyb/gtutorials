@@ -4,7 +4,7 @@
 proc read_memory_dword {addr } {
     puts "reading $addr"
 
-    return 10
+    return 0xffff000
 }
 
 # Dump out MMU Table setup for a Given Virtual Address
@@ -13,9 +13,13 @@ proc gvtop {contextid va {verbose 0}} {
 	puts "gvtop: verbose output"
     }
 
-    set value  [read_memory_dword $va]
+    set dword [read_memory_dword $va]
+    set base  [expr [expr $dword >> 12] & 0x3]
 
-    return $value
+    puts "modified value is $base"
+
+    set base [read_memory_dword $base]
+    return $base
 }
 
 set return_value [gvtop 0 0x2000 1]
