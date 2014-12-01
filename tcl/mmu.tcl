@@ -83,7 +83,27 @@ proc gvtop {context_id va {verbose 0}} {
     # For verbose, print out entrire catalogue, directory and page table
     # for the said indices
     if {$verbose == 1} {
-	puts "gvtop: verbose output"
+	puts "Printing Entire Catalogue for VA $va"
+	# Print Catbase   (entire level)
+	set addr $catbase_addr
+	for {set i 0} {$i < 256} {incr i} {
+	    puts "$addr: [read_memory_dword $addr]"
+	    set addr [expr $addr + 4]
+	}
+
+	# Print Directory (entire level)
+	set addr $directory_addr
+	for {set i 0} {$i < 2048} {incr i} {
+	    puts "$addr: [read_memory_dword $addr]"
+	    set addr [expr $addr + 4]
+	}
+
+	# Print PageTable (entire level)
+	set addr $pagetable_addr
+	for {set i 0} {$i < 2048} {incr i} {
+	    puts "$addr: [read_memory_dword $addr] [read_memory_dword [expr $addr +4 ]]"
+	    set addr [expr $addr + 8 ]
+	}
     }
 
     return 0
