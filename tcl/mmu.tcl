@@ -2,7 +2,7 @@
 
 # Return a dword of Physical Memory
 proc read_memory_dword {addr } {
-    return 0xffff000
+    return [expr 0xffff000 | $addr]
 }
 
 proc dump_memory {start dwords} {
