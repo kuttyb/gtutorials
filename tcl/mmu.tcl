@@ -2,9 +2,21 @@
 
 # Return a dword of Physical Memory
 proc read_memory_dword {addr } {
-    puts "reading $addr"
-
     return 0xffff000
+}
+
+proc dump_memory {start dwords} {
+    puts "Dumpign memory $start and $dwords dwords"
+    for {set index 0} {$index < $dwords} {incr index} {
+	set addr [expr $start + [expr $index * 4]]
+	if {[expr $index % 8] == 0} {
+	    puts ""
+	    puts -nonewline "[format 0x%-8x: $addr] "
+	} 
+	puts -nonewline " [format 0x%-8x [read_memory_dword $addr]]"
+    }
+    puts ""
+    return 0
 }
 
 # Dump out MMU Table setup for a Given Virtual Address
@@ -19,6 +31,9 @@ proc gvtop {contextid va {verbose 0}} {
     puts "modified value is $base"
 
     set base [read_memory_dword $base]
+
+    set x [dump_memory $base 16]
+
     return $base
 }
 
