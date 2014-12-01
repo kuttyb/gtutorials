@@ -27,18 +27,19 @@ proc read_catbase_index {context_id} {
 }
 
 # Dump out MMU Table setup for a Given Virtual Address
+# ===============================
+# Tunables per Chip Architecture:
+# ===============================
+#       [a] #bits   each level uses from the Virtual Address
+#       [b] #bytes  each entry at each level consumes
+#       [c] bitpos  for the address into next level 
+#       [d] bitpos  for the valid bit in each level's entry
 proc gvtop {context_id va {verbose 0}} {
-    if {$verbose == 1} {
-	puts "gvtop: verbose output"
-    }
-
     # Obtain catbase 
     set catbase_addr [read_catbase_index context_id]
 
-    # Split Virtual Address into 3 level indices
+    # Obtain the Indices for each level from the Virtual Address
     # {31 - 24}  {23 - 12}  {12 - 0}
-    # TODO: kbb: Verify the actual offsets from the manual
-    # TODO: kbb: Verify the actual size of each entry in the various levels
     set catalogue_index  [expr $va >> 24]
     set directory_index  [expr [expr $va >> 12] & 0xfff]
     set pagetable_index  [expr [expr $va & 0xfff]]
@@ -77,6 +78,12 @@ proc gvtop {context_id va {verbose 0}} {
     }
     puts "$pagetable_addr: $pagetable_entry"
     set pagetable_addr [expr $pagetable_entry & ~0xfff]
+
+    # For verbose, print out entrire catalogue, directory and page table
+    # for the said indices
+    if {$verbose == 1} {
+	puts "gvtop: verbose output"
+    }
 
     return 0
 }
