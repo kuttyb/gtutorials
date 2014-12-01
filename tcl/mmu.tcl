@@ -53,6 +53,7 @@ proc gvtop {context_id va {verbose 0}} {
 	puts "Catalogue entry does not exist at index $catalogue_index"
 	return 0
     }
+    puts "$catbase_addr: $catalogue_entry"
     set directory_addr [expr $catalogue_entry & ~0xfff]
 
     # ==================================================
@@ -63,6 +64,7 @@ proc gvtop {context_id va {verbose 0}} {
 	puts "Directory entry does not exist at index $directory_index"
 	return 0
     }
+    puts "$directory_addr: $directory_entry"
     set pagetable_addr [expr $directory_entry & ~0xfff]
 
     # ==================================================
@@ -73,6 +75,7 @@ proc gvtop {context_id va {verbose 0}} {
 	puts "PageTable entry does not exist at index $pagetable_index"
 	return 0
     }
+    puts "$pagetable_addr: $pagetable_entry"
     set pagetable_addr [expr $pagetable_entry & ~0xfff]
 
     return 0
