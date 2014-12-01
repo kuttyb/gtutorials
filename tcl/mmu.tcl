@@ -5,20 +5,6 @@ proc read_memory_dword {addr } {
     return [expr 0xffff000 | $addr]
 }
 
-proc dump_memory {start dwords} {
-    puts "Dumpign memory $start and $dwords dwords"
-    for {set index 0} {$index < $dwords} {incr index} {
-	set addr [expr $start + [expr $index * 4]]
-	if {[expr $index % 8] == 0} {
-	    puts ""
-	    puts -nonewline "[format 0x%-8x: $addr] "
-	} 
-	puts -nonewline " [format 0x%-8x [read_memory_dword $addr]]"
-    }
-    puts ""
-    return 0
-}
-
 # Returns the Physical address of start of CATBASE
 proc read_catbase_index {context_id} {
     # Read the actual GPU Register but for now fake it
@@ -35,6 +21,7 @@ proc read_catbase_index {context_id} {
 #       [c] bitpos  for the address into next level 
 #       [d] bitpos  for the valid bit in each level's entry
 #       [e] large_page handling (whether they are coalesced or contigous)
+#       [f] catbase_index register read and obtain catbase address
 proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # Obtain catbase 
     set catbase_addr [read_catbase_index context_id]
