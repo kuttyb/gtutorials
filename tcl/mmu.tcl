@@ -19,11 +19,27 @@ proc dump_memory {start dwords} {
     return 0
 }
 
+# Returns the Physical address of start of CATBASE
+proc read_catbase_index {context_id} {
+    # Read the actual GPU Register but for now fake it
+    # to test the logic
+    return 0xabcd0000
+}
+
 # Dump out MMU Table setup for a Given Virtual Address
-proc gvtop {contextid va {verbose 0}} {
+proc gvtop {context_id va {verbose 0}} {
     if {$verbose == 1} {
 	puts "gvtop: verbose output"
     }
+
+    # Obtain catbase 
+    set catbase_addr [read_catbase_index context_id]
+
+    # Split Virtual Address into 3 level indices
+    set catalogue_index  0
+    set directory_index  0
+    set pagetable_index  0
+
 
     set dword [read_memory_dword $va]
     set base  [expr [expr $dword >> 12] & 0x3]
