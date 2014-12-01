@@ -34,6 +34,7 @@ proc read_catbase_index {context_id} {
 #       [b] #bytes  each entry at each level consumes
 #       [c] bitpos  for the address into next level 
 #       [d] bitpos  for the valid bit in each level's entry
+#       [e] large_page handling (whether they are coalesced or contigous)
 proc gvtop {context_id va {verbose 0}} {
     # Obtain catbase 
     set catbase_addr [read_catbase_index context_id]
