@@ -36,21 +36,46 @@ proc gvtop {context_id va {verbose 0}} {
     set catbase_addr [read_catbase_index context_id]
 
     # Split Virtual Address into 3 level indices
-    set catalogue_index  0
-    set directory_index  0
-    set pagetable_index  0
+    # {31 - 24}  {23 - 12}  {12 - 0}
+    # TODO: kbb: Verify the actual offsets from the manual
+    # TODO: kbb: Verify the actual size of each entry in the various levels
+    set catalogue_index  [expr $va >> 24]
+    set directory_index  [expr [expr $va >> 12] & 0xfff]
+    set pagetable_index  [expr [expr $va & 0xfff]]
 
+    # ==================================================
+    # Process First Level (at each level print
+    # the entry and the address its at)
+    # ==================================================
+    set catalogue_entry [read_memory_dword [expr $catbase_addr + [expr $catalogue_index * 4]]]
+    # Test if catalogue entry is valid
+    if {[expr $catalogue_entry & 0x1] != 1} {
+	puts "Catalogue entry does not exist at index $catalogue_index"
+	return 0
+    }
+    set directory_addr [expr $catalogue_entry & ~0xfff]
 
-    set dword [read_memory_dword $va]
-    set base  [expr [expr $dword >> 12] & 0x3]
+    # ==================================================
+    # Process Second Level
+    # ==================================================
+    set directory_entry [read_memory_dword [expr $directory_addr + [expr $directory_index * 4]]]
+    if {[expr $directory_entry & 0x1] != 1} {
+	puts "Directory entry does not exist at index $directory_index"
+	return 0
+    }
+    set pagetable_addr [expr $directory_entry & ~0xfff]
 
-    puts "modified value is $base"
+    # ==================================================
+    # Process Last Level
+    # ==================================================
+    set pagetable_entry [read_memory_dword [expr $pagetable_addr + [expr $pagetable_index * 8]]]
+    if {[expr $pagetable_entry & 0x1] != 1} {
+	puts "PageTable entry does not exist at index $pagetable_index"
+	return 0
+    }
+    set pagetable_addr [expr $pagetable_entry & ~0xfff]
 
-    set base [read_memory_dword $base]
-
-    set x [dump_memory $base 16]
-
-    return $base
+    return 0
 }
 
 set return_value [gvtop 0 0x2000 1]
