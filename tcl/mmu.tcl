@@ -35,7 +35,7 @@ proc read_catbase_index {context_id} {
 #       [c] bitpos  for the address into next level 
 #       [d] bitpos  for the valid bit in each level's entry
 #       [e] large_page handling (whether they are coalesced or contigous)
-proc gvtop {context_id va {verbose 0}} {
+proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # Obtain catbase 
     set catbase_addr [read_catbase_index context_id]
 
@@ -82,7 +82,7 @@ proc gvtop {context_id va {verbose 0}} {
 
     # For verbose, print out entrire catalogue, directory and page table
     # for the said indices
-    if {$verbose == 1} {
+    if {$cat_verbose == 1} {
 	puts "Printing Entire Catalogue for VA $va"
 	# Print Catbase   (entire level)
 	set addr $catbase_addr
@@ -90,14 +90,18 @@ proc gvtop {context_id va {verbose 0}} {
 	    puts "$addr: [read_memory_dword $addr]"
 	    set addr [expr $addr + 4]
 	}
+    }
 
+    if {$dir_verbose == 1} {
 	# Print Directory (entire level)
 	set addr $directory_addr
 	for {set i 0} {$i < 2048} {incr i} {
 	    puts "$addr: [read_memory_dword $addr]"
 	    set addr [expr $addr + 4]
 	}
+    }
 
+    if {$pt_verbose == 1} {
 	# Print PageTable (entire level)
 	set addr $pagetable_addr
 	for {set i 0} {$i < 2048} {incr i} {
