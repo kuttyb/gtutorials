@@ -46,7 +46,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	set directory_valid 0
 	set pagetable_valid 0
     }
-    puts "$catbase_addr: $catalogue_entry"
+    puts "[format 0x%-8x $catbase_addr] : [format 0x%-8x $catalogue_entry]"
 
     # ==================================================
     # Process Second Level
@@ -58,7 +58,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	    puts "Directory entry does not exist at index $directory_index"
 	    set pagetable_valid 0
 	}
-	puts "$directory_addr: $directory_entry"
+	puts "[format 0x%-8x $directory_addr] : [format 0x%-8x $directory_entry]"
     }
 
     # ==================================================
@@ -71,7 +71,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	    puts "PageTable entry does not exist at index $pagetable_index"
 	    return 0
 	}
-	puts "$pagetable_addr: $pagetable_entry"
+	puts "[format 0x%-8x $pagetable_addr] : [format 0x%-8x $pagetable_entry]"
 	set pagetable_addr [expr $pagetable_entry & ~0xfff]
     }
 
@@ -82,7 +82,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	# Print Catbase   (entire level)
 	set addr $catbase_addr
 	for {set i 0} {$i < 256} {incr i} {
-	    puts "$addr: [read_memory_dword $addr]"
+	    puts "[format 0x%-8x $addr] : [format 0x%-8x [read_memory_dword $addr]]"
 	    set addr [expr $addr + 4]
 	}
     }
@@ -92,7 +92,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	    # print Directory (entire level)
 	    set addr $directory_addr
 	    for {set i 0} {$i < 2048} {incr i} {
-		puts "$addr: [read_memory_dword $addr]"
+		puts "[format 0x%-8x $addr] : [format 0x%-8x [read_memory_dword $addr]]"
 		set addr [expr $addr + 4]
 	    }
 	}
@@ -103,7 +103,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	    # Print PageTable (entire level)
 	    set addr $pagetable_addr
 	    for {set i 0} {$i < 2048} {incr i} {
-		puts "$addr: [read_memory_dword $addr] [read_memory_dword [expr $addr +4 ]]"
+		puts "[format 0x%-8x $addr] : [format 0x%-8x [read_memory_dword $addr]] [format 0x%-8x [read_memory_dword [expr $addr +4 ]]]"
 		set addr [expr $addr + 8 ]
 	    }
 	}
