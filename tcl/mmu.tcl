@@ -9,7 +9,13 @@ proc read_memory_dword {addr } {
 
 # Dump out MMU Table setup for a Given Virtual Address
 proc gvtop {contextid va {verbose 0}} {
-    return [read_memory_dword $va]
+    if {$verbose == 1} {
+	puts "gvtop: verbose output"
+    }
+
+    set value  [read_memory_dword $va]
+
+    return $value
 }
 
-set return_value [gvtop 0 0x2000]
+set return_value [gvtop 0 0x2000 1]
