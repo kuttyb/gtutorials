@@ -24,7 +24,7 @@ proc read_catbase_index {context_id} {
 #       [f] catbase_index register read and obtain catbase address
 proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # Obtain catbase 
-    set catbase_addr [read_catbase_index context_id]
+    set catbase_addr [read_catbase_index $context_id]
 
     # Obtain the Indices for each level from the Virtual Address
     # {31 - 24}  {23 - 12}  {12 - 0}
