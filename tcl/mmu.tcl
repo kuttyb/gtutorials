@@ -7,7 +7,8 @@ proc read_memory_dword {addr } {
 
 
 # For Verbose dumping of Paga Table levels
-proc dump_memory {start dwords} {
+proc dump_memory {start bytes} {
+    set dwords [expr $bytes / 4]
     for {set index 0} {$index < $dwords} {incr index} {
 	set addr [expr $start + [expr $index * 4]]
 	if {[expr $index % 8] == 0} {
@@ -40,8 +41,10 @@ proc read_catbase_index {context_id} {
 #       [e] large_page handling (whether they are coalesced or contigous)
 #       [f] catbase_index register read and obtain catbase address
 proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
-    # Obtain catbase 
-    set catbase_addr [read_catbase_index $context_id]
+    # Base pointers to each of the 3 levels
+    set catbase_addr     [read_catbase_index $context_id]
+    set directory_addr   0
+    set pagetable_addr   0
 
     # Obtain the Indices for each level from the Virtual Address
     # {31 - 24}  {23 - 12}  {12 - 0}
@@ -103,25 +106,27 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # For verbose, print out entrire catalogue, directory and page table
     # for the said indices
     if {$cat_verbose == 1} {
-	if {$catalogue_valid == 1} {
-	    puts "Printing Entire Catalogue for VA $va"
-	    # Print Catbase   (entire level)
-	    set x [dump_memory $catbase_addr 256]
-	}
+	puts "============================================"
+	puts "CATALOGUE  Dump for GPUVA: $va"
+	puts "============================================"
+	# Print Catbase   (entire level)
+	set x [dump_memory $catbase_addr 256]
     }
 
     if {$dir_verbose == 1} {
-	if {$directory_valid && $pagetable_valid} {
-	    # print Directory (entire level)
-	    set x [dump_memory $directory_addr 2048]
-	}
+	puts "============================================"
+	puts "DIRECTORY  Dump for GPUVA: $va"
+	puts "============================================"
+	# print Directory (entire level)
+	set x [dump_memory $directory_addr 2048]
     }
 
     if {$pt_verbose == 1} {
-	if {$pagetable_valid == 1} {
-	    # Print PageTable (entire level)
-	    set x [dump_memory $pagetable_addr 4096]
-	}
+	puts "============================================"
+	puts "PAGETABLE  Dump for GPUVA: $va"
+	puts "============================================"
+	# Print PageTable (entire level)
+	set x [dump_memory $pagetable_addr 4096]
     }
 
     return 0
