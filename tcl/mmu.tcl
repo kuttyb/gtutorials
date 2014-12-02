@@ -51,6 +51,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     set catalogue_index  [expr $va >> 24]
     set directory_index  [expr [expr $va >> 12] & 0xfff]
     set pagetable_index  [expr [expr $va & 0xfff]]
+
     # Track what levels are valid
     set catalogue_valid  1
     set directory_valid  1
