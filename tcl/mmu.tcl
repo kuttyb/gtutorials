@@ -57,7 +57,8 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # Process First Level (at each level print
     # the entry and the address its at)
     # ==================================================
-    set catalogue_entry [read_memory_dword [expr $catbase_addr + [expr $catalogue_index * 4]]]
+    set catalogue_entry_addr [expr $catbase_addr + [expr $catalogue_index * 4]]
+    set catalogue_entry [read_memory_dword $catalogue_entry_addr]
     # Test if catalogue entry is valid
     if {[expr $catalogue_entry & 0x1] != 1} {
 	puts "Catalogue entry does not exist at index $catalogue_index"
@@ -66,7 +67,7 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
 	set pagetable_valid 0
     } else {
 	# TODO: kbb: All the else clauses have the address incorrect, its the base address not adjusted for the offset
-	puts "CATALOGUE: [format 0x%-8x $catbase_addr] : [format 0x%-8x $catalogue_entry]"
+	puts "CATALOGUE: [format 0x%-8x $catalogue_entry_addr] : [format 0x%-8x $catalogue_entry]"
     }
 
     # ==================================================
@@ -74,12 +75,13 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # ==================================================
     if {$directory_valid == 1} {
 	set directory_addr [expr $catalogue_entry & ~0xfff]
-	set directory_entry [read_memory_dword [expr $directory_addr + [expr $directory_index * 4]]]
+	set directory_entry_addr [expr $directory_addr + [expr $directory_index * 4]]
+	set directory_entry [read_memory_dword $directory_entry_addr]
 	if {[expr $directory_entry & 0x1] != 1} {
 	    puts "Directory entry does not exist at index $directory_index"
 	    set pagetable_valid 0
 	} else {
-	    puts "DIRECTORY: [format 0x%-8x $directory_addr] : [format 0x%-8x $directory_entry]"
+	    puts "DIRECTORY: [format 0x%-8x $directory_entry_addr] : [format 0x%-8x $directory_entry]"
 	}
     }
 
@@ -88,12 +90,13 @@ proc gvtop {context_id va {cat_verbose 0} {dir_verbose 0} {pt_verbose 0}} {
     # ==================================================
     if {[expr $directory_valid && $pagetable_valid] == 1} {
 	set pagetable_addr [expr $directory_entry & ~0xfff]
-	set pagetable_entry [read_memory_dword [expr $pagetable_addr + [expr $pagetable_index * 8]]]
+	set pagetable_entry_addr [expr $pagetable_addr + [expr $pagetable_index * 8]]
+	set pagetable_entry [read_memory_dword $pagetable_entry_addr ]
 	if {[expr $pagetable_entry & 0x1] != 1} {
 	    puts "PageTable entry does not exist at index $pagetable_index"
 	    return 0
 	} else {
-	    puts "PAGETABLE: [format 0x%-8x $pagetable_addr] : [format 0x%-8x $pagetable_entry]"
+	    puts "PAGETABLE: [format 0x%-8x $pagetable_entry_addr] : [format 0x%-8x $pagetable_entry]"
 	}
     }
 
