@@ -11,6 +11,7 @@
 		A8571A251A1FA74B00F2D4C7 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8571A231A1FA74B00F2D4C7 /* Type.cpp */; };
 		A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */ = {isa = PBXBuildFile; fileRef = A8571A241A1FA74B00F2D4C7 /* Type.h */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
+		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
+		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B724D1711A337B7900F591E2 /* PerfTimer.mm */,
 				B71E74871A1F32E500C13FC2 /* tests.mm */,
 				B71E74851A1F32E500C13FC2 /* Supporting Files */,
 			);
@@ -202,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
 				B71E74881A1F32E500C13FC2 /* tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
