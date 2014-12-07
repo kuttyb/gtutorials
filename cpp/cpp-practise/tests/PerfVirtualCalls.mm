@@ -24,9 +24,9 @@ private :
 public:
     virtual int process(int a, int b) {
         int val;
-//        lock.lock();
+        lock.lock();
         val = a + b;
-//        lock.unlock();
+        lock.unlock();
         return val;
     }
 };
@@ -39,7 +39,8 @@ public:
     Second(Third * input) : subject(input){}
 
     virtual int process(int a, int b) {
-        return subject->process(a, b);
+        return subject->process(subject->process(a, b),
+                                subject->process(a, b));
     }
 };
 
@@ -70,14 +71,11 @@ public:
 }
 
 - (void)testExample {
-    const int MAX = 1000000000;
+    const int MAX = 1000000;
     First * first = new First(new Second(new Third()));
     
     int value = 0;
-    cout << "first is " << first << endl;
     benchmark<std::chrono::milliseconds>([&value, first](){
-        cout << "first inside is " << first << endl;
-        
         for (int i = 0; i < MAX; ++i) {
             if ((i % 5) == 0) {
                 value += first->process(10, 3);
