@@ -12,6 +12,8 @@
 		A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */ = {isa = PBXBuildFile; fileRef = A8571A241A1FA74B00F2D4C7 /* Type.h */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
+		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
+		B7A4A8201A34E9920057E07F /* benchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A4A81F1A34E9920057E07F /* benchmark.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +34,8 @@
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
+		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
+		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				A8571A231A1FA74B00F2D4C7 /* Type.cpp */,
+				B7A4A81F1A34E9920057E07F /* benchmark.h */,
 				A8571A241A1FA74B00F2D4C7 /* Type.h */,
 			);
 			path = "cpp-practise";
@@ -83,6 +88,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */,
 				B724D1711A337B7900F591E2 /* PerfTimer.mm */,
 				B71E74871A1F32E500C13FC2 /* tests.mm */,
 				B71E74851A1F32E500C13FC2 /* Supporting Files */,
@@ -106,6 +112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */,
+				B7A4A8201A34E9920057E07F /* benchmark.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
+				B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */,
 				B71E74881A1F32E500C13FC2 /* tests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

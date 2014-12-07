@@ -11,26 +11,7 @@
 #include <iostream>
 #include <functional>
 #include <string>
-#include <chrono>
-
-using namespace std;
-
-#pragma mark - Benchmark
-template <typename RESOLUTION> std::string time_unit(void) { assert(!"must specialize RESOLUTION"); }
-template <> std::string time_unit<std::chrono::nanoseconds>(void)  { return "nanoseconds";}
-template <> std::string time_unit<std::chrono::milliseconds>(void) { return "milliseconds";}
-template <> std::string time_unit<std::chrono::microseconds>(void) { return "microseconds";}
-template <typename RESOLUTION>
-void benchmark(std::function<void (void)> code)
-{
-    auto start = std::chrono::steady_clock::now();
-    code();
-    auto end   = std::chrono::steady_clock::now();
-    cout << " ============ " << endl;
-    cout << " Benchmark: Execution time " << std::chrono::duration_cast<RESOLUTION>(end - start).count() << " " << time_unit<RESOLUTION>() << endl;
-    cout << " ============ " << endl;
-}
-
+//#include "benchmark.h"
 
 @interface PerfTimer : XCTestCase
 
@@ -50,10 +31,12 @@ void benchmark(std::function<void (void)> code)
 
 - (void)testExample
 {
+#if 0
     int x = 10;
     benchmark<std::chrono::microseconds>([&x](void) {
         cout << "first line of text" << x << " that is the value" << endl;
     });
+#endif
 }
 
 @end
