@@ -9,17 +9,25 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include <mutex>
 #include "benchmark.h"
 
 using std::cout;
 using std::endl;
+using std::mutex;
 
 #pragma mark - Test Classes
 
 class Third {
+private :
+    mutex lock;
 public:
     virtual int process(int a, int b) {
-        return a + b;
+        int val;
+//        lock.lock();
+        val = a + b;
+//        lock.unlock();
+        return val;
     }
 };
 
