@@ -28,6 +28,9 @@ Install without running tests
 
 This will let you run individual Main classes inside your project while respecting the Maven class dependencies.
 
+[] Skipping unit tests while doing install or package
+mvn3 package -Dmaven.test.skip=true
+
 ==================================
 Packaging Uber Jars
 ==================================
