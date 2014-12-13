@@ -1,0 +1,6 @@
+git bundle create name.bundle --all
+
+
+then under a new directory, 
+git init
+git clone name.bundle .
