@@ -36,37 +36,37 @@ struct Three {
 };
 
 #pragma mark - Function (specialized by type)
-/* Helper structs (with overloaded function call operator) are Policies or Strategies that are passed in by
+/* Policy structs (with overloaded function call operator) are Policies or Strategies that are passed in by
  * type. Keep in mind, we did not pass any function pointers and that this is a direct function call.
  */
-struct HelperOne {
-    void operator()() {
-        cout << "HelperOne" << endl;
+struct PolicyOne {
+    static void exec() {
+        cout << "PolicyOne" << endl;
     }
 };
 
-struct HelperTwo {
-    void operator()() {
-        cout << "HelperTwo" << endl;
+struct PolicyTwo {
+    static void exec() {
+        cout << "PolicyTwo" << endl;
     }
 };
 
 template <typename T, typename H>
 void first_operate(T input) {
     cout << "Generic::first_operate" << endl;
-    H h; h();
+    H::exec();
 }
 
 template <typename H>
 void first_operate(One input) {
     cout << "One::first_operate" << endl;
-    H h; h();
+    H::exec();
 }
 
 template <typename H>
 void first_operate(Two input) {
     cout << "Two::first_operate" << endl;
-    H h; h();
+    H::exec();
 }
 
 template <typename H>
@@ -81,20 +81,20 @@ void first_operate(Three input) {
 template <typename T>
 void top(void) {
     typename T::maintype data;
-    first_operate<typename T::helper>(data);
+    first_operate<typename T::Policy>(data);
 }
 
 #pragma mark - Configurators (They bind data and functions together with specific template instantiations)
 struct ConfigOne {
     typedef One maintype;
     typedef Two secondtype;
-    typedef HelperOne helper;
+    typedef PolicyOne Policy;
 };
 
 struct ConfigTwo {
     typedef Two maintype;
     typedef One secondtype;
-    typedef HelperTwo helper;
+    typedef PolicyTwo Policy;
 };
 
 struct ConfigThree : public ConfigTwo {
