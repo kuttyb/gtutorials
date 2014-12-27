@@ -19,31 +19,39 @@ static inline void copylabels(uint16_t * dst, const void ** src, uint8_t element
 
 #define _DISPATCH \
 { \
-void * addr = &&label1 + *code++; \
+void * addr = &&label_start + *code++; \
 goto *addr; \
 }
 
 void func(uint16_t *code, bool initialized) 
 {
-  static void* _labels[] = { &&label1, &&label2, &&label3, &&label_exit };
+  static void* _labels[] = { &&label_start, &&label2, &&label3, &&label_exit };
   _SETUPLABELS;
 
   _DISPATCH;
 
- label1:
-  printf("label 1\n");
+ label_start:
+  {
+    printf("label 1\n");
+  }
   _DISPATCH;
 
  label2:
+  {
   printf("label 2\n");
+  }
   _DISPATCH;
 
  label3:
-  printf("label 3\n");
+  {
+    printf("label 3\n");
+  }
   _DISPATCH;
 
  label_exit:
-  printf("label exit\n");
+  {
+    printf("label exit\n");
+  }
   return;
 }
 
