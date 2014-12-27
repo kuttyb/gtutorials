@@ -4,19 +4,25 @@
 
 static uint16_t labels[10] = {};
 
+static inline void copylabels(uint16_t * dst, const void ** src, uint8_t elements) {
+  for (int i = 0; i < elements; ++i) {
+    dst[i] = src[i] - src[0];
+  }
+}
+
+#define  _SETUPLABELS  \
+  if (value == 0xffff) {    \
+    copylabels(labels, (const void **)_labels, sizeof(_labels) / sizeof(_labels[0]));\
+    return;\
+  }
+
 void func(int value) 
 {
   static void* _labels[] = { &&label1, &&label2, &&label3 };
-
-  if (value == 0xffff) {    
-    labels[0] = 0;
-    labels[1] = _labels[1] - _labels[0];
-    labels[2] = _labels[2] - _labels[0];
-    return;
-  }
+  _SETUPLABELS
 
   /* Do the opcode dispatch */
-  void * addr = _labels[0] + value;
+  void * addr = &&label1 + value;
   goto *addr;
 
  label1:
@@ -40,11 +46,12 @@ int main(void)
     printf("\t0x%x\n", labels[i]);
   }
 
-  func(labels[0]);  
-
-  func(labels[2]);
-
-  func(labels[1]);
+  for (int i = 0; i < 3; ++i) {
+    printf("\n");
+    func(labels[0]);  
+    func(labels[2]);
+    func(labels[1]);
+  }
 
   return 0;
 }
