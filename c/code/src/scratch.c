@@ -4,37 +4,17 @@
 #include <stdbool.h>
 #include <assert.h>
 
-void first() {
-  printf("first speaking\n");
-}
-
-void second() {
-  printf("second speaking\n");
-}
-
-void third() {
-  printf("third speaking\n");
-}
 
 int main(void) 
 {
-  int x = rand() % 3;
+  static void* labels[] = { &&label1, &&label2 };
+  goto *labels[1];
 
-
-  switch(x) {
-  case 0:
-    first(); 
-    break;
-
-  case 1:
-    second();
-    break;
-
-  case 2:
-  case 3:
-    third();
-    break;
-  }
+ label2:
+  printf("statement just before the label\n");
+  
+ label1:
+  printf("printing label\n");
 
   return 0;
 }
