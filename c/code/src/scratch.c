@@ -1,23 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <inttypes.h>
-#include <stdbool.h>
-#include <assert.h>
 
-static void* labels[10] = {};
+static uint16_t labels[10] = {};
 
-void func(void * value) 
+void func(int value) 
 {
   static void* _labels[] = { &&label1, &&label2, &&label3 };
 
-  if (!value) {    
-    memcpy(labels, _labels, sizeof(_labels));
+  if (value == 0xffff) {    
+    labels[0] = 0;
+    labels[1] = _labels[1] - _labels[0];
+    labels[2] = _labels[2] - _labels[0];
     return;
   }
 
   /* Do the opcode dispatch */
-  goto *value;
+  void * addr = _labels[0] + value;
+  goto *addr;
+
  label1:
   printf("label 1\n");
   return;
@@ -34,9 +35,9 @@ void func(void * value)
 int main(void) 
 {
   /* To initialize the addresses */
-  func(NULL);
-  for (int i = 0; i < 10; ++i) {
-    if (labels[i]) printf("\t%p\n", labels[i]);
+  func(0xffff);
+  for (int i = 0; i < 3; ++i) {
+    printf("\t0x%x\n", labels[i]);
   }
 
   func(labels[0]);  
