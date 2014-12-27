@@ -3,6 +3,13 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+/* TODO:
+   =====
+   [a] Add a Context which will contain the Register File, Code Pointer and Data Pointer
+   [b] Add Code and Data next pointers in the Register File
+   [c] Add Predicate Registers in the Register File
+   [d] Add Class Selector (uses Code Pointer)
+*/
 static uint16_t OPCODES_CLASSA[10] = {};
 
 static inline void copylabels(uint16_t * dst, const void ** src, uint8_t elements) {
