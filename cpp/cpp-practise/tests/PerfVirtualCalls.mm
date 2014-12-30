@@ -24,9 +24,9 @@ private :
 public:
     virtual int process(int a, int b) {
         int val;
-        lock.lock();
+        //lock.lock();
         val = a + b;
-        lock.unlock();
+        //lock.unlock();
         return val;
     }
 };
