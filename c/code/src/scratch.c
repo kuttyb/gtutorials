@@ -1,71 +1,84 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <inttypes.h>
 #include <stdbool.h>
-#include <assert.h>
 
-void agxsAssert(uint32_t expr)
-{
-  assert(expr);
-}
-#define ALIGNGRAN(V, G)         (({agxsAssert(ISPOT(G));}), (((V) + ((G) - 1ULL)) & ~((G) - 1ULL)))
-#define ISPOT(V)                ((V) && ((V) & ((V) - 1)) == 0)
+/* TODO:
+   =====
+   [a] Add a Context which will contain the Register File, Code Pointer and Data Pointer
+   [b] Add Code and Data next pointers in the Register File
+   [c] Add Predicate Registers in the Register File
+   [d] Add Class Selector (uses Code Pointer)
+*/
+static uint16_t OPCODES_CLASSA[10] = {};
 
-
-const uint32_t agxk_gart_page_size  = 0x1000;
-const uint32_t agxk_gart_page_shift = 12;
-
-static inline void do_padding(uint64_t base_address, uint32_t virtual_length, uint32_t num_pad_pages)
-{
-  uint64_t address = virtual_length - agxk_gart_page_size;
-  for (; num_pad_pages; address -= agxk_gart_page_size, num_pad_pages--)
-  {
-    printf("mapping dummy page to 0x%llx\n", address);
+static inline void copylabels(uint16_t * dst, const void ** src, uint8_t elements) {
+  for (int i = 0; i < elements; ++i) {
+    dst[i] = src[i] - src[0];
   }
-  printf("---\n");
 }
 
-static inline uint32_t getPadPages(uint32_t virtual_length, uint32_t * num_pad_pages, uint32_t cpu_page_size)
+#define  _SETUPLABELS  \
+  if (initialized == true) {    \
+    copylabels(opcode_table, (const void **)_labels, sizeof(_labels) / sizeof(_labels[0]));\
+    return;\
+  }
+
+#define _DISPATCH \
+{ \
+void * addr = &&label_start + *code++; \
+goto *addr; \
+}
+
+void func(uint16_t *code, bool initialized, uint16_t *opcode_table) 
 {
-  printf("virtual_length: 0x%x\n", virtual_length);
-  *num_pad_pages  = 1;
-  virtual_length += agxk_gart_page_size;
+  static void* _labels[] = { &&label_start, &&label1, &&label2, &&label_exit };
+  _SETUPLABELS;
 
-  
-  uint32_t new_length    = ALIGNGRAN(virtual_length, cpu_page_size);
-  *num_pad_pages        += ((new_length - virtual_length) >> agxk_gart_page_shift);
+  _DISPATCH;
 
-  printf("padded_length : 0x%x\naligned_length: 0x%x\nnum_pad_pages : 0x%x\n", 
-	 virtual_length, new_length, *num_pad_pages);
-  printf("---\n");
-  do_padding(0, new_length, *num_pad_pages);
+ label_start:
+  {
+    printf("label 0\n");
+  }
+  _DISPATCH;
 
-  printf("\n\n");
-  return new_length;
+ label1:
+  {
+  printf("label 1\n");
+  }
+  _DISPATCH;
+
+ label2:
+  {
+    printf("label 2\n");
+  }
+  _DISPATCH;
+
+ label_exit:
+  {
+    printf("label exit\n");
+  }
+  return;
 }
 
 int main(void) 
 {
-  uint32_t       num_pad_pages;
-  //const uint32_t page_size = 0x1000;
-  const uint32_t page_size = 0x4000;
+  /* To initialize the addresses */
+  func(NULL, true, OPCODES_CLASSA);
+  for (int i = 0; i < 3; ++i) {
+    printf("\t0x%x\n", OPCODES_CLASSA[i]);
+  }
 
-#if 1
-  // POT sizes
-  getPadPages(0x1000, &num_pad_pages, page_size);
-  getPadPages(0x2000, &num_pad_pages, page_size);
-  getPadPages(0x3000, &num_pad_pages, page_size);
-  getPadPages(0x4000, &num_pad_pages, page_size);
-  getPadPages(0x0,    &num_pad_pages, page_size);
-#endif
+  /* User submitted code buffer */
+  uint16_t codebuffer[] = { 0, 0, 1, 2, 0, 1, 3 };
 
-#if 1
-  // NPOT sizes
-  getPadPages(0x50,   &num_pad_pages, page_size);
-  getPadPages(0x1050, &num_pad_pages, page_size);
-  getPadPages(0x2050, &num_pad_pages, page_size);
-  getPadPages(0x3050, &num_pad_pages, page_size);
-  getPadPages(0x4050, &num_pad_pages, page_size);
-#endif
+  /* Patch the buffer */
+  for (int i = 0; i < sizeof(codebuffer) / sizeof(codebuffer[0]); ++i) {
+    codebuffer[i] = OPCODES_CLASSA[codebuffer[i]];
+  }
+
+  func(codebuffer, false, NULL);
 
   return 0;
 }

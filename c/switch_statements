@@ -1,0 +1,40 @@
+http://741mhz.com/switch/
+
+The best a compiler can do it appears is a jump table (indirect jump) The caveats being if the
+
+[a] case values are large but contigous ( 999, 998, 997 ...)
+    In which case the compiler should do a constant subtraction and use smaller index offsets 
+
+[b] case values are sparse
+    Well in this case, the best it can do is likely a Binary search followed by jump table after subtraction
+
+[c] too many case statements
+    https://gcc.gnu.org/bugzilla/show_bug.cgi?id=11823
+
+    Well, in this case it will likely fall back to some sort of binary search + comparisons.
+
+=====
+Keep in mind, if certain switch cases are more commonly taken than others it might pay off to do a manual comparison
+ if (value == 0) {
+    handle_0();
+ } else if (value == 1) {
+   handle_1();
+ } else {
+   switch (value) {
+      case 2: ..
+      case 3: ...
+   }	  
+ }  
+
+Reason being there is usually a threshold of branch comparisons which are faster than a single indirect jump (though if it is that 
+common the ITP should help)
+
+Anyways, these are all gray areas, watch out for the processor in question and optimize accordingly keeping these points in mind.
+
+==== OR ==========
+screw all this and use direct threading + GNU labels where the opcode is the GNU label. That removes the indirect jump since there is 
+no dereferencing!!
+
+You can use a separate opcode to select the class (transfer control to different functions that implement various opcodes using local
+labels)
+

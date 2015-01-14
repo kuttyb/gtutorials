@@ -12,115 +12,126 @@
 using std::cout;
 using std::endl;
 
-#pragma mark - Data Classes
-struct One
+#pragma mark - (POD - Plain Old Data classes)
+struct DataMasterThreeD
 {
     int a;
 };
 
-struct Two
+struct DataMasterFastBlit
 {
-    float a;
-    One b;
+    // Composition over Inheritance
+    DataMasterThreeD base;
+    int contextid;
 };
 
+struct DataMasterFasterBlit
+{
+    DataMasterFastBlit base;
+    int someid;
+};
+
+#pragma mark - BRNs
 class BRNTable {
 public:
-    constexpr static bool BRN123 = false;
-    constexpr static bool BRN234 = false;
+    const static bool BRN123 = false;
+    const static bool BRN234 = false;
 };
 
-class ConfigBig
+
+#pragma mark - Chip Configurations
+class ChipG4
 {
 public:
-    // Each of these classes are DI points, think GUICE annotation points
-    typedef One Line;
-    typedef Two Linenext;
+    typedef DataMasterThreeD    threed;
+    typedef DataMasterFastBlit  fastblit;
+    // Don't have DataMasterFasterBlit
     
     // Properties
     class BRN : public BRNTable
     {
     public:
-        constexpr static bool BRN123 = true;
+        const static bool BRN123 = true;
     };
 };
 
-class ConfigSmall
+class ChipG4G : public ChipG4
 {
 public:
-    typedef Two Line;
-    typedef One Linenext;
+    typedef DataMasterFasterBlit fasterblit;
+    class BRN : public ChipG4::BRN
+    {
+    public:
+        const static bool BRN123 = false;
+    };
+};
 
+
+class ChipG5
+{
+public:
+    typedef DataMasterThreeD      threed;
+    typedef DataMasterFasterBlit  fasterblit;
+    
     class BRN : public BRNTable
     {
     public:
-        constexpr static bool BRN234 = true;
+        const static bool BRN123 = true;
+        const static bool BRN234 = true;
     };
 };
 
-class ConfigBiggish : public ConfigBig
+#pragma mark - Data Master Functions (Specialize by DM)
+template <typename T>
+void agfProcessSubmittedCommands(T input)
 {
-public:
-    typedef One Linenext;
-    class BRN : public ConfigBig::BRN
-    {
-    public:
-        constexpr static bool BRN123 = false;
-    };
-};
-
-#pragma mark - Second order Pure Functions
-namespace Operation
-{
-    template <typename T>
-    void operate(T input)
-    {
-        cout << "generic version" << endl;
-    }
-    
-    template <>
-    void operate(One input)
-    {
-        cout << "One speaking" << endl;
-    }
-    
-    template <>
-    void operate(Two input)
-    {
-        cout << "Two speaking" << endl;
-        operate(input.b);
-    }
-};
-
-#pragma mark - BRNs
-template <bool val>
-void applyBRN123() {}
+    cout << "generic version" << endl;
+}
 
 template <>
-void applyBRN123<true>()
+void agfProcessSubmittedCommands(DataMasterThreeD input)
+{
+    cout << "3D logic" << endl;
+}
+
+template <>
+void agfProcessSubmittedCommands(DataMasterFastBlit input)
+{
+    cout << "Fast Blit logic" << endl;
+    agfProcessSubmittedCommands(input.base);
+}
+
+template <>
+void agfProcessSubmittedCommands(DataMasterFasterBlit input)
+{
+    cout << "Faster Blit logic" << endl;
+    agfProcessSubmittedCommands(input.base);
+    cout << "Smore more logic" << endl;
+}
+
+#pragma mark - BRNs
+template <bool val> void applyBRN123() {}
+template <> void applyBRN123<true>()
 {
     cout << "Applying BRN123" << endl;
 }
 
-template <bool val>
-void applyBRN234() {}
-
-template <>
-void applyBRN234<true>()
+template <bool val> void applyBRN234() {}
+template <> void applyBRN234<true>()
 {
     cout << "Applying BRN234" << endl;
 }
 
 #pragma mark - Top level function
-template <typename TypeFactory>
+template <typename Chip>
 void top()
 {
-    typename TypeFactory::Linenext var;
-    Operation::operate(var);
+    typename Chip::fasterblit var;
+    agfProcessSubmittedCommands(var);
     
-    applyBRN123<TypeFactory::BRN::BRN123>();
+    applyBRN123<Chip::BRN::BRN123>();
     
-    applyBRN234<TypeFactory::BRN::BRN234>();
+    applyBRN234<Chip::BRN::BRN234>();
 }
 
 @interface tests : XCTestCase
@@ -138,7 +149,9 @@ void top()
 }
 
 - (void)testBasic {
-    top<ConfigBiggish>();
+    top<ChipG5>();
+    cout << "=========" << endl;
+    top<ChipG4G>();
 }
 
 @end
