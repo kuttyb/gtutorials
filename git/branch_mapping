@@ -63,3 +63,6 @@ git push origin :remotebranchname
 
 # Then delete it locally too
 git branch -D localbranchname
+
+# This is going to remove it from your local cache of the remote branches
+git remote prune origin
