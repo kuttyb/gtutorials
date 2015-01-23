@@ -1,0 +1,5 @@
+# To ignore whats upstream and use your local divergence
+git merge -s ours
+
+http://git.661346.n2.nabble.com/Doing-a-dummy-or-empty-merge-td4715679.html
+
