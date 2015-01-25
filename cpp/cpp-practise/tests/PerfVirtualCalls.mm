@@ -71,7 +71,7 @@ public:
 }
 
 - (void)testExample {
-    const int MAX = 1000000;
+    const int MAX = 10000000;
     First * first = new First(new Second(new Third()));
     
     int value = 0;
@@ -83,7 +83,7 @@ public:
                 value += first->process(2, 3);
             }
         }
-    });
+    }, 5);
 
     cout << "value is " << value << endl;
 }
