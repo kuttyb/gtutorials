@@ -2,4 +2,11 @@ Compiler:
 =========
 -XX:CompileThreshold=value -XX:+CITime -XX:+PrintCompilation
 
-the default threshold is 1500
+(the default threshold is 1500)
+
+
+Locks:
+======
+-XX:BiasedLockingStartupDelay=0
+
+(to have lock biasing trigger in instantaneously)
