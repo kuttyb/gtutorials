@@ -1,0 +1,5 @@
+Compiler:
+=========
+-XX:CompileThreshold=value -XX:+CITime -XX:+PrintCompilation
+
+the default threshold is 1500
