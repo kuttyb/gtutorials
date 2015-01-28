@@ -25,12 +25,21 @@ void methodTwo(void) {
 #pragma mark - Policy Structs
 /* Use Structs with static methods when you want to pass it as a Strategy to an Algorithm */
 struct One {
+	void operator()() {
+		methodOne();
+	}
+	
     static void process() {
         methodOne();
     }
 };
 
+/* And instead of named static methods you could always revert to the Function call operator */
 struct Two {
+	void operator()() {
+		methodTwo();
+	}
+	
     static void process() {
         methodTwo();
     }
@@ -38,8 +47,9 @@ struct Two {
 
 template <typename Policy>
 void top(void) {
+	/* Both work just as well */
     Policy::process();
-    cout << "body of the method" << endl;
+	Policy()();
 }
 
 #pragma mark - Test Logic
