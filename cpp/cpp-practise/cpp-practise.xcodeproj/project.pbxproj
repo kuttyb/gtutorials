@@ -15,6 +15,7 @@
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
 		B7A4A8201A34E9920057E07F /* benchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A4A81F1A34E9920057E07F /* benchmark.h */; };
+		B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A911251A78CDD50028A68E /* TestCollections.mm */; };
 		B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DF32AF1A42A93E0074362E /* TestBasic.mm */; };
 		B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
+		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7A911251A78CDD50028A68E /* TestCollections.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
 				B7DF32AF1A42A93E0074362E /* TestBasic.mm */,
 				B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */,
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
 				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
