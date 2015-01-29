@@ -44,17 +44,22 @@ struct NodeC : public NodeBase {
 typedef boost::variant<NodeA, NodeB, NodeC> Node;
 
 #pragma mark - Visitors
+#define   PROCESS_JUMP(node)  {if (node.jump) return;}
+//template <typename SUBVISITOR>
 struct Visitor : public boost::static_visitor<>
 {
 	void operator()(NodeA & data) const {
+		PROCESS_JUMP(data);
 		printf("NodeA: %d %d\n", data.op1, data.op2);
 	}
 	
 	void operator()(NodeB & data) const {
+		PROCESS_JUMP(data);
 		printf("NodeB: %d\n", data.op1);
 	}
 
 	void operator()(NodeC & data) const {
+		PROCESS_JUMP(data);
 		printf("NodeC: %d\n", data.op1);
 	}
 };
