@@ -1,0 +1,15 @@
+#include <boost/core/noncopyable.hpp>
+
+struct A : private boost::noncopyable {
+
+}
+
+========
+Or you could delete the copy constructor and the assignment operator
+
+struct A {
+  A & operator=(const A &) = delete;
+  A(const A &) = delete;       
+};
+
+

@@ -15,7 +15,7 @@ using std::cout;
 using std::endl;
 using std::set;
 
-struct A {
+struct A  {
 	int x;
 	int y;
 	A(int _x, int _y) : x(_x), y(_y) {}
@@ -25,7 +25,8 @@ struct A {
 		return (x + y) < (input.x + input.y);
 	}
 	
-	A(const A & ref) = delete;
+	A(const A &) = delete;
+	A& operator=(const A &) = delete;
 };
 
 @interface TestCollections : XCTestCase
