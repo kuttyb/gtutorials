@@ -31,6 +31,14 @@ struct A  {
 	A& operator=(const A &) = delete;
 };
 
+/* For Collections with Pointers, you need to explicitly provide the operator */
+struct APtr {
+    bool operator()(const A* lhs, const A* rhs) const {
+        cout << "special operator" << endl;
+        return (lhs->x + lhs->y) < (rhs->x + rhs->y);
+    }
+};
+
 @interface TestCollections : XCTestCase
 
 @end
@@ -51,7 +59,7 @@ struct A  {
 	
     if (a < b) cout << "done" << endl;
     
-	set<A*> x;
+	set<A*, APtr> x;
 	x.insert(&a);
 	x.insert(&b);
 	x.insert(&a);
