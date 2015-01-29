@@ -37,6 +37,21 @@ struct Visitor : public boost::static_visitor<>
 
 typedef boost::variant<int, std::string, std::vector<int>> Node;
 
+template <typename VISITOR>
+struct Graph {
+private:
+	std::vector <Node> nodes;
+public:
+	void addNode(Node a) {
+		nodes.push_back(a);
+	}
+	
+	void visit(void) {
+		for (Node & temp : nodes) {
+			boost::apply_visitor(VISITOR(), temp);
+		}
+	}
+};
 
 #pragma mark - Test
 @interface TestVariants : XCTestCase
@@ -69,6 +84,15 @@ typedef boost::variant<int, std::string, std::vector<int>> Node;
 	for (Node & temp : a) {
 		boost::apply_visitor(Visitor(), temp);
 	}
+}
+
+- (void) testGraph {
+	Graph<Visitor> graph;
+	graph.addNode(2);
+	graph.addNode("fine");
+	graph.addNode(5);
+	
+	graph.visit();
 }
 
 @end
