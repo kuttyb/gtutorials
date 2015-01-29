@@ -16,28 +16,50 @@ using std::cout;
 using std::endl;
 using std::vector;
 
-#pragma mark - C++
+#pragma mark - Compiler IR
+struct NodeBase {
+	bool jump;
+	NodeBase() : jump(false){}
+};
+
+/* Node Structs */
+struct NodeA : public NodeBase {
+	uint8_t op1;
+	uint8_t op2;
+	NodeA(uint8_t one, uint8_t two) : op1(one), op2(two) {}
+};
+
+
+struct NodeB : public NodeBase {
+	uint8_t op1;
+	NodeB(uint8_t one) : op1(one){}
+};
+
+struct NodeC : public NodeBase {
+	uint8_t op1;
+	NodeC(uint8_t one) : op1(one){}
+};
+
+
+typedef boost::variant<NodeA, NodeB, NodeC> Node;
+
+#pragma mark - Visitors
 struct Visitor : public boost::static_visitor<>
 {
-	void operator()(int i) const
-	{
-		cout << "int: input is " << i << endl;
+	void operator()(NodeA & data) const {
+		printf("NodeA: %d %d\n", data.op1, data.op2);
 	}
 	
-	void operator()(std::string & data) const
-	{
-		cout << "string: input is " << data << endl;
+	void operator()(NodeB & data) const {
+		printf("NodeB: %d\n", data.op1);
 	}
-	
-	void operator()(std::vector<int> & data) const
-	{
-		
+
+	void operator()(NodeC & data) const {
+		printf("NodeC: %d\n", data.op1);
 	}
 };
 
-typedef boost::variant<int, std::string, std::vector<int>> Node;
-
-/* 
+/*
  * As usual, there are 3 abstractions:
  *  [a] There are Nodes (IR Nodes)
  *  [b] There is a Graph (that contains Nodes)
@@ -77,15 +99,15 @@ public:
 }
 
 - (void)testBasicVisitor {
-	Node data("hello");
+	Node data(NodeA(2, 3));
 	boost::apply_visitor(Visitor(), data);
 }
 
 - (void)testVectorVisitor {
 	vector<Node> a;
-	a.push_back(3);
-	a.push_back("fine");
-	a.push_back(4);
+	a.push_back(NodeB(2));
+	a.push_back(NodeC(3));
+	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
 		boost::apply_visitor(Visitor(), temp);
@@ -94,9 +116,9 @@ public:
 
 - (void) testGraph {
 	Graph<Visitor> graph;
-	graph.addNode(2);
-	graph.addNode("fine");
-	graph.addNode(5);
+	graph.addNode(NodeA(2, 3));
+	graph.addNode(NodeB(3));
+	graph.addNode(NodeC(45));
 	
 	graph.visit();
 }
