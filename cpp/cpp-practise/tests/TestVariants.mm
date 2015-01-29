@@ -45,21 +45,36 @@ typedef boost::variant<NodeA, NodeB, NodeC> Node;
 
 #pragma mark - Visitors
 #define   PROCESS_JUMP(node)  {if (node.jump) return;}
-//template <typename SUBVISITOR>
+template <typename SUBVISITOR>
 struct Visitor : public boost::static_visitor<>
 {
 	void operator()(NodeA & data) const {
 		PROCESS_JUMP(data);
-		printf("NodeA: %d %d\n", data.op1, data.op2);
+		SUBVISITOR()(data);
 	}
 	
 	void operator()(NodeB & data) const {
 		PROCESS_JUMP(data);
-		printf("NodeB: %d\n", data.op1);
+		SUBVISITOR()(data);
 	}
 
 	void operator()(NodeC & data) const {
 		PROCESS_JUMP(data);
+		SUBVISITOR()(data);
+	}
+};
+
+struct MyVisitor : public boost::static_visitor<>
+{
+	void operator()(NodeA & data) const {
+		printf("NodeA: %d %d\n", data.op1, data.op2);
+	}
+	
+	void operator()(NodeB & data) const {
+		printf("NodeB: %d\n", data.op1);
+	}
+	
+	void operator()(NodeC & data) const {
 		printf("NodeC: %d\n", data.op1);
 	}
 };
@@ -105,7 +120,7 @@ public:
 
 - (void)testBasicVisitor {
 	Node data(NodeA(2, 3));
-	boost::apply_visitor(Visitor(), data);
+	boost::apply_visitor(Visitor<MyVisitor>(), data);
 }
 
 - (void)testVectorVisitor {
@@ -115,12 +130,12 @@ public:
 	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
-		boost::apply_visitor(Visitor(), temp);
+		boost::apply_visitor(Visitor<MyVisitor>(), temp);
 	}
 }
 
 - (void) testGraph {
-	Graph<Visitor> graph;
+	Graph<Visitor<MyVisitor>> graph;
 	graph.addNode(NodeA(2, 3));
 	graph.addNode(NodeB(3));
 	graph.addNode(NodeC(45));
