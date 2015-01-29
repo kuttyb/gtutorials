@@ -20,11 +20,13 @@ struct A  {
 	int y;
 	A(int _x, int _y) : x(_x), y(_y) {}
 	
-	/* NOTE: Its always <this operator input> */
+	/* NOTE: Its always (this operator input) */
 	bool operator<(const A & input) const {
+        cout << "using the operator" << endl;
 		return (x + y) < (input.x + input.y);
 	}
 	
+    /* Copy ctor and assignment operator */
 	A(const A &) = delete;
 	A& operator=(const A &) = delete;
 };
@@ -47,6 +49,8 @@ struct A  {
 	A a(3, 5);
 	A b(200, 300);
 	
+    if (a < b) cout << "done" << endl;
+    
 	set<A*> x;
 	x.insert(&a);
 	x.insert(&b);
