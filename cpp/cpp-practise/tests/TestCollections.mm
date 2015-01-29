@@ -20,8 +20,9 @@ struct A {
 	int y;
 	A(int _x, int _y) : x(_x), y(_y) {}
 	
+	/* NOTE: Its always <this operator input> */
 	bool operator<(const A & input) const {
-		return (input.x + input.y) - (x + y);
+		return (x + y) < (input.x + input.y);
 	}
 };
 
