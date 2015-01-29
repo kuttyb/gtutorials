@@ -37,6 +37,12 @@ struct Visitor : public boost::static_visitor<>
 
 typedef boost::variant<int, std::string, std::vector<int>> Node;
 
+/* 
+ * As usual, there are 3 abstractions:
+ *  [a] There are Nodes (IR Nodes)
+ *  [b] There is a Graph (that contains Nodes)
+ *  [c] There are Visitors (Passes & Optimizations)
+ */
 template <typename VISITOR>
 struct Graph {
 private:
