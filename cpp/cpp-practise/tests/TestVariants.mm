@@ -11,10 +11,12 @@
 #include <boost/variant.hpp>
 #include <iostream>
 #include <vector>
+#include <bitset>
 
 using std::cout;
 using std::endl;
 using std::vector;
+using std::bitset;
 
 #pragma mark - Compiler IR
 /* Node Structs */
@@ -35,6 +37,17 @@ struct NodeC {
 };
 
 typedef boost::variant<NodeA, NodeB, NodeC> Node;
+
+#pragma mark - BitVector Operations on the IR Graph
+typedef enum {
+	SUCCESS,
+	DELETENODE,
+	SETANCHOR,
+	RESETANCHOR,
+	VISITANCHOR,
+	REPLAYANCHOR,
+	TOTALOPS
+} NODEOPS;
 
 #pragma mark - Visitors
 template <typename CONTEXT>
@@ -189,6 +202,16 @@ public:
 	
 	int b = 20;
 	graph.visit(&b);
+}
+
+- (void) testBitSet {
+	bitset<TOTALOPS> retvalue;
+	retvalue[SUCCESS] = 1;
+	retvalue[SETANCHOR] = 1;
+	
+	if (retvalue[SUCCESS])    printf("success\n");
+	if (retvalue[SETANCHOR])  printf("setanchor\n");
+	if (!retvalue[REPLAYANCHOR]) printf("!replayanchor\n");
 }
 
 @end
