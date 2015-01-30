@@ -44,17 +44,17 @@ struct Visitor : public boost::static_visitor<>
 	
 	void operator()(NodeA & data) const {
 		assert(context);
-		printf("NodeA: %d %d\n", data.op1, data.op2);
+		printf("NodeA: %d %d Context %d\n", data.op1, data.op2, *context);
 	}
 	
 	void operator()(NodeB & data) const {
 		assert(context);
-		printf("NodeB: %d\n", data.op1);
+		printf("NodeB: %d Context %d\n", data.op1, *context);
 	}
 	
 	void operator()(NodeC & data) const {
 		assert(context);
-		printf("NodeC: %d\n", data.op1);
+		printf("NodeC: %d Context %d\n", data.op1, *context);
 	}
 };
 
@@ -140,6 +140,9 @@ public:
 	
 	int a = 10;
 	graph.visit(&a);
+	
+	int b = 20;
+	graph.visit(&b);
 }
 
 @end
