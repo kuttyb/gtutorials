@@ -63,11 +63,31 @@ public:
 	}
 };
 
-//template <typename CONTEXT>
-//struct OptimizationPass : public boost::static_visitor<>
-//{
-//	Visitor<CONTEXT> base;
-//};
+/* Here is how you build on top of existing Passes (NO INHERITANCE, ONLY COMPOSITION) */
+template <typename CONTEXT>
+struct OptimizationPass : public boost::static_visitor<>
+{
+	Visitor<CONTEXT> base;
+	CONTEXT * context;
+	OptimizationPass() = delete;
+	
+	OptimizationPass(CONTEXT * input_context) : base(input_context), context(input_context) {}
+
+	void operator()(NodeA & data) const {
+		base(data);
+		printf("OPT: NodeA: %d %d Context %d\n", data.op1, data.op2, *context);
+	}
+	
+	void operator()(NodeB & data) const {
+		base(data);
+		printf("OPT: NodeB: %d Context %d\n", data.op1, *context);
+	}
+	
+	void operator()(NodeC & data) const {
+		base(data);
+		printf("OPT: NodeC: %d Context %d\n", data.op1, *context);
+	}
+};
 
 #pragma mark - Specialize Visitor for voidPtr
 template <>
@@ -144,6 +164,21 @@ public:
 - (void) testGraph {
 	Graph<Visitor<int>, int> graph;
 
+	graph.addNode(NodeA(2, 3));
+	graph.addNode(NodeB(3));
+	graph.addNode(NodeC(45));
+	
+	int a = 10;
+	graph.visit(&a);
+	printf("\n");
+	
+	int b = 20;
+	graph.visit(&b);
+}
+
+- (void) testOptimizationPass {
+	Graph<OptimizationPass<int>, int> graph;
+	
 	graph.addNode(NodeA(2, 3));
 	graph.addNode(NodeB(3));
 	graph.addNode(NodeC(45));
