@@ -17,48 +17,62 @@ using std::endl;
 using std::vector;
 
 #pragma mark - Compiler IR
-struct NodeBase {
-	bool jump;
-	NodeBase() : jump(false){}
-};
-
 /* Node Structs */
-struct NodeA : public NodeBase {
+struct NodeA {
 	uint8_t op1;
 	uint8_t op2;
 	NodeA(uint8_t one, uint8_t two) : op1(one), op2(two) {}
 };
 
-
-struct NodeB : public NodeBase {
+struct NodeB {
 	uint8_t op1;
 	NodeB(uint8_t one) : op1(one){}
 };
 
-struct NodeC : public NodeBase {
+struct NodeC {
 	uint8_t op1;
 	NodeC(uint8_t one) : op1(one){}
 };
 
-
 typedef boost::variant<NodeA, NodeB, NodeC> Node;
 
 #pragma mark - Visitors
-#define   PROCESS_JUMP(node)  {if (node.jump) return;}
+template <typename CONTEXT>
 struct Visitor : public boost::static_visitor<>
 {
+	CONTEXT * context;
+	
 	void operator()(NodeA & data) const {
+		assert(context);
 		printf("NodeA: %d %d\n", data.op1, data.op2);
 	}
 	
 	void operator()(NodeB & data) const {
+		assert(context);
 		printf("NodeB: %d\n", data.op1);
 	}
 	
 	void operator()(NodeC & data) const {
+		assert(context);
 		printf("NodeC: %d\n", data.op1);
 	}
 };
+
+#pragma mark - Specialize Visitor for voidPtr
+template <>
+void Visitor<voidPtr>::operator()(NodeA &data) const {
+	cout << "NodeA: voidPtr" << endl;
+}
+
+template <>
+void Visitor<voidPtr>::operator()(NodeB &data) const {
+	cout << "NodeA: voidPtr" << endl;
+}
+
+template <>
+void Visitor<voidPtr>::operator()(NodeC &data) const {
+	cout << "NodeA: voidPtr" << endl;
+}
 
 /*
  * As usual, there are 3 abstractions:
@@ -66,7 +80,7 @@ struct Visitor : public boost::static_visitor<>
  *  [b] There is a Graph (that contains Nodes)
  *  [c] There are Visitors (Passes & Optimizations)
  */
-template <typename VISITOR>
+template <typename VISITOR, typename CONTEXT>
 struct Graph {
 private:
 	std::vector <Node> nodes;
@@ -75,9 +89,11 @@ public:
 		nodes.push_back(a);
 	}
 	
-	void visit(void) {
+	void visit(CONTEXT * context) {
 		for (Node & temp : nodes) {
-			boost::apply_visitor(VISITOR(), temp);
+			VISITOR visitor;
+			visitor.context = context;
+			boost::apply_visitor(visitor, temp);
 		}
 	}
 };
@@ -101,7 +117,7 @@ public:
 
 - (void)testBasicVisitor {
 	Node data(NodeA(2, 3));
-	boost::apply_visitor(Visitor(), data);
+	boost::apply_visitor(Visitor<voidPtr>(), data);
 }
 
 - (void)testVectorVisitor {
@@ -111,17 +127,19 @@ public:
 	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
-		boost::apply_visitor(Visitor(), temp);
+		boost::apply_visitor(Visitor<voidPtr>(), temp);
 	}
 }
 
 - (void) testGraph {
-	Graph<Visitor> graph;
+	Graph<Visitor<int>, int> graph;
+
 	graph.addNode(NodeA(2, 3));
 	graph.addNode(NodeB(3));
 	graph.addNode(NodeC(45));
 	
-	graph.visit();
+	int a = 10;
+	graph.visit(&a);
 }
 
 @end
