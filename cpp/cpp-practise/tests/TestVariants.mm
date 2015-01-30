@@ -40,7 +40,12 @@ typedef boost::variant<NodeA, NodeB, NodeC> Node;
 template <typename CONTEXT>
 struct Visitor : public boost::static_visitor<>
 {
+private:
 	CONTEXT * context;
+	
+public:
+	Visitor() = delete;
+	Visitor(CONTEXT * input_context) : context(input_context)  {}
 	
 	void operator()(NodeA & data) const {
 		assert(context);
@@ -57,6 +62,12 @@ struct Visitor : public boost::static_visitor<>
 		printf("NodeC: %d Context %d\n", data.op1, *context);
 	}
 };
+
+//template <typename CONTEXT>
+//struct OptimizationPass : public boost::static_visitor<>
+//{
+//	Visitor<CONTEXT> base;
+//};
 
 #pragma mark - Specialize Visitor for voidPtr
 template <>
@@ -91,8 +102,7 @@ public:
 	
 	void visit(CONTEXT * context) {
 		for (Node & temp : nodes) {
-			VISITOR visitor;
-			visitor.context = context;
+			VISITOR visitor(context);
 			boost::apply_visitor(visitor, temp);
 		}
 	}
@@ -117,7 +127,7 @@ public:
 
 - (void)testBasicVisitor {
 	Node data(NodeA(2, 3));
-	boost::apply_visitor(Visitor<voidPtr>(), data);
+	boost::apply_visitor(Visitor<voidPtr>(nullptr), data);
 }
 
 - (void)testVectorVisitor {
@@ -127,7 +137,7 @@ public:
 	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
-		boost::apply_visitor(Visitor<voidPtr>(), temp);
+		boost::apply_visitor(Visitor<voidPtr>(nullptr), temp);
 	}
 }
 
@@ -140,6 +150,7 @@ public:
 	
 	int a = 10;
 	graph.visit(&a);
+	printf("\n");
 	
 	int b = 20;
 	graph.visit(&b);
