@@ -45,26 +45,7 @@ typedef boost::variant<NodeA, NodeB, NodeC> Node;
 
 #pragma mark - Visitors
 #define   PROCESS_JUMP(node)  {if (node.jump) return;}
-template <typename SUBVISITOR>
 struct Visitor : public boost::static_visitor<>
-{
-	void operator()(NodeA & data) const {
-		PROCESS_JUMP(data);
-		SUBVISITOR()(data);
-	}
-	
-	void operator()(NodeB & data) const {
-		PROCESS_JUMP(data);
-		SUBVISITOR()(data);
-	}
-
-	void operator()(NodeC & data) const {
-		PROCESS_JUMP(data);
-		SUBVISITOR()(data);
-	}
-};
-
-struct MyVisitor : public boost::static_visitor<>
 {
 	void operator()(NodeA & data) const {
 		printf("NodeA: %d %d\n", data.op1, data.op2);
@@ -120,7 +101,7 @@ public:
 
 - (void)testBasicVisitor {
 	Node data(NodeA(2, 3));
-	boost::apply_visitor(Visitor<MyVisitor>(), data);
+	boost::apply_visitor(Visitor(), data);
 }
 
 - (void)testVectorVisitor {
@@ -130,12 +111,12 @@ public:
 	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
-		boost::apply_visitor(Visitor<MyVisitor>(), temp);
+		boost::apply_visitor(Visitor(), temp);
 	}
 }
 
 - (void) testGraph {
-	Graph<Visitor<MyVisitor>> graph;
+	Graph<Visitor> graph;
 	graph.addNode(NodeA(2, 3));
 	graph.addNode(NodeB(3));
 	graph.addNode(NodeC(45));
