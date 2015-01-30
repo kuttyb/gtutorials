@@ -64,18 +64,24 @@ struct Visitor : public boost::static_visitor<>
 	}
 };
 
+template <typename CONTEXT>
 struct MyVisitor : public boost::static_visitor<>
 {
+	CONTEXT * context;
+	
 	void operator()(NodeA & data) const {
-		printf("NodeA: %d %d\n", data.op1, data.op2);
+		*context = *context + 1;
+		printf("NodeA: %d %d context %d\n", data.op1, data.op2, *context);
 	}
 	
 	void operator()(NodeB & data) const {
-		printf("NodeB: %d\n", data.op1);
+		*context = *context + 1;
+		printf("NodeB: %d context %d\n", data.op1, *context);
 	}
 	
 	void operator()(NodeC & data) const {
-		printf("NodeC: %d\n", data.op1);
+		*context = *context + 1;
+		printf("NodeC: %d context %d\n", data.op1, *context);
 	}
 };
 
@@ -85,7 +91,7 @@ struct MyVisitor : public boost::static_visitor<>
  *  [b] There is a Graph (that contains Nodes)
  *  [c] There are Visitors (Passes & Optimizations)
  */
-template <typename VISITOR>
+template <typename VISITOR, typename CONTEXT>
 struct Graph {
 private:
 	std::vector <Node> nodes;
@@ -94,9 +100,11 @@ public:
 		nodes.push_back(a);
 	}
 	
-	void visit(void) {
+	void visit(CONTEXT * context) {
 		for (Node & temp : nodes) {
-			boost::apply_visitor(VISITOR(), temp);
+			VISITOR visitor;
+			visitor.context = context;
+			boost::apply_visitor(visitor, temp);
 		}
 	}
 };
@@ -120,7 +128,7 @@ public:
 
 - (void)testBasicVisitor {
 	Node data(NodeA(2, 3));
-	boost::apply_visitor(Visitor<MyVisitor>(), data);
+	boost::apply_visitor(Visitor<MyVisitor<int>>(), data);
 }
 
 - (void)testVectorVisitor {
@@ -130,17 +138,23 @@ public:
 	a.push_back(NodeA(4, 5));
 	
 	for (Node & temp : a) {
-		boost::apply_visitor(Visitor<MyVisitor>(), temp);
+		boost::apply_visitor(Visitor<MyVisitor<int>>(), temp);
 	}
 }
 
 - (void) testGraph {
-	Graph<Visitor<MyVisitor>> graph;
+	Graph<MyVisitor<int>, int> graph;
+	
 	graph.addNode(NodeA(2, 3));
 	graph.addNode(NodeB(3));
 	graph.addNode(NodeC(45));
 	
-	graph.visit();
+	int a = 10;
+	graph.visit(&a);
+	printf("\n");
+	
+	int b = 20;
+	graph.visit(&b);
 }
 
 @end
