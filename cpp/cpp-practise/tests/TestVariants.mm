@@ -39,19 +39,26 @@ struct NodeC {
 typedef boost::variant<NodeA, NodeB, NodeC> Node;
 
 #pragma mark - BitVector Operations on the IR Graph
-typedef enum {
-	SUCCESS,
-	DELETENODE,
-	SETANCHOR,
-	RESETANCHOR,
-	VISITANCHOR,
-	REPLAYANCHOR,
-	TOTALOPS
-} NODEOPS;
+
+struct NodeResult {
+    enum {
+        SUCCESS, DELETENODE, SETANCHOR, RESETANCHOR, VISITANCHOR, REPLAYANCHOR, TOTALOPS
+    } NODEOPS;
+
+public:
+    std::bitset<TOTALOPS> status_bits;
+    /* Builder Pattern (some status bits cannot coexist with others, ensure valid usage via wrappers) */
+    void success()        { status_bits.reset(); status_bits[SUCCESS] = 1;                    }
+    void deletenode()     { status_bits.reset(); status_bits[DELETENODE] = 1;                 }
+    void setanchor()      { assert(!status_bits[DELETENODE]); status_bits[SETANCHOR] = 1;     }
+    void resetanchor()    { assert(!status_bits[DELETENODE]); status_bits[RESETANCHOR] = 1;   }
+    void visitanchor()    { assert(!status_bits[DELETENODE]); status_bits[VISITANCHOR] = 1;   }
+    void replayanchor()   { assert(!status_bits[DELETENODE]); status_bits[REPLAYANCHOR] = 1;  }
+};
 
 #pragma mark - Visitors
 template <typename CONTEXT>
-struct Visitor : public boost::static_visitor<>
+struct Visitor : public boost::static_visitor<NodeResult>
 {
 private:
 	CONTEXT * context;
@@ -60,25 +67,36 @@ public:
 	Visitor() = delete;
 	Visitor(CONTEXT * input_context) : context(input_context)  {}
 	
-	void operator()(NodeA & data) const {
+	NodeResult operator()(NodeA & data) const {
 		assert(context);
 		printf("NodeA: %d %d Context %d\n", data.op1, data.op2, *context);
+        
+        NodeResult result;
+        result.success();
+        return result;
 	}
 	
-	void operator()(NodeB & data) const {
+	NodeResult operator()(NodeB & data) const {
 		assert(context);
 		printf("NodeB: %d Context %d\n", data.op1, *context);
+
+        NodeResult result;
+        result.success();
+        return result;
 	}
 	
-	void operator()(NodeC & data) const {
+	NodeResult operator()(NodeC & data) const {
 		assert(context);
 		printf("NodeC: %d Context %d\n", data.op1, *context);
-	}
+        
+        NodeResult result;
+        result.success();
+        return result;	}
 };
 
 /* Here is how you build on top of existing Passes (NO INHERITANCE, ONLY COMPOSITION) */
 template <typename CONTEXT>
-struct OptimizationPass : public boost::static_visitor<>
+struct OptimizationPass : public boost::static_visitor<NodeResult>
 {
 	Visitor<CONTEXT> base;
 	CONTEXT * context;
@@ -86,36 +104,57 @@ struct OptimizationPass : public boost::static_visitor<>
 	
 	OptimizationPass(CONTEXT * input_context) : base(input_context), context(input_context) {}
 
-	void operator()(NodeA & data) const {
+	NodeResult operator()(NodeA & data) const {
 		base(data);
 		printf("OPT: NodeA: %d %d Context %d\n", data.op1, data.op2, *context);
-	}
+        
+        NodeResult result;
+        result.success();
+        return result;	}
 	
-	void operator()(NodeB & data) const {
+	NodeResult operator()(NodeB & data) const {
 		base(data);
 		printf("OPT: NodeB: %d Context %d\n", data.op1, *context);
-	}
+        
+        NodeResult result;
+        result.success();
+        return result;	}
 	
-	void operator()(NodeC & data) const {
+	NodeResult operator()(NodeC & data) const {
 		base(data);
 		printf("OPT: NodeC: %d Context %d\n", data.op1, *context);
-	}
+        
+        NodeResult result;
+        result.deletenode();
+        return result;	}
 };
 
 #pragma mark - Specialize Visitor for voidPtr
 template <>
-void Visitor<voidPtr>::operator()(NodeA &data) const {
+NodeResult Visitor<voidPtr>::operator()(NodeA &data) const {
 	cout << "NodeA: voidPtr" << endl;
+    
+    NodeResult result;
+    result.success();
+    return result;
 }
 
 template <>
-void Visitor<voidPtr>::operator()(NodeB &data) const {
+NodeResult Visitor<voidPtr>::operator()(NodeB &data) const {
 	cout << "NodeA: voidPtr" << endl;
+    
+    NodeResult result;
+    result.success();
+    return result;
 }
 
 template <>
-void Visitor<voidPtr>::operator()(NodeC &data) const {
+NodeResult Visitor<voidPtr>::operator()(NodeC &data) const {
 	cout << "NodeA: voidPtr" << endl;
+    
+    NodeResult result;
+    result.deletenode();
+    return result;
 }
 
 /*
@@ -136,7 +175,10 @@ public:
 	void visit(CONTEXT * context) {
 		for (Node & temp : nodes) {
 			VISITOR visitor(context);
-			boost::apply_visitor(visitor, temp);
+			NodeResult result = boost::apply_visitor(visitor, temp);
+            if (!result.status_bits[NodeResult::SUCCESS]) {
+                printf("result was not successful\n");
+            }
 		}
 	}
 };
@@ -205,13 +247,13 @@ public:
 }
 
 - (void) testBitSet {
-	bitset<TOTALOPS> retvalue;
-	retvalue[SUCCESS] = 1;
-	retvalue[SETANCHOR] = 1;
+    bitset<NodeResult::TOTALOPS> retvalue;
+	retvalue[NodeResult::SUCCESS] = 1;
+	retvalue[NodeResult::SETANCHOR] = 1;
 	
-	if (retvalue[SUCCESS])    printf("success\n");
-	if (retvalue[SETANCHOR])  printf("setanchor\n");
-	if (!retvalue[REPLAYANCHOR]) printf("!replayanchor\n");
+	if (retvalue[NodeResult::SUCCESS])    printf("success\n");
+	if (retvalue[NodeResult::SETANCHOR])  printf("setanchor\n");
+	if (!retvalue[NodeResult::REPLAYANCHOR]) printf("!replayanchor\n");
 }
 
 @end
