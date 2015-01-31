@@ -20,18 +20,23 @@ using std::bitset;
 
 #pragma mark - Compiler IR
 /* Node Structs */
-struct NodeA {
+struct AbstractNode {
+	bool jump;
+	bool noop;
+};
+
+struct NodeA : public AbstractNode {
 	uint8_t op1;
 	uint8_t op2;
 	NodeA(uint8_t one, uint8_t two) : op1(one), op2(two) {}
 };
 
-struct NodeB {
+struct NodeB : public AbstractNode  {
 	uint8_t op1;
 	NodeB(uint8_t one) : op1(one){}
 };
 
-struct NodeC {
+struct NodeC : public AbstractNode {
 	uint8_t op1;
 	NodeC(uint8_t one) : op1(one){}
 };
@@ -157,6 +162,28 @@ NodeResult Visitor<voidPtr>::operator()(NodeC &data) const {
     return result;
 }
 
+typedef enum { NOOP, LOOKUP, PROCESS } PreProcessorStatus;
+struct PreProcessor : public boost::static_visitor<PreProcessorStatus>
+{
+	PreProcessorStatus common(AbstractNode & node) const {
+		if (node.jump) return PreProcessorStatus::LOOKUP;
+		if (node.noop) return PreProcessorStatus::NOOP;
+		return PreProcessorStatus::PROCESS;
+	}
+	
+	PreProcessorStatus operator()(NodeA & data) const {
+		return common(data);
+	}
+
+	PreProcessorStatus operator()(NodeB & data) const {
+		return common(data);
+	}
+
+	PreProcessorStatus operator()(NodeC & data) const {
+		return common(data);
+	}
+};
+
 /*
  * As usual, there are 3 abstractions:
  *  [a] There are Nodes (IR Nodes)
@@ -167,6 +194,7 @@ template <typename VISITOR, typename CONTEXT>
 struct Graph {
 private:
 	std::vector <Node> nodes;
+
 public:
 	void addNode(Node a) {
 		nodes.push_back(a);
@@ -175,10 +203,21 @@ public:
 	void visit(CONTEXT * context) {
 		for (Node & temp : nodes) {
 			VISITOR visitor(context);
-			NodeResult result = boost::apply_visitor(visitor, temp);
-            if (!result.status_bits[NodeResult::SUCCESS]) {
-                printf("result was not successful\n");
-            }
+			/* Do we really need to process this Node or ... ? */
+			PreProcessorStatus status = boost::apply_visitor(PreProcessor(), temp);
+			if (status == PreProcessorStatus::PROCESS)
+			{
+				NodeResult result = boost::apply_visitor(visitor, temp);
+				/* TODO: Handle all the cases */
+				if (!result.status_bits[NodeResult::SUCCESS]) {
+					printf("result was not successful\n");
+				}
+			} else if (status == PreProcessorStatus::NOOP) {
+				continue;
+			} else if (status == PreProcessorStatus::LOOKUP) {
+				/* TODO: Do a hash table look up to find the new vector offset to use */
+			};
+			
 		}
 	}
 };
