@@ -11,6 +11,7 @@
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
 		A8571A251A1FA74B00F2D4C7 /* Type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8571A231A1FA74B00F2D4C7 /* Type.cpp */; };
 		A8571A261A1FA74B00F2D4C7 /* Type.h in Headers */ = {isa = PBXBuildFile; fileRef = A8571A241A1FA74B00F2D4C7 /* Type.h */; };
+		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
@@ -34,6 +35,7 @@
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
 		A8571A231A1FA74B00F2D4C7 /* Type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Type.cpp; sourceTree = SOURCE_ROOT; };
 		A8571A241A1FA74B00F2D4C7 /* Type.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Type.h; sourceTree = SOURCE_ROOT; };
+		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
 				B7DF32AF1A42A93E0074362E /* TestBasic.mm */,
@@ -224,6 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */,
 				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
@@ -327,6 +331,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
@@ -341,6 +346,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
