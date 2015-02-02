@@ -82,6 +82,33 @@ void printObject(const A & value) {
     [super tearDown];
 }
 
+void func(int & a) {
+	a++;
+	cout << "func: value is " << a << endl;
+}
+
+void func(const int & a) {
+	cout << "const_func : value is " << a << endl;
+}
+
+int& func(int && a) {
+	a++;
+	cout <<"rvalue_func: value is " << a << endl;
+	++a;
+	return a;
+}
+
+-(void) testBasics {
+	int a   = 3;
+	int &b  = a;
+	int &&c = a + 1;
+
+	func(b);
+	cout << "returned value is " << func(b + 1) << endl;
+	func(c);
+	func(a);
+}
+
 - (void)testExample {
 	A value = factory(2, 3.5f);
 //	cout << value.fieldfloat << " " << value.fieldint << endl;
