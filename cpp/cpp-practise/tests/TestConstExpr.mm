@@ -26,7 +26,7 @@ struct MyLiteral
 	constexpr MyLiteral(int a, float b) : first(a), second(b) {}
 };
 
-constexpr MyLiteral one = MyLiteral(2, 3.5f);
+constexpr MyLiteral one = MyLiteral(2000, 3.5f);
 constexpr MyLiteral two = MyLiteral(5, 10.2f);
 
 constexpr MyLiteral generateType(int a, float b) {
@@ -69,7 +69,8 @@ struct A {
 }
 
 - (void)testExample {
-
+	MyLiteral a = generateType(2100, 3.5f);
+	cout << a.first << " " << a.second << endl;
 }
 
 @end
