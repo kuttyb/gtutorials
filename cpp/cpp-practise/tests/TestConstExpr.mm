@@ -19,25 +19,26 @@ using std::endl;
  * [b] Any types it uses must be literal types or user-defined literal types like below
  *     (read simple dtor and constexpr ctor
  */
-class literal_str_list {
-    const char* const ptr;
-    unsigned int      size;
-public:
-    template <unsigned int N>
-    constexpr literal_str_list(const char(&str)[N]) :
-    ptr(str), size(N-1){
-        static_assert(N >= 1, "Invalid string literal! Length is zero!");
-    };
+struct MyLiteral
+{
+	int   first;
+	float second;
+	constexpr MyLiteral(int a, float b) : first(a), second(b) {}
 };
 
-constexpr literal_str_list int_type    = "int";
-constexpr literal_str_list float_type  = "float";
-constexpr literal_str_list double_type = "double";
+constexpr MyLiteral one = MyLiteral(2, 3.5f);
+constexpr MyLiteral two = MyLiteral(5, 10.2f);
 
-constexpr literal_str_list getName(int i) {
-    if (!i) return int_type;
-    if (i == 1) return float_type;
-    return double_type;
+constexpr MyLiteral generateType(int a, float b) {
+	if (a > 10) {
+		return MyLiteral(a, b);
+	} else if (a > 5){
+		return one;
+	} else if (a > 2) {
+		return two;
+	} else {
+		return MyLiteral(0, b);
+	}
 }
 
 #pragma mark - Selecting a Different Type based on the Input Type
