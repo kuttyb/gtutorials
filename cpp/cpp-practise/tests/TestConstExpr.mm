@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "benchmark.h"
 
 using std::cout;
 using std::endl;
@@ -71,6 +72,9 @@ struct A {
 - (void)testExample {
 	MyLiteral a = generateType(2100, 3.5f);
 	cout << a.first << " " << a.second << endl;
+	perf::benchmark<std::chrono::milliseconds>([](){
+		cout << "first line of text being profiled" << endl;
+	}, 5);
 }
 
 @end
