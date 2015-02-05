@@ -6,4 +6,20 @@
 //  Copyright (c) 2014 kbanerjee. All rights reserved.
 //
 
-#include "Type.h"
+#include "logic.hpp"
+#include "config.h"
+
+void start() {
+	{
+		basic<ConfigHigher::Major>();
+		basic<ConfigHigher::Minor>();
+	}
+	
+	{
+		basic<ConfigLower::Minor>();
+	}
+	
+	{
+		basic<ConfigLower::Major>();
+	}
+}
