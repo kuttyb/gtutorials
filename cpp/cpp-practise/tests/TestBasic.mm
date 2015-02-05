@@ -128,9 +128,4 @@ struct ConfigThree : public ConfigTwo {
     top<ConfigThree>();
 }
 
-extern void start();
--(void)testStart {
-	start();
-}
-
 @end

@@ -9,17 +9,19 @@
 #include "logic.hpp"
 #include "config.h"
 
-void start() {
+void start_tryone() {
 	{
 		basic<ConfigHigher::Major>();
 		basic<ConfigHigher::Minor>();
 	}
 	
 	{
-		basic<ConfigLower::Minor>();
-	}
-	
-	{
 		basic<ConfigLower::Major>();
+	}
+}
+
+void stop_tryone() {
+	{
+		basic<ConfigLower::Minor>();
 	}
 }
