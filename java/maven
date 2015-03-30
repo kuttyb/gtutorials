@@ -20,7 +20,7 @@ Again pretty obvious
  
 To list out dependencies
 
-[] mvn3 install -DskipTests=TRUE
+[] mvn3 install -Dmaven.test.skip=true
 
 Install without running tests
 
