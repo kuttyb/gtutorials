@@ -3,10 +3,12 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#define UINT64 uint64_t __attribute__((aligned(8)))
+
 typedef struct {
   uint32_t flag;
-  uint64_t source;
-} __attribute__((packed, aligned(8))) Data;
+  UINT64   source ;
+} __attribute__((packed)) Data;
 
 int main(void) 
 {
