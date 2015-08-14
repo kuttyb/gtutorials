@@ -7,6 +7,8 @@ x -s8 -fx -c24 0xffffff8000955db0
 ;; This will produce the hexdump that offline parsers can postprocessk
 x -s4 -fx -c8192 0xffffff809a431db0 --force
 
+;; -s2 means dump out uint16_t at a time
+x -s2 -fx -c4 buffer
 
 Print in hex:
 (lldb) type format add --format hex short
