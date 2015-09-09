@@ -1,0 +1,53 @@
+Interested and experienced in Operating System, Software-Hardware Interface Layer. Performance Modelling and Parallel Computing.
+
+Languages: (C / Java)  (Objective-C / C++ / Verilog)
+
+Apple:
+======
+GPU Firmware/Kernel Engineer:
+GPU Scheduling Lead for nextgen iOS: 
++ Rewrote from scratch the NextGen GPU Scheduler. New Scheduler is Credit-based, provides Fairness across multiple Priority Bands and allows Deadline based Preemption to maintain Minimum Frame Rate. 
++ Scheduler is Modular and can be run as a standalone binary in User Mode on the CPU. Useful for modelling impact of tunables and algorithm changes on workloads. Similar to Linux kernel's "Linsched" in that regard.
++ But also allows capturing real world Scheduler traces and playing back in the Model for detailed analysis and tuning.
+
+Firmware Unit Test Infrastructure:
++ Added Unit test support in the Firmware. Converting more and more Firmware code into Isolated Modules for Unit Testing everyday. Also added support for Unit Randoms to flush out Concurrency bugs.
+
+Power Model:
++ Maintained and augmented Firmware PID Controller Logic for iPad Air2, iPhone 6/6+. Used for predicting runtime power consumption which feeds back into GPU Thermal Management. 
+
+TraceAnalyzer:
++ Implemented a Swing + JFreeChart based tool that takes in Firmware, Hardware traces, runs TimeSeries based Queries off them and displays Trends, Latency Maps, Causal Relationships for easy Visualization of Scheduling and Firmware Performance. Very useful for Performance Bottleneck hunting in Deeply Pipelined Hardwares such as GPUs.
+
++ Contributed to Kernel Memory Management, OpenCL and OpenGL driver.
++ Added Data Flow Logic in Driver to elide Cache Flushes between OpenCL kernels without RAW/WAW dependencies.
+
+Cyclops - Cycle Accurate Simulator for Performance and Power Modelling (Side Project, work in progress)
++ Implemented a Verilog like API in Java for modelling Chip Architectures. Simulator can be run in Untimed mode (Functional Simulator) or in Cycle Timed mode. The latter is useful for Performance and Power analysis.
++ In Cycle Timed mode, Verilog like "always blocks" are  "Statically Scheduled" by parsing Intra Module Signal Dependencies and Clock delays. Avoids Event Queueing overhead typical in common Cycle accurate Simulators.
++ Dumps out Signal changes in VCD file format for easy viewing in GTKWave and Eclipse Impulse Wave Viewers.
+
+
+NVIDIA Denver CPU:
+Worked in the MTS Team that maintains a JIT to translate ARM instructions into a native VLIW ISA and extract better ILP via Dynamic Code Optimizations and Speculative Rollbacks. Added support for the following features
++ Branch assert instruction to remove cold branches and improve Instruction Scheduling
++ Lazy Branch Asserts to avoid remove asserting branch instructions unless the asserts are taken frequently enough.
++ Branch Reprofiling to detect dynamic changes in branch weights of a running program and trigger Recompilation. libquantum showed ~50% improvement.
++ Elide Memory fence instructions. This allowed more aggresive Instruction scheduling. Transaction was rolled back if a concurrent commit from another core accessed speculative lines. Helps JVM workloads.
+
+Also maintained local patches to Tegra Linux kernel to optimize for Denver. Changes included:
++ Large Page Support for ARMv7. Used a BSD like Lazy Page Coalescing approach to collapse adjacent small pages into a large page silently in the HAL layer of the kernel.
++ Thread Local option in madvise and corresponding Kernel MM support. Descriptors marked local can elide TLB invalidates, Resulting IPIs and cache snooping since such accesses cannot be made from another core concurrently. On Thread Migration, a global TLB invalidate performed for Threads that access this memory.
+
+Project Orion - Cache Coherent CPU/GPU on a Single SoC:
++ Prototyped ARM64 kernel changes to implement Uniform Address Space across CPU and GPUs using Shadow Page Tables.
++ Worked with GPU hardware teams on Page Fault support and Fault aggregation.
++ Project was cancelled though a lot of the above work was carried forward to the subsequent UVM implementation.
+
+Sabbatical: June 2011 ~ Sep 2011
++ Khronos : A Software Implementation of OoO Processor  www.pseudoparallel.com/khronos
+ Its a stack Based Virtual Machine with its own ISA. Instructions are very similar to OpenCL kernels and Operands are Tiled Regions of Memory.
+Details from perf.pdf
+
+
+
