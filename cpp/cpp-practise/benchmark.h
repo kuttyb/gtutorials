@@ -15,29 +15,31 @@
 using namespace std;
 
 #pragma mark - Benchmark
-template <typename RESOLUTION> std::string time_unit(void) { assert(!"must specialize RESOLUTION"); }
-template <> std::string time_unit<std::chrono::nanoseconds>(void)  { return "nanoseconds";}
-template <> std::string time_unit<std::chrono::milliseconds>(void) { return "milliseconds";}
-template <> std::string time_unit<std::chrono::microseconds>(void) { return "microseconds";}
-template <typename RESOLUTION>
-void benchmark(std::function<void (void)> code, int warmup_iterations)
-{
-	/* Warmup */
-	for (uint32_t i = 0; i < warmup_iterations; ++i)
+namespace perf {
+	template <typename RESOLUTION> static inline std::string time_unit(void) { assert(!"must specialize RESOLUTION"); }
+	template <>  std::string time_unit<std::chrono::nanoseconds>(void)  { return "nanoseconds";}
+	template <>  std::string time_unit<std::chrono::milliseconds>(void) { return "milliseconds";}
+	template <>  std::string time_unit<std::chrono::microseconds>(void) { return "microseconds";}
+	
+	template <typename RESOLUTION>
+	void benchmark(std::function<void (void)> code, int warmup_iterations)
 	{
+		/* Warmup */
+		for (uint32_t i = 0; i < warmup_iterations; ++i)
+		{
+			code();
+		}
+		
+		/* Time the actual code */
+		auto start = std::chrono::steady_clock::now();
 		code();
+		auto end   = std::chrono::steady_clock::now();
+		
+		/* Tell us about it :-) */
+		cout << " ============ " << endl;
+		cout << " Benchmark: Execution time " << std::chrono::duration_cast<RESOLUTION>(end - start).count() << " " << time_unit<RESOLUTION>() << endl;
+		cout << " ============ " << endl;
 	}
-	
-	/* Time the actual code */
-    auto start = std::chrono::steady_clock::now();
-    code();
-    auto end   = std::chrono::steady_clock::now();
-	
-	/* Tell us about it :-) */
-    cout << " ============ " << endl;
-    cout << " Benchmark: Execution time " << std::chrono::duration_cast<RESOLUTION>(end - start).count() << " " << time_unit<RESOLUTION>() << endl;
-    cout << " ============ " << endl;
-}
-
+} // namespace 
 
 #endif

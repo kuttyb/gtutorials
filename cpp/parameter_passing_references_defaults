@@ -1,0 +1,11 @@
+https://www.youtube.com/watch?v=xnqTKD8uD64
+
+[a] For exempt_ptr, just pass & or *, don't pass the shared_ptr or unique_ptr instead
+
+[b] using (instead of typedef)
+
+Parameter Passing Defaults (Modern C++)
+[a] References for inputs (whether X& or const X& depends on in vs in/out)
+
+[b] Almost always use by-value to return (unless we know the move operation is very expensive in which case treat it as an in/out parameter aka X&)
+

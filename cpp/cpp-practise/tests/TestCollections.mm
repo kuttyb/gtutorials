@@ -70,13 +70,13 @@ struct APtr {
 	}
 	
 	cout << "Regular Set iterator" << endl;
-	for (std::set<A*>::iterator itr = x.begin(); itr != x.end(); itr++) {
+	for (auto itr = x.begin(); itr != x.end(); itr++) {
 		cout << (*itr)->x << " " << (*itr)->y << endl;
 	}
 
 	/* Note how we use collection.rbegin / collection.rend */
 	cout << "Reverse Set iterator" << endl;
-	for (std::set<A*>::reverse_iterator itr = x.rbegin(); itr != x.rend(); itr++) {
+	for (auto itr = x.rbegin(); itr != x.rend(); itr++) {
 		cout << (*itr)->x << " " << (*itr)->y << endl;
 	}
 }
@@ -94,9 +94,9 @@ struct APtr {
 	/* Erasure works like you would erase from an array once you have its index. The iterator works
 	 * exactly like the index from an API perspective
 	 */
-	for (std::set<A*>::iterator itr = x.begin(); itr != x.end(); ) {
+	for (auto itr = x.begin(); itr != x.end(); ) {
 		if ((*itr)->x == 200) {
-			std::set<A*>::iterator temp = itr;
+			auto temp = itr;
 			++itr;
 			x.erase(temp);
 		} else {

@@ -1,0 +1,10 @@
+[] open pom.xml
+
+[] Ctrl - N 
+
+[] Select Dependency
+
+[] Thats it add the required Module and let IntelliJ refresh its iml file with the changes to pom.xml
+
+======
+The native dependency management used by IntelliJ is different from Maven which is what allows it to do Incremental compilation and quick Unit Testing.

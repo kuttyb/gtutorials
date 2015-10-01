@@ -1,0 +1,4 @@
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly -XX:PrintAssemblyOptions=intel -version
+http://psy-lob-saw.blogspot.com/2013/01/java-print-assembly.html
+
+Follow the link about copying hsdis-amd64.so to your jre/lib/amd64 directory
