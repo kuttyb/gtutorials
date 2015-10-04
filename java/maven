@@ -83,3 +83,11 @@ Plugin)
     </plugins>
   </build>
 
+
+========================
+How do I load Resources
+========================
+Just place them under src/main/resources and load them using Classloader.getResourceAsStream("local/opencl/bigfatparallel.cl")
+
+http://stackoverflow.com/questions/8134179/how-to-pack-resources-in-a-maven-project
+
