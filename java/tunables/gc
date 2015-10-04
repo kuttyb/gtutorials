@@ -3,3 +3,6 @@ CMS:
 
 For printing GC activity
 -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCApplicationStoppedTime
+
+This is good enough for adding to your inside IDE JUnit runs or Perf runs
+-XX:+PrintGCTimeStamps -XX:+PrintGCDetails
