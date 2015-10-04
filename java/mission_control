@@ -4,3 +4,5 @@ When using JDK8, you have to add these 2 flags before starting the Application t
 
 java -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -jar analyzer-1.0-SNAPSHOT.jar /Users/kutty_banerjee/tmp/2.log 
 
+// In case you want to launch profiling from the Command line or profile the start of JVM 
+http://hirt.se/blog/?p=291

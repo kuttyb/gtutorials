@@ -31,6 +31,12 @@ This will let you run individual Main classes inside your project while respecti
 [] Skipping unit tests while doing install or package
 mvn3 package -Dmaven.test.skip=true
 
+[] Passing JVM args to maven invocations whether mexec or just doing mvn install/test is done like this
+MAVEN_OPTS='-ea -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCApplicationStoppedTime' mvn3 test
+ OR
+MAVEN_OPTS='-ea -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCApplicationStoppedTime' mexec test
+(refer to your mexec script)
+
 ==================================
 Packaging Uber Jars
 ==================================

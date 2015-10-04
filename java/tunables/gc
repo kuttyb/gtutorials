@@ -1,0 +1,5 @@
+CMS:
+====
+
+For printing GC activity
+-XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails -XX:+PrintHeapAtGC -XX:+PrintGCApplicationStoppedTime
