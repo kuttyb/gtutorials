@@ -6,3 +6,6 @@ java -XX:+UnlockCommercialFeatures -XX:+FlightRecorder -jar analyzer-1.0-SNAPSHO
 
 // In case you want to launch profiling from the Command line or profile the start of JVM 
 http://hirt.se/blog/?p=291
+
+Here is an example:
+MAVEN_OPTS='-XX:+UnlockCommercialFeatures -XX:+FlightRecorder -XX:StartFlightRecording=delay=2s,duration=60s,name=MyRecording,filename=/tmp/a.jfr' mexec local.perf.VPerf
