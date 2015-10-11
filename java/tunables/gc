@@ -6,3 +6,8 @@ For printing GC activity
 
 This is good enough for adding to your inside IDE JUnit runs or Perf runs
 -XX:+PrintGCTimeStamps -XX:+PrintGCDetails
+
+
+Young Gen Size:
+===============
+-XX:NewSize=128m -XX:MaxNewSize=256m -XX:NewRatio=3 (will ensure young gen is 1/3rd of the total heap)
