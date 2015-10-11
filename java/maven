@@ -91,3 +91,6 @@ Just place them under src/main/resources and load them using Classloader.getReso
 
 http://stackoverflow.com/questions/8134179/how-to-pack-resources-in-a-maven-project
 
+
+** Running a Single Test with special JVM flags:
+MAVEN_OPTS='-ea -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails' mvn3 -Dtest=GraphOnePerf test
