@@ -13,6 +13,7 @@
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
+		B7494BF61BEBE469004CF446 /* BRNlogic.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B7494BF51BEBE469004CF446 /* BRNlogic.hpp */; };
 		B75057271A8371D80070C86C /* testmoduletryone.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75057261A8371D80070C86C /* testmoduletryone.mm */; };
 		B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75567B51A7EC63100614BBA /* TestRValues.mm */; };
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
@@ -41,6 +42,7 @@
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
+		B7494BF51BEBE469004CF446 /* BRNlogic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BRNlogic.hpp; sourceTree = SOURCE_ROOT; };
 		B75057221A8366F50070C86C /* data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = SOURCE_ROOT; };
 		B75057231A8367B60070C86C /* logic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logic.hpp; sourceTree = SOURCE_ROOT; };
 		B75057241A836CAF0070C86C /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = SOURCE_ROOT; };
@@ -131,6 +133,7 @@
 			children = (
 				A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */,
 				B75057241A836CAF0070C86C /* config.h */,
+				B7494BF51BEBE469004CF446 /* BRNlogic.hpp */,
 				B75057221A8366F50070C86C /* data.h */,
 				B75057231A8367B60070C86C /* logic.hpp */,
 				B75057251A83719B0070C86C /* moduletryone.h */,
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8571A251A1FA74B00F2D4C7 /* moduletryone.cpp in Sources */,
+				B7494BF61BEBE469004CF446 /* BRNlogic.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,9 @@
 #define _cpp_practise_logic_
 
 #include <iostream>
+#include <assert.h>
 #include "data.h"
+#include "BRNlogic.hpp"
 
 namespace moduletryone {
 	using std::cout;
@@ -19,7 +21,7 @@ namespace moduletryone {
 #pragma mark - Unspecialized version
 	template <typename T>
 	void basic() {
-		cout << "unspecialized version" << endl;
+		assert(!"not implemented");
 	}
 
 #pragma mark - Specialized me

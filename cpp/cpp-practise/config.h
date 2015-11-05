@@ -12,14 +12,28 @@
 #include "data.h"
 
 namespace moduletryone {
+#pragma mark - Properties
+	struct BRNTable {
+		const static bool BRN123 = false;
+		const static bool BRN234 = false;
+	};
+	
 	struct ConfigHigher {
 		typedef you  Major;
 		typedef them Minor;
+		
+		struct BRN : public BRNTable {
+			const static bool BRN123 = true;
+		};
 	};
 	
 	struct ConfigLower {
 		typedef them Major;
 		typedef you  Minor;
+		
+		struct BRN : public BRNTable {
+			const static bool BRN234 = true;
+		};
 	};
 }
 
