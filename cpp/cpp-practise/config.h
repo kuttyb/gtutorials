@@ -11,7 +11,7 @@
 
 #include "data.h"
 
-namespace {
+namespace moduletryone {
 	struct ConfigHigher {
 		typedef you  Major;
 		typedef them Minor;

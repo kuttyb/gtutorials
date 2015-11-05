@@ -12,7 +12,7 @@
 #include <iostream>
 #include "data.h"
 
-namespace {
+namespace moduletryone {
 	using std::cout;
 	using std::endl;
 	

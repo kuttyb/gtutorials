@@ -9,7 +9,7 @@
 #ifndef _cpp_practise_data_
 #define _cpp_practise_data_
 
-namespace {
+namespace moduletryone {
 	struct me {
 		int   first;
 		float second;

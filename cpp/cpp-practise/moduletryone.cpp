@@ -9,6 +9,8 @@
 #include "logic.hpp"
 #include "config.h"
 
+using namespace moduletryone;
+
 void start_tryone() {
 	{
 		basic<ConfigHigher::Major>();
