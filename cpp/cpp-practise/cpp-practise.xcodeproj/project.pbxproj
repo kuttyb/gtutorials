@@ -363,6 +363,7 @@
 				GCC_ENABLE_CPP_RTTI = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -379,6 +380,7 @@
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -400,6 +402,7 @@
 				INFOPLIST_FILE = tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -414,11 +417,12 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_OPTIMIZATION_LEVEL = fast;
-				"GCC_OPTIMIZATION_LEVEL[arch=*]" = fast;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				"GCC_OPTIMIZATION_LEVEL[arch=*]" = 3;
 				INFOPLIST_FILE = tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
+				LLVM_LTO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
