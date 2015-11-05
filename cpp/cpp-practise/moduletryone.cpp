@@ -7,26 +7,29 @@
 //
 
 #include <stdlib.h>
+#include "moduletryone.h"
 #include "config.h"
 #include "logic.hpp"
 
 using namespace moduletryone;
 
-void start_tryone() {
-	/* Do an external probe and select an Object Graph */
-	if (rand() % 2)
-	{
-		logic<ConfigHigher::Major, ConfigHigher>::basic();
-		logic<ConfigHigher::Minor, ConfigHigher>::basic();
-	}
-	else
-	{
-		logic<ConfigLower::Minor, ConfigLower>::basic();
-	}
+#pragma mark - ModuleOneG4
+void ModuleOneG4::start_tryone(void) {
+	logic<ConfigHigher::Major, ConfigHigher>::basic();
+	logic<ConfigHigher::Minor, ConfigHigher>::basic();
 }
 
-void stop_tryone() {
-	{
-		logic<ConfigLower::Minor, ConfigLower>::basic();
-	}
+void ModuleOneG4::stop_tryone(void) {
+	logic<ConfigHigher::Minor, ConfigLower>::basic();
 }
+
+#pragma mark - ModuleOneG5
+void ModuleOneG5::start_tryone(void) {
+	logic<ConfigLower::Major, ConfigLower>::basic();
+	logic<ConfigLower::Minor, ConfigLower>::basic();
+}
+
+void ModuleOneG5::stop_tryone(void) {
+	logic<ConfigLower::Minor, ConfigLower>::basic();
+}
+

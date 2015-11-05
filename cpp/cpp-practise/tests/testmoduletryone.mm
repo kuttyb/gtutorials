@@ -14,19 +14,23 @@
 
 @end
 
-@implementation testmoduletryone
+@implementation testmoduletryone {
+	ModuleOne * subject;
+}
 
 - (void)setUp {
     [super setUp];
+	subject = new ModuleOneG4();
 }
 
 - (void)tearDown {
+	delete subject;
     [super tearDown];
 }
 
 - (void)testBasic {
-	start_tryone();
-	stop_tryone();
+	subject->stop_tryone();
+	subject->stop_tryone();
 }
 
 @end

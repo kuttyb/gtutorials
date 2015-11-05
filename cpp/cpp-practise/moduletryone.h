@@ -9,7 +9,23 @@
 #ifndef _cpp_practise_moduletryone_
 #define _cpp_practise_moduletryone_
 
-void start_tryone();
-void stop_tryone();
+class ModuleOne {
+public :
+	virtual void start_tryone() = 0;
+	virtual void stop_tryone() = 0;
+	virtual ~ModuleOne() {}
+};
+
+class ModuleOneG4 : public ModuleOne {
+public:
+	void start_tryone() override;
+	void stop_tryone()  override;
+};
+
+class ModuleOneG5 : public ModuleOne {
+public:
+	void start_tryone() override;
+	void stop_tryone()  override;
+};
 
 #endif /* defined(_cpp_practise_moduletryone_) */
