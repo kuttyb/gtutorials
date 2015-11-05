@@ -16,17 +16,17 @@ void start_tryone() {
 	/* Do an external probe and select an Object Graph */
 	if (rand() % 2)
 	{
-		basic<ConfigHigher::Major>();
-		basic<ConfigHigher::Minor>();
+		logic<ConfigHigher::Major, ConfigHigher>::basic();
+		logic<ConfigHigher::Minor, ConfigHigher>::basic();
 	}
 	else
 	{
-		basic<ConfigLower::Major>();
+		logic<ConfigLower::Minor, ConfigLower>::basic();
 	}
 }
 
 void stop_tryone() {
 	{
-		basic<ConfigLower::Minor>();
+		logic<ConfigLower::Minor, ConfigLower>::basic();
 	}
 }

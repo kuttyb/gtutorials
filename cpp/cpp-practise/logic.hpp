@@ -18,29 +18,42 @@ namespace moduletryone {
 	using std::cout;
 	using std::endl;
 	
-#pragma mark - Unspecialized version
-	template <typename T>
-	void basic() {
-		assert(!"not implemented");
-	}
-
+	template <typename T, typename CONFIG>
+	struct logic {
+		static void basic() {
+			assert(!"not implemented");
+		}
+	};
+	
 #pragma mark - Specialized me
-	template <>
-	void basic<me>() {
-		cout << "me version" << endl;
-	}
+	template <typename CONFIG>
+	struct logic <me, CONFIG> {
+		static void basic() {
+			applyBRN234<CONFIG::BRN::BRN234>();
+			cout << "me version" << endl;
+			applyBRN123<CONFIG::BRN::BRN123>();
+		}
+	};
 	
 #pragma mark - Specialized you
-	template <>
-	void basic<you>() {
-		cout << "you version" << endl;
-	}
+	template <typename CONFIG>
+	struct logic <you, CONFIG> {
+		static void basic() {
+			applyBRN234<CONFIG::BRN::BRN234>();
+			cout << "you version" << endl;
+			applyBRN123<CONFIG::BRN::BRN123>();
+		}
+	};
 	
 #pragma mark - Specialized them
-	template <>
-	void basic<them>() {
-		cout << "them version" << endl;
-	}	
+	template <typename CONFIG>
+	struct logic <them, CONFIG> {
+		static void basic() {
+			applyBRN234<CONFIG::BRN::BRN234>();
+			cout << "them version" << endl;
+			applyBRN123<CONFIG::BRN::BRN123>();
+		}
+	};
 }
 
 #endif /* defined(_cpp_practise_logic_) */

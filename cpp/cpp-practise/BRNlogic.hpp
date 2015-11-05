@@ -29,4 +29,13 @@ namespace moduletryone {
 	void applyBRN234<true>() {
 		cout << "BRN234 being applied" << endl;
 	}
+	
+#pragma mark - BRN789
+	template <bool val>
+	void applyBRN789() {}
+	
+	template <>
+	void applyBRN789<true>() {
+		cout << "BRN789 being applied" << endl;
+	}
 }

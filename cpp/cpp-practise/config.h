@@ -16,6 +16,7 @@ namespace moduletryone {
 	struct BRNTable {
 		const static bool BRN123 = false;
 		const static bool BRN234 = false;
+		const static bool BRN789 = false;
 	};
 	
 	struct ConfigHigher {
@@ -33,6 +34,7 @@ namespace moduletryone {
 		
 		struct BRN : public BRNTable {
 			const static bool BRN234 = true;
+			const static bool BRN789 = true;
 		};
 	};
 }
