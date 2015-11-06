@@ -12,6 +12,8 @@
 #include "Accelerator.h"
 #include "BRN.hpp"
 
+#ifndef _Accelerator_hpp
+#define _Accelerator_hpp
 using std::cout;
 using std::endl;
 
@@ -69,3 +71,4 @@ namespace AcceleratorImpl {
         }
     };
 }
+#endif //_Accelerator_hpp

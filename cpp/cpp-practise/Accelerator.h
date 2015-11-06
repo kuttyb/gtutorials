@@ -10,15 +10,16 @@
 #define Accelerator_hpp
 
 #include "Channel3D.h"
+#include "chip.h"
 
 struct AcceleratorG4 {
-    Channel3DG4 * channel3d;
+	G4::channel3D * channel3D;
     uintptr_t     base_address;
 };
 
 struct AcceleratorG5 {
     AcceleratorG4   base;
-    Channel3DG5     * channel3d;
+	G5::channel3D * channel3D;
     uintptr_t       patch_address;
 };
 
