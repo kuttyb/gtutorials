@@ -27,9 +27,14 @@
     [super tearDown];
 }
 
-- (void)testExample {
-	Channel3DImpl<G4, G4>::init(subject);
+- (void)testG4 {
+	Channel3DImpl<G4,G4>::init(subject);
 	Channel3DImpl<G4, G4>::submit(subject);
+}
+
+- (void)testG5 {
+	Channel3DImpl<G5, G5>::init(subject);
+	Channel3DImpl<G5, G5>::submit(subject);
 }
 
 @end

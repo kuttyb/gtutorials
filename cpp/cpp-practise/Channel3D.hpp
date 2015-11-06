@@ -19,11 +19,11 @@ using std::endl;
 template <typename Chip, typename Config>
 struct Channel3DImpl {
 
-	void init(Channel3D * channel) {
-		cout << "common code " << endl;
+	static void init(Channel3D * channel) {
+		assert(!"not implemented");
 	}
 	
-	void submit(Channel3D * channel) {
+	static void submit(Channel3D * channel) {
 		assert(!"not implemented");
 	}
 };
@@ -32,11 +32,18 @@ struct Channel3DImpl {
 template <typename Config>
 struct Channel3DImpl<G4, Config> {
 
-	void submit(Channel3D * channel) {
+	static void init(Channel3D * channel) {
+		cout << "Common code" << endl;
+		cout << "==========" << endl;
+	}
+	
+	static void submit(Channel3D * channel) {
 		/* This code could get used by non G4 chips, use the BRN appropriately */
-		applyBRN1<Config::BRN::BRN1>();
+		applyBRN1<Config::BRN::brn1>();
 
 		cout << "Submit : G4" << endl;
+
+		applyBRN2<Config::BRN::brn2>();
 	}
 };
 
@@ -44,12 +51,16 @@ struct Channel3DImpl<G4, Config> {
 template <typename Config>
 struct Channel3DImpl<G5, Config> {
 
-	void submit(Channel3D * channel) {
+	static void init(Channel3D * channel) {
+		Channel3DImpl<G4, Config>::init(channel);
+	}
+	
+	static void submit(Channel3D * channel) {
 		cout << "Submit : G5" << endl;
 
 		/* Punt back into G4 for some common logic */
-		Channel3DImpl<G4, Config>::submit();
+		Channel3DImpl<G4, Config>::submit(channel);
 		
-		applyBRN2<Config::BRN::BRN2>();
+		applyBRN2<Config::BRN::brn2>();
 	}
 };
