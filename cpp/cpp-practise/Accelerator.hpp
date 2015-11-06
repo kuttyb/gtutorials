@@ -10,6 +10,7 @@
 #include <assert.h>
 #include "chip.h"
 #include "Accelerator.h"
+#include "Channel3D.hpp"
 #include "BRN.hpp"
 
 #ifndef _Accelerator_hpp

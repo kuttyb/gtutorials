@@ -23,4 +23,6 @@ struct Channel3DG5 {
 	uint32_t values;
 };
 
+
+
 #endif /* Channel3D_hpp */

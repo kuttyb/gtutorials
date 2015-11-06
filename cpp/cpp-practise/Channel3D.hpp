@@ -21,9 +21,7 @@ using std::endl;
 namespace Channel3DImpl {
 #pragma mark - init
 	template <typename Channel>
-	void init(Channel * channel) {
-		assert(!"no default for init");
-	}
+	static void init(Channel * channel);
 	
 	/* G4 version */
 	template <>
@@ -45,9 +43,7 @@ namespace Channel3DImpl {
 #pragma mark - submit
 	template <typename Channel, typename Config>
 	struct submit {
-		void operator()(Channel * channel) {
-			assert(!"no default for submit");
-		}
+		void operator()(Channel * channel);
 	};
 	
 	/* G4 version */
