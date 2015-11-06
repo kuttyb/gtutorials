@@ -39,11 +39,13 @@ struct Channel3DImpl<G4, Config> {
 	
 	static void submit(Channel3D * channel) {
 		/* This code could get used by non G4 chips, use the BRN appropriately */
-		applyBRN1<Config::BRN::brn1>();
+        BRN::BRN1<Config::BRN::brn1, Config>()();
 
 		cout << "Submit : G4" << endl;
 
-		applyBRN2<Config::BRN::brn2>();
+        BRN::BRN2<Config::BRN::brn2, Config>()();
+
+        BRN::BRN3<Config::BRN::brn3, Config>()();
 	}
 };
 
@@ -61,6 +63,6 @@ struct Channel3DImpl<G5, Config> {
 		/* Punt back into G4 for some common logic */
 		Channel3DImpl<G4, Config>::submit(&channel->base);
 		
-		applyBRN2<Config::BRN::brn2>();
+        BRN::BRN2<Config::BRN::brn2, Config>()();
 	}
 };

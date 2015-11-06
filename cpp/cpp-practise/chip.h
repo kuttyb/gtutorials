@@ -13,6 +13,7 @@
 struct BRNTable {
 	const static bool brn1 = false;
 	const static bool brn2 = false;
+    const static bool brn3 = false;
 };
 
 #pragma mark - G4
@@ -28,6 +29,7 @@ struct G5 {
 	
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
+        const static bool brn3 = true;
 	};
 };
 

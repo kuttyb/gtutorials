@@ -11,20 +11,46 @@
 using std::cout;
 using std::endl;
 
-#pragma mark - Generic
-template <bool val>
-void applyBRN1(void) {}
-
-template <bool val>
-void applyBRN2(void) {}
-
+namespace BRN {
 #pragma mark - BRN1
-template <>
-void applyBRN1<true>(void) {
-	cout << "BRN1 " << endl;
-}
+    template <bool val, typename Config>
+    struct BRN1 {
+        void operator()() {
+        }
+    };
+    
+    template <typename Config>
+    struct BRN1<true, Config> {
+        void operator()() {
+            cout << "BRN1 " << endl;
+        }
+    };
+    
+#pragma mark - BRN2
+    template <bool val, typename Config>
+    struct BRN2 {
+        void operator()() {
+        }
+    };
+    
+    template <typename Config>
+    struct BRN2<true, Config> {
+        void operator()() {
+            cout << "BRN2 " << endl;
+        }
+    };
 
-template <>
-void applyBRN2<true>(void) {
-	cout << "BRN2 " << endl;
+#pragma mark - BRN3
+    template <bool val, typename Config>
+    struct BRN3 {
+        void operator ()() {
+        }
+    };
+    
+    template <typename Config>
+    struct BRN3<true, Config> {
+        void operator()() {
+            cout << "BRN3 " << endl;
+        }
+    };
 }
