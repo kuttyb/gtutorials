@@ -37,7 +37,7 @@
     Channel3DImpl::submit<Channel3DG4, G4>()(&subject->base);
     
     /* Accel */
-    AcceleratorImpl::init<AcceleratorG4>()(&accel->base);
+    AcceleratorImpl::init(&accel->base);
 }
 
 - (void) testG5 {
@@ -46,7 +46,7 @@
     Channel3DImpl::submit<Channel3DG5, G5>()(subject);
     
     /* Accel */
-    AcceleratorImpl::init<AcceleratorG5>()(accel);
+    AcceleratorImpl::init(accel);
     AcceleratorImpl::enumerate<AcceleratorG5, G5>()(accel);
 }
 
