@@ -51,15 +51,15 @@ struct Channel3DImpl<G4, Config> {
 template <typename Config>
 struct Channel3DImpl<G5, Config> {
 
-	static void init(Channel3D * channel) {
-		Channel3DImpl<G4, Config>::init(channel);
+	static void init(Channel3DG5 * channel) {
+		Channel3DImpl<G4, Config>::init(&channel->base);
 	}
 	
-	static void submit(Channel3D * channel) {
+	static void submit(Channel3DG5 * channel) {
 		cout << "Submit : G5" << endl;
 
 		/* Punt back into G4 for some common logic */
-		Channel3DImpl<G4, Config>::submit(channel);
+		Channel3DImpl<G4, Config>::submit(&channel->base);
 		
 		applyBRN2<Config::BRN::brn2>();
 	}

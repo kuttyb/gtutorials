@@ -17,4 +17,10 @@ struct Channel3D {
 	uint32_t  runtime;
 };
 
+struct Channel3DG5 {
+	Channel3D base;
+	uint32_t estimate;
+	uint32_t values;
+};
+
 #endif /* Channel3D_hpp */

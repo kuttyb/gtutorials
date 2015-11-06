@@ -14,12 +14,12 @@
 @end
 
 @implementation TestAGX {
-	Channel3D * subject;
+	Channel3DG5 * subject;
 }
 
 - (void)setUp {
     [super setUp];
-	subject = new Channel3D();
+	subject = new Channel3DG5();
 }
 
 - (void)tearDown {
@@ -28,8 +28,8 @@
 }
 
 - (void)testG4 {
-	Channel3DImpl<G4,G4>::init(subject);
-	Channel3DImpl<G4, G4>::submit(subject);
+	Channel3DImpl<G4,G4>::init(&subject->base);
+	Channel3DImpl<G4, G4>::submit(&subject->base);
 }
 
 - (void)testG5 {
