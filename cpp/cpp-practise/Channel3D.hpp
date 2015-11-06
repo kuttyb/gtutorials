@@ -15,54 +15,70 @@
 using std::cout;
 using std::endl;
 
-#pragma mark - Generic
-template <typename Chip, typename Config>
-struct Channel3DImpl {
+namespace Channel3DImpl {
+#pragma mark - init
+    template <typename Channel>
+    struct init {
+        void operator()(Channel * channel) {
+            assert(!"no default for init");
+        }
+    };
 
-	static void init(Channel3D * channel) {
-		assert(!"not implemented");
-	}
-	
-	static void submit(Channel3D * channel) {
-		assert(!"not implemented");
-	}
-};
-
-#pragma mark - G4
-template <typename Config>
-struct Channel3DImpl<G4, Config> {
-
-	static void init(Channel3D * channel) {
-		cout << "Common code" << endl;
-		cout << "==========" << endl;
-	}
-	
-	static void submit(Channel3D * channel) {
-		/* This code could get used by non G4 chips, use the BRN appropriately */
-        BRN::BRN1<Config::BRN::brn1, Config>()();
-
-		cout << "Submit : G4" << endl;
-
-        BRN::BRN2<Config::BRN::brn2, Config>()();
-
-        BRN::BRN3<Config::BRN::brn3, Config>()();
-	}
-};
-
-#pragma mark - G5
-template <typename Config>
-struct Channel3DImpl<G5, Config> {
-
-	static void init(Channel3DG5 * channel) {
-		Channel3DImpl<G4, Config>::init(&channel->base);
-	}
-	
-	static void submit(Channel3DG5 * channel) {
-		cout << "Submit : G5" << endl;
-
-		/* Punt back into G4 for some common logic */
-		Channel3DImpl<G4, Config>::submit(&channel->base);
-		
-        BRN::BRN2<Config::BRN::brn2, Config>()();
-	}
-};
+    /* G4 version */
+    template <>
+    struct init <Channel3DG4> {
+        void operator()(Channel3DG4 * channel) {
+            channel->baseAddr = 0xabcd;
+            channel->priority = 0;
+            channel->runtime  = 0;
+        }
+    };
+    
+    /* G5 version */
+    template <>
+    struct init <Channel3DG5> {
+        void operator()(Channel3DG5 * channel) {
+            /* Punt to G4 */
+            Channel3DImpl::init<Channel3DG4>()(&channel->base);
+            channel->estimate = 20;
+            channel->values   = 10;
+        }
+    };
+    
+#pragma mark - submit
+    template <typename Channel, typename Config>
+    struct submit {
+        void operator()(Channel * channel) {
+            assert(!"no default for submit");
+        }
+    };
+    
+    /* G4 version */
+    template <typename Config>
+    struct submit <Channel3DG4, Config> {
+        void operator()(Channel3DG4 * channel) {
+            /* This code could get used by non G4 chips, use the BRN appropriately */
+            BRN::BRN1<Config::BRN::brn1, Config>()();
+            
+            cout << "Submit : G4" << endl;
+            
+            BRN::BRN2<Config::BRN::brn2, Config>()();
+            
+            BRN::BRN3<Config::BRN::brn3, Config>()();
+        }
+    };
+    
+    /* G5 version */
+    template <typename Config>
+    struct submit <Channel3DG5, Config> {
+        void operator()(Channel3DG5 * channel) {
+            cout << "Submit : G5 " << channel->values << endl;
+            
+            /* Punt back into G4 for some common logic */
+            Channel3DImpl::submit<Channel3DG4, Config>()(&channel->base);
+            
+            BRN::BRN2<Config::BRN::brn2, Config>()();
+        }
+    };
+    
+}

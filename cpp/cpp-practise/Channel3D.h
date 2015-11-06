@@ -11,14 +11,14 @@
 
 #include <inttypes.h>
 
-struct Channel3D {
+struct Channel3DG4 {
 	uintptr_t baseAddr;
 	uint32_t  priority;
 	uint32_t  runtime;
 };
 
 struct Channel3DG5 {
-	Channel3D base;
+	Channel3DG4 base;
 	uint32_t estimate;
 	uint32_t values;
 };

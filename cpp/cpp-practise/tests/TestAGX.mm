@@ -27,14 +27,14 @@
     [super tearDown];
 }
 
-- (void)testG4 {
-	Channel3DImpl<G4,G4>::init(&subject->base);
-	Channel3DImpl<G4, G4>::submit(&subject->base);
+- (void) testG4 {
+    Channel3DImpl::init<Channel3DG4>()(&subject->base);
+    Channel3DImpl::submit<Channel3DG4, G4>()(&subject->base);
 }
 
-- (void)testG5 {
-	Channel3DImpl<G5, G5>::init(subject);
-	Channel3DImpl<G5, G5>::submit(subject);
+- (void) testG5 {
+    Channel3DImpl::init<Channel3DG5>()(subject);
+    Channel3DImpl::submit<Channel3DG5, G5>()(subject);
 }
 
 @end
