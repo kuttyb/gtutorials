@@ -11,7 +11,7 @@
 #include <iostream>
 #include <functional>
 #include <string>
-//#include "benchmark.h"
+#include "benchmark.h"
 
 @interface PerfTimer : XCTestCase
 
@@ -31,12 +31,10 @@
 
 - (void)testExample
 {
-#if 0
     int x = 10;
-    benchmark<std::chrono::microseconds>([&x](void) {
-        cout << "first line of text" << x << " that is the value" << endl;
-    });
-#endif
+	perf::benchmark<std::chrono::microseconds>([x](){
+		cout << "first line of text" << x << " that is the value" << endl;
+	}, 5);
 }
 
 @end
