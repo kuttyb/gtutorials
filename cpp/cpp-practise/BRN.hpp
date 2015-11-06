@@ -11,6 +11,9 @@
 using std::cout;
 using std::endl;
 
+#ifndef _BRN_HPP
+#define _BRN_HPP
+
 namespace BRN {
 #pragma mark - BRN1
     template <bool val, typename Config>
@@ -54,3 +57,4 @@ namespace BRN {
         }
     };
 }
+#endif //_BRN_HPP

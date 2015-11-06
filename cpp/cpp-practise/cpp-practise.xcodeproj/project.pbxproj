@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6ABA3DC44F1EDF5AEB58AF33 /* Policy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA31567BDE059C6F950660 /* Policy.mm */; };
+		A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B391BED0AD500849B91 /* Accelerator.hpp */; };
+		A81B4B3C1BED0AD500849B91 /* Accelerator.h in Headers */ = {isa = PBXBuildFile; fileRef = A81B4B3A1BED0AD500849B91 /* Accelerator.h */; };
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
 		A8571A251A1FA74B00F2D4C7 /* moduletryone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
+		A81B4B391BED0AD500849B91 /* Accelerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Accelerator.hpp; sourceTree = SOURCE_ROOT; };
+		A81B4B3A1BED0AD500849B91 /* Accelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerator.h; sourceTree = SOURCE_ROOT; };
 		A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = moduletryone.cpp; sourceTree = SOURCE_ROOT; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +163,8 @@
 				B782FDC91BEC1CEF002EE239 /* BRN.hpp */,
 				B782FDC51BEC1A63002EE239 /* Channel3D.hpp */,
 				B782FDC61BEC1A63002EE239 /* Channel3D.h */,
+				A81B4B391BED0AD500849B91 /* Accelerator.hpp */,
+				A81B4B3A1BED0AD500849B91 /* Accelerator.h */,
 			);
 			name = AGX;
 			sourceTree = "<group>";
@@ -171,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7A4A8201A34E9920057E07F /* benchmark.h in Headers */,
+				A81B4B3C1BED0AD500849B91 /* Accelerator.h in Headers */,
 				B782FDC81BEC1A63002EE239 /* Channel3D.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +272,7 @@
 			files = (
 				A8571A251A1FA74B00F2D4C7 /* moduletryone.cpp in Sources */,
 				B782FDC71BEC1A63002EE239 /* Channel3D.hpp in Sources */,
+				A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */,
 				B782FDCA1BEC1CEF002EE239 /* BRN.hpp in Sources */,
 				B7494BF61BEBE469004CF446 /* BRNlogic.hpp in Sources */,
 			);

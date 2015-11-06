@@ -1,12 +1,3 @@
-[] Use namespace with function call operator
-
-[] Use a new Data Type with composition where you would have done Inheritance
-   Use this data type to specialize instead of Chip
-
-[] Add Accelerator class equivalent
-
-[] Composite Channel in Accelerator bypassing the upper Virtual layer
-
 ======
 
-
+[] Place top level Virtual classes and hook it all up

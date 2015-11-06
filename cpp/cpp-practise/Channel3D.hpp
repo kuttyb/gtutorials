@@ -6,6 +6,9 @@
 //  Copyright © 2015 kbanerjee. All rights reserved.
 //
 
+#ifndef _Channel3D_hpp
+#define _Channel3D_hpp
+
 #include <iostream>
 #include <assert.h>
 #include "chip.h"
@@ -82,3 +85,5 @@ namespace Channel3DImpl {
     };
     
 }
+
+#endif //_Channel3D_hpp
