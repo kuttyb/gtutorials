@@ -33,7 +33,7 @@
 
 - (void) testG4 {
     /* Channel */
-    Channel3DImpl::init<Channel3DG4>()(&subject->base);
+    Channel3DImpl::init(&subject->base);
     Channel3DImpl::submit<Channel3DG4, G4>()(&subject->base);
     
     /* Accel */
@@ -42,7 +42,7 @@
 
 - (void) testG5 {
     /* Channel */
-    Channel3DImpl::init<Channel3DG5>()(subject);
+    Channel3DImpl::init(subject);
     Channel3DImpl::submit<Channel3DG5, G5>()(subject);
     
     /* Accel */
