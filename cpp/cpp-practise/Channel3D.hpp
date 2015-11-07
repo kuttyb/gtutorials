@@ -18,13 +18,7 @@
 using std::cout;
 using std::endl;
 
-template <typename Channel, typename Config>
-class Channel3DImpl {
-public:
-	static void init(Channel * channel);
-	static void submit(Channel * channel);
-};
-
+#pragma mark - G4 Specialization
 template <typename Config>
 class Channel3DImpl<Channel3DG4, Config> {
 public:
@@ -46,6 +40,7 @@ public:
 	}
 };
 
+#pragma mark - G5 Specialization
 template <typename Config>
 class Channel3DImpl<Channel3DG5, Config> {
 public:

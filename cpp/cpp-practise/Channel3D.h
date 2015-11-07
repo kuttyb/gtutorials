@@ -11,6 +11,7 @@
 
 #include <inttypes.h>
 
+#pragma mark - Data
 struct Channel3DG4 {
 	uintptr_t baseAddr;
 	uint32_t  priority;
@@ -23,6 +24,13 @@ struct Channel3DG5 {
 	uint32_t values;
 };
 
+#pragma mark - Algorithm Classes
+template <typename Channel, typename Config>
+class Channel3DImpl {
+public:
+	static void init(Channel * channel);
+	static void submit(Channel * channel);
+};
 
 
 #endif /* Channel3D_hpp */

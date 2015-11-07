@@ -18,14 +18,7 @@
 using std::cout;
 using std::endl;
 
-template <typename Accel, typename Config>
-class AcceleratorImpl {
-public:
-	static void init(Accel * accel);
-	static void enumerate(Accel * accel);
-};
-
-#pragma mark - G4
+#pragma mark - G4 specializations
 template <typename Config>
 class AcceleratorImpl<G4::accel, Config> {
 public:
@@ -38,7 +31,7 @@ public:
 	}
 };
 
-#pragma mark - G5
+#pragma mark - G5 specializations
 template <typename Config>
 class AcceleratorImpl<G5::accel, Config> {
 public:

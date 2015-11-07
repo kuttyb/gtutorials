@@ -9,20 +9,23 @@
 #include "AGXChannel3D.h"
 #include "Channel3D.hpp"
 
+#define LIST_G4  G4::channel3D, G4
+#define LIST_G5  G5::channel3D, G5
+
 #pragma mark - G4
 void AGXChannel3DG4::init() {
-	Channel3DImpl<G4::channel3D, G4>::init(&channel);
+	Channel3DImpl<LIST_G4>::init(&channel);
 }
 
 void AGXChannel3DG4::submit() {
-	Channel3DImpl<G4::channel3D, G4>::submit(&channel);
+	Channel3DImpl<LIST_G4>::submit(&channel);
 }
 
 #pragma mark - G5
 void AGXChannel3DG5::init() {
-	Channel3DImpl<G5::channel3D, G5>::init(&channel);
+	Channel3DImpl<LIST_G5>::init(&channel);
 }
 
 void AGXChannel3DG5::submit() {
-	Channel3DImpl<G5::channel3D, G5>::submit(&channel);
+	Channel3DImpl<LIST_G5>::submit(&channel);
 }
