@@ -1,3 +1,5 @@
 ======
+[] * Put hpp in hpp
+   * Use forced instantiation in the Virtual class files
 
-[] Place top level Virtual classes and hook it all up
+

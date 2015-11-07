@@ -18,58 +18,43 @@
 using std::cout;
 using std::endl;
 
-namespace AcceleratorImpl {
-#pragma mark - init
-    template <typename Accel>
-	struct init {
-		void operator()(Accel * accel);
-	};
+template <typename Accel, typename Config>
+class AcceleratorImpl {
+public:
+	static void init(Accel * accel);
+	static void enumerate(Accel * accel);
+};
 
-    
-    /* G4 version */
-    template <>
-	struct init<AcceleratorG4> {
-		void operator()(AcceleratorG4 * accel) {
-			cout << "Accel_init: G4" << endl;
-		}
-	};
+#pragma mark - G4
+template <typename Config>
+class AcceleratorImpl<G4::accel, Config> {
+public:
+	static void init(G4::accel * accel) {
+		cout << "Accel_init: G4" << endl;
+	}
 	
-    /* G5 version */
-    template <>
-	struct init<AcceleratorG5> {
-		void operator()(AcceleratorG5 * accel) {
-			/* Punt to G4 */
-			init<AcceleratorG4>()(&accel->base);
-			
-			/* G5 logic */
-			cout << "Accel_init: G5" << endl;
-		}
-	};
-    
-    
-#pragma mark - enumerate
-    /* Use a function when partial specialization not required.
-     * Use a function operator when it is required.
-     */
-    template <typename Accel, typename Config>
-    struct enumerate {
-		void operator()(Accel * accel);
-    };
-    
-    template <typename Config>
-    struct enumerate<AcceleratorG4, Config> {
-        void operator()(AcceleratorG4 * accel) {
-            cout << " Enumerate: G4 version" << endl;
-        }
-    };
-    
-    template <typename Config>
-    struct enumerate<AcceleratorG5, Config> {
-        void operator()(AcceleratorG5 * accel) {
-            cout << " Enumerate: G5 version" << endl;
-            
-            enumerate<AcceleratorG4, Config>()(&accel->base);
-        }
-    };
-}
+	static void enumerate(G4::accel * accel) {
+		cout << " Enumerate: G4 version" << endl;
+	}
+};
+
+#pragma mark - G5
+template <typename Config>
+class AcceleratorImpl<G5::accel, Config> {
+public:
+	static void init(G5::accel * accel) {
+		/* Punt to G4 */
+		AcceleratorImpl<G4::accel, Config>::init(&accel->base);
+		
+		/* G5 logic */
+		cout << "Accel_init: G5" << endl;
+	}
+	
+	static void enumerate(G5::accel * accel) {
+		cout << " Enumerate: G5 version" << endl;
+		
+		AcceleratorImpl<G4::accel, Config>::enumerate(&accel->base);
+	}
+};
+
 #endif //_Accelerator_hpp

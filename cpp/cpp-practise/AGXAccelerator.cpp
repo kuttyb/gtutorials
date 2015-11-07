@@ -11,19 +11,19 @@
 
 #pragma mark - G4
 void AGXAcceleratorG4::init() {
-	AcceleratorImpl::init<G4::accel>()(&accel);
+	AcceleratorImpl<G4::accel, G4>::init(&accel);
 }
 
 void AGXAcceleratorG4::enumerate() {
-	AcceleratorImpl::enumerate<G4::accel, G4>()(&accel);
+	AcceleratorImpl<G4::accel, G4>::enumerate(&accel);
 }
 
 #pragma mark - G5
 void AGXAcceleratorG5::init() {
-	AcceleratorImpl::init<G5::accel>()(&accel);
+	AcceleratorImpl<G5::accel, G5>::init(&accel);
 }
 
 void AGXAcceleratorG5::enumerate() {
-	AcceleratorImpl::enumerate<G5::accel, G5>()(&accel);
+	AcceleratorImpl<G5::accel, G5>::enumerate(&accel);
 }
 
