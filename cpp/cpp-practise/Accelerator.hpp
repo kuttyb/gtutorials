@@ -21,9 +21,7 @@ using std::endl;
 namespace AcceleratorImpl {
 #pragma mark - init
     template <typename Accel>
-    void init(Accel * accel) {
-        assert(!"default not implemented");
-    }
+	void init(Accel * accel);
 
     
     /* G4 version */
@@ -51,9 +49,7 @@ namespace AcceleratorImpl {
      */
     template <typename Accel, typename Config>
     struct enumerate {
-        void operator()(Accel * accel){
-            assert(!"default not implemented");
-        }
+		void operator()(Accel * accel);
     };
     
     template <typename Config>
