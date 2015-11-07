@@ -11,7 +11,7 @@
 
 #pragma mark - G4
 void AGXChannel3DG4::init() {
-	Channel3DImpl::init(&channel);
+	Channel3DImpl::init<G4::channel3D>()(&channel);
 }
 
 void AGXChannel3DG4::submit() {
@@ -20,7 +20,7 @@ void AGXChannel3DG4::submit() {
 
 #pragma mark - G5
 void AGXChannel3DG5::init() {
-	Channel3DImpl::init(&channel);
+	Channel3DImpl::init<G5::channel3D>()(&channel);
 }
 
 void AGXChannel3DG5::submit() {

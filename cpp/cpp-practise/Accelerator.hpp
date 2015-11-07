@@ -21,26 +21,30 @@ using std::endl;
 namespace AcceleratorImpl {
 #pragma mark - init
     template <typename Accel>
-	void init(Accel * accel);
+	struct init {
+		void operator()(Accel * accel);
+	};
 
     
     /* G4 version */
     template <>
-    void init(AcceleratorG4 * accel) {
-        cout << "Accel_init: G4" << endl;
-    }
-
-    
+	struct init<AcceleratorG4> {
+		void operator()(AcceleratorG4 * accel) {
+			cout << "Accel_init: G4" << endl;
+		}
+	};
+	
     /* G5 version */
     template <>
-    void init(AcceleratorG5 * accel) {
-        /* Punt to G4 */
-        init(&accel->base);
-        
-        /* G5 logic */
-        cout << "Accel_init: G5" << endl;
-    }
-    
+	struct init<AcceleratorG5> {
+		void operator()(AcceleratorG5 * accel) {
+			/* Punt to G4 */
+			init<AcceleratorG4>()(&accel->base);
+			
+			/* G5 logic */
+			cout << "Accel_init: G5" << endl;
+		}
+	};
     
     
 #pragma mark - enumerate

@@ -21,24 +21,30 @@ using std::endl;
 namespace Channel3DImpl {
 #pragma mark - init
 	template <typename Channel>
-	static void init(Channel * channel);
+	struct init {
+		void operator()(Channel * channel);
+	};
 	
 	/* G4 version */
 	template <>
-	void init<Channel3DG4>(Channel3DG4 * channel) {
-		channel->baseAddr = 0xabcd;
-		channel->priority = 0;
-		channel->runtime  = 0;
-	}
+	struct init<Channel3DG4> {
+		void operator()(Channel3DG4 * channel) {
+			channel->baseAddr = 0xabcd;
+			channel->priority = 0;
+			channel->runtime  = 0;
+		}
+	};
 	
 	/* G5 version */
 	template <>
-	void init <Channel3DG5>(Channel3DG5 * channel) {
-		/* Punt to G4 */
-		Channel3DImpl::init<Channel3DG4>(&channel->base);
-		channel->estimate = 20;
-		channel->values   = 10;
-	}
+	struct init<Channel3DG5> {
+		void operator()(Channel3DG5 * channel) {
+			/* Punt to G4 */
+			Channel3DImpl::init<Channel3DG4>()(&channel->base);
+			channel->estimate = 20;
+			channel->values   = 10;
+		}
+	};
 	
 #pragma mark - submit
 	template <typename Channel, typename Config>
