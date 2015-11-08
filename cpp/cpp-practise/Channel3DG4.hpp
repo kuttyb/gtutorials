@@ -18,13 +18,13 @@ public:
     
     static void submit(Channel3DG4 * channel) {
         /* This code could get used by non G4 chips, use the BRN appropriately */
-        BRN1<ChipDispatch::BRN::brn1, ChipDispatch>()();
+        brn1<ChipDispatch::BRN::brn1, ChipDispatch>()();
         
         cout << "Submit : G4" << endl;
         
-        BRN2<ChipDispatch::BRN::brn2, ChipDispatch>()();
+        brn2<ChipDispatch::BRN::brn2, ChipDispatch>()();
         
-        BRN3<ChipDispatch::BRN::brn3, ChipDispatch>()();
+        brn3<ChipDispatch::BRN::brn3, ChipDispatch>()();
     }
 };
 
