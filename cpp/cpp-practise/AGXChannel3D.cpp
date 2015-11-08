@@ -21,6 +21,7 @@ void AGXChannel3DG4::submit() {
 	Channel3DImpl<LIST_G4>::submit(&channel);
 }
 
+#if 1
 #pragma mark - G5
 void AGXChannel3DG5::init() {
 	Channel3DImpl<LIST_G5>::init(&channel);
@@ -29,3 +30,4 @@ void AGXChannel3DG5::init() {
 void AGXChannel3DG5::submit() {
 	Channel3DImpl<LIST_G5>::submit(&channel);
 }
+#endif

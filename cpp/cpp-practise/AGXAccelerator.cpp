@@ -21,6 +21,7 @@ void AGXAcceleratorG4::enumerate() {
 	AcceleratorImpl<LIST_G4>::enumerate(&accel);
 }
 
+#if 1
 #pragma mark - G5
 void AGXAcceleratorG5::init() {
 	AcceleratorImpl<LIST_G5>::init(&accel);
@@ -29,4 +30,4 @@ void AGXAcceleratorG5::init() {
 void AGXAcceleratorG5::enumerate() {
 	AcceleratorImpl<LIST_G5>::enumerate(&accel);
 }
-
+#endif

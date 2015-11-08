@@ -30,6 +30,20 @@
 		A8B301621BEF4D41009855C7 /* AcceleratorG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */; };
 		A8B301631BEF4D41009855C7 /* AcceleratorG5.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */; };
 		A8B301641BEF4D41009855C7 /* Accelerator.h in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B3A1BED0AD500849B91 /* Accelerator.h */; };
+		A8B3016D1BEF514C009855C7 /* AGXChannel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */; };
+		A8B3016E1BEF514C009855C7 /* AGXChannel3D.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2B1BED307E00D8736A /* AGXChannel3D.h */; };
+		A8B3016F1BEF514C009855C7 /* AGXAccelerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2E1BED337F00D8736A /* AGXAccelerator.cpp */; };
+		A8B301701BEF514C009855C7 /* AGXAccelerator.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2F1BED337F00D8736A /* AGXAccelerator.h */; };
+		A8B301711BEF514C009855C7 /* chip.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC41BEC19AB002EE239 /* chip.h */; };
+		A8B301721BEF514C009855C7 /* BRN.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC91BEC1CEF002EE239 /* BRN.hpp */; };
+		A8B301731BEF514C009855C7 /* Channel3D.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC51BEC1A63002EE239 /* Channel3D.hpp */; };
+		A8B301741BEF514C009855C7 /* Channel3DG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301451BEF469D009855C7 /* Channel3DG4.hpp */; };
+		A8B301751BEF514C009855C7 /* Channel3DG5.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */; };
+		A8B301761BEF514C009855C7 /* Channel3D.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC61BEC1A63002EE239 /* Channel3D.h */; };
+		A8B301771BEF514C009855C7 /* Accelerator.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B391BED0AD500849B91 /* Accelerator.hpp */; };
+		A8B301781BEF514C009855C7 /* AcceleratorG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */; };
+		A8B301791BEF514C009855C7 /* AcceleratorG5.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */; };
+		A8B3017A1BEF514C009855C7 /* Accelerator.h in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B3A1BED0AD500849B91 /* Accelerator.h */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
@@ -81,6 +95,7 @@
 		A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Channel3DG5.hpp; sourceTree = SOURCE_ROOT; };
 		A8B3014D1BEF4A53009855C7 /* cppapp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppapp; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B3014F1BEF4A53009855C7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		A8B301691BEF513B009855C7 /* libcppdylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcppdylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +121,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		A8B3014A1BEF4A53009855C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8B301661BEF513B009855C7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -154,6 +176,7 @@
 				B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */,
 				B71E74831A1F32E500C13FC2 /* tests.xctest */,
 				A8B3014D1BEF4A53009855C7 /* cppapp */,
+				A8B301691BEF513B009855C7 /* libcppdylib.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,6 +256,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		A8B301671BEF513B009855C7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B71E746F1A1F32AE00C13FC2 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,6 +294,23 @@
 			productName = cppapp;
 			productReference = A8B3014D1BEF4A53009855C7 /* cppapp */;
 			productType = "com.apple.product-type.tool";
+		};
+		A8B301681BEF513B009855C7 /* cppdylib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8B3016A1BEF513B009855C7 /* Build configuration list for PBXNativeTarget "cppdylib" */;
+			buildPhases = (
+				A8B301651BEF513B009855C7 /* Sources */,
+				A8B301661BEF513B009855C7 /* Frameworks */,
+				A8B301671BEF513B009855C7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cppdylib;
+			productName = cppdylib;
+			productReference = A8B301691BEF513B009855C7 /* libcppdylib.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
 		};
 		B71E74701A1F32AE00C13FC2 /* cpp-practise */ = {
 			isa = PBXNativeTarget;
@@ -312,6 +359,9 @@
 					A8B3014C1BEF4A53009855C7 = {
 						CreatedOnToolsVersion = 7.1;
 					};
+					A8B301681BEF513B009855C7 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 					B71E74701A1F32AE00C13FC2 = {
 						CreatedOnToolsVersion = 6.3;
 					};
@@ -335,6 +385,7 @@
 				B71E74701A1F32AE00C13FC2 /* cpp-practise */,
 				B71E74821A1F32E500C13FC2 /* tests */,
 				A8B3014C1BEF4A53009855C7 /* cppapp */,
+				A8B301681BEF513B009855C7 /* cppdylib */,
 			);
 		};
 /* End PBXProject section */
@@ -369,6 +420,27 @@
 				A8B301631BEF4D41009855C7 /* AcceleratorG5.hpp in Sources */,
 				A8B301641BEF4D41009855C7 /* Accelerator.h in Sources */,
 				A8B301501BEF4A53009855C7 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A8B301651BEF513B009855C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8B3016D1BEF514C009855C7 /* AGXChannel3D.cpp in Sources */,
+				A8B3016E1BEF514C009855C7 /* AGXChannel3D.h in Sources */,
+				A8B3016F1BEF514C009855C7 /* AGXAccelerator.cpp in Sources */,
+				A8B301701BEF514C009855C7 /* AGXAccelerator.h in Sources */,
+				A8B301711BEF514C009855C7 /* chip.h in Sources */,
+				A8B301721BEF514C009855C7 /* BRN.hpp in Sources */,
+				A8B301731BEF514C009855C7 /* Channel3D.hpp in Sources */,
+				A8B301741BEF514C009855C7 /* Channel3DG4.hpp in Sources */,
+				A8B301751BEF514C009855C7 /* Channel3DG5.hpp in Sources */,
+				A8B301761BEF514C009855C7 /* Channel3D.h in Sources */,
+				A8B301771BEF514C009855C7 /* Accelerator.hpp in Sources */,
+				A8B301781BEF514C009855C7 /* AcceleratorG4.hpp in Sources */,
+				A8B301791BEF514C009855C7 /* AcceleratorG5.hpp in Sources */,
+				A8B3017A1BEF514C009855C7 /* Accelerator.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,6 +515,43 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				HEADER_SEARCH_PATHS = /usr/local/include;
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		A8B3016B1BEF513B009855C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CODE_SIGN_IDENTITY = "-";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				LLVM_LTO = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A8B3016C1BEF513B009855C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = lib;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -612,6 +721,14 @@
 			buildConfigurations = (
 				A8B301521BEF4A53009855C7 /* Debug */,
 				A8B301531BEF4A53009855C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A8B3016A1BEF513B009855C7 /* Build configuration list for PBXNativeTarget "cppdylib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8B3016B1BEF513B009855C7 /* Debug */,
+				A8B3016C1BEF513B009855C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
