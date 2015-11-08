@@ -14,7 +14,6 @@
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
-		B75057271A8371D80070C86C /* testmoduletryone.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75057261A8371D80070C86C /* testmoduletryone.mm */; };
 		B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75567B51A7EC63100614BBA /* TestRValues.mm */; };
 		B766DA2C1BED307E00D8736A /* AGXChannel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */; };
 		B766DA2D1BED307E00D8736A /* AGXChannel3D.h in Headers */ = {isa = PBXBuildFile; fileRef = B766DA2B1BED307E00D8736A /* AGXChannel3D.h */; };
@@ -51,7 +50,6 @@
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
-		B75057261A8371D80070C86C /* testmoduletryone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testmoduletryone.mm; sourceTree = "<group>"; };
 		B75567B51A7EC63100614BBA /* TestRValues.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRValues.mm; sourceTree = "<group>"; };
 		B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AGXChannel3D.cpp; sourceTree = SOURCE_ROOT; };
 		B766DA2B1BED307E00D8736A /* AGXChannel3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGXChannel3D.h; sourceTree = SOURCE_ROOT; };
@@ -121,7 +119,6 @@
 				B75567B51A7EC63100614BBA /* TestRValues.mm */,
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
-				B75057261A8371D80070C86C /* testmoduletryone.mm */,
 				B782FDCB1BEC2344002EE239 /* TestAGX.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
 				B7DF32AF1A42A93E0074362E /* TestBasic.mm */,
@@ -292,7 +289,6 @@
 			files = (
 				A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */,
 				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
-				B75057271A8371D80070C86C /* testmoduletryone.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
