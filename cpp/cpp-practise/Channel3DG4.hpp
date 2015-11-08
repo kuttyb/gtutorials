@@ -7,8 +7,8 @@
 //
 
 #pragma mark - G4 Specialization
-template <typename Config>
-class Channel3DImpl<Channel3DG4, Config> {
+template <typename ChipDispatch>
+class Channel3DImpl<Channel3DG4, ChipDispatch> {
 public:
     static void init(Channel3DG4 * channel) {
         channel->baseAddr = 0xabcd;
@@ -18,13 +18,13 @@ public:
     
     static void submit(Channel3DG4 * channel) {
         /* This code could get used by non G4 chips, use the BRN appropriately */
-        BRN::BRN1<Config::BRN::brn1, Config>()();
+        BRN1<ChipDispatch::BRN::brn1, ChipDispatch>()();
         
         cout << "Submit : G4" << endl;
         
-        BRN::BRN2<Config::BRN::brn2, Config>()();
+        BRN2<ChipDispatch::BRN::brn2, ChipDispatch>()();
         
-        BRN::BRN3<Config::BRN::brn3, Config>()();
+        BRN3<ChipDispatch::BRN::brn3, ChipDispatch>()();
     }
 };
 

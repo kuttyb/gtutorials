@@ -20,7 +20,7 @@
 		A8B301581BEF4D41009855C7 /* AGXChannel3D.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2B1BED307E00D8736A /* AGXChannel3D.h */; };
 		A8B301591BEF4D41009855C7 /* AGXAccelerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2E1BED337F00D8736A /* AGXAccelerator.cpp */; };
 		A8B3015A1BEF4D41009855C7 /* AGXAccelerator.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2F1BED337F00D8736A /* AGXAccelerator.h */; };
-		A8B3015B1BEF4D41009855C7 /* chip.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC41BEC19AB002EE239 /* chip.h */; };
+		A8B3015B1BEF4D41009855C7 /* chipdispatch.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC41BEC19AB002EE239 /* chipdispatch.h */; };
 		A8B3015C1BEF4D41009855C7 /* BRN.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC91BEC1CEF002EE239 /* BRN.hpp */; };
 		A8B3015D1BEF4D41009855C7 /* Channel3D.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC51BEC1A63002EE239 /* Channel3D.hpp */; };
 		A8B3015E1BEF4D41009855C7 /* Channel3DG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301451BEF469D009855C7 /* Channel3DG4.hpp */; };
@@ -34,7 +34,7 @@
 		A8B3016E1BEF514C009855C7 /* AGXChannel3D.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2B1BED307E00D8736A /* AGXChannel3D.h */; };
 		A8B3016F1BEF514C009855C7 /* AGXAccelerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2E1BED337F00D8736A /* AGXAccelerator.cpp */; };
 		A8B301701BEF514C009855C7 /* AGXAccelerator.h in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2F1BED337F00D8736A /* AGXAccelerator.h */; };
-		A8B301711BEF514C009855C7 /* chip.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC41BEC19AB002EE239 /* chip.h */; };
+		A8B301711BEF514C009855C7 /* chipdispatch.h in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC41BEC19AB002EE239 /* chipdispatch.h */; };
 		A8B301721BEF514C009855C7 /* BRN.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC91BEC1CEF002EE239 /* BRN.hpp */; };
 		A8B301731BEF514C009855C7 /* Channel3D.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B782FDC51BEC1A63002EE239 /* Channel3D.hpp */; };
 		A8B301741BEF514C009855C7 /* Channel3DG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301451BEF469D009855C7 /* Channel3DG4.hpp */; };
@@ -107,7 +107,7 @@
 		B766DA2B1BED307E00D8736A /* AGXChannel3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGXChannel3D.h; sourceTree = SOURCE_ROOT; };
 		B766DA2E1BED337F00D8736A /* AGXAccelerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AGXAccelerator.cpp; sourceTree = SOURCE_ROOT; };
 		B766DA2F1BED337F00D8736A /* AGXAccelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGXAccelerator.h; sourceTree = SOURCE_ROOT; };
-		B782FDC41BEC19AB002EE239 /* chip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chip.h; sourceTree = SOURCE_ROOT; };
+		B782FDC41BEC19AB002EE239 /* chipdispatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = chipdispatch.h; sourceTree = SOURCE_ROOT; };
 		B782FDC51BEC1A63002EE239 /* Channel3D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Channel3D.hpp; sourceTree = SOURCE_ROOT; };
 		B782FDC61BEC1A63002EE239 /* Channel3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Channel3D.h; sourceTree = SOURCE_ROOT; };
 		B782FDC91BEC1CEF002EE239 /* BRN.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BRN.hpp; sourceTree = SOURCE_ROOT; };
@@ -219,7 +219,7 @@
 		B766DA281BED303C00D8736A /* local */ = {
 			isa = PBXGroup;
 			children = (
-				B782FDC41BEC19AB002EE239 /* chip.h */,
+				B782FDC41BEC19AB002EE239 /* chipdispatch.h */,
 				B782FDC91BEC1CEF002EE239 /* BRN.hpp */,
 				B782FDC51BEC1A63002EE239 /* Channel3D.hpp */,
 				A8B301451BEF469D009855C7 /* Channel3DG4.hpp */,
@@ -409,7 +409,7 @@
 				A8B301581BEF4D41009855C7 /* AGXChannel3D.h in Sources */,
 				A8B301591BEF4D41009855C7 /* AGXAccelerator.cpp in Sources */,
 				A8B3015A1BEF4D41009855C7 /* AGXAccelerator.h in Sources */,
-				A8B3015B1BEF4D41009855C7 /* chip.h in Sources */,
+				A8B3015B1BEF4D41009855C7 /* chipdispatch.h in Sources */,
 				A8B3015C1BEF4D41009855C7 /* BRN.hpp in Sources */,
 				A8B3015D1BEF4D41009855C7 /* Channel3D.hpp in Sources */,
 				A8B3015E1BEF4D41009855C7 /* Channel3DG4.hpp in Sources */,
@@ -431,7 +431,7 @@
 				A8B3016E1BEF514C009855C7 /* AGXChannel3D.h in Sources */,
 				A8B3016F1BEF514C009855C7 /* AGXAccelerator.cpp in Sources */,
 				A8B301701BEF514C009855C7 /* AGXAccelerator.h in Sources */,
-				A8B301711BEF514C009855C7 /* chip.h in Sources */,
+				A8B301711BEF514C009855C7 /* chipdispatch.h in Sources */,
 				A8B301721BEF514C009855C7 /* BRN.hpp in Sources */,
 				A8B301731BEF514C009855C7 /* Channel3D.hpp in Sources */,
 				A8B301741BEF514C009855C7 /* Channel3DG4.hpp in Sources */,
@@ -723,6 +723,7 @@
 				A8B301531BEF4A53009855C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A8B3016A1BEF513B009855C7 /* Build configuration list for PBXNativeTarget "cppdylib" */ = {
 			isa = XCConfigurationList;
@@ -731,6 +732,7 @@
 				A8B3016C1BEF513B009855C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B71E746C1A1F32AE00C13FC2 /* Build configuration list for PBXProject "cpp-practise" */ = {
 			isa = XCConfigurationList;

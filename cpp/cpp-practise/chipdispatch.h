@@ -1,5 +1,5 @@
 //
-//  chip.h
+//  chipdispatch.h
 //  cpp-practise
 //
 //  Created by kuttyb on 11/5/15.

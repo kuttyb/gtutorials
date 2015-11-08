@@ -10,7 +10,7 @@
 #define Accelerator_hpp
 
 #include "Channel3D.h"
-#include "chip.h"
+#include "chipdispatch.h"
 
 #pragma mark - Data
 struct AcceleratorG4 {
@@ -25,7 +25,7 @@ struct AcceleratorG5 {
 };
 
 #pragma mark - Algorithm Classes
-template <typename Accel, typename Config>
+template <typename Accel, typename ChipDispatch>
 class AcceleratorImpl {
 public:
 	static void init(Accel * accel);

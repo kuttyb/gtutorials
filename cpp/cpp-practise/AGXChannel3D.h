@@ -10,7 +10,7 @@
 #define AGXChannel3D_h
 
 #include "Channel3D.h"
-#include "chip.h"
+#include "chipdispatch.h"
 
 class AGXChannel3D {
 public:

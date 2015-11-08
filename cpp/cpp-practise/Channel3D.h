@@ -25,7 +25,7 @@ struct Channel3DG5 {
 };
 
 #pragma mark - Algorithm Classes
-template <typename Channel, typename Config>
+template <typename Channel, typename ChipDispatch>
 class Channel3DImpl {
 public:
 	static void init(Channel * channel);

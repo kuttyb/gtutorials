@@ -10,7 +10,7 @@
 #define AGXAccelerator_h
 
 #include "Accelerator.h"
-#include "chip.h"
+#include "chipdispatch.h"
 #include "AGXChannel3D.h"
 
 class AGXAccelerator {

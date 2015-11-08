@@ -7,8 +7,8 @@
 //
 
 #pragma mark - G4 specializations
-template <typename Config>
-class AcceleratorImpl<G4::accel, Config> {
+template <typename ChipDispatch>
+class AcceleratorImpl<G4::accel, ChipDispatch> {
 public:
     static void init(G4::accel * accel) {
         assert(accel->channel3D);

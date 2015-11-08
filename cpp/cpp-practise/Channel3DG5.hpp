@@ -7,8 +7,8 @@
 //
 
 #pragma mark - G5 Specialization
-template <typename Config>
-class Channel3DImpl<Channel3DG5, Config> {
+template <typename ChipDispatch>
+class Channel3DImpl<Channel3DG5, ChipDispatch> {
 public:
     static void init(Channel3DG5 * channel) {
         /* Punt to G4 */
@@ -24,7 +24,7 @@ public:
         /* Punt back into G4 for some common logic */
         Channel3DImpl<G4::channel3D, G4>::submit(&channel->base);
         
-        BRN::BRN2<Config::BRN::brn2, Config>()();
+        BRN2<ChipDispatch::BRN::brn2, ChipDispatch>()();
     }
 };
 

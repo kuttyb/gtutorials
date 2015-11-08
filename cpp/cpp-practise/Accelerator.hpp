@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <assert.h>
-#include "chip.h"
+#include "chipdispatch.h"
 #include "Accelerator.h"
 #include "Channel3D.hpp"
 #include "BRN.hpp"

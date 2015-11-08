@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <assert.h>
-#include "chip.h"
+#include "chipdispatch.h"
 #include "Channel3D.h"
 #include "BRN.hpp"
 
