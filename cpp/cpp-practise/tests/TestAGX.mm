@@ -34,7 +34,8 @@
 - (void) testG5HAL {
 	hAccel   = new AGXAcceleratorG5();
 	hChannel = new AGXChannel3DG5();
-
+    hAccel->setChannel(hChannel);
+    
 	hAccel->init();
 	hAccel->enumerate();
 	
@@ -45,7 +46,8 @@
 -(void) testG4HAL {
 	hAccel   = new AGXAcceleratorG4();
 	hChannel = new AGXChannel3DG4();
-	
+    hAccel->setChannel(hChannel);
+    
 	hAccel->init();
 	hAccel->enumerate();
 	

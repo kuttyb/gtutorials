@@ -27,7 +27,7 @@ public:
 	}
 	
 	static void enumerate(G4::accel * accel) {
-		cout << " Enumerate: G4 version" << endl;
+        cout << " Enumerate: G4 version" << endl;
 	}
 };
 
@@ -36,6 +36,8 @@ template <typename Config>
 class AcceleratorImpl<G5::accel, Config> {
 public:
 	static void init(G5::accel * accel) {
+        assert(accel->channel3D);
+        
 		/* Punt to G4 */
 		AcceleratorImpl<G4::accel, Config>::init(&accel->base);
 		
@@ -44,6 +46,8 @@ public:
 	}
 	
 	static void enumerate(G5::accel * accel) {
+        assert(accel->channel3D);
+        
 		cout << " Enumerate: G5 version" << endl;
 		
 		AcceleratorImpl<G4::accel, Config>::enumerate(&accel->base);

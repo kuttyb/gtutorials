@@ -20,19 +20,15 @@ public:
 };
 
 class AGXChannel3DG4 : public AGXChannel3D {
-private:
-	G4::channel3D channel;
-	
 public:
+    G4::channel3D channel;
 	void init() override;
 	void submit() override;
 };
 
 class AGXChannel3DG5 : public AGXChannel3D {
-private:
-	G5::channel3D channel;
-	
 public:
+    G5::channel3D channel;
 	void init() override;
 	void submit() override;
 };

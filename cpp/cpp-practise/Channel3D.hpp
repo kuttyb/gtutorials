@@ -45,7 +45,7 @@ template <typename Config>
 class Channel3DImpl<Channel3DG5, Config> {
 public:
 	static void init(Channel3DG5 * channel) {
-		/* Punt to G4 */
+        /* Punt to G4 */
 		Channel3DImpl<G4::channel3D, G4>::init(&channel->base);
 		
 		channel->estimate = 20;

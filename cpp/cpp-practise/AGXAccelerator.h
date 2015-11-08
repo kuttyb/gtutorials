@@ -11,12 +11,15 @@
 
 #include "Accelerator.h"
 #include "chip.h"
+#include "AGXChannel3D.h"
 
 class AGXAccelerator {
 public:
 	virtual void init()      = 0;
 	virtual void enumerate() = 0;
 	virtual ~AGXAccelerator() {}
+    /* Setters */
+    virtual void setChannel(AGXChannel3D * channel) = 0;
 };
 
 class AGXAcceleratorG4 : public AGXAccelerator {
@@ -25,6 +28,9 @@ private:
 public:
 	void init() override;
 	void enumerate() override;
+    void setChannel(AGXChannel3D * channel) override {
+        accel.channel3D = &((AGXChannel3DG4 *)channel)->channel;
+    }
 };
 
 class AGXAcceleratorG5 : public AGXAccelerator {
@@ -33,6 +39,9 @@ private:
 public:
 	void init() override;
 	void enumerate() override;
+    void setChannel(AGXChannel3D * channel) override {
+        accel.channel3D = &((AGXChannel3DG5 *) channel)->channel;
+    }
 };
 
 #endif /* AGXAccelerator_h */
