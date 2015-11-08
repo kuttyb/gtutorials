@@ -11,11 +11,9 @@
 		A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B391BED0AD500849B91 /* Accelerator.hpp */; };
 		A81B4B3C1BED0AD500849B91 /* Accelerator.h in Headers */ = {isa = PBXBuildFile; fileRef = A81B4B3A1BED0AD500849B91 /* Accelerator.h */; };
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
-		A8571A251A1FA74B00F2D4C7 /* moduletryone.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
-		B7494BF61BEBE469004CF446 /* BRNlogic.hpp in Sources */ = {isa = PBXBuildFile; fileRef = B7494BF51BEBE469004CF446 /* BRNlogic.hpp */; };
 		B75057271A8371D80070C86C /* testmoduletryone.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75057261A8371D80070C86C /* testmoduletryone.mm */; };
 		B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75567B51A7EC63100614BBA /* TestRValues.mm */; };
 		B766DA2C1BED307E00D8736A /* AGXChannel3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */; };
@@ -47,18 +45,12 @@
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
 		A81B4B391BED0AD500849B91 /* Accelerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Accelerator.hpp; sourceTree = SOURCE_ROOT; };
 		A81B4B3A1BED0AD500849B91 /* Accelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerator.h; sourceTree = SOURCE_ROOT; };
-		A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = moduletryone.cpp; sourceTree = SOURCE_ROOT; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
-		B7494BF51BEBE469004CF446 /* BRNlogic.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = BRNlogic.hpp; sourceTree = SOURCE_ROOT; };
-		B75057221A8366F50070C86C /* data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = data.h; sourceTree = SOURCE_ROOT; };
-		B75057231A8367B60070C86C /* logic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logic.hpp; sourceTree = SOURCE_ROOT; };
-		B75057241A836CAF0070C86C /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = SOURCE_ROOT; };
-		B75057251A83719B0070C86C /* moduletryone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = moduletryone.h; sourceTree = SOURCE_ROOT; };
 		B75057261A8371D80070C86C /* testmoduletryone.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testmoduletryone.mm; sourceTree = "<group>"; };
 		B75567B51A7EC63100614BBA /* TestRValues.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRValues.mm; sourceTree = "<group>"; };
 		B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AGXChannel3D.cpp; sourceTree = SOURCE_ROOT; };
@@ -118,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				B782FDC31BEC1995002EE239 /* AGX */,
-				B75057211A8366790070C86C /* tryone */,
 				B7A4A81F1A34E9920057E07F /* benchmark.h */,
 			);
 			path = "cpp-practise";
@@ -151,20 +142,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		B75057211A8366790070C86C /* tryone */ = {
-			isa = PBXGroup;
-			children = (
-				A8571A231A1FA74B00F2D4C7 /* moduletryone.cpp */,
-				B75057241A836CAF0070C86C /* config.h */,
-				B7494BF51BEBE469004CF446 /* BRNlogic.hpp */,
-				B75057221A8366F50070C86C /* data.h */,
-				B75057231A8367B60070C86C /* logic.hpp */,
-				B75057251A83719B0070C86C /* moduletryone.h */,
-			);
-			name = tryone;
-			sourceTree = "<group>";
-		};
-		B766DA281BED303C00D8736A /* Internal */ = {
+		B766DA281BED303C00D8736A /* local */ = {
 			isa = PBXGroup;
 			children = (
 				B782FDC41BEC19AB002EE239 /* chip.h */,
@@ -174,10 +152,10 @@
 				A81B4B391BED0AD500849B91 /* Accelerator.hpp */,
 				A81B4B3A1BED0AD500849B91 /* Accelerator.h */,
 			);
-			name = Internal;
+			name = local;
 			sourceTree = "<group>";
 		};
-		B766DA291BED305800D8736A /* HAL */ = {
+		B766DA291BED305800D8736A /* public */ = {
 			isa = PBXGroup;
 			children = (
 				B766DA2A1BED307E00D8736A /* AGXChannel3D.cpp */,
@@ -185,14 +163,14 @@
 				B766DA2E1BED337F00D8736A /* AGXAccelerator.cpp */,
 				B766DA2F1BED337F00D8736A /* AGXAccelerator.h */,
 			);
-			name = HAL;
+			name = public;
 			sourceTree = "<group>";
 		};
 		B782FDC31BEC1995002EE239 /* AGX */ = {
 			isa = PBXGroup;
 			children = (
-				B766DA291BED305800D8736A /* HAL */,
-				B766DA281BED303C00D8736A /* Internal */,
+				B766DA291BED305800D8736A /* public */,
+				B766DA281BED303C00D8736A /* local */,
 			);
 			name = AGX;
 			sourceTree = "<group>";
@@ -300,13 +278,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8571A251A1FA74B00F2D4C7 /* moduletryone.cpp in Sources */,
 				B766DA2C1BED307E00D8736A /* AGXChannel3D.cpp in Sources */,
 				B782FDC71BEC1A63002EE239 /* Channel3D.hpp in Sources */,
 				A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */,
 				B782FDCA1BEC1CEF002EE239 /* BRN.hpp in Sources */,
 				B766DA301BED337F00D8736A /* AGXAccelerator.cpp in Sources */,
-				B7494BF61BEBE469004CF446 /* BRNlogic.hpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
