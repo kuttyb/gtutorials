@@ -18,44 +18,7 @@
 using std::cout;
 using std::endl;
 
-#pragma mark - G4 specializations
-template <typename Config>
-class AcceleratorImpl<G4::accel, Config> {
-public:
-	static void init(G4::accel * accel) {
-        assert(accel->channel3D);
-
-        cout << "Accel_init: G4" << endl;
-	}
-	
-	static void enumerate(G4::accel * accel) {
-        assert(accel->channel3D);
-        
-        cout << " Enumerate: G4 version" << endl;
-	}
-};
-
-#pragma mark - G5 specializations
-template <typename Config>
-class AcceleratorImpl<G5::accel, Config> {
-public:
-	static void init(G5::accel * accel) {
-        assert(accel->channel3D);
-        
-		/* Punt to G4 */
-		AcceleratorImpl<G4::accel, Config>::init(&accel->base);
-		
-		/* G5 logic */
-		cout << "Accel_init: G5" << endl;
-	}
-	
-	static void enumerate(G5::accel * accel) {
-        assert(accel->channel3D);
-        
-		cout << " Enumerate: G5 version" << endl;
-		
-		AcceleratorImpl<G4::accel, Config>::enumerate(&accel->base);
-	}
-};
+#include "AcceleratorG4.hpp"
+#include "AcceleratorG5.hpp"
 
 #endif //_Accelerator_hpp

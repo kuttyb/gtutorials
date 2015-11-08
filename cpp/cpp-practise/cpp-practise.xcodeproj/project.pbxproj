@@ -11,6 +11,10 @@
 		A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A81B4B391BED0AD500849B91 /* Accelerator.hpp */; };
 		A81B4B3C1BED0AD500849B91 /* Accelerator.h in Headers */ = {isa = PBXBuildFile; fileRef = A81B4B3A1BED0AD500849B91 /* Accelerator.h */; };
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
+		A8B301421BEF4597009855C7 /* AcceleratorG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */; };
+		A8B301441BEF4608009855C7 /* AcceleratorG5.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */; };
+		A8B301461BEF469D009855C7 /* Channel3DG4.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301451BEF469D009855C7 /* Channel3DG4.hpp */; };
+		A8B301481BEF46B4009855C7 /* Channel3DG5.hpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
@@ -44,6 +48,10 @@
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
 		A81B4B391BED0AD500849B91 /* Accelerator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Accelerator.hpp; sourceTree = SOURCE_ROOT; };
 		A81B4B3A1BED0AD500849B91 /* Accelerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerator.h; sourceTree = SOURCE_ROOT; };
+		A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AcceleratorG4.hpp; sourceTree = SOURCE_ROOT; };
+		A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AcceleratorG5.hpp; sourceTree = SOURCE_ROOT; };
+		A8B301451BEF469D009855C7 /* Channel3DG4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Channel3DG4.hpp; sourceTree = SOURCE_ROOT; };
+		A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Channel3DG5.hpp; sourceTree = SOURCE_ROOT; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,8 +153,12 @@
 				B782FDC41BEC19AB002EE239 /* chip.h */,
 				B782FDC91BEC1CEF002EE239 /* BRN.hpp */,
 				B782FDC51BEC1A63002EE239 /* Channel3D.hpp */,
+				A8B301451BEF469D009855C7 /* Channel3DG4.hpp */,
+				A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */,
 				B782FDC61BEC1A63002EE239 /* Channel3D.h */,
 				A81B4B391BED0AD500849B91 /* Accelerator.hpp */,
+				A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */,
+				A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */,
 				A81B4B3A1BED0AD500849B91 /* Accelerator.h */,
 			);
 			name = local;
@@ -275,8 +287,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8B301441BEF4608009855C7 /* AcceleratorG5.hpp in Sources */,
 				B766DA2C1BED307E00D8736A /* AGXChannel3D.cpp in Sources */,
 				B782FDC71BEC1A63002EE239 /* Channel3D.hpp in Sources */,
+				A8B301481BEF46B4009855C7 /* Channel3DG5.hpp in Sources */,
+				A8B301461BEF469D009855C7 /* Channel3DG4.hpp in Sources */,
+				A8B301421BEF4597009855C7 /* AcceleratorG4.hpp in Sources */,
 				A81B4B3B1BED0AD500849B91 /* Accelerator.hpp in Sources */,
 				B782FDCA1BEC1CEF002EE239 /* BRN.hpp in Sources */,
 				B766DA301BED337F00D8736A /* AGXAccelerator.cpp in Sources */,
