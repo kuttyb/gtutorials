@@ -41,6 +41,7 @@ public:
 	void enumerate() override;
     void setChannel(AGXChannel3D * channel) override {
         accel.channel3D = &((AGXChannel3DG5 *) channel)->channel;
+        accel.base.channel3D = &((AGXChannel3DG5 *) channel)->channel.base;
     }
 };
 
