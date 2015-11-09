@@ -1,2 +1,4 @@
 -XX:+PrintCompilation
 
+# This will print information about methods getting inlined and when inlining fails and for what reason
+-XX:+UnlockDiagnosticVMOptions -XX:+PrintInlining
