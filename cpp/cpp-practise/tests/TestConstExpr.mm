@@ -48,10 +48,12 @@ template <> struct TypeGenerator<0> {typedef int     type;};
 template <> struct TypeGenerator<1> {typedef float   type;};
 template <> struct TypeGenerator<2> {typedef double  type;};
 
+template <int X, int Y>
 struct A {
-    int num;
-    typename TypeGenerator<0>::type var;
-    typename TypeGenerator<1>::type var2;
+    typename TypeGenerator<X>::type var1;
+    typename TypeGenerator<Y>::type var2;
+	A(typename TypeGenerator<X>::type input1, typename TypeGenerator<Y>::type input2) :
+	var1(input1), var2(input2) {}
 };
 
 #pragma mark - Test Logic
@@ -75,6 +77,11 @@ struct A {
 	perf::benchmark<std::chrono::microseconds>([](){
 		cout << "first line of text being profiled" << endl;
 	}, 5);
+}
+
+- (void)testNumber {
+	A<0, 1> a(3, 0.4f);
+	cout << a.var1 << "," << a.var2 << endl;
 }
 
 @end

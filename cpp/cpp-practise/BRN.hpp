@@ -14,43 +14,43 @@ using std::endl;
 #ifndef _BRN_HPP
 #define _BRN_HPP
 
-#pragma mark - BRN1
+#pragma mark - brn1
 template <bool val, typename ChipDispatch>
-struct BRN1 {
+struct brn1 {
     void operator()() {
     }
 };
 
 template <typename ChipDispatch>
-struct BRN1<true, ChipDispatch> {
+struct brn1<true, ChipDispatch> {
     void operator()() {
         cout << "BRN1 " << endl;
     }
 };
 
-#pragma mark - BRN2
+#pragma mark - brn2
 template <bool val, typename ChipDispatch>
-struct BRN2 {
+struct brn2 {
     void operator()() {
     }
 };
 
 template <typename ChipDispatch>
-struct BRN2<true, ChipDispatch> {
+struct brn2<true, ChipDispatch> {
     void operator()() {
         cout << "BRN2 " << endl;
     }
 };
 
-#pragma mark - BRN3
+#pragma mark - brn3
 template <bool val, typename ChipDispatch>
-struct BRN3 {
+struct brn3 {
     void operator ()() {
     }
 };
 
 template <typename ChipDispatch>
-struct BRN3<true, ChipDispatch> {
+struct brn3<true, ChipDispatch> {
     void operator()() {
         cout << "BRN3 " << endl;
     }
