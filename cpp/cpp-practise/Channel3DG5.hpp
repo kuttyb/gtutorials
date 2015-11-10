@@ -24,7 +24,7 @@ public:
         /* Punt back into G4 for some common logic */
         Channel3DImpl<G4::channel3D, G4>::submit(&channel->base);
         
-        brn2<ChipDispatch::BRN::brn2, ChipDispatch>()();
+		brn2<ChipDispatch::BRN::brn2, ChipDispatch>::apply();
     }
 };
 

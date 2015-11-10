@@ -10,12 +10,15 @@
 #define Channel3D_hpp
 
 #include <inttypes.h>
+#include "BRN.hpp"
 
 #pragma mark - Data
 struct Channel3DG4 {
 	uintptr_t baseAddr;
 	uint32_t  priority;
 	uint32_t  runtime;
+	/* BRN Data */
+	brn1Data<true> b1Data;
 };
 
 struct Channel3DG5 {
