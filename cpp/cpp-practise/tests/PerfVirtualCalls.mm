@@ -72,11 +72,11 @@ public:
 
 - (void)testExample {
 //    const int MAX = 10000000;
-	const int MAX = 100;
+	const int MAX = 50;
     First * first = new First(new Second(new Third()));
     
     int value = 0;
-    perf::benchmark<std::chrono::milliseconds>([&value, first](){
+    perf::profile<std::chrono::nanoseconds>()([&value, first](){
         for (int i = 0; i < MAX; ++i) {
             if ((i % 5) == 0) {
                 value += first->process(10, 3);

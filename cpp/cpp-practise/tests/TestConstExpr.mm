@@ -74,7 +74,7 @@ struct A {
 - (void)testExample {
 	MyLiteral a = generateType(2100, 3.5f);
 	cout << a.first << " " << a.second << endl;
-	perf::benchmark<std::chrono::microseconds>([](){
+	perf::profile<std::chrono::microseconds>()([](){
 		cout << "first line of text being profiled" << endl;
 	}, 5);
 }

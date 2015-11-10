@@ -32,7 +32,7 @@
 - (void)testExample
 {
     int x = 10;
-	perf::benchmark<std::chrono::microseconds>([x](){
+	perf::profile<std::chrono::microseconds>()([x](){
 		cout << "first line of text" << x << " that is the value" << endl;
 	}, 5);
 }
