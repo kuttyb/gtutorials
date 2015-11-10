@@ -8,7 +8,7 @@
 
 #pragma mark - G4 Specialization
 template <typename ChipDispatch>
-class Channel3DImpl<Channel3DG4, ChipDispatch> {
+class Channel3DImpl<G4::channel3D, ChipDispatch> {
 public:
     static void init(Channel3DG4 * channel) {
         channel->baseAddr = 0xabcd;

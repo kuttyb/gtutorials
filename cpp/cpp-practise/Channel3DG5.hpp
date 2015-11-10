@@ -8,11 +8,11 @@
 
 #pragma mark - G5 Specialization
 template <typename ChipDispatch>
-class Channel3DImpl<Channel3DG5, ChipDispatch> {
+class Channel3DImpl<G5::channel3D, ChipDispatch> {
 public:
     static void init(Channel3DG5 * channel) {
         /* Punt to G4 */
-        Channel3DImpl<G4::channel3D, G4>::init(&channel->base);
+        Channel3DImpl<G4::channel3D, ChipDispatch>::init(&channel->base);
         
         channel->estimate = 20;
         channel->values   = 10;
