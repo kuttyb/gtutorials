@@ -6,10 +6,29 @@
 //  Copyright © 2015 kbanerjee. All rights reserved.
 //
 
+#include <iostream>
 #import <XCTest/XCTest.h>
 #include "AGXAccelerator.h"
 #include "AGXChannel3D.h"
 
+using std::cout;
+using std::endl;
+
+#pragma mark - C++
+/* Unspecialized version consumes 1 byte and is a noop */
+template <bool val> struct Data {
+	void apply() {}
+};
+
+template <> struct Data<true> {
+	int a;
+	int b;
+	void apply() {
+		cout << "getting work done " << endl << endl;
+	}
+};
+
+#pragma mark - Test
 @interface TestAGX : XCTestCase
 
 @end
@@ -53,6 +72,16 @@
 	
 	hChannel->init();
 	hChannel->submit();
+}
+
+-(void) testData {
+	Data<false> first;
+	first.apply();
+	
+	Data<true> second;
+	second.apply();
+	
+	cout << "sizes false: " << sizeof(first) << " true: " << sizeof(second) << endl;
 }
 
 @end
