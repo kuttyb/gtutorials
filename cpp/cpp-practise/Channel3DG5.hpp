@@ -22,7 +22,7 @@ public:
         cout << "Submit : G5 " << channel->values << endl;
         
         /* Punt back into G4 for some common logic */
-        Channel3DImpl<G4::channel3D, G4>::submit(&channel->base, data, data2, data3);
+        Channel3DImpl<G4::channel3D, ChipDispatch>::submit(&channel->base, data, data2, data3);
         
 		brn2<ChipDispatch::BRN::brn2, ChipDispatch>::apply(data2);
     }

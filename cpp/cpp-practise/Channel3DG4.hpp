@@ -18,7 +18,7 @@ public:
     
     static void submit(Channel3DG4 * channel, brn1Data * data, brn2Data * data2, brn3Data * data3) {
         /* This code could get used by non G4 chips, use the BRN appropriately */
-		brn1<ChipDispatch::BRN::brn1, ChipDispatch>::apply(&channel->b1Data);
+		brn1<ChipDispatch::BRN::brn1, ChipDispatch>::apply(data);
 		
         cout << "Submit : G4" << endl;
         

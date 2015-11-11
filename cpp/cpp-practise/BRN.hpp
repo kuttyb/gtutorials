@@ -25,7 +25,7 @@ struct brn1Data {
 /* BRN Algorithms */
 template <bool val, typename ChipDispatch>
 struct brn1 {
-	static void apply(brn1Data * data);
+    static void apply(brn1Data * data) {}
 };
 
 template <typename ChipDispatch>
