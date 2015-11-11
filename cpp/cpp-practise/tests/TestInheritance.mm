@@ -29,23 +29,29 @@ struct brn  <true, Dispatch> {
 
 #pragma mark - Config
 struct ConfigG4 {
+	/* BRN Table */
 	static const bool brn1Enabled = false;
 	typedef brn<brn1Enabled, ConfigG4>   brn1;
 	
+	/* Deletegate objects */
 	static brn1 obj;
 };
 
-struct ConfigG5 {
+struct ConfigG5 : public ConfigG4 {
+	/* BRN Table */
 	static const bool brn1Enabled = true;
 	typedef brn<brn1Enabled, ConfigG5> brn1;
-
+	
+	/* Deletegate objects */
 	static brn1 obj;
 };
 
 struct ConfigG9 {
-	static const bool brn1Enabled = false;
+	/* BRN Table */
+	static const bool brn1Enabled = true;
 	typedef brn<brn1Enabled, ConfigG9> brn1;
 	
+	/* Deletegate objects */
 	static brn1 obj;
 };
 
@@ -71,6 +77,15 @@ struct toplevel<ConfigG5, Dispatch> {
 	}
 };
 
+template <typename Dispatch>
+struct toplevel<ConfigG9, Dispatch> {
+	void operator()() {
+		cout << "toplevel : ConfigG9" << endl;
+		/* Punt to G5 */
+		toplevel<ConfigG5, Dispatch>()();
+	}
+};
+
 #pragma mark - Test
 @interface TestInheritance : XCTestCase
 
@@ -79,24 +94,17 @@ struct toplevel<ConfigG5, Dispatch> {
 @implementation TestInheritance
 
 - (void)setUp {
-    [super setUp];
+	[super setUp];
 }
 
 - (void)tearDown {
-    [super tearDown];
+	[super tearDown];
 }
 
 - (void)testBasic {
-#if 0
-	ConfigG4::obj.apply();
-
-	ConfigG5::obj.apply();
+	toplevel<ConfigG9, ConfigG9>()();
 	
-	ConfigG9::obj.apply();
-#endif
-	toplevel<ConfigG5, ConfigG5>()();
-	
-	cout << "sizeof: G4 " << sizeof(ConfigG4::obj) << " G5: " << sizeof(ConfigG5::obj) << " G9: " << sizeof(ConfigG9::obj) << endl;
+	cout << endl << "sizeof: G4 " << sizeof(ConfigG4::obj) << " G5: " << sizeof(ConfigG5::obj) << " G9: " << sizeof(ConfigG9::obj) << endl;
 }
 
 @end
