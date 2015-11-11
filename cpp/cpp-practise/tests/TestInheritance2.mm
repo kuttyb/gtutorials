@@ -58,7 +58,16 @@ public:
 	}
 };
 
-#define SUPER_A4  int, true
+/* So what this will do is not have the BRN1 field when its partially specialized as false */
+template <typename T>
+class A<T, false> {
+public:
+	void first() {
+		cout << "ABase: first " << 2 << endl;
+	}
+};
+
+#define SUPER_A4  int, false
 class A4 : public A<SUPER_A4> {
 	BRN2<true> b2;
 public:
@@ -66,7 +75,7 @@ public:
 		cout << "A4: first" << endl;
 		A<SUPER_A4>::first();
 
-		cout << "size " << sizeof(A<SUPER_A4>) << endl;
+		cout << "size " << sizeof(A4) << endl;
 		b2.apply();
 	}
 };
