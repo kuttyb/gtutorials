@@ -59,6 +59,7 @@
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
 		B7A4A8201A34E9920057E07F /* benchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A4A81F1A34E9920057E07F /* benchmark.h */; };
 		B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A911251A78CDD50028A68E /* TestCollections.mm */; };
+		B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */; };
 		B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DF32AF1A42A93E0074362E /* TestBasic.mm */; };
 		B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
+		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -197,6 +199,7 @@
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
 				B782FDCB1BEC2344002EE239 /* TestAGX.mm */,
+				B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
 				B7DF32AF1A42A93E0074362E /* TestBasic.mm */,
 				B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */,
@@ -466,6 +469,7 @@
 			files = (
 				A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */,
 				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
+				B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
