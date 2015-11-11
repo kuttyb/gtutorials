@@ -74,7 +74,7 @@ template <> struct Data<true> {
 	hChannel->submit();
 }
 
--(void) testG5GHAL {
+-(void) ttestG5GHAL {
 	hAccel   = new AGXAcceleratorG5G();
 	hChannel = new AGXChannel3DG5G();
 	hAccel->setChannel(hChannel);
