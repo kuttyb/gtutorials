@@ -13,14 +13,14 @@ using std::cout;
 using std::endl;
 
 #pragma mark - BRN1
-template <bool val>
+template <bool val, typename ChipDispatch>
 class BRN1 {
 public:
 	void apply() {}
 };
 
-template <>
-class BRN1<true> {
+template <typename ChipDispatch>
+class BRN1<true, ChipDispatch> {
 	int local_value;
 public:
 	void apply() {
@@ -29,14 +29,14 @@ public:
 };
 
 #pragma mark - BRN2
-template <bool val>
+template <bool val, typename ChipDispatch>
 class BRN2 {
 public:
 	void apply() {}
 };
 
-template <>
-class BRN2<true> {
+template <typename ChipDispatch>
+class BRN2<true, ChipDispatch> {
 	int value;
 public:
 	void apply() {
@@ -45,11 +45,11 @@ public:
 };
 
 #pragma mark - Code
-template <typename T, bool brn1>
+template <typename T, bool brn1, typename ChipDispatch>
 class A {
 private:
 	/* Parent class BRN that could be optionally used by derived classes */
-	BRN1<brn1> b1;
+	BRN1<brn1, ChipDispatch> b1;
 	
 public:
 	void first() {
@@ -58,18 +58,9 @@ public:
 	}
 };
 
-/* So what this will do is not have the BRN1 field when its partially specialized as false */
-template <typename T>
-class A<T, false> {
-public:
-	void first() {
-		cout << "ABase: first " << 2 << endl;
-	}
-};
-
-#define SUPER_A4  int, false
+#define SUPER_A4  int, false, int
 class A4 : public A<SUPER_A4> {
-	BRN2<true> b2;
+	BRN2<true, int> b2;
 public:
 	void first() {
 		cout << "A4: first" << endl;
