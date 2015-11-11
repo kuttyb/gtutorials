@@ -18,7 +18,7 @@ void AGXChannel3DG4::init() {
 }
 
 void AGXChannel3DG4::submit() {
-	Channel3DImpl<LIST_G4>::submit(&channel);
+	Channel3DImpl<LIST_G4>::submit(&channel, &channel.b1Data, nullptr, nullptr);
 }
 
 #if 1
@@ -28,6 +28,6 @@ void AGXChannel3DG5::init() {
 }
 
 void AGXChannel3DG5::submit() {
-	Channel3DImpl<LIST_G5>::submit(&channel);
+	Channel3DImpl<LIST_G5>::submit(&channel, nullptr, &channel.b2Data, &channel.b3Data);
 }
 #endif

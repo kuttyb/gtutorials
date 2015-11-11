@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <assert.h>
 
 using std::cout;
 using std::endl;
@@ -16,61 +17,65 @@ using std::endl;
 
 #pragma mark - brn1
 /* BRN Data */
-template <bool val>
-struct brn1Data {};
+struct brn1Data {
+	int first;
+	int second;
+};
 
 /* BRN Algorithms */
 template <bool val, typename ChipDispatch>
 struct brn1 {
-	static void apply(brn1Data<val> * data);
+	static void apply(brn1Data * data);
 };
 
-/* Specialize false */
-template <>
-struct brn1Data<false> {};
-
-template <typename ChipDispatch>
-struct brn1 <false, ChipDispatch> {
-	static void apply(brn1Data<false> * data) {}
-};
-
-/* Specialize true */
-template <>
-struct brn1Data<true> {
-	int first;
-	int second;
-};
 template <typename ChipDispatch>
 struct brn1<true, ChipDispatch> {
-	static void apply(brn1Data<true> * data) {
+	static void apply(brn1Data * data) {
+		assert(data);
         cout << "BRN1 " << endl;
     }
 };
 
 #pragma mark - brn2
+/* BRN Data */
+struct brn2Data {
+	int first;
+	int second;
+};
+
+/* BRN Algorithms */
 template <bool val, typename ChipDispatch>
 struct brn2 {
-	static void apply() {
+	static void apply(brn2Data * data) {
     }
 };
 
 template <typename ChipDispatch>
 struct brn2<true, ChipDispatch> {
-	static void apply() {
+	static void apply(brn2Data * data) {
+		assert(data);
         cout << "BRN2 " << endl;
     }
 };
 
 #pragma mark - brn3
+/* BRN Data */
+struct brn3Data {
+	int first;
+	int second;
+};
+
+/* BRN Algorithms */
 template <bool val, typename ChipDispatch>
 struct brn3 {
-	static void apply() {
+	static void apply(brn3Data * data) {
     }
 };
 
 template <typename ChipDispatch>
 struct brn3<true, ChipDispatch> {
-	static void apply() {
+	static void apply(brn3Data * data) {
+		assert(data);
         cout << "BRN3 " << endl;
     }
 };

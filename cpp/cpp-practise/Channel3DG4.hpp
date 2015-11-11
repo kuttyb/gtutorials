@@ -16,15 +16,15 @@ public:
         channel->runtime  = 0;
     }
     
-    static void submit(Channel3DG4 * channel) {
+    static void submit(Channel3DG4 * channel, brn1Data * data, brn2Data * data2, brn3Data * data3) {
         /* This code could get used by non G4 chips, use the BRN appropriately */
 		brn1<ChipDispatch::BRN::brn1, ChipDispatch>::apply(&channel->b1Data);
 		
         cout << "Submit : G4" << endl;
         
-		brn2<ChipDispatch::BRN::brn2, ChipDispatch>::apply();
+		brn2<ChipDispatch::BRN::brn2, ChipDispatch>::apply(data2);
 		
-		brn3<ChipDispatch::BRN::brn3, ChipDispatch>::apply();
+		brn3<ChipDispatch::BRN::brn3, ChipDispatch>::apply(data3);
     }
 };
 
