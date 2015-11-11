@@ -74,6 +74,18 @@ template <> struct Data<true> {
 	hChannel->submit();
 }
 
+-(void) testG5GHAL {
+	hAccel   = new AGXAcceleratorG5G();
+	hChannel = new AGXChannel3DG5G();
+	hAccel->setChannel(hChannel);
+	
+	hAccel->init();
+	hAccel->enumerate();
+	
+	hChannel->init();
+	hChannel->submit();
+}
+
 -(void) testData {
 	Data<false> first;
 	first.apply();

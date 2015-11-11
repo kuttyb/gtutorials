@@ -9,8 +9,9 @@
 #include "AGXAccelerator.h"
 #include "Accelerator.hpp"
 
-#define LIST_G4 G4::accel, G4
-#define LIST_G5 G5::accel, G5
+#define LIST_G4   G4::accel, G4
+#define LIST_G5   G5::accel, G5
+#define LIST_G5G  G5G::accel, G5G
 
 #pragma mark - G4
 void AGXAcceleratorG4::init() {
@@ -31,3 +32,12 @@ void AGXAcceleratorG5::enumerate() {
 	AcceleratorImpl<LIST_G5>::enumerate(&accel);
 }
 #endif
+
+#pragma mark - G5G
+void AGXAcceleratorG5G::init() {
+	AcceleratorImpl<LIST_G5G>::init(&accel);
+}
+
+void AGXAcceleratorG5G::enumerate() {
+	AcceleratorImpl<LIST_G5G>::enumerate(&accel);
+}

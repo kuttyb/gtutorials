@@ -24,6 +24,11 @@ struct AcceleratorG5 {
     uintptr_t       patch_address;
 };
 
+struct AcceleratorG5G {
+	AcceleratorG5     base;
+	G5G::channel3D  * channel3D;
+};
+
 #pragma mark - Algorithm Classes
 template <typename Accel, typename ChipDispatch>
 class AcceleratorImpl {

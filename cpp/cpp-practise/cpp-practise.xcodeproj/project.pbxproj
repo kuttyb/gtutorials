@@ -117,6 +117,8 @@
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
+		B7D70FA51BF3DA46003AF91B /* Channel3DG5G.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Channel3DG5G.hpp; sourceTree = SOURCE_ROOT; };
+		B7D70FA61BF3DFAB003AF91B /* AcceleratorG5G.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AcceleratorG5G.hpp; sourceTree = SOURCE_ROOT; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -227,10 +229,12 @@
 				B782FDC51BEC1A63002EE239 /* Channel3D.hpp */,
 				A8B301451BEF469D009855C7 /* Channel3DG4.hpp */,
 				A8B301471BEF46B4009855C7 /* Channel3DG5.hpp */,
+				B7D70FA51BF3DA46003AF91B /* Channel3DG5G.hpp */,
 				B782FDC61BEC1A63002EE239 /* Channel3D.h */,
 				A81B4B391BED0AD500849B91 /* Accelerator.hpp */,
 				A8B301411BEF4597009855C7 /* AcceleratorG4.hpp */,
 				A8B301431BEF4608009855C7 /* AcceleratorG5.hpp */,
+				B7D70FA61BF3DFAB003AF91B /* AcceleratorG5G.hpp */,
 				A81B4B3A1BED0AD500849B91 /* Accelerator.h */,
 			);
 			name = local;

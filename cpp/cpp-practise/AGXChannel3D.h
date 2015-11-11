@@ -33,4 +33,11 @@ public:
 	void submit() override;
 };
 
+class AGXChannel3DG5G : public AGXChannel3D {
+public:
+	G5G::channel3D channel;
+	void init()   override;
+	void submit() override;
+};
+
 #endif /* AGXChannel3D_h */

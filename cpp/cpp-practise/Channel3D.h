@@ -30,6 +30,13 @@ struct Channel3DG5 {
 	brn3Data b3Data;
 };
 
+struct Channel3DG5G {
+	Channel3DG5 base;
+	uint32_t	local_value;
+	/* BRN Data */
+	brn3Data	b3Data;
+};
+
 #pragma mark - Algorithm Classes
 template <typename Channel, typename ChipDispatch>
 class Channel3DImpl {

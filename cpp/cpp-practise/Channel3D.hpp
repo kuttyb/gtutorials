@@ -20,5 +20,6 @@ using std::endl;
 
 #include "Channel3DG4.hpp"
 #include "Channel3DG5.hpp"
+#include "Channel3DG5G.hpp"
 
 #endif //_Channel3D_hpp

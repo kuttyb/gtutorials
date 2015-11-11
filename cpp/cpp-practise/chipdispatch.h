@@ -11,6 +11,7 @@
 
 struct AcceleratorG4;
 struct AcceleratorG5;
+struct AcceleratorG5G;
 struct Channel3DG4;
 struct Channel3DG5;
 
@@ -39,6 +40,16 @@ struct G5 {
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
         const static bool brn3 = true;
+	};
+};
+
+#pragma mark - G5G
+struct G5G {
+	typedef AcceleratorG5G  accel;
+	typedef Channel3DG5G    channel3D;
+	
+	struct BRN : public BRNTable {
+		const static bool brn3 = true;
 	};
 };
 

@@ -20,5 +20,6 @@ using std::endl;
 
 #include "AcceleratorG4.hpp"
 #include "AcceleratorG5.hpp"
+#include "AcceleratorG5G.hpp"
 
 #endif //_Accelerator_hpp

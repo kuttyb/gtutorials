@@ -34,7 +34,7 @@ public:
 };
 
 class AGXAcceleratorG5 : public AGXAccelerator {
-private:
+protected:
 	G5::accel accel;
 public:
 	void init() override;
@@ -44,5 +44,17 @@ public:
         accel.base.channel3D = &((AGXChannel3DG5 *) channel)->channel.base;
     }
 };
+
+class AGXAcceleratorG5G : public AGXAccelerator {
+protected:
+	G5G::accel accel;
+public:
+	void init() override;
+	void enumerate() override;
+	void setChannel(AGXChannel3D * channel) override {
+		accel.channel3D = &((AGXChannel3DG5G *) channel)->channel;
+	}
+};
+
 
 #endif /* AGXAccelerator_h */
