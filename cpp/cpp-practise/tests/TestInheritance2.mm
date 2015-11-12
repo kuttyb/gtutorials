@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include "chipdispatch.h"
 
 using std::cout;
 using std::endl;
@@ -45,11 +46,12 @@ public:
 };
 
 #pragma mark - Code
-template <typename T, bool brn1, typename ChipDispatch>
+/* Common Base Class */
+template <typename T, typename ChipDispatch>
 class A {
 private:
 	/* Parent class BRN that could be optionally used by derived classes */
-	BRN1<brn1, ChipDispatch> b1;
+    BRN1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
 	
 public:
 	void first() {
@@ -58,9 +60,12 @@ public:
 	}
 };
 
-#define SUPER_A4  int, false, int
+#define SUPER_A4  int, G4
+/* G4 Specialization, inherits from the base class */
+template <typename ChipDispatch>
 class A4 : public A<SUPER_A4> {
-	BRN2<true, int> b2;
+    BRN2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
+    
 public:
 	void first() {
 		cout << "A4: first" << endl;
@@ -93,7 +98,7 @@ public:
 
 - (void)testBasic
 {
-	A4 a;
+	A4<G4> a;
 	a.first();
 }
 

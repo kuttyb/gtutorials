@@ -14,6 +14,7 @@ struct AcceleratorG5;
 struct AcceleratorG5G;
 struct Channel3DG4;
 struct Channel3DG5;
+struct Channel3DG5G;
 
 #pragma mark - BRNTable
 struct BRNTable {
