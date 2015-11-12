@@ -47,36 +47,40 @@ public:
 
 #pragma mark - Code
 /* Common Base Class */
-template <typename T, typename ChipDispatch>
+template <typename ChipDispatch>
 class A {
 private:
+	BRN1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
 public:
     void first() {
-        cout << "ABase: first " << 2 << endl;
+		cout << "ABase: first " << endl;
+		b1.apply();
     }
 };
 
-#define SUPER_A4  int, G4
 /* G4 Specialization, inherits from the base class */
-template <typename ChipDispatch>
-class A4 : public A<SUPER_A4> {
-    /* Parent class BRN that could be optionally used by derived classes */
-    BRN1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
+template <typename ChipDispatch = G4>
+class A4  {
+	A<ChipDispatch> base;	
     BRN2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
     
 public:
     void first() {
         cout << "A4: first" << endl;
-        b1.apply();
-        A<SUPER_A4>::first();
-        
-        cout << "size " << sizeof(A4) << endl;
+		base.first();
         b2.apply();
     }
 };
 
-template <typename ChipDispatch>
-class A5 : public A4<ChipDispatch> {
+template <typename ChipDispatch = G5>
+class A5  {
+	A4<ChipDispatch> a4;
+	
+public:
+	void first() {
+		cout <<"A5 : first" << endl;
+		a4.first();
+	}
 };
 
 #pragma mark - Test
@@ -101,12 +105,14 @@ class A5 : public A4<ChipDispatch> {
 - (void)testBasic
 {
     {
-//        A4<G4> a;
-//        a.first();
+        A4<> a;
+        a.first();
     }
-    
+	
+	cout << "==========" << endl;
+	
     {
-        A5<G5> a;
+        A5<> a;
         a.first();
     }
 }
