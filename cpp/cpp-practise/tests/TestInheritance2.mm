@@ -48,7 +48,7 @@ public:
 #pragma mark - Code
 /* Common Base Class */
 template <typename ChipDispatch>
-class A {
+class ABase {
 private:
 	BRN1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
 public:
@@ -61,7 +61,7 @@ public:
 /* G4 Specialization, inherits from the base class */
 template <typename ChipDispatch = G4>
 class A4  {
-	A<ChipDispatch> base;	
+	ABase<ChipDispatch> base;
     BRN2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
     
 public:
