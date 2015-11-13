@@ -9,16 +9,37 @@
 #ifndef AGXChannel_hpp
 #define AGXChannel_hpp
 
+#include "chipdispatch.h"
+
 class AGXChannel {
 public:
     virtual void init()  = 0;
     virtual void close() = 0;
+	virtual ~AGXChannel() {}
 };
 
 class AGXChannelG4 : public AGXChannel {
 public:
-    void init()  override;
+	G4::channel channel;
+	
+	void init()  override;
     void close() override;
+};
+
+class AGXChannelG5 : public AGXChannel {
+public:
+	G5::channel channel;
+
+	void init()  override;
+	void close() override;
+};
+
+class AGXChannelG5G : public AGXChannel {
+public:
+	G5G::channel channel;
+
+	void init()  override;
+	void close() override;
 };
 
 #endif /* AGXChannel_hpp */

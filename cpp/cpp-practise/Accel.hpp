@@ -22,18 +22,22 @@ class AccelBase {
     brn1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
     
 protected:
-    typename ChipDispatch::channel channel;
+    typename ChipDispatch::channel * channel;
     
 public:
+	AccelBase(typename ChipDispatch::channel * inputChannel) {
+		channel = inputChannel;
+	}
+	
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
         b1.apply();
-        channel.init();
+        channel->init();
     }
     
     void close() {
         cout << __PRETTY_FUNCTION__ << endl;
-        channel.close();
+        channel->close();
     }
 };
 
@@ -43,6 +47,9 @@ class AccelGen1 : public AccelBase<ChipDispatch> {
     brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
     
 public:
+	AccelGen1(typename ChipDispatch::channel * inputChannel) : AccelBase<ChipDispatch>(inputChannel)  {
+	}
+	
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
 
@@ -50,7 +57,7 @@ public:
         b2.apply();
         
         /* This is how you access your parent's member variable when you go through Templated inheritance */
-        AccelBase<ChipDispatch>::channel.init();
+        AccelBase<ChipDispatch>::channel->init();
     }
 };
 
@@ -60,6 +67,9 @@ class AccelGen2 : public AccelGen1<ChipDispatch> {
     brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
     
 public:
+	AccelGen2(typename ChipDispatch::channel * inputChannel) : AccelGen1<ChipDispatch>(inputChannel) {
+	}
+	
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
         /* Punt to Gen1 */

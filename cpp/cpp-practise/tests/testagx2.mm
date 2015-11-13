@@ -19,6 +19,7 @@ using std::endl;
 
 @implementation testagx2 {
     AGXAccel * accel;
+	AGXChannel * channel;
 }
 
 - (void)setUp {
@@ -27,25 +28,32 @@ using std::endl;
 }
 
 - (void)tearDown {
+	delete channel;
     delete accel;
     [super tearDown];
     cout << "==============" << endl << endl;
 }
 
 - (void)testG4 {
-    accel = new AGXAccelG4();
+	channel = new AGXChannelG4();
+    accel = new AGXAccelG4(channel);
+	
     accel->init();
     accel->close();
 }
 
 - (void)testG5 {
-    accel = new AGXAccelG5();
+	channel = new AGXChannelG5();
+    accel = new AGXAccelG5(channel);
+	
     accel->init();
     accel->close();
 }
 
 - (void)testG5G {
-    accel = new AGXAccelG5G();
+	channel = new AGXChannelG5G();
+    accel = new AGXAccelG5G(channel);
+	
     accel->init();
     accel->close();
 }
