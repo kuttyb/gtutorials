@@ -38,7 +38,7 @@ public:
 };
 
 #pragma mark - Gen1
-template <typename ChipDispatch = G4>
+template <typename ChipDispatch>
 class AccelGen1 : public AccelBase<ChipDispatch> {
     brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
     
@@ -51,7 +51,7 @@ public:
 };
 
 #pragma mark - Gen2
-template <typename ChipDispatch = G5G>
+template <typename ChipDispatch>
 class AccelGen2 : public AccelGen1<ChipDispatch> {
     brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
     

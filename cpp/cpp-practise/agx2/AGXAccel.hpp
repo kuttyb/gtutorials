@@ -9,6 +9,7 @@
 #ifndef AGXAccel_hpp
 #define AGXAccel_hpp
 
+#include "chipdispatch.h"
 #include "Accel.hpp"
 
 class AGXAccel {
@@ -19,21 +20,21 @@ public:
 };
 
 class AGXAccelG4 : public AGXAccel{
-    AccelGen1<G4> accel;
+    G4::accel accel;
 public:
     void init()  override;
     void close() override;
 };
 
 class AGXAccelG5 : public AGXAccel {
-    AccelGen1<G5> accel;
+    G5::accel accel;
 public:
     void init()  override;
     void close() override;
 };
 
 class AGXAccelG5G : public AGXAccel {
-    AccelGen2<G5G> accel;
+    G5G::accel accel;
 public:
     void init()  override;
     void close() override;
