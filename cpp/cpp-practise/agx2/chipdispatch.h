@@ -9,6 +9,8 @@
 #ifndef chip_h
 #define chip_h
 
+#include "Channel.hpp"
+
 #pragma mark - BRNTable
 struct BRNTable {
 	const static bool brn1 = false;
@@ -18,6 +20,8 @@ struct BRNTable {
 
 #pragma mark - G4
 struct G4 {
+    typedef ChannelGen1<G4> channel;
+    
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
 	};
@@ -25,6 +29,8 @@ struct G4 {
 
 #pragma mark - G5
 struct G5 {
+    typedef ChannelGen2<G5> channel;
+    
 	struct BRN : public BRNTable {
 		const static bool brn1 = true;
 	};
@@ -32,6 +38,8 @@ struct G5 {
 
 #pragma mark - G5G
 struct G5G {
+    typedef ChannelGen1<G4> channel;
+    
 	struct BRN : public BRNTable {
 		const static bool brn3 = true;
 	};

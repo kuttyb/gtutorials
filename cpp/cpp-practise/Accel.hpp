@@ -20,14 +20,20 @@ using std::endl;
 template <typename ChipDispatch>
 class AccelBase {
     brn1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
+    
+protected:
+    typename ChipDispatch::channel channel;
+    
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
         b1.apply();
+        channel.init();
     }
     
     void close() {
         cout << __PRETTY_FUNCTION__ << endl;
+        channel.close();
     }
 };
 
@@ -35,6 +41,7 @@ public:
 template <typename ChipDispatch = G4>
 class AccelGen1 : public AccelBase<ChipDispatch> {
     brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
+    
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
@@ -47,6 +54,7 @@ public:
 template <typename ChipDispatch = G5G>
 class AccelGen2 : public AccelGen1<ChipDispatch> {
     brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
+    
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
