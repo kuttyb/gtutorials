@@ -57,5 +57,16 @@ public:
     void close() override;
 };
 
+class AGXAccelG5GC0 : public AGXAccel {
+	G5GC0::accel accel;
+public:
+	AGXAccelG5GC0(AGXChannel * ch) {
+		AGXChannelG5GC0 * channel = dynamic_cast<AGXChannelG5GC0 *>(ch);
+		assert(channel);
+		accel.channel = &channel->channel;
+	}
+	void init()  override;
+	void close() override;
+};
 
 #endif /* AGXAccel_hpp */

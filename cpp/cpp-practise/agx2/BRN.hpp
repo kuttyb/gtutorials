@@ -67,4 +67,21 @@ public:
         cout << "BRN3 " << endl;
     }
 };
+
+#pragma mark - brn4
+template <bool val, typename ChipDispatch>
+class brn4 {
+public:
+	void apply() {}
+};
+
+template <typename ChipDispatch>
+class brn4 <true, ChipDispatch> {
+	int values;
+public:
+	void apply() {
+		cout << "BRN4" << endl;
+	}
+};
+
 #endif //_BRN_HPP

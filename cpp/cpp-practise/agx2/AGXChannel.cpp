@@ -27,6 +27,7 @@ void AGXChannelG5::init() {
 }
 
 void AGXChannelG5::close() {
+	channel.compute();
 	channel.close();
 }
 
@@ -38,3 +39,13 @@ void AGXChannelG5G::init() {
 void AGXChannelG5G::close() {
 	channel.close();
 }
+
+#pragma mark - G5GC0
+void AGXChannelG5GC0::init() {
+	channel.init();
+}
+
+void AGXChannelG5GC0::close() {
+	channel.close();
+}
+

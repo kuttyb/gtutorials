@@ -28,6 +28,8 @@ public:
 
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
+		assert(channel);
+		
         b1.apply();
         channel->init();
     }

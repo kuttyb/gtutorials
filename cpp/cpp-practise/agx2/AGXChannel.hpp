@@ -42,4 +42,12 @@ public:
 	void close() override;
 };
 
+class AGXChannelG5GC0 : public AGXChannel {
+public:
+	G5GC0::channel channel;
+	
+	void init()  override;
+	void close() override;
+};
+
 #endif /* AGXChannel_hpp */

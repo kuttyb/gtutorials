@@ -17,6 +17,7 @@ struct BRNTable {
 	const static bool brn1 = false;
 	const static bool brn2 = false;
     const static bool brn3 = false;
+	const static bool brn4 = false;
 };
 
 #pragma mark - G4
@@ -46,6 +47,16 @@ struct G5G {
     
 	struct BRN : public BRNTable {
 		const static bool brn3 = true;
+		const static bool brn4 = true;
+	};
+};
+
+#pragma mark - G5GC0
+struct G5GC0 {
+	typedef AccelGen2<G5GC0>   accel;
+	typedef ChannelGen1<G5GC0> channel;
+	
+	struct BRN : public BRNTable {
 	};
 };
 

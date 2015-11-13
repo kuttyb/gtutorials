@@ -39,3 +39,11 @@ void AGXAccelG5G::close() {
     accel.close();
 }
 
+#pragma mark - G5GC0
+void AGXAccelG5GC0::init() {
+	accel.init();
+}
+
+void AGXAccelG5GC0::close() {
+	accel.close();
+}

@@ -16,13 +16,16 @@
 #pragma mark - Base
 template <typename ChipDispatch>
 class ChannelBase {
+	brn4<ChipDispatch::BRN::brn4, ChipDispatch> b4;
+	
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
     }
-    
+	
     void close() {
         cout << __PRETTY_FUNCTION__ << endl;
+		b4.apply();
     }
 };
 
@@ -44,6 +47,10 @@ public:
         cout << __PRETTY_FUNCTION__ << endl;
         ChannelBase<ChipDispatch>::init();
     }
+	
+	void compute() {
+		cout << __PRETTY_FUNCTION__ << endl;
+	}
 };
 
 #endif /* Channel_h */

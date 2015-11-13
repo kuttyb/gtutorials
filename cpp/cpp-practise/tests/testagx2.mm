@@ -48,6 +48,8 @@ using std::endl;
 	
     accel->init();
     accel->close();
+	
+	channel->close();
 }
 
 - (void)testG5G {
@@ -56,6 +58,14 @@ using std::endl;
 	
     accel->init();
     accel->close();
+}
+
+- (void)testG5GC0 {
+	channel = new AGXChannelG5GC0();
+	accel   = new AGXAccelG5GC0(channel);
+	
+	accel->init();
+	accel->close();
 }
 
 @end
