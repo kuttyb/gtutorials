@@ -31,8 +31,8 @@ public:
     }
 };
 
-#pragma mark - G4
-template <typename ChipDispatch>
+#pragma mark - Gen1
+template <typename ChipDispatch = G4>
 class AccelGen1 : public AccelBase<ChipDispatch> {
     brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
 public:
@@ -40,6 +40,19 @@ public:
         cout << __PRETTY_FUNCTION__ << endl;
         AccelBase<ChipDispatch>::init();
         b2.apply();
+    }
+};
+
+#pragma mark - Gen2
+template <typename ChipDispatch = G5G>
+class AccelGen2 : public AccelGen1<ChipDispatch> {
+    brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
+public:
+    void init() {
+        cout << __PRETTY_FUNCTION__ << endl;
+        /* Punt to Gen1 */
+        AccelGen1<ChipDispatch>::init();
+        b3.apply();
     }
 };
 

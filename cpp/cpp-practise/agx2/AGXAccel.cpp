@@ -30,3 +30,12 @@ void AGXAccelG5::close() {
     accel.close();
 }
 
+#pragma mark - G5G
+void AGXAccelG5G::init() {
+    accel.init();
+}
+
+void AGXAccelG5G::close() {
+    accel.close();
+}
+

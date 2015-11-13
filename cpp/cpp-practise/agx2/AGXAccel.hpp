@@ -32,5 +32,12 @@ public:
     void close() override;
 };
 
+class AGXAccelG5G : public AGXAccel {
+    AccelGen2<G5G> accel;
+public:
+    void init()  override;
+    void close() override;
+};
+
 
 #endif /* AGXAccel_hpp */

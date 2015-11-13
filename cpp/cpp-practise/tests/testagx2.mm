@@ -44,4 +44,10 @@ using std::endl;
     accel->close();
 }
 
+- (void)testG5G {
+    accel = new AGXAccelG5G();
+    accel->init();
+    accel->close();
+}
+
 @end
