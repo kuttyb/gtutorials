@@ -15,6 +15,8 @@
 		A8BA80D91BF6468800362CA4 /* BRN.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80D71BF6468800362CA4 /* BRN.hpp */; };
 		A8BA80DA1BF6468800362CA4 /* chipdispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80D81BF6468800362CA4 /* chipdispatch.h */; };
 		A8BA80DC1BF64A6700362CA4 /* testagx2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8BA80DB1BF64A6700362CA4 /* testagx2.mm */; };
+		A8BA80DF1BF656FB00362CA4 /* AGXChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */; };
+		A8BA80E01BF656FB00362CA4 /* AGXChannel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
@@ -61,6 +63,9 @@
 		A8BA80D71BF6468800362CA4 /* BRN.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BRN.hpp; path = agx2/BRN.hpp; sourceTree = SOURCE_ROOT; };
 		A8BA80D81BF6468800362CA4 /* chipdispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chipdispatch.h; path = agx2/chipdispatch.h; sourceTree = SOURCE_ROOT; };
 		A8BA80DB1BF64A6700362CA4 /* testagx2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testagx2.mm; sourceTree = "<group>"; };
+		A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AGXChannel.cpp; path = agx2/AGXChannel.cpp; sourceTree = SOURCE_ROOT; };
+		A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXChannel.hpp; path = agx2/AGXChannel.hpp; sourceTree = SOURCE_ROOT; };
+		A8BA80E11BF657BB00362CA4 /* Channel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Channel.hpp; sourceTree = SOURCE_ROOT; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +129,8 @@
 			children = (
 				A8259D321BF6439B00E260C7 /* AGXAccel.cpp */,
 				A8259D331BF6439B00E260C7 /* AGXAccel.hpp */,
+				A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */,
+				A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */,
 			);
 			name = public;
 			sourceTree = "<group>";
@@ -133,6 +140,7 @@
 			children = (
 				A8BA80D71BF6468800362CA4 /* BRN.hpp */,
 				A8BA80D81BF6468800362CA4 /* chipdispatch.h */,
+				A8BA80E11BF657BB00362CA4 /* Channel.hpp */,
 				A8259D361BF644C100E260C7 /* Accel.hpp */,
 			);
 			name = local;
@@ -219,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8BA80DA1BF6468800362CA4 /* chipdispatch.h in Headers */,
+				A8BA80E01BF656FB00362CA4 /* AGXChannel.hpp in Headers */,
 				A8BA80D91BF6468800362CA4 /* BRN.hpp in Headers */,
 				A8259D351BF6439B00E260C7 /* AGXAccel.hpp in Headers */,
 				B7A4A8201A34E9920057E07F /* benchmark.h in Headers */,
@@ -370,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8BA80DF1BF656FB00362CA4 /* AGXChannel.cpp in Sources */,
 				A8259D341BF6439B00E260C7 /* AGXAccel.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
