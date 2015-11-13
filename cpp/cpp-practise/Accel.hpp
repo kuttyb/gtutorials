@@ -45,8 +45,12 @@ class AccelGen1 : public AccelBase<ChipDispatch> {
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
+
         AccelBase<ChipDispatch>::init();
         b2.apply();
+        
+        /* This is how you access your parent's member variable when you go through Templated inheritance */
+        AccelBase<ChipDispatch>::channel.init();
     }
 };
 
