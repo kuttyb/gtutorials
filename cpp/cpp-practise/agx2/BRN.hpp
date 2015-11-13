@@ -16,66 +16,54 @@ using std::endl;
 #define _BRN_HPP
 
 #pragma mark - brn1
-/* BRN Data */
-struct brn1Data {
-	int first;
-	int second;
-};
-
-/* BRN Algorithms */
 template <bool val, typename ChipDispatch>
-struct brn1 {
-    static void apply(brn1Data * data) {}
+class brn1 {
+public:
+    void apply() {}
 };
 
 template <typename ChipDispatch>
-struct brn1<true, ChipDispatch> {
-	static void apply(brn1Data * data) {
-		assert(data);
+class brn1<true, ChipDispatch> {
+    int first;
+    int second;
+public:
+	void apply() {
         cout << "BRN1 " << endl;
     }
 };
 
 #pragma mark - brn2
-/* BRN Data */
-struct brn2Data {
-	int first;
-	int second;
-};
-
-/* BRN Algorithms */
 template <bool val, typename ChipDispatch>
-struct brn2 {
-	static void apply(brn2Data * data) {
+class brn2 {
+public:
+	void apply() {
     }
 };
 
 template <typename ChipDispatch>
-struct brn2<true, ChipDispatch> {
-	static void apply(brn2Data * data) {
-		assert(data);
+class brn2<true, ChipDispatch> {
+    int first;
+    int second;
+public:
+	void apply() {
         cout << "BRN2 " << endl;
     }
 };
 
 #pragma mark - brn3
-/* BRN Data */
-struct brn3Data {
-	int first;
-	int second;
-};
-
-/* BRN Algorithms */
 template <bool val, typename ChipDispatch>
-struct brn3 {
-	static void apply(brn3Data * data) {
+class brn3 {
+public:
+	void apply() {
     }
 };
 
 template <typename ChipDispatch>
-struct brn3<true, ChipDispatch> {
-	static void apply(brn3Data * data) {
-		assert(data);
+class brn3<true, ChipDispatch> {
+    int first;
+    int second;
+public:
+    void apply() {
         cout << "BRN3 " << endl;
     }
 };

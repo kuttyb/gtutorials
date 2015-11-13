@@ -9,13 +9,6 @@
 #ifndef chip_h
 #define chip_h
 
-struct AcceleratorG4;
-struct AcceleratorG5;
-struct AcceleratorG5G;
-struct Channel3DG4;
-struct Channel3DG5;
-struct Channel3DG5G;
-
 #pragma mark - BRNTable
 struct BRNTable {
 	const static bool brn1 = false;
@@ -25,29 +18,20 @@ struct BRNTable {
 
 #pragma mark - G4
 struct G4 {
-    typedef AcceleratorG4 accel;
-    typedef Channel3DG4   channel3D;
-    
-	struct BRN : public BRNTable {
-		const static bool brn1 = true;
-	};
-};
-
-#pragma mark - G5
-struct G5 {
-    typedef AcceleratorG5 accel;
-    typedef Channel3DG5   channel3D;
-    
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
 	};
 };
 
+#pragma mark - G5
+struct G5 {
+	struct BRN : public BRNTable {
+		const static bool brn1 = true;
+	};
+};
+
 #pragma mark - G5G
 struct G5G {
-	typedef AcceleratorG5G  accel;
-	typedef Channel3DG5G    channel3D;
-	
 	struct BRN : public BRNTable {
 		const static bool brn3 = true;
 	};
