@@ -45,6 +45,22 @@ public:
     }
 };
 
+#pragma mark - BRN3
+template <bool val, typename ChipDispatch>
+class BRN3 {
+public:
+	void apply() {}
+};
+
+template <typename ChipDispatch>
+class BRN3<true, ChipDispatch> {
+	int localvalue;
+public:
+	void apply() {
+		cout << " BRN3" << endl;
+	}
+};
+
 #pragma mark - Code
 /* Common Base Class */
 template <typename ChipDispatch>
@@ -60,26 +76,24 @@ public:
 
 /* G4 Specialization, inherits from the base class */
 template <typename ChipDispatch = G4>
-class A4  {
-	ABase<ChipDispatch> base;
+class A4 : public ABase<ChipDispatch> {
     BRN2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
-    
 public:
     void first() {
         cout << "A4: first" << endl;
-		base.first();
+		ABase<ChipDispatch>::first();
         b2.apply();
     }
 };
 
 template <typename ChipDispatch = G5>
-class A5  {
-	A4<ChipDispatch> a4;
-	
+class A5 : public A4<ChipDispatch> {
+	BRN3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
 public:
 	void first() {
 		cout <<"A5 : first" << endl;
-		a4.first();
+		A4<ChipDispatch>::first();
+		b3.apply();
 	}
 };
 
@@ -105,8 +119,8 @@ public:
 - (void)testBasic
 {
     {
-        A4<> a;
-        a.first();
+//        A4<> a;
+//        a.first();
     }
 	
 	cout << "==========" << endl;
