@@ -78,23 +78,18 @@ public:
 template <typename ChipDispatch = G4>
 class A4 : public ABase<ChipDispatch> {
     BRN2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
+	BRN3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
 public:
     void first() {
         cout << "A4: first" << endl;
 		ABase<ChipDispatch>::first();
         b2.apply();
+		b3.apply();
     }
 };
 
 template <typename ChipDispatch = G5>
 class A5 : public A4<ChipDispatch> {
-	BRN3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
-public:
-	void first() {
-		cout <<"A5 : first" << endl;
-		A4<ChipDispatch>::first();
-		b3.apply();
-	}
 };
 
 #pragma mark - Test
@@ -119,14 +114,14 @@ public:
 - (void)testBasic
 {
     {
-//        A4<> a;
-//        a.first();
+        A4<> a;
+        a.first();
     }
 	
 	cout << "==========" << endl;
 	
     {
-        A5<> a;
+        A5<G5G> a;
         a.first();
     }
 }

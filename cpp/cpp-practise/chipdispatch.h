@@ -40,7 +40,6 @@ struct G5 {
     
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
-        const static bool brn3 = true;
 	};
 };
 
