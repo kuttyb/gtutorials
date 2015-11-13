@@ -19,16 +19,13 @@ using std::endl;
 #pragma mark - Base
 template <typename ChipDispatch>
 class AccelBase {
+	/* Delegates */
     brn1<ChipDispatch::BRN::brn1, ChipDispatch> b1;
-    
-protected:
-    typename ChipDispatch::channel * channel;
-    
-public:
-	AccelBase(typename ChipDispatch::channel * inputChannel) {
-		channel = inputChannel;
-	}
 	
+public:
+	/* Composites */
+	typename ChipDispatch::channel * channel;
+
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
         b1.apply();
@@ -44,12 +41,10 @@ public:
 #pragma mark - Gen1
 template <typename ChipDispatch>
 class AccelGen1 : public AccelBase<ChipDispatch> {
+	/* Delegates */
     brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
     
 public:
-	AccelGen1(typename ChipDispatch::channel * inputChannel) : AccelBase<ChipDispatch>(inputChannel)  {
-	}
-	
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
 
@@ -64,12 +59,10 @@ public:
 #pragma mark - Gen2
 template <typename ChipDispatch>
 class AccelGen2 : public AccelGen1<ChipDispatch> {
+	/* Delegates */
     brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
     
 public:
-	AccelGen2(typename ChipDispatch::channel * inputChannel) : AccelGen1<ChipDispatch>(inputChannel) {
-	}
-	
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
         /* Punt to Gen1 */

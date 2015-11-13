@@ -22,36 +22,36 @@ public:
 };
 
 class AGXAccelG4 : public AGXAccel{
-    G4::accel * accel;
+    G4::accel accel;
 public:
 	AGXAccelG4(AGXChannel * ch) {
 		AGXChannelG4 * channel = dynamic_cast<AGXChannelG4 *>(ch);
 		assert(channel);
-		accel = new G4::accel(&channel->channel);
+		accel.channel = &channel->channel;
 	}
     void init()  override;
     void close() override;
 };
 
 class AGXAccelG5 : public AGXAccel {
-    G5::accel * accel;
+    G5::accel accel;
 public:
 	AGXAccelG5(AGXChannel * ch) {
 		AGXChannelG5 * channel = dynamic_cast<AGXChannelG5 * >(ch);
 		assert(channel);
-		accel = new G5::accel(&channel->channel);
+		accel.channel = &channel->channel;
 	}
     void init()  override;
     void close() override;
 };
 
 class AGXAccelG5G : public AGXAccel {
-    G5G::accel * accel;
+    G5G::accel accel;
 public:
 	AGXAccelG5G(AGXChannel * ch) {
 		AGXChannelG5G * channel = dynamic_cast<AGXChannelG5G *>(ch);
 		assert(channel);
-		accel = new G5G::accel(&channel->channel);
+		accel.channel = &channel->channel;
 	}
     void init()  override;
     void close() override;

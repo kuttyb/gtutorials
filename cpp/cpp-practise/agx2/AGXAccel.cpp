@@ -14,28 +14,28 @@ using std::endl;
 
 #pragma mark - G4
 void AGXAccelG4::init() {
-    accel->init();
+    accel.init();
 }
 
 void AGXAccelG4::close() {
-    accel->close();
+    accel.close();
 }
 
 #pragma mark - G5
 void AGXAccelG5::init() {
-    accel->init();
+    accel.init();
 }
 
 void AGXAccelG5::close() {
-    accel->close();
+    accel.close();
 }
 
 #pragma mark - G5G
 void AGXAccelG5G::init() {
-    accel->init();
+    accel.init();
 }
 
 void AGXAccelG5G::close() {
-    accel->close();
+    accel.close();
 }
 
