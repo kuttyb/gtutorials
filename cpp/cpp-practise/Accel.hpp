@@ -40,37 +40,7 @@ public:
     }
 };
 
-#pragma mark - Gen1
-template <typename ChipDispatch>
-class AccelGen1 : public AccelBase<ChipDispatch> {
-	/* Delegates */
-    brn2<ChipDispatch::BRN::brn2, ChipDispatch> b2;
-    
-public:
-    void init() {
-        cout << __PRETTY_FUNCTION__ << endl;
-
-        AccelBase<ChipDispatch>::init();
-        b2.apply();
-        
-        /* This is how you access your parent's member variable when you go through Templated inheritance */
-        AccelBase<ChipDispatch>::channel->init();
-    }
-};
-
-#pragma mark - Gen2
-template <typename ChipDispatch>
-class AccelGen2 : public AccelGen1<ChipDispatch> {
-	/* Delegates */
-    brn3<ChipDispatch::BRN::brn3, ChipDispatch> b3;
-    
-public:
-    void init() {
-        cout << __PRETTY_FUNCTION__ << endl;
-        /* Punt to Gen1 */
-        AccelGen1<ChipDispatch>::init();
-        b3.apply();
-    }
-};
+#include "AccelGen1.hpp"
+#include "AccelGen2.hpp"
 
 #endif /* Accel_h */

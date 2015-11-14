@@ -29,28 +29,7 @@ public:
     }
 };
 
-#pragma mark - Gen1
-template <typename ChipDispatch>
-class ChannelGen1 : public ChannelBase<ChipDispatch> {
-public:
-    void init() {
-        cout << __PRETTY_FUNCTION__ << endl;
-        ChannelBase<ChipDispatch>::init();
-    }
-};
-
-#pragma mark - Gen2
-template <typename ChipDispatch>
-class ChannelGen2 : public ChannelBase<ChipDispatch> {
-public:
-    void init() {
-        cout << __PRETTY_FUNCTION__ << endl;
-        ChannelBase<ChipDispatch>::init();
-    }
-	
-	void compute() {
-		cout << __PRETTY_FUNCTION__ << endl;
-	}
-};
+#include "ChannelGen1.hpp"
+#include "ChannelGen2.hpp"
 
 #endif /* Channel_h */

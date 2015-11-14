@@ -57,6 +57,10 @@
 		A8259D321BF6439B00E260C7 /* AGXAccel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AGXAccel.cpp; path = agx2/AGXAccel.cpp; sourceTree = SOURCE_ROOT; };
 		A8259D331BF6439B00E260C7 /* AGXAccel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXAccel.hpp; path = agx2/AGXAccel.hpp; sourceTree = SOURCE_ROOT; };
 		A8259D361BF644C100E260C7 /* Accel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Accel.hpp; sourceTree = SOURCE_ROOT; };
+		A8A3DE821BF7B7150071E242 /* AccelGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AccelGen1.hpp; sourceTree = SOURCE_ROOT; };
+		A8A3DE831BF7B7530071E242 /* AccelGen2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AccelGen2.hpp; sourceTree = SOURCE_ROOT; };
+		A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelGen1.hpp; sourceTree = SOURCE_ROOT; };
+		A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelGen2.hpp; sourceTree = SOURCE_ROOT; };
 		A8B3014D1BEF4A53009855C7 /* cppapp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppapp; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B3014F1BEF4A53009855C7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8B301691BEF513B009855C7 /* libcppdylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcppdylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +145,11 @@
 				A8BA80D71BF6468800362CA4 /* BRN.hpp */,
 				A8BA80D81BF6468800362CA4 /* chipdispatch.h */,
 				A8BA80E11BF657BB00362CA4 /* Channel.hpp */,
+				A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */,
+				A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */,
 				A8259D361BF644C100E260C7 /* Accel.hpp */,
+				A8A3DE821BF7B7150071E242 /* AccelGen1.hpp */,
+				A8A3DE831BF7B7530071E242 /* AccelGen2.hpp */,
 			);
 			name = local;
 			sourceTree = "<group>";
