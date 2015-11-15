@@ -84,6 +84,7 @@
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
+		B7F2E56D1BF8F9A7000903DF /* dm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = dm.hpp; path = agx2/dm.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				A8BA80D71BF6468800362CA4 /* BRN.hpp */,
+				B7F2E56D1BF8F9A7000903DF /* dm.hpp */,
 				A8BA80D81BF6468800362CA4 /* chipdispatch.h */,
 				A8BA80E11BF657BB00362CA4 /* Channel.hpp */,
 				A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */,

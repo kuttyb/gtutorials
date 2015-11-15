@@ -24,7 +24,7 @@ class AccelBase {
 	
 public:
 	/* Composites */
-	typename ChipDispatch::channel * channel;
+	typename ChipDispatch::channelTA * channel;
 
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;

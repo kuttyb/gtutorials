@@ -11,17 +11,24 @@
 
 #include <iostream>
 #include "chipdispatch.h"
+#include "dm.hpp"
 #include "BRN.hpp"
 
 #pragma mark - Base
-template <typename ChipDispatch>
+template <typename DMType, typename ChipDispatch>
 class ChannelBase {
 	brn4<ChipDispatch::BRN::brn4, ChipDispatch> b4;
+	DMType channelDM;
 	
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
     }
+	
+	void submit() {
+		cout << __PRETTY_FUNCTION__ << endl;
+		channelDM.submit();
+	}
 	
     void close() {
         cout << __PRETTY_FUNCTION__ << endl;

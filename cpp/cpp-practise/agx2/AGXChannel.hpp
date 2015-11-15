@@ -15,38 +15,43 @@ class AGXChannel {
 public:
     virtual void init()  = 0;
     virtual void close() = 0;
+	virtual void submit() = 0;
 	virtual ~AGXChannel() {}
 };
 
 class AGXChannelG4 : public AGXChannel {
 public:
-	G4::channel channel;
+	G4::channelTA channel;
 	
 	void init()  override;
+	void submit() override;
     void close() override;
 };
 
 class AGXChannelG5 : public AGXChannel {
 public:
-	G5::channel channel;
+	G5::channelTA channel;
 
 	void init()  override;
+	void submit() override;
 	void close() override;
 };
 
 class AGXChannelG5G : public AGXChannel {
 public:
-	G5G::channel channel;
+	G5G::channelTA channel;
 
 	void init()  override;
+	void submit() override;
 	void close() override;
 };
 
 class AGXChannelG5GC0 : public AGXChannel {
 public:
-	G5GC0::channel channel;
+	G5GC0::channelTA channel;
 	
 	void init()  override;
+	void submit() override;
 	void close() override;
 };
 

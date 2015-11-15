@@ -10,12 +10,12 @@
 #define ChannelGen2_h
 
 #pragma mark - Gen2
-template <typename ChipDispatch>
-class ChannelGen2 : public ChannelBase<ChipDispatch> {
+template <typename DMType, typename ChipDispatch>
+class ChannelGen2 : public ChannelBase<DMType, ChipDispatch> {
 public:
     void init() {
         cout << __PRETTY_FUNCTION__ << endl;
-        ChannelBase<ChipDispatch>::init();
+        ChannelBase<DMType, ChipDispatch>::init();
     }
     
     void compute() {

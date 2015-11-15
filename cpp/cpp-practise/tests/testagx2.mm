@@ -65,6 +65,7 @@ using std::endl;
 	accel   = new AGXAccelG5GC0(channel);
 	
 	accel->init();
+	channel->submit();
 	accel->close();
 }
 
