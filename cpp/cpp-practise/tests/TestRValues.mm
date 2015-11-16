@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import <XCTest/XCTest.h>
 #include <iostream>
+#include <functional>
 
 using std::cout;
 using std::endl;
@@ -114,6 +115,25 @@ int& func(int && a) {
 //	cout << value.fieldfloat << " " << value.fieldint << endl;
 	printObject(value);
 	printObject(factory(10, 12.2f));
+}
+
+int loop(std::function<int(int,int)> func, int arg1, int arg2) {
+    int value = 0;
+    
+    for (uint32_t i = 0; i < arg1; ++i) {
+        for (uint32_t j = 0; j < arg2; ++j) {
+            value += func(i, j);
+        }
+    }
+    
+    return value;
+}
+
+- (void)testLambda {
+    int value = loop([](int a, int b) -> int { return (a << 2) | (b << 3);},
+         20, 30);
+    
+    cout << "value is " << value << endl;
 }
 
 @end

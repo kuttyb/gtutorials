@@ -27,7 +27,9 @@ public:
 	
 	void submit() {
 		cout << __PRETTY_FUNCTION__ << endl;
+        channelDM.presubmit();
 		channelDM.submit();
+        channelDM.postsubmit();
 	}
 	
     void close() {
