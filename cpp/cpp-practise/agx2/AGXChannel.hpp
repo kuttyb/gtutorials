@@ -9,6 +9,8 @@
 #ifndef AGXChannel_hpp
 #define AGXChannel_hpp
 
+#include "Accel.hpp"
+#include "Channel.hpp"
 #include "chipdispatch.h"
 
 class AGXChannel {

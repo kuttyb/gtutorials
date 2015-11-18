@@ -9,9 +9,6 @@
 #ifndef chip_h
 #define chip_h
 
-#include "Accel.hpp"
-#include "Channel.hpp"
-#include "dm.hpp"
 
 #pragma mark - BRNTable
 struct BRNTable {

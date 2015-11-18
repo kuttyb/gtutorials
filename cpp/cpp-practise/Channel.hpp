@@ -10,7 +10,6 @@
 #define Channel_h
 
 #include <iostream>
-#include "chipdispatch.h"
 #include "dm.hpp"
 #include "BRN.hpp"
 

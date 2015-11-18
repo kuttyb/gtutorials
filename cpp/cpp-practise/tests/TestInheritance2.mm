@@ -6,9 +6,10 @@
 //  Copyright © 2015 kbanerjee. All rights reserved.
 //
 
+#if 0
 #import <XCTest/XCTest.h>
 #include <iostream>
-#include "chipdispatch.h"
+//#include "chipdispatch.h"
 
 using std::cout;
 using std::endl;
@@ -127,3 +128,4 @@ class A5 : public A4<ChipDispatch> {
 }
 
 @end
+#endif

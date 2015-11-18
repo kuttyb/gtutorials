@@ -10,9 +10,9 @@
 #define AGXAccel_hpp
 
 #include <assert.h>
-#include "chipdispatch.h"
 #include "Accel.hpp"
 #include "AGXChannel.hpp"
+#include "chipdispatch.h"
 
 class AGXAccel {
 public:
