@@ -151,8 +151,6 @@
 				B7F2E56D1BF8F9A7000903DF /* dm.hpp */,
 				A8BA80D81BF6468800362CA4 /* chipdispatch.h */,
 				A8BA80E11BF657BB00362CA4 /* Channel.hpp */,
-				B7BA48C21BFC67CD0050679D /* nested.cpp */,
-				B7BA48C31BFC67CD0050679D /* nested.hpp */,
 				A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */,
 				A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */,
 				A8259D361BF644C100E260C7 /* Accel.hpp */,
@@ -196,6 +194,8 @@
 			children = (
 				A8259D2F1BF6432D00E260C7 /* AGX2 */,
 				B7A4A81F1A34E9920057E07F /* benchmark.h */,
+				B7BA48C21BFC67CD0050679D /* nested.cpp */,
+				B7BA48C31BFC67CD0050679D /* nested.hpp */,
 			);
 			path = "cpp-practise";
 			sourceTree = "<group>";
