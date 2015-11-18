@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #include "AGXAccel.hpp"
 #include <iostream>
+#include "nested.hpp"
 
 using std::cout;
 using std::endl;
@@ -67,6 +68,11 @@ using std::endl;
 	accel->init();
 	channel->submit();
 	accel->close();
+}
+
+- (void) testExport {
+	Nested<int> a;
+	a.init();
 }
 
 @end
