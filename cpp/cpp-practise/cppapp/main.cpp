@@ -7,23 +7,22 @@
 //
 
 #include <iostream>
-#include "AGXChannel3D.h"
-#include "AGXAccelerator.h"
+#include "AGXAccel.hpp"
 
 int main(int argc, const char * argv[]) {
-    AGXAccelerator * hAccel   = new AGXAcceleratorG5();
-    AGXChannel3D   * hChannel = new AGXChannel3DG5();
+	AGXAccel * accel;
+	AGXChannel * channel;
+	
+	
+	channel = new AGXChannelG5GC0();
+	accel   = new AGXAccelG5GC0(channel);
+	
+	accel->init();
+	channel->submit();
+	accel->close();
 
-    hAccel->setChannel(hChannel);
-    
-    hAccel->init();
-    hAccel->enumerate();
-    
-    hChannel->init();
-    hChannel->submit();
-    
-    delete hChannel;
-    delete hAccel;
-    
+	delete channel;
+	delete accel;
+	
     return 0;
 }
