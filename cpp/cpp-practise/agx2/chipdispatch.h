@@ -9,6 +9,9 @@
 #ifndef chip_h
 #define chip_h
 
+/* [a] Place no includes here
+ * [b] Only include this file from Public Hal headers and this should be the last include 
+ */
 
 #pragma mark - BRNTable
 struct BRNTable {
