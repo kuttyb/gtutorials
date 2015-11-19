@@ -31,14 +31,6 @@ public:
 	}
 };
 
-#pragma mark - Gen1
-template <typename ChipDispatch>
-class GartGen1 : public GartBase<ChipDispatch> {
-public:
-	void init() {
-		cout << __PRETTY_FUNCTION__ << endl;
-		GartBase<ChipDispatch>::setup();
-	}
-};
+#include "GartGen1.hpp"
 
 #endif /* Gart_h */

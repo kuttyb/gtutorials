@@ -93,6 +93,7 @@
 		B77879CC1BFD610600A6153D /* AGXGart.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXGart.hpp; path = agx2/AGXGart.hpp; sourceTree = SOURCE_ROOT; };
 		B77879CF1BFD74A500A6153D /* Gart.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Gart.hpp; sourceTree = SOURCE_ROOT; };
 		B7895A581BF3F678007084E1 /* TestInheritance2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance2.mm; sourceTree = "<group>"; };
+		B79AD0361BFE82C100FBFCCA /* GartGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GartGen1.hpp; sourceTree = SOURCE_ROOT; };
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
@@ -171,6 +172,7 @@
 				A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */,
 				A8259D361BF644C100E260C7 /* Accel.hpp */,
 				B77879CF1BFD74A500A6153D /* Gart.hpp */,
+				B79AD0361BFE82C100FBFCCA /* GartGen1.hpp */,
 				A8A3DE821BF7B7150071E242 /* AccelGen1.hpp */,
 				A8A3DE831BF7B7530071E242 /* AccelGen2.hpp */,
 			);
