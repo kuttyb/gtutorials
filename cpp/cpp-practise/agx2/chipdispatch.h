@@ -27,6 +27,7 @@ struct G4 {
     using	channelTA	= ChannelGen1<DMTA<G4>, G4>;
 	using	channel3D	= ChannelGen1<DM3D<G4>, G4>;
 	using	channelCL	= ChannelGen1<DMCL<G4>, G4>;
+	using	gart		= GartBase<G4>;
 	
 	struct BRN : public BRNTable {
 		const static bool brn2 = true;
@@ -39,6 +40,7 @@ struct G5 {
 	using	channelTA	= ChannelGen2<DMTA<G5>, G5>;
 	using	channel3D	= ChannelGen2<DM3D<G5>, G5>;
 	using	channelCL	= ChannelGen2<DMCL<G5>, G5>;
+	using	gart		= GartBase<G5>;
 	
 	struct BRN : public BRNTable {
 		const static bool brn1 = true;
@@ -51,7 +53,8 @@ struct G5G {
 	using	channelTA	= ChannelGen1<DMTA<G5G>, G5G>;
 	using	channel3D   = ChannelGen1<DM3D<G5G>, G5G>;
 	using	channelCL	= ChannelGen1<DMCL<G5G>, G5G>;
-
+	using	gart		= GartGen1<G5G>;
+	
 	struct BRN : public BRNTable {
 		const static bool brn3 = true;
 		const static bool brn4 = true;
@@ -64,7 +67,8 @@ struct G5GC0 {
 	using channelTA  = ChannelGen1<DMTA<G5GC0>, G5GC0>;
 	using channel3D  = ChannelGen1<DM3D<G5GC0>, G5GC0>;
 	using channelCL  = ChannelGen1<DMCL<G5GC0>, G5GC0>;
-
+	using gart		 = GartGen1<G5GC0>;
+	
 	struct BRN : public BRNTable {
 	};
 };

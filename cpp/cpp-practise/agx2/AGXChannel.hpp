@@ -11,6 +11,7 @@
 
 #include "Accel.hpp"
 #include "Channel.hpp"
+#include "Gart.hpp"
 #include "chipdispatch.h"
 
 class AGXChannel {
