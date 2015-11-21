@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Kutty Banerjee. All rights reserved.
 //
 
-#ifndef __cpp_cmd__Base__
-#define __cpp_cmd__Base__
+#ifndef Base_h
+#define Base_h
 
 #include <iostream>
 #include "crtp.h"

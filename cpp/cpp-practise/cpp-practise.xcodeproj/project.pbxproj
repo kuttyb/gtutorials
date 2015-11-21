@@ -8,22 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		6ABA3DC44F1EDF5AEB58AF33 /* Policy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA31567BDE059C6F950660 /* Policy.mm */; };
-		A8259D341BF6439B00E260C7 /* AGXAccel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8259D321BF6439B00E260C7 /* AGXAccel.cpp */; };
-		A8259D351BF6439B00E260C7 /* AGXAccel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A8259D331BF6439B00E260C7 /* AGXAccel.hpp */; };
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
 		A8B301501BEF4A53009855C7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B3014F1BEF4A53009855C7 /* main.cpp */; };
-		A8BA80D91BF6468800362CA4 /* BRN.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80D71BF6468800362CA4 /* BRN.hpp */; };
-		A8BA80DA1BF6468800362CA4 /* chipdispatch.h in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80D81BF6468800362CA4 /* chipdispatch.h */; };
-		A8BA80DC1BF64A6700362CA4 /* testagx2.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8BA80DB1BF64A6700362CA4 /* testagx2.mm */; };
-		A8BA80DF1BF656FB00362CA4 /* AGXChannel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */; };
-		A8BA80E01BF656FB00362CA4 /* AGXChannel.hpp in Headers */ = {isa = PBXBuildFile; fileRef = A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
 		B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75567B51A7EC63100614BBA /* TestRValues.mm */; };
 		B75D37921BFCF19A00F1239D /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
-		B77879CD1BFD610600A6153D /* AGXGart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B77879CB1BFD610600A6153D /* AGXGart.cpp */; };
-		B77879CE1BFD610600A6153D /* AGXGart.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B77879CC1BFD610600A6153D /* AGXGart.hpp */; };
 		B7895A591BF3F678007084E1 /* TestInheritance2.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7895A581BF3F678007084E1 /* TestInheritance2.mm */; };
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
 		B7A4A8201A34E9920057E07F /* benchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A4A81F1A34E9920057E07F /* benchmark.h */; };
@@ -66,22 +57,9 @@
 
 /* Begin PBXFileReference section */
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
-		A8259D321BF6439B00E260C7 /* AGXAccel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AGXAccel.cpp; path = agx2/AGXAccel.cpp; sourceTree = SOURCE_ROOT; };
-		A8259D331BF6439B00E260C7 /* AGXAccel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXAccel.hpp; path = agx2/AGXAccel.hpp; sourceTree = SOURCE_ROOT; };
-		A8259D361BF644C100E260C7 /* Accel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Accel.hpp; sourceTree = SOURCE_ROOT; };
-		A8A3DE821BF7B7150071E242 /* AccelGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AccelGen1.hpp; sourceTree = SOURCE_ROOT; };
-		A8A3DE831BF7B7530071E242 /* AccelGen2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AccelGen2.hpp; sourceTree = SOURCE_ROOT; };
-		A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelGen1.hpp; sourceTree = SOURCE_ROOT; };
-		A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ChannelGen2.hpp; sourceTree = SOURCE_ROOT; };
 		A8B3014D1BEF4A53009855C7 /* cppapp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppapp; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B3014F1BEF4A53009855C7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8B301691BEF513B009855C7 /* libcppdylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcppdylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		A8BA80D71BF6468800362CA4 /* BRN.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = BRN.hpp; path = agx2/BRN.hpp; sourceTree = SOURCE_ROOT; };
-		A8BA80D81BF6468800362CA4 /* chipdispatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chipdispatch.h; path = agx2/chipdispatch.h; sourceTree = SOURCE_ROOT; };
-		A8BA80DB1BF64A6700362CA4 /* testagx2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testagx2.mm; sourceTree = "<group>"; };
-		A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AGXChannel.cpp; path = agx2/AGXChannel.cpp; sourceTree = SOURCE_ROOT; };
-		A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXChannel.hpp; path = agx2/AGXChannel.hpp; sourceTree = SOURCE_ROOT; };
-		A8BA80E11BF657BB00362CA4 /* Channel.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Channel.hpp; sourceTree = SOURCE_ROOT; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,11 +67,7 @@
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
 		B75567B51A7EC63100614BBA /* TestRValues.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRValues.mm; sourceTree = "<group>"; };
-		B77879CB1BFD610600A6153D /* AGXGart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AGXGart.cpp; path = agx2/AGXGart.cpp; sourceTree = SOURCE_ROOT; };
-		B77879CC1BFD610600A6153D /* AGXGart.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = AGXGart.hpp; path = agx2/AGXGart.hpp; sourceTree = SOURCE_ROOT; };
-		B77879CF1BFD74A500A6153D /* Gart.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Gart.hpp; sourceTree = SOURCE_ROOT; };
 		B7895A581BF3F678007084E1 /* TestInheritance2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance2.mm; sourceTree = "<group>"; };
-		B79AD0361BFE82C100FBFCCA /* GartGen1.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GartGen1.hpp; sourceTree = SOURCE_ROOT; };
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
@@ -102,7 +76,6 @@
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
-		B7F2E56D1BF8F9A7000903DF /* dm.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = dm.hpp; path = agx2/dm.hpp; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,46 +112,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A8259D2F1BF6432D00E260C7 /* AGX2 */ = {
-			isa = PBXGroup;
-			children = (
-				A8259D311BF6433E00E260C7 /* local */,
-				A8259D301BF6433700E260C7 /* public */,
-			);
-			name = AGX2;
-			sourceTree = "<group>";
-		};
-		A8259D301BF6433700E260C7 /* public */ = {
-			isa = PBXGroup;
-			children = (
-				A8259D321BF6439B00E260C7 /* AGXAccel.cpp */,
-				A8259D331BF6439B00E260C7 /* AGXAccel.hpp */,
-				B77879CB1BFD610600A6153D /* AGXGart.cpp */,
-				B77879CC1BFD610600A6153D /* AGXGart.hpp */,
-				A8BA80DD1BF656FB00362CA4 /* AGXChannel.cpp */,
-				A8BA80DE1BF656FB00362CA4 /* AGXChannel.hpp */,
-			);
-			name = public;
-			sourceTree = "<group>";
-		};
-		A8259D311BF6433E00E260C7 /* local */ = {
-			isa = PBXGroup;
-			children = (
-				A8BA80D71BF6468800362CA4 /* BRN.hpp */,
-				B7F2E56D1BF8F9A7000903DF /* dm.hpp */,
-				A8BA80D81BF6468800362CA4 /* chipdispatch.h */,
-				A8BA80E11BF657BB00362CA4 /* Channel.hpp */,
-				A8A3DE841BF7B7870071E242 /* ChannelGen1.hpp */,
-				A8A3DE851BF7B78D0071E242 /* ChannelGen2.hpp */,
-				A8259D361BF644C100E260C7 /* Accel.hpp */,
-				B77879CF1BFD74A500A6153D /* Gart.hpp */,
-				B79AD0361BFE82C100FBFCCA /* GartGen1.hpp */,
-				A8A3DE821BF7B7150071E242 /* AccelGen1.hpp */,
-				A8A3DE831BF7B7530071E242 /* AccelGen2.hpp */,
-			);
-			name = local;
-			sourceTree = "<group>";
-		};
 		A8B3014E1BEF4A53009855C7 /* cppapp */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,7 +144,6 @@
 		B71E74731A1F32AE00C13FC2 /* cpp-practise */ = {
 			isa = PBXGroup;
 			children = (
-				A8259D2F1BF6432D00E260C7 /* AGX2 */,
 				B7A4A81F1A34E9920057E07F /* benchmark.h */,
 				B7BA48C21BFC67CD0050679D /* nested.cpp */,
 				B7BA48C31BFC67CD0050679D /* nested.hpp */,
@@ -226,7 +158,6 @@
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
 				B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */,
-				A8BA80DB1BF64A6700362CA4 /* testagx2.mm */,
 				B7895A581BF3F678007084E1 /* TestInheritance2.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
 				B7DF32AF1A42A93E0074362E /* TestBasic.mm */,
@@ -261,12 +192,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B77879CE1BFD610600A6153D /* AGXGart.hpp in Headers */,
-				A8BA80DA1BF6468800362CA4 /* chipdispatch.h in Headers */,
-				A8BA80E01BF656FB00362CA4 /* AGXChannel.hpp in Headers */,
-				A8BA80D91BF6468800362CA4 /* BRN.hpp in Headers */,
 				B7BA48C51BFC67CD0050679D /* nested.hpp in Headers */,
-				A8259D351BF6439B00E260C7 /* AGXAccel.hpp in Headers */,
 				B7A4A8201A34E9920057E07F /* benchmark.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,9 +343,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8BA80DF1BF656FB00362CA4 /* AGXChannel.cpp in Sources */,
-				A8259D341BF6439B00E260C7 /* AGXAccel.cpp in Sources */,
-				B77879CD1BFD610600A6153D /* AGXGart.cpp in Sources */,
 				B7BA48C41BFC67CD0050679D /* nested.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +362,6 @@
 				B71E74881A1F32E500C13FC2 /* tests.mm in Sources */,
 				B7895A591BF3F678007084E1 /* TestInheritance2.mm in Sources */,
 				6ABA3DC44F1EDF5AEB58AF33 /* Policy.mm in Sources */,
-				A8BA80DC1BF64A6700362CA4 /* testagx2.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

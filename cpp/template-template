@@ -1,0 +1,10 @@
+template <template <typename> class F, typename T>
+struct function {
+	void operator()(F<T> input) {
+		cout << "Generic version" << endl;
+	}
+};
+
+
+That's how its represented where the funky one is the outer one, regular typename T is the inner one
+Look at TestTemplateTemplate2.mm for details on how to do Partial specializations on outer and inner parameters
