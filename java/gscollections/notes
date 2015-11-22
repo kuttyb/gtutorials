@@ -1,0 +1,22 @@
+* Internal Iterators
+* Patterns
+  - Filtering
+    +	Will return the same Type of Collection
+    +	select / reject / partition
+    +   Input Code Block known as "Predicate"
+    	interface Predicate<T> { boolean command(T input); }
+
+  - Transforming
+    +	Input Code Block known as "Function"  
+    	interface Function<X, Y>> { List<Y> command(Collection<X> input); } // for input X return all Ys
+    + 	GroupBy / Flatten / Collect
+
+  - Short Circuit
+    +	Detect / AnySatisfy / AllSatisfy
+
+  - Generic 
+    +	ForEach
+
+====
+* Class Hierarchy of various Collections
+
