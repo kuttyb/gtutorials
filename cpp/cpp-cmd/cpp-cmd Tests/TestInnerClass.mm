@@ -91,6 +91,24 @@ public:
     [super tearDown];
 }
 
+class Base {
+public:
+	void print() {
+		cout << __PRETTY_FUNCTION__ << endl;
+	}
+};
+
+template <typename T>
+Base * method() {
+	class X : public Base {
+		T data;
+		void execute() {
+			cout << "executing data" << endl;
+		}
+	};
+	return new X();
+}
+
 - (void)testExample
 {
     A<int> a;
@@ -99,5 +117,10 @@ public:
     cout << sizeof(x) << endl;
 }
 
+- (void) testLocalClass
+{
+	Base * d = method<int>();
+	d->print();
+}
 
 @end
