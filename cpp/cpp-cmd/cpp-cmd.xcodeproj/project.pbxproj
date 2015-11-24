@@ -17,6 +17,7 @@
 		B7114F111944E10000E9C000 /* TestLambda.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7114F101944E10000E9C000 /* TestLambda.mm */; };
 		B723A64D19BD89C200B6EB55 /* TestSpecialization.mm in Sources */ = {isa = PBXBuildFile; fileRef = B723A64C19BD89C200B6EB55 /* TestSpecialization.mm */; };
 		B731E32819450C7400742F88 /* TestMetaFunction.mm in Sources */ = {isa = PBXBuildFile; fileRef = B731E32719450C7400742F88 /* TestMetaFunction.mm */; };
+		B732B82F1C045AAF00CAFFBA /* TestTraits2.mm in Sources */ = {isa = PBXBuildFile; fileRef = B732B82E1C045AAF00CAFFBA /* TestTraits2.mm */; };
 		B73B12DB19BD49B6009EECDE /* TestTraits.mm in Sources */ = {isa = PBXBuildFile; fileRef = B73B12DA19BD49B6009EECDE /* TestTraits.mm */; };
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B78B0775195575140057B23D /* TestInnerClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78B0774195575140057B23D /* TestInnerClass.mm */; };
@@ -67,6 +68,7 @@
 		B7114F101944E10000E9C000 /* TestLambda.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLambda.mm; sourceTree = "<group>"; };
 		B723A64C19BD89C200B6EB55 /* TestSpecialization.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestSpecialization.mm; sourceTree = "<group>"; };
 		B731E32719450C7400742F88 /* TestMetaFunction.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMetaFunction.mm; sourceTree = "<group>"; };
+		B732B82E1C045AAF00CAFFBA /* TestTraits2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTraits2.mm; sourceTree = "<group>"; };
 		B73B12DA19BD49B6009EECDE /* TestTraits.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTraits.mm; sourceTree = "<group>"; };
 		B7436684188F3F920096C8AE /* cpp-cmd */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "cpp-cmd"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */,
 				B723A64C19BD89C200B6EB55 /* TestSpecialization.mm */,
 				B73B12DA19BD49B6009EECDE /* TestTraits.mm */,
+				B732B82E1C045AAF00CAFFBA /* TestTraits2.mm */,
 				A8CA32B019BAE10800B711FA /* TestPipe.mm */,
 				A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */,
 				A8272A3819BABD83007156CD /* TestPipeline.mm */,
@@ -304,6 +307,7 @@
 				B723A64D19BD89C200B6EB55 /* TestSpecialization.mm in Sources */,
 				A8DF39C8194E9D8600BC05D5 /* TestTemplateTemplate.mm in Sources */,
 				B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */,
+				B732B82F1C045AAF00CAFFBA /* TestTraits2.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
 				B78B0775195575140057B23D /* TestInnerClass.mm in Sources */,
 				B7B323F419C00E1400818626 /* TestTemplateTemplate2.mm in Sources */,
