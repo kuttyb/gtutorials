@@ -37,7 +37,7 @@ template <> struct IsTraitThat<A> { static const int type = 0; };
 template <> struct IsTraitThat<B> { static const int type = 0; };
 template <> struct IsTraitThat<C> { static const int type = 1; };
 
-template <int val> void method(void) {
+template <int TraitThat> void method(void) {
 	cout << "method basic" << endl;
 }
 
