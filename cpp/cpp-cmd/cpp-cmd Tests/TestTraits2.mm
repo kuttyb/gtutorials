@@ -32,10 +32,10 @@ struct C {
 struct D {
 };
 
-template <typename t> struct TypeOf { static const int type = 2; };
-template <> struct TypeOf<A> { static const int type = 0; };
-template <> struct TypeOf<B> { static const int type = 0; };
-template <> struct TypeOf<C> { static const int type = 1; };
+template <typename t> struct IsTraitThat { static const int type = 2; };
+template <> struct IsTraitThat<A> { static const int type = 0; };
+template <> struct IsTraitThat<B> { static const int type = 0; };
+template <> struct IsTraitThat<C> { static const int type = 1; };
 
 template <int val> void method(void) {
 	cout << "method basic" << endl;
@@ -47,11 +47,6 @@ template <> void method<0>(void) {
 
 template <> void method<1>(void) {
 	cout << "Type 1" << endl;
-}
-
-template <typename T>
-void uppermethod(T& input) {
-	method<TypeOf<T>::type>();
 }
 
 #pragma mark - Test
@@ -72,17 +67,10 @@ void uppermethod(T& input) {
 }
 
 - (void) testBasic {
-	A a;
-	uppermethod(a);
-	
-	B b;
-	uppermethod(b);
-	
-	C c;
-	uppermethod(c);
-	
-	D d;
-	uppermethod(d);
+	method<IsTraitThat<A>::type>();
+	method<IsTraitThat<B>::type>();
+	method<IsTraitThat<C>::type>();
+	method<IsTraitThat<D>::type>();
 }
 
 @end
