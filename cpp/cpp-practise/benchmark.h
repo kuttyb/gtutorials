@@ -16,7 +16,7 @@ using namespace std;
 
 #pragma mark - Benchmark
 namespace perf {
-	template <typename RESOLUTION> static inline std::string time_unit(void) { assert(!"must specialize RESOLUTION"); }
+	template <typename RESOLUTION> static inline std::string time_unit(void);
 	template <>  std::string time_unit<std::chrono::nanoseconds>(void)  { return "nanoseconds";}
 	template <>  std::string time_unit<std::chrono::milliseconds>(void) { return "milliseconds";}
 	template <>  std::string time_unit<std::chrono::microseconds>(void) { return "microseconds";}
