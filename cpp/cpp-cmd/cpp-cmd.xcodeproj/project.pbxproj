@@ -24,6 +24,7 @@
 		B7B323F419C00E1400818626 /* TestTemplateTemplate2.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B323F319C00E1400818626 /* TestTemplateTemplate2.mm */; };
 		B7B4EE5419BD9145000B9C97 /* TestFunctionalCompositional.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */; };
 		B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */; };
+		B7C17F2B1C06D95700A8B8F6 /* TestMETA2.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7C17F2A1C06D95700A8B8F6 /* TestMETA2.mm */; };
 		B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7CA048B1966166A00E8C013 /* TestFilter.mm */; };
 		B7D68F161942F84000D34C1A /* TestRecursion.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D68F151942F84000D34C1A /* TestRecursion.mm */; };
 		B7DA8E5D1956219E00549305 /* TestInner.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DA8E5C1956219E00549305 /* TestInner.mm */; };
@@ -78,6 +79,7 @@
 		B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalCompositional.mm; sourceTree = "<group>"; };
 		B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConditionalExecution.mm; sourceTree = "<group>"; };
 		B7B79DF9194E840400ADAFB8 /* conditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = conditional.h; sourceTree = "<group>"; };
+		B7C17F2A1C06D95700A8B8F6 /* TestMETA2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMETA2.mm; sourceTree = "<group>"; };
 		B7CA048B1966166A00E8C013 /* TestFilter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFilter.mm; sourceTree = "<group>"; };
 		B7D68F151942F84000D34C1A /* TestRecursion.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRecursion.mm; sourceTree = "<group>"; };
 		B7DA8E5B1956037500549305 /* crtp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = crtp.h; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */,
 				B7FEFD41194E1FA400432759 /* TestTypeList.mm */,
 				B731E32719450C7400742F88 /* TestMetaFunction.mm */,
+				B7C17F2A1C06D95700A8B8F6 /* TestMETA2.mm */,
 				B7114F101944E10000E9C000 /* TestLambda.mm */,
 				B7D68F151942F84000D34C1A /* TestRecursion.mm */,
 				B7DDC10B1892240200EC77B8 /* Supporting Files */,
@@ -309,6 +312,7 @@
 				B7CA048C1966166A00E8C013 /* TestFilter.mm in Sources */,
 				B732B82F1C045AAF00CAFFBA /* TestTraits2.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
+				B7C17F2B1C06D95700A8B8F6 /* TestMETA2.mm in Sources */,
 				B78B0775195575140057B23D /* TestInnerClass.mm in Sources */,
 				B7B323F419C00E1400818626 /* TestTemplateTemplate2.mm in Sources */,
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,

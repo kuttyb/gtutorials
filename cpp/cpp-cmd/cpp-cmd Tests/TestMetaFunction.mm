@@ -17,8 +17,10 @@ using std::endl;
 // any computation required in its value calculation is the body
 template <unsigned int  n>
 struct factorial {
+	/* META Programming the old school way */
     static const unsigned int value = n * factorial<n-1>::value;
-    
+
+	/* META Programming new school way */
     static constexpr unsigned int fact() {
         return n * factorial<n-1>::fact();
     }
