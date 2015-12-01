@@ -57,8 +57,9 @@ public:
 };
 
 #pragma mark - Test
-#define  MAX_ITERATIONS (1'000'000)
-//#define  MAX_ITERATIONS (100)
+//#define  MAX_ITERATIONS (1'000'000)
+#define  MAX_ITERATIONS		(100)
+#define  OUTER_ITERATIONS	(10)
 
 @interface TestPerf : XCTestCase
 
@@ -77,11 +78,11 @@ public:
 }
 
 - (void) testTemplatesChild {
-	for (int j = 0 ; j < 4; ++j) {
+	for (int j = 0 ; j < OUTER_ITERATIONS; ++j) {
 		int counter = 0;
 		TInterface<HelperOne> helper;
 		
-		perf::profile<std::chrono::microseconds>()([&counter, &helper](){
+		perf::profile<std::chrono::nanoseconds>()([&counter, &helper](){
 			int value = 0;
 			
 			for (int i = 0; i < MAX_ITERATIONS; ++i) {
@@ -96,11 +97,11 @@ public:
 }
 
 - (void) testTemplatesInnerChild {
-	for (int j = 0; j < 4; ++j) {
+	for (int j = 0; j < OUTER_ITERATIONS; ++j) {
 		int counter = 0;
 		TInterface<HelperTwo> helper;
 		
-		perf::profile<std::chrono::microseconds>()([&counter, &helper](){
+		perf::profile<std::chrono::nanoseconds>()([&counter, &helper](){
 			int value = 0;
 			
 			for (int i = 0; i < MAX_ITERATIONS; ++i) {
@@ -115,11 +116,11 @@ public:
 }
 
 - (void) testChild {
-	for (int j = 0; j < 4; ++j) {
+	for (int j = 0; j < OUTER_ITERATIONS; ++j) {
 		int counter = 0;
 		Interface * worker = new Worker();
 		
-		perf::profile<std::chrono::microseconds>()([&counter, &worker](){
+		perf::profile<std::chrono::nanoseconds>()([&counter, &worker](){
 			int value = 0;
 			
 			for (int i = 0; i < MAX_ITERATIONS; ++i) {
@@ -134,11 +135,11 @@ public:
 }
 
 - (void) testInnerChild {
-	for (int j = 0; j < 4; ++j) {
+	for (int j = 0; j < OUTER_ITERATIONS; ++j) {
 		int counter = 0;
 		Interface * worker = new Subworker();
 		
-		perf::profile<std::chrono::microseconds>()([&counter, &worker](){
+		perf::profile<std::chrono::nanoseconds>()([&counter, &worker](){
 			int value = 0;
 			
 			for (int i = 0; i < MAX_ITERATIONS; ++i) {

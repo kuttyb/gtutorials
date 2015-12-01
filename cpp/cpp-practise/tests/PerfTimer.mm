@@ -12,6 +12,7 @@
 #include <functional>
 #include <string>
 #include "benchmark.h"
+#include "atomics.h"
 
 @interface PerfTimer : XCTestCase
 
@@ -22,19 +23,44 @@
 - (void)setUp
 {
     [super setUp];
+	cout << "================" << endl;
 }
 
 - (void)tearDown
 {
+	cout << "================" << endl;
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testWithCAS
 {
-    int x = 10;
-	perf::profile<std::chrono::microseconds>()([x](){
-		cout << "first line of text" << x << " that is the value" << endl;
+	int value = 0;
+	
+	perf::profile<std::chrono::microseconds>()([&value](){
+		int x = 0;
+		for (int i = 0 ; i < 1000; ++i) {
+			int y = x;
+			CAS(&x, y, y + 1);
+		}
+		value = x;
 	}, 5);
+
+	cout << "value is " << value << endl;
+}
+
+- (void)testWoCAS
+{
+	int value = 0;
+	
+	perf::profile<std::chrono::microseconds>()([&value](){
+		int x = 0;
+		for (int i = 0 ; i < 1000; ++i) {
+			x = x + 1;
+		}
+		value = x;
+	}, 5);
+	
+	cout << "value is " << value << endl;
 }
 
 @end
