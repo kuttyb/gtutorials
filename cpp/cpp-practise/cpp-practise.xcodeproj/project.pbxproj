@@ -19,6 +19,7 @@
 		B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */; };
 		B7A4A8201A34E9920057E07F /* benchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = B7A4A81F1A34E9920057E07F /* benchmark.h */; };
 		B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7A911251A78CDD50028A68E /* TestCollections.mm */; };
+		B7B1C71B1C0D53D400DDCF11 /* TestPerf.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B1C71A1C0D53D400DDCF11 /* TestPerf.mm */; };
 		B7BA48C41BFC67CD0050679D /* nested.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7BA48C21BFC67CD0050679D /* nested.cpp */; };
 		B7BA48C51BFC67CD0050679D /* nested.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B7BA48C31BFC67CD0050679D /* nested.hpp */; };
 		B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */; };
@@ -72,6 +73,7 @@
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
 		B7A4A81F1A34E9920057E07F /* benchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = benchmark.h; sourceTree = SOURCE_ROOT; };
 		B7A911251A78CDD50028A68E /* TestCollections.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestCollections.mm; sourceTree = "<group>"; };
+		B7B1C71A1C0D53D400DDCF11 /* TestPerf.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPerf.mm; sourceTree = "<group>"; };
 		B7BA48C21BFC67CD0050679D /* nested.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nested.cpp; sourceTree = SOURCE_ROOT; };
 		B7BA48C31BFC67CD0050679D /* nested.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = nested.hpp; sourceTree = SOURCE_ROOT; };
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7B1C71A1C0D53D400DDCF11 /* TestPerf.mm */,
 				B75567B51A7EC63100614BBA /* TestRValues.mm */,
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
@@ -362,6 +365,7 @@
 				B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
 				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
+				B7B1C71B1C0D53D400DDCF11 /* TestPerf.mm in Sources */,
 				B7A4A81E1A34E93E0057E07F /* PerfVirtualCalls.mm in Sources */,
 				B71E74881A1F32E500C13FC2 /* tests.mm in Sources */,
 				B7895A591BF3F678007084E1 /* TestInheritance2.mm in Sources */,
@@ -585,6 +589,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				LLVM_LTO = YES;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
@@ -599,12 +604,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				"GCC_OPTIMIZATION_LEVEL[arch=*]" = 3;
 				INFOPLIST_FILE = tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				LLVM_LTO = YES;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = /usr/local/include;
 			};
