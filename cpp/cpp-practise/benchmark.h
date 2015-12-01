@@ -37,9 +37,7 @@ namespace perf {
             auto end   = std::chrono::steady_clock::now();
             
             /* Tell us about it :-) */
-            cout << " ============ " << endl;
             cout << " Benchmark: Execution time " << std::chrono::duration_cast<RESOLUTION>(end - start).count() << " " << time_unit<RESOLUTION>() << endl;
-            cout << " ============ " << endl;
         }
     };
 } // namespace
