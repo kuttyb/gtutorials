@@ -95,4 +95,24 @@
 	cout << "value is " << value << endl;
 }
 
+- (void)testNoCASWithIOFence
+{
+	int value = 0;
+	
+	perf::profile<std::chrono::microseconds>()([&value](){
+		int x = 0;
+		for (int i = 0 ; i < 1000; ++i) {
+			x = x + 1;
+			/* This should be a noop but isn't since we didn't make
+			 * any strongly ordered writes here nor access 
+			 * the Write Combined buffer or use non temporal stores.
+			 */
+			barrier_io();
+		}
+		value = x;
+	}, 5);
+	
+	cout << "value is " << value << endl;
+}
+
 @end

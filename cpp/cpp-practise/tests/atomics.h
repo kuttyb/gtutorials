@@ -13,6 +13,7 @@
 #define   barrier_compiler()   asm volatile ("" : : : "memory")
 #define   barrier_full()       asm volatile ("lock;addl $0,(%%rsp)" : : : "memory")
 #define   barrier_full_exp()   asm volatile ("mfence" : : : "memory")
+#define   barrier_io()		   asm volatile ("sfence" : : : "memory")
 #define   barrier_acquire()    barrier_compiler()
 #define   barrier_release()    barrier_full()
 #define   barrier_read()       barrier_compiler()
