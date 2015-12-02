@@ -61,11 +61,11 @@ public:
 #define  MAX_ITERATIONS		(100)
 #define  OUTER_ITERATIONS	(10)
 
-@interface TestPerf : XCTestCase
+@interface TestPerfOOvsTemplates : XCTestCase
 
 @end
 
-@implementation TestPerf
+@implementation TestPerfOOvsTemplates
 
 - (void)setUp {
 	[super setUp];
