@@ -5,7 +5,7 @@
 using std::cout;
 using std::endl;
 
-#define LOOPITERATIONS (1000)
+#define LOOPITERATIONS (10000000)
 
 #pragma mark - Using Functors
 template <typename Policy>
@@ -17,7 +17,7 @@ int processF() {
 	return sum;
 }
 
-#pragma mark - Using Lambdas (as std::function>
+#pragma mark - Using Lambdas (as std::function>)
 int processL(std::function<int(int, int)> func) {
 	int sum = 0;
 	for (int i = 0; i < LOOPITERATIONS; ++i) {
@@ -48,7 +48,7 @@ int main(int argc, const char * argv[]) {
 		};
 		
 		int value = 0;
-		perf::profile<std::chrono::microseconds>()([&value]() {
+		perf::profile<std::chrono::nanoseconds>()([&value]() {
 			
 			value = processF<Policy>();
 			
@@ -59,7 +59,7 @@ int main(int argc, const char * argv[]) {
 	/* Test Lambda (no inlining with std::function) */
 	{
 		int value = 0;
-		perf::profile<std::chrono::microseconds>()([&value]() {
+		perf::profile<std::chrono::nanoseconds>()([&value]() {
 			
 			value = processL([](int arg1, int arg2){return arg1 + arg2;});
 			
@@ -70,7 +70,7 @@ int main(int argc, const char * argv[]) {
 	/* Test Lambda (as a template paramter - with inlining) */
 	{
 		int value = 0;
-		perf::profile<std::chrono::microseconds>()([&value]() {
+		perf::profile<std::chrono::nanoseconds>()([&value]() {
 
 			value = process([](int arg1, int arg2) {return arg1 + arg2;});
 			

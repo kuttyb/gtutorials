@@ -71,7 +71,7 @@ struct Deque<T, true> {
 };
 
 template <typename T, bool isLIFO, typename Policy>
-bool traverse(Node<T> * root, T * key) {
+bool traverse(Node<T> * root, T * key, Policy policy) {
 	assert(root);
 	
 	Deque<T, isLIFO> path;
@@ -81,7 +81,7 @@ bool traverse(Node<T> * root, T * key) {
 		Node<T> * temp = path.get();
 		
 		/* TODO: Hmm can we skip this branch in the traversal case */
-		if (Policy()(temp->value, key) == true) {
+		if (policy(temp->value, key) == true) {
 			return true;
 		}
 		
@@ -95,23 +95,17 @@ bool traverse(Node<T> * root, T * key) {
 
 template <typename T, bool isLIFO>
 bool search(Node<T> * root, T key) {
-	struct Policy {
-		bool operator()(const T&input, const T* key) {
-			return input == *key;
-		}
-	};
-	return traverse<T, isLIFO, Policy>(root, &key);
+	return traverse<T, isLIFO>(root, &key,[](const T&input, const T *key){
+		return input == *key;
+	});
 }
 
 template <typename T, bool isLIFO>
 void printNodes(Node<T> * root) {
-	struct Policy {
-		bool operator()(const T& input, const T* key) {
-			cout << "Node: " << input << endl;
-			return false;
-		}
-	};
-	traverse<T, isLIFO, Policy>(root, nullptr);
+	traverse<T, isLIFO>(root, nullptr, [](const T& input, const T * key){
+		cout << "Node: " << input << endl;
+		return false;
+	});
 }
 
 #endif /* graph_h */
