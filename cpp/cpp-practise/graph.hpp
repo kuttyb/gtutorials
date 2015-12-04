@@ -9,10 +9,14 @@
 #ifndef graph_h
 #define graph_h
 
+#include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
 #include <assert.h>
+
+using std::cout;
+using std::endl;
 
 template <typename T>
 struct Node {
@@ -66,8 +70,8 @@ struct Deque<T, true> {
 	}
 };
 
-template <typename T, bool isLIFO>
-bool search(Node<T> * root, T key) {
+template <typename T, bool isLIFO, typename Policy>
+bool traverse(Node<T> * root, T * key) {
 	assert(root);
 	
 	Deque<T, isLIFO> path;
@@ -76,15 +80,42 @@ bool search(Node<T> * root, T key) {
 	while (!path.empty()) {
 		Node<T> * temp = path.get();
 		
-		if (temp->value == key) return true;
+		/* TODO: Hmm can we skip this branch in the traversal case */
+		if (Policy()(temp->value, key) == true) {
+			return true;
+		}
 		
 		/* Push his children */
 		for (Node<T> * a : temp->list) {
 			path.add(a);
 		}
 	}
-	
 	return false;
+}
+
+template <typename T, bool isLIFO>
+bool search(Node<T> * root, T key) {
+	struct Policy {
+		bool operator()(const T&input, const T* key) {
+			if (input == *key) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	};
+	return traverse<T, isLIFO, Policy>(root, &key);
+}
+
+template <typename T, bool isLIFO>
+void printNodes(Node<T> * root) {
+	struct Policy {
+		bool operator()(const T& input, const T* key) {
+			cout << "Node: " << input << endl;
+			return false;
+		}
+	};
+	traverse<T, isLIFO, Policy>(root, nullptr);
 }
 
 #endif /* graph_h */
