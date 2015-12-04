@@ -22,6 +22,7 @@
 		B7B1C71B1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B1C71A1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm */; };
 		B7BA48C41BFC67CD0050679D /* nested.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7BA48C21BFC67CD0050679D /* nested.cpp */; };
 		B7BA48C51BFC67CD0050679D /* nested.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B7BA48C31BFC67CD0050679D /* nested.hpp */; };
+		B7D4AAB11C112DC300EC4CE8 /* testgraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D4AAB01C112DC300EC4CE8 /* testgraph.mm */; };
 		B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */; };
 		B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DF32AF1A42A93E0074362E /* TestBasic.mm */; };
 		B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */; };
@@ -77,6 +78,8 @@
 		B7B1C71A1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestPerfOOvsTemplates.mm; sourceTree = "<group>"; };
 		B7BA48C21BFC67CD0050679D /* nested.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nested.cpp; sourceTree = SOURCE_ROOT; };
 		B7BA48C31BFC67CD0050679D /* nested.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = nested.hpp; sourceTree = SOURCE_ROOT; };
+		B7D4AAAE1C112D9000EC4CE8 /* graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graph.hpp; sourceTree = SOURCE_ROOT; };
+		B7D4AAB01C112DC300EC4CE8 /* testgraph.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testgraph.mm; sourceTree = "<group>"; };
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		B71E74731A1F32AE00C13FC2 /* cpp-practise */ = {
 			isa = PBXGroup;
 			children = (
+				B7D4AAAD1C112D8700EC4CE8 /* algorithms */,
 				B7A4A81F1A34E9920057E07F /* benchmark.h */,
 				B7AD08A71C0DF0E100125EF9 /* atomics.h */,
 				B7BA48C21BFC67CD0050679D /* nested.cpp */,
@@ -160,6 +164,7 @@
 		B71E74841A1F32E500C13FC2 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7D4AAAF1C112DB300EC4CE8 /* algorithms */,
 				B7B1C71A1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm */,
 				B75567B51A7EC63100614BBA /* TestRValues.mm */,
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
@@ -184,6 +189,22 @@
 				B71E74861A1F32E500C13FC2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7D4AAAD1C112D8700EC4CE8 /* algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				B7D4AAAE1C112D9000EC4CE8 /* graph.hpp */,
+			);
+			name = algorithms;
+			sourceTree = "<group>";
+		};
+		B7D4AAAF1C112DB300EC4CE8 /* algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				B7D4AAB01C112DC300EC4CE8 /* testgraph.mm */,
+			);
+			name = algorithms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +382,7 @@
 			files = (
 				B7FFB0D61C013D7C00892122 /* TestLambda.mm in Sources */,
 				A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */,
+				B7D4AAB11C112DC300EC4CE8 /* testgraph.mm in Sources */,
 				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
 				B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
