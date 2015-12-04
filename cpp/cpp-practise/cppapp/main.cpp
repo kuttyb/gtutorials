@@ -17,7 +17,7 @@ int processF() {
 	return sum;
 }
 
-#pragma mark - Using Lambdas
+#pragma mark - Using Lambdas (as std::function>
 int processL(std::function<int(int, int)> func) {
 	int sum = 0;
 	for (int i = 0; i < LOOPITERATIONS; ++i) {
@@ -26,6 +26,7 @@ int processL(std::function<int(int, int)> func) {
 	return sum;
 }
 
+#pragma mark - Using Lambdas (as Template Parameters)
 template <typename T>
 int process(T fn) {
 	int sum = 0;
