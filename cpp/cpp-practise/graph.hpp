@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <stack>
+#include <queue>
 #include <assert.h>
 
 template <typename T>
@@ -25,23 +26,61 @@ struct Node {
 	}
 };
 
+/* FIFO */
+template <typename T, bool isLIFO>
+struct Deque {
+	std::queue<Node<T>*> data;
+	
+	void add(Node<T> * input) {
+		data.push(input);
+	}
+	
+	Node<T> * get() {
+		Node<T> * retvalue = data.front();
+		data.pop();
+		return retvalue;
+	}
+	
+	bool empty() {
+		return data.empty();
+	}
+};
+
+/* LIFO */
 template <typename T>
-bool dfs(Node<T> * root, T key) {
-	using std::stack;
+struct Deque<T, true> {
+	std::stack<Node<T>*> data;
+	
+	void add(Node<T> * input) {
+		data.push(input);
+	}
+	
+	Node<T> * get() {
+		Node<T> * retvalue = data.top();
+		data.pop();
+		return retvalue;
+	}
+	
+	bool empty() {
+		return data.empty();
+	}
+};
+
+template <typename T, bool isLIFO>
+bool search(Node<T> * root, T key) {
 	assert(root);
 	
-	stack<Node<T>*> path;
-	path.push(root);
+	Deque<T, isLIFO> path;
+	path.add(root);
 	
 	while (!path.empty()) {
-		Node<T> * temp = path.top();
-		path.pop();
+		Node<T> * temp = path.get();
 		
 		if (temp->value == key) return true;
 		
 		/* Push his children */
 		for (Node<T> * a : temp->list) {
-			path.push(a);
+			path.add(a);
 		}
 	}
 	

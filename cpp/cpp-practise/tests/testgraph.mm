@@ -34,8 +34,17 @@ using std::endl;
 	root.addChild(&first);
 	root.addChild(&second);
 
-	XCTAssert(dfs(&root, 8) == false);
-	XCTAssert(dfs(&root, 3) == true);
+	/* DFS */
+	bool a = search<int, true>(&root, 8);
+	XCTAssert(a == false);
+	a = search<int, true>(&root, 3);
+	XCTAssert(a == true);
+	
+	/* BFS */
+	a = search<int, false>(&root, 8);
+	XCTAssert(a == false);
+	a = search<int, false>(&root, 3);
+	XCTAssert(a == true);
 }
 
 @end
