@@ -97,11 +97,7 @@ template <typename T, bool isLIFO>
 bool search(Node<T> * root, T key) {
 	struct Policy {
 		bool operator()(const T&input, const T* key) {
-			if (input == *key) {
-				return true;
-			} else {
-				return false;
-			}
+			return input == *key;
 		}
 	};
 	return traverse<T, isLIFO, Policy>(root, &key);
