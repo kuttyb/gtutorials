@@ -78,5 +78,19 @@ int main(int argc, const char * argv[]) {
 		cout << " Lambda (template) returned value is " << value << endl << endl;
 	}
 	
+	{
+		int value = 0;
+		perf::profile<std::chrono::nanoseconds>()([&value](){
+
+			int sum = 0;
+			for (int i = 0; i < LOOPITERATIONS; ++i) {
+				sum += i + i + 1;
+			}
+			
+			value = sum;
+		}, 10);
+		cout << " Inline code returned value is " << value << endl << endl;
+	}
+	
     return 0;
 }
