@@ -24,18 +24,20 @@ public:
 		this->two = two;
 	}
 	
+//	A(const A& input) = delete;
 	A(const A& input) {
 		one = input.one;
 		two = input.two;
 	}
 	
+//	A& operator=(const A& input) = delete;
 	A& operator=(const A& input) {
 		one = input.one;
 		two = input.two;
 		return *this;
 	}
-	};
-	
+};
+
 
 
 #pragma mark - Test
@@ -55,11 +57,14 @@ public:
 
 - (void) testCopy {
 	A a(4, 5);
-	A b(a);  // Copy constructor
-	A c = a; // Assignment operator
 	
-	cout << "value of b: " << b.one << " " << b.two << endl;
-	cout << "value of c: " << c.one << " " << c.two << endl;
+	A b(a);  // Copy constructor
+	XCTAssert(b.one == 4);
+	XCTAssert(b.two == 5);
+	
+	A c = a; // Assignment operator
+	XCTAssert(c.one == 4);
+	XCTAssert(c.two == 5);
 }
 
 
