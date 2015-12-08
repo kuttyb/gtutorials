@@ -26,6 +26,7 @@
 		B7D4AAB11C112DC300EC4CE8 /* testgraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D4AAB01C112DC300EC4CE8 /* testgraph.mm */; };
 		B7D70FA41BF2DEA7003AF91B /* TestInheritance.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */; };
 		B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7DF32AF1A42A93E0074362E /* TestBasic.mm */; };
+		B7EAA9131C14766E00DC90C4 /* TestMemory.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7EAA9121C14766E00DC90C4 /* TestMemory.mm */; };
 		B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */; };
 		B7FFB0D61C013D7C00892122 /* TestLambda.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7FFB0D51C013D7C00892122 /* TestLambda.mm */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		B7D4AAB01C112DC300EC4CE8 /* testgraph.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = testgraph.mm; sourceTree = "<group>"; };
 		B7D70FA31BF2DEA7003AF91B /* TestInheritance.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance.mm; sourceTree = "<group>"; };
 		B7DF32AF1A42A93E0074362E /* TestBasic.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasic.mm; sourceTree = "<group>"; };
+		B7EAA9121C14766E00DC90C4 /* TestMemory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestMemory.mm; sourceTree = "<group>"; };
 		B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestVariants.mm; sourceTree = "<group>"; };
 		B7FFB0D51C013D7C00892122 /* TestLambda.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLambda.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				B77CAB6B1C1427F5000CD7BA /* TestOperators.mm */,
+				B7EAA9121C14766E00DC90C4 /* TestMemory.mm */,
 				B7D4AAAF1C112DB300EC4CE8 /* algorithms */,
 				B7B1C71A1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm */,
 				B75567B51A7EC63100614BBA /* TestRValues.mm */,
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7EAA9131C14766E00DC90C4 /* TestMemory.mm in Sources */,
 				B7FFB0D61C013D7C00892122 /* TestLambda.mm in Sources */,
 				A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */,
 				B7D4AAB11C112DC300EC4CE8 /* testgraph.mm in Sources */,
