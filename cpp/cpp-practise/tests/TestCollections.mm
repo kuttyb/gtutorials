@@ -112,6 +112,11 @@ struct APtr {
 	cout << "size is " << m.size() << endl;
 }
 
+/* TODO: Multimap, Iterators */
+- (void) testMultiMap {
+	
+}
+
 - (void) testEraseSet {
 	A a(3, 5);
 	A b(200, 300);
