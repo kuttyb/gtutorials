@@ -45,10 +45,14 @@ public:
 
 @end
 
-@implementation TestOperators
+@implementation TestOperators {
+	A a;
+}
 
 - (void)setUp {
 	cout << "======================" << endl;
+	a.one = 4;
+	a.two = 5;
 	[super setUp];
 }
 
@@ -58,8 +62,6 @@ public:
 }
 
 - (void) testCopy {
-	A a(4, 5);
-	
 	{
 		A b(a);  // Copy constructor
 		XCTAssert(b.one == 5);
