@@ -10,10 +10,12 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include <set>
+#include <map>
 
 using std::cout;
 using std::endl;
 using std::set;
+using std::map;
 
 struct A  {
 	int x;
@@ -46,10 +48,12 @@ struct APtr {
 @implementation TestCollections
 
 - (void)setUp {
+	cout << "======================" << endl;
     [super setUp];
 }
 
 - (void)tearDown {
+	cout << "======================" << endl;
     [super tearDown];
 }
 
@@ -79,6 +83,33 @@ struct APtr {
 	for (auto itr = x.rbegin(); itr != x.rend(); ++itr) {
 		cout << (*itr)->x << " " << (*itr)->y << endl;
 	}
+}
+
+- (void) testMap {
+	A a(3, 5);
+	A b(200, 300);
+	A c(500, 600);
+	
+	/* Insert */
+	map<A*, int> m;
+	m[&a] = 2;
+	m[&b] = 3;
+	m[&c] = 4;
+	
+	/* Iterate (note how a std::pair is returned by the iterator */
+	for (auto itr = m.begin(); itr != m.end(); ++itr) {
+		cout << "key " << std::get<0>(*itr)->x << " " << std::get<0>(*itr)->y << " value: " << std::get<1>(*itr) << endl;
+	}
+	
+	/* Erase */
+	m.erase(&a);
+	cout << " Post Erase " << endl;
+	for (auto itr = m.begin(); itr != m.end(); ++itr) {
+		cout << "key " << std::get<0>(*itr)->x << " " << std::get<0>(*itr)->y << " value: " << std::get<1>(*itr) << endl;
+	}
+	
+	/* size */
+	cout << "size is " << m.size() << endl;
 }
 
 - (void) testEraseSet {
