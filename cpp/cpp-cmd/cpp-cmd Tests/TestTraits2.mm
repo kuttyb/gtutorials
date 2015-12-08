@@ -32,20 +32,21 @@ struct C {
 struct D {
 };
 
-template <typename t> struct IsTraitThat { static const int type = 2; };
-template <> struct IsTraitThat<A> { static const int type = 0; };
-template <> struct IsTraitThat<B> { static const int type = 0; };
-template <> struct IsTraitThat<C> { static const int type = 1; };
+typedef enum { ThatImplBig = 0, ThatImplBigger = 1, ThatImplOther = 2 } ThatImpl;
+template <typename t> struct IsTraitThat { static const ThatImpl type = ThatImplOther; };
+template <> struct IsTraitThat<A> { static const ThatImpl type = ThatImplBig; };
+template <> struct IsTraitThat<B> { static const ThatImpl type = ThatImplBig; };
+template <> struct IsTraitThat<C> { static const ThatImpl type = ThatImplBig; };
 
 template <int TraitThat> void method(void) {
 	cout << "method basic" << endl;
 }
 
-template <> void method<0>(void) {
+template <> void method<ThatImplBig>(void) {
 	cout << "Type 0 " << endl;
 }
 
-template <> void method<1>(void) {
+template <> void method<ThatImplBigger>(void) {
 	cout << "Type 1" << endl;
 }
 
