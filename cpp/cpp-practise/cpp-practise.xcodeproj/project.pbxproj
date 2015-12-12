@@ -11,6 +11,7 @@
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
 		A8B301501BEF4A53009855C7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B3014F1BEF4A53009855C7 /* main.cpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
+		A8C4464E1C1C7F51004F293E /* TestIterators.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C4464D1C1C7F51004F293E /* TestIterators.mm */; };
 		B71E74881A1F32E500C13FC2 /* tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = B71E74871A1F32E500C13FC2 /* tests.mm */; };
 		B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = B724D1711A337B7900F591E2 /* PerfTimer.mm */; };
 		B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */ = {isa = PBXBuildFile; fileRef = B75567B51A7EC63100614BBA /* TestRValues.mm */; };
@@ -65,6 +66,7 @@
 		A8B3014F1BEF4A53009855C7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8B301691BEF513B009855C7 /* libcppdylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcppdylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConstExpr.mm; sourceTree = "<group>"; };
+		A8C4464D1C1C7F51004F293E /* TestIterators.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestIterators.mm; sourceTree = "<group>"; };
 		B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libcpp-practise.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74831A1F32E500C13FC2 /* tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E74861A1F32E500C13FC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				B75567B51A7EC63100614BBA /* TestRValues.mm */,
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
+				A8C4464D1C1C7F51004F293E /* TestIterators.mm */,
 				B7FFB0D51C013D7C00892122 /* TestLambda.mm */,
 				B7895A581BF3F678007084E1 /* TestInheritance2.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
@@ -390,6 +393,7 @@
 				B7A911261A78CDD50028A68E /* TestCollections.mm in Sources */,
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */,
+				A8C4464E1C1C7F51004F293E /* TestIterators.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
 				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
 				B7B1C71B1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm in Sources */,
