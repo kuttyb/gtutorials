@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #include <iostream>
 #include <tuple>
+#include <array>
+#include <set>
 
 using std::cout;
 using std::endl;
@@ -41,7 +43,46 @@ using std::endl;
     }
     
     cout << p.first << " " << p.second << endl;
+    cout << std::get<0>(p) << " " << std::get<1>(p) << endl;
     cout << std::get<0>(pp) << " " << std::get<1>(pp) << endl;
+}
+
+- (void) testArrays {
+    std::array<int, 5> a;
+    a[2] = 3;
+    a[6] = 3;
+    for (const auto & v : a) {
+        cout << v << endl;
+    }
+}
+
+- (void) testMultiSet {
+    std::multiset<int> a;
+    
+    /* Insert */
+    a.insert(3);
+    a.insert(3);
+    a.insert(3);
+    a.insert(5);
+    
+    XCTAssert(a.count(3) == 3);
+    XCTAssert(a.count(5) == 1);
+    XCTAssert(a.size() == 4);
+    
+    for (const auto &v : a) {
+        cout << v << endl;
+    }
+    
+    /* Find */
+    a.erase(a.find(5));
+    
+    XCTAssert(a.size() == 3);
+    
+    cout << "====" << endl;
+    
+    for (const auto & v: a) {
+        cout << v << endl;
+    }
 }
 
 @end
