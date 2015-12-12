@@ -11,6 +11,7 @@
 #include <tuple>
 #include <array>
 #include <set>
+#include <map>
 
 using std::cout;
 using std::endl;
@@ -82,6 +83,38 @@ using std::endl;
     
     for (const auto & v: a) {
         cout << v << endl;
+    }
+
+    cout << "size of multiset " << sizeof(a) << endl;
+}
+
+- (void) testMultiMap {
+    std::multimap<int, float> a;
+    
+    /* Insert */
+    a.insert(std::pair<int, float>{2, 3.5});
+    a.insert(std::pair<int, float>(2, 4.5));
+    /* This is easier and there is template type inference */
+    a.insert(std::make_pair(3, 5.2));
+    a.insert(std::make_pair(3, 5.5));
+    
+    
+    /* Iterate */
+    for (const auto &v : a) {
+        cout << v.first << endl;
+        cout << v.second << endl;
+    }
+    
+    /* Iterate manually */
+    for (auto _begin = a.begin(), _end = a.end(); _begin != _end; ++_begin) {
+        cout << _begin->first << " " << _begin->second << endl;
+    }
+    
+    /* Group By */
+    cout << "Doing a group by " << endl;
+    auto x = a.equal_range(3);
+    for (auto itr = x.first; itr != x.second; ++itr) {
+        cout << itr->first << " " << itr->second << endl;
     }
 }
 
