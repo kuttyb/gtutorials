@@ -116,6 +116,8 @@ using std::endl;
     for (auto itr = x.first; itr != x.second; ++itr) {
         cout << itr->first << " " << itr->second << endl;
     }
+    
+    cout << sizeof(a) << endl;
 }
 
 @end
