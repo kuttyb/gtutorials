@@ -49,7 +49,7 @@ using std::endl;
 }
 
 - (void) testArrays {
-    std::array<int, 5> a;
+    std::array<int, 5> a = {0, 1, 2, 3, 4};
     a[2] = 3;
     a[6] = 3;
     for (const auto & v : a) {
@@ -95,17 +95,21 @@ using std::endl;
     a.insert(std::pair<int, float>{2, 3.5});
     a.insert(std::pair<int, float>(2, 4.5));
     /* This is easier and there is template type inference */
-    a.insert(std::make_pair(3, 5.2));
+    a.insert(std::make_pair(4, 2.2));
     a.insert(std::make_pair(3, 5.5));
+    a.insert(std::make_pair(4, 3.1));
+    a.insert(std::make_pair(3, 5.2));
     
     
     /* Iterate */
+    cout << "foreach iteration" << endl;
     for (const auto &v : a) {
         cout << v.first << endl;
         cout << v.second << endl;
     }
     
     /* Iterate manually */
+    cout << "Manual iteration" << endl;
     for (auto _begin = a.begin(), _end = a.end(); _begin != _end; ++_begin) {
         cout << _begin->first << " " << _begin->second << endl;
     }
@@ -117,7 +121,22 @@ using std::endl;
         cout << itr->first << " " << itr->second << endl;
     }
     
-    cout << sizeof(a) << endl;
+    /* Find */
+    auto b = a.find(2);
+    
+    /* Erase */
+    cout << "size before " << a.size() << endl;
+
+    a.erase(b); /* This will erase the first occurence of 2, not all 2s */
+    a.erase(2); /* This will erase all occurrences of 2 */
+    
+    cout << "size after " << a.size() << endl;
+    /* Ensure erase worked */
+    for (auto _begin = a.begin(), _end = a.end(); _begin != _end; ++_begin) {
+        cout << _begin->first << " " << _begin->second << endl;
+    }
+    
+    cout << "sizeof multimap is " << sizeof(a) << endl;
 }
 
 @end
