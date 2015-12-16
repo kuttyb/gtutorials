@@ -150,6 +150,20 @@ struct APtr {
             cout << itr->first->x << " " << itr->second << endl;
         }
     }
+    
+    /* Group by all keys */
+    {
+        for (auto itr = map.begin(); itr != map.end(); ) {
+            A* key = itr->first;
+            auto m = map.equal_range(key);
+            cout << "Using Key " << key->x << endl;
+            auto inner_itr = m.first;
+            for (; inner_itr != m.second; ++inner_itr) {
+                cout << " " << inner_itr->second << endl;
+            }
+            itr = inner_itr;
+        }
+    }
 
     /* Erase */
     {
