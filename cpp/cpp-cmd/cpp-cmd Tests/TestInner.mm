@@ -38,8 +38,8 @@ public:
 public:
     // Factories to hide the fact that one had to provide Vector & to the Iterator classes
     // for them to get access to private this* state of Vector
-    IteratorOne  iteratorOne() { return IteratorOne(*this); }
-    IteratorTwo  iteratorTwo() { return IteratorTwo(*this); }
+    IteratorOne  begin() { return IteratorOne(*this); }
+    IteratorTwo  rbegin() { return IteratorTwo(*this); }
 };
 
 #pragma mark Objective-C
@@ -63,8 +63,8 @@ public:
 {
     Vector<int> b(9);
     
-    b.iteratorOne().print();
-    b.iteratorTwo().print();
+    b.begin().print();
+    b.rbegin().print();
 }
 
 @end
