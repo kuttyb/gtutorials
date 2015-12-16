@@ -114,11 +114,28 @@ using std::endl;
         cout << _begin->first << " " << _begin->second << endl;
     }
     
-    /* Group By */
+    /* Group By a single key */
     cout << "Doing a group by " << endl;
     auto x = a.equal_range(3);
     for (auto itr = x.first; itr != x.second; ++itr) {
         cout << itr->first << " " << itr->second << endl;
+    }
+    
+    /* Group By the entire collection */
+    {
+        cout << "===============" << endl;
+        for (auto itr = a.begin(); itr != a.end(); ) {
+            int key = itr->first;
+            cout << "using key : " << key << endl;
+            
+            auto m = a.equal_range(key);
+            auto inner_itr = m.first;
+            for (; inner_itr != m.second; ++inner_itr) {
+                cout << "\t " << inner_itr->second << endl;
+            }
+            itr = inner_itr;
+        }
+        cout << "===============" << endl;
     }
     
     /* Find */
@@ -129,6 +146,10 @@ using std::endl;
 
     a.erase(b); /* This will erase the first occurence of 2, not all 2s */
     a.erase(2); /* This will erase all occurrences of 2 */
+    
+    /* And this is of course totally range based */
+    auto y = a.equal_range(4);
+    a.erase(y.first, y.second);
     
     cout << "size after " << a.size() << endl;
     /* Ensure erase worked */
