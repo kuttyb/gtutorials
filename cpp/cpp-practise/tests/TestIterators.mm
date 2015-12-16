@@ -91,6 +91,7 @@ using std::endl;
 - (void) testMultiMap {
     std::multimap<int, float> a;
     
+    /* NOTE: For multimap you cannot use the a[key] = value syntax, have to use insert. Prefer make_pair for insert since it has type inference */
     /* Insert */
     a.insert(std::pair<int, float>{2, 3.5});
     a.insert(std::pair<int, float>(2, 4.5));
