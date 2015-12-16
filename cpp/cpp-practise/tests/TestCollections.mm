@@ -170,6 +170,7 @@ struct APtr {
         map.erase(map.find(&b));
         XCTAssert(map.size() == 4);
     }
+    cout << "total size of multimap is " << sizeof(map) << endl;
 }
 
 - (void) testEraseSet {
