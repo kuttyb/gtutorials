@@ -11,6 +11,7 @@
 #include <iostream>
 #include <set>
 #include <map>
+#include <tuple>
 
 using std::cout;
 using std::endl;
@@ -25,7 +26,7 @@ struct A  {
 	/* NOTE: Its always (this operator input) */
 	bool operator<(const A & input) const {
         cout << "using the operator" << endl;
-		return (x + y) < (input.x + input.y);
+        return (input.x + input.y) < (x + y);
 	}
 	
     /* Copy ctor and assignment operator */
@@ -36,7 +37,7 @@ struct A  {
 /* For Collections with Pointers, you need to explicitly provide the operator */
 struct APtr {
     bool operator()(const A* lhs, const A* rhs) const {
-        cout << "special operator" << endl;
+        //cout << "special operator" << endl;
         return (lhs->x + lhs->y) < (rhs->x + rhs->y);
     }
 };
@@ -112,9 +113,49 @@ struct APtr {
 	cout << "size is " << m.size() << endl;
 }
 
-/* TODO: Multimap, Iterators */
 - (void) testMultiMap {
-	
+    A a(3, 5);
+    A b(200, 300);
+    A c(500, 600);
+
+    /* Insert */
+    std::multimap<A*, int, APtr> map;
+    map.insert(std::make_pair(&a, 2));
+    
+    map.insert(std::make_pair(&b, 3));
+    map.insert(std::make_pair(&b, 8));
+    map.insert(std::make_pair(&b, 9));
+    
+    map.insert(std::make_pair(&c, 4));
+    XCTAssert(map.size() == 5);
+    
+    /* Find */
+    {
+        auto x = map.find(&a);
+        XCTAssert(x->second == 2);
+        XCTAssert(map.size() == 5);
+    }
+    
+    /* Iterate */
+    cout << "foreach iteration" << endl;
+    for (const auto &v : map) {
+        cout << v.first->x << " " << v.second << endl;
+    }
+    
+    /* Group by individual key */
+    {
+        cout << "Group By" << endl;
+        auto x = map.equal_range(&b);
+        for (auto itr = x.first; itr != x.second; ++itr) {
+            cout << itr->first->x << " " << itr->second << endl;
+        }
+    }
+
+    /* Erase */
+    {
+        map.erase(map.find(&b));
+        XCTAssert(map.size() == 4);
+    }
 }
 
 - (void) testEraseSet {
