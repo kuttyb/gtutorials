@@ -1,0 +1,6 @@
+https://gcc.gnu.org/wiki/Visibility
+
+Essentially use -fvisibility=hidden with your DSO and explicitly mark the public classes thus in their declaration
+class __attribute__ ((visibility ("default"))) Name {
+  // Declaration
+};
