@@ -1,0 +1,9 @@
+http://stas-blogspot.blogspot.com/2011/07/most-complete-list-of-xx-options-for.html#StressLdcRewrite
+
+UseBiasedLocking			Enable biased locking in JVM							                                        true	bool
+BiasedLockingStartupDelay		Number of milliseconds to wait before enabling biased locking								4000	intx					
+BiasedLockingBulkRebiasThreshold	Threshold of number of revocations per type to try to rebias all objects in the heap of that type		        20	intx
+BiasedLockingBulkRevokeThreshold	Threshold of number of revocations per type to permanently revoke biases of all objects in the heap of that type	40	intx
+BiasedLockingDecayTime			Decay time (in milliseconds) to re-enable bulk rebiasing of a type after previous bulk rebias	       	    		25000	intx
+
+Modify StartupDelay in Microbenchmark tests to have Lock Biasing kick in immmediately
