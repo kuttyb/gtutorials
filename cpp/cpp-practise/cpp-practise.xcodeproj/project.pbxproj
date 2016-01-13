@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6ABA3DC44F1EDF5AEB58AF33 /* Policy.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABA31567BDE059C6F950660 /* Policy.mm */; };
 		A8571A221A1FA70100F2D4C7 /* libcpp-practise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B71E74711A1F32AE00C13FC2 /* libcpp-practise.a */; };
+		A8AC212E1C464A52006E2D38 /* TestLinkedList.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8AC212D1C464A52006E2D38 /* TestLinkedList.mm */; };
 		A8B301501BEF4A53009855C7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A8B3014F1BEF4A53009855C7 /* main.cpp */; };
 		A8C2B41F1A7DD28100E22BBF /* TestConstExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */; };
 		A8C4464E1C1C7F51004F293E /* TestIterators.mm in Sources */ = {isa = PBXBuildFile; fileRef = A8C4464D1C1C7F51004F293E /* TestIterators.mm */; };
@@ -62,6 +63,7 @@
 
 /* Begin PBXFileReference section */
 		6ABA31567BDE059C6F950660 /* Policy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Policy.mm; sourceTree = "<group>"; };
+		A8AC212D1C464A52006E2D38 /* TestLinkedList.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestLinkedList.mm; sourceTree = "<group>"; };
 		A8B3014D1BEF4A53009855C7 /* cppapp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppapp; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8B3014F1BEF4A53009855C7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A8B301691BEF513B009855C7 /* libcppdylib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libcppdylib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 				A8C2B41E1A7DD28100E22BBF /* TestConstExpr.mm */,
 				B7A911251A78CDD50028A68E /* TestCollections.mm */,
 				A8C4464D1C1C7F51004F293E /* TestIterators.mm */,
+				A8AC212D1C464A52006E2D38 /* TestLinkedList.mm */,
 				B7FFB0D51C013D7C00892122 /* TestLambda.mm */,
 				B7895A581BF3F678007084E1 /* TestInheritance2.mm */,
 				B7EEA3BD1A78A7E90047C0D7 /* TestVariants.mm */,
@@ -394,6 +397,7 @@
 				B7DF32B01A42A93E0074362E /* TestBasic.mm in Sources */,
 				B75567B61A7EC63100614BBA /* TestRValues.mm in Sources */,
 				A8C4464E1C1C7F51004F293E /* TestIterators.mm in Sources */,
+				A8AC212E1C464A52006E2D38 /* TestLinkedList.mm in Sources */,
 				B7EEA3BE1A78A7E90047C0D7 /* TestVariants.mm in Sources */,
 				B724D1721A337B7900F591E2 /* PerfTimer.mm in Sources */,
 				B7B1C71B1C0D53D400DDCF11 /* TestPerfOOvsTemplates.mm in Sources */,
