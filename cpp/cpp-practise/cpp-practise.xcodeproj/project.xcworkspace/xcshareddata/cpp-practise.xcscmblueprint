@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "BB05AA978F069FC4D8A0FCC4478DCF729080969D" : 0,
+    "DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "F3B661EA-7489-439A-ACE6-B5B17C2BA071",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "BB05AA978F069FC4D8A0FCC4478DCF729080969D" : "..\/..\/..\/..\/Users\/kutty_banerjee\/daji\/code\/vm2",
+    "DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF" : "gtut\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "cpp-practise",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "cpp\/cpp-practise\/cpp-practise.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:kuttyb\/vm2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "BB05AA978F069FC4D8A0FCC4478DCF729080969D"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "bitbucket.org:kuttyb\/gtutorials.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DA8748B4CC415A89338F1D5AC6A0439A2C0A2FBF"
+    }
+  ]
+}

@@ -75,6 +75,7 @@
 		B71E74871A1F32E500C13FC2 /* tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = tests.mm; sourceTree = "<group>"; };
 		B724D1711A337B7900F591E2 /* PerfTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfTimer.mm; sourceTree = "<group>"; };
 		B75567B51A7EC63100614BBA /* TestRValues.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestRValues.mm; sourceTree = "<group>"; };
+		B7766D1B1C47194A00EF72C7 /* linkedlist.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = linkedlist.hpp; sourceTree = SOURCE_ROOT; };
 		B77CAB6B1C1427F5000CD7BA /* TestOperators.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestOperators.mm; sourceTree = "<group>"; };
 		B7895A581BF3F678007084E1 /* TestInheritance2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInheritance2.mm; sourceTree = "<group>"; };
 		B7A4A81D1A34E93E0057E07F /* PerfVirtualCalls.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PerfVirtualCalls.mm; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				B7D4AAAD1C112D8700EC4CE8 /* algorithms */,
 				B7A4A81F1A34E9920057E07F /* benchmark.h */,
 				B7AD08A71C0DF0E100125EF9 /* atomics.h */,
+				B7766D1B1C47194A00EF72C7 /* linkedlist.hpp */,
 				B7BA48C21BFC67CD0050679D /* nested.cpp */,
 				B7BA48C31BFC67CD0050679D /* nested.hpp */,
 			);
