@@ -21,9 +21,15 @@ template <typename T, int Next>
 struct List {
 	T * head;
 	T * tail;
+#if ASSERT
 	uint32_t elements;
+#endif
 	
-	List() : head(nullptr), tail(nullptr), elements(0) {}
+	List() : head(nullptr), tail(nullptr)
+#if ASSERT
+, elements(0)
+#endif
+	{}
 	
 	void insert(T * data) {
 		if (!head) {
@@ -33,29 +39,40 @@ struct List {
 			*getNext<T, Next>(head) = data;
 			head = data;
 		}
+#if ASSERT
 		++elements;
+#endif
 	}
 	
 	T * remove() {
 		T * temp = tail;
 		if (temp) {
 			tail = *getNext<T, Next>(temp);
+#if ASSERT
 			elements--;
+#endif
 			return temp;
 		} else {
 			return nullptr;
 		}
 	}
 	
+#if ASSERT
 	uint32_t size() {
 		return elements;
 	}
+#endif
 	
 	void traverse() {
 		T * itr = tail;
 		while (itr) {
 			std::cout << hashCode<T>(itr) << std::endl;
-			itr = *getNext<T, Next>(itr);
+			T** temp = getNext<T, Next>(itr);
+			if (temp) {
+				itr = *temp;
+			} else {
+				itr = nullptr;
+			}
 		}
 	}
 };
