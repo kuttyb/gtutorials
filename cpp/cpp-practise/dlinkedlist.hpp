@@ -71,6 +71,7 @@ struct DList {
 	
 	template <typename Policy>
 	void traverseFront(Policy p) {
+		std::cout << "============" << std::endl;
 		T * itr = tail;
 		while (itr) {
 			p(*itr);
@@ -85,6 +86,7 @@ struct DList {
 
 	template <typename Policy>
 	void traverseBack(Policy p) {
+		std::cout << "============" << std::endl;
 		T * itr = head;
 		while (itr) {
 			p(*itr);

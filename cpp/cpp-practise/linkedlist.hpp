@@ -65,9 +65,9 @@ struct List {
 	
 	template <typename Policy>
 	void traverse(Policy policy) {
+		std::cout << "============" << std::endl;
 		T * itr = tail;
 		while (itr) {
-//			std::cout << hashCode<T>(itr) << std::endl;
 			policy(*itr);
 			
 			T** temp = getNext<T, Next>(itr);

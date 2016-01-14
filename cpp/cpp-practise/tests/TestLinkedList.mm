@@ -26,7 +26,7 @@ struct A {
 	A * nexttwo;
 	A * prevtwo;
 
-	A(int value) : value(value), nextone(nullptr), nexttwo(nullptr) {}
+	A(int value) : value(value), nextone(nullptr), nexttwo(nullptr), prevone(nullptr), prevtwo(nullptr) {}
 };
 
 template <> A**		  getNext<A, 0>(A * input) { return &input->nextone; }
@@ -69,19 +69,15 @@ template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
 	list.insert(&c);
 	list.insert(&d);
 	XCTAssert(list.size() == 4);
-	cout << "=========== List ===========" << endl;
 	list.traverse(p);
 	list.remove();
 	list.remove();
-	cout << "=========== List ===========" << endl;
 	list.traverse(p);
 	list.remove();
 	list.remove();
 	XCTAssert(list.size() == 0);
-	cout << "=========== List ===========" << endl;
 	list.traverse(p);
 
-	cout << "=========== ListB ===========" << endl;
 	XCTAssert(listb.size() == 2);
 	listb.traverse(p);
 	
@@ -110,13 +106,15 @@ template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
 	list.traverseBack(p);
 	XCTAssert(list.size() == 4);
 	
-	cout << "===========" << endl;
 	list.remove();
 	list.remove();
 	list.traverseBack(p);
 
-	cout << "===========" << endl;
 	list.traverseFront(p);
+	
+	list.remove();
+//	list.remove();
+	list.traverseBack(p);
 }
 
 @end
