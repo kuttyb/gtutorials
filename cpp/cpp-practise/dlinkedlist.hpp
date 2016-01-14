@@ -69,10 +69,11 @@ struct DList {
 	}
 #endif
 	
-	void traverseFront() {
+	template <typename Policy>
+	void traverseFront(Policy p) {
 		T * itr = tail;
 		while (itr) {
-			std::cout << hashCode<T>(itr) << std::endl;
+			p(*itr);
 			T** temp = getNext<T, Next>(itr);
 			if (temp) {
 				itr = *temp;
@@ -82,10 +83,11 @@ struct DList {
 		}
 	}
 
-	void traverseBack() {
+	template <typename Policy>
+	void traverseBack(Policy p) {
 		T * itr = head;
 		while (itr) {
-			std::cout << hashCode<T>(itr) << std::endl;
+			p(*itr);
 			T** temp = getPrev<T, Next>(itr);
 			if (temp) {
 				itr = *temp;

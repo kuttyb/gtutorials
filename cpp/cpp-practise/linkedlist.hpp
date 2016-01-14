@@ -63,10 +63,13 @@ struct List {
 	}
 #endif
 	
-	void traverse() {
+	template <typename Policy>
+	void traverse(Policy policy) {
 		T * itr = tail;
 		while (itr) {
-			std::cout << hashCode<T>(itr) << std::endl;
+//			std::cout << hashCode<T>(itr) << std::endl;
+			policy(*itr);
+			
 			T** temp = getNext<T, Next>(itr);
 			if (temp) {
 				itr = *temp;

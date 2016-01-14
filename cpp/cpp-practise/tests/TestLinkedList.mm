@@ -33,7 +33,6 @@ template <> A**		  getNext<A, 0>(A * input) { return &input->nextone; }
 template <> A**		  getPrev<A, 0>(A * input) { return &input->prevone; }
 template <> A**		  getNext<A, 1>(A * input) { return &input->nexttwo; }
 template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
-template <> uint32_t  hashCode<A>(A * input)   { return input->value;	 }
 
 #pragma mark - Test
 @interface TestLinkedList : XCTestCase
@@ -58,6 +57,10 @@ template <> uint32_t  hashCode<A>(A * input)   { return input->value;	 }
 	List<A, 0> list;
 	List<A, 1> listb;
 	
+	auto p = [](A& ref){
+		cout << ref.value << endl;
+	};
+	
 	listb.insert(&a);
 	listb.insert(&d);
 
@@ -67,25 +70,25 @@ template <> uint32_t  hashCode<A>(A * input)   { return input->value;	 }
 	list.insert(&d);
 	XCTAssert(list.size() == 4);
 	cout << "=========== List ===========" << endl;
-	list.traverse();
+	list.traverse(p);
 	list.remove();
 	list.remove();
 	cout << "=========== List ===========" << endl;
-	list.traverse();
+	list.traverse(p);
 	list.remove();
 	list.remove();
 	XCTAssert(list.size() == 0);
 	cout << "=========== List ===========" << endl;
-	list.traverse();
+	list.traverse(p);
 
 	cout << "=========== ListB ===========" << endl;
 	XCTAssert(listb.size() == 2);
-	listb.traverse();
+	listb.traverse(p);
 	
 	listb.remove();
 	listb.remove();
 	XCTAssert(listb.size() == 0);
-	listb.traverse();
+	listb.traverse(p);
 }
 
 - (void)testDoubleLinkedList {
@@ -95,21 +98,25 @@ template <> uint32_t  hashCode<A>(A * input)   { return input->value;	 }
 	A d(5);
 	DList<A, 0> list;
 	
+	auto p = [](A& ref){
+		cout << ref.value << endl;
+	};
+	
 	list.insert(&a);
 	list.insert(&b);
 	list.insert(&c);
 	list.insert(&d);
 	
-	list.traverseBack();
+	list.traverseBack(p);
 	XCTAssert(list.size() == 4);
 	
 	cout << "===========" << endl;
 	list.remove();
 	list.remove();
-	list.traverseBack();
+	list.traverseBack(p);
 
 	cout << "===========" << endl;
-	list.traverseFront();
+	list.traverseFront(p);
 }
 
 @end
