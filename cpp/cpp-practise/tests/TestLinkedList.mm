@@ -93,24 +93,41 @@ template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
 	A c(4);
 	A d(5);
 	DList<A, 0> list;
+	DList<A, 1> listb;
 	
 	auto p = [](A& ref){
 		cout << ref.value << endl;
 	};
 	
+	/* Populate List 1 */
 	list.insert(&a);
 	list.insert(&b);
 	list.insert(&c);
 	list.insert(&d);
 	
+	/* Populate List 2 */
+	listb.insert(&a);
+	listb.insert(&c);
+	listb.traverseBack(p);
+	XCTAssert(listb.size() == 2);
+	
+	
 	list.traverseBack(p);
 	XCTAssert(list.size() == 4);
 	
-	list.remove();
-	list.remove();
-	list.traverseBack(p);
+	listb.remove();
+	listb.remove();
+	cout << "area of interest" << endl;
+	XCTAssert(listb.size() == 0);
+	listb.insert(&b);
+	listb.insert(&c);
+	listb.traverseBack(p);
 
 	list.traverseFront(p);
+	
+	listb.remove();
+	listb.remove();
+	XCTAssert(listb.size() == 0);
 	
 	list.remove();
 	list.remove();
