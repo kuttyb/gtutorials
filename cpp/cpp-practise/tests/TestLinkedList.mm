@@ -113,8 +113,13 @@ template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
 	list.traverseFront(p);
 	
 	list.remove();
-//	list.remove();
+	list.remove();
 	list.traverseBack(p);
+	
+	list.insert(&a);
+	list.insert(&b);
+	list.traverseBack(p);
+	list.traverseFront(p);
 }
 
 @end

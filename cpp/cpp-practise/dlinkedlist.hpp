@@ -21,14 +21,9 @@ template <typename T, int Next>
 struct DList {
 	T * head;
 	T * tail;
-#if ASSERT
 	uint32_t elements;
-#endif
 	
-	DList() : head(nullptr), tail(nullptr)
-#if ASSERT
-	, elements(0)
-#endif
+	DList() : head(nullptr), tail(nullptr), elements(0)
 	{}
 	
 	void insert(T * data) {
@@ -40,19 +35,21 @@ struct DList {
 			*getPrev<T, Next>(data) = head;
 			head = data;
 		}
-#if ASSERT
 		++elements;
-#endif
 	}
 	
 	T * remove() {
 		T * temp = tail;
 		if (temp) {
 			tail = *getNext<T, Next>(temp);
-#if ASSERT
 			elements--;
-#endif
-			*getPrev<T, Next>(tail) = nullptr;
+			
+			if (!elements) {
+				head = nullptr;
+				tail = head;
+			} else {
+				*getPrev<T, Next>(tail) = nullptr;
+			}
 			
 			*getNext<T, Next>(temp) = nullptr;
 			*getPrev<T, Next>(temp) = nullptr;
@@ -63,11 +60,9 @@ struct DList {
 		}
 	}
 	
-#if ASSERT
 	uint32_t size() {
 		return elements;
 	}
-#endif
 	
 	template <typename Policy>
 	void traverseFront(Policy p) {

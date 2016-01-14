@@ -21,14 +21,9 @@ template <typename T, int Next>
 struct List {
 	T * head;
 	T * tail;
-#if ASSERT
 	uint32_t elements;
-#endif
 	
-	List() : head(nullptr), tail(nullptr)
-#if ASSERT
-, elements(0)
-#endif
+	List() : head(nullptr), tail(nullptr), elements(0)
 	{}
 	
 	void insert(T * data) {
@@ -39,29 +34,27 @@ struct List {
 			*getNext<T, Next>(head) = data;
 			head = data;
 		}
-#if ASSERT
 		++elements;
-#endif
 	}
 	
 	T * remove() {
 		T * temp = tail;
 		if (temp) {
 			tail = *getNext<T, Next>(temp);
-#if ASSERT
 			elements--;
-#endif
+			if (!elements) {
+				head = nullptr;
+				tail = nullptr;
+			}
 			return temp;
 		} else {
 			return nullptr;
 		}
 	}
 	
-#if ASSERT
 	uint32_t size() {
 		return elements;
 	}
-#endif
 	
 	template <typename Policy>
 	void traverse(Policy policy) {
