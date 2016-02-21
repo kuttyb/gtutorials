@@ -17,7 +17,7 @@
 template <typename T, int val> T** getNext(T * input);
 template <typename T> uint32_t hashCode(T * input);
 
-template <typename T, int Next>
+template <typename T, int Next = 0>
 struct List {
 	T * head;
 	T * tail;

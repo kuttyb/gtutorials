@@ -54,7 +54,7 @@ template <> A**		  getPrev<A, 1>(A * input) { return &input->prevtwo; }
 	A b(3);
 	A c(4);
 	A d(5);
-	List<A, 0> list;
+	List<A> list;
 	List<A, 1> listb;
 	
 	auto p = [](A& ref){

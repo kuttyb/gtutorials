@@ -17,7 +17,7 @@
 #include "linkedlist.hpp"
 template <typename T, int val> T** getPrev(T * input);
 
-template <typename T, int Next>
+template <typename T, int Next = 0>
 struct DList {
 	T * head;
 	T * tail;
