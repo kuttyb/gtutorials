@@ -1,0 +1,13 @@
+[a] You have to select the Language version (1.8 versus 1.7) in a few places
+
+File --> Settings --> Build, Execution, Deployment --> Java Compiler.
+
+There you will need to change the "Target bytecode version" to 1.8 or whatever you need for the module in question.
+This is to keep Intellij's compiler happy
+
+
+[b] In addition goto Project Settings (not general settings like above)
+
+Under modules : Select language level
+
+Under Project : Select SDK and language level
