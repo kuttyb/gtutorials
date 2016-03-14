@@ -1,0 +1,9 @@
+clCreateBuffer:
+===============
+CPU Side allocations
+---------------------
+USE_HOST_PTR      : Supply CL runtime with your own memory. Generally if its below a certain size limit its all copied into a prepinned buffer pool. Else its pinned and DMA'ed to the GPU
+ALLOCATE_HOST_PTR : Let the System give you pre-pinned buffers for the DMA
+GPU Side allocations
+---------------------
+Default           : No options, this is for Device (GPU) memory allocation
