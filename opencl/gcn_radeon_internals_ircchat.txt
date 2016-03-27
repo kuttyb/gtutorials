@@ -1,0 +1,119 @@
+<freenode.net>
+13:16 You have joined the channel #radeon
+13:16 Topic is [logged] Support and development for open-source ATI driver - for fglrx use #ati - http://wiki.x.org/wiki/radeonBuildHowTo
+13:16 Topic set by airlied on Apr 29, 2012 04:27:57
+13:16 Channel #radeon created Nov 23, 2007 13:15:35
+13:17 (CodeWar) GCN 1.1 devices appear to have 16 SIMD ALUs  and 4 of these in a single Control Unit. Are each of these SIMD ALUs capable of integer and fp32 operations
+13:18 bnieuwenhuizen: yes
+13:19 (CodeWar) bnieuwenhuizen: thats for me?
+13:19 bnieuwenhuizen: so each CU has 4 SIMD "processors" with 16-wide SIMD. They are generally able to use both fp32 and integer 32 operations in each lane
+13:19 bnieuwenhuizen: CodeWar: yes
+13:19 (CodeWar) excellent 
+13:19 (CodeWar) what about bit operations ... are these ALUs capable of doing the same
+13:19 zgreg: CodeWar: check out the ISA documentation
+13:20 zgreg: http://developer.amd.com/wordpress/media/2012/12/AMD_Southern_Islands_Instruction_Set_Architecture.pdf
+13:20 bnieuwenhuizen: CodeWar: http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2013/07/AMD_GCN3_Instruction_Set_Architecture.pdf
+13:21 zgreg: CodeWar: bnieuwenhuizen's document is newer, prefer that
+13:21 zgreg: but in general, the differences between the GCN generations are small
+13:21 bnieuwenhuizen: wait, these documents are gcn 1.0 and 1.2
+13:21 ← egon2003 (~erik@5-44-200-170.customer.universal.se) has left IRC: (Quit: Konversation terminated!)
+13:21 bnieuwenhuizen: probably there is also a gcn 1.1 ;)
+13:22 zgreg: GCN 1.2 added fp16 right?
+13:22 bnieuwenhuizen: this is CIK/1.1: http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2013/07/AMD_Sea_Islands_Instruction_Set_Architecture1.pdf
+13:22 bnieuwenhuizen: yes
+13:22 (CodeWar) Thanks.. from a quick read these documents are indeed very useful
+13:23 bnieuwenhuizen: zgreg: the GCN3 document has a changelog between the architectures
+13:23 → sakal (~quassel@77.51.227.159) has joined the channel.
+13:24 bnieuwenhuizen: CodeWar: just be warned that at least the GCN3 document *does* contain wrong opcodes, so if you actually want to assemble stuff better find a second source
+13:24 ← ircuser-1 (~ircuser-1@158.183-62-69.ftth.swbr.surewest.net) has left IRC: (Quit: ircuser-1)
+13:25 zgreg: i.e. the LLVM AMDGPU backend
+13:25 bnieuwenhuizen: for instructions it has
+13:26 (CodeWar) V_LSHRREV_B32 is a vector isntruction and there are scalar bit operations as well. Nice
+13:26 ← JohnDoe_71Rus (~JohnDoe_7@unaffiliated/johndoe-71rus/x-4170227) has left IRC: (Quit: KVIrc 4.2.0 Equilibrium http://www.kvirc.net/)
+13:26 bnieuwenhuizen: there is the CLRadeonExtender (http://clrx.nativeboinc.org/) which has a pretty complete assembler & disassembler
+13:27 (CodeWar) wow .. this open source business of Radeon seems to be wonderful. Nothing better than opening it all up so devs can read and optimize on their own 
+13:28 ← wsnipex (~wuff@kodi/staff/wsnipex) has left IRC: (Read error: Connection reset by peer)
+13:29 (CodeWar) Does OpenCL allow inline assembly (this is a Windows on Hainan and Devastator devices)
+13:29 zgreg: the standard doesn't allow that
+13:29 zgreg: there may be vendor extensions, I don't know if any such thing is support by AMD's closed source implementation
+13:30 (CodeWar) you guys write the Radeon open source driver on Linux I take it?
+13:30 bnieuwenhuizen: and note  that the ISA documents actually don't specify an assembler language. Not sure if there is actually a canonical assembler language
+13:30 (CodeWar) if yes does it support OpenCL yet? I know fglx (if thats what the closed source driver is called) was being retired soon
+13:31 zgreg: yes, there is an open source opencl implementation, clover.
+13:31 zgreg: however, it is not very complete
+13:32 (CodeWar) and CodeXL works on Linux?
+13:32 (CodeWar) with the open source driver 
+13:32 zgreg: yes and no, I think. there's some plugin for data collection, which can communicate with codexl, which only runs on windows
+13:32 bnieuwenhuizen: CodeWar: fglrx mostly is not retired, just reorganized based on the open source kernel  and X drivers, and renamed
+13:33 (CodeWar) I see
+13:33 bnieuwenhuizen: so while there are lots of changes they still use their own OpenCL and OpenGL frontends
+13:34 zgreg: or maybe the codexl situation actually changed, not sure...
+13:34 → linuxuz3r (~linuxuz3r@107-210-170-22.lightspeed.sndgca.sbcglobal.net) has joined the channel.
+13:34 zgreg: but yes it works with the open drivers
+13:34 bnieuwenhuizen: at least as far as I understood,
+13:35 zgreg: what I said is true for the "perfstudio", not codexl
+13:36 → wsnipex (~wuff@kodi/staff/wsnipex) has joined the channel.
+13:37 ← gabbayo (~ogabbay@IGLD-84-228-234-50.inter.net.il) has left IRC: (Quit: Leaving.)
+13:45 ← frankyboy_ (~franky@ppp109-252-17-131.pppoe.spdop.ru) has left IRC: (Quit: Ухожу я от вас)
+13:46 (CodeWar) Is constant cache the same as texture cache
+13:47 bnieuwenhuizen: no
+13:47 bnieuwenhuizen: constant cache = SMEM, texture cache = VMEM
+13:48 bnieuwenhuizen: well, actually that is on L1 level, on L2 they should be the same
+13:49 (CodeWar) Not sure I followed the memory hierarchy. If I had a 12K constant buffer that was in the constant cache could I use vector load instructions to fetch them into vGPR ?
+13:49 bnieuwenhuizen: constant buffers are just buffers in memory
+13:50 bnieuwenhuizen: we have some hardware to preload it into L2
+13:50 (CodeWar) so what instruction loads from memory to constant cache 
+13:50 (CodeWar) and is the constant cache banked like LDS
+13:51 bnieuwenhuizen: scalar, but you can also use vector instructions and texture cache for constant buffers
+13:52 bnieuwenhuizen: I don't think the L1 caches are banked in the same way as LDS
+13:52 bnieuwenhuizen: mostly time of a load (assuming no cache misses) is linear in the number of cache lines accessed
+13:54 (CodeWar) but Fig 1-1 at this link seems to suggest the constant cache is a separate entity shared by all CUs and is different from L1/L2 (http://amd-dev.wpengine.netdna-cdn.com/wordpress/media/2013/07/AMD_Sea_Islands_Instruction_Set_Architecture1.pdf)
+13:55 (CodeWar) and for a compute kernel the only way to make constant buffers use this in a performant way would be to [a] have vector instructions load from constant cache into vGPR and [b] have constant cache be banked
+13:56 bnieuwenhuizen: we have two L1 caches: one is R/W and used by vector instructions and one is readonly(also writable on gcn 1.2+) and used by scalar instructions
+13:56 ← Daekdroom (~Daekdroom@unaffiliated/daekdroom) has left IRC: (Remote host closed the connection)
+13:56 bnieuwenhuizen: the second they call constant cache in that document
+13:56 (CodeWar) I see and what is it used for 
+13:57 bnieuwenhuizen: You can choose ;)
+13:57 bnieuwenhuizen: but in mesa it is mostly used for constant buffers and descriptors
+13:58 bnieuwenhuizen: but if a constant buffer is dynamically indexed we use VMEM (the R/W L1 cache)
+13:58 (CodeWar) Got it 
+13:58 (CodeWar) and where does texture cache fit in this hierarchy
+13:58 bnieuwenhuizen: I remember some GDC presentation gave more info about the capabilities of these caches, I'll try to look it up
+13:58 ← wsnipex (~wuff@kodi/staff/wsnipex) has left IRC: (Remote host closed the connection)
+13:59 bnieuwenhuizen: texture cache is the VMEM L1 cache
+13:59 (CodeWar) the R/W L1 cache 
+13:59 bnieuwenhuizen: yes
+14:00 (CodeWar) I see ... does the sampler do the filtering and then populate L1 or does L1 texture cache contain unfiltered undecoded texture block which is then decompressed by the sampler out of L1
+14:00 → Daekdroom (~Daekdroom@unaffiliated/daekdroom) has joined the channel.
+14:01 bnieuwenhuizen: that I don't know
+14:02 (CodeWar) thanks this has all been very useful for me 
+14:02 bnieuwenhuizen: btw just found this: gives a pretty accurate overview  of what influences the cost of a memory access: http://gpuopen.com/gcn-memory-coalescing/
+14:04 vedranm: bnieuwenhuizen: curious, do you work for AMD?
+14:04 bnieuwenhuizen: vedranm: nope, student
+14:05 vedranm: bnieuwenhuizen: you appear to know _a lot_ about their hardware
+14:05 (CodeWar) yes the coalescing rules make sense 
+14:06 (CodeWar) the one part that I dont understand yet is if the load into LDS vector instructions bypass the caches (L1/L2) and likewise for LDS store operations 
+14:07 bnieuwenhuizen: I don't knoew but why would they?
+14:07 bnieuwenhuizen: know*
+14:08 bnieuwenhuizen: vedranm: mostly from the GCN3 + CIK document + I got lucky and experimented with the memory hierarchy yesterday ;)
+14:09 (CodeWar) well LDS is software managed cache and its best if its not inclusive with the underlying L1/L2 (to avoid wasting cache area)
+14:09 bnieuwenhuizen: CIK document = CIK 3d Registers reference
+14:10 bnieuwenhuizen: CodeWar: you are talking about the load from memory into LDS instructions and vice versa right?
+14:10 (CodeWar) bnieuwenhuizen: yes and it appears there is a GLC/SLC bit per buffer load instruction to convey that
+14:10 ← linuxuz3r (~linuxuz3r@107-210-170-22.lightspeed.sndgca.sbcglobal.net) has left IRC: (Ping timeout: 244 seconds)
+14:10 bnieuwenhuizen: CodeWar: maybe it was cheaper to use the common hardware paths from the other loads?
+14:12 bnieuwenhuizen: yeah GLC is basically a "skip L1" flag
+14:13 (CodeWar) yep so MUBUF with LDS = 1 GLC=0 sounds like what a typicaly OpenCL populate LDS would do 
+14:13 (CodeWar) and since LDS is manually written to Global memory by programmers you could literally ignore it after the kernel invocation so there is no explicit writeback into the cache hierarchy below other than what the programmer manually does
+14:16 bnieuwenhuizen: hardware does not see LDS as cache of something so it doesn't influence any
+14:17 bnieuwenhuizen: not sure what you mean with "so there is no explicit writeback into the cache hierarchy below other than what the programmer manually does"
+14:17 (CodeWar) yes so the key is to bypass (on miss) the actual caches when populating LDS to avoid wasting cache space
+14:17 ← sakal (~quassel@77.51.227.159) has left IRC: (Ping timeout: 260 seconds)
+14:18 bnieuwenhuizen: sounds reasonable
+14:19 (CodeWar) CL kernels will [a] Load LDS  MUBUF LDS = 1 [b] operate on the data by copying them into vGPR unless vector instructions can operate straight out of LDS which I dont know [c] Now either use LDS for intra threadgroup communication  or use it as a manual cache meaning at some point they will write from vGPR to global memory  (typically at the end of a kernel)
+14:19 bnieuwenhuizen: just remember that L1 cache is really small, IIRC like 16  KiB per CU, while you have possibly 10 *4 * 64 = 2560 lanes active per CU, so don't expect data to stay in L1 long
+14:20 (CodeWar) I dont expect the data to be in L1 at alll which is why most folks use LDS to manually control what is where :-)
+14:21 (CodeWar) the one exception to that rule however is  constant data that is per workitem .. aka dynamically indexed constants.. 
+14:22 (CodeWar) for that what you described as the L1 R/W soudns useful given they can be loaded using Vector operations
+14:24 → vquicksilver (~nobody@gentoo/contributor/vquicksilver) has
+joined the channel.
