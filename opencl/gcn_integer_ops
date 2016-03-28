@@ -1,0 +1,5 @@
+VALU supports most integer operations (sub/add and bit operations) on u32 and i32
+  however
+MUL is only supported for i24
+
+there are explicit v_cvt instructions to convert from one type to another (so you could go from u32 to f32 and such to do divisions)

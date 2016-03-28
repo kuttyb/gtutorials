@@ -1,0 +1,8 @@
+[a] Software cache : Because its banked, successive accesses can be addressed in a single cycle assuming there are no bank conflicts
+    (Imagine you have a random or poorly strided access pattern, collecting them all in the LDS lets you get away with linear accesses for the rest of your kernel)
+
+[b] Data Exchange buffer for workitems within a workgroup
+
+[c] Cooperative way of enabling efficient access to Global memory
+    Essentially you can control load/store patterns by fetching at the start and copying into LDS, operating out of it and then writing it back to get good bursty 
+    memory traffic
