@@ -1,0 +1,89 @@
+23:06 (CodeWar) does it make sense to cast uchar operations to uint32 or uint16 to be able to be able to get single cycle mad/adds. Whats the basic unit of single cycle integer operations on NV GPUs
+23:07 → SwiftMatt (~Objective@162.242.95.196) has joined the channel.
+23:09 ← SwiftMatt (~Objective@162.242.95.196) has left IRC: (Client Quit)
+23:10 Stragus: I believe registers are always 32 bits
+23:11 Stragus: And if you use shorter ints, the compiler might have to do some AND regularly to truncate bits
+23:12 (CodeWar) but mad / add operations on uint32 are single cycle like fp32?
+23:15 Stragus: Ineger addition and bitwise are as fast as floats
+23:15 Stragus: Integer*
+23:15 Stragus: I believe multiplications are slower
+23:15 Stragus: (integer multiplication slower than float multiplication, that is)
+23:16 (CodeWar) Stragus: by floats we mean fp32 right
+23:16 Stragus: Yes
+23:25 → Lillia7 (~lillia7@d3079310.t-net.ne.jp) has joined the channel.
+23:25 (CodeWar) so if I really have a int24 can I not cast it to fp32 do the mul / mad and cast it back to int24. Are the cast operations scalar?
+23:26 Stragus: An int24? That doesn't exist
+23:26 (CodeWar) understood but I meant uint32 that only uses 24 bits 
+23:27 Stragus: It's probably not worth the conversions unles you have a ton of math to do
+23:28 Stragus: That being said, integer divisions are really slow, much slower than float divisions
+23:28 (CodeWar) any idea why. ... is the cast expensive?
+23:28 Stragus: Well, additions are as fast. Floating point multiplications are slightly faster as far as I know, but it's not worth 2 casts unless you have a bunch of mul to do
+23:29 → zeus___ (~zeus@cpe-172-90-242-131.socal.res.rr.com) has joined the channel.
+23:30 (CodeWar) http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#maximize-instruction-throughput   Its not clear to me what "multiple instructions" means for imul 
+23:30 → mefistofeles (~mefistofe@unaffiliated/mefistofeles) has joined the channel.
+23:31 Stragus: Never do 24 bits multiplications except on very old 1.x CUDA hardware
+23:31 Stragus: Ah, you mean the 32 bits ones on compute 5.x
+23:31 (CodeWar) yep
+23:33 Stragus: I really thought I saw a single instruction 32 bits multiply instruction on CUDA 5.x
+23:33 ← zeus__ (~zeus@2605:e000:4ddc:e000:ed7c:9490:c687:a548) has left IRC: (Ping timeout: 268 seconds)
+23:33 Stragus: Perhaps "multiple instructions" is for the multiply-add, extended precision
+23:33 (CodeWar) could be ... apparently type conversions to 32bits are 1/4 FMA rate 
+23:34 (CodeWar) I never quite understood what units they have inside a SM and where these cycle numbers are coming from . Like with GCN we know how many of ALUs of each type they have 
+23:49 Stragus: You peaked my curiosity so I did a bit of testing and googling
+23:50 Stragus: The imul instruction on compute 5.x seems to be 4 instructions
+23:50 (CodeWar) and each of these 4 individual instructions execute at 128 ops per cycle?
+23:51 (CodeWar) so 32 imuls per cycle?
+23:51 (CodeWar) or are there dependent instruction stalls 
+23:52 Stragus: Definitely dependent instructions, but these aren't actually a big deal if you have a bunch of other threads ready to run on the same SM
+23:52 (CodeWar) so imul is at best 1/4 FMA possibly worse 
+23:53 Stragus: Seems to be 3 instructions for a 32 bits signed integer multiplication
+23:53 (CodeWar) what are these 3 instructions if I may ask
+23:53 Stragus: GPUs don't aggressive reorder instructions like CPUs, they just run other threads
+23:54 Stragus: XMAD
+23:54 (CodeWar) is that a 64bit mad?
+23:55 Stragus: Probably not, I think it's borrowing the floating point 24 bits multiplier and merging results
+23:55 Stragus: Trying to figure this out
+23:57 Stragus: Apparently, this is 3 instructions that borrow the actual floating point 24 bits multiplier, performing 3 instructions with different parameters to pack the final 32 bits integer result
+23:57 Stragus: japro, can you confirm any of this?
+23:57 (CodeWar) so if I had to operate on uint24 or uint16 some of the intermediate instructions would be unnecessary
+00:04 (CodeWar) about hiding dependent instruction stalls by switching threads, I dont know. I thought shared memory bank conflicts and dependency stalls dont lead to a switch out only long latency cache misses  tlb misses do but again I am not very familiar with NV internals
+00:07 Stragus: I still see 3 XMAD when multiplying two 16 bits integers
+00:08 (CodeWar) because the compiler is foolishly promoting the uint16 to uint32 perhaps?
+00:09 Stragus: At the moment, I'm not sure if my understanding of XMAD is erroneous, or if the compiler is being stupid
+00:09 → nohous (~nohous@91.219.45.7) has joined the channel.
+00:09 (CodeWar) thanks for the education 
+00:14 • Stragus pokes japro
+00:14 Stragus: He works at Nvidia and can often provide insight on such hardware details, when he's allowed to, eh
+00:15 Stragus: The hardware does launch instructions from other threads while waiting for previous instructions to complete
+00:16 Stragus: As for the shared memory bank conflicts, I believe it stalls the shared memory access, but not other operations
+00:20 (CodeWar) Interesting, the first one would be difficult to implement without a full scoreboard which would detect that the current instructions in Warp.X are stalled on a RAW and therefore another WARP would have to be scheduled. Possible to do but there are other ways of hiding this overhead with less circuitry. Simplest being scheduling a WARP in 'x' cycles like warp-32 scheduled in 4
+00:20 (CodeWar) cycles 1/4th WARP each time. So by the time the next instruction in the WARP can be executed theres an easy 4 cycle latency allowing dependent instructions to complete
+00:21 (CodeWar) and the compiler can always schedule dependent instructions later and try and hide the latency by scheduling independent instructions (if possible) .. 
+00:22 Stragus: I don't think there's any need to detect when instructions are stalled; just assume they are always stalled and roll to the next warp continuously
+00:23 (CodeWar) of course .. why didnt I think of that 
+00:25 Stragus: GPUs don't rely on aggressive out-of-order execution, they just use a bunch of threads
+00:25 (CodeWar) it helps they dont do a lot of pointer chasing 
+00:26 (CodeWar) is there a lookup table of Compute capabiility to the actual generation of GPUs
+00:26 (CodeWar) what does 5.0 mean .. Maxwell?
+00:26 Stragus: 5.x is Maxwell, yes
+00:27 Stragus: I rely on Wikipedia's tables as the gtx Nxx numbering system is inconsistent in a few cases
+00:28 (CodeWar) cool
+00:29 (CodeWar) and what document explains the internals of a SM. Meaning a SM is made up of how many SIMD lanes how many load store pipelines that sort of thing
+00:31 Stragus: Count of "cores" per SM is constant in a generation. Besides Wikipedia, you can query the count of SMs in code
+00:31 Stragus: As for actual pipelines, that table from Nvidia might be the best we have
+00:34 Stragus: Investigated this a little further. Integer signed/unsigned 8/16/32 multiplications are 4 times slower than floating point multiplication
+00:34 Stragus: It's doing about the same operations in all cases, with the 3 XMAD
+00:34 ← zeus___ (~zeus@cpe-172-90-242-131.socal.res.rr.com) has left IRC: (Read error: Connection reset by peer)
+00:35 → zeus___ (~zeus@cpe-172-90-242-131.socal.res.rr.com) has joined the channel.
+00:35 (CodeWar) interesting
+00:36 (CodeWar) for int16 and int8 it would make sense to cast to a fp32 and do the muls (albeit assuming there are several imuls to be done as you say) 
+00:36 Stragus: For a bunch of them, yes
+00:36 (CodeWar) adds are at fp32 rate right
+00:37 Stragus: Yes, pretty much
+00:38 (CodeWar) not much of a graphics person but arent depth buffers int24 arrays? 
+00:39 Stragus: Yes
+00:40 (CodeWar) and I am assuming imul is not something pixel shaders do a lot of in depth buffers? possibly adds/ comparisons  else this would have become a bottleneck already
+00:40 Stragus: RGBA/depth buffers are written by fixed hardware raster units, not actual CUDA instructions, so that's slightly different
+00:41 Stragus: Integer multiplications should be rare in graphics shaders, yes
+00:41 (CodeWar) I see
+00:41 (CodeWar) no wonder they short circuited that path :-)
