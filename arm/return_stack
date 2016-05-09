@@ -1,0 +1,19 @@
+This is the onchip cache that stores the return addresses (RAS prediction) and later compares with TOS and quashes if there was a mispredict (typically somebody changed the Stack)
+
+https://community.arm.com/groups/processors/blog/2011/04/21/googles-v8-on-arm-five-times-better
+"
+However, only certain instructions activate the return stack's push and pop behaviour, and these are listed in the processor's Technical Reference Manual. For example, on Cortex-A9, the following are recognised as calls and returns in ARM and Thumb state:
+ 
+Call
+BL (immediate)
+BLX (immediate)
+BLX (register)
+ 
+Return
+ 
+BX lr
+MOV pc, lr
+LDM sp, {... pc}
+LDR pc, [sp] (any addressing mode)
+"
+So specifically mov pc, rXX will not trigger the RTS Push

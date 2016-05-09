@@ -1,1 +1,0 @@
-On OSX, the workgroup size has to be 1. Yep even though it might report otherwise, it will return cl_invalid_work_group_size (error -54) for anything else
