@@ -1,0 +1,4 @@
+git branch --contains hashid
+
+output: branch_name
+
