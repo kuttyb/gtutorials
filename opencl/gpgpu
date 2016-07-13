@@ -1,0 +1,71 @@
+https://www.youtube.com/watch?v=EX_STsWogkE
+
+Best to get an idea of what Vector Processors (SIMD over time) and Array Processors (SIMD over space) are and the advantages of Memory Banking / Vector Chaining etc..
+
+
+NVIDIA 
+=======
+SM (Streaming MultipProcessor ) CU
+Streaming Processor - Work Item 
+
+Fermi:
+-------
+1 SM - > 2 x SIMD16
+2 separate Warps are dual scheduled
+Warp -> 32 lanes scheduled in 2 cycles (16 each)
+
+Kepler:
+--------
+1 SMX -> 
+
+Maxwell:
+---------
+
+AMD GCN:
+=========
+1 CU -> 4 x SIMD16 (read 16 ALU SIMD)
+Each of the 4 SIMDs have their own PC
+Share a common Front end / L1/LDS
+
+A wavefront is 64 lanes and is issue in 4 cycles to a SIMD16 unit.
+
+LDS is the Local Data Store (64K banked memory access) enables local memory atomics
+GDS is used to implement Global atomics and acts as a coalescing point for Global memory accesses
+In addition there are L1/L2 caches with support for register spilling
+
+AMD Terascale 3 (VLIW4):
+==========================
+4-ALUs x 16 = 64 ALU per SIMD Engine
+
+* All 64 ALUs have the same clause (VLIW bundle) 
+  Technically this allows you to have ILP since 4 separate instructions packed into the same VLIW4 bundle
+
+* For Compute you can do 4 x 16, essentially packing a PC from one wavefront in the VLIW4
+
+* Drawback being, the slots will be unused if wavefronts have dependencies
+http://meseec.ce.rit.edu/551-projects/fall2014/3-4.pdf
+Decent example of this problem though it has an error. A wavefront is not 16 but 64. So it takes 4 cycles to 
+completely issue all the threads in a wavefront
+
+Questions:
+===========
+* Different Execution units and how they map to OpenCL
+* How about vector instructions in each work-item. How are they mapped?
+============
+Vector operations in each work item IMO should be split up into `n' instructions for computation. In that regard there is no value in 
+vectorization.
+
+Though vector load/stores will gain from burst load/stores. So memory accesses do gain from vectorization
+
+Data Dependency can be hidden by having a wavefront be unrolled in as many cycles as the max length of the Pipeline. That assumes the 2 instructions 
+use the same register at the same vector mapping.
+Also the compiler can always issue unrelated instructions in the shadow or worst case insert wait states
+
+For memory loads one would have to introduce S_WAITCNT like instructions to explicitly wait since these are not fixed #cycles
+https://www.nvidia.com/content/PDF/kepler/NVIDIA-Kepler-GK110-Architecture-Whitepaper.pdf
+Read the second paragraph of "Quad Warp Scheduler" Essentially you need Dependency tracking for Texture sampler / Memory Loads and you need them for 
+MATH Units to avoid RAW. The latter is fixed #cycles and can be hidden by 
+* compiler inserted wait states
+* inserting independent instructions (in the shadow of the wait)
+* Warp unrolling can take as many cycles as the worst case math pipeline depth
+
