@@ -9,3 +9,8 @@ select {localid: x.local_id, firstid: x.start_id} from local.scratch.TopLevelTra
 # If you wanted to pick a thread with a particular name here is how Thread.name : char[]
 # comparison works
 select x from java.lang.Thread x where (x.name[7] == '4' && x.name[6] == '-')
+
+
+http://wiki.eclipse.org/MemoryAnalyzer/Reading_Data_from_Heap_Dumps
+This lets you write custom Java plugins to MAT (Memory Analyzer) and this is much more appropriate than
+OQL scripts
