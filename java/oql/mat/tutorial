@@ -1,0 +1,16 @@
+Open the Heap Dump (.hprof) and there are essentially 4 views of interest:
+
+[a] Thread View
+Threads with their stack and frame variables
+
+[b] Dominator View
+To debug leaks (who is keeping whom alive)
+
+[c] Class Histogram
+How many instances of each class type along with shallow and retained heap sizes
+
+[d] OQL
+To use your own queries
+
+All of these can be found in the icon list when you open the heap dump (refer to the attached image)
+
