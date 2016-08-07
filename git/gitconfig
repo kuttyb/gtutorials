@@ -1,0 +1,22 @@
+[user]
+	name = Kutty Banerjee
+	email = kutty.banerjee@gmail.com
+[core]
+	excludesfile = /Users/kutty_banerjee/.gitignore_global
+	editor = emacsclient
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[push]
+	default = simple
+
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	sf = show --pretty="format:" --name-only 
+[branch]
+	autosetuprebase = always
+[branch "*branch-name*"]
+	rebase = true
