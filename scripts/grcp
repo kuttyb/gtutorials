@@ -1,0 +1,3 @@
+#! /bin/sh
+
+find . -name "*.cpp"  -exec grep -i -n -H "$1" {} \;

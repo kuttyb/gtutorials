@@ -1,0 +1,3 @@
+#! /bin/sh
+
+diskutil eject /dev/disk$1

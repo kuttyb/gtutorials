@@ -1,0 +1,5 @@
+#! /bin/sh
+
+jmap -dump:live,file=$1.hprof $1
+
+#jstack $1 > $1.stack

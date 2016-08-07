@@ -1,0 +1,3 @@
+#! /bin/sh
+
+find . -name "*.java"  -exec grep -i -n -H "$1" {} \;

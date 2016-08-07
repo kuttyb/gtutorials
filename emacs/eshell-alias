@@ -1,0 +1,17 @@
+alias icloud cd /Users/kbanerjee/Library/Mobile\ Documents/com~apple~Pages/Documents
+alias space df -h /
+alias c ls $*
+alias t cd /Users/kutty_banerjee/daji/code/ccomponent
+alias mem vm_stat
+alias desk cd ~/Desktop
+alias doc cd ~/Documents
+alias daji cd ~/daji
+alias down cd ~/Downloads
+alias psu ps -efcl
+alias start explorer .
+alias celar ls $*
+alias tut cd ~/daji/tutorials
+alias connect_desk ssh kutty_banerjee@17.197.23.216
+alias r cd /Users/kutty_banerjee/daji/code/AGX
+alias clea rls $*
+alias dl diskutil list
