@@ -1,0 +1,7 @@
+Ubuntu 14.04 and above just stick to these, drop the apt-get install part
+
+apt list --installed openjdk*
+apt search openjdk*
+apt install
+apt show global
+
