@@ -1,1 +1,22 @@
-[ui]username = Kutty Banerjee <kbanerjee@apple.com>ssh = ssh -C[extensions]graphlog=purge=mq=hgsubversion=[diff]git=1[alias]lists = qqueue -llist = qqueue $1qc = qrefresh $*qd = qdiff ql = qseriesqp = qapplied
+[ui]
+username = Kutty Banerjee <kutty.banerjee@gmail.com>
+ssh = ssh -C
+
+[extensions]
+#hgsubversion = 
+#hggit =
+record = 
+purge = 
+graphlog = 
+mq = 
+rebase = 
+
+[git]
+intree=1
+
+[alias]
+lists = qqueue -l
+iist = qqueue $1
+qp = qapplied
+ql = qseries
+qd = qdiff
