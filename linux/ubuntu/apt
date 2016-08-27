@@ -5,3 +5,8 @@ apt search openjdk*
 apt install
 apt show global
 
+To update your packages
+sudo apt-get update
+sudo apt-get upgrade
+
+/etc/apt/sources.list # This is where you repository sources are listed
