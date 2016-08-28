@@ -1,0 +1,4 @@
+http://stackoverflow.com/questions/2088944/how-do-you-use-the-non-default-constructor-for-a-member
+
+When you want to have a field that has a non default constructor, you have to initialize this field in the initializer list. That's it!!
+
