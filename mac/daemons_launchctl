@@ -1,0 +1,12 @@
+launchctl is the tool used to control and inspect daemons and agents.
+
+* Agents are services started by the logged in user
+* Daemons are services started by the system
+
+They can be found under
+/Library/LaunchAgents
+/Library/LaunchDaemons
+~/Library/LaunchAgents
+
+launchctl list // this should list all daemons along with pid for those that are active and alive
+
