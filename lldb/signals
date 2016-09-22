@@ -1,0 +1,7 @@
+http://stackoverflow.com/questions/11984051/how-to-tell-lldb-debugger-not-to-handle-sigbus
+
+(lldb) pro hand -p true -s false SIGBUS
+
+NAME        PASS   STOP   NOTIFY
+==========  =====  =====  ======
+SIGBUS      true   false  true 
