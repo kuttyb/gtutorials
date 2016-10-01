@@ -1,0 +1,9 @@
+http://stackoverflow.com/questions/26810902/how-to-generate-dsym-files-without-xcode
+
+Compile with -g and you should have source information in the binary
+
+to generate a separate dSYM file 
+dsymutil binary -o binary.dSYM
+strip -S binary # to strip it of symbols
+
+ 
