@@ -1,0 +1,6 @@
+target modules dump symfile
+
+Will list out binaries along with their symbol files
+
+you can add symbol files with
+target symbols add ~/daji/code/ccomponent/utils/build/out_osx/testgraph.dSYM/Contents/Resources/DWARF/testgraph
