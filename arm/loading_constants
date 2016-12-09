@@ -1,0 +1,21 @@
+========================================================
+[a] Immediate mode mov instructions
+https://community.arm.com/groups/processors/blog/2010/07/27/how-to-load-constants-in-assembly-for-arm-architecture
+
+movt : move top, will load a 16-bit constant into the top 16 bits of the register while leaving the lower 16 bits untouched
+
+movw : move wide, will load a 16-bit constant into the lower 16bits of the register while zeroing out the upper 16 bits
+
+So its generally adviseable to use movw followed by movt to load any 32-bit constant
+========================================================
+[b] Constant pool
+
+aka pc relative loads
+ldr rd,[#pc, offset]
+
+or use the synthetic instruction
+ldr rd,=0x1234234324
+
+Assembler will find the constant pool and put the correct PC relative offset into it
+========================================================
+
