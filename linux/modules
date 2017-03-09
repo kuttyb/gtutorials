@@ -1,0 +1,11 @@
+# dump out all the hardware attached
+lspci
+
+lsmod
+ + name0
+ + name1
+
+modinfo name0
+
+e.g.,
+filename:       /lib/modules/4.8.0-39-generic/kernel/drivers/gpu/drm/radeon/radeon.ko
