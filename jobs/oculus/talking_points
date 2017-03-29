@@ -1,0 +1,16 @@
+[] Firmware performance - Shaving microseconds
+As part of a multi year project for an upcoming ultra latency sensitive secret product, redid the interrupt handling logic for Geometry and Rendering. New end to end interrupt handling latencies for feeding Geometry and Rendering commands to the GPU are in the sub 5us range. Used a combination of data prefetching, data packing, branch elision, poll deferring to get the improvement.
+
+[] Task Graph 
+Our firmware does Command processing for GPU IO commands. Commands can be targetting Geometry, Rendering or Compute and can be from several 3D applications at different Priority levels. Designed and currently implementing a Task Dependency Graph with prioritized edges to decide which command needs processing next. Priority is decided by priority of the Application, flow control and which hardware unit is idle. The goal being to keep hardware units busy at all times with the highest priority command that has all its dependencies ready. Graph can be walked by multiple threads to get parallelism.
+
+[] Firmware Heap / allocator
+Implemented a allocator to allocate memory in a few cycles and with no branches for fast path cases.
+
+[] Scheduler / QoS
+GPU Lead for iOS Split Screen Multitasking feature. Designed and implemented the GPU Scheduler to provide Prioritized Fairness. Allows processes to have explicit static priorities with credit based aging based on utilization. Fairness algorithms prevent one app from hogging the GPU. This is especially important in the Split screen environment. Working with future generation hardware to get better preemption, better QoS handling capability inside the GPU. Several patents filed.
+
+[] Face Recognition (iOS Photos) Provided driver and firmware support to allow background processing of Deep Learning Compute tasks on the GPU without hurting UI performance or exceeding GPU Power limits. Patent filed.
+
+[] Metal / OpenCL
+
