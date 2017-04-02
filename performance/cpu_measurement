@@ -1,0 +1,25 @@
+At a high level these are the metrics that we need in the descending order to construct a complete picture.
+
+Stalls Cycles:
+==============
+frontend stalls
+backend  stalls
+
+Throughput:
+===========
+instructions retired
+
+Events:
+=======
+BP misses
+L1d misses
+L1i misses
+L2 misses
+TLB (multilevel misses)
+
+Utilization:
+============
+Cache occupancy
+Integer units
+Floating point units
+Register File
