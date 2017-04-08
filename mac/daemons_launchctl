@@ -10,3 +10,5 @@ They can be found under
 
 launchctl list // this should list all daemons along with pid for those that are active and alive
 
+launchctl remove com.annoying.servicename
+
