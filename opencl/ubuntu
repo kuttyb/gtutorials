@@ -1,0 +1,11 @@
+The exact package names keep changing so do a apt search ocl
+
+sudo apt install ocl-icd-libopencl1
+sudo apt install opencl-headers
+sudo apt install clinfo
+
+sudo apt install ocl-icd-opencl-dev
+
+## Intel only (older chips)
+sudo apt install beignet
+## Newer chips are supported by the Intel official OpenCL runtime
