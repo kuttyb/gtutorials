@@ -5,3 +5,6 @@ thats how you count it and perf list to get a list of all these events
 
 *sudo perf stat -e stalled-cycles-frontend ./testbiasedlock
 Heres another example
+
+sudo perf record -g apitrace replay ./gputest.trace
+perf report

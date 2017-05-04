@@ -1,0 +1,5 @@
+Please use pigz
+apt search pigz
+
+It does parallel compression / decompression and has a very very impressive performance!!
+

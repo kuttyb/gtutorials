@@ -23,3 +23,13 @@ Dump State
 ./../../../apitrace/build/apitrace replay -D 19 ./glxgears.trace  ;;  Dump state at call#19
                                                                   ;;  call numbers provided in 
                                                                   ;;  replay
+
+--------
+With Java
+apitrace trace --api gl mexec local.render.TriangleOne
+https://github.com/apitrace/apitrace/blob/master/docs/USAGE.markdown
+qapitrace tracename
+Ctrl-T twice to get per call image buffers
+Click on Trace->Profile to get basic CPU/GPU information
+
+You can view state on a per Frame and per call basis
