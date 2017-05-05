@@ -1,0 +1,30 @@
+https://www.opengl.org/sdk/docs/tutorials/TyphoonLabs/Chapter_1.pdf
+
+=====================
+GLSL Data Types:
+=====================
+Shader      C
+---------------------
+bool        int 
+int	    int
+float 	    float
+vec4        float [4]
+bvec4       int   [4]
+ivec4       int   [4]
+mat4        float [16]
+sampler'x'D int
+
+-----------------------
+Uniform Variables:
+-----------------------
+location = glGetUniformLocationARB(program, "lightColor");
+float color[4] = { ... };
+glUniform4ARB(location, color);  // glUniform[width][type]ARB e.g., glUniform1iARB
+..
+uniform vec4 lightColor;
+
+For Textures
+glActiveTexture(GL_TEXTURE1);
+glBindTexture(GL_TEXTURE_2D, textureHandle);
+  location = glGetUniformLocationARB(program, "baseTexture");
+  glUniform1iARB(location, 1); // 1 here stands for the first Texture Unit

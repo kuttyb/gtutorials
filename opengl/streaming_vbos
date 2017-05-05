@@ -1,0 +1,7 @@
+Essentially calling glBuffer[Sub]Data causes an implicit synchronization on the GL client if the buffer is currently in use on the GPU.
+
+Even if you are suballocating from a range not seen by the GPU. To avoid that use the UNSYNCHRONIZED bit and glMapBufferRange
+http://onrendering.blogspot.com/2011/10/buffer-object-streaming-in-opengl.html
+https://www.khronos.org/opengl/wiki/Buffer_Object_Streaming
+
+The persistent bit in 4.4 allows you to keep the mapping persistent but you are still responsible for flush / invalidates along with fences and memory barriers
