@@ -1,0 +1,61 @@
+09:23 You have joined the channel #radeon
+09:23 Topic is [logged] Support and development for open-source ATI driver - for fglrx use #ati - http://wiki.x.org/wiki/radeonBuildHowTo
+09:23 Topic set by airlied on Apr 29, 2012 04:27:57
+09:23 Channel #radeon created Nov 23, 2007 13:15:35
+09:25 ← xerpi (~xerpi@204.red-88-7-102.staticip.rima-tde.net) has left IRC: (Ping timeout: 260 seconds)
+09:28 ← shrirang (~shrirang@122-116-76-153.HINET-IP.hinet.net) has left IRC: (Quit: Leaving)
+09:28 (Codewar) do GCN GPUs have a dedicated vertex attribute fetch unit or is there compiler generated code in VS doing fetches
+09:34 ← rmilecki (~rmilecki@ip-194-187-74-233.konfederacka.maverick.com.pl) has left the channel.
+09:43 bnieuwenhuizen: the latter
+09:44 bnieuwenhuizen: reading the index buffer is not in the shader though
+09:44 bnieuwenhuizen: for VBO's the shader can read from a buffer using a given format & stride, which is used for both TBO and VBO's
+09:47 (Codewar) Thanks. On a different note, does the sort of primitives in API order happen after rasterization or deep down later in ROP
+09:48 ← drcode (~drcode@5.28.134.3) has left IRC: (Quit: ZNC 1.6.5 - http://znc.in)
+09:50 bnieuwenhuizen: I suspect the former given the support for GL_INTEL_fragment_shader_ordering and I couldn't really find any registers set differently
+09:51 → drcode (~drcode@5.28.134.3) has joined the channel.
+09:52 (Codewar) I guess you are right. This article http://gpuopen.com/unlock-the-rasterizer-with-out-of-order-rasterization/  talks about OoO Rasterization and not disabling sort in ROP
+09:53 bnieuwenhuizen: oh right, though with these articles you never know if it is just casual use or the specific stage as defined by the APIs
+09:54 (Codewar) sure. That Intel extension, is it for DX Raster order views?
+09:55 (Codewar) I know Intel had Pixel Sync or something like that for OIT with similar semantics. 
+09:56 bnieuwenhuizen: Given that AMD doesn't expose the DX stuff or ARB_fragment_shader_interlock, I don't think they have it fully in HW.
+09:56 bnieuwenhuizen: I think the intel ext is just PixelSync
+09:56 bnieuwenhuizen: and IIRC the main difference is that the ARB ext. has a bit more sutff related to multisampling and excluding either within the sample or within the entire pixel or such
+09:56 (Codewar) so is there a guarantee on GCN that primitives are fragment shaded in xy-API orde
+09:57 (Codewar) order
+09:57 ← drcode (~drcode@5.28.134.3) has left IRC: (Quit: ZNC 1.6.5 - http://znc.in)
+09:58 bnieuwenhuizen: that is the part I'm not sure about. Once did a basic look trying to RE the ext, but couldn't really see any difference in emitted registers at first glance
+09:59 (Codewar) Right, there are 4 pieces to this: [a] Rasterize in order [b] FS in order [c] Make memory effects of previous shaders to earlier xy visible to later ones [d] ROP in order
+09:59 → drcode (~drcode@5.28.134.3) has joined the channel.
+09:59 (Codewar) Without DX12 Raster order Views you only need [d] in contemporary hardware 
+09:59 ← drcode (~drcode@5.28.134.3) has left IRC: (Remote host closed the connection)
+09:59 bnieuwenhuizen: [c] is never needed I think, you always needs to appropiate barriers for flushing the L1 caches too
+10:00 bnieuwenhuizen: or rather invalidating them
+10:01 (Codewar) Is the Texture cache coherent with L1?
+10:01 ← MegWATTT (~megwattt@2a01:e35:2f73:85e0:b77f:4843:7e43:8d43) has left IRC: (Ping timeout: 246 seconds)
+10:01 → drcode (~drcode@5.28.134.3) has joined the channel.
+10:02 bnieuwenhuizen: texture-cache is just L2
+10:02 bnieuwenhuizen: I think. At least there is no separate texture cache, you just have L1+L2. L1 of one compute unit is not coherent with another
+10:03 bnieuwenhuizen: I think L1 implicitly writes back to L2 after shader finish, but you still need to invalidate the L1 in the CU using the memory after that
+10:03 (Codewar) ok ... so at a high level I am thinking the L1 is not flushed after each FS invocation, that would be too expensive I believe. So when somebody writes beginFragmentShaderOrderingINTEL in their shader, the end of each FS must have to flush L1 and before that function returns you would have to invalidate L1
+10:04 (Codewar) thats the only way to make it work with CUs and incoherent L1s.... still don't know the path between ROP writes and Texture reads but ignoring that for now
+10:04 bnieuwenhuizen: oh argh.. seems  they may require that ..
+10:05 bnieuwenhuizen: luckily L1 is not that large
+10:05 ← iive (~iive@unaffiliated/iive) has left IRC: (Quit: They came for me...)
+10:05 bnieuwenhuizen: like you can blow through it with a few bad texture reads
+10:05 → iive (~iive@87.119.101.204.client.entry.bg) has joined the channel.
+10:05 ← iive (~iive@87.119.101.204.client.entry.bg) has left IRC: (Changing host)
+10:05 → iive (~iive@unaffiliated/iive) has joined the channel.
+10:06 → arsenm (~Matt@31.3.152.206) has joined the channel.
+10:06 (Codewar) or as you say texture / barrier writes should come with their own barriers which I think is what they should and when you do beginFragmentShaderOrderingINTEL it just invalidates a fixed range whcih the compiler should be able to determine from the buffer objects
+10:07 ← hgoel (uid175521@gateway/web/irccloud.com/x-rnubmzfureuuqgde) has left IRC: (Quit: Connection closed for inactivity)
+10:08 (Codewar) Oh I am so sorry ... none of this shoudl be required. If xy-API order is maintained in rasterization you can send all primitives from the same xy to the same CU 
+10:08 bnieuwenhuizen: not completely sure if the ext skips the requirement for the "coherent" modifier, because we make those reads/writes skip L1 anyway.
+10:08 bnieuwenhuizen: well, if that is the way they implemented it :)
+10:09 bnieuwenhuizen: really need to do some draws and dump the CU id and an ordering of each invocation sometime
+10:10 (Codewar) can one do that in the driver or do you have some special access to their simulators?
+10:11 bnieuwenhuizen: you can read the CU id, SIMD id in CU and wave id in SIMD from a hw register in the shader
+10:11 bnieuwenhuizen: still have to have some wa to get your non-standard instructions into the shader though
+10:12 (Codewar) is there a hw trace buffer 
+10:12 (Codewar) oh you mean just dumping from inside the shader
+10:13 bnieuwenhuizen: yeah
+
