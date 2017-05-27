@@ -1,0 +1,9 @@
+https://www.khronos.org/opengl/wiki/Image_Load_Store
+https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_shader_image_load_store.txt
+
+Pretty much UAV but by default Early depth/stencil are turned off because FS can now produce side effects. 
+
+Shader writer can enable it themselves with
+layout(early_fragment_tests) in
+
+however if you do enable this and write to gl_FragDepth, the writes will be ignored
