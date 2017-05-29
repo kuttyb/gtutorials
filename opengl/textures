@@ -28,3 +28,7 @@ The former is ubiquitous. Put your textures into .dds formats and load them dire
 Also for MESA you need to install S3TC support separately. Look at http://stefanjones.ca/blog/quickstart-for-radeonsi-driver-and-steam-on-ubuntu-14-04/
 or apt search dxtn
 
+------
+To create these different texture compressed forms, use Gimp. Get the gimp dds plugin apt install gimp-dds
+Export to DDS from png and select generate mipmap and select the compression type. Thats it!!
+
