@@ -2,8 +2,8 @@
 glGenTextures(&handle)
 glBindTexture(GL_TEXTURE_2D, handle) // Tell him all future calls will set the 2D Texture bound to it 
   glTexParameter(GL_TEXTURE_2D, ...);
-  glTexImage2D(...); // Upload your image, we need to checkout the details for mipmaps
-  ...
+  glGenerateMipmap(GL_TEXTURE_2D); // Driver/GPU will generate the mipmaps for you
+  glTexImage2D(...); 
 glBindTexture(GL_TEXTURE_2D, 0);
 
 
@@ -17,3 +17,14 @@ glUniform1iARB(glsl_sampler_variable_handle, texture_unit_from_active_texture);
 					     // the mentioned Sampler parameters
 					     // Or read this for more details
 					     // http://www.opengl.org/wiki/GLSL_Sampler#Binding_textures_to_samplers
+
+
+--------- Compression formats -----
+For desktop you GL_EXT_texture_compression_s3tc which supports DXT1/3/5 modes
+There is also RGTC and BPTC
+
+The former is ubiquitous. Put your textures into .dds formats and load them directly in the compressed format into GL with glCompressedTexImage2D
+
+Also for MESA you need to install S3TC support separately. Look at http://stefanjones.ca/blog/quickstart-for-radeonsi-driver-and-steam-on-ubuntu-14-04/
+or apt search dxtn
+
