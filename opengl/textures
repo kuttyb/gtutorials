@@ -32,3 +32,11 @@ or apt search dxtn
 To create these different texture compressed forms, use Gimp. Get the gimp dds plugin apt install gimp-dds
 Export to DDS from png and select generate mipmap and select the compression type. Thats it!!
 
+
+------
+To define Texture geometry and the actual pixels behind it, refer to this
+https://www.opengl.org/discussion_boards/showthread.php/183754-Array-Texture-confusion
+
+Look at arekksu's explanation about glTexStorageXX to define the immutable texture geometry upfront and glTexSubImage to upload 
+individual pixel subranges
+
