@@ -1,0 +1,20 @@
+https://community.arm.com/graphics/b/blog/posts/mali-performance-2-how-to-correctly-handle-framebuffers
+
+After glBindFrameBuffer, you can either glClear or not. Not doing a clear will load the contents of the attachments from memory.
+
+After doing a sequence of draw operations on FB, you could call glInvalidateFramebuffer to indicate the data is transient i.e., keep color but trash depth/stencil
+
+Similar to Metal Load/Store actions for Color, Depth and Stencil buffers
+
+----
+glBindFrameBuffer(FB0)
+glClear(...)
+glDraw(...)
+glInvalidateFramebuffer()
+
+glBindFramebuffer(FB1)
+// Use FB0 as texture
+glClear()
+glDraw()
+swapBuffers()
+
