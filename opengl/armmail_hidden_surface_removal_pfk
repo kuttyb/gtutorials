@@ -1,0 +1,3 @@
+https://community.arm.com/graphics/b/blog/posts/killing-pixels---a-new-optimization-for-shading-on-arm-mali-gpus
+
+Forward Pixel Kill - kill in flight pixels that have not ROP'ed if a depth occlusion is detected with a later pixel
