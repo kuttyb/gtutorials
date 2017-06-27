@@ -1,0 +1,8 @@
+http://www.arm.com/products/graphics-and-multimedia/mali-technologies
+
+TE maintains a CRC of the color buffer per 16x16 tile and if the newly generated color buffer matches the CRC of the currently bound FBO then the writeback is eliminated.
+
+Mainly used for UI where intraframe color buffer reuse is high.
+
+https://community.arm.com/graphics/b/blog/posts/how-low-can-you-go-building-low-power-low-bandwidth-arm-mali-gpus
+Better explanation here, it is pretty cool, its about minimizing writeback power
