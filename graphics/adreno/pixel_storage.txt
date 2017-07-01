@@ -1,0 +1,6 @@
+https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_shader_pixel_local_storage.txt
+
+This allows programmers to tell you they want to use this memory as
+temp storage so you don't land up writing it to main memory or use
+crazy things like Render target, switching which gets crazy!!
+
