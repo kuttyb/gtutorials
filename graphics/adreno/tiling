@@ -1,0 +1,102 @@
+11:30 You have joined the channel #freedreno
+11:30 Topic is open source graphics drivers snapdragon/adreno | http://freedreno.github.com | http://lists.freedesktop.org/mailman/listinfo/freedreno
+11:30 Topic set by robclark on Nov 23, 2013 07:09:44
+11:30 Channel #freedreno created Apr 10, 2012 18:50:35
+11:32 (Codewar) are there any documents explaining how tiled rendering happens on Adreno GPUs. Do you bin to off chip memory or is it on chip. If its on chip then is there a position only geometry pass done?
+11:33 robclark: https://github.com/freedreno/freedreno/wiki/Adreno-tiling
+11:40 (Codewar) robclark: thanks. So we run position only vertex shading of all geomoetry for each bin?
+11:44 robclark: position/pointsize only runs once for all bins, then full VS (or really full geometry side of pipeline if we had GS/TES/TCS) runs per tile for the visible primitives in the tile
+11:45 robclark: position/pointsize isn't saved from binning pass, only primitive visibility per tile
+11:46 robclark: basically it minimizes bandwidth to RAM at the expense of shader cycles (which adreno is not in short supply of)
+11:51 (Codewar) Perhaps I didn't get that. Lets say I have a draw call with 200 vertices that span 4 tiles. Do I do a position only binning pass and create 4 per tile primtiive lists and do the full Geometry pass per tile 
+11:53 robclark: single position only binning pass... output of that is visibility stream (ie. compressed (I guess probably RLE but haven't had to figure out)) buffer which in main pass tells gpu which primitives it can ignore per tile
+11:54 (Codewar) where is the visibility stream stored? main memory? or on chip cache
+11:54 robclark: main memory
+11:54 robclark: it is pretty tiny
+11:54 (Codewar) got it ... and how big are tiles 
+11:54 robclark: depends on GMEM size of the gpu
+11:55 robclark: z/s plus all mrt must fit in GMEM but otherwise driver has freedom of how to lay things out in GMEM
+11:55 (Codewar) sure the standard tricks with tiled rendering
+11:55 (Codewar) what about HSR
+11:55 (Codewar) is it per primitive since you are doing tiled rendering?
+11:56 (Codewar) or per pixel
+11:56 robclark: so a5xx adds LRZ buffer
+11:56 robclark: before that no HSR
+11:56 robclark: basically that only matters for badly written apps since most stuff written for non-tiler already cares about that
+11:57 robclark: (ie. z pre-pass or game sorting geometry)
+11:57 (Codewar) and is the color/ depth for tiled rendering part of a L2 cache runtime allocated by the driver or is it on chip memory TCM
+11:57 (Codewar) sure
+11:57 robclark: gmem is on-chip.. adreno can bypass gmem and function as a non-tiler if the driver decides to..
+11:58 robclark: (with some limitations.. we always use gmem if z/s used although I think a4xx and later can do z/s in bypass mode)
+11:58 (Codewar) so UI goes non-tiler
+11:59 robclark: pretty much
+11:59 (Codewar) how does the LRZ buffer work? does it store information about which primitive has the least depth for a particular pixel?
+12:00 robclark: I mentioned a bit about it in http://bloggingthemonkey.blogspot.com/2017/06/long-overdue-update.html
+12:00 robclark: but basically a (I guess) per quad depth buffer used in binning pass to eliminate more geometry plus re-used as a for-free z pre-pass
+12:02 (Codewar) very nice!!
+12:02 (Codewar) so we get to reject primitives based on depth occlusion :-)
+12:03 robclark: yeah, obviously like z-prepass there are limits when blending or FS discard used, etc..
+12:04 robclark: but clever trick
+12:04 (Codewar) yea yea ... most people will do opaque geometry first and then transparent
+12:04 robclark: right, exactly
+12:05 (Codewar) so in the binning phase, where is the primitive rejection happening exactly, pre rasterization right? Meaning if a triangle fits inside a quad and has least depth greater than quad depth then rjeect it?
+12:06 robclark: right.. binning pass is just about letting main pass reject things per-tile
+12:07 ← dri-logg1r (~dri-logge@annarchy.freedesktop.org) has left IRC: (Quit: leaving)
+12:07 robclark: it's a nice design, imo, realizing that memory bandwidth costs more power/perf than shader cycles
+12:07 (Codewar) probably wont help with larger than quad triangles
+12:07 → dri-logger (~dri-logge@annarchy.freedesktop.org) has joined the channel.
+12:07 (Codewar) the 2 pass VS is smart ... no doubt about it 
+12:07 robclark: yeah, something that spans multiple tiles, VS gets evaluated for each tile
+12:08 robclark: (but then again VS is tiny amount of shader cycles compared to FS typically)
+12:08 (Codewar) only thing to be careful is programmers tend to put OpenGL VAO objects with 1 VBO for positin and attribute. Thus positions are stride apart (AOS) in this case the position only shading will cost
+12:09 ← dri-logger (~dri-logge@annarchy.freedesktop.org) has left IRC: (Client Quit)
+12:09 robclark: I guess that is mostly down to how effective cache is...
+12:10 (Codewar) essentially positions are far apart instead of packed. I wrote a game engine once that split VBOs separately one for position one for attributes and generated separate position only shaders.  this is for IMR, used the position only shaders for Depth prepass where color writes are disabled
+12:10 robclark: I guess I would split vbo's between attributes used to calc position and those not
+12:11 (Codewar) tile sizes are programmable did you say? Is it generally 16x16 or smaller like 4x4
+12:11 robclark: much larger..
+12:11 robclark: some of them have 1 to 1.5 MB gmem
+12:11 (Codewar) WTH :-)
+12:12 robclark: tile size aligned to 32x32 (or 64x32 for a5xx.. or was it 32x64?)
+12:12 → dri-logger (~dri-logge@annarchy.freedesktop.org) has joined the channel.
+12:12 (Codewar) though the technique should also work with smaller tile sizes right? and smaller GMEM
+12:12 robclark: right
+12:13 (Codewar) the other piece: what happens when you switch render targets and there is a render to texture dependency
+12:13 (Codewar) is it a full pipeline flush?
+12:13 robclark: yeah.. or driver cleverness.. we try to re-order things when there aren't dependencies..
+12:14 robclark: http://bloggingthemonkey.blogspot.com/2016/07/dirty-tricks-for-moar-fps.html
+12:14 robclark: some games do annoying things like mid-frame texture uploads or ubo updates..
+12:14 (Codewar) yes GL_TIMESTAMP does make lilttle sense :-)
+12:14 robclark: so we create shadow buffer and re-order things to avoid flush if possible
+12:14 robclark: yeah
+12:17 (Codewar) the reordering is to avoid dumb programming practise like FBO switch without completing the FBO pass or even for legit cases where I start a FBO complete its rendering then use it in another FBO as a texture.
+12:18 (Codewar) Bottomline the first FBO is intermediate .. and its only purpose is to feed the second FBO . So memory b/w going from ROP to texture is a waste really
+12:19 robclark: so the one thing that would help for common pattern in games (and I think we could do on a5xx but haven't thought through how to implement) is https://www.khronos.org/registry/OpenGL/extensions/EXT/EXT_shader_pixel_local_storage.txt
+12:20 robclark: (on a5xx it seems like we can map GMEM into gpu's address space and use that as a texture/etc)
+12:20 (Codewar) Yep ... exactly that!
+12:20 (Codewar) but what is the path if any from Pixel backend writes to texture cache inputs, are they going through main memory or is there a last level cache
+12:22 robclark: I'm not entirely sure.. I'd assume I need to do cache flushes between rendering to GMEM and sampling from GMEM.. but I don't have a version of blob driver that implements pls yet
+12:22 robclark: plus would I guess be some plumbing through mesa and re-writing of games to utilize it..
+12:22 robclark: doesn't really help that the extension is gles only and all the linux games are gl
+12:23 robclark: maybe just gmem ends up uncached.. which would be fine since gmem is fast enough
+12:23 (Codewar) can you not do it in the driver with compiler driven data flow analysis
+12:23 robclark: hmm..
+12:23 (Codewar) you can detect the RT -> texture dependency via api analysis
+12:24 robclark: *possibly*..
+12:24 (Codewar) now is the pixel in mappped 1:1 to pixel out ffrom a different shader call
+12:24 (Codewar) its really 2 things: [a] same RT sizes [b] no runtime offsets in texel calculation 
+12:24 robclark: that would be a clever trick.. but I'm not sure how you'd know the texture coord was in the same pixel (or at least same tile)
+12:25 robclark: it seems hard, which I guess is why arm made an extension and pushed the work to the game dev's ;-)
+12:25 (Codewar) resolutions need to match and texel is using gl_FragCoord 
+12:25 (Codewar) that enough?
+12:26 (Codewar) border clamping would be required .. most of these guys probably dont even want a texture, its SSBO they want
+12:26 robclark: I guess you'd have to do a bit of analysis of the shader
+12:26 (Codewar) yep 
+12:26 robclark: I should probably have another look at how stk does it.. assuming they use gl_FragCoord and don't pass it through via vbo from vs maybe it is doable..
+12:26 (Codewar) stk?
+12:27 robclark: (supertuxkart)
+12:27 (Codewar) ok
+12:27 robclark: open src game that uses fairly modern rendering design.. and fancy things like g-buffers ;-)
+12:28 robclark: since no steam store for linux on arm, I am a bit limited in selection of advanced games ;-)
+12:28 (Codewar) whats the target audience for this driver primiarly 
+12:30 robclark: well.. my main focus has been linux.. for whatever anyone wants to use (arm boards and htpc/games, industrial/signage/etc).. although things have improved on android so we can start to use upstream kernel on some devices which means also freedreno..
