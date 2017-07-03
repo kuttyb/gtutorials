@@ -1,0 +1,7 @@
+Used for the following:
+[a] g-buffer
+[b] reflection / refraction
+[c] composition of course 
+[d] Portals  (don't quite know how this works yet)
+
+
