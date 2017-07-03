@@ -1,0 +1,124 @@
+20:44 You have joined the channel #gamedev
+20:44 Topic is http://bit.ly/gamedevchannel | http://ideone.com | http://gamedevs.org | Always be shippered (Roy_Fokker)
+20:44 Topic set by KnightTemplar on May 20, 2017 19:42:31
+20:44 Channel #gamedev created Jun 10, 2004 18:35:21
+20:45 ← mmj (AndChat193@1DEDFD.4B4151.D54E9F.B78D71.IP) has left IRC: (Ping timeout)
+20:46 (Codewar) how common are render to textures where theres a 1:1 relationship between teh texel being sourced and the pixel being written to. sort of like g-buffers
+20:46 @zao: Resolution-dependent UI and sprites kind of fall into that segment.
+20:47 @zao: And of course any form of post pass or composition target.
+20:47 @zao: Rasterised text and UI elements kind of fall into that as well.
+20:47 @zao: How so?
+20:48 (Codewar) @zao can you help me understand the postop part. wouldn't you want to blend instead? especially on tiled renderers that have framebuffer fetch extensions
+20:49 @zao: Depends on what kind of postprocess operation you're talking about.
+20:49 @zao: Colour grading and HDR mapping would be hard to express with blends
+20:50 (Codewar) I see, so you would you put it into a render target size texture, postprocess and then blit
+20:50 @zao: In most pipelines, an actual device framebuffer would only come into play as the target of the last post pass.
+20:52 @zao: Jovan: I'm surprised whenever I see textual formats in the runtime phase of a game.
+20:52 (Codewar) resolution dependent UI, whats the resolution dependent part?
+20:53 @MaulingMonkey: anything where the UI is expected to be pixel perfect
+20:53 @MaulingMonkey: e.g. it doesn't scale up as the resolution increases
+20:53 @zao: Icons and other elements that are sized by pixels, not relative the view size.
+20:53 @zao: Jovan: https://gist.github.com/zao/c46ed9b9672d79d9d31e881443358fe4
+20:53 @MaulingMonkey: or only scales up by integer multiples
+20:53 (Codewar) got it 
+20:54 @zao: MaulingMonkey: I wonder what kind of highlighting I triggered with that .sco
+20:54 @zao: Letters are alternatively red.
+20:54 @MaulingMonkey: (contrast to UI elements which might be defined in terms of a percentage of the window or resolution width, height, min(width,height), max(width,height), etc.
+20:54 @zao: And purple, heh.
+20:55 @MaulingMonkey: pretty :P
+20:58 @zao: Exercise in pain, all the links in this 2010 forum thread are deader than dead.
+21:00 (Codewar) and beyond post-op, res-dep UI, g-buffers, composition what are some of the other use cases where render textures are used (ignoring the 1:1 relationship above) reflection, refraction, portals?
+21:01 @zao: I still wonder why you wonder.
+21:01 @zao: Always feels like an exam.
+21:01 (Codewar) sorry you asked that before, implementing a tiled renderer on the CPU for functional verification of GPU pipeline
+21:02 (Codewar) trying to understand teh data flow when render textures are used
+21:02 (Codewar) I am a gamedev noob though have some idea of the hw having worked on the verification pipeline
+21:02 @MaulingMonkey: shadowmaps
+21:03 @MaulingMonkey: mapping UI to in-world objects (e.g. on-gun ammo counts etc.)
+21:04 (Codewar) For shadowmaps, the depth texture access pattern would not be very Tiled friendly would it
+21:04 @MaulingMonkey: nothing special about resolution dependent vs independent UI with regards to render targets or not
+21:05 @MaulingMonkey: I'm not sure exactly what you're asking
+21:05 (Codewar) yes I felt the same let me try again 
+21:06 sinclair: Codewar: you're rendering tiles?
+21:07 @zao: sinclair: Tiled renderer as in the GPU architecture.
+21:07 sinclair: oh
+21:07 @zao: Where it magically buffers and processes the scene in smaller chunks instead of having a big honking framebuffer, because of reasons.
+21:07 @MaulingMonkey: all I remember about tile based GPUs is that they're a pain in the ass
+21:07 @zao: MaulingMonkey: Vulkan all the things!
+21:08 (Codewar) This is a Tiled renderer (not unlike classic TBR designs used in some GPUs) when doing a render target switch I would like to get good pipelining across tiles belonging to the different render target calls. Ideally I want the pipelining to happen within the tile as opposed to one tile waiting for other tiles to wait when this switch happens
+21:08 • @zao forces MaulingMonkey to use Mali GPUs all day erryrday.
+21:08 @MaulingMonkey: I vaguely remember some ugly code on the 360 for dealing with them - clearly I need to work harder on suppressing those memories :P
+21:09 (Codewar) if a single tile uses texture outputs from several tiles in teh previous render command then a tile barrier would have to be placed across all previous tiles. I dont know enough about game use cases to know how popular that is
+21:09 (Codewar) From what I know, reflections, refractions are the other big usage of render texture and they tend to have smaller textures which are used by a few tiles. 
+21:10 (Codewar) so mostly trying to educate myself about the different RT use cases and make a mental map of the data flow for the render target switch case ... perhaps I might come up with something clever (or perhaps not :))
+21:11 @zao: rotaerk: https://twitter.com/pervognsen/status/881692640030240772
+21:14 @ibutsu: makes sense
+21:16 (Codewar) do you guys write games for desktop IMR GPUs?
+21:17 ace4016: IMR?
+21:17 (Codewar) Immediate Mode renderers
+21:18 (Codewar) what regular GPUs do (as opposed to the crazy mobile ones )
+21:18 @MaulingMonkey: I've done it all, technically
+21:19 (Codewar) MaulingMonkey:  any big pain points / learnings / observations about the TB(D)Rs?
+21:21 @MaulingMonkey: 360 is the only architecture where we were forced to deal with the fact that the GPU was tiled
+21:21 @MaulingMonkey: for iOS/Android it's more about performance
+21:22 @MaulingMonkey: and those have such shit GPUs that the answer to everything is "don't do that"
+21:22 @MaulingMonkey: I halved the frame time on one title just by eliminating pointless render-to-texture stages
+21:22 @MaulingMonkey: there were like 4 or 5 native resolution buffers
+21:22 (Codewar) From what I know of the existing Android GPUs, render to texture is expensive
+21:23 @MaulingMonkey: went from ~60ms -> ~30ms on some of the high resolution phones
+21:23 (Codewar) the switch causes pipeline flushes and tile resolves
+21:24 (Codewar) for my edification, what were some of these pointless R-Ts?
+21:24 @MaulingMonkey: on the original version they were used for things like gamma correction
+21:24 @MaulingMonkey: posteffects (blur?)
+21:24 @MaulingMonkey: I forget what all
+21:24 @MaulingMonkey: but we'd already turned all that off for the mobile port for perf reasons
+21:24 @MaulingMonkey: so they were accomplishing literally nothing at all
+21:25 @MaulingMonkey: I think I eliminated a gamma correction pass that technically did stuff
+21:25 @MaulingMonkey: as well
+21:25 (Codewar) render target switches are expensive on NV / AMD too right?
+21:26 @MaulingMonkey: ehh, the bulk of the cost there is whatever you're doing in your pixel shaders
+21:26 @MaulingMonkey: or fill rate, if your pixel shader is simple enough
+21:26 @MaulingMonkey: I mean, don't do it for no reason, but just the switch wasn't that bad
+21:27 @MaulingMonkey: I mostly remember being fillrate bound on the 360
+21:27 @MaulingMonkey: saved a couple milliseconds just combining two posteffect shaders at least once
+21:28 @MaulingMonkey: halving resolution of e.g. motion blur buffers is another common trick to save on fill/pixel shader costs
+21:28 (Codewar) how do typical post effect passes work? Take a src full resolution texture and read modify update into a new texture at the same resolution?
+21:28 @MaulingMonkey: yeah
+21:29 @MaulingMonkey: you're just rendering a fullscreen quad with the previous buffer bound as the texture
+21:29 @MaulingMonkey: and the next buffer as the current render target
+21:29 @MaulingMonkey: and then maybe a pixel shader that does gamma correction
+21:29 (Codewar) why not modify the old one in place?
+21:29 @MaulingMonkey: or a desaturation pass because you're low on health
+21:29 @MaulingMonkey: or whatever
+21:29 @MaulingMonkey: traditionally, you couldn't
+21:29 (Codewar) so the TBRs allow that ... 
+21:29 (Codewar) framebuffer fetch extension 
+21:30 @MaulingMonkey: commonly you'd have two native resolution buffers
+21:30 @MaulingMonkey: and ping pong between them
+21:31 (Codewar) got it ... in TBRs the draw calls belonging to the same render target are executed one tile at a time so you can read it from the on chip memory allowing programmable blending ... 
+21:32 @MaulingMonkey: you might want to doublecheck the performance on them - I haven't experimented with framebuffer fetch
+21:32 @MaulingMonkey: I think the idea was that e.g. a single draw call could touch the same framebuffer data multiple times (e.g. multiple overlapping triangles)
+21:33 @MaulingMonkey: so fetch would force that to be serialized, or undefined, or worse
+21:33 ← [Relic] ([Relic]@4B9E3D:C228BE:8FE4AB:422E7A:IP) has left IRC: (Quit)
+21:33 @MaulingMonkey: (which of course shouldn't happen for a single fullscreen quad, but that's the more specific case)
+21:35 @MaulingMonkey: hence part of the reason why we have dedicated blend hardware
+21:35 (Codewar) perhaps I did not understand the use case well enough: so a single draw call with overlapping primitives that RMW fb right?you are right without Raster order view there is no ordering 
+21:35 (Codewar) ordering guarantee
+21:35 @MaulingMonkey: right
+21:36 @MaulingMonkey: so basically rendering normal game objects
+21:36 @MaulingMonkey: where there's no requirement for them to be convex or anything
+21:36 @MaulingMonkey: some angles *will* have overlapping geometry
+21:37 (Codewar) though in reality most of the GPUs I know maintain primitive submission order down to the fragment and have shitty shader core schedulers that serialize accidentally so you get what you want :-)
+21:37 (Codewar) but its not by design so cant count on it
+21:38 @MaulingMonkey: so instead of designing something you *could* count on, they just kept the existing fixed function pipeline blend modes when introducing shaders
+21:38 (Codewar) did 360 have a separate blend pipeline 
+21:38 @MaulingMonkey: of course, you can only do e.g. basic alpha blending with the original destination with those, but...
+21:38 @MaulingMonkey: not that I recall
+21:39 @MaulingMonkey: actually, I'm not sure I parsed your question right
+21:39 @MaulingMonkey: from what I recall 360 blending was basically the same as normal d3d9 blending
+21:40 (Codewar) I meant did they maintain primitive order all the way to shader execution or only did the sorting before blending in ROP
+21:40 @MaulingMonkey: "hell if I know"
+21:40 (Codewar) :-)
+21:42 (Codewar) Gtg, it was very nice talking to you guys, learnt a
+lot. Thank you for your time!!
+

@@ -3,5 +3,35 @@ Used for the following:
 [b] reflection / refraction
 [c] composition of course 
 [d] Portals  (don't quite know how this works yet)
+[e] post-ops
+[f] shadow buffers
 
+-- From below, 
 
+// Excerpts from #gamedev irc.afternet.org
+20:44 You have joined the channel #gamedev
+20:44 Topic is http://bit.ly/gamedevchannel | http://ideone.com | http://gamedevs.org | Always be shippered (Roy_Fokker)
+20:44 Topic set by KnightTemplar on May 20, 2017 19:42:31
+20:44 Channel #gamedev created Jun 10, 2004 18:35:21
+20:45 ← mmj (AndChat193@1DEDFD.4B4151.D54E9F.B78D71.IP) has left IRC: (Ping timeout)
+20:46 (Codewar) how common are render to textures where theres a 1:1 relationship between teh texel being sourced and the pixel being written to. sort of like g-buffers
+20:46 @zao: Resolution-dependent UI and sprites kind of fall into that segment.
+20:47 @zao: And of course any form of post pass or composition target.
+20:47 @zao: Rasterised text and UI elements kind of fall into that as well.
+20:47 @zao: How so?
+20:48 (Codewar) @zao can you help me understand the postop part. wouldn't you want to blend instead? especially on tiled renderers that have framebuffer fetch extensions
+20:49 @zao: Depends on what kind of postprocess operation you're talking about.
+20:49 @zao: Colour grading and HDR mapping would be hard to express with blends
+20:50 (Codewar) I see, so you would you put it into a render target size texture, postprocess and then blit
+20:50 @zao: In most pipelines, an actual device framebuffer would only come into play as the target of the last post pass.
+20:52 @zao: Jovan: I'm surprised whenever I see textual formats in the runtime phase of a game.
+20:52 (Codewar) resolution dependent UI, whats the resolution dependent part?
+20:53 @MaulingMonkey: anything where the UI is expected to be pixel perfect
+20:53 @MaulingMonkey: e.g. it doesn't scale up as the resolution increases
+20:53 @zao: Icons and other elements that are sized by pixels, not relative the view size.
+20:53 @zao: Jovan: https://gist.github.com/zao/c46ed9b9672d79d9d31e881443358fe4
+20:53 @MaulingMonkey: or only scales up by integer multiples
+20:53 (Codewar) got it 
+20:54 @zao: MaulingMonkey: I wonder what kind of highlighting I triggered with that .sco
+20:54 @zao: Letters are alternatively red.
+20:54 @MaulingMonkey: (contrast to UI elements which might be defined in terms of a percentage of the window or resolution width, height, min(width,height), max(width,height), etc.
