@@ -1,0 +1,24 @@
+https://www.khronos.org/opengl/wiki/Geometry_Shader
+
+Definitely a good start.
+
+Primarily good for 2 reasons:
+
+[a] Layered Rendering -> output same primitive to multiple images using different layers.
+Can be done in two ways:
+ - loop inside the GS and do multiple emit_primitive
+ - use GS instancing where separate GS instances pass you the gl_invocationid and you can use this to select the layerID
+ Where supported in hardware, the latter is preferred since you get parallelism across separate instances
+
+[b] Custom Culling
+The first stage where you have complete primitive information. So you can really reject certain primitives using custom culling techniques
+
+[c] Transform Feedback
+http://rastergrid.com/blog/2010/10/gpu-based-dynamic-geometry-lod/
+
+This guy uses GS to pick the correct primitive LOD based on distance and streams it to different Transform Feedback streams. These streams can later be played back.
+
+Bottomline, if you ignore the Dynamic Geomoetry LOD part, this lets you do frustum culling, and pipe to TF streams. You can thus avoid doing complex asynchronous queries.
+
+
+
