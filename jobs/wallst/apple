@@ -1,0 +1,29 @@
+DRI for End-to-End Latency and QoS for the GPU Stack on iPhone, iPad, AppleTV and Watch for 60/120 Hz and future display refresh rate rendering. This involves driving changes in upcoming hardware generations, CPU optimizations at Driver/Firmware layers and ensuring we have we the correct tools to identify and quantify critical path bottlenecks in SW and HW. Have 10 patents in the pipeline in this area with 1 already granted. 
+
+In addition I maintain large parts of the GPU Kernel driver and Firmware stack on a daily basis and have proposed, implemented and delivered several features in past iOS releases.
+
+[] CPU Optimizations :
+Rendering/Compute commands are channeled and pre-processed by a Firmware running on a dedicated in-order CPU, stored in a queue and when the GPU is idle, it raises an interrupt and a queued command is submitted to the gpu. GPU completed commands are then post-processed by the Firmware before notifying the main CPU. The "submit-to-gpu" and "pre-process" stages of the pipeline are extremely latency sensitive and can impact frame time when there are 200+ commands per frame. 
+
+iOS11 Optimizations: Decreased the "submit-to-gpu" latency by 3x from 21us to 6us for iPhone 7 and from 12us to 3us for iPhone 8/X and identified areas to bring it down to 2us in the future. The Optimizations include packing data used by commands to adjacent cache lines, moving cold code out of hot i$ path, eliding branches by creating a fast path that is cheaply detected at the start that has 30% branches removed, added 2 level manual prefetching ensure L1 coverage of hot data, used NEON stores for bulk register writes. Also worked with LLVM backend teams to improve compiler instruction scheduling for the CPU target.
+
+Working with CPU Hardware team to design next generation Power Efficient CPU for Graphics Firmware. Responsible for Modelling futiristic workloads, measuring IPC, CPI values for critical stall paths and improving memory fetch latencies with techniques like "Runahead Execution" and better Prefetchers. Point of contact between CPU and GPU HW teams.
+
+Converted Firmware Execution Pipeline for Streaming Commands into a Directed Acyclic Graph at Runtime. Nodes represent stages of a Pipeline executed by the Firmware, edges represent Data Dependencies across nodes. Event Processing can now be done by following high priority edges instead of testing to see which command is ready for execution. This also allows Parallelizing independent commands into separate Tiling/Rendering Hardware Units. Also minimizes Pipeline Fence stalls by queuing independent commands to be in flight in HW simultaneously. Graph allows Looping subgraphs to allow main CPU to power down. (Patent Filed)
+
+
+[] GPU Fair Scheduler / QoS : 
+Implemented a Credit Based Prioritized Fair Scheduler running on a Firmware that balances GPU utilization evenly among work queues at similar priority levels and allows higher priority bands to preempt lower priority ones. Released as part of iOS9 to support "Split Screen Multitasking on iPads" allows multiple applications to render simultaneously with the Scheduler providing fairness and starvation freedom across Display Refresh Rate Deadlines (Patent US9747659) 
+
+iOS10 added Face Recognition using Deep Learning Inference. Worked with several teams to ensure Background cycles on the GPU can be used to run Deep Learning without dropping UI Frames or exceeding the Power Budget of the phone. Augmented Scheduler to avoid overlap between Deep Learning tasks and UI Rendering tasks, implemented an early UI inflight detect and preempt policy along with hysteris to keep GPU idle for potentially incoming UI work before using idle cycles for Deep Learning Tasks. (Patent filed)
+
+Worked with Hardware teams to design the Apple GPU QoS System to allow multiple applications in GPU simultaneously and maintaining fair share usage of Shader Cores and Memory Bandwidth between them. This was first released on iPhone 8 and X. Have since proposed and patented several improvements in this area for upcoming undisclosed prodcuts (Several Patents filed)
+
+Worked with HW teams across several GPU generations to bring down Context Switch latency for Geometry, Pixel and Compute tasks.
+
+[] Wrote AGXAnalyzer, a tool that converts traces into a Time Series Database and runs queuries hunting for critical path latency per Application and plots them. In use by several teams at Apple for measuring GPU Performance.
+
+{ Wall St: Write about Cyclops }
+[] Cyclops : Analyzes CPU simulation runs and plots out critical path latencies, stalls in Front End, Back End, Register File and ALU Utilization. Critical stalls are those that are preventing instructions from retiring and any upstream stalls contributing towards this. Useful for studying compiler instruction scheduling inefficiencies as well as regular code to understand what optimizations to chase.
+
+
