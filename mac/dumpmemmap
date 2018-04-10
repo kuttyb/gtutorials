@@ -1,0 +1,7 @@
+vmmap pid
+
+vmmap --summary pid
+
+This is the equivalent of /proc/pid/maps
+
+You can also find out what .so files are being used
