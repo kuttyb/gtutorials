@@ -94,3 +94,18 @@ http://stackoverflow.com/questions/8134179/how-to-pack-resources-in-a-maven-proj
 
 ** Running a Single Test with special JVM flags:
 MAVEN_OPTS='-ea -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+PrintGCDetails' mvn3 -Dtest=GraphOnePerf test
+
+==================================================
+How do I use a particular Javac compiler version
+==================================================
+<plugins>
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+        </configuration>
+    </plugin>
+</plugins>
+
