@@ -1,3 +1,4 @@
+// Also jcmd 56135 help to get all the options, yes this is very weird
 jcmd 56135 Compiler.codelist // where 56135 is the pid (ActiveMQ in this case)
 
 56135:
