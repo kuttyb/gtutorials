@@ -1,0 +1,4 @@
+-Xjit:optLevel=scorching
+
+-Xjit:quickProfile
+
