@@ -1,0 +1,22 @@
+alias clear clr
+alias jdk cd /usr/share/jdk
+alias int cd /home/kutty/daji/int/java
+alias desk cd ~/Desktop
+alias doc cd ~/Documents
+alias daji cd ~/daji
+alias down cd ~/Downloads
+alias psu ps -efcl
+alias start explorer .
+alias mem cat /proc/meminfo
+alias space df -h
+alias celar ls $*
+alias tut cd /home/kutty/daji/tut
+alias j cd /home/kutty/daji/javamaven
+alias pc git pull
+alias gp git push 
+alias dist cat /etc/lsb-release
+alias sw_vers uname -a
+alias pa git add .
+alias po git status
+alias gc git commit
+alias plg git lg -10
