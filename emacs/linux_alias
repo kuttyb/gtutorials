@@ -1,4 +1,7 @@
+alias pd git diff .
+alias gcf git clean -f -d .
 alias clear clr
+alias clr clr
 alias jdk cd /usr/share/jdk
 alias int cd /home/kutty/daji/int/java
 alias desk cd ~/Desktop
@@ -20,3 +23,6 @@ alias pa git add .
 alias po git status
 alias gc git commit
 alias plg git lg -10
+alias open nautilus
+alias t cd /home/kutty/daji/ccomponent
+alias r cd /home/kutty/daji/ccomponent/repository
