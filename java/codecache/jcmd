@@ -1,0 +1,41 @@
+// Also jcmd 56135 help to get all the options, yes this is very weird
+jcmd 56135 Compiler.codelist // where 56135 is the pid (ActiveMQ in this case)
+
+56135:
+10 1 0 java.util.ImmutableCollections$Set0.hashCode()I [0x000000011db60010, 0x000000011db601c0 - 0x000000011db602d0]
+12 1 0 java.util.Collections$EmptySet.hashCode()I [0x000000011db60310, 0x000000011db604c0 - 0x000000011db605d0]
+
+
+It appears the [#something, addr_start - addr_end] the code address is addr_start to addr_end
+
+lldb -p 56135
+
+(lldb) dis -s 0x000000011db601c0 -e 0x000000011db602d0
+    0x11db601c0: movl   0x8(%rsi), %r10d
+    0x11db601c4: shlq   $0x3, %r10
+    0x11db601c8: cmpq   %rax, %r10
+    0x11db601cb: jne    0x1160be600
+    0x11db601d1: nopw   (%rax,%rax)
+    0x11db601dc: nop    
+    0x11db601e0: movl   %eax, -0x14000(%rsp)
+    0x11db601e7: pushq  %rbp
+    0x11db601e8: subq   $0x30, %rsp
+    0x11db601ec: movl   $0x0, %eax
+    0x11db601f1: addq   $0x30, %rsp
+    0x11db601f5: popq   %rbp
+    0x11db601f6: movq   0x70(%r15), %r10
+    0x11db601fa: testl  (%r10), %eax
+    0x11db601fd: retq   
+    0x11db601fe: nop    
+    0x11db601ff: nop    
+    0x11db60200: movq   0x350(%r15), %rax
+    0x11db60207: movabsq $0x0, %r10
+    0x11db60211: movq   %r10, 0x350(%r15)
+    0x11db60218: movabsq $0x0, %r10
+    0x11db60222: movq   %r10, 0x358(%r15)
+    0x11db60229: addq   $0x30, %rsp
+    0x11db6022d: popq   %rbp
+    0x11db6022e: jmp    0x1160f3a80
+
+---------
+There you go, no funny command lines and you can use this on a running production system
