@@ -1,0 +1,7 @@
+pmset -g // this will show you various values
+
+pmset -a hibernatemode 25 // as opposed to 3, this is technically the deep sleep Windows style hibernate
+
+pmset sleepnow // suposed to trigger the sleep (hibernate)
+
+
