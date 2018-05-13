@@ -8,3 +8,7 @@ docker image [ls | rm ...]
 // Containers
 docker container ls --all
 
+// To fetch an existing docker image
+docker pull adoptopenjdk/openjdk10-openj9
+
+
