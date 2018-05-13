@@ -16,3 +16,5 @@ docker pull adoptopenjdk/openjdk10-openj9
 docker tag localimagename kuttyb/localimagename:tag
 docker push localimagename kuttyb/localimagename:tag
 
+// Delete an image
+docker image rm -f name
