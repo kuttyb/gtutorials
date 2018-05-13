@@ -12,3 +12,7 @@ docker container ls --all
 docker pull adoptopenjdk/openjdk10-openj9
 
 
+// Create a version and then push it upstream
+docker tag localimagename kuttyb/localimagename:tag
+docker push localimagename kuttyb/localimagename:tag
+
