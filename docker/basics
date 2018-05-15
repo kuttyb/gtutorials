@@ -1,0 +1,10 @@
+https://docs.docker.com/get-started/#test-docker-installation
+
+CLI:
+=====
+// Various Images fetched and installed locally 
+docker image [ls | rm ...]
+
+// Containers
+docker container ls --all
+
