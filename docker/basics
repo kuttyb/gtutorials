@@ -1,5 +1,8 @@
 https://docs.docker.com/get-started/#test-docker-installation
 
+// Make sure you add your username to the docker account
+sudo usermod -aG docker ${USER}
+
 CLI:
 =====
 // Various Images fetched and installed locally 
