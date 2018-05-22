@@ -1,0 +1,4 @@
+Using Hotspot OpenJDK 9 ~9600 no special flags and a 3 minute warmpu
+
+
+
