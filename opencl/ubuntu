@@ -9,3 +9,12 @@ sudo apt install ocl-icd-opencl-dev
 ## Intel only (older chips)
 sudo apt install beignet
 ## Newer chips are supported by the Intel official OpenCL runtime
+
+=========
+There is pocl which is fairly decent for the CPU implementation
+
+__BUT__ for CPU you really want the Intel Xeon implementation, the backend and vectorization is orders of magnitude faster
+than the Open Source versions
+
+
+Also to switch between OpenCL ICD vendors, goto /etc/OpenCL/vendors and hide the vendor.icd file. Verify with clinfo
