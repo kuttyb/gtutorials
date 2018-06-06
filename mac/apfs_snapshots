@@ -1,0 +1,9 @@
+https://www.lifewire.com/roll-back-apfs-snapshots-4154969
+
+Looks promising 
+
+tmutil snapshot
+
+tmutil listlocalsnapshots /
+
+Don't know yet if you can snapshot a directory and revert back to it cheaply
