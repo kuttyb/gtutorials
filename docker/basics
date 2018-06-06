@@ -1,0 +1,23 @@
+https://docs.docker.com/get-started/#test-docker-installation
+
+// Make sure you add your username to the docker account
+sudo usermod -aG docker ${USER}
+
+CLI:
+=====
+// Various Images fetched and installed locally 
+docker image [ls | rm ...]
+
+// Containers
+docker container ls --all
+
+// To fetch an existing docker image
+docker pull adoptopenjdk/openjdk10-openj9
+
+
+// Create a version and then push it upstream
+docker tag localimagename kuttyb/localimagename:tag
+docker push localimagename kuttyb/localimagename:tag
+
+// Delete an image
+docker image rm -f name

@@ -9,3 +9,8 @@ deb-src http://mirror.anl.gov/pub/ubuntu hardy universe
 
 
 After changing this file, apt-get update and you're ready to go!!
+
+=======
+dpkg -L name_of_package ;; this is wher on your system the files are all located
+
+apt show name_of_package

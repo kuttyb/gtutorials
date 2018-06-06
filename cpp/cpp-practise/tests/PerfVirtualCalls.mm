@@ -70,13 +70,32 @@ public:
     [super tearDown];
 }
 
+#include <set>
+
+- (void)testSetIterationPerformance {
+	std::multiset<int> a;
+	
+	/* Insert */
+	for (int i = 0 ; i < 1000000; ++i) {
+		a.insert(i);
+	}
+	
+	int value = 0;
+	perf::profile<std::chrono::milliseconds>()([&value, &a](){
+		for (const auto &v : a) {
+			value += v;
+		}
+	}, 5);
+	
+	cout << "value is " << value << endl;
+}
+
 - (void)testExample {
-//    const int MAX = 10000000;
-	const int MAX = 50;
+    const int MAX = 1000000;
     First * first = new First(new Second(new Third()));
     
     int value = 0;
-    perf::profile<std::chrono::nanoseconds>()([&value, first](){
+    perf::profile<std::chrono::milliseconds>()([&value, first](){
         for (int i = 0; i < MAX; ++i) {
             if ((i % 5) == 0) {
                 value += first->process(10, 3);

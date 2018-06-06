@@ -1,0 +1,7 @@
+http://portablecl.org/
+
+Provides decent CPU implementation. AMD is a disaster!! I prefer using this  over their AMD APP which has gone completely missing.
+
+export POCL_DEBUG=1 // if you want to see where the generated code is going so you can objdump it
+poclcc -b '-DCPU=1 other compiler options' kernel.cl
+

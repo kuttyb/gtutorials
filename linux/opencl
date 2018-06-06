@@ -1,0 +1,4 @@
+sudo apt install libpocl-dev libpocl2 libpocl2-common pocl-opencl-icd
+
+POCL provides decent CPU runtimes for OpenCL and the backend is LLVM ayways
+n

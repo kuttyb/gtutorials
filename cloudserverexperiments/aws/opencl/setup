@@ -1,0 +1,21 @@
+Intel Xeon OpenCL
+http://registrationcenter-download.intel.com/akdlm/irc_nas/vcp/12526/intel_sdk_for_opencl_2017_7.0.0.2568_x64.gz
+
+// This one shouldn't involve a driver build
+// This also works with AMD EPYC and gives better performance than Xeon :-)	
+http://registrationcenter-download.intel.com/akdlm/irc_nas/12556/opencl_runtime_16.1.2_x64_sles_6.4.0.37.tgz
+
+
+OpenJDK
+https://github.com/AdoptOpenJDK/openjdk9-nightly/releases/download/jdk-9%2B181-20180517/OpenJDK9_x64_Linux_20180517.tar.gz
+
+Programs
+https://bitbucket.org/kuttyb/java/raw/7a0dcd946b18d3e61e21362a6ff67cf3369939cd/compiler/bin/compiler.jar
+https://bitbucket.org/kuttyb/java/raw/7a0dcd946b18d3e61e21362a6ff67cf3369939cd/compiler/bin/small.jar
+https://bitbucket.org/kuttyb/java/raw/dd716dd22b815164ab4402882e82e1a38df94f3b/compiler/bin/loop.jar
+https://bitbucket.org/kuttyb/java/raw/testxeon2/compiler/src/main/resources/opencl/cpu.cl
+
+https://bitbucket.org/kuttyb/java/raw/d1a9dd5c44a8399ff0e2a3da887068f209364e4d/compiler/bin/large.jar https://bitbucket.org/kuttyb/java/raw/d1a9dd5c44a8399ff0e2a3da887068f209364e4d/compiler/bin/largeloop.jar
+
+Btw their compiler is ioc64
+e.g., ioc64 -input=cpu.cl -device=cpu -simd=sse42 -asm

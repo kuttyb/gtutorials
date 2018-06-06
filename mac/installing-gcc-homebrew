@@ -1,0 +1,2 @@
+brew reinstall gcc --without-multilib
+

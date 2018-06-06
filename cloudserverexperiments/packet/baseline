@@ -1,0 +1,14 @@
+Benchmark:
+===========
+wget https://bitbucket.org/kuttyb/interview/raw/24eafae8c86168187ce72ee6bd9fa2572641e71a/java/bin/int.jar
+
+
+Hotspot 
+========
+wget https://github.com/AdoptOpenJDK/openjdk10-releases/releases/download/jdk-10%2B23/OpenJDK10_x64_Linux_jdk-10.23.tar.gz
+
+
+OpenJ9
+=======
+wget https://github.com/AdoptOpenJDK/openjdk10-openj9-nightly/releases/download/jdk-10%2B46-20180510/OpenJDK10-OPENJ9_x64_Linux_20180510.tar.gz
+

@@ -1,0 +1,8 @@
+https://mjg123.github.io/2017/10/02/JVM-startup.html
+
+Summary:
+========
+jaotc --output java_base.so --module java.base --info -J-Xmx4g
+
+java -XX:AOTLibrary=./java_base.so HelloJava
+
