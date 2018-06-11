@@ -1,0 +1,17 @@
+setup /usr/local/cuda -> /usr/local/cuda-9.2
+
+and cd /usr/bin
+sudo cp -sf /usr/local/cuda/bin/* .
+
+That's for the PATH! You can always change /usr/local/cuda to point to the correct cuda version w/o having to change anything else
+
+
+----
+Thereafter go and change this
+
+cat /etc/ld.so.conf.d/cuda.conf 
+/usr/local/cuda/lib64/
+
+Run sudo ldconfig
+
+That's it!! It will no how to find your .so files correctly everafter
