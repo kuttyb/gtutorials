@@ -1,3 +1,8 @@
 lshw -html > a.html
 
 Prints out detailed system hardware information in a readable format
+
+lshw -c video
+
+Prints out information about video cards on your system along with drivers controlling them
+
