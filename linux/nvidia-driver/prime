@@ -1,0 +1,10 @@
+switching between NV and Intel is easy
+
+Open NVIDIA X-server settings -> Prime Profiles and select the GPU
+
+Now if you switch off to the Intel version, you will have to log out and log back in
+
+You will no longer be able to switch back to NV using their control panel
+
+For that you should use prime-select nvidia  (or prime-select query)
+
