@@ -1,0 +1,5 @@
+DrawElements vs DrawArrays
+
+Elements is index based submission whereas Arrays sends the actual Vertex data
+
+For all pratical purposes, stick with the Index based submission
