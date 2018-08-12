@@ -1,5 +1,17 @@
-DrawElements vs DrawArrays
-
+[a] DrawElements vs DrawArrays
 Elements is index based submission whereas Arrays sends the actual Vertex data
-
 For all pratical purposes, stick with the Index based submission
+
+
+[b] MultiDrawElements and GLSL
+    Use ARB_shader_draw_parameters
+    gl_DrawIDARB -> in MultiDraw***, this is the drawID and is available in VS
+
+    You can then use this to index into UBOs or other Buffer objects
+
+    To pass this down to FS, use an out variable with the "flat" type attribute.
+
+    This causes it to get passed down to the FS absent any interpolation. Only one of the vertices from the primitive (known as the "provoking vertex")
+    will actually get passed down. For other vertices, no data gets passed down.
+    https://www.khronos.org/opengl/wiki/Primitive#Provoking_vertex
+
