@@ -1,0 +1,57 @@
+clear optimization:
+
+variable precision shading:
+
+
+Position only shading
+https://patents.justia.com/patent/9824412
+
+Cull Pipe and Replay Pipe
+
+frustum culling, backface culling, degenerate, zero area
+
+Generate a visiblity map
+
+User Clip Planes
+----
+
+Issue: Any triangle not rejected is executed twice and the position only shading is on the critical path
+
+cull pipe has no clipper (trivial in-out tests for frustum culling, replay can do the detailed clipping)
+
+you can turn on/off this feature based on #vertices in the draw call
+
+It is essentially a runahead of Geometry culling
+
+you can also do z-max occlusion. Store max Z per Tile, if incoming triangles fit entirely in the Tile and their min is greater Tile Z.max, then trivially reject it
+
+Pixel Shader UAV writes should disable the Cull pipe
+
+-----
+References: 
+https://patents.justia.com/patent/8102393
+https://patents.justia.com/patent/6476807
+
+Qualcomm style POS in 2 passes to generate a visibility stream but this uses different hardware, iGPU for Culling and dGPU for Replay
+https://patents.justia.com/patent/8102393
+
+It is also "RunAhead" not all in one like Qcomm. Essentially its a culling mechanism, not a Tiled Rendering mechanism
+
+It appears to be outputing the visibility stream from the Pixel shader (Render Target)
+
+You could technically do this purely in SW too, like your depthPrePass. Just have the fragment shader output a bitstream and use that to predicate draw call indices. Is there such a thing possible?
+
+
+https://patents.justia.com/patent/8102393
+Background section provides a good description on why Occlusion Queries (stalling and predicated(conditional rendering) ones are not so great)
+
+
+Occlusion Queries can be useful for a very Coarse Grained approach
+
+
+https://patents.justia.com/patent/8564616
+Adds shader based frustum culling and clip plane tests along with Position fetch (and optionally, attributes required to do the test, fetch)
+
+If the first pass is not trivially rejected for a batch of 32 indices, then it proceeds with the second phase (fetch all attributes and do the vertex shading)
+
+I don't know if they do backface culling. Also does not have a provision for a Coarse Grained Rasterization, pre-HiZ etc...

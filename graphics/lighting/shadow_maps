@@ -1,0 +1,18 @@
+http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/
+
+[a] Calculate the Shadow Map: Do a depth only rendering of the scene from the Light's POV
+
+[b] Render the scene the usual way 
+
+// Output position of the vertex, in clip space : MVP * position
+gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
+
+// Same, but with the light's view matrix
+ShadowCoord = DepthBiasMVP * vec4(vertexPosition_modelspace,1);
+
+[c] In the Fragment shader, do a texture looup of the Shadow Map 
+ 
+float visibility = 1.0;
+if ( texture( shadowMap, ShadowCoord.xy ).z  <  ShadowCoord.z){
+    visibility = 0.5;
+}

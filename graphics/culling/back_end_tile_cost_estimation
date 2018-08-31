@@ -1,0 +1,19 @@
+https://patents.justia.com/patent/8593466
+
+The issue with Tiled Rendering is that the Pixel shading and ROP logic is done on a Per Tile basis. 
+
+There is generally a 1 : 1 match between a Core and a Tile. 
+
+Trouble is, in heavily unbalanced scenes, most of the work could be concentrated in a few Tiles and thus the remaining cores would be sitting idle.
+
+------
+
+To avoid this problem, they are keeping tabs (counters) on a Per Tile basis during Binning. It could be a list of triangles, an addition of compiler added weight of the Pixel shader etc.
+
+After Binning, Tiles are sorted based on decreasing weight. The Top 'n' Tiles are resplit into smaller Tiles before distributing if its noticed that some Cores will be sitting idle.
+
+To Split a Tile, one can send the same Tile to different Cores and with smaller scissors. 
+
+
+They each go through the same list of Primitives and ignore those that fail the Rasterizer's Scissor test
+

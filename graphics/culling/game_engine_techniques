@@ -1,0 +1,23 @@
+[a] Hierarchical Frustum Culling  / BVH
+
+[b] Portal Culling / Anti Portals
+
+[c] CBuffer (Software Coverage Buffer) / CBuffer with Z Readback
+    Depth Buffer Reprojection
+
+[d] GPU Culling (NVIDIA style)
+    (can also use Depth Buffer Reprojection)
+
+[e] PSV (Potentially Visible Sets) - Statically generated (Quake)
+
+[f] Hierarchical Z Buffer (HZB)
+
+----------
+Details:
+----------
+
+https://github.com/nvpro-samples/gl_occlusion_culling
+
+(Its all done on the GPU)
+
+

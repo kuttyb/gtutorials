@@ -1,0 +1,35 @@
+[a] Get the Depth Buffer and Depth Texture Mip Chain (max-4 for each higher level)
+
+[b] Do Culling in the Geometry Shader
+
+=========
+[a] Use previous Frame's depth buffer reprojected 
+    OR
+    Use the major occluders to generate the Depth Buffer at Full resolution
+
+    Then do subsequent full screen quad passes to generate the depth mipchain
+
+
+[b] Culling is where there are 2 possible solutions:
+
+   [1]  Hierarchical Rasterization
+http://rastergrid.com/blog/2010/10/hierarchical-z-map-based-occlusion-culling/
+   	In the Geometry Shader, generate a Bounding Box, Rasterize it based on distance (to decide resolution)
+	Compare Bounding Box's min depth with Depth MipChain lower's MAX depth (out of 4 texels)
+
+	If you can trivially reject it, put this information in the Stream Out (Transform Feedback) buffer and move on
+
+	This is your Visibility Stream!!
+
+   [ii] Full Rasterization + Visibility Buffer
+https://github.com/nvpro-samples/gl_occlusion_culling
+   	Generate the Bounding box and 3 Faces and let it move down the Pipe 
+
+	In the Fragment shader, set a bit in the Visibility Buffer
+
+	
+-----
+
+The Visibility Buffer is then consumed by a Compute Shader to generate indices for your MDI call.
+
+
