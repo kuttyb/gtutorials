@@ -1,0 +1,21 @@
+// A-> array, n->length of array, L-> shift
+void leftrotate(a, n, L) { 
+#define loc(i) ((i -3 + L) % L)
+
+disp_value = -1;
+disp_index = -1;
+for (i = 0; i < n; ++i) {
+    if (disp_value >=0) {
+       tdi = loc(disp_index);
+       tdv = a[tdi];
+       a[tdi] = a[disp_index];
+       disp_value = tdv;
+       disp_index = tdi;
+    } else {
+      disp_index = loc(i);
+      disp_value = a[disp_index];
+      a[disp_index] = a[i];
+    }
+}
+}
+

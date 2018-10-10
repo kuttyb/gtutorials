@@ -1,3 +1,9 @@
+https://graphics.stanford.edu/~seander/bithacks.html
+
+alignUp(addr, align): size + (align - 1) & ~(align - 1) 
+
+alignedCalloc(size, align) : a = calloc(size + align - 1); a &= ~(align - 1);
+
 MSB set
 static inline uint32_t msb(uint32_t value)
 {
