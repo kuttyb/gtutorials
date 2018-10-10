@@ -1,0 +1,20 @@
+========================
+Rabin Karp Algorithm
+========================
+
+Think of this as a sliding window with an anchor point in the haystack.
+
+ph = hash(needle, 0, m - 1);
+
+mh = hash(haystack, 0, m - 1);
+
+if (ph == mh) do strstr
+
+j = 0;
+for (j = 0, i = m; i < n; ++i, ++j) {
+    mh /= prime(haystack[j]);
+    mh *= prime(haystack[i]);
+
+    if (ph == mh) do strstr
+}
+
