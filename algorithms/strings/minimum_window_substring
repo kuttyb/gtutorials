@@ -1,0 +1,20 @@
+https://leetcode.com/problems/minimum-window-substring/solution/
+
+This is a hard one but keep in mind its a Sliding window Method. 
+
+Start with State = undesirable
+
+
+if (state == undesirable)
+   Keep advancing right pointer and add into System while state undesirable 
+   if state == desirable, break out
+   if eos, break out
+
+if (state == desirable)
+   Keep advancing left pointer while state desirable
+   if (state -= undesirable)
+      Add previous window to Window Set
+      break out
+
+return least Window
+

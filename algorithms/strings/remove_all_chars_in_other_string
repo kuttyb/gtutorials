@@ -1,0 +1,13 @@
+Given two strings, write a function to remove all characters in one string which are present in other string
+
+Use a 32 bitmask for each character (or 64bit if its not case sensitive) or 128-bit if they want the whole ASCII
+
+Parse first string and set bits for characters that occur
+
+Now in the second string, if bit is set for each character, replace with u8_max
+
+Second pass, shrink u8_maxes. That's it!!
+
+
+
+
