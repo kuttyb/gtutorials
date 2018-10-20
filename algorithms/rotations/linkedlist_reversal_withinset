@@ -1,0 +1,40 @@
+https://www.geeksforgeeks.org/reverse-a-list-in-groups-of-given-size/
+
+ A -> B -> C -> D  (set size = 2)
+
+ B -> A -> D -> C
+
+
+Node* reverse(Node * node, k) {
+  head = node;
+  next = node;
+  while (next) {
+      if (head) {
+      	 temphead = scout(next, k);
+	 if (!temphead) {
+	    head->next = next;
+	    return prev;
+	 }
+	 head = temphead;
+      }
+
+      while(next) {
+      	  node = next;
+	  next = next->next;
+	  node->next = prev;
+	  prev = node;
+      }     	     
+  }
+}
+
+/* Runs ahead 'k' to find the last element */
+Node* scout(Node* node, k, test) {
+  int i = 0;
+  for (; i < k && node; ++i, node = node->next) ;
+
+  if (i == k) 
+     return node;
+  else 
+     return NULL;
+}
+

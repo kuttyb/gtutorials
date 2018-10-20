@@ -1,0 +1,27 @@
+https://www.geeksforgeeks.org/rotate-matrix-90-degree-without-using-extra-space-set-2/
+
+In-place solution:
+
+Only works for square matrices.
+
+[1] Take the transpose
+
+[2] Reverse columns
+
+
+If you want to rotate 90-deg left, just do reverse rows in [2]
+
+// Flip columns
+for (i = 0; i < r; ++i) {
+  for (j = 0; j < c/2; ++j) {
+     swap(&a[i], &a[c - j - 1]);
+  }
+}
+
+// Flip rows
+for (i = 0; i < c; ++i) {
+    for (j = 0; j < r; ++j) {
+    	swap(&a[j], &a[r - j - 1]);
+    }
+}
+

@@ -1,20 +1,10 @@
-next = null
-prev = null
+prev = null, next = node;
 
-for (node = tail; node;  node = next) {
-    next = node->next;
-    node->next = prev;
-    prev = node;
-}
-swap(head, tail)
-
-
------------------------------------
-swap(x,y) {
- z = y
- y = x
- x = y
+while (next) {
+   node = next;
+   next = node->next;
+   node->next = prev;
+   prev = node;
 }
 
------------------
 
