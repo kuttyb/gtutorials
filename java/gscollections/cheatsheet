@@ -1,0 +1,26 @@
+// Factories
+MutableSet	    || Sets.mutable.with()
+MutableSoftedSet    || TreeSortedSet.newSet()
+
+MutableMap	    || Maps.mutable.with()
+MutableSortedMap    || TreeSortedMap.newMap()
+
+MutableMultimap     || Multimaps.mutable.sortedBag.empty() // Tree
+		       Multimaps.mutable.set.empty()       // Hash
+
+MutableList         || Lists.mutable.with()
+		    || FastList.newList()
+
+// Basic iterators
+Map
+  .forEachKeyValue
+  .forEach
+  .forEachKey
+
+Bag(Multiset)
+   .forEachWithOccurrences // Unique value + count
+   .forEach		   // Unique value
+
+Multimap(Dictionary)
+   .forEachKeyMultiValues
+
