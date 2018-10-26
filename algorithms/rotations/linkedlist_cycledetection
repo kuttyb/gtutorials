@@ -1,0 +1,15 @@
+Use two pointers, slow and fast. Slow chases fast. If its a cycle, slow will catch up with fast, else fast will terminate (reach a next pointing to null)
+
+boolean detectCycle(LinkNode head) {
+	slow = head;
+	fast = head.next;
+
+	while (slow != fast) {
+	  if ((fast == null) || (fast.next == null)) return false;
+
+	  slow = slow.next;
+	  fast = fast.next.next;
+	}
+
+  return true;
+}
