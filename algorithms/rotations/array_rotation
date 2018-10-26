@@ -43,3 +43,11 @@ for left rotate pick the right boundary. Kapeesh? :-)
 
 
     
+-------
+Heres the alternate version, also the one that works in O(n) with 3 passes for any arbitrary number of rotates
+https://www.geeksforgeeks.org/reversal-algorithm-right-rotation-array/
+
+RightRotate -> R(0, n - 1); R(0, d - 1); R(d, n - 1);
+
+LeftRotate ->  R(0, n - 1); R(0, X - 1); R(X, n - 1); // where X = n - 1 - d
+
