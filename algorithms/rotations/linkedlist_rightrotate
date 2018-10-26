@@ -27,3 +27,38 @@ head = last;
 head = tail
 tail = tail->next
 head->next = null
+
+=======================
+// Version 3
+=======================
+A -> B -> C
+
+B -> C - > A
+
+
+ListNode rightRotate(ListNode head) {
+/* General idea being, last element needs to point to head and head should be disconnected from its next element */
+
+/* Hold on to the original head */
+temp = head;
+
+/* We will have to return the new head so hold on to it as well */
+head = head->next;
+
+/* Disconnect the original head */
+temp->next = null;
+
+/* Traverse until we find the last element */
+node = head;
+prev = null;
+while (node) {
+   prev = node;
+   node = node->next;
+}
+
+/* Connect last element to the old head */
+prev->next = temp;
+
+/* Return the new head */
+return head;
+}
