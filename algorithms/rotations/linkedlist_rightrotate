@@ -1,42 +1,9 @@
-
-list->head->next = list->tail
-
-t = list->tail->next
-
-list->tail->next = NULL
-
-list->tail = t
-
-=======================
-// Version 2 (untested)
-=======================
-head->next = tail
-t = tail
-tail = head
-tail->next = t
-
-last = tail; // find the element that was before the old head
-for (n = tail; n; n = n->next) {
-    if (n == head) break;
-    last = n;
-}
-head = last;
-
-
-// Linked List Left Rotate
-head = tail
-tail = tail->next
-head->next = null
-
-=======================
-// Version 3
-=======================
 A -> B -> C
 
 B -> C - > A
 
 
-ListNode rightRotate(ListNode head) {
+ListNode leftRotate(ListNode head) {
 /* General idea being, last element needs to point to head and head should be disconnected from its next element */
 
 /* Hold on to the original head */
@@ -45,7 +12,7 @@ temp = head;
 /* We will have to return the new head so hold on to it as well */
 head = head->next;
 
-/* Disconnect the original head */
+/* Point (X): Disconnect the original head */
 temp->next = null;
 
 /* Traverse until we find the last element */
@@ -62,3 +29,7 @@ prev->next = temp;
 /* Return the new head */
 return head;
 }
+
+
+For rightRotate, its the same program as above except remove Point (X) and return prev instead of head
+
