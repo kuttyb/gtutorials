@@ -1,0 +1,33 @@
+O(n) with potentially two passes over the array. Only works for ASCII strings.
+
+Idea being, use the 8'th bit of a char to mark ISFINAL. ISFINAL means the character is in its final resting place, no further shifts required.
+
+So take "A B C D E"  right rotate by 2:
+
+A B C D E -> E A B C D -> D E A B C 
+
+#define NEXT(i, shift, len)   ((i + shift) % len)
+#define PREV(i, shift, len)   ((i - shift + len) % len)
+
+for (i = 0; i < n; ++i) {
+  if (ISFINAL(a[i]) {
+     locnext = NEXT(i, shift, n);
+     locprev = PREV(i, shift, n);
+     swap(&a[locnext], &a[locprev]);
+     FINALIZE(&a[locnext]);
+  } else {
+    swap(&a[i], &a[NEXT(i, shift, n)]);
+    FINALIZE(&a[i]);
+  }
+}
+
+// Make another pass and reset 8'th bit for all numbers
+
+
+So what we did is went through each character and if its not in its Final position, swapped it with its final position.
+
+If it is in its final position, then it must have gotten there by swapping out some other character. So we find this other character by doing PREV(final) and swap it with
+where it should be which is NEXT(final)
+
+That's it!!
+

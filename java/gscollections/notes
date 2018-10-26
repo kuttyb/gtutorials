@@ -21,3 +21,18 @@
 ====
 * Class Hierarchy of various Collections
 
+
+https://medium.com/oracledevs/visualizing-eclipse-collections-646dad9533a9
+
+This has a good tutorial on the factories to be used (both types, one with the full type and also the factories on the abstract type)
+
+MutableList<T> list = Lists.mutable.empty();
+MutableSet<T> set = Sets.mutable.empty();
+MutableSortedSet<T> sortedSet = SortedSets.mutable.empty();
+MutableBag<T> bag = Bags.mutable.empty();
+MutableSortedBag<T> sortedBag = SortedBags.mutable.empty();
+MutableMap<K, V> map = Maps.mutable.empty();
+MutableSortedMap<K, V> sortedMap = SortedMaps.mutable.empty();
+MutableBiMap<K, V> biMap = BiMaps.mutable.empty();
+MutableStack<T> stack = Stacks.mutable.empty();
+

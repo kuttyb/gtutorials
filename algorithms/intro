@@ -1,0 +1,49 @@
+Area of Expertise: 
+- System Software (glue layer to make Hardware and Software work)
+- JIT Compiler Runtimes
+- HW Simulators (Cycle accurate / Functional)
+- End to End System Peformance
+
+---- Apple little over 5 years. iOS GPU Stack
+Apple makes its own GPUs, I have been part of this chip since its beginning, 2 months. 
+
+Several Major Accomplishments
+
+- Currently lead Cross Functional Team (across SW-HW) that drives End to End Latency down 
+  Graphics and AI Stack, open mandate, do whatever it takes *BUT* 6 month deliverables
+{  Driver Latency
+  Hardware Context Switch LAtency
+  XNU Kernel Thread Overhead
+  Firmware Latency
+}
+
+- Get the first GPU to work, Software - Hardware 
+- End to End QoS for Graphics, latency tolerant
+  -> Wrote the Scheduler (GPU Fairness) 
+     Tim Cook's line was if I am Facetiming with my Mother, I don't want Angry Birds to cause Frame drops
+     Guaranteed Fairness
+     Firmware - Scheduler
+     
+   -> Designed changes into several generations of Hardware to build Fairness into the Hardware,
+      memory b/w, cache, USC
+   -> Improve Context Switch latency
+   -> I have 12 patents 
+   
+- Driver Performance Improvement
+   -> Brought Firmware Interrupt Service Time from 25us to 3us
+
+----------
+NVIDIA
+
+- Software Lead for 2009 Generation GPU (Fermi) 
+  Seen 2 Complete end to end Hardware Generations from beginning till the end
+
+- CUDA 
+
+- CPU - JIT Compiler
+
+--------
+Free Time (Open Source)
+
+- Khronos : Parallel Virtual Machine
+

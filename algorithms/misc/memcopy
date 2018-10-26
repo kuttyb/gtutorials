@@ -5,12 +5,16 @@
 	for (int i=0, src+=size - 1, dst+=size - 1; \
 	     (i < size) && (*dst-- = *src--); i++) {} 
 
-/** if destination's end point is within src window do top-down
-    else do bottom-up */
+/* 
+ * If the destination_start is between src_start and src_end copy bottom up else
+ * copy top down
+ */
 void memcopy(const void *src, void *dst, int bytes) {
-     if ((dst + bytes - 1) > (src + bytes - 1)) {
+     if ((dst < src) && (dst > (src + bytes - 1))) {
      	COPYHIGHTOLOW((long*)src, (long*)dst, size / sizeof(long));
      } else {
         COPYLOWTOHIGH((long*)src, (long*)dst, size / sizeof(long));
      }
 }
+
+

@@ -1,0 +1,30 @@
+This is more sensible, the other one is better parallelizable
+
+// Left Rotate by 1 : start from the start and rotate by left
+A B C D 
+
+D B C A
+
+B D C A
+
+B C D A
+
+// Remember you are using all elements as the pivot except the last
+for (i = 0; i < len - 1; ++i) {
+  swap(&array[i], &array[(i - 1 + len) % mod];
+}
+
+
+// Right Rotate by 1 : start from the end and rotate by right
+A B C D
+
+D B C A
+
+D B A C
+
+D A B C
+
+// Remember you are using all elements as the pivot except the 0th
+for (i = len - 1; i > 0; --i) {
+    swap(&array[i], &array[(i + 1) % len]);
+}

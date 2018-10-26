@@ -1,0 +1,6 @@
+https://patents.justia.com/patent/20050195186
+
+At a high level, auto generating a bounding box for primitives within a Draw Call. Sounds like a bad idea and I am not even clear if this is correct.
+
+Is this run before VS or after? Is it POS VS or otherwise? 
+
