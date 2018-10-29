@@ -1,0 +1,43 @@
+https://www.youtube.com/watch?v=XKu_SEDAykw&t=464s
+
+// Solve it in linear time  (assuming list is sorted)
+
+1 2 3 4 5 6 7 8 9 10  | 
+
+Sum = 14
+Sum = 6
+
+
+pair<int, int> find(a, sum) {
+lo = 0; high = end;
+
+if (sum > (a[high] + a[high - 1])) return null;
+if (sum < (a[lo] + a[lo +1])) return null;
+
+while (lo < high) {
+   
+   expected = sum - lo;
+   if (expected == a[high]) {
+      return pair<lo, high>;
+   }
+
+   if (expected < high) {
+      /* reduce high */
+      --high;
+   } else {
+     /* advance low */
+     ++low;
+   }
+}
+
+}
+
+
+// Solve it in linear time (assumign list is not sorted)
+
+go through the list and maintain a seenList as a HashSet. For each new number insert into HashSet and if insertion fails because the elemeent is already present then that is your pair.
+
+Assumes HashSet can do the lookup in linear time. Thats not really true but for the sake of an interview, feel free to throw in Hash Tables liberally :-)
+
+
+

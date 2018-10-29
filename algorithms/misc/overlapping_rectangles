@@ -1,0 +1,48 @@
+https://www.youtube.com/watch?v=zGv3hOORxh0
+
+class Point {
+  int x;
+  int y;
+  int id;
+  Point(...) {...}
+}
+
+class Rectangle {
+  Point one, two, three, four;
+  Rectangle(...) {...}
+}
+ 
+two    three
+
+one    four
+
+--------
+
+new rectangle -> higher of the lower bound and lower of the upper bound for 'x' and 'y' axes respectively
+
+Trivial rejection -> X-axes
+ Set<Point> xaxes(new AAxesComparator());
+ xaxes.add(r1.one, r1.four, r2.one, r2.four);
+ 
+ boolean testXAxesOverlap(Set<Point> xaxes) {
+ int id = -1;
+ foreach (r : xaxes) {
+    if (id == -1) {
+       id = r.id;
+    } else {
+      if (id == r.id) {
+      	 return false;
+      }
+    }
+ }
+ return true:
+}
+
+Trivial rejection -> Y-axes
+ 
+
+return new Rectangle(new Point(xaxes.get(1).x, yaxes.get(1).y),  // one
+       	      new Point(xaxes.get(1).x, yaxes.get(2).y),  // two
+	      new Point(xaxes.get(2).x, yaxes.get(2).y),  // three
+	      new Point(xaxes.get(1).x, yaxes.get(1).y));
+
