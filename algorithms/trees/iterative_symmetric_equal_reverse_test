@@ -15,7 +15,7 @@ boolean bfsTraversal(root, visitor) {
 // [1] For isEqualVisitor, change stack to queue and you are in business
        Of course for this you will have to modify the traversal and visitor to deal with 2 roots
 
-// [2] For reverseVisitor, use a queue and its an array reversal
+// [2] For reverseVisitor, use the stack but do a copy instead
 static int ctr = 0;
 static stack s;
 static int oldheight = 0;
