@@ -1,0 +1,16 @@
+        /* Find the number of digits */
+        for (ctr = 0; num != 0; num /= 10, ++ctr) {}
+        char[] str = new char[ctr];
+
+	/* Pull out the digits (sort of like a digit iterator) */
+        for (ctr = 0, num = input; num != 0; num /= 10, ++ctr){
+            int digit = num - ((num / 10) * 10);
+            str[ctr] = (char) (digit + '0');
+        }
+
+        /* Reverse the string */
+        for (ctr = 0; ctr < str.length / 2; ++ctr) {
+            char temp = str[ctr];
+            str[ctr] = str[str.length - 1 - ctr];
+            str[str.length - 1 - ctr] = temp;
+        }

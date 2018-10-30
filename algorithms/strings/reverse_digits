@@ -1,0 +1,15 @@
+    public static int execute(int input) {
+        int reverse = 0;
+        while (input != 0) {
+	    /* Tear the input apart */
+            int digit = input - ((input / 10) * 10);
+
+	    /* Add to the sum */
+            reverse *= 10;
+            reverse += digit;
+	    	 
+            input /= 10;
+        }
+
+        return reverse;
+    }

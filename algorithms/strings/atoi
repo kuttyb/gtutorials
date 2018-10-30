@@ -1,0 +1,6 @@
+int atoi(const char* str) {
+    for (; *str; ++str) {
+      sum *= 10;
+      sum += *str - '0';
+    }
+}
