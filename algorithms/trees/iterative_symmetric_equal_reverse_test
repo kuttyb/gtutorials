@@ -1,0 +1,43 @@
+// Do a vanilla BFS Traversal and in the visitor pull all the tricks below
+boolean bfsTraversal(root, visitor) {
+  push(0, root)
+  while (!empty()) {
+  	n = pop();
+
+	if (!visit(n.height, n.node)) return false;
+
+	if (n.node.l) push(n.height + 1, n.node.l);
+	if (n.node.r) push(n.height + 1, n.node.r);
+  }
+}
+
+
+// [1] For isEqualVisitor, change stack to queue and you are in business
+       Of course for this you will have to modify the traversal and visitor to deal with 2 roots
+
+// [2] For reverseVisitor, use a queue and its an array reversal
+static int ctr = 0;
+static stack s;
+static int oldheight = 0;
+boolean isSymmetricVisitor(height, node) {
+  int midway = (1 << height) / 2;
+
+  if ((height != oldheight) && (!s.empty())) return false;
+
+  if (ctr >= midway) {
+
+     temp = s.pop();
+
+     if (node != temp) return false;
+
+     --ctr;
+
+     if (s.empty()) oldheight = height;
+
+  } else {
+
+    s.push(node);
+    ctr++;
+
+  }   
+}

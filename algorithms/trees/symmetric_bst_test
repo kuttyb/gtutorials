@@ -1,0 +1,25 @@
+// Is symmetric (all nodes have 2 children or no children and their children have equal values)
+// https://leetcode.com/problems/symmetric-tree/description/
+
+// The solution below will not work because it only checks at a height of one with an array of 2 elements.
+// Here is an example where this will not work https://www.ideserve.co.in/learn/check-if-binary-tree-is-symmetric-tree
+push(root)
+
+while (!empty) {
+  n = pop();
+
+  /* Must have two children each */
+  if ((!n.r || !n.l) && (n.r || n.l)) return false;
+  
+  /* Both children must have equal values */
+  if (n.r != n.l) return false;
+
+  if (n.r && n.l) {
+    push(n.r);
+    push(n.l);
+  }
+}
+
+return true;
+
+

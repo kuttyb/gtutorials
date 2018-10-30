@@ -1,0 +1,28 @@
+https://thecodebarbarian.com/i-dont-want-to-hire-you-if-you-cant-reverse-a-binary-tree
+
+Contains tests for isSymmetric, reverse in pacle and isEqual
+
+function isSymmetric(root) {
+  return isEqual(reverse(root.left), root.right);
+}
+
+function reverse(t) {
+  if (t == null) {
+    return;
+  }
+  var tmp = t.left;
+  t.left = reverse(t.right);
+  t.right = reverse(tmp);
+  return t;
+}
+
+function isEqual(t1, t2) {
+  if (t1 == null && t2 == null) {
+    return true;
+  }
+  if (t1 == null || t2 == null) {
+    return false;
+  }
+  return isEqual(t1.left, t2.left) && isEqual(t1.right, t2.right);
+}
+
