@@ -18,3 +18,61 @@ if (state == desirable)
 
 return least Window
 
+----------------------------------------------------------------------------------
+Pair<Integer, Integer> findMinimumSubString(char[] needle, char[] haystack) {
+lo = 0; hi = 0; last = n - 1;
+state = false;
+HashMap<Char, Boolean> requiredMap, currentMap;
+HashMap<Char, Integer> countMap;
+TreeMap<Integer, Pair<Integer, Integer>> bestPath;
+
+-----
+/* Setup required Map */
+/* Initialize countMap to be empty */
+-----
+
+while ((lo != last) && (hi != last)) {
+     switch (state) {
+     	   case false: {
+	   	while ((hi != last) && (state == false)) {
+	   	      char c = a[hi];	    
+		      /* This is a character of interest */
+		      if (requiredMap.get(c) == true) {
+		      	 countMap.put(c, countMap.get(c) + 1);
+			 currentMap.put(c, true);
+			 /* With this new variable we have a match */
+			 if (currentMap.equals(requiredMap) == true) {
+			    state = true;
+			 } else {
+			   ++hi;
+			 }
+		      }
+		}
+	   }
+	   break;
+
+	   case true: {
+	   	while ((lo != hi) && (lo != last) && (state == true)) {
+		      char c = a[lo];
+		      /* By removing this char, are we still in the good state? */
+		      if (requiredMap.get(c) == true) {
+		      	 /* Alright, lets do a decrement of this characters count */
+			 int count = countMap.get(c);
+			 countMap.put(c, countMap.get(c) - 1);
+			 /* ... meaning we are losing our state */
+			 if (count == 0) {
+			    state = false;
+			    /* Record this range between [lo-hi] in a TreeMap<Integer(len), Pair<Integer, Inteer>> */
+			    bestPath.put(hi - lo, new Pair<>(lo, hi));
+			 }
+			 ++lo;
+		      }
+		}
+	   }
+	   break;
+     }
+}
+
+return bestPath.length() ? bestPath.get(bestPath.length() - 1) : null;
+}
+
