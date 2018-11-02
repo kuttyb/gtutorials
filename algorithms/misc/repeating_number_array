@@ -1,0 +1,9 @@
+[Note the magical powers of the "X" operator]
+
+https://hackernoon.com/xor-the-magical-bit-wise-operator-24d3012ed821
+
+For a given array of repeated elements, exactly one element is not repeated. You need to return the non-repeated element.
+[1, 2, 5, 4, 6, 8, 9, 2, 1, 4, 5, 8, 9]
+
+loop and store v = v ^ a[i];
+
