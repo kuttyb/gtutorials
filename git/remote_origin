@@ -1,0 +1,6 @@
+Changing remote
+
+git remote set-url origin ssh://newaddress
+
+and of course git remote -v  to see what the address is
+
