@@ -2,3 +2,5 @@
 
 -Xjit:quickProfile
 
+-Xjit:enableJProfilingInProfilingCompilations
+
