@@ -21,6 +21,7 @@
 		B73B12DB19BD49B6009EECDE /* TestTraits.mm in Sources */ = {isa = PBXBuildFile; fileRef = B73B12DA19BD49B6009EECDE /* TestTraits.mm */; };
 		B7436688188F3F920096C8AE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B7436687188F3F920096C8AE /* main.cpp */; };
 		B78B0775195575140057B23D /* TestInnerClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = B78B0774195575140057B23D /* TestInnerClass.mm */; };
+		B79B8953226DEAFE00BBA064 /* TestBasics.mm in Sources */ = {isa = PBXBuildFile; fileRef = B79B8952226DEAFE00BBA064 /* TestBasics.mm */; };
 		B7B323F419C00E1400818626 /* TestTemplateTemplate2.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B323F319C00E1400818626 /* TestTemplateTemplate2.mm */; };
 		B7B4EE5419BD9145000B9C97 /* TestFunctionalCompositional.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */; };
 		B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */ = {isa = PBXBuildFile; fileRef = B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */; };
@@ -75,6 +76,7 @@
 		B7436687188F3F920096C8AE /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		B774C4BF1943A46400A639A8 /* typevector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typevector.h; sourceTree = "<group>"; };
 		B78B0774195575140057B23D /* TestInnerClass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestInnerClass.mm; sourceTree = "<group>"; };
+		B79B8952226DEAFE00BBA064 /* TestBasics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestBasics.mm; sourceTree = "<group>"; };
 		B7B323F319C00E1400818626 /* TestTemplateTemplate2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTemplateTemplate2.mm; sourceTree = "<group>"; };
 		B7B4EE5319BD9145000B9C97 /* TestFunctionalCompositional.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestFunctionalCompositional.mm; sourceTree = "<group>"; };
 		B7B79DF6194E7E0900ADAFB8 /* TestConditionalExecution.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TestConditionalExecution.mm; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				A8CA32A419BAC68800B711FA /* TestFunctionalInheritance.mm */,
 				A8272A3819BABD83007156CD /* TestPipeline.mm */,
 				B7CA048B1966166A00E8C013 /* TestFilter.mm */,
+				B79B8952226DEAFE00BBA064 /* TestBasics.mm */,
 				B7DA8E5C1956219E00549305 /* TestInner.mm */,
 				B78B0774195575140057B23D /* TestInnerClass.mm */,
 				A81CE954194EB50700ACA024 /* TestSFINAE.mm */,
@@ -313,6 +316,7 @@
 				B732B82F1C045AAF00CAFFBA /* TestTraits2.mm in Sources */,
 				B7FEFD42194E1FA400432759 /* TestTypeList.mm in Sources */,
 				B7C17F2B1C06D95700A8B8F6 /* TestMETA2.mm in Sources */,
+				B79B8953226DEAFE00BBA064 /* TestBasics.mm in Sources */,
 				B78B0775195575140057B23D /* TestInnerClass.mm in Sources */,
 				B7B323F419C00E1400818626 /* TestTemplateTemplate2.mm in Sources */,
 				B7B79DF7194E7E0900ADAFB8 /* TestConditionalExecution.mm in Sources */,
@@ -417,6 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-Weverything",
@@ -430,6 +435,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				GCC_OPTIMIZATION_LEVEL = 3;
 				LLVM_LTO = YES;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -445,6 +451,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
@@ -466,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
