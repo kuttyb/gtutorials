@@ -23,3 +23,7 @@ remote> exit
 local> cat ~/.ssh/id_rsa.pub | ssh <username>@svn.xxx.com 'cat >> .ssh/authorized_keys'
 
 
+------
+If you want to permanently add your ssh key to the login do this:
+https://apple.stackexchange.com/questions/48502/how-can-i-permanently-add-my-ssh-private-key-to-keychain-so-it-is-automatically
+
