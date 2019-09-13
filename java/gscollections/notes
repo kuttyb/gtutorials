@@ -36,3 +36,17 @@ MutableSortedMap<K, V> sortedMap = SortedMaps.mutable.empty();
 MutableBiMap<K, V> biMap = BiMaps.mutable.empty();
 MutableStack<T> stack = Stacks.mutable.empty();
 
+// Primitives
+MutableLongList x = LongLists.mutable.empty();
+x.add(2L);
+x.add(4L);
+
+MutableIntList y = IntLists.mutable.empty();
+y.add(3);
+
+MutableIntIntMap z = IntIntMaps.mutable.empty();
+z.put(3, 5);
+
+MutableIntFloatMap t = IntFloatMaps.mutable.empty();
+t.put(4, 4.5f);
+
