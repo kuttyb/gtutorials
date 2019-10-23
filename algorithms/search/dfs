@@ -20,4 +20,24 @@ we want dedicated threads sleeping on individual stacks and the goal is to minim
 
 
 
+--- Heres a version that does not require pushing the entire tree onto the stack ----
+
+push(root, 0)
+
+while (!empty()) {
+  n = pop();
+  if (n.index == 0) {
+     visit(n.node);
+  } 
+
+  if (n.index != n.node.numchildren()) { 
+     /* Push the same node back again with a higher index */
+     push(n.node, n.index + 1);
+
+     /* All new nodes being discovered for the first time are pushed with an index of 0
+      * just like we did for the root node
+      */
+     push(n.node.children(n.index), 0);
+  }
+}
 

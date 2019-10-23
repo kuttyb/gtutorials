@@ -1,0 +1,70 @@
+// Print all possible combinations of a string. Consider 4 alphabets a,b,c,d, if repetitions are allowed then max is 4 else max is 3
+
+Node { char c; bool halt;}
+
+ArrayList<Node> nodeList = factor(max);
+
+Node get(i) {
+  node = allocatorFromNodeList();
+  node.c = i;
+  node.halt = false;
+}
+
+
+allPossibilities() {
+  for (i = 0; i < max; ++i) {
+     dfs(i);
+  }
+}
+
+dfs(i) {
+  push(get(i), 0);
+
+  while (!empty()) {
+  	n = pop();
+	if (n.index == 0) {
+	   /* Test for acceptance and do early culling by setting a halt bit in the node
+	   visit(n, stack);
+	}
+
+	/* This is the early cull logic to avoid expanding trees that have no future ... */
+	if (n.halt == true) {
+	   n.halt = false;
+	   continue;
+	}
+
+	if (n.index != max) {
+	   /* Push the current node back again with a higher index */
+	   push(n.node, n.index + 1);
+	   /* Push a new node */
+	   push(get(n.node.i + n.index), 0);
+	}
+  }
+}
+
+visit(node, stack) {
+   if (stack.height == (max - 1)) {
+      node.halt = true;
+   }
+
+   if (accept(stack) == false) {
+      node.halt = true;
+   }
+}
+
+------------------------------------
+Applications of it:
+------------------------------------
+
+8-Queens :
+8 x 8 = 64. Your DFS tree has 64 nodes in it and each node has maxIndex of 2 (0 or 1 where 1 indicates you have a queen at that spot)
+
+That's it
+
+
+Sudoku:
+9 x 9 where same row, column and 3x3 block must have all the numbers from 1..9 only once
+
+It is a 9 x 9 = 81 DFS tree where repetitions are allowed thus each node can have maxIndex of 9. So fill up your 81 DFS graph an trivially
+cull early where possible and beyond that it is exactly the same problem as above
+

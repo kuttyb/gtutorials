@@ -1,0 +1,45 @@
+
+https://www.youtube.com/watch?v=aceWqw7uUkE
+
+[1] Array Processing vs Vector processing <mumbo jumbo>
+
+-- Core idea is that of Pipelines and Parallel Pipelines:
+ ----- Pipelines ------
+  If your instructions are Vector Instructions (meaning the operate on Vector Registers)
+  -- then individual lane operations are independent (no control flow)
+  -- thus functional units (like ALU, LSU) can be deeply pipelined
+     -- aka `n' lanes can be loaded into a functional unit from SIMD-n in one shot
+     	-- in different stages of their pipeline (AKA Perfect Pipelining)
+ ----- Parallel Pipelines ------
+  -- On top of that, if you want to give your functional Units width then do so
+     -- ALUx4 can operate on SIMD-64 by loading SIMD16 on each ALU and have 4 of these operate at the same time
+     -- Same story with the LSU
+
+  -- Also since these instructions are loaded meaning a VMUL64 is a like a for loop of 64 SMUL instructions
+    -- So this helps reduce Instruct fetch, decode and schedule
+    -- aka your trip through the Front End is going to be shorter
+    
+[2] Vector Instruction Basics
+
+-- Base / VLength (how many or how wide) / VStride (how far apart is each)
+   Consider load/store -> Scatter / Gather
+
+-- Also VMASK to indicate which lanes can be suppressed
+
+[3] Now add Threading to generate lots of VEC instructions to operate on and you have the CU (SM) of a GPU
+
+[4] He talks about CRAY-1 1978, looks a lot like AMD GCN
+
+[5] Memory Banking : This is where his slides start to pick up
+  -- Consider a VEC LSU
+  -- If the underlying SRAM has `n' banks and they all share the same ADDR and DATA bus
+    -- then only 1 bank can load ADDR on a cycle and 1 bank can store DATA on a cycle
+
+  -- So to get VEC64 LOAD fully pipelined for a 16-cycle bank access latency, you want a LOAD64 to issue
+     16 x 4 of these into the LSU
+     -- If you can find 16 of them at a time that go to 16 different banks then you can fully hide the access latency
+     -- Of course LSU should respect VMASK
+
+  -- Slowly building that Vector LSU
+
+https://www.youtube.com/watch?v=XEhdikR7jbU

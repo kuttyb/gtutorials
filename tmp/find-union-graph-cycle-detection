@@ -1,0 +1,50 @@
+initialize all elements to setID -1 (meaning they are not part of any Set yet)
+
+foreach (u,v -> edgeTable) {
+  x = find (u);
+  y = find (v);
+
+
+  /* They are part of the unnamed set */
+  if ((x == -1) && (y == -1)) {
+     /* Form a new set with u and v */
+     union(u, v);
+     continue;
+  }
+
+  /* If they are part of a named Set already, we have a cycle */
+  if (x == y) {
+     addCycle(u, v);
+     continue;     		
+  }
+
+  /* So they are in separate sets ... */
+  if (x != y) {
+     /* ... lets put them together */
+     union(u, v);
+  }
+}
+
+getRoot(y) {
+  while (y.parent) {
+     y = y.parent;
+  } 
+}
+
+union(u, v) {
+  x = getRoot(u);
+  y = getRoot(v);
+
+  if (x.weight > y.weight) {
+     y.parent = x;
+     x.weight += y.weight;
+  } else {
+     x.parent = y;
+     y.weight += x.weight;
+  }
+}
+
+find(u) {
+  return getRoot(u).id;
+}
+

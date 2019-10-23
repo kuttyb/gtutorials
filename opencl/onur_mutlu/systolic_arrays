@@ -1,0 +1,25 @@
+https://www.youtube.com/watch?v=1JEKQ49UELY
+
+
+For his slide on Branch Divergence, he doesn't consider it but you could have nested branches.
+
+The general rule (as I figured out on my own) is you maintain
+
+Reconvergence-PC    Next-PC     Current Mask
+
+......................................................
+
+Once you hit a branch, the instruction should take as an input the reconvergence point.
+
+First you will have to figure out if you have a divergence or not. That's easy, take the AND of your
+current vmask and the new vmask returned and if they don't agree we have a divergence!!
+
+Thereafter it should get a mask from the comparison, now add two entries to your Stack with the same
+Reconvergence point, one the mask you received and the other the !mask. But for both these masks, AND them
+with your current_mask.
+
+This latter part will ensure you can sustain nested branches
+
+The Reconvergence point is telling the Execution unit to proceed no further than that point.
+
+
