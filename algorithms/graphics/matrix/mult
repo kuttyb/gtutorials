@@ -1,0 +1,12 @@
+A (n x m)  B (m x p) = C (n x p)
+
+
+for (i = 0; i < a.rows; ++i) {
+  for (j = 0; j < b.cols; ++j) {
+     sum = 0;
+     for (k = 0; k < b.rows; ++k) {
+     	 sum += a[i][k] * b[k][j];
+     }
+     c[i][j] = sum;
+  }
+}
