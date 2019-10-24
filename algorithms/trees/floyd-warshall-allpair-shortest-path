@@ -1,0 +1,14 @@
+https://www.youtube.com/watch?v=oNI0rf2P9gE&t=1s
+
+Given a directed graph, we want to find the shortest path between from all vertices to every other vertex. The runtime is O(n^3)
+
+for (k = 0; k < n; ++k) {
+  for (i = 0; i < n; ++i) {
+    for (j = 0; j < n; ++j) {
+    	A[i][j] = min(A[i][j], A[i][k] + A[k][j]);
+    }
+  }
+}
+
+Essentially each iteration of the outermost loop "k" is asking what is the distance between points i and j when going through the vertex pointed at by k.
+
