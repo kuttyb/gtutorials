@@ -1,0 +1,22 @@
+https://www.youtube.com/watch?v=XB4MIexjvY0
+For finding Shortest Path from a given vertex to all other Vertices in a directed or undirected Graph.
+
+// To track distance from source vertex
+uint32_t array[numVertices] = { .. };
+
+// Essentially populate this with the distances of the edges from the adjacency list of this vertex
+initializeArray(&array, &g, initVertexId);
+
+processedVertices = 1;
+
+while (processedVertices != (maxVertices - 1)) {
+    v = findMin();
+    ++processedVertices;
+
+    // Take v's weight and add it to the adjacent vertices of v and if they are smaller than the
+    // current value in array then replace
+    relax(v);
+}
+
+
+

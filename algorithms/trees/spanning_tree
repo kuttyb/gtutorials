@@ -1,3 +1,5 @@
+https://www.youtube.com/watch?v=4ZlRH0eK-qQ&t=724s
+
 MST is really about taking an Undirected graph and removing a few expensive edges so as to maintain the same amount of connectedness with the least weighted edges. So the algorithm below is really about popping off a few heavy edges
 
 MST (Prim's)
@@ -23,6 +25,4 @@ while ((d < (V - 1)) && !empty()) {
 }
 
 // Whatever is left behind in the Queue needs to be popped off and you have yourself a "Minimum Spanning Tree"
-
-
 
