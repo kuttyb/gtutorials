@@ -1,0 +1,28 @@
+MST is really about taking an Undirected graph and removing a few expensive edges so as to maintain the same amount of connectedness with the least weighted edges. So the algorithm below is really about popping off a few heavy edges
+
+MST (Prim's)
+
+// Use a d-Heap or Fibonacci heap
+
+e = find smallest edge // O(E)
+push(e)
+d = 0;
+
+// where E is max Edges and V is max Vertices
+while ((d < (V - 1)) && !empty()) {
+    // To pop an edge is to say you care about this edge being in your final MST
+    e = pop(); // pop -> min-delete
+    --d;
+    
+    foreach (v : e) {
+       if (v !marked) {
+       	  v.marked;
+	  pushall(v.adjacencylist with weight);
+       }
+    }
+}
+
+// Whatever is left behind in the Queue needs to be popped off and you have yourself a "Minimum Spanning Tree"
+
+
+
