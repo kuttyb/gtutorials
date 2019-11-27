@@ -17,11 +17,9 @@ class X {
 [b] Partial
 
 template <typename V, typename U>
-class X<int> {
+class X<int, U, V> {
 };
 
-// whatever is being specialized, place it next to the class name i.e., class X <int> and 
-// leave the unspecialized ones up there with the typenames
 
 [c] Full
 template <>
@@ -30,6 +28,17 @@ class X <int, int, float> {
 
 Make sure the empty template <> is maintained
 
+====================================================================================================
+[Update] Consider this format
+template <typename T, typename U>  // [1]
+struct X <...> {                   // [2]
+
+}
+
+Here [1] is where you declare all the "unknown" types. [2] is where you declare all the known and unknown types
+
+If all types are unknown (meaning no specialization has happened) then [2] is empty!!
+====================================================================================================
 
 --------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------
