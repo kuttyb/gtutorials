@@ -1,3 +1,11 @@
+alias c clear $*
+alias rls clear $*
+alias sl clear $*
+alias lcear ls $*
+alias prr git reset .
+alias pr git checkout -- .
+alias mm make -j4 $*
+alias j cd /home/kutty/daji/java
 alias pd git diff .
 alias gcf git clean -f -d .
 alias clear clr
@@ -13,8 +21,6 @@ alias start explorer .
 alias mem cat /proc/meminfo
 alias space df -h
 alias celar ls $*
-alias tut cd /home/kutty/daji/tut
-alias j cd /home/kutty/daji/javamaven
 alias pc git pull
 alias gp git push 
 alias dist cat /etc/lsb-release
@@ -24,5 +30,8 @@ alias po git status
 alias gc git commit
 alias plg git lg -10
 alias open nautilus
-alias t cd /home/kutty/daji/ccomponent
 alias r cd /home/kutty/daji/ccomponent/repository
+alias tut cd /home/kutty/daji/tut
+alias t cd /home/kutty/daji/gccomponent
+alias l slcear $*
+alias s c;ear $*

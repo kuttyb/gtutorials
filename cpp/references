@@ -1,0 +1,4 @@
+If you are passing by References then there are a few guarantees on the receiver side:
+[1] Non NULL (technically it is possible to pass a null but it takes some effort)
+[2] No reassignment
+[3] Single level of indirection (reference to reference is not possible)
