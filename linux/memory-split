@@ -10,3 +10,4 @@ Keep the following terms in mind:
 
 [4] PSS : Splits the shared pages by number of processes sharing it
 
+and use smem (apt install smem) to get these splits
