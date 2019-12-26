@@ -1,0 +1,12 @@
+https://www.golinuxcloud.com/check-memory-usage-per-process-linux/
+
+Keep the following terms in mind:
+
+[1] RSS : Total amount of physical pages mapped by this process (includes shared pages)
+
+[2] VSS : Total amount of Virtual pages mapped by this process (not all memory pages are actually mapped)
+
+[3] USS : Unique amount of physical pages mapped by this process. Does not include any shared pages at all
+
+[4] PSS : Splits the shared pages by number of processes sharing it
+
