@@ -1,0 +1,7 @@
+bazel build //main:target-name
+
+// To query the different targets within the project
+bazel cquery //main:*
+
+bazel run //main:hello-world
+
