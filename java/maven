@@ -2,6 +2,10 @@
 
 This will copy dependencies under target/dependency
 
+[] mvn dependency:tree
+
+This will spit out your entire dependency tree
+
 [] mvn package
 
 This to do a full build + test + jar
