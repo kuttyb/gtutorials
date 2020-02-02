@@ -11,3 +11,5 @@ ulimit -c unlimited
 #
 *  soft  core  unlimited
 
+If you would like to self initiate a coredump using gcore pid (may require sudo )
+
