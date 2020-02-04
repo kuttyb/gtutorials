@@ -1,0 +1,22 @@
+https://dev.to/sandordargo/parameterized-testing-with-gtest-50l9
+
+// Random stateless tests under a common suite-name
+TEST (suite-name, testname0)
+TEST (suite-name, testname1)
+
+// Test Fixtures
+// This is how you know Unit Testing (JUnit / xUnit / XCTests) aka there is a Test Class which has state
+// along with a setup and teardown method that sandwich each test
+//
+// They inherit from ::testing::Test
+TEST_F(TestClass, testname0)
+TEST_F(TestClass, testname1)
+
+// Parameterized Test Fixtures
+// Same as Test Fixtures, meaning they have a test Class but they inherit from ::testing::TestWithParam<T>
+// The "T" can be replaced with std::tuple, std::pair if you would like to use multiple test arguments
+TEST_P(TestClass, testname0)
+
+INSTANTIATE_TEST_CASE_P(TagName, TestClass, ::testing::Values(..variadic list of arguments that are used to
+				 	    		      create the various parameterized tests)
+
