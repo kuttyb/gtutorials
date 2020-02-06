@@ -3,8 +3,16 @@ STL is made up of 3 things:
 [2] Algorithms  : They are blind of the containers. They take in iterators, typically begin and end and operate upon them
 [3] Iterators   : Different iterators will invoke different methods on the containers 
 
-Keep an eye on this guy's blogs, they are really good and I always learn something new and cool
+Links:
+- Keep an eye on this guy's blogs, they are really good and I always learn something new and cool
 https://www.fluentcpp.com
+
+- Also this is the authoritative source of all things, syntaxes C++ related
+https://en.cppreference.com/w/
+
+- Great reference material for all things STL
+
+- We have Nikolai's book on STL (in Google Books) though I have mostly found this book to be less useful
 
 =========
 Details:
@@ -15,6 +23,9 @@ Containers:
 
 Algorithms:
 ------------
+copy/copy_if: Pass in cbegin, cend, some_kind_of_inserter and optionally a UnaryPredicate the type of which depends on the Iterator in question
+
+Nifty thing to remember: OutputIterator = std::inserter(container, iterator)
 
 Iterators:
 ------------
