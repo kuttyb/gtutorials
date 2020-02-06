@@ -1,0 +1,23 @@
+STL is made up of 3 things:
+[1] Containers  : The actual data structure that owns the data. This is what you would think of typically when you think of Collections in other languages
+[2] Algorithms  : They are blind of the containers. They take in iterators, typically begin and end and operate upon them
+[3] Iterators   : Different iterators will invoke different methods on the containers 
+
+Keep an eye on this guy's blogs, they are really good and I always learn something new and cool
+https://www.fluentcpp.com
+
+=========
+Details:
+=========
+
+Containers:
+------------
+
+Algorithms:
+------------
+
+Iterators:
+------------
+
+
+
