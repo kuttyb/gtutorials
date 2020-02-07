@@ -17,5 +17,15 @@ Now having cleared this up lets disect C++ STL and Java.
 -- In C++ STL, Iterables are implicit. vectors, maps silently implement it which is why they have methods like begin(), end(),
    cbegin, cend(), rbegin(), rend() which allows them to return Iterators.
 
-IMHO there really is no difference between these approaches. Except STL provides a lot many types of Iterators and Iterables.
+IMHO there really is no difference between these approaches. Except STL provides a lot many types of Iterators and Iterables and
+the Iterators have a lot more capability and state like distance, equality.
+
+-- But what about std::inserter, std::back_inserter, std::front_inserter you ask?
+  -- Well they are also iterators that take in other iterators.
+  -- For e.g., they are Forward Output Iterators which have the side effect of calling duck-typed insert/push_back/push_front methods on the Collection.
+  -- Thus to form these special iterators you have to provide them with a Collection and optionally an iterator
+     std::inserter(iterator, collection)
+     std::back_inserter(iterator)
+
+
 
