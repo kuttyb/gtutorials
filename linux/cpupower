@@ -1,0 +1,6 @@
+sudo cpupower frequency-set --governor performance
+./mybench
+sudo cpupower frequency-set --governor powersave
+
+That's how you prevent frequency switches on Linux
+
