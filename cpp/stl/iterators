@@ -1,0 +1,9 @@
+Iterators / Iterables / Collections
+
+Iterables allow you the ability to return an Iterator. An Iterator has state and reflects the current state of traversal.
+
+Collections HAVE Iterables. Other things can have Iterables too.
+
+--------
+Algorithms work on Iterators.
+
