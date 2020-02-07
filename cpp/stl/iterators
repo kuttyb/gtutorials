@@ -21,11 +21,16 @@ IMHO there really is no difference between these approaches. Except STL provides
 the Iterators have a lot more capability and state like distance, equality.
 
 -- But what about std::inserter, std::back_inserter, std::front_inserter you ask?
+Short story, they are Iterator Adapters and can also be done in Java (but its very nifty yes)
   -- Well they are also iterators that take in other iterators.
   -- For e.g., they are Forward Output Iterators which have the side effect of calling duck-typed insert/push_back/push_front methods on the Collection.
   -- Thus to form these special iterators you have to provide them with a Collection and optionally an iterator
      std::inserter(iterator, collection)
      std::back_inserter(iterator)
 
-
+-- C++ Basic Iterator Types
+  -- Forward (no prev)
+  -- BiDirectional (can go behind)
+  -- Random Access (arithmetic operations allowed)
+  In addition, Input Iterators are for read-only operations whereas Output Operators can be used for assignment operations
 
