@@ -1,9 +1,21 @@
 Iterators / Iterables / Collections
 
-Iterables allow you the ability to return an Iterator. An Iterator has state and reflects the current state of traversal.
+-- Iterables allow you the ability to return an Iterator.
 
-Collections HAVE Iterables. Other things can have Iterables too.
+-- An Iterator has state and reflects the current state of traversal.
+
+-- Collections HAVE Iterables. Other things can have Iterables too aka return you multiple Iterator objects
 
 --------
 Algorithms work on Iterators.
+
+Now having cleared this up lets disect C++ STL and Java.
+
+-- In Java Iterables are interfaces implemented by Collections and they return Iterator objects which can then be traversed.
+   -- Now as it turns out, there is just one kind of an Iterator in Java aka Bidirectional Iterators
+
+-- In C++ STL, Iterables are implicit. vectors, maps silently implement it which is why they have methods like begin(), end(),
+   cbegin, cend(), rbegin(), rend() which allows them to return Iterators.
+
+IMHO there really is no difference between these approaches. Except STL provides a lot many types of Iterators and Iterables.
 
