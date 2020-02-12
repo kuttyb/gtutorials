@@ -1,2 +1,8 @@
 iwconfig
 
+# This is how you turn off wireless card power management which appears to cause
+# loss of wifi connectivity and performance problems from time to time
+
+sudo iwconfig wlp2s0 power off [on]
+
+
