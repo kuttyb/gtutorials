@@ -1,0 +1,6 @@
+This is a super cool tool. With C++11 onwards, sometimes it is not clear what the code in question translates to in simple C-speak.
+
+https://cppinsights.io/
+
+This site will do that for you if you paste your code. It's not Assembly or ADT, it's described in simple C++ language speak.
+
