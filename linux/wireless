@@ -1,0 +1,17 @@
+iwconfig
+
+# This is how you turn off wireless card power management which appears to cause
+# loss of wifi connectivity and performance problems from time to time
+
+sudo iwconfig wlp2s0 power off [on]
+
+# To make this permamanent across reboots try this config file edit
+
+Type iwconfig and look at the output. You should see the name of your chip-set as well as the whether power management is off or on. If it doesn't say, it is probably off.
+
+To turn off power management, go to /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf and you will see
+
+[connection]
+wifi.powersave = 3
+Change the 3 to a 2 and reboot.
+
