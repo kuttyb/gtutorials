@@ -1,0 +1,24 @@
+So for Trees you want Comparable (and thus Comparators) for Hash you want hashCode and equal. This we already know from Java
+
+Now let's try to make sense out of what C++ wants:
+
+For your own structs:
+ -- TreeSets (aka std::set) is easy, just implement the "bool operator<(const T&) const" and you are all set
+ -- HashSets (aka std::unordered_set), you need to implement "bool operator=(const T& rhs) const"
+    But this just takes care of the equality. You also need the hash function. For this you can either do
+    struct A {
+        struct HashCode {
+     	   size_t operator()(const T&rhs) const { ... }
+	}
+    }
+
+===== OR =====
+
+    namespace std {
+       template <> struct hash<T> {
+       	  size_t operator()(const T&rhs) const { ... }
+       }
+    }
+
+   std::unordered_set<T, T::HashCode> for the first approach and std::unordered_set<T> for the second one
+
