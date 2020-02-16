@@ -1,0 +1,116 @@
+alias clear clearr
+alias it cd /Users/kbanerjee/daji/code/it
+alias iog cd /Users/kbanerjee/daji/code/work/iog
+alias et ( setenv "TERM" "eterm" )
+alias gt cd /Users/kbanerjee/daji/code/work/gagx-trunk
+alias jdk cd /Library/Java/JavaVirtualMachines
+alias icloud cd /Users/kbanerjee/Library/Mobile\ Documents/com~apple~Pages/Documents
+alias syncl s $*
+alias ks clear $*
+alias psw_vers xcrun --show-sdk-build-version
+alias cear po $*
+alias gcf git clean -f -d .
+alias sclear down $*
+alias pb git branch
+alias spec cd /Users/kbanerjee/data/daji/code/hw/kutty_hw1/depot/model/apple/agx/arch/doc/FeatureSpeclets
+alias gp git push 
+alias pc git pull
+alias pa git add .
+alias el els $*
+alias els el $*
+alias po git status
+alias co cd $WORKROOT/gagx-trunk/Tools/agx_offline
+alias lls clear $*
+alias vm2 cd /Users/kbanerjee/daji/code/vm2
+alias sapce ls $*
+alias gi ls $*
+alias hw cd /Users/kbanerjee/data/daji/code/hw_git
+alias syc ls $*
+alias getsource echo "lookupMETASourceFromPC /Users/kbanerjee/daji/code/work5/gagx-trunk/build/AGX.build/METAFW.build/g4g_a0/g4g_a0_t0.elf 0x10014280"
+alias xp cd /Users/kbanerjee/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
+alias ear $*
+alias m cd /Users/kbanerjee/data/daji/debug/astris/metatools
+alias sycn ls $*
+alias q clear $*
+alias nv echo "serial=3 debug=0x14e amfi_unrestrict_task_for_pid=1 amfi_allow_any_signature=1 cs_enforcement_disable=1 amfi_get_out_of_my_way=1 gpu_idle_poweroff_enable=0 gpu_timeout_seconds=360 gpu_panic_on_recovery=1" 
+alias sdk cd $CURR_SDKROOT
+alias ot cd /Users/kbanerjee/data/daji/code/tests/OpenGLES3/APPLE_clipdistance
+alias cls lcear $*
+alias donw ls $*
+alias expo open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/AppleInternal/Applications/Exponent.app 
+alias b cd /Users/kbanerjee/daji/code/work5/agx_cl
+alias ckear clear $*
+alias rpwd ls $*
+alias rls rpwd $*
+alias clea rls $*
+alias p2 cd $WORKROOT2
+alias ax cd $WORKROOT2/axle
+alias sl ls $*
+alias ak cd $WORKROOT/ak
+alias app cd /Users/kbanerjee/data/Applications
+alias dajii cd /Users/kbanerjee/data/daji
+alias fw cd /Users/kbanerjee/daji/code/hw/kutty_hw1/depot/model/apple/agx/fastsim
+alias f cd $WORKROOT/agx/Firmware
+alias rmem rls $*
+alias p cd $WORKROOT
+alias rss echo "rsync -av --no-perms --no-owner --no-group astc_perf rsync://root@localhost:10873/root/private/var/kb/astc" 
+alias mem vm_stat
+alias c cd ~/daji/code
+alias clefar cd $*
+alias celar ls $*
+alias psu ps -efcl
+alias down cd ~/Downloads
+alias daji cd ~/daji
+alias doc cd ~/Documents
+alias desk cd ~/Desktop
+alias cler ls $*
+alias o cd $WORKROOT/_out
+alias lcear ls $*
+alias ftcp tcprelay --locationid 00200000 --portoffset 10000 telnet rsync
+alias hgs ls $*
+alias syn cls $*
+alias c1 cd /Users/kbanerjee/data/daji/code
+alias l cd ~/data/daji/logs
+alias d ls $*
+alias tc cd /Users/kbanerjee/data/daji/code/tests/OpenCL/test_conformance
+alias tcp echo "tcprelay --portoffset 10000 telnet rsync ssh 2345 > /tmp/tcp.log &" 
+alias h ls $*
+alias clearclear clear $*
+alias s cd $WORKROOT/agx_svn
+alias wpd ls $*
+alias ro cd /Users/kbanerjee/daji/code/work5/agx-okemo
+alias edt cd /Network/Servers/xs1/release/Software/Okemo/Projects/EmbeddedDeviceTrees
+alias sr cd /Users/kbanerjee/daji/code/work5/lokemo
+alias hwd cd /Users/kbanerjee/data/daji/code/hw/kutty_hw1/depot/model/roger
+alias gits ls $*
+alias go cd /Users/kbanerjee/daji/code/work5/gogl
+alias ns cd ~rc/Software/Blacktail/Updates
+alias k cd $WORKROOT/_kcb/build
+alias sdkapp cd /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/AppleInternal/Applications
+alias sls clear $*
+alias snc ls $*
+alias spac els $*
+alias hw2 cd /Users/kbanerjee/data/daji/code/hw/kutty_hw1
+alias pr git checkout -- .
+alias pd git diff
+alias prr git reset . 
+alias gc git commit
+alias psace ls $*
+alias pols celar $*
+alias akt cd /Users/kbanerjee/daji/code/work6/aktests
+alias lsclear space $*
+alias db cd /Users/kbanerjee/data/daji/user/debugging
+alias lsl clear $*
+alias rr RSYNC_PASSWORD=alpine rsync -avW --no-perms --no-owner --no-group --exclude '.git*' --exclude '.hg*' . rsync://root@localhost:10873/root
+alias plg git lg -5
+alias space df -h /
+alias j cd /Users/kbanerjee/daji/javamaven
+alias t cd /Users/kbanerjee/daji/code/gccomponent
+alias jj cd /Users/kbanerjee/daji/code/agxanalyzer
+alias ioa cd /Users/kbanerjee/daji/code/ioa
+alias kdk cd /AppleInternal/Developer/KDKs
+alias us cd /Users/kbanerjee/Library/Mobile\ Documents/com~apple~Pages/Documents/emacs/debugsteps
+alias dbg echo "/SWE/release/Software/Azul/Updates/Azul18A76z/Symbols/AppleEmbeddedGPUDrivers"
+alias r cd /Users/kbanerjee/daji/code/gccomponent/repository
+alias tt cd /Users/kbanerjee/daji/code/gccomponent/3rdparty
+alias tut cd /Users/kbanerjee/daji/gtutorials
