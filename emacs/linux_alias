@@ -1,37 +1,34 @@
-alias c clear $*
-alias rls clear $*
-alias sl clear $*
-alias lcear ls $*
-alias prr git reset .
-alias pr git checkout -- .
-alias mm make -j4 $*
-alias j cd /home/kutty/daji/java
-alias pd git diff .
-alias gcf git clean -f -d .
-alias clear clr
-alias clr clr
-alias jdk cd /usr/share/jdk
-alias int cd /home/kutty/daji/int/java
-alias desk cd ~/Desktop
-alias doc cd ~/Documents
-alias daji cd ~/daji
-alias down cd ~/Downloads
-alias psu ps -efcl
-alias start explorer .
-alias mem cat /proc/meminfo
-alias space df -h
-alias celar ls $*
-alias pc git pull
-alias gp git push 
-alias dist cat /etc/lsb-release
-alias sw_vers uname -a
-alias pa git add .
-alias po git status
-alias gc git commit
-alias plg git lg -10
-alias open nautilus
-alias r cd /home/kutty/daji/ccomponent/repository
-alias tut cd /home/kutty/daji/tut
+alias space df -h / /boot/efi 
+alias 3 cd /home/kutty/daji/gccomponent/3rdparty
+alias pc git pull &
+alias r cd /home/kutty/daji/gccomponent/repository
+alias jdk cd /usr/lib/jvm
+alias pb git branch
+alias cr cd /home/kutty/daji/configrepo/clion
+alias pic /home/kutty/Pictures
 alias t cd /home/kutty/daji/gccomponent
-alias l slcear $*
-alias s c;ear $*
+alias tut cd /home/kutty/daji/tut
+alias open nautilus
+alias plg git lg -10
+alias gc git commit
+alias po git status
+alias pa git add .
+alias sw_vers uname -a
+alias dist cat /etc/lsb-release
+alias gp git push 
+alias mem cat /proc/meminfo
+alias psu ps -efcl
+alias down cd ~/Downloads
+alias daji cd ~/daji
+alias doc cd ~/Documents
+alias desk cd ~/Desktop
+alias int cd /home/kutty/daji/int/java
+alias clear clr
+alias gcf git clean -f -d .
+alias pd git diff .
+alias j cd /home/kutty/daji/java
+alias mm make -j4 $*
+alias pr git checkout -- .
+alias prr git reset .
+alias et setenv "TERM" "eterm"
+alias dr cd /home/kutty/GoogleDrive

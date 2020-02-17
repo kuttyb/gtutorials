@@ -1,0 +1,31 @@
+Google's Crash Course https://developers.google.com/machine-learning/crash-course
+
+=======
+Basics:
+=======
+
+x -> y, given x we are predicting y or is y.
+
+FEATURE: The input variable x above 
+
+LABEL: The thing we are predicting, the y above
+
+EXAMPLE: Instances with Feature
+  LABELLED   : Has both labelled features, used for training
+  UNLABELLED : Only features no labels
+
+MODEL: Defines the relationship between Features and Labels (like of it as the attributes of Edges in a Graph)
+
+TRAINING: Show the Model labelled examples and learn the relationships between Features and Labels
+
+INFERENCE: Applying Trained Models to unlabeled examples
+
+Models can be
+ [1] Regressions: Provides continous values
+
+ [2] Classifications: Provides discrete values
+
+
+
+
+
