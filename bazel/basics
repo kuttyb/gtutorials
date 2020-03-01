@@ -2,6 +2,7 @@ bazel build //main:target-name
 
 // To query the different targets within the project
 bazel cquery //main:*
+bazel command . // this works too where you are pointing it to the current directory or a relative path 
 
 bazel run //main:hello-world
 
