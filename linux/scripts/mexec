@@ -1,0 +1,5 @@
+#! /bin/sh
+
+mvn exec:java -Dexec.mainClass=$1 -Dexec.classpathScope=runtime  -Dexec.args=$*
+
+
