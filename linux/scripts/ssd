@@ -1,0 +1,5 @@
+#! /bin/sh
+
+# 1 means it is a disk (aka has a rotational device) 0 means it is ssd
+cat /sys/block/sda/queue/rotational
+

@@ -1,0 +1,3 @@
+#! /bin/sh
+
+ctest -j 8 -R "test*"
