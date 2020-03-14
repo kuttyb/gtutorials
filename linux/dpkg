@@ -1,0 +1,4 @@
+dpkg -L name-of-package
+
+this will tell you where its file are located
+
