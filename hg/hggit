@@ -1,0 +1,9 @@
+This will let you convert a git repository to mercurial
+
+You can install it on Ubuntu thus
+    dpkg -L mercurial-git # To find where its files land up 
+    apt install mercurial-git
+
+Beyond that you can get the commands from here
+https://hg-git.github.io/
+
