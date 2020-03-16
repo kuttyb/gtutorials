@@ -1,0 +1,6 @@
+git rebase -i HEAD~2
+
+well this is how you do it :
+
+hg histedit -r -2
+
