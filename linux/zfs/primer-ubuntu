@@ -1,0 +1,10 @@
+zfs list
+
+Roughly speaking you will see 3 partitions:
+
+bpool/BOOT - boot partition
+
+rpool/ROOT - root partition
+
+rpool/USERDATA - User data partition
+

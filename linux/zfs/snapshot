@@ -1,0 +1,15 @@
+https://ubuntu.com/tutorials/using-zfs-snapshots-clones
+
+# List all the snapshots
+zfs list -t snapshot
+
+# Create a new snapshot
+zfs snapshot bpool@snap1
+zfs snapshot rpool/ROOT@snap1
+
+-- This should snapshot the boot and root partitions
+
+# Rollback to a snapshot
+zfs rollback rpool/ROOT@snap1
+zfs rollback bpool@snap1
+
