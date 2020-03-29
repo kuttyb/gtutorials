@@ -1,6 +1,6 @@
 zfs list
 
-Roughly speaking you will see 3 partitions:
+Roughly speaking you will see 3 pools.(Think of pool as a Virtual Memory segment based off a set of disks)
 
 bpool/BOOT - boot partition
 
