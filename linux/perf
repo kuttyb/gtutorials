@@ -1,3 +1,6 @@
+First and foremost, consult with Brendan's blog about Perf. He is the BOSS!!!!
+http://www.brendangregg.com/perf.html
+
 perf stat -e dTLB-store-misses ./huge /mnt/hugetlb/newer 10485760
 
 

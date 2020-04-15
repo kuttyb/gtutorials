@@ -1,0 +1,12 @@
+# Perf
+sudo apt install linux-tools-common
+perf 
+
+# HugeTLB
+sudo apt install hugeadm
+hugeadm
+
+# NUMA
+sudo apt install numactl
+numastat
+
