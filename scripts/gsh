@@ -1,0 +1,5 @@
+#! /bin/sh
+
+hg log -p -r $1
+
+
