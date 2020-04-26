@@ -1,0 +1,3 @@
+#! /bin/sh
+
+hg log --template '{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n' -Gr ::$1
