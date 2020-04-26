@@ -1,0 +1,33 @@
+https://www.mercurial-scm.org/wiki/EvolveExtension
+https://www.mercurial-scm.org/wiki/RebaseExtension
+
+The core idea is this. Work on your feature and use as many changesets as needed. When you are ready to give it up for review (or periodically before you rebase with ToT)
+ * hg histedit and collapse all your change into 1
+  So what you did is collapsed your phases into a single 1
+
+ * Now break it apart into as many logical changes (ideally based on files) that would make reviewing this change easy
+  use hg split for doing this. It prompts you which diffs should go into what changeset
+
+ * Alright, at this point your changeset history is review friendly but not reflective of how you developed them (that's ok)
+
+ * As you get more updates on your reviews, hg up changeset, make the change and then do a hg amend
+  Then use hg rebase -s newer_changelist_parent_of_old_changelist -d newly_added_changelist_which_is_cow_of_the_original_changelist
+
+  hg up tip
+
+That's it. Your changeset history will continue to reflect the reviews and going to top, you can have all the changes in one place
+
+=======================
+Outstanding Questions:
+=======================
+
+* Here the changesets are review friendly, not reflective of the iterative development process
+  - What if I found a regression and wanted to go back in time to understandd where this regression was introduced
+    -- In this model, you truly cannot do this since you have destroyed history
+
+    -- Lets figure out a way to do what we did for DAG in git, viz., iterative branches. Each branch contains all the newly added changes.
+       When its time to rebase with ToT, create another branch collapse all changes into one and do the rebase. The older branch still contains
+       your changeset history whereas the new branch contains a single changelist
+
+
+   
