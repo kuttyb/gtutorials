@@ -33,5 +33,6 @@ alias pc hg pull
 alias 3 cd /home/kutty/daji/ccomponent/3rdparty
 alias space df -h / /boot/efi 
 alias plg hg lg -l 10 .
+alias plc hg id -i
 alias rspace rls $*
 alias st ls $*

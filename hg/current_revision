@@ -1,0 +1,5 @@
+what revision am I currently at
+
+hg id -i
+
+(aliased into plc)
