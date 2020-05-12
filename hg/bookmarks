@@ -1,0 +1,8 @@
+Show the current changeset that you are
+
+plc : hg id -i -B
+
+pll : show me all the chagnes belonging to this bookmark
+
+hg log --template '{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n' -Gr ::$1
+

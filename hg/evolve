@@ -30,4 +30,10 @@ Outstanding Questions:
        your changeset history whereas the new branch contains a single changelist
 
 
-   
+   (A) : So the solution is  easy. When you create the new bookmark, do so from the base of the current branch not its tip. Now do
+         hg graft low:high_change_from_originating_bookmark
+
+ 	 This will give you the same changesets but with different hash-ids. Feel free to collapse them as you feel necessary. Now you can get the same
+	 workflow as before. Know that the psychological advantage of having the individual changesets in the original branch is only for the purpose of
+	 regression analysis. You cannot do active development between the two. You should consider the first bookmark read-only
+
