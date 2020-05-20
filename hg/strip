@@ -1,1 +1,5 @@
 hg strip rev
+
+// actually use hg prune rev
+// for the environment in question
+
