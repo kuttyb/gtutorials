@@ -1,4 +1,6 @@
 Moving changes across branches and using mercurial's merging capability
 
- use hg graft
+ use hg graft -r low:high
+
+
 

@@ -1,0 +1,3 @@
+hg command -r low:hig
+
+That is how you pass a range (revset) in Mercurial

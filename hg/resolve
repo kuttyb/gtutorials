@@ -1,0 +1,3 @@
+hg resolve --mark .
+
+That's how you marked a file as resolved after conflict management
