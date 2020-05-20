@@ -1,39 +1,28 @@
 https://www.mercurial-scm.org/wiki/EvolveExtension
 https://www.mercurial-scm.org/wiki/RebaseExtension
 
-The core idea is this. Work on your feature and use as many changesets as needed. When you are ready to give it up for review (or periodically before you rebase with ToT)
- * hg histedit and collapse all your change into 1
-  So what you did is collapsed your phases into a single 1
+This extension lets you change history. The core idea that I care about is that you can have a development branch and a review branch.
 
- * Now break it apart into as many logical changes (ideally based on files) that would make reviewing this change easy
-  use hg split for doing this. It prompts you which diffs should go into what changeset
+You can make all your changes in the development branch. The commit history shows the order in which these changes were made essentially providing you with local checkpoints.
 
- * Alright, at this point your changeset history is review friendly but not reflective of how you developed them (that's ok)
+Once you are ready to go for review, the reviewers may not care about this history. They would rather care for the change to be split into smaller parts either by functionality or file.
 
- * As you get more updates on your reviews, hg up changeset, make the change and then do a hg amend
-  Then use hg rebase -s newer_changelist_parent_of_old_changelist -d newly_added_changelist_which_is_cow_of_the_original_changelist
+In the review branch:
+(1) so now you graft the changes from dev to rev. Collapse them using histedit into a single change
 
-  hg up tip
+(2) next use hg split to split this change into multiple changes as you see fit (for easy of review)
 
-That's it. Your changeset history will continue to reflect the reviews and going to top, you can have all the changes in one place
+That's it.
 
-=======================
-Outstanding Questions:
-=======================
+--------
+When review comments appear, you hg up to the change that added the piece of code being modified. Make the change, hg amend then hg evolve.
 
-* Here the changesets are review friendly, not reflective of the iterative development process
-  - What if I found a regression and wanted to go back in time to understandd where this regression was introduced
-    -- In this model, you truly cannot do this since you have destroyed history
+hg amend will cause the same change to be COW'ed, hg evolve will fix the ancestry. Send it out for review and continue this cycle for as long as it takes to get the change in.
 
-    -- Lets figure out a way to do what we did for DAG in git, viz., iterative branches. Each branch contains all the newly added changes.
-       When its time to rebase with ToT, create another branch collapse all changes into one and do the rebase. The older branch still contains
-       your changeset history whereas the new branch contains a single changelist
+--------
+In Parallel you can continue development in the dev branch. If you want to pull the Review changes in, you must use hg graft for the review change that was modified. (hg amend
+will create a separate change so the graft will go through) Do merge resolutions as needed.
 
 
-   (A) : So the solution is  easy. When you create the new bookmark, do so from the base of the current branch not its tip. Now do
-         hg graft low:high_change_from_originating_bookmark
-
- 	 This will give you the same changesets but with different hash-ids. Feel free to collapse them as you feel necessary. Now you can get the same
-	 workflow as before. Know that the psychological advantage of having the individual changesets in the original branch is only for the purpose of
-	 regression analysis. You cannot do active development between the two. You should consider the first bookmark read-only
+That's it!! You keep the review branch for review and the dev branch for development and marching ahead if you must.
 

@@ -11,10 +11,17 @@ rebase =
 hgext.bookmarks =
 hgext.git =
 color =
+shelve =
+evolve =
+# These are covered by the evolve extension
+#split =
+#amend =
 histedit =
+progress =
 
 [git]
 intree=1
+blockdotgit = false
 
 [alias]
 lists = qqueue -l
@@ -23,6 +30,9 @@ qp = qapplied
 ql = qseries
 qd = qdiff
 lg = log --template '{node|short} | {date|isodatesec} | {author|user}: {desc|strip|firstline}\n'
+__mystatus = status
+st = !hg __mystatus $($HG root) $HG_ARGS
+pager = LESS='FRX' less
 
 [color]
 custom.rev = yellow
