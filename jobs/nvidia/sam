@@ -1,0 +1,26 @@
+Hands on Technical Leader with over 15 years experience working on different layers of the GPU stack, Kernel-Firmware Drivers, Runtimes and End to End Performance Analysis. Mentored engineers, grew teams and delivered large projects on time. 18 Patents in flight in the above areas.
+
+Apple:
+======
+Part of the founding team responsible for the design and implementation of Apple's homegrown GPU. Managed the GPU Driver Scheduling team, a vertically integrated team involving User Mode Driver, Kernel Mode Driver and Firmware. Team was responsible for policies involving Resource and Command scheduling, End-to-End Quality of Service and Performance. Team scaled the iOS mobile GPU Driver to work performantly on macOS desktops while delivering low latency low power AR/VR solutions on mobile SoCs. 
+
+Scaled the GPU Driver stack to sustain a thousand compute and render passes at 120Hz for an undisclosed product. This required rewriting the Driver locking strategy, changes to XNU Kernel Thread scheduling, Partitioning of Render Graphs and rewriting the Firmware scheduler. Multiple patents in flight in this area.
+
+Low Latency : Reduced End-to-End latency of GPU passes for AR/VR solutions. Notable contributions include reducing Firmware command selection overhead from 21us to 5us on the same generation of hardware and influencing future generation hardware to do sub-100ns processing. Converted Graphics Render/Compute passes into a Graph for low latency Firmware processing https://patents.justia.com/patent/10719970. Performed in-memory Graph rewrites to do optimal Command scheduling on the GPU to maximize GPU utilization and minimize Intra-GPU Network traffic. Upto 40% FPS improvement on workloads with lots of small render passes. Influenced design of Apple's homegrown Microcontroller used by the Firmware to accelerate common use cases.
+
+Quality of Service: Designed and implemented Quality of Service in Metal https://developer.apple.com/documentation/dispatch/dispatchqos Designed hardware changes to provide End-to-End quality of service inside the GPU Core, cache, memory bandwidth. This allows running multiple Applications on the GPU thus increasing its utilization while guaranteing a quality of service. Team provided both Deadline and Utilization based schedulers based on the target platform. Wrote visualization tools to detect fairness problems quickly.
+List out patents:
+https://patents.justia.com/patent/20200104180
+https://patents.justia.com/patent/10503546
+https://patents.justia.com/patent/10373287
+https://patents.justia.com/patent/20180349146
+https://patents.justia.com/patent/20180173560
+https://patents.justia.com/patent/9747659
+
+
+Performance Analysis: Wrote a Driver Stack Performance Simulator to mimic impact of latency at various levels of the Software stack. This allowed projecting and improving performance bottlenecks on future hardware with future application patterns. Was heavily used for a lot of the end to end performance improvements. 
+
+Notable Products: Split screen on ipad, face recognition, Modern Apple TV blur based UI, animoji, macOS on ARM, ARKit 
+
+3D/Compute: ASTC support (UMD), Memoryless Render (UMD + KMD), Mid-Render Compute (KMD) and improving performance of Tiled Rendering.
+

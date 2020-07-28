@@ -21,8 +21,13 @@ hg amend will cause the same change to be COW'ed, hg evolve will fix the ancestr
 
 --------
 In Parallel you can continue development in the dev branch. If you want to pull the Review changes in, you must use hg graft for the review change that was modified. (hg amend
-will create a separate change so the graft will go through) Do merge resolutions as needed.
+will create a separate change so the graft will go through) Do merge resolutions as needed. 
 
+[Edit] Actually what I found is that I had to do hg graft --force to pull a change from rev to dev. --force ignores ancestors. Beyond that this flow works.
+
+Also the idea is to let dev move forward and get review changes back into dev. It is not the goal to get dev changes into rev. rev is a snapshot of dev. 
 
 That's it!! You keep the review branch for review and the dev branch for development and marching ahead if you must.
+
+
 
