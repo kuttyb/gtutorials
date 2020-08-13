@@ -1,0 +1,30 @@
+<This is the updated version refer to this over the notes document>
+
+http://www.cs.cmu.edu/afs/cs/academic/class/15869-f11/www/readings/molnar94_sorting.pdf
+
+Sort First:
+  - prepass geometry, bin by position
+  - then redistribute bins to do geometry and pixel on one partition
+
+  For e.g., you can do position only geometry as part of the prepass geometry stage
+
+Sort Middle:
+  - Geometry distributed randomly or streamed using some load heuristics
+  - redistribution happens after G when screen space partitions are known
+  - each Rasterizer owns 1+ bins
+
+  This is your everyday Graphics hardware
+
+Sort Last:
+  - General E2E G/R images
+  - Redistribute pixels
+  - Composite globally
+
+  Can either globally communicate z/stencil and send out surviving pixels from each Partition or
+  send out full image from each partition and do a global z/stencil in one quadrant
+  (Former makes more sense aka build a global consensus on z/stencil and have each Partition reject
+  its own before sending out)
+
+ and like everything else you can mix-n-match these key concepts to build something smarter :-)
+
+
