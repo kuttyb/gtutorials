@@ -14,3 +14,11 @@ After changing this file, apt-get update and you're ready to go!!
 dpkg -L name_of_package ;; this is wher on your system the files are all located
 
 apt show name_of_package
+
+-=======
+Sometimes you can get apt cannot process because this package is in an inconsistent state warning... very annoying
+
+https://askubuntu.com/questions/88371/apt-synaptic-needs-to-reinstall-package-but-cant-find-the-archive-for-it
+
+Follow the link here and delete the package like this sudo rm -i /var/lib/dpkg/info/zoom*
+
