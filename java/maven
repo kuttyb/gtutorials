@@ -118,3 +118,14 @@ How do I use a particular Javac compiler version
 Java 11 safe
 ==================================================
 https://winterbe.com/posts/2018/08/29/migrate-maven-projects-to-java-11-jigsaw/
+
+
+==================================================
+Top level Maven Projects
+==================================================
+Building a top level maven project/module to stitch a bunch of dependent modules together
+http://maven.apache.org/pom.html#Aggregation
+Also look at what we have done in our bitbucket javamaven pom.xml
+
+You do not have to provide the internal dependency information. Maven will discover that on its own.
+
