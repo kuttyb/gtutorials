@@ -8,8 +8,8 @@ MutableSortedMap    || TreeSortedMap.newMap()
 MutableMultimap     || Multimaps.mutable.sortedBag.empty() // Tree
 		       Multimaps.mutable.set.empty()       // Hash
 
-MutableList         || Lists.mutable.with()
-		    || FastList.newList()
+MutableList         || Lists.mutable.with() // if you want a linkedlist
+		    || FastList.newList()   // if you want an ArrayList
 
 // Basic iterators
 Map
