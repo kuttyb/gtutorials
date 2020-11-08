@@ -1,0 +1,6 @@
+List of Packages we use. Install these directly from ELPA instead of storing the .el or .elc files:
+------------
+* memory-usage
+
+* ggtags
+

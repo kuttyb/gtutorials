@@ -1,13 +1,15 @@
-alias s clear $*
-alias pr hg up -C .
-alias jdk cd /usr/share/jdk
+alias lcear clear $*
+alias celar clear $*
+alias open nemo
+alias sl celar $*
+alias j cd /home/kutty/daji/javamaven
 alias dr cd /home/kutty/GoogleDrive
 alias et setenv "TERM" "eterm"
 alias prr git reset .
+alias pr git checkout -- .
 alias mm make -j4 $*
-alias j cd /home/kutty/daji/java
-alias pd hg diff .
-alias gcf hg purge
+alias pd git diff .
+alias gcf git clean -f -d .
 alias clear clr
 alias int cd /home/kutty/daji/int/java
 alias desk cd ~/Desktop
@@ -15,24 +17,26 @@ alias doc cd ~/Documents
 alias daji cd ~/daji
 alias down cd ~/Downloads
 alias psu ps -efcl
-alias mem cat /proc/meminfo
-alias gp hg push
+alias gp git push 
 alias dist cat /etc/lsb-release
 alias sw_vers uname -a
-alias pa hg add .
-alias po hg status
-alias gc hg commit
-alias open nautilus
+alias pa git add .
+alias po git status
+alias gc git commit
+alias plg git lg -10
 alias tut cd /home/kutty/daji/tut
-alias t cd /home/kutty/daji/ccomponent
+alias t cd /home/kutty/daji/gccomponent
 alias pic /home/kutty/Pictures
 alias cr cd /home/kutty/daji/configrepo/clion
-alias pb hg bookmarks
-alias r cd /home/kutty/daji/ccomponent/repository
-alias pc hg pull 
-alias 3 cd /home/kutty/daji/ccomponent/3rdparty
+alias pb git branch
+alias r cd /home/kutty/daji/gccomponent/repository
+alias pc git pull &
+alias 3 cd /home/kutty/daji/gccomponent/3rdparty
 alias space df -h / /boot/efi 
-alias plg hg lg -l 10 .
-alias plc hg id -i
-alias rspace rls $*
-alias st ls $*
+alias mem cat /proc/meminfo | head
+alias clea po $*
+alias it cd /home/kutty/daji/int/java
+alias s clear $*
+alias jdk cd /usr/share/jdk
+alias cin cd /home/kutty/.local/share/cinnamon
+alias rls clear $*
