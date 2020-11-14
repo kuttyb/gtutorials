@@ -1,21 +1,30 @@
-alias nil clear $*
-alias clearls clear $*
-alias l sclear $*
-alias ul cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation/understanding"
-alias pl cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation/plan"
-alias tut cd c:/Users/kbanerjee/AppData/Roaming/daji/tutorial
-alias daji cd c:/Users/kbanerjee/AppData/Roaming/daji
-alias clear clr
-alias start explorer .
-alias desk cd c:/Users/kbanerjee/Desktop
-alias doc cd c:/Users/kbanerjee/Documents
-alias down cd c:/Users/kbanerjee/Downloads
-alias mem cat /proc/meminfo
-alias space df -h
-alias celar ls $*
-alias t cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation"
-alias dr ls $*
-alias psu tlist /t
-alias g cd "g:/My Drive"
-alias sl clear $*
+alias pb git branch
+alias et setenv "TERM" "eterm"
+alias prr git reset .
+alias pr git checkout -- .
+alias mm make -j4 $*
+alias pd git diff .
+alias gcf git clean -f -d .
+alias gp git push 
+alias sw_vers uname -a
+alias pa git add .
+alias po git status
+alias gc git commit
+alias plg git lg -10
+alias pic cd c:/Users/kutty/Pictures
+alias tut cd c:/Users/kutty/AppData/Roaming/daji/code/gtutorials
 alias s $*
+alias sl clear $*
+alias psu tlist /t
+alias dr ls $*
+alias celar ls $*
+alias space df -h
+alias mem cat /proc/meminfo
+alias down cd c:/Users/kutty/Downloads
+alias doc cd c:/Users/kutty/Documents
+alias desk cd c:/Users/kutty/Desktop
+alias start explorer .
+alias clear clr
+alias daji cd c:/Users/kutty/AppData/Roaming/daji
+alias t cd c:/Users/kutty/OneDrive
+alias g cd "c:/Users/kutty/Google Drive" 
