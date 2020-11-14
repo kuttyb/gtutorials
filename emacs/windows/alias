@@ -1,0 +1,21 @@
+alias nil clear $*
+alias clearls clear $*
+alias l sclear $*
+alias ul cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation/understanding"
+alias pl cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation/plan"
+alias tut cd c:/Users/kbanerjee/AppData/Roaming/daji/tutorial
+alias daji cd c:/Users/kbanerjee/AppData/Roaming/daji
+alias clear clr
+alias start explorer .
+alias desk cd c:/Users/kbanerjee/Desktop
+alias doc cd c:/Users/kbanerjee/Documents
+alias down cd c:/Users/kbanerjee/Downloads
+alias mem cat /proc/meminfo
+alias space df -h
+alias celar ls $*
+alias t cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation"
+alias dr ls $*
+alias psu tlist /t
+alias g cd "g:/My Drive"
+alias sl clear $*
+alias s $*
