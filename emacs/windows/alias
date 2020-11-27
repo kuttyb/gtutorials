@@ -1,3 +1,5 @@
+alias pc git pull &
+alias dr cd "c:/Users/kutty/Google Drive" 
 alias pb git branch
 alias et setenv "TERM" "eterm"
 alias prr git reset .
@@ -16,7 +18,6 @@ alias tut cd c:/Users/kutty/AppData/Roaming/daji/code/gtutorials
 alias s $*
 alias sl clear $*
 alias psu tlist /t
-alias dr ls $*
 alias celar ls $*
 alias space df -h
 alias mem cat /proc/meminfo
@@ -26,5 +27,7 @@ alias desk cd c:/Users/kutty/Desktop
 alias start explorer .
 alias clear clr
 alias daji cd c:/Users/kutty/AppData/Roaming/daji
-alias t cd c:/Users/kutty/OneDrive
 alias g cd "c:/Users/kutty/Google Drive" 
+alias j cd c:/Users/kutty/AppData/Roaming/daji/code/java
+alias n cd c:/Users/kutty/OneDrive
+alias t cd c:/Users/kutty/AppData/Roaming/daji/code/gccomponent

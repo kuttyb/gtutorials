@@ -1,3 +1,4 @@
 @echo off
 
-KILL %1
+taskkill /PID %1
+
