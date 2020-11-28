@@ -1,5 +1,9 @@
 You need to install Git for windows from here https://git-scm.com/download/win
 
-DO NOT use cygwin Git or ssh! Use it all from under this installation which is a mingw64 installation
+This comes with mingw64 and that includes ssh.
 
-Beyond that, for the first time, goto Git/usr/bin and run ssh-keygen from there preferrably a no password key. Again do not use ssh-keygen from cygwin
+Place this after cygwin in your PATH. Also DO NOT install ssh or git from cygwin.
+
+----
+Beyond this, it behaves just like macOS or Linux. Use ssh-key to generate keys
+
