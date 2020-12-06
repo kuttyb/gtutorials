@@ -1,4 +1,5 @@
 iwconfig
+# iw is the tool that can enumerate a lot of information about your wireless device
 
 # This is how you turn off wireless card power management which appears to cause
 # loss of wifi connectivity and performance problems from time to time
