@@ -1,0 +1,9 @@
+use mountgoogledrive.sh in your bin
+
+https://github.com/astrada/google-drive-ocamlfuse
+
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt-get update
+sudo apt-get install google-drive-ocamlfuse
+
+
