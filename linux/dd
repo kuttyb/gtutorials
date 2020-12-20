@@ -1,0 +1,5 @@
+dd if=/dev/zero of=data.dat bs=2048 count=1024x256 conv=fdatasync
+
+the conv part is how you pass flags to the command. This ensures that we get a fsync at the end
+
+
