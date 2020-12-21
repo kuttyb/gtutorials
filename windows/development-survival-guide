@@ -1,0 +1,12 @@
+(1) Install Visual Studio Command line SDK
+Typically a site like this https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019
+- select the Build Tools for command line development
+- I also happened to pick up the performance tools
+
+
+(2) Install Windows 10 Kit (Windbg et al)
+
+A site like this https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk/
+
+
+
