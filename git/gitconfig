@@ -18,5 +18,11 @@
 	sf = show --pretty="format:" --name-only 
 [branch]
 	autosetuprebase = always
+	rebase = true
+	ff = only
+	
 [branch "*branch-name*"]
 	rebase = true
+[pull]
+	rebase = true
+	ff = only
