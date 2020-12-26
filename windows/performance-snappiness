@@ -1,0 +1,19 @@
+The default Windows 10 is a disaster and will come across as not feeling snappy! You can compare it to Ubuntu 20.04 / 20.10 on the same hardware and come out thinking wow Windows
+must have something fundamentally wrong with it :-)
+
+Fact is, they are both just as bad. But Windows does have better Device support, DirectX is bad ass! and Display Monitor support. All in all, it is a great usable desktop OS that works across a wide variety of hardware in a decently performant way.
+
+But first here is what we need to do :
+
+* disable security (most of it)
+ - This is really the big one
+
+
+* disable startup apps
+
+* disable services (unneccesary ones)
+
+* disable search indexing
+
+* strip down the start setting to search nothing
+  (manually add programs to the tiles)

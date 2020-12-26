@@ -1,0 +1,14 @@
+DX12 From a Metal Developer's POV:
+------------------------------------
+
+Command Queue (is a Metal Command Queue)
+Command List is a Command Buffer
+ - It contains the state of the
+
+
+Resources attach points:
+ - SRV : Shader Resource View
+ - RTV : Render Target View
+ - DSV : Depth Stencil View
+ - UAV : Unordered Access View
+
