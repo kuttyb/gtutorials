@@ -17,3 +17,13 @@ But first here is what we need to do :
 
 * strip down the start setting to search nothing
   (manually add programs to the tiles)
+
+
+List of SErvices to disable
+==============================
+
+* sc stop "SysMain"
+  sc config "SysMain" start=disabled
+
+*  repeat for "CDPSvc" (Connected Devices Platform Service"
+
