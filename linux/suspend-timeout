@@ -1,0 +1,3 @@
+gsettings get org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout
+
+Put in the value in seconds. Useful for server computers that you don't want lingering around when no users are active
