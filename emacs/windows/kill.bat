@@ -1,4 +1,4 @@
 @echo off
 
-taskkill /PID %1
+taskkill /F /PID %1
 

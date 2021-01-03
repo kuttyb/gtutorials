@@ -31,25 +31,30 @@
 (set 'make-backup-files nil)
 
 ;; color management
-(set-mouse-color "white")
-(set-background-color "gray14")
-(set-foreground-color "goldenrod10")
-(set-border-color "dark orange" )
-(set-cursor-color "yellow")
+;;(set-mouse-color "white")
+(set-background-color "gray92")
+;; (set-foreground-color "goldenrod10")
+;; (set-border-color "dark orange" )
+;; (set-cursor-color "yellow")
 (window-number-meta-mode 1)
 (window-number-mode 1)
-( setenv "JAVA_HOME" "c:/Program Files/Java/jdk-15.0.1" )
+( setenv "JAVA_HOME" "c:/Program Files/AdoptOpenJDK/jdk-15.0.1.9-hotspot" )
 ( setenv "PATH" 
 	 ;;	 ( concat ( getenv "PATH" )
 	 ( concat 
 	   "c:/Users/kutty/AppData/Roaming/bin;"
+	   "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64;"
+	   "c:/cygwin64/bin;"	   	   	   
 	   "c:/Program Files/Git/bin;"
 	   "c:/Program Files/Git/usr/bin;"
-		  "c:/cygwin64/bin;"
 		  "c:/Windows/system32;"
 		  "c:/Program Files (x86)/emacs-26.1-i686/bin;"
 		  "c:/Program Files (x86)/emacs-26.1-i686-no-deps/bin;"
-		  "c:/Program Files/Common Files/Oracle/Java/javapath;"
+		  "c:/Program Files/CMake/bin;"
+		  "c:/VulkanSDK/1.2.162.0/Bin;"
+		  "c:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin;"
+		  "c:/Program Files/AdoptOpenJDK/jdk-15.0.1.9-hotspot/bin;"
+		  "c:/Users/kutty/AppData/Roaming/emacs-26.3-x86_64/bin;"
 		  "C:/Windows;C:/Windows/System32/Wbem;C:/Windows/System32/WindowsPowerShell/v1.0;"
 		  "c:/Program Files (x86)/Windows Kits/10/Debuggers/x64;"		  
 		  ) )
