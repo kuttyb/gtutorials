@@ -1,0 +1,6 @@
+sudo apt install hwinfo hwinfo-nox
+
+lstopo
+
+ - will give you an amazing view of the numa and io topology
+
