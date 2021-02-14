@@ -1,3 +1,3 @@
 @echo off
 
-cygwin-which %1.bat | xargs cygwin-cat
+which %1.bat | xargs cat
