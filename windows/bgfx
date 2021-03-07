@@ -1,0 +1,4 @@
+cd examples/runtime
+
+../../.build/win64_vs2017/bin/example-31-rsmRelease.exe
+
