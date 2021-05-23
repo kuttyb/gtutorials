@@ -20,5 +20,8 @@ Sometimes you can get apt cannot process because this package is in an inconsist
 
 https://askubuntu.com/questions/88371/apt-synaptic-needs-to-reinstall-package-but-cant-find-the-archive-for-it
 
-Follow the link here and delete the package like this sudo rm -i /var/lib/dpkg/info/zoom*
+Follow the link here and delete the package like this
 
+
+sudo rm -i /var/lib/dpkg/info/packagename*
+sudo dpkg --remove --force-remove-reinstreq packagename
