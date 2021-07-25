@@ -25,3 +25,12 @@ Follow the link here and delete the package like this
 
 sudo rm -i /var/lib/dpkg/info/packagename*
 sudo dpkg --remove --force-remove-reinstreq packagename
+
+
+version 2:
+
+sudo dpkg -i --force-overwrite /var/cache/apt/archives/python-problem-report_2.0.1-0ubuntu9_all.deb
+Then run:
+
+sudo apt-get -f install
+
