@@ -1,4 +1,6 @@
-alias space df -h / /boot/efi 
+alias cpu cat /proc/cpuclearinfo
+alias mem head /proc/meminfo
+alias dr  cd /mnt/chromeos/GoogleDrive/MyDrive
 alias 3 cd /home/kutty/daji/gccomponent/3rdparty
 alias pc git pull &
 alias r cd /home/kutty/daji/gccomponent/repository
@@ -7,7 +9,6 @@ alias pb git branch
 alias cr cd /home/kutty/daji/configrepo/clion
 alias pic /home/kutty/Pictures
 alias t cd /home/kutty/daji/gccomponent
-alias tut cd /home/kutty/daji/tut
 alias open nautilus
 alias plg git lg -10
 alias gc git commit
@@ -16,7 +17,6 @@ alias pa git add .
 alias sw_vers uname -a
 alias dist cat /etc/lsb-release
 alias gp git push 
-alias mem cat /proc/meminfo
 alias psu ps -efcl
 alias down cd ~/Downloads
 alias daji cd ~/daji
@@ -31,4 +31,5 @@ alias mm make -j4 $*
 alias pr git checkout -- .
 alias prr git reset .
 alias et setenv "TERM" "eterm"
-alias dr cd /home/kutty/GoogleDrive
+alias tut cd /home/kuttybanerjee/daji/gtutorials
+alias space df -h
