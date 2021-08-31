@@ -1,0 +1,15 @@
+// To set persistence mode and mess with the clocks
+nvidia-smi -pm 1
+
+// to check what combinations of clocks is allowed
+nvidia-smi -q -d SUPPORTED_CLOCKS
+
+// To actually change the clocks (memclk, gpcclk)
+nvidia-smi -ac 405,405
+
+// To query it back
+nvidia-smi stats -d memClk,procClk
+
+// To disable persistence mode
+nvidia-smi -pm 1
+
