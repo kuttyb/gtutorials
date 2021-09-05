@@ -1,3 +1,14 @@
 gsettings get org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout
 
 Put in the value in seconds. Useful for server computers that you don't want lingering around when no users are active
+
+
+# Btw you can disable suspend and hibernate all together by this
+https://www.tecmint.com/disable-suspend-and-hibernation-in-linux/
+
+To disable
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+reboot and then query
+sudo systemctl status sleep.target suspend.target hibernate.target hybrid-sleep.target
+
