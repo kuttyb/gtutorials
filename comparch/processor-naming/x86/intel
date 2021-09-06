@@ -1,0 +1,25 @@
+Terms:
+-------
+Generations:
+  Tock		: New uArch
+  Tick 		: Process shrink of above Tock
+  Optimization 	: Same uarch/process - optimization
+  
+
+Brand :
+Each generation is split up into the following to target different markets
+  		  Core 	  : i3, i5, i7, i9 with increasing perf/power
+		  Xeon 	  : Server, lower clock, higher #cores, PCIe lanes
+		  	    E (entry level), W (workstation : slightly higher), D (hyperscalers)
+	  	  Celeron : Cheap PCs
+	  	  Atom: Low power
+
+
+Reference : https://en.wikipedia.org/wiki/List_of_Intel_CPU_microarchitectures
+
+For e.g.,  Nehalem is the uArch, Westmere is the 32nm shrink and Westmere-EP is the 2socket Xeon processor
+
+
+uArch List:
+ Nehalem, Sandy Bridge, Haswell, Skylake and then the Coves start (cypress, Palm, Sunny, Willow Golden)
+
