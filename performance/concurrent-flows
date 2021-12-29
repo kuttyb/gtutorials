@@ -1,0 +1,11 @@
+
+ Graph of Pipeline stages (Actor)
+ -------------------------
+
+  Each stage operates in the following modes: (WAIS)
+
+  Waiting   active but not scheduled on a thread
+  Active    working and scheduled on a thread
+  Idle	    don't have input to work on
+  Stalled   idle because awaiting response from somebody 
+
