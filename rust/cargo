@@ -1,0 +1,4 @@
+cargo build --profile=release
+
+I had to do some funny stuff to get LTO + inlinining working across modules
+
