@@ -1,0 +1,15 @@
+
+ https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+ 1. Add submodule under a 3rdparty folder
+    git submodule add git-path
+
+ 2. git add. git push the usual way
+
+
+ When cloning a folder with submodules
+ 1. git submodule init
+ 2. git submodule update
+
+ This will bring the submodule up to the latest
+
