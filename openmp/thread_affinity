@@ -5,3 +5,5 @@ This will setup 6 threads and place them at the following OS CoreID
 ( setenv "OMP_PLACES" "10, 8, 4, 2, 1, 7" )
 ( setenv "OMP_NUM_THREADS" "6" )
 
+# Edit:
+Use GOMP_CPU_AFFINITY "2 4 6" instead
