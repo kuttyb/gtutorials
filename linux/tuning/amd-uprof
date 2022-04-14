@@ -1,0 +1,8 @@
+
+# AMDuProfPCM for L3/xGMI/UMC
+
+sudo ./AMDuProfPcm -m l3 -c core=3 -d 5 -o /tmp/uprof/l3.csv
+
+# change -c to -a to capture for all. It appears they filter out events not from the specific core/ccx/ccd
+# -m takes in various parameters
+

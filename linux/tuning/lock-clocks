@@ -1,0 +1,10 @@
+
+# To lock at 3.1GHz
+ sudo cpupower frequency-set --max 3100000
+ sudo cpupower frequency-set --min 3100000
+ cpupower frequency-info # This will tell you min/max frequencies
+
+
+  
+cpupower -c all frequency-set -g performance
+
