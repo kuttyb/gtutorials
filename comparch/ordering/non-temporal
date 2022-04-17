@@ -6,4 +6,42 @@ https://www.felixcloutier.com/x86/movnti
 This is a good classification of different axes to consider when thinking of Streaming Stores
 https://sites.utexas.edu/jdm4372/2018/01/01/notes-on-non-temporal-aka-streaming-stores/
 
+============================================
+ Intel
+============================================
+ “Caching of Temporal vs. Non-Temporal Data” in Chapter 10 in the IA-32 Intel Architecture Software Developer’s Manual, Volume 1.
+10.4.6.2 states this clearly
+
+{
+......
+
+
+These SSE and SSE2 non-temporal store instructions minimize cache pollutions by treating the memory being
+accessed as the write combining (WC) type. If a program specifies a non-temporal store with one of these instructions
+and the memory type of the destination region is write back (WB), write through (WT), or write combining
+(WC), the processor will do the following:
+• If the memory location being written to is present in the cache hierarchy, the data in the caches is evicted.1
+1. Some older CPU implementations (e.g., Pentium M) allowed addresses being written with a non-temporal store instruction to be
+updated in-place if the memory type was not WC and line was already in the cache.
+Vol. 1 10-13
+PROGRAMMING WITH INTEL® STREAMING SIMD EXTENSIONS (INTEL® SSE)
+• The non-temporal data is written to memory with WC semantics
+
+Using the WC semantics, the store transaction will be weakly ordered, meaning that the data may not be written to
+memory in program order, and the store will not write allocate (that is, the processor will not fetch the corresponding
+cache line into the cache hierarchy, prior to performing the store). Also, different processor implementations
+may coose to collapse and combine these stores.
+
+......
+}
+
+
+============================================
+ AMD
+============================================
+AMD explanation can be found here
+https://www.amd.com/system/files/TechDocs/24592.pdf (Refer 3.9.2)
+Specifically about Weak Memory Ordering is listed here
+https://www.amd.com/system/files/TechDocs/26568.pdf (Pg 210)
+
 
