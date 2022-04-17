@@ -1,0 +1,9 @@
+On x86-64 : NT Stores follow WC protocol as long as the target memory is WB/WT/WC (not UC) and are weakly ordered.
+
+https://www.felixcloutier.com/x86/movntdq
+https://www.felixcloutier.com/x86/movnti
+
+This is a good classification of different axes to consider when thinking of Streaming Stores
+https://sites.utexas.edu/jdm4372/2018/01/01/notes-on-non-temporal-aka-streaming-stores/
+
+
