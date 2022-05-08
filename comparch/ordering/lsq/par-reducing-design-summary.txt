@@ -1,0 +1,38 @@
+
+Background:
+============
+- I am sure you know this but to refresh:
+ - Dispatch : Act of sending instructions by output of decoder to Reservation Stations
+ - Issue : Act of sending instructions(uops) from RS to functional unit
+ - Retire : Rate at which instructions(uops) retire/commit from ROB
+
+- Life of a Store:
+ - Compute Address
+ - Get Coherence Permission
+ - Get data in cache
+
+
+
+Problem Statement:
+==================
+ For a Load Store Queue, the 2 KPIs that matter are :
+  (1) Size : To keep up with increasing ROB (Instruction Window sizes)
+  (2) Search Bandwidth : Issue width keeps increasing in modern processors
+This paper sets out to optimize the above 2 KPIs
+
+Constraints:
+============
+ It needs to to solve (at least) the following 3 problems:
+  (1) Load queue is searched by stores to detect mis-speculation in store-load reoredering (i.e, hoisting of loads above stores with RAW hazard)
+  (2) Store queue is search by loads to do store-load forwarding (non-speculative path)
+  (3) Detect Load-Load reorderings that are written to by other cores (remote intervening stores) (informed by the coherence protocol)
+
+
+Unique Solution:
+=================
+ (1) Reduce Search by bandwidth by only "load scanning store queue" for those instructions specifically marked to do so
+     This will however require "store scanning load queue" to detect mis-speculation
+
+ (2) Segmented load-store queue to allow it to scale better
+
+
