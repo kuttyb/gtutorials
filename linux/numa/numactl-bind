@@ -1,0 +1,4 @@
+numactl --membind=1 --cpunodebind=1 ./memcpy 1000000 83886080
+
+This will make sure your memory only comes from Node-1 and you only use cores from Node-1
+
