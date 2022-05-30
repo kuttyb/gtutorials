@@ -1,0 +1,6 @@
+
+ Both of these will tell you which targets are supported
+ 
+   llc --version
+   clang --print-targets
+
