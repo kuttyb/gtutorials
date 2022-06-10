@@ -1,0 +1,12 @@
+
+ The measurement of success against Noisy Neighbor is "CFP"
+
+  - Consistency  : consistency of performance between 1 actor active vs many actors active
+  - Fairness     : if performance is the same across all actors or are some actors getting preferential treatment (whether random or by design)
+  - Performance (Baseline)  : Baseline performance of 1 actor. This is important when different mitigating solutions are applied to solve C/F
+
+ For e.g, to solve C/F, one might apply throttles which can drop performance. For e.g, cache partitioning using #way-partitioning can lead to serious loss of associativity
+ and thus performance even though it may improve C/F.
+
+ 
+
