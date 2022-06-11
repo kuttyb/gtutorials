@@ -1,0 +1,15 @@
+K. Gharachorloo, A. Gupta, and J. Hennessy. Two
+Techniques to Enhance the Performance of Memory
+Consistency Models. In Proc. of the International
+Conference on Parallel Processing, 1991.
+
+Parthasarthy Ranganathan, Vijay S. Pai, and Sarita V. Adve.
+Using speculative retirement and larger instruction windows
+to narrow the performance gap between memory consistency
+models. In Proceedings of the Ninth ACM Symposium on
+Parallel Algorithms and Architectures (SPAA), June 1997.
+
+
+
+For Shared Memory : Remember to try out SPLASH-2 and PARSEC benchmarks. They seemed to be referenced all over the literature
+

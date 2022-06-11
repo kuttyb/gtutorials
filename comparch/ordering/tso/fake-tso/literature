@@ -1,0 +1,24 @@
+
+Post-Retirement Speculation / Post-Commit Speculation : Is the operative term here
+
+
+
+
+ pre-commit  : before instructions have retired from ROB
+ post-commit : after instructions have retired from ROB
+ 
+ You can fake SC with RMO pre-commit fairly easily. That is, retire the load/stores speculatively and let ROB retire in-order. If you can hide load/store stalls with this
+ there is no issue. This will require usage of pre-commit store buffers. 
+
+
+ The question is, if you cannot hide the latency with this technique then what do you do:
+
+ The "invise-fence" paper argues that here you can do one of 2 things:
+   - Post-commit (post-retirement) store buffers : put the stores in a separate store buffer and let them retire in-order. If intermediate coherence stalls from other
+    cores show up, then you know you messed up and therefore have to rollback. Maintain rollback data.
+
+   - Bulk Commit : WIP
+
+
+ -- Keep in mind, when you detect ordering violations, you have the opportunity to push back on the Violators instead of rolling back
+

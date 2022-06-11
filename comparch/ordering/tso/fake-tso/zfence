@@ -1,0 +1,12 @@
+
+Badass!!
+
+Essentially your in-window and out-window stores don't have to wait for data to commit, they just need the data-less coherence permission which coming from the
+Home directory should be faster than the data which could come from DRAM (under loaded conditions)
+
+Thus you have sped up fences and store-commits thereby being able to provide SC/TSO for cheap
+
+Furthermore the paper talks about [18], coherence read-exclusive prefetch request which is allegedly in use by most x86 TSO implementations. This causes the
+RFO request to be sent out early as soon as the store address is available.
+
+
