@@ -1,0 +1,26 @@
+
+
+ Below lists ideas on how TSO emulation on AARCH64 can be sped up on non-TSO hardware w/o HW assist
+
+  --- Disable Thread Migration ---
+
+ Here are patterns where a JIT can elide store barriers:
+
+ 1. Inside a critical section 
+    - But can you truly identify it from an instruction sequence on AARCH64
+
+ 2. NT (Streaming Stores) They are are weakly orderered on x86 as well
+ 
+ 3. Any code boundaries that the JIT compiler can do escape analysis on and prove function-region locality
+
+ 4. Stack stores
+ 
+ 5. For all else:
+    - use regular stores and per-core page tables
+    - Using COW/ZFOD, OS will allocate pages by default only on one core, the other core will be empty
+    - when taking a page trap, check if the page is allocated on another core
+      - if yes, send User mode a special trap
+      - JIT should handle this, and use reasonable judgement to add store barriers around the code in question and adjoining super block
+        that could be using the same page
+       -- Thus we are identifying code regions that have ever accessed Shared memory (pages accessed by more than one core)
+

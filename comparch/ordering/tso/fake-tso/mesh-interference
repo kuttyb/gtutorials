@@ -1,0 +1,10 @@
+
+ Mesh interference can be of the following types:
+
+  -- Source
+  -- Path
+  -- Destination
+
+  Source can be either source link or source switch. For e.g., in ARM CMN-600, 2 or more cores share a link which then connects to a switch. This creates source level
+  interference
+
