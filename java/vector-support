@@ -1,0 +1,11 @@
+
+ Pass this -XX:UseAVX=3 in your command line arguments. It will downgrade to whatever AVX is actually supported
+
+ With disassembly, you can make sure that it is actually generating the correct codegen
+
+ -XX:+UnlockDiagnosticVMOptions -XX:+PrintAssembly
+ Also look up how to download hsdis-amd64.so
+ You can get it from here https://chriswhocodes.com/hsdis/ or https://bell-sw.com/pages/jvm-tools/
+
+
+ 
