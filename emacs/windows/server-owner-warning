@@ -1,0 +1,4 @@
+Read this and change ownership of the .emacs.d/server directory away from Administrator and to the user
+
+https://stackoverflow.com/questions/885793/emacs-error-when-calling-server-start
+
