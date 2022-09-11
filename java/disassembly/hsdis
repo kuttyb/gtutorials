@@ -1,0 +1,9 @@
+https://iklam.github.io/jekyll/update/2018/06/01/hotspot-diassembly.html
+
+Essentially get hsdis-amd64.so and place it in LD_LIBRARY_PATH.
+
+(1) Printing Interpreter
+java -XX:+UnlockDiagnosticVMOptions -XX:+PrintInterpreter -version
+
+(2) Printing codegen
+
