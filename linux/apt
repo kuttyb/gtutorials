@@ -7,6 +7,9 @@ deb-src http://mirror.anl.gov/pub/ubuntu hardy main
 deb http://mirror.anl.gov/pub/ubuntu hardy universe
 deb-src http://mirror.anl.gov/pub/ubuntu hardy universe
 
+// List all installed packages
+
+apt list --installed
 
 After changing this file, apt-get update and you're ready to go!!
 
