@@ -1,0 +1,2 @@
+runemacs -q -l $PATH/.emacs
+

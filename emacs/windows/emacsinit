@@ -42,7 +42,7 @@
 ( setenv "PATH" 
 	 ;;	 ( concat ( getenv "PATH" )
 	 ( concat 
-	   "c:/Users/kutty/AppData/Roaming/bin;"
+	   "c:/Users/kbanerjee/AppData/Roaming/bin;"
 	   "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64;"
 	   "c:/cygwin64/bin;"	   	   	   
 	   "c:/Program Files/Git/bin;"
@@ -54,14 +54,14 @@
 		  "c:/VulkanSDK/1.2.162.0/Bin;"
 		  "c:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin;"
 		  "c:/Program Files/AdoptOpenJDK/jdk-15.0.1.9-hotspot/bin;"
-		  "c:/Users/kutty/AppData/Roaming/emacs-26.3-x86_64/bin;"
+		  "c:/Users/kbanerjee/AppData/Roaming/emacs-26.3-x86_64/bin;"
 		  "C:/Windows;C:/Windows/System32/Wbem;C:/Windows/System32/WindowsPowerShell/v1.0;"
 		  "c:/Program Files (x86)/Windows Kits/10/Debuggers/x64;"		  
 		  ) )
 
 ;; Windbg settings
-( setenv "_NT_SYMBOL_PATH" "srv*c:/Users/kutty/AppData/Roaming/windbg/symbols/websymbols*http://msdl.microsoft.com/download/symbols" )
-( setenv "_NT_EXECUTABLE_PATH" "srv*c:/Users/kutty/AppData/Roaming/windbg/symbols/websymbols*http://msdl.microsoft.com/download/symbols" )
+( setenv "_NT_SYMBOL_PATH" "srv*c:/Users/kbanerjee/AppData/Roaming/windbg/symbols/websymbols*http://msdl.microsoft.com/download/symbols" )
+( setenv "_NT_EXECUTABLE_PATH" "srv*c:/Users/kbanerjee/AppData/Roaming/windbg/symbols/websymbols*http://msdl.microsoft.com/download/symbols" )
 
 ;; ccomponent releated
 ;; Functions to help you navigate across various projects/branches
@@ -76,17 +76,17 @@
   )
 
 ( defun loadproject ()
-  ( setenv "TOOLS" "/home/kutty/tools" )
+  ( setenv "TOOLS" "/home/kbanerjee/tools" )
   ( setenv "PROOT" default-directory )
   ( setenv "REPOSITORY" ( concat ( getenv "PROOT" ) "/repository" ) )
   )
 
 ;; Perforce settings
 ( setenv "P4PORT" "localhost:12002" )
-( setenv "P4USER" "kutty" )
+( setenv "P4USER" "kbanerjee" )
 ( setenv "P4CLIENT" "one" )
 ( setenv "P4EDITOR" "emacsclient" )
-( setenv "P4ROOT" "/home/kutty/daji/code/perforce/one" )
+( setenv "P4ROOT" "/home/kbanerjee/daji/code/perforce/one" )
 ( setenv "EDITOR" "emacsclient" )
 (server-start)
 (eshell)
