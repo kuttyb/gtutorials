@@ -1,46 +1,46 @@
-alias rls clear $*
-alias jdk cd $JAVA_HOME
-alias plg git lg -10 .
-alias 3 cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/3rdparty
-alias r cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/repository
-alias sdk cd "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.28.29333"
-alias bt cd "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Auxiliary/Build"
-alias pc git pull &
-alias dr cd "c:/Users/kbanerjee/Google Drive" 
-alias pb git branch
-alias et setenv "TERM" "eterm"
-alias prr git reset .
-alias pr git checkout -- .
-alias mm make -j4 $*
-alias pd git diff .
-alias gcf git clean -f -d .
-alias gp git push 
-alias pa git add .
-alias po git status
-alias gc git commit
-alias pic cd c:/Users/kbanerjee/Pictures
-alias s $*
-alias sl clear $*
-alias psu tlist /t
-alias celar ls $*
-alias space df -h
-alias mem cat /proc/meminfo
-alias down cd c:/Users/kbanerjee/Downloads
-alias doc cd c:/Users/kbanerjee/Documents
-alias desk cd c:/Users/kbanerjee/Desktop
-alias start explorer .
-alias clear clr
-alias daji cd c:/Users/kbanerjee/AppData/Roaming/daji
-alias g cd "c:/Users/kbanerjee/Google Drive" 
-alias j cd c:/Users/kbanerjee/AppData/Roaming/daji/code/java
-alias n cd c:/Users/kbanerjee/OneDrive
-alias t cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent
-alias tut cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gtutorials
-alias clea rls $*
-alias e cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/3rdparty
-alias cpu cat /proc/cpuinfo
-alias lcear ls $*
-alias sw_vers winver
-alias nil cd ls $*
-alias clearls clear $*
+alias clear clear 1
+alias n cd "c:/Users/kbanerjee/OneDrive - NVIDIA Corporation/notes"
+alias tut cd c:/Users/kbanerjee/AppData/Roaming/daji/gtutorials
 alias sapce ls $*
+alias clearls clear $*
+alias nil cd ls $*
+alias sw_vers winver
+alias lcear ls $*
+alias cpu cat /proc/cpuinfo
+alias e cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/3rdparty
+alias clea rls $*
+alias t cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent
+alias j cd c:/Users/kbanerjee/AppData/Roaming/daji/code/java
+alias g cd "c:/Users/kbanerjee/Google Drive" 
+alias daji cd c:/Users/kbanerjee/AppData/Roaming/daji
+alias start explorer .
+alias desk cd c:/Users/kbanerjee/Desktop
+alias doc cd c:/Users/kbanerjee/Documents
+alias down cd c:/Users/kbanerjee/Downloads
+alias mem cat /proc/meminfo
+alias space df -h
+alias celar ls $*
+alias psu tlist /t
+alias sl clear $*
+alias s $*
+alias pic cd c:/Users/kbanerjee/Pictures
+alias gc git commit
+alias po git status
+alias pa git add .
+alias gp git push 
+alias gcf git clean -f -d .
+alias pd git diff .
+alias mm make -j4 $*
+alias pr git checkout -- .
+alias prr git reset .
+alias et setenv "TERM" "eterm"
+alias pb git branch
+alias dr cd "c:/Users/kbanerjee/Google Drive" 
+alias pc git pull &
+alias bt cd "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Auxiliary/Build"
+alias sdk cd "c:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.28.29333"
+alias r cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/repository
+alias 3 cd c:/Users/kbanerjee/AppData/Roaming/daji/code/gccomponent/3rdparty
+alias plg git lg -10 .
+alias jdk cd $JAVA_HOME
+alias rls clear $*
