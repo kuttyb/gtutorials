@@ -1,0 +1,11 @@
+
+ Numba and Taichi are the ones I am aware of
+
+ Former is good for numpy packages, the latter more general purpose
+
+ Both expect a decorator placed on top of the python function that should act as the root of the JIT
+  - JIT backends exist for CPU/GPU and perhaps TPU
+
+
+
+ 
