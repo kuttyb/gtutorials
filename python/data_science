@@ -1,0 +1,12 @@
+
+ Pandas / Dask
+  - Pandas simple API
+  - Dask API + distributed network flow (send query to data)
+  - Modin - Pandas sped up with Intel secret sauce and native kernels I am guessing
+
+  https://github.com/modin-project/modin
+
+
+  Pandas on GPU : Use RAPIDS
+  https://developer.nvidia.com/blog/pandas-dataframe-tutorial-beginners-guide-to-gpu-accelerated-dataframes-in-python/
+
