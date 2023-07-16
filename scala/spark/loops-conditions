@@ -1,0 +1,7 @@
+
+ .foreach
+
+ .when/otherwise
+
+  That's it, you can now large programs using Control Flow and use their query optimizer. Even has GPU codegen
+
