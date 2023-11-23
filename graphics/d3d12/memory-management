@@ -1,0 +1,36 @@
+
+  
+ Heap provides access to physical memory, Resources provide access to virtual memory
+ 
+
+ Heap
+   Part of pool (L0/L1/L2 : Sysmem, GPUMEM, UMA)
+   
+   :: Physical memory
+   
+   Type : Helps you optimize access patterns more efficiently https://learn.microsoft.com/en-us/windows/win32/api/d3d12/ne-d3d12-d3d12_heap_type
+     - Default	    : GPU Only (can't access from CPU)
+     - Upload	    : Optimized for CPU writes (WC) and GPU read-once  (typically placed in sysmem)
+     - Readback     : Optimized for CPU reads (WB) and  GPU write-once (typically placed in sysmem *I think*)
+     - GPUupload    : BAR1 mapped to CPU
+     
+
+ Resource
+    Type : Buffer, Texture
+    
+    Views (Descriptors)
+	SRV, UAV, CBV,
+	Sampler,
+	RTV/DSV
+
+	IBV, VBV, SOV (Index Buffer, Vertex Buffer, Stream Output View)
+	
+    :: Virtual memory
+    - can call map/unmap based on underlying Heap to get CPU pointers
+
+    ;; Types (CPR)
+       Committed : Comes with committed Resource (VA) and Heap (PA)
+       Placed    : Comes with VA but can be mapped to Heap PA dynamically.  (No Partial Residency)
+       		   Allows layering many Resources on top of a single Heap lazily.
+		   To move Placed Resources to another Heap, explicit copy and reinitialization of resource descriptors is required
+       Reserved  : Comes with VA but can be mapped in parts to various Heap ranges (Partial Residency, think Texture Streaming)
