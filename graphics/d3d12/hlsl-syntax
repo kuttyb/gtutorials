@@ -1,0 +1,6 @@
+
+System Value are annotations applied to variables
+https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics#system-value-semantics
+
+SV_POSITION, SV_Depth, SV_Target
+
