@@ -2,5 +2,58 @@
 System Value are annotations applied to variables
 https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics#system-value-semantics
 
-SV_POSITION, SV_Depth, SV_Target
+SV_Position, SV_Depth, SV_Target (Color as written by Pixel Shaders)
+
+------------------------------------------------------------------------------------
+ Bare Minimum Skeletal Shaders
+------------------------------------------------------------------------------------
+// Vertex Shader
+float4 main(void) : SV_POSITION {
+  return float4(0.1, 0.2, 0.3, 1.0);
+} 
+
+// Pixel Shader
+float4 main(void) : SV_TARGET {
+  return float4(0.1, 0.2, 0.3, 1.0);
+}
+
+------------------------------------------------------------------------------------
+
+
+
+------------------------------------------------------------------------------------
+ Structs and input variables
+------------------------------------------------------------------------------------
+// Vertex Shader
+struct Input {
+  float4 pos : SV_POSITION
+};
+
+float4 main(Input input) : SV_POSITION {
+  return input.pos + float4(0.1, 0.2, 0.3, 1.0);
+} 
+
+// Pixel Shader
+float4 main(void) : SV_TARGET {
+  return float4(0.1, 0.2, 0.3, 1.0);
+}
+
+------------------------------------------------------------------------------------
+
+Input to Vertex Shader:
+1. Look up Input Assembler Vertex Buffer Layout
+   - This is how you tell HLSL how the variables are packed in your VSInput struct
+   - DX11 has Input slots, a way to bind different vertex buffers should you want to put some attributes non contiguously
+   
+2. You can also pull VertexID and look up the buffer yourself
+
+------------------------------------------------------------------------------------
+
+How do I tell DX12 which variables are to be Rasterized (OGL varying)?
+
+Just return the struct from your VSInput and use the same struct as input to PS
+DX will take care of the rest
+Annotate each variable with System Value semantics
+
+------------------------------------------------------------------------------------
 
