@@ -56,4 +56,29 @@ DX will take care of the rest
 Annotate each variable with System Value semantics
 
 ------------------------------------------------------------------------------------
+Compute Shader
+------------------------------------------------------------------------------------
+
+numthreads is used to describe "ThreadGroup" size. HLSL calls it group.
+
+uint3 groupID : SV_GroupID
+- Index of the group within the dispatch for each dimension
+
+uint3 groupThreadID : SV_GroupThreadID
+- Index of the thread within the group for each dimension
+
+uint groupIndex : SV_GroupIndex
+- A sequential index within the group that starts from 0 top left back and goes on to bottom right front
+
+uint3 dispatchThreadID : SV_DispatchThreadID
+- Global thread index within the whole dispatch
+
+
+[numthreads(32, 16, 1)]
+void CSMain( uint3 dispatchThreadID : SV_DispatchThreadID )
+{
+    float3 pixel = readPixel(dispatchThreadID.x, dispatchThreadID.y);
+    pixel.rgb = pixel.r * 0.3 + pixel.g * 0.59 + pixel.b * 0.11;
+    writeToPixel(dispatchThreadID.x, dispatchThreadID.y, pixel);
+}
 
