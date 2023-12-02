@@ -1,0 +1,11 @@
+
+ Read "input-layout-desc" first to understand how PSO is told to setup IA with Vertex Buffer schema/layout
+
+ Index Buffer and Vertex Buffers are set in the Command List
+ https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12graphicscommandlist-iasetindexbuffer
+ https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12graphicscommandlist-iasetvertexbuffers
+
+ Primitive Topology is set in PSO but can also be changed in Command List. It is in the category of edits that can be done on the currently bound PSO
+
+
+  
