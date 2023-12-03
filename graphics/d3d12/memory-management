@@ -17,15 +17,7 @@
 
  Resource
     Type : Buffer, Texture, Sampler
-    
-    Views (Descriptors)
-	SRV, UAV, CBV,
-	Sampler,
-	RTV/DSV
-
-	IBV, VBV, SOV (Index Buffer, Vertex Buffer, Stream Output View)
-	;; Descriptors can be allocated on descriptor heap
-	
+    	
     :: Virtual memory
     - can call map/unmap based on underlying Heap to get CPU pointers
 
@@ -36,7 +28,19 @@
 		   To move Placed Resources to another Heap, explicit copy and reinitialization of resource descriptors is required
        Reserved  : Comes with VA but can be mapped in parts to various Heap ranges (Partial Residency, think Texture Streaming)
 
+ Descriptors(Views)
+      Abstraction built on top of Resources. Help HW interpret format of the data
+        UAV, SRV, CBV (USC)
+	RTV/DSV
+
+	IBV, VBV, SOV (Index Buffer, Vertex Buffer, Stream Output View)
+	
+	;; Descriptors can be allocated on descriptor heap
+	;; Can also be inlined in the Root Signature
+
+
  Shader Types
    cbuffer, tbuffer
    Texture2D
    Sampler2D
+

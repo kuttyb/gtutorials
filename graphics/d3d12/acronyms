@@ -1,0 +1,16 @@
+
+  Use these to remember various tricks
+
+   USC -> UAV, SRV, CBV
+
+   TAU -> Transition, Aliasing, UAV Barriers
+
+   CPR -> Committed, Placed and Reserved Resources
+
+
+   Types of Heaps:
+      - Default
+      - Upload (CPU)
+      - GPU Upload
+      - Readback
+

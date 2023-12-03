@@ -1,11 +1,10 @@
 
 https://learn.microsoft.com/en-us/windows/win32/api/d3d12/ns-d3d12-d3d12_input_layout_desc
 
-This is part of PSO and is used to define the Input Assembler Stage.
+Use it to tell PSO what the "schema" and "layout" of your Vertex Buffer looks like (IA)
 
-Goal is to help define "layout" and "per-vertex schema" of the Vertex buffers being used by the Pipeline
 
- - per-vertex schema : How various "named" attributes are placed within the vertex buffer (think poor man's struct definition)
+ - schema : How various "named" attributes are placed within the vertex buffer (think poor man's struct definition)
    This is done by giving each attribute a "semantic name" + "semantic index" along with size
 
  - layout : Each attribute can point to different "Input Slots" in case attributes are laid out in an interleaved manner (across different Vertex Buffers)

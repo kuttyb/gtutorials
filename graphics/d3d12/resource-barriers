@@ -3,7 +3,8 @@ https://learn.microsoft.com/en-us/windows/win32/direct3d12/using-resource-barrie
 
  There are 3 kinds of Barriers :
 
- 1. Resource Transition  : Format changes to allow different parts of the pipe to use content
+ (TAU)
+ 1. Transition  : Format changes to allow different parts of the pipe to use content
  2. Aliasing  : Same memory different resources (may include format changes)
  3. UAV-to-UAV : pipeline stall, fence, flush
 
