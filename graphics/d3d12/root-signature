@@ -3,11 +3,11 @@
 
  inline CB
  inline CB Descriptors
- Descriptor Heap (USC Views)
+ Descriptor Tables (Pointer to Descriptor Heap) -> can contain USC** descriptors
 
 
 
- * USC --> UAV, SRV, CBV
+ ** USC --> UAV, SRV, CBV
 
 
 
