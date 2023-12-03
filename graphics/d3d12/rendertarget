@@ -1,0 +1,14 @@
+
+ You can set RT / DS views on the Command List
+ https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12graphicscommandlist-omsetrendertargets
+
+
+ You can clear / set on these views from the Command List
+ https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12graphicscommandlist-cleardepthstencilview
+ https://learn.microsoft.com/en-us/windows/win32/api/d3d12/nf-d3d12-id3d12graphicscommandlist-clearrendertargetview
+
+
+
+
+
+ 
