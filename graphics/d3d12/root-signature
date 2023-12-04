@@ -2,12 +2,15 @@
  Helps you bind PSO to your Resources and facilitate bindless resources
 
  inline CB
- inline CB Descriptors
- Descriptor Tables (Pointer to Descriptor Heap) -> can contain USC** descriptors
+ inline USCS Descriptors
+ Descriptor Tables USCS (Pointer to Descriptor Heap) 
 
 
 
- ** USC --> UAV, SRV, CBV
+ ** USC   --> UAV, SRV, CBV
+    USCS  --> UAV, SRV, CBV and Samplers
+
+
 
 
 
