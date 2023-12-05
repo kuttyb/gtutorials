@@ -7,9 +7,6 @@
  Descriptor Tables USCS (Pointer to Descriptor Heap) 
  (USCS  --> UAV, SRV, CBV and Samplers)
 
-
-
-
  ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
  Root Signature and Bindless
    (where RPI == Root Parameter Index)
@@ -26,25 +23,36 @@
  So your task is to layout Data in Bind points and attach Base Registers to them.
  That is the purpose of Root Signatures
 
-
-
 ---  ---------- ---------- ---------- ---------- ---------- ---------- ---------- ---------- ----------
   Creating a Root Signature
 
-Refer below how RP provides bind point and base register along with data. That's how its all tied together!!
+  https://learn.microsoft.com/en-us/windows/win32/direct3d12/creating-a-root-signature
 
-// Important point is creating Descriptor Table(Range) requires you to provide Base Register
-// When you attach this to a RPI in RS, it ties together RPI, Data and Base Register
-CD3DX12_DESCRIPTOR_RANGE1 DescRange[6];
-DescRange[0].Init(D3D12_DESCRIPTOR_RANGE_SRV,6,2); // t2-t7
+  Root Signature can contain (a) inline Constants (b) inline Descriptors (c) Descriptor Ranges (pointer to Descriptor Heap)
 
-CD3DX12_ROOT_PARAMETER1 RP[7];
-RP[0].InitAsConstants(3,2); // 3 constants at b2
-RP[1].InitAsDescriptorTable(2,&DescRange[0]); // 2 ranges t2-t7 and u0-u3
+       { RPI + Sampler } -> { ROOT_SIGNATURE_DESC } -> { RSBlob } -> { ID3D12RootSignature (use in Command List) }
 
-ID3D12RootSignature* pRootSignature;
-hr = CheckHR(pDevice->CreateRootSignature(
-    pSerializedRootSig->GetBufferPointer(),pSerializedRootSig->GetBufferSize(),
-    __uuidof(ID3D12RootSignature),
-    &pRootSignature));
+       { RPI + Sampler }
+     1) Start with CD3DX12_ROOT_PARAMETER1 rpi[N];
+
+     2) Fill in individual fields with combinations of (a), (b) and (c)
+
+     3) Use CD3DX12_STATIC_SAMPLER samplers[M] and fill them up
+
+     	{ Root_signature_desc }
+     4) CD3DX12_VERSIONED_ROOT_SIGNATURE_DESC rsDesc(TotalElements,rpi,totalSamplers,samplers);
+
+     	{ RSBlob }
+     5) D3D12SerializeVersionedRootSignature(&rsDesc, &rsBlob);
+
+         { Root Signature }
+     6)	ID3D12RootSignature* rootSignature;
+        pDevice->CreateRootSignature(
+	      rsBlob->GetBufferPointer(),
+	      rsBlob->GetBufferSize(),
+	      __uuidof(ID3D12RootSignature),
+	      &rootSignature);
+
+	 { Use in Command List }
+     7) CommandList::SetGraphicsRootSignature(rootSignature);
 
