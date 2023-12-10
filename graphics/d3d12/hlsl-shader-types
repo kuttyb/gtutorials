@@ -16,3 +16,12 @@ UAV			u#
  CBV			cbuffer,  tbuffer,    ConstantBuffer, 	  TextureBuffer, 
  Sampler		SamplerState, SamplerComparisonState
 
+
+ Remember:
+  Buffer		Texture*
+   - Structured
+   - ByteAddress
+
+  Above are SRV types
+  Prefix (RW) to get UAV types
+
