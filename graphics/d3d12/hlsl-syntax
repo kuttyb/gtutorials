@@ -26,13 +26,21 @@ struct Input {
   float4 pos : SV_POSITION
 };
 
-float4 main(Input input) : SV_POSITION {
-  return input.pos + float4(0.1, 0.2, 0.3, 1.0);
+// Struct returned from VS and input to PS
+struct Output {
+ float4 pos : SV_POSITION;
+ float4 tex : SV_TEXCOORD;
+};
+
+Output main(Input input) {
+  Output output.pos = input.pos + float4(0.1, 0.2, 0.3, 1.0);
+  output.tex = float4(0f, 0f, 0f, 1f);
+  return output;
 } 
 
 // Pixel Shader
-float4 main(void) : SV_TARGET {
-  return float4(0.1, 0.2, 0.3, 1.0);
+float4 main(Output output) : SV_TARGET {
+  return float4(output.pos.x, output.pos.y, output.pos.z, output.pos.w);
 }
 
 ------------------------------------------------------------------------------------
