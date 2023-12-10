@@ -1,0 +1,18 @@
+
+https://www.lei.chat/posts/hlsl-for-vulkan-resources/
+
+			Base Register
+			----------------
+Sampler			s#
+SRV			t#
+CBV			b#
+UAV			u#
+
+
+			HLSL Type		
+			---------------------------------------------------------------------------------------------------
+ SRV			Buffer,   Texture*,   StructuredBuffer,   ByteAddressBuffer, 
+ UAV			RWBuffer, RWTexture*, RWStructuredBuffer, RWByteAddressBuffer, [Append | Consume]StructuredBuffer
+ CBV			cbuffer,  tbuffer,    ConstantBuffer, 	  TextureBuffer, 
+ Sampler		SamplerState, SamplerComparisonState
+

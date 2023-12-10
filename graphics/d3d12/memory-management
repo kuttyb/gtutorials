@@ -38,9 +38,3 @@
 	;; Descriptors can be allocated on descriptor heap
 	;; Can also be inlined in the Root Signature
 
-
- Shader Types
-   cbuffer, tbuffer
-   Texture2D
-   Sampler2D
-
