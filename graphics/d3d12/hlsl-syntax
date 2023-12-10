@@ -60,6 +60,18 @@ Just return the struct from your VSInput and use the same struct as input to PS
 DX will take care of the rest
 Annotate each variable with System Value semantics
 
+---------------------------
+Constant Buffer
+---------------------------
+cbuffer cbPerFrame : register(b0)
+{
+	float4x4 matVP;
+	float4x4 matGeo;
+	float3 objColor;
+};
+
+Pass these as inline constants in the Root Descriptor. Convenient 
+
 ------------------------------------------------------------------------------------
 Compute Shader
 ------------------------------------------------------------------------------------
