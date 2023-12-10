@@ -2,7 +2,8 @@
 System Value are annotations applied to variables
 https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-semantics#system-value-semantics
 
-SV_Position, SV_Depth, SV_Target (Color as written by Pixel Shaders)
+Position (Vertex Shader)
+Target[X], Depth (Pixel Shader)
 
 ------------------------------------------------------------------------------------
  Bare Minimum Skeletal Shaders
@@ -16,10 +17,6 @@ float4 main(void) : SV_POSITION {
 float4 main(void) : SV_TARGET {
   return float4(0.1, 0.2, 0.3, 1.0);
 }
-
-------------------------------------------------------------------------------------
-
-
 
 ------------------------------------------------------------------------------------
  Structs and input variables
