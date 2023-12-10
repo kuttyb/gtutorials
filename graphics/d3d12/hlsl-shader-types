@@ -1,6 +1,22 @@
 
 https://www.lei.chat/posts/hlsl-for-vulkan-resources/
 
+		=============================================
+		Buffer				Texture
+		=============================================
+CBV		Constant*			Constant
+		cbuffer				tbuffer
+
+SRV		Buffer				Texture
+		Structured			
+		ByteAddress			
+
+UAV		RW{SRV}				RW
+						[Append | Consume]StructuredBuffer
+       
+Sampler	        SamplerState / SamplerComparisonState								
+
+
 			Base Register
 			----------------
 Sampler			s#
@@ -8,20 +24,4 @@ SRV			t#
 CBV			b#
 UAV			u#
 
-
-			HLSL Type		
-			---------------------------------------------------------------------------------------------------
- SRV			Buffer,   Texture*,   StructuredBuffer,   ByteAddressBuffer, 
- UAV			RWBuffer, RWTexture*, RWStructuredBuffer, RWByteAddressBuffer, [Append | Consume]StructuredBuffer
- CBV			cbuffer,  tbuffer,    ConstantBuffer, 	  TextureBuffer, 
- Sampler		SamplerState, SamplerComparisonState
-
-
- Remember:
-  Buffer		Texture*
-   - Structured
-   - ByteAddress
-
-  Above are SRV types
-  Prefix (RW) to get UAV types
 
