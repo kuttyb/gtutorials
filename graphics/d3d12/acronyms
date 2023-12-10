@@ -20,3 +20,12 @@
       - (T)esselator	 (Fixed pipeline)
       - (D)omain Shader
 
+
+   Base Register Types (BUST)
+      - b# (CBV)
+      - u# (UAV)
+      - s# (Sampler)
+      - t# (SRV)
+
+
+     
