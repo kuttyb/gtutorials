@@ -1,0 +1,3 @@
+
+ ;; This is how you can build from the command line
+ devenv name.sln /Build
