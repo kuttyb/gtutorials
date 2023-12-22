@@ -1,8 +1,8 @@
 You need to install Git for windows from here https://git-scm.com/download/win
 
-This comes with mingw64 and that includes ssh.
+Install and place OpenSSH (ssh, ssh-keygen) in your path.
 
-Place this after cygwin in your PATH. Also DO NOT install ssh or git from cygwin.
+Make sure you set $HOME correctly. The ssh key should be in $HOME/.ssh/id_rsa*
 
 ----
 Beyond this, it behaves just like macOS or Linux. Use ssh-key to generate keys

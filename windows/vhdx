@@ -1,0 +1,9 @@
+
+ 1. Create VHDX from a drive
+
+ Use this tool
+ https://learn.microsoft.com/en-us/sysinternals/downloads/disk2vhd
+
+ 2. Open "Disk Management" tool in Windows
+    Action -> Attach VHD
+
