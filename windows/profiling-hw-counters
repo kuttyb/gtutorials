@@ -1,0 +1,4 @@
+https://learn.microsoft.com/en-us/windows-hardware/test/wpt/recording-pmu-events
+
+You can use xperf/WPA to see HW counters like IPC/CPI inline with process/stack/cswitch over time
+
