@@ -1,0 +1,3 @@
+git config --list --show-origin --show-scope
+
+This will show you where your config files are being picked from. I generally go and edit the config file under git installation
