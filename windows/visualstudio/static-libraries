@@ -1,3 +1,9 @@
 
- Don't use PCH in the static libraries. It omits exported functions
+ Don't use LTCG in the static libraries. It omits exported functions (To be fully vetted if this is true)
+
+ Also don't need declspec(import/export) 
+
+ The real thing to watch out for given how you use vcpkg is that "Use Vcpkg Manifest" is Yes
+
+ Do this on all downstream projects (exe, Unit test runners) that use Static libraries with vcpkg dependencies
 
