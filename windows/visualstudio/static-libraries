@@ -1,0 +1,3 @@
+
+ Don't use PCH in the static libraries. It omits exported functions
+
