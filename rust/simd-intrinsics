@@ -1,0 +1,6 @@
+https://doc.rust-lang.org/beta/core/arch/x86_64/fn._mm256_stream_si256.html
+
+This should give you non temporal stores
+
+They also have Static / Runtime CPUID detection
+
