@@ -1,0 +1,14 @@
+
+ https://www.youtube.com/watch?v=6WtE3CoFMXU&ab_channel=UnrealEngine
+
+ Culling Techniques:
+ 
+ 1. Frustum
+ 2. Occlusion
+ 3. Distance
+ 4. Precomputed (if you are in this zone of the game only this part of the level is visible using voxels)
+     mid-to-small levels have that
+
+Open: Do above techniques cull Render or also Game Thread activities such as Animation, AI and physics
+
+
