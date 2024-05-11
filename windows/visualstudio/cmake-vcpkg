@@ -1,0 +1,10 @@
+
+ once you have generated the cmake output folder, you can build thus
+
+ cmake --build . --target cs2_comiss --config release
+
+ // To run the tests
+ cmake --build . --target RUN_TESTS --config release
+
+ Said folder will contain .vcproj files which can also be opened in Visual Studio
+
