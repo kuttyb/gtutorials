@@ -1,0 +1,20 @@
+
+On windows, the cmake generated folder operates with Visual studio tools viz., msbuild.
+
+I want to stay away from that and stick with cmake.
+
+# Build
+cmake --build . --target ALL_BUILD --config Release -v
+
+# Build specific_target.vcproj. Drop the .vcproj when specifying target
+cmake --build . --target specific_target --config Release -v
+
+# To run all Unit Tests (yes this is nasty and slow)
+cmake --build . --target RUN_TESTS --config Release -v
+
+# Clean 
+cmake --build . --target clean --config Release -v
+
+# parallel Jobs
+Append --parallel 20 to cmake commands to speed up using jobs
+
