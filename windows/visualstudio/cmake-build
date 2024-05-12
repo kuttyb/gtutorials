@@ -12,6 +12,9 @@ cmake --build . --target specific_target --config Release -v
 # To run all Unit Tests (yes this is nasty and slow)
 cmake --build . --target RUN_TESTS --config Release -v
 
+<edit>
+ctest -j 10 # much better Unixy way to go 
+
 # Clean 
 cmake --build . --target clean --config Release -v
 
