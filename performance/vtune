@@ -16,3 +16,7 @@
 
      For e.g., if you selected sampling period 10us and a 15us region selected shows 1 sample with 27us then you know the CPU only supports 27us sampling
 
+
+ // 10GB data limit
+  vtune -collect hotspots -knob sampling-mode=hw -knob sampling-interval=0.01 -knob enable-characterization-insights=false -data-limit=10000 --target-process process_name.exe
+
