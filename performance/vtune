@@ -1,0 +1,18 @@
+
+ (1) Hotness sample
+
+ Find the highest resolution to establish dominant Basic blocks.
+
+ Under Performance -> Hotspot
+
+ Select HW Event sampling (run as administrator and if prompted install sampling driver)
+
+ Select 0.01ms. I believe most Intel CPUs support 27~33us hardware sampling.
+
+ I have tested i7-8700K and i9-13900KS thus far
+
+ (2) To validate, select a region under Platform view with CPU core activity smaller than sampling window and make sure
+     Bottom-up shows some functions with sampling period.
+
+     For e.g., if you selected sampling period 10us and a 15us region selected shows 1 sample with 27us then you know the CPU only supports 27us sampling
+
