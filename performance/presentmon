@@ -1,0 +1,15 @@
+
+ In v2:
+
+   - GPUBusy : accumulated time in all GPU packets
+   - GPUWait : Delta between last and first command packet finish/start on GPU
+
+   - DisplayedTime : Flip to flip (frame time)
+   - GPU Latency : Time from frame start on CPU to 1st packet on GPU
+
+
+ Compare DisplayTime with GPUWait. That is your CPU frame time.
+  If GPUWait is high it means GPU is not being fed at line rate or that GPU latency is high
+
+
+ 
