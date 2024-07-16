@@ -3,11 +3,11 @@ E = end	      value
 B = beginning value
 p = periods
 r = rate
-
+n = number of times we compound per period
 
 
 CAGR = ((E/B)^(1/p)) - 1
-E=B(1 + r/n)pn
+E=B(1 + r/n)^pn
 
 CAGR:
 =====
