@@ -1,0 +1,17 @@
+
+E = end	      value
+B = beginning value
+p = periods
+r = rate
+
+
+
+CAGR = ((E/B)^(1/p)) - 1
+E=B(1 + r/n)pn
+
+CAGR:
+=====
+SP500		13.866%
+
+Property	7.428%
+
