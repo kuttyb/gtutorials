@@ -1,0 +1,46 @@
+alias t cd /home/kuttybanerjee/daji/code/vcpkg
+alias l r $*
+alias dx cd /home/kuttybanerjee/daji/gtutorials/graphics/d3d12
+alias dc clear $*
+alias dclear d $*
+alias dist cat /etc/*elease
+alias c clear $*
+alias space df -h / 
+alias tut cd /home/kuttybanerjee/daji/gtutorials
+alias et setenv "TERM" "eterm"
+alias prr git reset .
+alias pr git checkout -- .
+alias mm make -j4 $*
+alias j cd /home/kutty/daji/java
+alias pd git diff .
+alias gcf git clean -f -d .
+alias clear clr
+alias int cd /home/kutty/daji/int/java
+alias desk cd ~/Desktop
+alias doc cd ~/Documents
+alias daji cd ~/daji
+alias down cd ~/Downloads
+alias psu ps -efcl
+alias gp git push 
+alias sw_vers uname -a
+alias pa git add .
+alias po git status
+alias gc git commit
+alias plg git lg -10
+alias open nautilus
+alias pic /home/kutty/Pictures
+alias cr cd /home/kutty/daji/configrepo/clion
+alias pb git branch
+alias jdk cd /usr/lib/jvm
+alias pc git pull &
+alias 3 cd /home/kutty/daji/gccomponent/3rdparty
+alias dr cd /mnt/chromeos/GoogleDrive/MyDrive
+alias mem head /proc/meminfo
+alias celar ls $*
+alias cpu cat /proc/cpuinfo
+alias donw ls $*
+alias s clear $*
+alias clea clear $*
+alias p cd /home/kuttybanerjee/daji/code/pylearn
+alias r cd /home/kuttybanerjee/daji/code/rust/hello-rust
+alias winsystem echo desktop-0T772kp
