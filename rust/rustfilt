@@ -4,7 +4,7 @@
  objdump -d binary | rustfilt
 
 
- You can also do this for better portability
+ You can also do this for better portability if you are building from source
 
  cargo objdump -- --disassemble ./binary
  
