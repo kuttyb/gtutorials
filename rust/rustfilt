@@ -1,0 +1,12 @@
+
+ cargo install rustfilt
+
+ objdump -d binary | rustfilt
+
+
+ You can also do this for better portability
+
+ cargo objdump -- --disassemble ./binary
+ 
+
+
