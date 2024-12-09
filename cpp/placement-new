@@ -1,0 +1,20 @@
+
+ This is what C++ STL emplace uses. Allows you to reconstruct an object in place by reusing already allocated storage.
+
+ This avoids constructing new objects which are then either copied or moved (overhead)
+
+ While move is faster than copy, depending on implementation, it is not guaranteed to be zero overhead. Thus constructing an object
+ in place is always considered SOL.
+
+     // Declaration
+     std::unique_ptr<float[]> data;
+
+     // Memory allocation
+     data = std::make_unique<float[]>(size);
+
+     // Object allocation 
+     new(&data[2]) float(payload);
+
+
+ Above, we allocated the array upfront and then reconstructed an object directly in place using "Placement new"
+ 
