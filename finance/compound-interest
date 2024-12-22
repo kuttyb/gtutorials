@@ -1,0 +1,14 @@
+
+A = P(1 + (r/n))^nt
+
+A: Final Amount
+P: Initial Principal
+r: Annual Interest Rate
+n: Number of compounding periods per year (e.g., daily, monthly, annual thus 365, 12, 1)
+t: Number of years
+
+
+
+
+ 
+ 
