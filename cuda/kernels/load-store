@@ -1,0 +1,14 @@
+
+ Load-store SASS instructions are per thread instructions (as are all SASS instructions)
+
+ STG.E.S32 [R4+0x8], R7
+
+ "E" is a modifier telling you to evict from cache (aka streaming)
+ .S32 is the size and type of the data
+
+ Other modifiers include:
+  "U" and "C"
+  U means cache in 
+Cache in L1/L2 (LU, LC): Use when data will be accessed again shortly, and caching can improve performance.
+
+     
