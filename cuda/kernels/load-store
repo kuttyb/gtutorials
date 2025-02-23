@@ -3,12 +3,15 @@
 
  STG.E.S32 [R4+0x8], R7
 
- "E" is a modifier telling you to evict from cache (aka streaming)
- .S32 is the size and type of the data
+ "E" is a modifier. Here is the lay of the land for modifiers as described by ChatGPT (literally copied from ChatGPT output)
 
- Other modifiers include:
-  "U" and "C"
-  U means cache in 
-Cache in L1/L2 (LU, LC): Use when data will be accessed again shortly, and caching can improve performance.
-
-     
+Summary of Modifiers for LDG and STR
+Instruction	Modifier	Purpose
+LDG	.E	Bypasses L1 cache, uses L2 cache.
+LDG	.L	Uses L1 cache for the load.
+LDG	.TEX	Fetches data from global memory using texture fetch semantics.
+LDG	.R	Specifies a read-only load, optimized for read-only memory regions.
+STR	.E	Stores to global memory via L2 cache, bypassing L1 cache.
+STR	.L	Stores to global memory, prioritizing L1 cache.
+STR	.TEX	Stores data using texture semantics.
+STR	.R	Store data to read-only memory regions.
