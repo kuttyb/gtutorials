@@ -1,0 +1,28 @@
+
+ Moving Average Convergence Divergence
+ ======================================
+
+ Tells you direction and strength (aka momentum) of the trend.
+
+ Basics:
+ --------
+ MACD = EMA12 - EMA26
+      = Shortterm  - Long term
+
+ Negative means downtrend, positive means uptrend.
+
+
+ Details:
+ ---------
+ It has 2 lines and a directional histogram
+
+ 1) MACD Line : Plot of EMA12 - EMA26
+
+ 2) Signal Line : "Smoothens" out Noise in (1) by doing EMA_MACD_9d
+
+ With above in mind, when (1) crosses (2) it is a Bullish signal and when it drops below (2) it is a Bearish signal.
+
+ 3) Directional Histogram tells you magnitude, how much Bullish or Bearish
+
+
+ 
