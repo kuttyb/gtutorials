@@ -1,0 +1,9 @@
+
+ Cross over:
+   Bullish : if MACD beats signal
+   Bearish : if MACD dips Signal
+   
+ Divergence: Both indicate a cross-over is imminent
+   Bullish : negative MACD but losing momentum (color) while price continues dropping 
+   Bearish : positive MACD but losing momentum (color) while price continues increasing
+
