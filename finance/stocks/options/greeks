@@ -1,0 +1,19 @@
+
+where each Greek = 0.5 and Shadowed Metric Delta = 1
+
+    =========================================================
+    Greek      	   Shadowed Metric    	      Premium Delta
+    =========================================================
+
+    Delta	   Stock Price			+$0.5	
+
+
+    Theta	   Time	 			+0.5
+
+    
+    Vega	   Implied Volatility		+0.5
+
+
+
+
+"Ignore Rho/Gamma, not important for day to day Options trading"
