@@ -1,13 +1,14 @@
 
-https://www.barchart.com/stocks/quotes/baba/volatility-charts  (Historic Volatility)
-https://optioncharts.io/options/BABA/volatility-skew	       (Good for IV deep down)
+https://www.barchart.com/stocks/quotes/baba/volatility-charts		(Historic Volatility)
+https://optioncharts.io/options/BABA/volatility-skew	       		(Good for IV deep down)
 
 
  Historic Volatility is the volatility of the underlying stock.
    - It has already been realized
-   - It is a property of the underlying stock
-   - Bolinger Band or a plot of Bolinger Band Bandwidth is a good measure
-   - Refer this chart https://www.tradingview.com/x/QBzNoyzL/
+   - Bolinger Band or a plot of Bolinger Band Bandwidth is a good measure ( https://www.tradingview.com/x/QBzNoyzL/)
 
  Implied Volatility (IV) is a property of the Options Contract (NOT THE STOCK)
- 
+   - Sites prescribing IV to a stock are likely using IV of ATM contracts for near contracts
+
+
+
