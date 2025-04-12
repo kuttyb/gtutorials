@@ -1,0 +1,45 @@
+
+ WI	= Weekly Income
+ AP     = Assignment Price
+ PP   	= Plunge Protection 
+
+
+ NOTM 	= Near OTM (under 10% moneyness)
+ NITM	= Near ITM (look for a high delta and good AP balance)
+
+
+								Basics
+				============================================================================
+				WI		AP		PPT		Comments
+				============================================================================
+				
+  Weekly NOTM			High		Poor		None		Normal mode of operation
+
+  Leap   NITM			Poor		High		High		Storm Shelter (Bear Market)
+
+
+  	 			
+				Moves
+		====================================================
+  	 	Bear		    Sideways	      Bull
+		====================================================
+		
+  Weekly	Leap		     Weekly	     Weekly
+  		(shelter)*	     (expire)	     (Roll-up/out)	
+		
+
+  Leap		Leap		     Weekly	     Weekly
+  		(roll-down/out)	     (normalcy)	     (Run) **
+
+
+
+  *  Flee. The sooner you run, higher your profit. Leap NITM will have high delta.
+     Thus it acts like a synthetic stock.
+
+  ** Find the earliest NOTM to break-even and back to normalcy
+     Longer you wait, more difficult it will become
+
+  When in doubt if a bear or bull is coming, stay weekly. If it goes up rapidly, you can
+  wait it out or roll-up. If it goes down rapidly, you can Leap!
+
+
