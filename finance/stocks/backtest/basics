@@ -1,0 +1,14 @@
+
+ I will stick to downloading data into CSV and running C++ queries in my own program for backtesting.
+
+ For Options:
+   - Download Options data from optioncharts.com You have the Ultimate Subscription which allows downloading into csv.
+
+ For stocks:
+   - Download historic data from etrade, select stock, open chart then under historic data place range then download
+   - This will give you an Excel which you can easily convert to csv
+   https://cloudconvert.com/xlsx-to-csv or just manually import into Google sheets then download as CSV
+
+
+
+   
