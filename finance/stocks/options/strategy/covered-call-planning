@@ -7,6 +7,7 @@
  NOTM 	= Near OTM (under 10% moneyness)
  NITM	= Near ITM (look for a high delta and good AP balance)
 
+ LEAP NITM has high Delta, Weekly NOTM has high theta
 
 								Basics
 				============================================================================
