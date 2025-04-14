@@ -1,0 +1,6 @@
+
+Intrinsic Value = max(0,Stock Price − Strike Price)
+
+Extrinsic Value = Option Price − Intrinsic Value
+
+
