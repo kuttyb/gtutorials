@@ -1,0 +1,14 @@
+
+ When opening a position, place a bracket around it.
+
+ Take Profit is the sale point where you lock in your profit.
+
+ Stop Loss is the sale point where you cut your losses.
+
+ You can do this using OTOCO in Power Etrade.
+
+     1. You set a Sale Triggered by successful buy
+     2. You are issuing 2 sales and saying pick one and cancel the other
+     3. If price drops to SL, it wlll sell and cancel the TP
+     4. If price rises to TP, it will sell and cancel the SL
+

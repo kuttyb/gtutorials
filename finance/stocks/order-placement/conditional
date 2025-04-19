@@ -1,0 +1,9 @@
+
+ OTO : One Triggers the Other  (program exit when opening position)
+ OCO : One Cancels  the Other  (choose between exits corresponding to an exit)
+ OCA : One Cancels All	       (can choose to cancel unrelated orders like multiple buys or multiple sells)
+
+ First two are supported on Power Etrade, last one only on IBKR and TradeStation
+
+ 
+ 
