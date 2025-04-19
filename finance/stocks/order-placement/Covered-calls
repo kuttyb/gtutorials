@@ -1,0 +1,13 @@
+
+ When selling near, issue Trigger to buy Stop-limit when underlying stock price gets too close to Strike Price
+
+
+ When selling far with high delta, its like buying a stock. You would do this in a Bear market but if the stock pulls ahead you will be in a loss.
+   1. Thus we need SL and TP
+   2. Place Take-Profit and Stop-Loss
+
+ Both of the above can be done on Power Etrade
+
+ What cannot be done is both simultaneously. Saying Sale either if underlying >= threshold OR SL/TP bracket limits are hit
+
+
