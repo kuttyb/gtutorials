@@ -1,0 +1,62 @@
+// Goal:
+// Buy the bollinger band with a buy price that is below 50% of the band. Also when the stock is part of a breakout.
+// Also only do this when RSI is positive
+
+
+//@version=6
+strategy("Buy Dip + RSI + MACD + BB + Cooldown", overlay=true)
+
+// === User Inputs ===
+basePrice = input.float(100.0, title="Base Price")
+slPercent = input.float(2.0, title="Stop Loss % below base price")
+tpPercent = input.float(5.0, title="Take Profit % above base price")
+cooldownBars = input.int(30, title="Cooldown (bars between trades)")
+
+// === Derived Levels ===
+slPrice = basePrice * (1 - slPercent / 100)
+tpPrice = basePrice * (1 + tpPercent / 100)
+
+// === Bollinger Bands on 30-min timeframe ===
+bbLength = 20
+bbMult = 2.0
+[bbUpper, bbBasis, bbLower] = request.security(syminfo.tickerid, "30", ta.bb(close, bbLength, bbMult))
+bbMid = (bbUpper + bbLower) / 2
+
+// === RSI ===
+rsiLength = 14
+rsi = ta.rsi(close, rsiLength)
+rsiIsRising = rsi > rsi[1]
+
+// === MACD ===
+[macdLine, signalLine, _] = ta.macd(close, 12, 26, 9)
+macdBreakout = ta.crossover(macdLine, signalLine)
+
+// === Dip and Breakout Logic ===
+var bool dippedBelow = false
+if low < basePrice
+    dippedBelow := true
+
+priceBreakout = dippedBelow and close > basePrice
+
+// === Time Since Last Trade ===
+var int lastTradeBar = na
+barsSinceLastTrade = na(lastTradeBar) ? 9999 : bar_index - lastTradeBar
+cooldownOk = barsSinceLastTrade >= cooldownBars
+
+// === Entry Condition ===
+bbFilter = close < bbMid
+shouldBuy = priceBreakout and rsiIsRising and macdBreakout and bbFilter and cooldownOk
+
+if shouldBuy
+    strategy.entry("Buy Breakout", strategy.long)
+    dippedBelow := false  // reset dip tracker
+    lastTradeBar := bar_index  // set cooldown marker
+
+// === Exit Strategy ===
+strategy.exit("TP/SL", from_entry="Buy Breakout", stop=slPrice, limit=tpPrice)
+
+// === Plotting ===
+plot(basePrice, title="Base Price", color=color.gray)
+plot(slPrice, title="Stop Loss", color=color.red)
+plot(tpPrice, title="Take Profit", color=color.green)
+plot(bbMid, title="30-min BB Mid", color=color.orange)
