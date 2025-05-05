@@ -1,0 +1,10 @@
+
+ To detect Spikes in volume or momentum:
+ =========================================
+ 
+ RVOL tells you "Is this unusual?"
+
+ VROC tells you "How fast is volume changing?"
+
+ PVO tells you "Is volume flowing in a bullish or bearish trend?" (sustained)
+
