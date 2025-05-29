@@ -1,0 +1,27 @@
+
+ Trade the height of a steady Bolinger Band. Bolinger Bandwidth is our profit margin.
+
+ Pre-conditions:
+ ================
+ 1) Support Resistance should not contradict BB
+
+ 2) Dynamic Linear Regression of last 15 mins should not be pointing steady downwards (phase up/down is ok)
+
+ 3) Entry should be timed at the bottom of Momentum Indicators (RSI, AO, MACD, MFI)
+
+ 4) VRVP / VWAP should not be below lower BB
+
+ 5) Bolinger band should be reasonably steady (Trend / IV steadiness)
+
+
+ What I learnt Paper Trading:
+ ============================
+
+ 1) Can still go southways, i.e., once at Rock bottom (MACD, AO, RSI, MFI) can still sink lower
+
+  SAFEGUARD: Set a Stop limit order so you are "hit" from below when buying. This filters out "Falling past rock bottom"
+
+  Also prevents fakeouts from triggering Stop Loss
+
+
+ 
