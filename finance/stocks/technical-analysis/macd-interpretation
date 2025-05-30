@@ -7,3 +7,10 @@
    Bullish : negative MACD but losing momentum (color) while price continues dropping 
    Bearish : positive MACD but losing momentum (color) while price continues increasing
 
+
+ Cheat Code:
+
+   Height of the histogram : Instantaneous speed (delta between MACD line and signal)
+
+   Color of the histogram  : How persistent (trendy) is the speed (darker colors indicate momentum is picking up)
+
